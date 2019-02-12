@@ -17,7 +17,7 @@ const routes: Routes = [
   {
     path: '',
     data: {
-      title: 'Base'
+      title: 'Sistema1'
     },
     children: [
       {
@@ -28,7 +28,7 @@ const routes: Routes = [
         path: 'cards',
         component: CardsComponent,
         data: {
-          title: 'Cards'
+          title: '2.1'
         }
       },
       {
