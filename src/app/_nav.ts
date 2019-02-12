@@ -13,58 +13,40 @@ export interface NavData {
 
 export const navItems: NavData[] = [
   {
-    name: 'Dashboard',
+    name: 'Sistemas',
     url: '/dashboard',
     icon: 'icon-speedometer',
-    badge: {
+    /*badge: {
       variant: 'info',
       text: 'NEW'
-    }
+    }*/
   },
   {
-    title: true,
-    name: 'Theme'
-  },
-  {
-    name: 'Colors',
-    url: '/theme/colors',
-    icon: 'icon-drop'
-  },
-  {
-    name: 'Typography',
-    url: '/theme/typography',
-    icon: 'icon-pencil'
-  },
-  {
-    title: true,
-    name: 'Components'
-  },
-  {
-    name: 'Base',
+    name: 'Sistema 1',
     url: '/base',
-    icon: 'icon-puzzle',
+    icon: 'icon-screen-desktop',
     children: [
       {
-        name: 'Cards',
+        name: '1.1',
         url: '/base/cards',
         icon: 'icon-puzzle'
       },
       {
-        name: 'Carousels',
+        name: '1.2',
         url: '/base/carousels',
         icon: 'icon-puzzle'
       },
       {
-        name: 'Collapses',
+        name: '1.3',
         url: '/base/collapses',
         icon: 'icon-puzzle'
       },
       {
-        name: 'Forms',
+        name: '1.4',
         url: '/base/forms',
         icon: 'icon-puzzle'
       },
-      {
+      /*{
         name: 'Pagination',
         url: '/base/paginations',
         icon: 'icon-puzzle'
@@ -98,94 +80,94 @@ export const navItems: NavData[] = [
         name: 'Tooltips',
         url: '/base/tooltips',
         icon: 'icon-puzzle'
-      }
+      }*/
     ]
   },
   {
-    name: 'Buttons',
+    name: 'Sistema2',
     url: '/buttons',
-    icon: 'icon-cursor',
+    icon: 'icon-screen-desktop',
     children: [
       {
-        name: 'Buttons',
+        name: '2.1',
         url: '/buttons/buttons',
-        icon: 'icon-cursor'
+        icon: 'icon-puzzle'
       },
       {
-        name: 'Dropdowns',
+        name: '2.2',
         url: '/buttons/dropdowns',
-        icon: 'icon-cursor'
+        icon: 'icon-puzzle'
       },
       {
-        name: 'Brand Buttons',
+        name: '2.3',
         url: '/buttons/brand-buttons',
-        icon: 'icon-cursor'
+        icon: 'icon-puzzle'
       }
     ]
   },
-  {
-    name: 'Charts',
+/*  {
+    name: 'Cha',
     url: '/charts',
     icon: 'icon-pie-chart'
-  },
+  },*/
   {
-    name: 'Icons',
+    name: 'Sistema 3',
     url: '/icons',
-    icon: 'icon-star',
+    icon: 'icon-screen-desktop',
     children: [
       {
-        name: 'CoreUI Icons',
+        name: '3.1',
         url: '/icons/coreui-icons',
-        icon: 'icon-star',
-        badge: {
+        icon: 'icon-puzzle',
+        /*badge: {
           variant: 'success',
           text: 'NEW'
-        }
+        }*/
       },
       {
-        name: 'Flags',
+        name: '3.2',
         url: '/icons/flags',
-        icon: 'icon-star'
+        icon: 'icon-puzzle'
       },
       {
-        name: 'Font Awesome',
+        name: '3.3',
         url: '/icons/font-awesome',
-        icon: 'icon-star',
-        badge: {
+        icon: 'icon-puzzle',
+        /*badge: {
           variant: 'secondary',
           text: '4.7'
-        }
+        }*/
       },
       {
-        name: 'Simple Line Icons',
+        name: '3.4',
         url: '/icons/simple-line-icons',
-        icon: 'icon-star'
+        icon: 'icon-puzzle'
       }
     ]
   },
   {
-    name: 'Notifications',
+    name: 'Sistema 4',
     url: '/notifications',
-    icon: 'icon-bell',
+    icon: 'icon-screen-desktop',
     children: [
       {
-        name: 'Alerts',
+        name: '4.1',
         url: '/notifications/alerts',
-        icon: 'icon-bell'
+        icon: 'icon-puzzle'
       },
       {
-        name: 'Badges',
+        name: '4.2',
         url: '/notifications/badges',
-        icon: 'icon-bell'
+        icon: 'icon-puzzle'
       },
       {
-        name: 'Modals',
+        name: '4.3',
         url: '/notifications/modals',
-        icon: 'icon-bell'
+        icon: 'icon-puzzle'
       }
     ]
   },
-  {
+ /* {
     name: 'Widgets',
     url: '/widgets',
     icon: 'icon-calculator',
@@ -193,15 +175,15 @@ export const navItems: NavData[] = [
       variant: 'info',
       text: 'NEW'
     }
-  },
-  {
+  },*/
+  /*{
     divider: true
   },
   {
     title: true,
     name: 'Extras',
-  },
-  {
+  },*/
+ /* {
     name: 'Pages',
     url: '/pages',
     icon: 'icon-star',
@@ -252,5 +234,5 @@ export const navItems: NavData[] = [
     icon: 'icon-layers',
     variant: 'danger',
     attributes: { target: '_blank', rel: 'noopener' }
-  }
+  }*/
 ];

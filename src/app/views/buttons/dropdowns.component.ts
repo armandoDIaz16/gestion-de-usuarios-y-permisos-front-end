@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
 })
 export class DropdownsComponent {
 
-  status: { isOpen: boolean } = { isOpen: false };
+  /*status: { isOpen: boolean } = { isOpen: false };
   disabled: boolean = false;
   isDropup: boolean = true;
   autoClose: boolean = false;
@@ -37,5 +37,5 @@ export class DropdownsComponent {
 
   change(value: boolean): void {
     this.status.isOpen = value;
-  }
+  }*/
 }

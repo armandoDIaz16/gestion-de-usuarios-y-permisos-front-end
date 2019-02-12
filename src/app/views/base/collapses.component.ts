@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
 })
 export class CollapsesComponent {
 
-  constructor() { }
+ /* constructor() { }
 
   isCollapsed: boolean = false;
 
@@ -15,6 +15,6 @@ export class CollapsesComponent {
 
   expanded(event: any): void {
     // console.log(event);
-  }
+  }*/
 
 }

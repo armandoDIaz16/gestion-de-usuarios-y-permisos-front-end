@@ -8,7 +8,7 @@ import { CarouselConfig } from 'ngx-bootstrap/carousel';
 })
 export class CarouselsComponent {
 
-  myInterval: number = 6000;
+ /* myInterval: number = 6000;
   slides: any[] = [];
   activeSlideIndex: number = 0;
   noWrapSlides: boolean = false;
@@ -29,5 +29,5 @@ export class CarouselsComponent {
     const toRemove = index ? index : this.activeSlideIndex;
     this.slides.splice(toRemove, 1);
   }
-
+*/
 }

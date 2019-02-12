@@ -3,7 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { AlertConfig } from 'ngx-bootstrap/alert';
 
 // such override allows to keep some initial values
-
+/*
 export function getAlertConfig(): AlertConfig {
   return Object.assign(new AlertConfig(), { type: 'success' });
 }
@@ -87,4 +87,4 @@ export class AlertsComponent {
       timeout: 5000
     });
   }
-}
+}*/

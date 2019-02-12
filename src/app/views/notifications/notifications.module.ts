@@ -1,3 +1,4 @@
+/*
 // Angular
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -28,4 +29,4 @@ import { NotificationsRoutingModule } from './notifications-routing.module';
     ModalsComponent
   ]
 })
-export class NotificationsModule { }
+export class NotificationsModule { }*/
