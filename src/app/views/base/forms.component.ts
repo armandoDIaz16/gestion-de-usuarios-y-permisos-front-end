@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
 })
 export class FormsComponent {
 
- /* constructor() { }
+  constructor() { }
 
   isCollapsed: boolean = false;
   iconCollapse: string = 'icon-arrow-up';
@@ -21,6 +21,6 @@ export class FormsComponent {
   toggleCollapse(): void {
     this.isCollapsed = !this.isCollapsed;
     this.iconCollapse = this.isCollapsed ? 'icon-arrow-down' : 'icon-arrow-up';
-  }*/
+  }
 
 }

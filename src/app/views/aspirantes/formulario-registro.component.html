@@ -3,71 +3,220 @@
     <div class="col-sm-6">
       <div class="card">
         <div class="card-header">
-          <strong>Credit Card</strong>
-          <small>Form</small>
+          <strong>Datos Personales:</strong>
         </div>
         <div class="card-body">
           <div class="row">
             <div class="col-sm-12">
               <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                <label for="nombre">Nombre:</label>
+                <input type="text" class="form-control" id="nombre">
               </div>
             </div>
-          </div>
+          </div><!--/.row-->
           <div class="row">
             <div class="col-sm-12">
               <div class="form-group">
-                <label for="ccnumber">Credit Card Number</label>
-                <input type="text" class="form-control" id="ccnumber" placeholder="0000 0000 0000 0000">
+                <label for="apellidoP">Apellido Paterno:</label>
+                <input type="text" class="form-control" id="apellidoP">
               </div>
             </div>
-          </div>
+          </div><!--/.row-->
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="apellidoM">Apellido Materno:</label>
+                <input type="text" class="form-control" id="apellidoM">
+              </div>
+            </div>
+          </div><!--/.row-->
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+                <input type="text" class="form-control" id="fechaNacimiento">
+              </div>
+            </div>
+          </div><!--/.row-->
           <div class="row">
             <div class="form-group col-sm-4">
-              <label for="ccmonth">Month</label>
-              <select class="form-control" id="ccmonth">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>7</option>
-                <option>8</option>
-                <option>9</option>
-                <option>10</option>
-                <option>11</option>
-                <option>12</option>
+              <label for="genero">Género:</label>
+              <select class="form-control" id="genero">
+                <option>Selecciona</option>
+                <option>Masculino</option>
+                <option>Femenino</option>
               </select>
             </div>
             <div class="form-group col-sm-4">
-              <label for="ccyear">Year</label>
-              <select class="form-control" id="ccyear">
-                <option>2014</option>
-                <option>2015</option>
-                <option>2016</option>
-                <option>2017</option>
-                <option>2018</option>
-                <option>2019</option>
-                <option>2020</option>
-                <option>2021</option>
-                <option>2022</option>
-                <option>2023</option>
-                <option>2024</option>
-                <option>2025</option>
+              <label for="edoCivil">Estado Civil:</label>
+              <select class="form-control" id="edoCivil">
+                <option>Selecciona</option>
+                <option>Soltero(a)</option>
+                <option>Casado(a)</option>
               </select>
             </div>
-            <div class="col-sm-4">
+          </div><!--/.row-->
+          <div class="row">
+            <div class="col-sm-12">
               <div class="form-group">
-                <label for="cvv">CVV/CVC</label>
-                <input type="text" class="form-control" id="cvv" placeholder="123">
+                <label for="nacionalidad">Nacionalidad:</label>
+                <input type="text" class="form-control" id="nacionalidad">
               </div>
             </div>
-          </div>
+          </div><!--/.row-->
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="curp">CURP:</label>
+                <input type="text" class="form-control" id="curp">
+              </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
+              <button type="button" class="btn btn-block btn-primary">Consulta de CURP</button>
+            </div>
+          </div><!--/.row-->
         </div>
       </div>
     </div>
+  </div><!--/.colDatosPersonales-->
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-header">
+          <strong>Datos de Contacto:</strong>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="calle">Calle:</label>
+                <input type="text" class="form-control" id="calle">
+              </div>
+            </div>
+          </div><!--/.row-->
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="numContacto">Número:</label>
+                <input type="text" class="form-control" id="apellidoP">
+              </div>
+            </div>
+          </div><!--/.row-->
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="apellidoM">Colonia:</label>
+                <input type="text" class="form-control" id="apellidoM">
+              </div>
+            </div>
+          </div><!--/.row-->
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="fechaNacimiento">Localidad:</label>
+                <input type="text" class="form-control" id="fechaNacimiento">
+              </div>
+            </div>
+          </div><!--/.row-->
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="curp">Código Postal:</label>
+                <input type="text" class="form-control" id="curp">
+              </div>
+            </div>
+          </div><!--/.row-->
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="curp">Teléfono:</label>
+                <input type="text" class="form-control" id="curp">
+              </div>
+            </div>
+          </div><!--/.row-->
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="curp">Correo Electrónico:</label>
+                <input type="text" class="form-control" id="curp">
+              </div>
+            </div>
+          </div><!--/.row-->
+        </div>
+      </div>
+    </div>
+  </div><!--/.colDatosContacto-->
+  
+  <div class="row">
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-header">
+            <strong>Actualmente, ¿tienes alguna discapacidad? :</strong>
+          </div>
+          <div class="col-md-9 col-form-label">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="ninguna" id="cbNinguna">
+              <label class="form-check-label" for="checkbox1">
+                Ninguna
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="visual" id="cbVisual">
+              <label class="form-check-label" for="checkbox2">
+                Visual
+              </label>
+            </div>
+            <div class="form-check checkbox">
+              <input class="form-check-input" type="checkbox" value="motriz" id="cbMotriz">
+              <label class="form-check-label" for="checkbox3">
+                Motriz
+              </label>
+            </div>
+            <div class="form-check checkbox">
+              <input class="form-check-input" type="checkbox" value="auditiva" id="cbAuditiva">
+              <label class="form-check-label" for="checkbox3">
+                Auditiva
+              </label>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label for="discapacidad">¿Qué tipo de ayuda necesitas?</label>
+                  <input type="text" class="form-control" id="discapacidad">
+                </div>
+              </div>
+            </div><!--/.row-->
+          </div>
+        </div>
+      </div>
+    </div><!--/.colDiscapacidad-->
+
+    <p id="textoCarrera">
+        En el programa a cursar primera opción,
+        elige la carrera a la que más quieras ingresar. Como 2ª.
+        opción escoge aquella que de no poder estudiar tu primera opción, 
+        tampoco te desagradaría ingresar.
+        Dependiendo de tu resultado en los exámenes, puedes ser admitido(a) en 
+        cualquiera de las dos opciones.
+    </p>
+
+    <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-header">
+              <strong>Programa a cursar, primera opción:</strong>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+      </div><!--/.colDatosContacto-->
+    
+
+    <div class="row">
     <div class="col-sm-6">
       <div class="card">
         <div class="card-header">
@@ -96,15 +245,15 @@
               <label for="postal-code">Postal Code</label>
               <input type="text" class="form-control" id="postal-code" placeholder="Postal Code">
             </div>
-          </div>
+          </div><!--/.row-->
           <div class="form-group">
             <label for="country">Country</label>
             <input type="text" class="form-control" id="country" placeholder="Country name">
           </div>
         </div>
       </div>
-    </div>
-  </div>
+    </div><!--/.col-->
+  </div><!--/.row-->
   <div class="row">
     <div class="col-md-6">
       <div class="card">
@@ -488,8 +637,8 @@
           <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
         </div>
       </div>
-    </div>
-  </div>
+    </div><!--/.col-->
+  </div><!--/.row-->
   <div class="row">
     <div class="col-sm-6">
       <div class="card">
@@ -515,7 +664,7 @@
           </div>
         </form>
       </div>
-    </div>
+    </div><!--/.col-->
     <div class="col-sm-6">
       <div class="card">
         <div class="card-header">
@@ -543,7 +692,7 @@
           </form>
         </div>
       </div>
-    </div>
+    </div><!--/.col-->
   </div>
   <div class="row">
     <div class="col-sm-4">
@@ -981,7 +1130,7 @@
       </div>
     </div>
   </div>
-
+  <!--/.row-->
   <div class="row">
     <div class="col-lg-12">
       <div class="card">
@@ -1066,6 +1215,6 @@
         </form>
         </div>
       </div>
-    </div>
-  </div>>
+    </div> <!--/.col-->
+  </div><!--/.row-->
 </div>
