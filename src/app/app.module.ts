@@ -39,6 +39,9 @@ import { AppRoutingModule } from './app.routing';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { EgresadosComponent } from './views/egresados/egresados.component';
+import { SistemsComponent } from './sistems/sistems.component';
+import {FormularioComponent} from './views/formulario/formulario.component';
 
 //login
 //import { NavbarComponent } from './components/navbar/navbar.component';
@@ -81,7 +84,10 @@ import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
     SignupComponent,
     RegisterComponent,
     RequestResetComponent,
-    ResponseResetComponent
+    ResponseResetComponent,
+    EgresadosComponent,
+    SistemsComponent,
+    FormularioComponent
   ],
   providers: [{
     provide: LocationStrategy,

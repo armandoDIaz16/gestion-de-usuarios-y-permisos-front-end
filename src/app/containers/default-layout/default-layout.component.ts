@@ -10,6 +10,7 @@ import { TokenService } from '../../services/token.service';
   selector: 'app-dashboard',
   templateUrl: './default-layout.component.html'
 })
+
 export class DefaultLayoutComponent implements OnDestroy, OnInit {
   public loggedIn: boolean;
   public navItems = navItems;

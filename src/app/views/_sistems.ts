@@ -1,5 +1,3 @@
-// import {{}} from './';
-
 export interface NavData {
   name?: string;
   url?: string;
@@ -12,8 +10,9 @@ export interface NavData {
   divider?: boolean;
   class?: string;
 }
-
-// name? = nameSistem [];
+function datosNavData(n: NavData) {
+  console.log(n.name);
+}
 
 export const navItems: NavData[] = [
   {
@@ -32,7 +31,7 @@ export const navItems: NavData[] = [
     children: [
       {
         name: 'Encuestas',
-        url: '/egresados',
+        url: '/http://google.com',
         icon: 'icon-puzzle'
       },
       {
@@ -50,41 +49,6 @@ export const navItems: NavData[] = [
         url: '/base/forms',
         icon: 'icon-puzzle'
       },
-     {
-        name: 'Egresados',
-        url: '/egresados',
-        icon: 'icon-puzzle'
-      },
-      /*{
-       name: 'Popovers',
-       url: '/base/popovers',
-       icon: 'icon-puzzle'
-     },
-     {
-       name: 'Progress',
-       url: '/base/progress',
-       icon: 'icon-puzzle'
-     },
-     {
-       name: 'Switches',
-       url: '/base/switches',
-       icon: 'icon-puzzle'
-     },
-     {
-       name: 'Tables',
-       url: '/base/tables',
-       icon: 'icon-puzzle'
-     },
-     {
-       name: 'Tabs',
-       url: '/base/tabs',
-       icon: 'icon-puzzle'
-     },
-     {
-       name: 'Tooltips',
-       url: '/base/tooltips',
-       icon: 'icon-puzzle'
-     }*/
     ]
   },
   {
@@ -109,11 +73,11 @@ export const navItems: NavData[] = [
       }
     ]
   },
-/*  {
-    name: 'Cha',
-    url: '/charts',
-    icon: 'icon-pie-chart'
-  },*/
+  /*  {
+      name: 'Cha',
+      url: '/charts',
+      icon: 'icon-pie-chart'
+    },*/
   {
     name: 'Sistema 3',
     url: '/icons',
@@ -171,72 +135,4 @@ export const navItems: NavData[] = [
       }
     ]
   },
- /* {
-    name: 'Widgets',
-    url: '/widgets',
-    icon: 'icon-calculator',
-    badge: {
-      variant: 'info',
-      text: 'NEW'
-    }
-  },*/
-  /*{
-    divider: true
-  },
-  {
-    title: true,
-    name: 'Extras',
-  },*/
- /* {
-    name: 'Pages',
-    url: '/pages',
-    icon: 'icon-star',
-    children: [
-      {
-        name: 'Login',
-        url: '/login',
-        icon: 'icon-star'
-      },
-      {
-        name: 'Register',
-        url: '/register',
-        icon: 'icon-star'
-      },
-      {
-        name: 'Error 404',
-        url: '/404',
-        icon: 'icon-star'
-      },
-      {
-        name: 'Error 500',
-        url: '/500',
-        icon: 'icon-star'
-      }
-    ]
-  },
-  {
-    name: 'Disabled',
-    url: '/dashboard',
-    icon: 'icon-ban',
-    badge: {
-      variant: 'secondary',
-      text: 'NEW'
-    },
-    attributes: { disabled: true },
-  },
-  {
-    name: 'Download CoreUI',
-    url: 'http://coreui.io/angular/',
-    icon: 'icon-cloud-download',
-    class: 'mt-auto',
-    variant: 'success',
-    attributes: { target: '_blank', rel: 'noopener' }
-  },
-  {
-    name: 'Try CoreUI PRO',
-    url: 'http://coreui.io/pro/angular/',
-    icon: 'icon-layers',
-    variant: 'danger',
-    attributes: { target: '_blank', rel: 'noopener' }
-  }*/
 ];

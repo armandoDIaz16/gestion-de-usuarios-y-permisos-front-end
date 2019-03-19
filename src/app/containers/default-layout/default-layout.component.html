@@ -1,7 +1,7 @@
 <app-header
   [fixed]="true"
-  [navbarBrandFull]="{src: 'assets/img/brand/logo.svg', width: 89, height: 25, alt: 'CoreUI Logo'}"
-  [navbarBrandMinimized]="{src: 'assets/img/brand/sygnet.svg', width: 30, height: 30, alt: 'CoreUI Logo'}"
+  [navbarBrandFull]="{src: 'assets/img/logotipo/banner.jpg', width: 400, height: 50, alt: 'TecNM'}"
+  [navbarBrandMinimized]="{src: 'assets/img/logotipo/banner.jpg', width: 500, height: 50, alt: 'TecNM'}"
   [sidebarToggler]="'lg'"
   [asideMenuToggler]="'lg'">
   <!--<ul class="nav navbar-nav d-md-down-none">
@@ -53,22 +53,25 @@
     <app-sidebar-minimizer></app-sidebar-minimizer>
   </app-sidebar>
   <!-- Main content -->
-  <main class="main">
+  <main class="main" style="background-color:hsl(0,0%,100%);">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
       <app-breadcrumb></app-breadcrumb>
       <!-- Breadcrumb Menu-->
-     <!-- <li class="breadcrumb-menu d-md-down-none">
-        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-          <a class="btn" href="#"><i class="icon-speech"></i></a>
-          <a class="btn" [routerLink]="['/dashboard']"><i class="icon-graph"></i> &nbsp;Dashboard</a>
-          <a class="btn" href="#"><i class="icon-settings"></i> &nbsp;Settings</a>
-        </div>
-      </li>-->
+      <!-- <li class="breadcrumb-menu d-md-down-none">
+         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+           <a class="btn" href="#"><i class="icon-speech"></i></a>
+           <a class="btn" [routerLink]="['/dashboard']"><i class="icon-graph"></i> &nbsp;Dashboard</a>
+           <a class="btn" href="#"><i class="icon-settings"></i> &nbsp;Settings</a>
+         </div>
+       </li>-->
     </ol>
-    <div class="container-fluid">
-      <router-outlet></router-outlet>
-    </div><!-- /.container-fluid -->
+    <app-formulario></app-formulario>
+    <!--  <div class="container-fluid">
+       <router-outlet></router-outlet>
+     </div>/.container-fluid -->
+    <app-egresados></app-egresados>
+
   </main>
   <app-aside [fixed]="true" [display]="false">
     <tabset>
@@ -325,7 +328,7 @@
     </tabset>
   </app-aside>
 </div>
-<!--<app-footer>
-  <span><a href="https://coreui.io">CoreUI</a> &copy; 2018 creativeLabs.</span>
-  <span class="ml-auto">Powered by <a href="https://coreui.io/angular">CoreUI for Angular</a></span>
+<app-footer>
+  <span><a href="https://google.com"></a>TecNM Instituto Tecnológico de León</span>
+  <span class="ml-auto"><a href="https://google.com">Bienvenido</a></span>
 </app-footer>-->

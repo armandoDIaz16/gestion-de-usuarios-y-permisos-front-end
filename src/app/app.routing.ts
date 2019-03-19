@@ -13,7 +13,7 @@ import { RequestResetComponent } from './components/password/request-reset/reque
 import { ResponseResetComponent } from './components/password/response-reset/response-reset.component';
 import { BeforeLoginService } from './services/before-login.service';
 import { AfterLoginService } from './services/after-login.service';
-
+import {EgresadosComponent} from './views/egresados/egresados.component';
 
 export const routes: Routes = [
   {
@@ -25,9 +25,12 @@ export const routes: Routes = [
   {
     path: '404',
     component: P404Component,
-    canActivate: [BeforeLoginService],
+    canActivate: [BeforeLoginService]},
+  {
+    path: 'egresados',
+    component: EgresadosComponent,
     data: {
-      title: 'Page 404'
+      title: 'Egresados'
     }
   },
   {
@@ -56,7 +59,7 @@ export const routes: Routes = [
   },
   {
     path: 'register',
-    component: RegisterComponent, 
+    component: RegisterComponent,
     canActivate: [BeforeLoginService],
     data: {
       title: 'Register Page'
@@ -67,7 +70,7 @@ export const routes: Routes = [
     component: DefaultLayoutComponent,
     canActivate: [AfterLoginService],
     data: {
-      title: 'Home'
+      title: 'Sistemas'
     },
     children: [
       {
@@ -115,7 +118,7 @@ export const routes: Routes = [
     canActivate: [BeforeLoginService],
   },
   { path: '**', component: P404Component },
-  
+
 ];
 
 @NgModule({

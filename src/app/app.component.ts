@@ -7,6 +7,7 @@ import { Router, NavigationEnd } from '@angular/router';
   template: '<router-outlet></router-outlet>'
 })
 export class AppComponent implements OnInit {
+
   constructor(private router: Router) { }
 
   ngOnInit() {
