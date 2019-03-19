@@ -46,6 +46,7 @@
     </li>
   </ul>
 </app-header>
+<ng-snotify></ng-snotify>
 <div class="app-body">
   <app-sidebar [fixed]="true" [display]="'lg'">
     <app-sidebar-nav [navItems]="navItems" [perfectScrollbar] [disabled]="sidebarMinimized"></app-sidebar-nav>
@@ -318,6 +319,9 @@
           <small class="text-muted">25GB/256GB</small>
         </div>
       </tab>
+      <tab>
+          <ng-template tabHeading><a class="icon-logout" (click)="logout($event)" *ngIf="loggedIn"></a></ng-template>
+      </tab>  
     </tabset>
   </app-aside>
 </div>

@@ -1,0 +1,36 @@
+<div class="app-body">
+  <ng-snotify></ng-snotify>
+    <main class="main d-flex align-items-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 mx-auto">
+            <div class="card-group">
+              <div class="card p-3">
+                <div class="card-body">
+                  <form #RequestResetForm=ngForm (ngSubmit)="onSubmit()"> 
+                   <div class="alert alert-danger" [hidden]="!error">
+                      {{error}}
+                    </div>
+                    <h1>Inicia Sesión</h1>
+  
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-user"></i></span>
+                      </div>
+                      <input type="email" name="email" class="form-control" placeholder="Email" id="inputEmail3" autocomplete="email" [(ngModel)]="form.email" required >
+                    </div>
+                    <div class="row">
+                      <div class="col-6">
+                        <button type="submit" class="btn btn-primary px-4" [disabled]="!RequestResetForm.valid">Restablecer contraseña</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  

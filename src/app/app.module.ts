@@ -40,6 +40,21 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 
+//login
+//import { NavbarComponent } from './components/navbar/navbar.component';
+import { SignupComponent } from './components/signup/signup.component';
+//import { ProfileComponent } from './components/profile/profile.component';
+import { RequestResetComponent } from './components/password/request-reset/request-reset.component';
+import { ResponseResetComponent } from './components/password/response-reset/response-reset.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { JarwisService } from './services/jarwis.service';
+import { TokenService } from './services/token.service';
+import { AuthService } from './services/auth.service';
+import { AfterLoginService } from './services/after-login.service';
+import { BeforeLoginService } from './services/before-login.service';
+import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -52,7 +67,10 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    ChartsModule
+    ChartsModule,
+    FormsModule,
+    HttpClientModule,
+    SnotifyModule
   ],
   declarations: [
     AppComponent,
@@ -60,12 +78,17 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     P404Component,
     P500Component,
     LoginComponent,
-    RegisterComponent
+    SignupComponent,
+    RegisterComponent,
+    RequestResetComponent,
+    ResponseResetComponent
   ],
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
-  }],
+  },JarwisService, TokenService, AuthService, AfterLoginService, BeforeLoginService,
+    { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
+SnotifyService],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

@@ -8,23 +8,40 @@ import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { RequestResetComponent } from './components/password/request-reset/request-reset.component';
+import { ResponseResetComponent } from './components/password/response-reset/response-reset.component';
+import { BeforeLoginService } from './services/before-login.service';
+import { AfterLoginService } from './services/after-login.service';
+
 
 export const routes: Routes = [
   {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full',
+    canActivate: [BeforeLoginService]
   },
   {
     path: '404',
     component: P404Component,
+    canActivate: [BeforeLoginService],
     data: {
       title: 'Page 404'
     }
   },
   {
+    path: 'signup',
+    component: SignupComponent,
+    canActivate: [BeforeLoginService],
+    data: {
+      title: 'MOSNOS'
+    }
+  },
+  {
     path: '500',
     component: P500Component,
+    canActivate: [BeforeLoginService],
     data: {
       title: 'Page 500'
     }
@@ -32,20 +49,23 @@ export const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    canActivate: [BeforeLoginService],
     data: {
       title: 'Login Page'
     }
   },
   {
     path: 'register',
-    component: RegisterComponent,
+    component: RegisterComponent, 
+    canActivate: [BeforeLoginService],
     data: {
       title: 'Register Page'
     }
   },
   {
-    path: '',
+    path: 'home',
     component: DefaultLayoutComponent,
+    canActivate: [AfterLoginService],
     data: {
       title: 'Home'
     },
@@ -84,7 +104,18 @@ export const routes: Routes = [
       }
     ]
   },
-  { path: '**', component: P404Component }
+  {
+    path: 'request-password-reset',
+    component: RequestResetComponent,
+    canActivate: [BeforeLoginService],
+  },
+  {
+    path: 'response-password-reset',
+    component: ResponseResetComponent,
+    canActivate: [BeforeLoginService],
+  },
+  { path: '**', component: P404Component },
+  
 ];
 
 @NgModule({
