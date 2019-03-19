@@ -13,7 +13,8 @@ import { RequestResetComponent } from './components/password/request-reset/reque
 import { ResponseResetComponent } from './components/password/response-reset/response-reset.component';
 import { BeforeLoginService } from './services/before-login.service';
 import { AfterLoginService } from './services/after-login.service';
-import {EgresadosComponent} from './views/egresados/egresados.component';
+import { EgresadosComponent } from './views/egresados/egresados.component';
+import { FormularioComponent } from './components/formulario/formulario.component';
 
 export const routes: Routes = [
   {
@@ -31,6 +32,13 @@ export const routes: Routes = [
     component: EgresadosComponent,
     data: {
       title: 'Egresados'
+    }
+  },
+  {
+    path: 'formulario',
+    component: FormularioComponent,
+    data: {
+      title: 'Formulario'
     }
   },
   {
