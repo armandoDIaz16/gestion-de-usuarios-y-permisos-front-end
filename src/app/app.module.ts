@@ -48,7 +48,6 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { EgresadosComponent } from './views/egresados/egresados.component';
 import { SistemsComponent } from './sistems/sistems.component';
-import {FormularioComponent} from './views/formulario/formulario.component';
 
 // login
 // import { NavbarComponent } from './components/navbar/navbar.component';
@@ -66,6 +65,13 @@ import { BeforeLoginService } from './services/before-login.service';
 // @ts-ignore
 import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormularioComponent } from './components/formulario/formulario.component';
+import { EstadoCivilService } from './components/formulario/estado-civil.service';
+import { DependenciaService } from './components/formulario/dependencia.service';
+import { PropagandaTecnologicoService } from './components/formulario/propaganda-tecnologico.service';
+import { IncapacidadService } from './components/formulario/incapacidad.service';
+import { CarreraService } from './components/formulario/carrera.service';
+
 
 @NgModule({
   imports: [
@@ -102,7 +108,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SistemsComponent,
     FormularioComponent
   ],
-  providers: [{
+  providers: [
+    EstadoCivilService,
+    DependenciaService,
+    PropagandaTecnologicoService,
+    IncapacidadService,
+    CarreraService,
+    
+    {
     provide: LocationStrategy,
     useClass: HashLocationStrategy
   }, JarwisService, TokenService, AuthService, AfterLoginService, BeforeLoginService,
