@@ -32,11 +32,13 @@ export const navItems: NavData[] = [
     children: [
       {
         name: 'Encuestas',
+        // onActivate[EgresadoService],
         url: '/egresados',
         icon: 'icon-puzzle'
       },
       {
         name: 'Notificaciones',
+        // onActivate[EgresadoService,EpleadorService],
         url: '/base/carousels',
         icon: 'icon-puzzle'
       },

@@ -2,9 +2,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+
+// @ts-ignore
+import {MatDatepickerModule} from '@angular/material/datepicker';
+// @ts-ignore
+import {MaterialModule} from './material';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -43,10 +50,10 @@ import { EgresadosComponent } from './views/egresados/egresados.component';
 import { SistemsComponent } from './sistems/sistems.component';
 import {FormularioComponent} from './views/formulario/formulario.component';
 
-//login
-//import { NavbarComponent } from './components/navbar/navbar.component';
+// login
+// import { NavbarComponent } from './components/navbar/navbar.component';
 import { SignupComponent } from './components/signup/signup.component';
-//import { ProfileComponent } from './components/profile/profile.component';
+// import { ProfileComponent } from './components/profile/profile.component';
 import { RequestResetComponent } from './components/password/request-reset/request-reset.component';
 import { ResponseResetComponent } from './components/password/response-reset/response-reset.component';
 import { FormsModule } from '@angular/forms';
@@ -56,7 +63,9 @@ import { TokenService } from './services/token.service';
 import { AuthService } from './services/auth.service';
 import { AfterLoginService } from './services/after-login.service';
 import { BeforeLoginService } from './services/before-login.service';
+// @ts-ignore
 import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
@@ -73,7 +82,11 @@ import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
     ChartsModule,
     FormsModule,
     HttpClientModule,
-    SnotifyModule
+    SnotifyModule,
+    MDBBootstrapModule.forRoot(),
+    MatDatepickerModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   declarations: [
     AppComponent,
@@ -92,7 +105,7 @@ import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
-  },JarwisService, TokenService, AuthService, AfterLoginService, BeforeLoginService,
+  }, JarwisService, TokenService, AuthService, AfterLoginService, BeforeLoginService,
     { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
 SnotifyService],
   bootstrap: [ AppComponent ]
