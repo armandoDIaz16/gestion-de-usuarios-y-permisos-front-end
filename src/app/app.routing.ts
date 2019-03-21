@@ -76,7 +76,15 @@ export const routes: Routes = [
   {
     path: 'home',
     component: DefaultLayoutComponent,
-    canActivate: [AfterLoginService],
+    //canActivate: [AfterLoginService],
+    data: {
+      title: 'Home'
+    }
+  },
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    //canActivate: [AfterLoginService],
     data: {
       title: 'Sistemas'
     },
@@ -84,6 +92,10 @@ export const routes: Routes = [
       {
         path: 'base',
         loadChildren: './views/base/base.module#BaseModule'
+      },
+      {
+        path: 'aspirantes',
+        loadChildren: './views/aspirantes/aspirantes.module#AspirantesModule'
       },
       {
         path: 'buttons',

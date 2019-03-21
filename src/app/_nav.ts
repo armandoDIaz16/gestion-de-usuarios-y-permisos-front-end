@@ -88,6 +88,28 @@ export const navItems: NavData[] = [
     ]
   },
   {
+    name: 'Aspirantes',
+    url: '/aspirantes',
+    icon: 'icon-screen-desktop',
+    children: [
+      {
+        name: 'Formulario',
+        url: '/aspirantes/formulario',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: 'Administrador',
+        url: '/aspirantes/administrador',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: '2.3',
+        url: '/buttons/brand-buttons',
+        icon: 'icon-puzzle'
+      }
+    ]
+  },
+  {
     name: 'Sistema2',
     url: '/buttons',
     icon: 'icon-screen-desktop',

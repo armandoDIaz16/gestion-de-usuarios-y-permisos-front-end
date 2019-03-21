@@ -19,7 +19,7 @@ import { CiudadService } from './ciudad.service';
               EntidadFederativaService,
               CiudadService]
 })
-export class FormularioComponent implements OnInit {
+export class AdministradorComponent implements OnInit {
 
   public estadoCivilLista = [];
   public dependenciaLista = [];
