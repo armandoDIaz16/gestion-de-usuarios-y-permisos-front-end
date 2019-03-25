@@ -12,7 +12,7 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent implements OnInit{
 
   public form = {
-    email: null,
+    curp: null,
     password: null
   };
   
