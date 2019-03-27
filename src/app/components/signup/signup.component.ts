@@ -4,7 +4,7 @@ import { TokenService } from '../../services/token.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-signup',
+  selector: 'app-dahsboard',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
@@ -15,7 +15,6 @@ export class SignupComponent implements OnInit {
     name:null,
     password:null,
     password_confirmation:null,
-     NOMBRE:'EDUARDO',
      PRIMER_APELLIDO:'chavez',
      SEGUNDO_APELLIDO:'barajas',
      FECHA_NACIMIENTO:'2019-01-11',
@@ -26,7 +25,7 @@ export class SignupComponent implements OnInit {
      CORREO1:'14240683@itleon.edu.mx' ,
      CORREO2: '14240683@itleon.edu.mx' ,
      CORREO_INSTITUCIONAL: '14240683@itleon.edu.mx' ,
-     CONTRASENIA:'123' ,
+     //CONTRASENIA:'123' ,
      CALLE:'lomas',
      NUMERO_EXTERIOR: '12',
      NUMERO_INTERIOR: '2014',

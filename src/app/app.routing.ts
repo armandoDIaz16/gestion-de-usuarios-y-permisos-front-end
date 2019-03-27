@@ -15,6 +15,10 @@ import { BeforeLoginService } from './services/before-login.service';
 import { AfterLoginService } from './services/after-login.service';
 import { EgresadosComponent } from './views/egresados/egresados.component';
 import { FormularioComponent } from './components/formulario/formulario.component';
+import { ControlComponent } from './components/control/control.component';
+import { StudentOldComponent } from './components/student-old/student-old.component';
+
+
 
 export const routes: Routes = [
   {
@@ -39,6 +43,22 @@ export const routes: Routes = [
     component: FormularioComponent,
     data: {
       title: 'Formulario'
+    }
+  },
+  {
+    path: 'get-password',
+    component: ControlComponent,
+    canActivate: [BeforeLoginService],
+    data: {
+      title: 'Obtener contraseña'
+    }
+  },
+  {
+    path: 'create-password',
+    component: StudentOldComponent,
+    canActivate: [BeforeLoginService],
+    data: {
+      title: 'Obtener contraseña'
     }
   },
   {
