@@ -6,6 +6,8 @@ import { IncapacidadService } from './incapacidad.service';
 import { CarreraService } from './carrera.service';
 import { EntidadFederativaService } from './entidad-federativa.service';
 import { CiudadService } from './ciudad.service';
+import { UsuarioRolesService } from '../../../services/usuraio-roles.service';
+import { asElementData } from '@angular/core/src/view';
 
 @Component({
   selector: 'app-formulario',
@@ -17,10 +19,13 @@ import { CiudadService } from './ciudad.service';
               IncapacidadService,
               CarreraService,
               EntidadFederativaService,
-              CiudadService]
+              CiudadService,
+              UsuarioRolesService
+            ]
 })
 export class AdministradorComponent implements OnInit {
 
+  public altas=6;
   public estadoCivilLista = [];
   public dependenciaLista = [];
   public propagandaTecnologicoLista = [];
@@ -28,6 +33,7 @@ export class AdministradorComponent implements OnInit {
   public carreraLista = [];
   public entidadFederativaLista = [];
   public ciudadLista = [];
+  public usuarioRolesLista = [];
 
   constructor(private estadoCivilService: EstadoCivilService,
               private dependenciaService: DependenciaService,
@@ -35,7 +41,9 @@ export class AdministradorComponent implements OnInit {
               private incapacidadService: IncapacidadService,
               private carreraService: CarreraService,
               private entidadFederativaService: EntidadFederativaService,
-              private ciudadService: CiudadService) {
+              private ciudadService: CiudadService,
+              private usuarioRolesService: UsuarioRolesService
+              ) {
   }
 
   ngOnInit() {
@@ -45,6 +53,16 @@ export class AdministradorComponent implements OnInit {
     this.incapacidadService.getIncapacidad().subscribe(data => this.incapacidadLista = data);
     this.carreraService.getCarrera().subscribe(data => this.carreraLista = data);
     this.entidadFederativaService.getEntidadFederativa().subscribe(data => this.entidadFederativaLista = data);
+    //this.usuarioRolesService.getUsuarioRoles().subscribe(data => this.usuarioRolesLista = data); 
+    this.usuarioRolesService.getUsuarioRoles().subscribe(data => {
+      sessionStorage.permisos = JSON.stringify(data);
+    });
+    
+    
+    //this.entidadFederativaService.getEntidadFederativa().subscribe(data => {console.log(data[0]['NOMBRE'])});
+    //console.log(this.usuarioRolesLista[0]['USUARIO']);
+    //console.log(this.entidadFederativaLista['members'][1]['powers'][2]);   
+     
    }
 
   opcionEntidadFederativa: string  = '0'; // Iniciamos
@@ -53,5 +71,24 @@ export class AdministradorComponent implements OnInit {
   capturar() {
     localStorage.setItem("opcionEntidadFederativa", this.opcionEntidadFederativa);
     this.ciudadService.getCiudad().subscribe(data => this.ciudadLista = data);
+  }
+
+
+  trackByPeople(index: number, person: any) {
+      return person.id;
+  }
+
+  verificarRoles(){
+    /*
+    for (var i = 0; i < this.usuarioRolesLista.length; i++){
+      if (this.usuarioRolesLista[i].FK_ROL == this.rol){
+        var visible = true;
+      }       
+    }
+    if(visible){
+      return true;
+    }else{
+      return false;
+    }*/
   }
 }

@@ -68,6 +68,7 @@ import { IncapacidadService } from './components/formulario/incapacidad.service'
 import { CarreraService } from './components/formulario/carrera.service';
 import { EntidadFederativaService } from './components/formulario/entidad-federativa.service';
 import { CiudadService } from './components/formulario/ciudad.service';
+//import { SubmitRequestComponent } from './views/aspirantes/administrador/submit-request/submit-request.component';
 
 
 @NgModule({
@@ -102,6 +103,7 @@ import { CiudadService } from './components/formulario/ciudad.service';
     EgresadosComponent,
     SistemsComponent,
     FormularioComponent
+   // SubmitRequestComponent
   ],
   providers: [
     EstadoCivilService,

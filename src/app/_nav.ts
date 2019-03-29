@@ -15,250 +15,31 @@ export interface NavData {
 
 // name? = nameSistem [];
 
-export const navItems: NavData[] = [
-  {
-    name: 'TecNM',
-    url: '/dashboard',
-    icon: 'icon-speedometer',
-    /*badge: {
-      variant: 'info',
-      text: 'NEW'
-    }*/
-  },
-  {
-    name: 'Seguimiento de Egresados',
-    url: '/base',
-    icon: 'icon-screen-desktop',
-    children: [
-      {
-        name: 'Encuestas',
-        url: '/egresados',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Notificaciones',
-        url: '/base/carousels',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Empleadores',
-        url: '/base/collapses',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Roles',
-        url: '/base/forms',
-        icon: 'icon-puzzle'
-      },
-     {
-        name: 'Egresados',
-        url: '/egresados',
-        icon: 'icon-puzzle'
-      },
-      /*{
-       name: 'Popovers',
-       url: '/base/popovers',
-       icon: 'icon-puzzle'
-     },
-     {
-       name: 'Progress',
-       url: '/base/progress',
-       icon: 'icon-puzzle'
-     },
-     {
-       name: 'Switches',
-       url: '/base/switches',
-       icon: 'icon-puzzle'
-     },
-     {
-       name: 'Tables',
-       url: '/base/tables',
-       icon: 'icon-puzzle'
-     },
-     {
-       name: 'Tabs',
-       url: '/base/tabs',
-       icon: 'icon-puzzle'
-     },
-     {
-       name: 'Tooltips',
-       url: '/base/tooltips',
-       icon: 'icon-puzzle'
-     }*/
-    ]
-  },
-  {
-    name: 'Aspirantes',
-    url: '/aspirantes',
-    icon: 'icon-screen-desktop',
-    children: [
-      {
-        name: 'Formulario',
-        url: '/aspirantes/formulario',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Administrador',
-        url: '/aspirantes/administrador',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: '2.3',
-        url: '/buttons/brand-buttons',
-        icon: 'icon-puzzle'
-      }
-    ]
-  },
-  {
-    name: 'Sistema2',
-    url: '/buttons',
-    icon: 'icon-screen-desktop',
-    children: [
-      {
-        name: '2.1',
-        url: '/buttons/buttons',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: '2.2',
-        url: '/buttons/dropdowns',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: '2.3',
-        url: '/buttons/brand-buttons',
-        icon: 'icon-puzzle'
-      }
-    ]
-  },
-/*  {
-    name: 'Cha',
-    url: '/charts',
-    icon: 'icon-pie-chart'
-  },*/
-  {
-    name: 'Sistema 3',
-    url: '/icons',
-    icon: 'icon-screen-desktop',
-    children: [
-      {
-        name: '3.1',
-        url: '/icons/coreui-icons',
-        icon: 'icon-puzzle',
-        /*badge: {
-          variant: 'success',
-          text: 'NEW'
-        }*/
-      },
-      {
-        name: '3.2',
-        url: '/icons/flags',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: '3.3',
-        url: '/icons/font-awesome',
-        icon: 'icon-puzzle',
-        /*badge: {
-          variant: 'secondary',
-          text: '4.7'
-        }*/
-      },
-      {
-        name: '3.4',
-        url: '/icons/simple-line-icons',
-        icon: 'icon-puzzle'
-      }
-    ]
-  },
-  {
-    name: 'Sistema 4',
-    url: '/notifications',
-    icon: 'icon-screen-desktop',
-    children: [
-      {
-        name: '4.1',
-        url: '/notifications/alerts',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: '4.2',
-        url: '/notifications/badges',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: '4.3',
-        url: '/notifications/modals',
-        icon: 'icon-puzzle'
-      }
-    ]
-  },
- /* {
-    name: 'Widgets',
-    url: '/widgets',
-    icon: 'icon-calculator',
-    badge: {
-      variant: 'info',
-      text: 'NEW'
+let sistemas = JSON.parse(sessionStorage.permisos);
+
+var rutasSistemas = [];
+
+for(var sistema in sistemas[0].SISTEMAS){
+  var rutasRoles = [];
+  //console.log("--"+sistemas[0].SISTEMAS[sistema].NOMBRE)
+  for(var rol in sistemas[0].SISTEMAS[sistema].ROLES){
+    var rutasModulos = [];
+    //console.log("----"+sistemas[0].SISTEMAS[sistema].ROLES[rol].NOMBRE)
+    for(var modulo in sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS){
+      //console.log("------"+sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE)
+      rutasModulos.push({name: sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE,
+                      url: '/'+sistemas[0].SISTEMAS[sistema].NOMBRE+'/'+sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE, 
+                      icon: 'icon-cursor'});
     }
-  },*/
-  /*{
-    divider: true
-  },
-  {
-    title: true,
-    name: 'Extras',
-  },*/
- /* {
-    name: 'Pages',
-    url: '/pages',
-    icon: 'icon-star',
-    children: [
-      {
-        name: 'Login',
-        url: '/login',
-        icon: 'icon-star'
-      },
-      {
-        name: 'Register',
-        url: '/register',
-        icon: 'icon-star'
-      },
-      {
-        name: 'Error 404',
-        url: '/404',
-        icon: 'icon-star'
-      },
-      {
-        name: 'Error 500',
-        url: '/500',
-        icon: 'icon-star'
-      }
-    ]
-  },
-  {
-    name: 'Disabled',
-    url: '/dashboard',
-    icon: 'icon-ban',
-    badge: {
-      variant: 'secondary',
-      text: 'NEW'
-    },
-    attributes: { disabled: true },
-  },
-  {
-    name: 'Download CoreUI',
-    url: 'http://coreui.io/angular/',
-    icon: 'icon-cloud-download',
-    class: 'mt-auto',
-    variant: 'success',
-    attributes: { target: '_blank', rel: 'noopener' }
-  },
-  {
-    name: 'Try CoreUI PRO',
-    url: 'http://coreui.io/pro/angular/',
-    icon: 'icon-layers',
-    variant: 'danger',
-    attributes: { target: '_blank', rel: 'noopener' }
-  }*/
-];
+    rutasRoles.push({name: sistemas[0].SISTEMAS[sistema].ROLES[rol].NOMBRE, 
+                    icon: 'icon-screen-desktop', 
+                    children: rutasModulos});  
+  }
+  rutasSistemas.push({name: sistemas[0].SISTEMAS[sistema].NOMBRE, 
+                      url: '/'+sistemas[0].SISTEMAS[sistema].NOMBRE, 
+                      icon: 'icon-star', 
+                      children: rutasRoles});
+}
+
+//console.log(rutasSistemas); 
+export const navItems: NavData[] = (rutasSistemas);
