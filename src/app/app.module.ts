@@ -70,6 +70,7 @@ import { EntidadFederativaService } from './components/formulario/entidad-federa
 import { CiudadService } from './components/formulario/ciudad.service';
 import { ControlComponent } from './components/control/control.component';
 import { StudentOldComponent } from './components/student-old/student-old.component';
+import { NavbarSistemsComponent } from './components/navbar-sistems/navbar-sistems.component';
 
 
 @NgModule({
@@ -105,7 +106,8 @@ import { StudentOldComponent } from './components/student-old/student-old.compon
     SistemsComponent,
     FormularioComponent,
     ControlComponent,
-    StudentOldComponent
+    StudentOldComponent,
+    NavbarSistemsComponent
   ],
   providers: [
     EstadoCivilService,
