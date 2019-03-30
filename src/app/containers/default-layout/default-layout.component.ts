@@ -12,7 +12,7 @@ import { TokenService } from '../../services/token.service';
 })
 
 export class DefaultLayoutComponent implements OnDestroy, OnInit {
-  public loggedIn: boolean;
+  //public loggedIn: boolean;
   public navItems = navItems;
   public sidebarMinimized = true;
   private changes: MutationObserver;
@@ -38,7 +38,7 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
     this.changes.disconnect();
   }
   ngOnInit() {
-    this.Auth.authStatus.subscribe(value => this.loggedIn = value);
+    //this.Auth.authStatus.subscribe(value => this.loggedIn = value);
   }
 
   logout(event: MouseEvent) {

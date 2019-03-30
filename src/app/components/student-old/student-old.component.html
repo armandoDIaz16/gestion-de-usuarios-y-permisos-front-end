@@ -1,3 +1,65 @@
-<p>
-  student-old works!
-</p>
+<div class="app-body">
+    <main class="main d-flex align-items-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 mx-auto">
+            <div class="card-group">
+              <div class="card p-3">
+                <div class="card-body">
+                  <form #oldForm=ngForm (ngSubmit)="onSubmit()"> 
+                      <div class="alert alert-danger" [hidden]="!error">
+                          {{error.email}}
+                      </div>
+                    <h1>Llena tus datos</h1>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="icon-user"></i></span>
+                        </div>
+                          <input type="text" name="name" class="form-control" placeholder="name" id="inputEmail3" autocomplete="name" [(ngModel)]="form.name" required >
+                      </div>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-user"></i></span>
+                      </div>
+                       <!-- <input type="text" name="curp" class="form-control" placeholder="Curp" id="inputEmail4" autocomplete="curp" [(ngModel)]="form.curp" required >-->
+                       <label style="color:#ff0000;" for="asterisco">*</label>
+                       <input type="text" class="form-control" id="curp" size=18 maxlength=18 onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase().replace(' ','')">
+                      </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                          <a href="https://www.gob.mx/curp/" target="_blank"><button type="button" class="btn btn-block btn-primary">Consulta de CURP</button></a>
+                        </div>
+                    </div>
+                    <div class="input-group mb-4">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-envelope-open"></i></span>
+                      </div>
+                        <input type="email" name="email" class="form-control" placeholder="email" id="inputemail5" autocomplete="email" [(ngModel)]="form.email" required>
+                    </div>
+                    <div class="input-group mb-4">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="icon-lock"></i></span>
+                        </div>
+                          <input type="password" name="password" class="form-control" placeholder="Contraseña" id="inputPassword3" autocomplete="current-password" [(ngModel)]="form.password" required>
+                      </div>
+                      <div class="input-group mb-4">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="icon-lock"></i></span>
+                          </div>
+                            <input type="password" name="password_confirmation" class="form-control" placeholder="Contraseña" id="inputPassword4" autocomplete="password_confirmation" [(ngModel)]="form.password_confirmation" required>
+                        </div>
+                    <div class="row">
+                      <div class="col-6">
+                        <button type="submit" class="btn btn-primary px-4" [disabled]="!oldForm.valid">Ingresar</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  
