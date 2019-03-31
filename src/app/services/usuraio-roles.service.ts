@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { ICarrera } from './serviciosListas';
+import { IRoles } from './rolesLista';
+
 
 @Injectable()
-export class CarreraService{
+export class UsuarioRolesService{
   constructor(private http: HttpClient){}
-  getCarrera():Observable<ICarrera[]>{
-    return this.http.get<ICarrera[]>('http://127.0.0.1:8000/api/Carrera');
+  getUsuarioRoles():Observable<IRoles[]>{
+    return this.http.get<IRoles[]>('http://localhost:8000/api/Usuario_Rol/1');    
   }
 }

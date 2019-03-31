@@ -12,11 +12,12 @@ import { TokenService } from '../../services/token.service';
 })
 
 export class DefaultLayoutComponent implements OnDestroy, OnInit {
-  //public loggedIn: boolean;
-  public navItems = navItems;
+  public loggedIn: boolean;
   public sidebarMinimized = true;
   private changes: MutationObserver;
   public element: HTMLElement;
+  public navItems;
+
   constructor(
     private Auth: AuthService,
     private router: Router,
@@ -39,6 +40,8 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
   }
   ngOnInit() {
     //this.Auth.authStatus.subscribe(value => this.loggedIn = value);
+    console.log(navItems);
+    this.navItems=navItems;
   }
 
   logout(event: MouseEvent) {

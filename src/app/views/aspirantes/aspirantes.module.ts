@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 
 import { FormularioComponent } from './formulario/formulario.component';
 import { AdministradorComponent } from './administrador/formulario.component';
+import { AltasComponent } from './administrador/altas/altas.component';
 
 // Dropdowns Component
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -22,7 +23,8 @@ import { AspirantesRoutingModule } from './aspirantes-routing.module';
   ],
   declarations: [
     FormularioComponent,
-    AdministradorComponent
+    AdministradorComponent,
+    AltasComponent
   ]
 })
 export class AspirantesModule { }
