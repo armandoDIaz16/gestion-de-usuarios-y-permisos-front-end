@@ -4,29 +4,24 @@ import { navItems } from './../../_nav';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { TokenService } from '../../services/token.service';
-import { UsuarioRolesService } from '../../services/usuraio-roles.service';
 
 
 @Component({
   selector: 'app-dashboard',
-  templateUrl: './default-layout.component.html',
-  providers: [UsuarioRolesService]
+  templateUrl: './default-layout.component.html'
 })
 
 export class DefaultLayoutComponent implements OnDestroy, OnInit {
   public loggedIn: boolean;
-  public navItems = navItems;
   public sidebarMinimized = true;
   private changes: MutationObserver;
   public element: HTMLElement;
-  public usuarioRolesLista = [];
-
+  public navItems;
 
   constructor(
     private Auth: AuthService,
     private router: Router,
     private Token: TokenService,
-    private usuarioRolesService: UsuarioRolesService,
     @Inject(DOCUMENT) _document?: any
   ) {
 
@@ -45,9 +40,8 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
   }
   ngOnInit() {
     this.Auth.authStatus.subscribe(value => this.loggedIn = value);
-    this.usuarioRolesService.getUsuarioRoles().subscribe(data => {
-      localStorage['permisos'] = JSON.stringify(data);
-    });
+    console.log(navItems);
+    this.navItems=navItems;
   }
 
   logout(event: MouseEvent) {
