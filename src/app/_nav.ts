@@ -1,4 +1,5 @@
-import { rutasRoles } from './components/navbar-sistems/navbar-sistems.component';
+import { rutasSistemas } from '../app/views/login/login.component'
+///components/navbar-sistems/navbar-sistems.component';
 
 export interface NavData {
   name?: string;
@@ -13,7 +14,7 @@ export interface NavData {
   class?: string;
 }
 
-export const navItems: NavData[] = rutasRoles;
+export const navItems: NavData[] = rutasSistemas;
 
 /*
 let sistemas = JSON.parse(sessionStorage.permisos);

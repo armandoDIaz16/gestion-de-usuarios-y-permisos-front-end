@@ -34,7 +34,7 @@ export class NavbarSistemsComponent implements OnInit {
     sessionStorage.setItem('sistema',sistemaSelect);
 
 
-let sistemas = JSON.parse(sessionStorage.permisos);
+let sistemas = JSON.parse(sessionStorage.rutas);
 for(var sistema in sistemas[0].SISTEMAS){
   if(sistemas[0].SISTEMAS[sistema].PK_SISTEMA==sessionStorage.getItem('sistema')){
     console.log("--"+sistemas[0].SISTEMAS[sistema].NOMBRE)
