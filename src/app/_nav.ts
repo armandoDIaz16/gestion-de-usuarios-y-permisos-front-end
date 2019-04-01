@@ -1,5 +1,6 @@
-import { rutasSistemas } from '../app/views/login/login.component'
-///components/navbar-sistems/navbar-sistems.component';
+//import { rutasSistemas } from '../app/views/login/login.component'
+//import { recargarRutas } from './components/navbar-sistems/navbar-sistems.component';
+//import { rutasRoles } from './containers/default-layout/default-layout.component';
 
 export interface NavData {
   name?: string;
@@ -13,8 +14,20 @@ export interface NavData {
   divider?: boolean;
   class?: string;
 }
+/* function recargarRutas(){
+  var rutasRoles = [];
+  rutasRoles = JSON.parse(sessionStorage.rutas);
+  console.log(rutasRoles);
+  return rutasRoles;
+} */
+//export {recargarRutas};
+var rutasRoles = [];
+if(sessionStorage.rutas){
+  rutasRoles = JSON.parse(sessionStorage.rutas);
+}else{
+}
+export const navItems: NavData[] = rutasRoles;
 
-export const navItems: NavData[] = rutasSistemas;
 
 /*
 let sistemas = JSON.parse(sessionStorage.permisos);

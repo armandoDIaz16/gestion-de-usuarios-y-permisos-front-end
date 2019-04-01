@@ -4,7 +4,7 @@ import { navItems } from './../../_nav';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { TokenService } from '../../services/token.service';
-
+//import { rutasRoles } from '../../components/navbar-sistems/navbar-sistems.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,6 +16,7 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
   public sidebarMinimized = true;
   private changes: MutationObserver;
   public element: HTMLElement;
+  public rutasRoles;
   public navItems;
 
   constructor(
@@ -40,9 +41,10 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
   }
   ngOnInit() {
     //this.Auth.authStatus.subscribe(value => this.loggedIn = value);
-    console.log(navItems);
+    //console.log(rutasRoles);
     this.navItems=navItems;
   }
+
 
   logout(event: MouseEvent) {
     event.preventDefault();
@@ -51,3 +53,4 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
     this.router.navigateByUrl('/login');
 }
 }
+//export const rutasRoles2 = rutas;
