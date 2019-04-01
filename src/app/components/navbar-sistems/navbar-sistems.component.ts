@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsuarioRolesService } from '../../services/usuraio-roles.service';
 
 let rutas = [];
+let usuarioSistemasLista = [];
 
 @Component({
   selector: 'app-navbar-sistems',
@@ -12,23 +13,21 @@ let rutas = [];
 
 export class NavbarSistemsComponent implements OnInit {
 
-  public usuarioSistemasLista = [];
+
 
   constructor(private usuarioRolesService: UsuarioRolesService) { }
 
   ngOnInit() {
-    this.usuarioRolesService.getUsuarioRoles().subscribe(data => {
-      sessionStorage.sistemas = JSON.stringify(data);
-    });
-    
-    let sistemas = JSON.parse(sessionStorage.sistemas);
+   
+    /*let sistemas = JSON.parse(sessionStorage.sistemas);
     for(var sistema in sistemas[0].SISTEMAS){
       this.usuarioSistemasLista.push({
         PK_SISTEMA: sistemas[0].SISTEMAS[sistema].PK_SISTEMA,
         NOMBRE: sistemas[0].SISTEMAS[sistema].NOMBRE
       });
-    }     
+    }     */
   }
+
 
   mostrarRoles(sistemaSelect){
     sessionStorage.setItem('sistema',sistemaSelect);
@@ -55,4 +54,17 @@ for(var sistema in sistemas[0].SISTEMAS){
 }
   }
 }
+
+function showSystem(rutas){
+  console.log(rutas)
+  let sistemas = rutas;
+  for(var sistema in sistemas[0].SISTEMAS){
+    usuarioSistemasLista.push({
+      PK_SISTEMA: sistemas[0].SISTEMAS[sistema].PK_SISTEMA,
+      NOMBRE: sistemas[0].SISTEMAS[sistema].NOMBRE
+    });
+  }    
+  console.log(usuarioSistemasLista)
+}
 export const rutasRoles = rutas;
+export {showSystem}

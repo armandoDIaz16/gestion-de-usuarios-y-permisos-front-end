@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { UsuarioRolesService } from '../../services/usuraio-roles.service';
 //import { navItems } from './../../_nav';
+import {showSystem} from '../../components/navbar-sistems/navbar-sistems.component';
 
 let rutasSistema = []
 
@@ -47,7 +48,17 @@ export class LoginComponent implements OnInit{
     this.Token.handle(data.access_token);
     this.Auth.changeAuthStatus(true);
     sessionStorage.setItem('IdUsuario',data.IdUsuario)
+    //
+    //let sistemas;
     this.usuarioRolesService.getUsuarioRoles().subscribe(data => {
+       //sistemas = (data);
+       //console.log(sistemas);
+       showSystem(data);
+      
+    });
+  
+    
+     this.usuarioRolesService.getUsuarioRoles().subscribe(data => {
      sessionStorage['rutas'] = JSON.stringify(data);
      if(sessionStorage.getItem('rutas')){
        let sistemas = JSON.parse(sessionStorage.rutas);
@@ -75,7 +86,7 @@ export class LoginComponent implements OnInit{
      }
     
      this.router.navigateByUrl('/home');
-   });
+   }); 
     
   }
 
