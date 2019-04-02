@@ -50,16 +50,10 @@ export class LoginComponent implements OnInit{
     sessionStorage.setItem('IdUsuario',data.IdUsuario)
     //
     //let sistemas;
-    this.usuarioRolesService.getUsuarioRoles().subscribe(data => {
-       //sistemas = (data);
-       //console.log(sistemas);
-//       showSystem(data);
-      
-    });
-  
     
      this.usuarioRolesService.getUsuarioRoles().subscribe(data => {
-     sessionStorage['rutas'] = JSON.stringify(data);
+     sessionStorage['sistemas'] = JSON.stringify(data);
+     /* sessionStorage['rutas'] = JSON.stringify(data);
      if(sessionStorage.getItem('rutas')){
        let sistemas = JSON.parse(sessionStorage.rutas);
      for(var sistema in sistemas[0].SISTEMAS){
@@ -83,7 +77,8 @@ export class LoginComponent implements OnInit{
                            icon: 'icon-star', 
                            children: rutasRoles});
        }
-     }
+     } */
+
     
      this.router.navigateByUrl('/home');
    }); 

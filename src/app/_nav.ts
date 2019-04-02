@@ -1,5 +1,5 @@
 //import { rutasSistemas } from '../app/views/login/login.component'
-//import { recargarRutas } from './components/navbar-sistems/navbar-sistems.component';
+//import { rutasRoles } from './components/navbar-sistems/navbar-sistems.component';
 //import { rutasRoles } from './containers/default-layout/default-layout.component';
 
 export interface NavData {
@@ -25,7 +25,8 @@ var rutasRoles = [];
 if(sessionStorage.rutas){
   rutasRoles = JSON.parse(sessionStorage.rutas);
 }else{
-}
+  rutasRoles = [];
+} 
 export const navItems: NavData[] = rutasRoles;
 
 

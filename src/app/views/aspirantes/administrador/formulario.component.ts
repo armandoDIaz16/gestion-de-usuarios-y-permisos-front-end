@@ -7,6 +7,8 @@ import { CarreraService } from './carrera.service';
 import { EntidadFederativaService } from './entidad-federativa.service';
 import { CiudadService } from './ciudad.service';
 import { UsuarioRolesService } from '../../../services/usuraio-roles.service';
+import { SistemaPermisosService } from '../../../services/sistema-permisos.service';
+
 
 @Component({
   selector: 'app-formulario',
@@ -19,7 +21,8 @@ import { UsuarioRolesService } from '../../../services/usuraio-roles.service';
               CarreraService,
               EntidadFederativaService,
               CiudadService,
-              UsuarioRolesService
+              UsuarioRolesService,
+              SistemaPermisosService
             ]
 })
 export class AdministradorComponent implements OnInit {
@@ -33,6 +36,7 @@ export class AdministradorComponent implements OnInit {
   public entidadFederativaLista = [];
   public ciudadLista = [];
   public usuarioRolesLista = [];
+  //public altas= boolean;
 
   constructor(private estadoCivilService: EstadoCivilService,
               private dependenciaService: DependenciaService,
@@ -41,7 +45,9 @@ export class AdministradorComponent implements OnInit {
               private carreraService: CarreraService,
               private entidadFederativaService: EntidadFederativaService,
               private ciudadService: CiudadService,
-              private usuarioRolesService: UsuarioRolesService
+              private usuarioRolesService: UsuarioRolesService,
+              private sistemaPermisosService: SistemaPermisosService
+
               ) {
   }
 
@@ -53,9 +59,19 @@ export class AdministradorComponent implements OnInit {
     this.carreraService.getCarrera().subscribe(data => this.carreraLista = data);
     this.entidadFederativaService.getEntidadFederativa().subscribe(data => this.entidadFederativaLista = data);
     this.usuarioRolesService.getUsuarioRoles().subscribe(data => {
-      sessionStorage.usuarioPermisos = JSON.stringify(data);
-    });  
-     
+      sessionStorage.usuarioPermisos = JSON.stringify(data);      
+    });
+
+    this.sistemaPermisosService.getPermisosSistemas().subscribe(data => {
+      sessionStorage.sistemaPermisos = JSON.stringify(data);      
+    });
+    
+    
+
+    
+    //comparasion permisos usuario sistema
+    this.validarPermisos();
+    //altas = true;
    }
 
   opcionEntidadFederativa: string  = '0'; // Iniciamos
@@ -72,6 +88,17 @@ export class AdministradorComponent implements OnInit {
   }
 
   validarPermisos(){
+
+    
+
+
+
+
+
+
+
+
+
     //this.obtenerPermisos();
     /*
     for (var i = 0; i < this.usuarioRolesLista.length; i++){
