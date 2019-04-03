@@ -12,12 +12,13 @@ export class SignupComponent implements OnInit {
 
   public form ={
     email:null,
-    name:null,
+    //name:null,
     password:null,
     password_confirmation:null,
-     PRIMER_APELLIDO:'chavez',
-     SEGUNDO_APELLIDO:'barajas',
-     FECHA_NACIMIENTO:'2019-01-11',
+    curp: null
+     //PRIMER_APELLIDO:'chavez',
+     //SEGUNDO_APELLIDO:'barajas',
+   /*  FECHA_NACIMIENTO:'2019-01-11',
      CURP: 'cabe960224hgthrd02',
      ESTADO:1,
      TELEFONO_CASA: '4771234567',
@@ -42,7 +43,7 @@ export class SignupComponent implements OnInit {
      FECHA_REGISTRO: '2019-01-11',
      FK_USUARIO_MODIFICACION:1 ,
      FECHA_MODIFICACION:'2019-01-11',
-     BORRADO:'0' 
+     BORRADO:'0' */
   };
 
   public error = [];

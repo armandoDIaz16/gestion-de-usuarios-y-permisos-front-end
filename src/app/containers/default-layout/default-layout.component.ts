@@ -39,7 +39,7 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
     this.changes.disconnect();
   }
   ngOnInit() {
-    this.Auth.authStatus.subscribe(value => this.loggedIn = value);
+    //this.Auth.authStatus.subscribe(value => this.loggedIn = value);
     console.log(navItems);
     this.navItems=navItems;
   }
