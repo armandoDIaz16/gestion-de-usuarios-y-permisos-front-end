@@ -48,39 +48,11 @@ export class LoginComponent implements OnInit{
     this.Token.handle(data.access_token);
     this.Auth.changeAuthStatus(true);
     sessionStorage.setItem('IdUsuario',data.IdUsuario)
-    //
-    //let sistemas;
     
      this.usuarioRolesService.getUsuarioRoles().subscribe(data => {
-     sessionStorage['sistemas'] = JSON.stringify(data);
-     /* sessionStorage['rutas'] = JSON.stringify(data);
-     if(sessionStorage.getItem('rutas')){
-       let sistemas = JSON.parse(sessionStorage.rutas);
-     for(var sistema in sistemas[0].SISTEMAS){
-       var rutasRoles = [];
-       //console.log("--"+sistemas[0].SISTEMAS[sistema].NOMBRE)
-       for(var rol in sistemas[0].SISTEMAS[sistema].ROLES){
-         var rutasModulos = [];
-         //console.log("----"+sistemas[0].SISTEMAS[sistema].ROLES[rol].NOMBRE)
-         for(var modulo in sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS){
-           //console.log("------"+sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE)
-           rutasModulos.push({name: sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE,
-                           url: '/'+sistemas[0].SISTEMAS[sistema].NOMBRE+'/'+sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE, 
-                           icon: 'icon-cursor'});
-         }
-         rutasRoles.push({name: sistemas[0].SISTEMAS[sistema].ROLES[rol].NOMBRE, 
-                         icon: 'icon-screen-desktop', 
-                         children: rutasModulos});  
-       }
-       rutasSistemas.push({name: sistemas[0].SISTEMAS[sistema].NOMBRE, 
-                           url: '/'+sistemas[0].SISTEMAS[sistema].NOMBRE, 
-                           icon: 'icon-star', 
-                           children: rutasRoles});
-       }
-     } */
-
-    
+     sessionStorage['sistemas'] = JSON.stringify(data);    
      this.router.navigateByUrl('/home');
+     //agregar el json de sistemas para empezar a comparar
    }); 
     
   }

@@ -19,11 +19,11 @@
                       </div>
                     <div class="input-group mb-3">
                       <div class="input-group-prepend">
+                        <label style="color:#ff0000;" for="asterisco">*</label>
                         <span class="input-group-text"><i class="icon-user"></i></span>
                       </div>
                        <!-- <input type="text" name="curp" class="form-control" placeholder="Curp" id="inputEmail4" autocomplete="curp" [(ngModel)]="form.curp" required >-->
-                       <label style="color:#ff0000;" for="asterisco">*</label>
-                       <input type="text" class="form-control" id="curp" size=18 maxlength=18 onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase().replace(' ','')">
+                       <input type="text" class="form-control" id="curp" size=18 maxlength=18 placeholder="Curp" autocomplete="curp" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase().replace(' ','')">
                       </div>
                     <div class="col-sm-6">
                         <div class="form-group">
