@@ -17,6 +17,7 @@ import { EgresadosComponent } from './views/egresados/egresados.component';
 import { FormularioComponent } from './components/formulario/formulario.component';
 import { ControlComponent } from './components/control/control.component';
 import { StudentOldComponent } from './components/student-old/student-old.component';
+import {BancoproyectosComponent} from './views/residencias/bancoproyectos/bancoproyectos.component';
 
 
 
@@ -36,6 +37,13 @@ export const routes: Routes = [
     component: EgresadosComponent,
     data: {
       title: 'Egresados'
+    }
+  },
+  {
+    path: 'bancoproyectos',
+    component: BancoproyectosComponent,
+    data: {
+      title: 'Banco'
     }
   },
   {

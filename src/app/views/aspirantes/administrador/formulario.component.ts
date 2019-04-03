@@ -25,7 +25,7 @@ import { asElementData } from '@angular/core/src/view';
 })
 export class AdministradorComponent implements OnInit {
 
-  public altas=6;
+  public altas = 6;
   public estadoCivilLista = [];
   public dependenciaLista = [];
   public propagandaTecnologicoLista = [];
@@ -37,7 +37,7 @@ export class AdministradorComponent implements OnInit {
 
   constructor(private estadoCivilService: EstadoCivilService,
               private dependenciaService: DependenciaService,
-              private propagandaTecnologicoService: PropagandaTecnologicoService,              
+              private propagandaTecnologicoService: PropagandaTecnologicoService,
               private incapacidadService: IncapacidadService,
               private carreraService: CarreraService,
               private entidadFederativaService: EntidadFederativaService,
@@ -53,20 +53,17 @@ export class AdministradorComponent implements OnInit {
     this.incapacidadService.getIncapacidad().subscribe(data => this.incapacidadLista = data);
     this.carreraService.getCarrera().subscribe(data => this.carreraLista = data);
     this.entidadFederativaService.getEntidadFederativa().subscribe(data => this.entidadFederativaLista = data);
-    //this.usuarioRolesService.getUsuarioRoles().subscribe(data => this.usuarioRolesLista = data); 
+    // this.usuarioRolesService.getUsuarioRoles().subscribe(data => this.usuarioRolesLista = data);
     this.usuarioRolesService.getUsuarioRoles().subscribe(data => {
       sessionStorage.permisos = JSON.stringify(data);
     });
-    
-    
     //this.entidadFederativaService.getEntidadFederativa().subscribe(data => {console.log(data[0]['NOMBRE'])});
     //console.log(this.usuarioRolesLista[0]['USUARIO']);
-    //console.log(this.entidadFederativaLista['members'][1]['powers'][2]);   
-     
+    //console.log(this.entidadFederativaLista['members'][1]['powers'][2]);
    }
 
-  opcionEntidadFederativa: string  = '0'; // Iniciamos
-  verSeleccion: string        = '';
+  opcionEntidadFederativa: string = '0'; // Iniciamos
+  verSeleccion: string = '';
 
   capturar() {
     localStorage.setItem("opcionEntidadFederativa", this.opcionEntidadFederativa);
