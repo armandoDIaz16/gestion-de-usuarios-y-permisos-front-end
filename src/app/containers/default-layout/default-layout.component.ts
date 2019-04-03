@@ -5,6 +5,7 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { TokenService } from '../../services/token.service';
 
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './default-layout.component.html'
@@ -15,8 +16,7 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
   public sidebarMinimized = true;
   private changes: MutationObserver;
   public element: HTMLElement;
-  public navItems=navItems;
-
+  public navItems;
 
   constructor(
     private Auth: AuthService,
@@ -40,19 +40,14 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
   }
   ngOnInit() {
     //this.Auth.authStatus.subscribe(value => this.loggedIn = value);
-    //console.log(rutasRoles);
-    //navItems;
+    console.log(navItems);
+    this.navItems=navItems;
   }
-
 
   logout(event: MouseEvent) {
     event.preventDefault();
     this.Token.remove();
     this.Auth.changeAuthStatus(false);
     this.router.navigateByUrl('/login');
-    sessionStorage.clear();
-    localStorage.clear();
-    console.clear();
 }
 }
-//export const rutasRoles2 = rutas;

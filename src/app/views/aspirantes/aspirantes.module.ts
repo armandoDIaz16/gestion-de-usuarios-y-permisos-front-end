@@ -27,4 +27,4 @@ import { AspirantesRoutingModule } from './aspirantes-routing.module';
     AltasComponent
   ]
 })
-export class AspirantesModule {}
+export class AspirantesModule { }

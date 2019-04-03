@@ -96,7 +96,7 @@ export const routes: Routes = [
   {
     path: 'home',
     component: DefaultLayoutComponent,
-    canActivate: [AfterLoginService],
+    //canActivate: [AfterLoginService],
     data: {
       title: 'Home'
     }
@@ -104,7 +104,7 @@ export const routes: Routes = [
   {
     path: '',
     component: DefaultLayoutComponent,
-    canActivate: [AfterLoginService],
+    //canActivate: [AfterLoginService],
     data: {
       title: 'Sistemas'
     },
