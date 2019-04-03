@@ -15,6 +15,7 @@ export class ControlComponent implements OnInit {
   };
   
   public error = null;
+  public data = null;
 
   constructor(private Jarwis: JarwisService,
     //private Token : TokenService,
@@ -29,7 +30,8 @@ export class ControlComponent implements OnInit {
   }
 
   handleResponse(data){
-    //this.Token.handle(data.access_token);
+    this.data=data.data;
+    localStorage.setItem("nombre", this.data);
     this.router.navigateByUrl('/create-password');
   }
 

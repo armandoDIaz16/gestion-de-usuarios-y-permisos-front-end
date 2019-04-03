@@ -1,18 +1,32 @@
 <div class="animated fadeIn">
   <div class="row">
-      <h3>Current user profile</h3>
-      <div>
-        <p>Roles: <b *ngFor="let usuarioRoles of usuarioRolesLista">{{usuarioRoles.FK_ROL}}</b></p>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-header">
+          <strong>Datos Personales:</strong>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="curp">CURP:</label>
+                <label style="color:#ff0000;" for="asterisco">*</label>
+                <input type="text" class="form-control" id="curp" size=18 maxlength=18 onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase().replace(' ','')">
+
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <a href="https://www.gob.mx/curp/" target="_blank"><button type="button" class="btn btn-block btn-primary">Consulta de CURP</button></a>
+              </div>
+            </div>
+          </div>
+          <!--/.row-->
+          <div class="row">
+            <app-altas *ngIf="validarPermisos()"></app-altas>
+          </div>
+        </div>
       </div>
-      
-      <form #rolesForm="ngForm">
-          <label for="name">Name</label>
-            <ul>             
-             <li *ngFor="let role of allRoles; let idx = index">
-               <input type="checkbox" [checked]="role.checked"  value="{{role.name}}" name="appliedFilters" (change)="toggleSelection(idx, role.name)" /> {{role.name}}
-             </li>
-            </ul>   
-            <app-altas *ngIf="verificarRoles()"></app-altas>
-      </form>
+    </div>      
   </div>
 </div>
