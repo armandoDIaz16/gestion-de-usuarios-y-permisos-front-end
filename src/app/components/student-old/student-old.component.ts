@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class StudentOldComponent implements OnInit {
 
   public form ={
-    email:null,
+   email:null,
     //name:null,
     name:localStorage.getItem("nombre"),
     password:null,

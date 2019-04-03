@@ -7,7 +7,8 @@ import { CarreraService } from './carrera.service';
 import { EntidadFederativaService } from './entidad-federativa.service';
 import { CiudadService } from './ciudad.service';
 import { UsuarioRolesService } from '../../../services/usuraio-roles.service';
-import { asElementData } from '@angular/core/src/view';
+import { SistemaPermisosService } from '../../../services/sistema-permisos.service';
+
 
 @Component({
   selector: 'app-formulario',
@@ -20,12 +21,13 @@ import { asElementData } from '@angular/core/src/view';
               CarreraService,
               EntidadFederativaService,
               CiudadService,
-              UsuarioRolesService
+              UsuarioRolesService,
+              SistemaPermisosService
             ]
 })
 export class AdministradorComponent implements OnInit {
 
-  public altas = 6;
+  public altas=6;
   public estadoCivilLista = [];
   public dependenciaLista = [];
   public propagandaTecnologicoLista = [];
@@ -34,15 +36,18 @@ export class AdministradorComponent implements OnInit {
   public entidadFederativaLista = [];
   public ciudadLista = [];
   public usuarioRolesLista = [];
+  //public altas= boolean;
 
   constructor(private estadoCivilService: EstadoCivilService,
               private dependenciaService: DependenciaService,
-              private propagandaTecnologicoService: PropagandaTecnologicoService,
+              private propagandaTecnologicoService: PropagandaTecnologicoService,              
               private incapacidadService: IncapacidadService,
               private carreraService: CarreraService,
               private entidadFederativaService: EntidadFederativaService,
               private ciudadService: CiudadService,
-              private usuarioRolesService: UsuarioRolesService
+              private usuarioRolesService: UsuarioRolesService,
+              private sistemaPermisosService: SistemaPermisosService
+
               ) {
   }
 
@@ -53,17 +58,24 @@ export class AdministradorComponent implements OnInit {
     this.incapacidadService.getIncapacidad().subscribe(data => this.incapacidadLista = data);
     this.carreraService.getCarrera().subscribe(data => this.carreraLista = data);
     this.entidadFederativaService.getEntidadFederativa().subscribe(data => this.entidadFederativaLista = data);
-    // this.usuarioRolesService.getUsuarioRoles().subscribe(data => this.usuarioRolesLista = data);
     this.usuarioRolesService.getUsuarioRoles().subscribe(data => {
-      sessionStorage.permisos = JSON.stringify(data);
+      sessionStorage.usuarioPermisos = JSON.stringify(data);      
     });
-    //this.entidadFederativaService.getEntidadFederativa().subscribe(data => {console.log(data[0]['NOMBRE'])});
-    //console.log(this.usuarioRolesLista[0]['USUARIO']);
-    //console.log(this.entidadFederativaLista['members'][1]['powers'][2]);
+
+    this.sistemaPermisosService.getPermisosSistemas().subscribe(data => {
+      sessionStorage.sistemaPermisos = JSON.stringify(data);      
+    });
+    
+    
+
+    
+    //comparasion permisos usuario sistema
+    this.validarPermisos();
+    //altas = true;
    }
 
-  opcionEntidadFederativa: string = '0'; // Iniciamos
-  verSeleccion: string = '';
+  opcionEntidadFederativa: string  = '0'; // Iniciamos
+  verSeleccion: string        = '';
 
   capturar() {
     localStorage.setItem("opcionEntidadFederativa", this.opcionEntidadFederativa);
@@ -75,7 +87,19 @@ export class AdministradorComponent implements OnInit {
       return person.id;
   }
 
-  verificarRoles(){
+  validarPermisos(){
+
+    
+
+
+
+
+
+
+
+
+
+    //this.obtenerPermisos();
     /*
     for (var i = 0; i < this.usuarioRolesLista.length; i++){
       if (this.usuarioRolesLista[i].FK_ROL == this.rol){
@@ -88,4 +112,31 @@ export class AdministradorComponent implements OnInit {
       return false;
     }*/
   }
+
+  obtenerPermisos(){
+    var rutasRoles = [];
+    this.usuarioRolesService.getUsuarioRoles().subscribe(data => {
+      let sistemas = JSON.parse(sessionStorage.sistemas);
+      for(var sistema in sistemas[0].SISTEMAS){
+        if(sistemas[0].SISTEMAS[sistema].PK_SISTEMA==sessionStorage.getItem('sistema')){
+          console.log("--"+sistemas[0].SISTEMAS[sistema].NOMBRE)
+          for(var rol in sistemas[0].SISTEMAS[sistema].ROLES){
+            var rutasModulos = [];
+            console.log("----"+sistemas[0].SISTEMAS[sistema].ROLES[rol].NOMBRE)
+            for(var modulo in sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS){
+              console.log("------"+sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE)
+            }
+          }
+        }
+      }
+      sessionStorage['rutas'] = JSON.stringify(rutasRoles);
+    });          
+    //console.log(sessionStorage.rutas); 
+    //this.navItems=recargarRutas();
+    //console.log(this.navItems);
+    //navItems-rutasRoles;
+    //console.log(navItems); 
+    //this.router.navigateByUrl('/home');
+
+  } 
 }

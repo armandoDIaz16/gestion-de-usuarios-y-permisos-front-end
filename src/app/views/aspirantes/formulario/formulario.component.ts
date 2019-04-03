@@ -31,7 +31,7 @@ export class FormularioComponent implements OnInit {
 
   constructor(private estadoCivilService: EstadoCivilService,
               private dependenciaService: DependenciaService,
-              private propagandaTecnologicoService: PropagandaTecnologicoService,
+              private propagandaTecnologicoService: PropagandaTecnologicoService,              
               private incapacidadService: IncapacidadService,
               private carreraService: CarreraService,
               private entidadFederativaService: EntidadFederativaService,
@@ -51,7 +51,7 @@ export class FormularioComponent implements OnInit {
   verSeleccion: string        = '';
 
   capturar() {
-    localStorage.setItem('opcionEntidadFederativa', this.opcionEntidadFederativa);
+    localStorage.setItem("opcionEntidadFederativa", this.opcionEntidadFederativa);
     this.ciudadService.getCiudad().subscribe(data => this.ciudadLista = data);
   }
 }

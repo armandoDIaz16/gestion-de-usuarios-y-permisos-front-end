@@ -71,8 +71,6 @@ import { CiudadService } from './components/formulario/ciudad.service';
 import { ControlComponent } from './components/control/control.component';
 import { StudentOldComponent } from './components/student-old/student-old.component';
 import { NavbarSistemsComponent } from './components/navbar-sistems/navbar-sistems.component';
-import { BancoproyectosComponent } from './views/residencias/bancoproyectos/bancoproyectos.component';
-import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -92,8 +90,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     SnotifyModule,
     MDBBootstrapModule.forRoot(),
-    BrowserAnimationsModule,
-    ReactiveFormsModule
+    BrowserAnimationsModule
     ],
   declarations: [
     AppComponent,
@@ -110,8 +107,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormularioComponent,
     ControlComponent,
     StudentOldComponent,
-    NavbarSistemsComponent,
-    BancoproyectosComponent
+    NavbarSistemsComponent
   ],
   providers: [
     EstadoCivilService,
@@ -121,7 +117,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CarreraService,
     EntidadFederativaService,
     CiudadService,
-
+    
     {
     provide: LocationStrategy,
     useClass: HashLocationStrategy
