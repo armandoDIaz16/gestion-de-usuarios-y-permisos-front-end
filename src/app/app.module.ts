@@ -71,6 +71,7 @@ import { CiudadService } from './components/formulario/ciudad.service';
 import { ControlComponent } from './components/control/control.component';
 import { StudentOldComponent } from './components/student-old/student-old.component';
 import { NavbarSistemsComponent } from './components/navbar-sistems/navbar-sistems.component';
+import { PruebaComponent } from './prueba/prueba.component';
 
 
 @NgModule({
@@ -107,7 +108,8 @@ import { NavbarSistemsComponent } from './components/navbar-sistems/navbar-siste
     FormularioComponent,
     ControlComponent,
     StudentOldComponent,
-    NavbarSistemsComponent
+    NavbarSistemsComponent,
+    PruebaComponent
   ],
   providers: [
     EstadoCivilService,
