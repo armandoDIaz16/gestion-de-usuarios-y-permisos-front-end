@@ -1,0 +1,28 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-header">
+          <strong>Datos Personales:</strong>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="curp">CURP:</label>
+                <label style="color:#ff0000;" for="asterisco">*</label>
+                <input type="text" class="form-control" id="curp" size=18 maxlength=18 onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase().replace(' ','')">
+
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <a href="https://www.gob.mx/curp/" target="_blank"><button type="button" class="btn btn-block btn-primary">Consulta de CURP</button></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>      
+  </div>
+</div>

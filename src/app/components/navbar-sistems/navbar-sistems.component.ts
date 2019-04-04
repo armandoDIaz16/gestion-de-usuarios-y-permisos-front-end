@@ -38,10 +38,10 @@ export class NavbarSistemsComponent implements OnInit {
   mostrarRoles(sistemaSelect){
     this.router.navigateByUrl('/home');
     sessionStorage.setItem('sistema',sistemaSelect);
-    this.sistemaPermisosService.getPermisosSistemas().subscribe(data => {
+    /* this.sistemaPermisosService.getPermisosSistemas().subscribe(data => {
       //sessionStorage['sistemaPermisos'] = JSON.stringify(data);
       sessionStorage.setItem('sistemaPermisos',JSON.stringify(data));
-    });
+    }); */
     this.usuarioRolesService.getUsuarioRoles().subscribe(data => {
       let sistemas = JSON.parse(sessionStorage.sistemas);
       var rutasRoles = [];
@@ -54,11 +54,11 @@ export class NavbarSistemsComponent implements OnInit {
             for(var modulo in sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS){              
               //console.log("------"+sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE)
               rutasModulos.push({name: sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE,
-                              url: '/'+sistemas[0].SISTEMAS[sistema].NOMBRE.toLowerCase()+'/'+sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE.toLowerCase(), 
-                              icon: 'icon-cursor'});
+                              url: '/'+sistemas[0].SISTEMAS[sistema].NOMBRE.toLowerCase()+'/'+sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE.toLowerCase().replace(/\s/g,"_"), 
+                              icon: 'icon-arrow-right'});
             }
             rutasRoles.push({name: sistemas[0].SISTEMAS[sistema].ROLES[rol].NOMBRE, 
-                            icon: 'icon-screen-desktop', 
+                            icon: 'icon-user', 
                             children: rutasModulos});  
           }
         }

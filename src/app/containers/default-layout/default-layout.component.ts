@@ -53,6 +53,6 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
     sessionStorage.clear();
     localStorage.clear();
     console.clear();
-}
+  }
 }
 //export const rutasRoles2 = rutas;

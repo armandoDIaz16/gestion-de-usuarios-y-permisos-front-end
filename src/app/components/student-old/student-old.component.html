@@ -22,9 +22,9 @@
                         <label style="color:#ff0000;" for="asterisco">*</label>
                         <span class="input-group-text"><i class="icon-user"></i></span>
                       </div>
-                       <!-- <input type="text" name="curp" class="form-control" placeholder="Curp" id="inputEmail4" autocomplete="curp" [(ngModel)]="form.curp" required >-->
-                       <input type="text" class="form-control" id="curp" size=18 maxlength=18 placeholder="Curp" autocomplete="curp" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase().replace(' ','')">
-                      </div>
+                       <input type="text" name="curp" class="form-control" placeholder="Curp" id="inputEmail4" autocomplete="curp" [(ngModel)]="form.curp" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase().replace(' ','')" required >
+<!--                        <input type="text" class="form-control" id="curp" size=18 maxlength=18 placeholder="Curp" autocomplete="curp" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase().replace(' ','')">
+ -->                      </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                           <a href="https://www.gob.mx/curp/" target="_blank"><button type="button" class="btn btn-block btn-primary">Consulta de CURP</button></a>
