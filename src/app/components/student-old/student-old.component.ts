@@ -4,7 +4,7 @@ import { TokenService } from '../../services/token.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-dashboard',  
+  selector: 'app-dashboard',
   templateUrl: './student-old.component.html',
   styleUrls: ['./student-old.component.scss']
 })
@@ -17,8 +17,8 @@ export class StudentOldComponent implements OnInit {
     password:null,
     password_confirmation:null,
     curp: null,
-     //PRIMER_APELLIDO:'chavez',
-     //SEGUNDO_APELLIDO:'barajas',
+     // PRIMER_APELLIDO:'chavez',
+     // SEGUNDO_APELLIDO:'barajas',
    /*  FECHA_NACIMIENTO:'2019-01-11',
      CURP: 'cabe960224hgthrd02',
      ESTADO:1,
@@ -50,10 +50,10 @@ export class StudentOldComponent implements OnInit {
   public error = [];
 
   constructor (private Jarwis: JarwisService,
-    private Token : TokenService,
-    private router : Router) { }
+    private Token: TokenService,
+    private router: Router) { }
 
-  onSubmit(){
+  onSubmit() {
     this.Jarwis.signup(this.form).subscribe(
       data => this.handleResponse(data),
       error => this.handleError(error)
