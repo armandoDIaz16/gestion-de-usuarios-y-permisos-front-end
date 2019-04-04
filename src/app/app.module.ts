@@ -71,6 +71,9 @@ import { CiudadService } from './components/formulario/ciudad.service';
 import { ControlComponent } from './components/control/control.component';
 import { StudentOldComponent } from './components/student-old/student-old.component';
 import { NavbarSistemsComponent } from './components/navbar-sistems/navbar-sistems.component';
+import { BancoproyectosComponent } from './views/residencias/bancoproyectos/bancoproyectos.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import {DocumentacionComponent} from './views/residencias/documentacion/documentacion.component';
 
 
 @NgModule({
@@ -107,7 +110,8 @@ import { NavbarSistemsComponent } from './components/navbar-sistems/navbar-siste
     FormularioComponent,
     ControlComponent,
     StudentOldComponent,
-    NavbarSistemsComponent
+    NavbarSistemsComponent,
+    BancoproyectosComponent
   ],
   providers: [
     EstadoCivilService,
