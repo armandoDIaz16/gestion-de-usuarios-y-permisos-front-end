@@ -61,8 +61,13 @@ export class LoginComponent implements OnInit{
     this.error= error.error.error;
   }
   ngOnInit() {
-    
-}
+    if(sessionStorage.rutas){
+      sessionStorage.clear();
+      localStorage.clear();
+      console.clear();
+      location.reload();
+    }   
+  }
  }
 
  export const rutasSistemas = rutasSistema;
