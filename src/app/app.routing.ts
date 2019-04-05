@@ -17,8 +17,7 @@ import { EgresadosComponent } from './views/egresados/egresados.component';
 import { FormularioComponent } from './components/formulario/formulario.component';
 import { ControlComponent } from './components/control/control.component';
 import { StudentOldComponent } from './components/student-old/student-old.component';
-import {BancoproyectosComponent} from './views/residencias/bancoproyectos/bancoproyectos.component';
-import {DocumentacionComponent} from './views/residencias/documentacion/documentacion.component';
+
 
 
 
@@ -38,13 +37,6 @@ export const routes: Routes = [
     component: EgresadosComponent,
     data: {
       title: 'Egresados'
-    }
-  },
-  {
-    path: 'bancoproyectos',
-    component: BancoproyectosComponent,
-    data: {
-      title: 'Banco'
     }
   },
   {
@@ -127,8 +119,12 @@ export const routes: Routes = [
         loadChildren: './views/aspirantes/aspirantes.module#AspirantesModule'
       },
       {
-        path: 'buttons',
-        loadChildren: './views/buttons/buttons.module#ButtonsModule'
+        path: 'residencias',
+        loadChildren: './views/residencias/residencias.module#ResidenciasModule'
+      },
+      {
+        path: 'capacitacion_docente',
+        loadChildren: './views/capacitacion_docente/capacitacion.module#CapacitacionModule'
       },
       {
         path: 'charts',
