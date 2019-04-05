@@ -50,9 +50,6 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
     this.Token.remove();
     this.Auth.changeAuthStatus(false);
     this.router.navigateByUrl('/login');
-    sessionStorage.clear();
-    localStorage.clear();
-    console.clear();
   }
 }
 //export const rutasRoles2 = rutas;

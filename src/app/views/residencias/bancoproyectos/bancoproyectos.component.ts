@@ -6,8 +6,8 @@ import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-bancoproyectos',
-  templateUrl: './bancoproyectos.component.html',
-  styleUrls: ['./bancoproyectos.component.scss']
+  templateUrl: './bancoproyectos.component.html'
+  //styleUrls: ['./bancoproyectos.component.scss']
 })
 export class BancoproyectosComponent implements OnInit {
 
