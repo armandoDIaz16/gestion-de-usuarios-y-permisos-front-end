@@ -6,24 +6,24 @@ import { NgModule } from '@angular/core';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 // Buttons Routing
-import { ResidenciasRoutingModule } from './residencias-routing.module';
+import {CapacitacionRoutingModule} from './capacitacion-routing.module';
+
 
 // Component
-import { BancoProyectosComponent } from './banco_proyectos/banco_proyectos.component';
-import { DocumentacionComponent } from './documentacion/documentacion.component';
+import {ProponerCursoComponent} from './proponer_curso/proponer_curso.component';
 
 // Angular
 
 @NgModule({
   imports: [
     CommonModule,
-    ResidenciasRoutingModule,
+    CapacitacionRoutingModule,
     BsDropdownModule.forRoot(),
     FormsModule
   ],
   declarations: [
-    BancoProyectosComponent,
-    DocumentacionComponent
+    ProponerCursoComponent
+
   ]
 })
-export class ResidenciasModule { }
+export class CapacitacionModule { }

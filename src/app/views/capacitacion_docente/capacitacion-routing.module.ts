@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ProponerCursoComponent } from './proponer-curso/proponer-curso.component';
+import { ProponerCursoComponent } from './proponer_curso/proponer_curso.component';
 
 
 var rutas=[];
@@ -24,7 +24,7 @@ if(sessionStorage.rutas){
       rutas.push({
         path: '',
         data: {
-          title: 'Capacitacion Docente'
+          title: 'Capacitacion docente'
         },
         children: modulos
       });
@@ -34,23 +34,23 @@ if(sessionStorage.rutas){
 
 function agregarModulos(modulo){
   switch (modulo) {
-    case 'PROPONER CURSO':
+    case 'Proponer curso':
       modulos.push({
-        path: 'proponer-curso',
+        path: 'proponer_curso',
         component: ProponerCursoComponent,
         data: {
-          title: 'PROPONER CURSO'
+          title: 'Proponer curso'
         }
       });
       break;
-    /*case 'Documentacion':
+    case 'Documentacion':
       modulos.push({
         path: 'documentacion',
-        component: DocumentacionComponent,
+        component: '',
         data: {
           title: 'Documentacion'
         }
-      });*/
+      });
       break;
   }
 }
@@ -64,4 +64,4 @@ const routes: Routes = rutas;
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ResidenciasRoutingModule {}
+export class CapacitacionRoutingModule {}
