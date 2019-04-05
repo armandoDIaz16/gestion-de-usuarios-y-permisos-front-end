@@ -73,6 +73,7 @@ import { StudentOldComponent } from './components/student-old/student-old.compon
 import { NavbarSistemsComponent } from './components/navbar-sistems/navbar-sistems.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {DocumentacionComponent} from './views/residencias/documentacion/documentacion.component';
+import { ProponerCursoComponent } from './views/capacitacion_docente/proponer-curso/proponer-curso.component';
 
 
 @NgModule({
@@ -109,7 +110,8 @@ import {DocumentacionComponent} from './views/residencias/documentacion/document
     FormularioComponent,
     ControlComponent,
     StudentOldComponent,
-    NavbarSistemsComponent
+    NavbarSistemsComponent,
+    ProponerCursoComponent
   ],
   providers: [
     EstadoCivilService,
