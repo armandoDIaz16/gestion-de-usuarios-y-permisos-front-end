@@ -123,8 +123,8 @@ export const routes: Routes = [
         loadChildren: './views/residencias/residencias.module#ResidenciasModule'
       },
       {
-        path: 'buttons',
-        loadChildren: './views/buttons/buttons.module#ButtonsModule'
+        path: 'capacitacion_docente',
+        loadChildren: './views/capacitacion_docente/capacitacion.module#CapacitacionModule'
       },
       {
         path: 'charts',

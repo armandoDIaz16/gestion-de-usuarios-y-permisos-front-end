@@ -54,7 +54,7 @@ export class NavbarSistemsComponent implements OnInit {
             for(var modulo in sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS){              
               //console.log("------"+sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE)
               rutasModulos.push({name: sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE,
-                              url: '/'+sistemas[0].SISTEMAS[sistema].NOMBRE.toLowerCase()+'/'+sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE.toLowerCase().replace(/\s/g,"_"), 
+                              url: '/'+sistemas[0].SISTEMAS[sistema].NOMBRE.toLowerCase().replace(/\s/g,"_")+'/'+sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE.toLowerCase().replace(/\s/g,"_"), 
                               icon: 'icon-arrow-right'});
             }
             rutasRoles.push({name: sistemas[0].SISTEMAS[sistema].ROLES[rol].NOMBRE, 
