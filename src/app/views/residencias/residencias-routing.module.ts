@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { BancoProyectosComponent } from './banco_proyectos/banco_proyectos.component';
 import { DocumentacionComponent } from './documentacion/documentacion.component';
+import {CorreosComponent} from './correos/correos.component';
 
 var rutas=[];
 
@@ -49,6 +50,15 @@ function agregarModulos(modulo){
         component: DocumentacionComponent,
         data: {
           title: 'Documentacion'
+        }
+      });
+      break;
+    case 'Correos':
+      modulos.push({
+        path: 'correos',
+        component: CorreosComponent,
+        data: {
+          title: 'Correos'
         }
       });
       break;

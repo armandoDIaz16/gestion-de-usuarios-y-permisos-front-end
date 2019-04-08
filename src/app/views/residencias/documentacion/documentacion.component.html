@@ -1,16 +1,17 @@
 <div class="animated fadeIn">
 
-
-  <label>Numero de formato:</label>
-  <!--  <input [(ngModel)]="id" type="text" autofocus maxlength="2" name="id"> -->
-  <select [(ngModel)]="id" name="id">
+<div style="text-align: left">
+  <label>Documento a subir:</label><br>
+</div>
+<div style="text-align: center;">  <!--  <input [(ngModel)]="id" type="text" autofocus maxlength="2" name="id"> -->
+  <select [(ngModel)]="id" name="id" class="form-control form-control-lg" placeholder="Area academica">
     <option value="0">No seleccionado</option>
     <option value="1">Solicitud de residencias</option>
     <option value="2">Carta de aceptación</option>
-  </select>
-  <label>Documento a subir</label>
-  <label class="btn btn-primary upload-btn" style="background: #f3f3f3">
+  </select><br>
+  <label >Documento a subir</label><br>
+  <label class="btn btn-dark">
     Upload file<input type="file" name="file" hidden multiple (change)="uploadFile($event)">
   </label>
-
+</div>
 </div>
