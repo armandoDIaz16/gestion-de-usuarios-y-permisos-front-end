@@ -29,4 +29,10 @@ export class JarwisService {
   control(data){
     return this.http.post(`${this.baseUrl}/control`,data)
   }
+
+  periodo(data){
+    return this.http.post(`${this.baseUrl}/periodo`,data)
+  }
 }
+
+/* ?token=`+localStorage.getItem('token') */

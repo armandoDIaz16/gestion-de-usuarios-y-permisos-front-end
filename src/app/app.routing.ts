@@ -127,6 +127,10 @@ export const routes: Routes = [
         loadChildren: './views/capacitacion_docente/capacitacion.module#CapacitacionModule'
       },
       {
+        path: 'asesoria_academica',
+        loadChildren: './views/asesoria_academica/asesoria.module#AsesoriaModule'
+      },
+      {
         path: 'charts',
         loadChildren: './views/chartjs/chartjs.module#ChartJSModule'
       },

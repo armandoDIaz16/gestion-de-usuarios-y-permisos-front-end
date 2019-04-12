@@ -20,7 +20,7 @@ export class RequestResetComponent implements OnInit {
       data => this.handleResponse(data),
       error => this.handleError(error)
     );
-    sessionStorage.setItem("email", this.form.email);
+    localStorage.setItem("email", this.form.email);
   }
 
   handleResponse(res) {
