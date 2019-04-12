@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { JarwisService } from '../../../services/jarwis.service';
 import { TokenService } from '../../../services/token.service';
 import { Router } from '@angular/router';
-import * as $ from 'jquery';
+//import * as $ from 'jquery';
 @Component({
   selector: 'app-form_alumno',
   templateUrl: './form_alumno.component.html',
@@ -46,7 +46,7 @@ export class Form_alumnoComponent implements OnInit {
    }
  
    ngOnInit() {
-    $(document).ready(function() {
+   /*  $(document).ready(function() {
 
       var last_valid_selection = null;
       
@@ -59,7 +59,7 @@ export class Form_alumnoComponent implements OnInit {
           last_valid_selection = $(this).val();
         }
       });
-      });
+      }); */
    }
  
 }
