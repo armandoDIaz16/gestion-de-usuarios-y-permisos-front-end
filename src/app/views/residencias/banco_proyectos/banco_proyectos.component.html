@@ -1,0 +1,32 @@
+
+<div class="animated fadeIn" >
+  <div class="card-body">
+    <div style="text-align: left;">
+  <form (ngSubmit)="onSubmit()">
+    <label>Nombre del proyecto:</label><br>
+    <input [(ngModel)]="nombre" class="form-control form-control-lg" type="text" placeholder="Nombre del proyecto" name="nombre"><br>
+    <label>Area Academica:</label><br>
+    <select [(ngModel)]="opcionSeleccionado" class="form-control form-control-lg" placeholder="Area academica" name="area"><br>
+      <option value="sistemas">Sistemas y Computación</option>
+      <option value="metalmecanica">Metal-Mecánica</option>
+      <option value="industrial">Industrial</option>
+      <option value="gestion">Ciencias Económico - Administrativas</option>
+    </select>
+   <br><label>Empresa:</label> <br>
+    <input [(ngModel)]="empresa" class="form-control form-control-lg" type="text" placeholder="Nombre de la empresa" name="empresa"><br>
+    <label>Tipo especialidad:</label><br>
+    <select [(ngModel)]="opcionSeleccionadoEsp" class="form-control form-control-lg" placeholder="Especialidad" name="especialidad">
+      <option value="software" [hidden]="opcionSeleccionado != 'sistemas'">Software</option>
+      <option value="hardware" [hidden]="opcionSeleccionado != 'sistemas'">Hardware</option>
+      <option value="bd" [hidden]="opcionSeleccionado != 'sistemas'">Base de datos</option>
+      <option value="redes" [hidden]="opcionSeleccionado != 'sistemas'">Redes</option>
+    </select>
+    <div style="text-align: center;">
+    <br> <button class="btn btn-dark" type="submit" value="Submit">Submit</button>
+    </div>
+  </form>
+    </div>
+  </div>
+</div>
+
+

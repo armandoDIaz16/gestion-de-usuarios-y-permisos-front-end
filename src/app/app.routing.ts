@@ -8,7 +8,7 @@ import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
-import { SignupComponent } from './components/signup/signup.component';
+//import { SignupComponent } from './components/signup/signup.component';
 import { RequestResetComponent } from './components/password/request-reset/request-reset.component';
 import { ResponseResetComponent } from './components/password/response-reset/response-reset.component';
 import { BeforeLoginService } from './services/before-login.service';
@@ -17,8 +17,7 @@ import { EgresadosComponent } from './views/egresados/egresados.component';
 import { FormularioComponent } from './components/formulario/formulario.component';
 import { ControlComponent } from './components/control/control.component';
 import { StudentOldComponent } from './components/student-old/student-old.component';
-import {BancoproyectosComponent} from './views/residencias/bancoproyectos/bancoproyectos.component';
-import {DocumentacionComponent} from './views/residencias/documentacion/documentacion.component';
+
 
 
 
@@ -38,13 +37,6 @@ export const routes: Routes = [
     component: EgresadosComponent,
     data: {
       title: 'Egresados'
-    }
-  },
-  {
-    path: 'bancoproyectos',
-    component: BancoproyectosComponent,
-    data: {
-      title: 'Banco'
     }
   },
   {
@@ -69,7 +61,7 @@ export const routes: Routes = [
     data: {
       title: 'Obtener contraseña'
     }
-  },
+  },/* 
   {
     path: 'signup',
     component: SignupComponent,
@@ -77,7 +69,7 @@ export const routes: Routes = [
     data: {
       title: 'MOSNOS'
     }
-  },
+  }, */
   {
     path: '500',
     component: P500Component,
@@ -127,8 +119,16 @@ export const routes: Routes = [
         loadChildren: './views/aspirantes/aspirantes.module#AspirantesModule'
       },
       {
-        path: 'buttons',
-        loadChildren: './views/buttons/buttons.module#ButtonsModule'
+        path: 'residencias',
+        loadChildren: './views/residencias/residencias.module#ResidenciasModule'
+      },
+      {
+        path: 'capacitacion_docente',
+        loadChildren: './views/capacitacion_docente/capacitacion.module#CapacitacionModule'
+      },
+      {
+        path: 'asesoria_academica',
+        loadChildren: './views/asesoria_academica/asesoria.module#AsesoriaModule'
       },
       {
         path: 'charts',

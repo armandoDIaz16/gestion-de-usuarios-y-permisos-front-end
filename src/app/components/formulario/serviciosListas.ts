@@ -12,3 +12,7 @@ export interface IEntidadFederativa{
 }
 export interface ICiudad{
 }
+export interface IUniversidad{
+}
+export interface ICarreraUniversidad{
+}

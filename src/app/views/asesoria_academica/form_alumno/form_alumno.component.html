@@ -1,0 +1,119 @@
+<div class="text-center">
+  <h1>DEPARTAMENTO DE DESARROLLO ACADEMICO</h1>
+  <h3>PROGRAMA DE ASESORIA ACADEMICA ENTRE ESTUDIANTES</h3>
+  <h3>DE SOLICITUD DE ASESORIA</h3>
+</div>
+<div class="app-body">
+  <main class="main d-flex align-items-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7 mx-auto">
+          <div class="card-group">
+            <div class="card p-3">
+              <div class="card-body">
+                <form #alumnoForm=ngForm (ngSubmit)="onSubmit()">
+                  <div class="alert alert-danger" [hidden]="!error.curp">
+                    {{error.curp}}
+                  </div>
+                  <div class="alert alert-danger" [hidden]="!error.email">
+                    {{error.email}}
+                  </div>
+                  <div class="alert alert-danger" [hidden]="!error.password">
+                    {{error.password}}
+                  </div>
+                  <div class="alert alert-danger" [hidden]="!error.password_confirmation">
+                    {{error.password_confirmation}}
+                  </div>
+                  <h1>Solicitud de asesoria</h1>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-user"></i></span>
+                    </div>
+                    <input type="text" name="control" class="form-control" placeholder="Numero de comtrol"
+                      id="inputControl" autocomplete="control" [(ngModel)]="form.control" required>
+                  </div>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-user"></i></span>
+                    </div>
+                    <input type="text" name="name" class="form-control" placeholder="Nombre(s)" id="inputName"
+                      autocomplete="name" [(ngModel)]="form.name" required>
+                  </div>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-user"></i></span>
+                    </div>
+                    <input type="text" name="apep" class="form-control" placeholder="Apellido Paterno" id="inputApep"
+                      autocomplete="apep" [(ngModel)]="form.apep" required>
+                  </div>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-user"></i></span>
+                    </div>
+                    <input type="text" name="apem" class="form-control" placeholder="Apellido Materno" id="inputApem"
+                      autocomplete="apem" [(ngModel)]="form.apem" required>
+                  </div>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-user"></i></span>
+                    </div>
+                    <input type="text" name="carrera" class="form-control" placeholder="Carrera" id="inputCarrera"
+                      autocomplete="carrera" [(ngModel)]="form.carrera" required>
+                  </div>
+                  <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-envelope-open"></i></span>
+                    </div>
+                    <input type="email" name="email" class="form-control" placeholder="Correo Electronico"
+                      id="inputemail5" autocomplete="email" [(ngModel)]="form.email" required>
+                  </div>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-user"></i></span>
+                    </div>
+                    <input type="text" name="celular" class="form-control" placeholder="Numero Celular"
+                      id="inputCelular" autocomplete="celular" [(ngModel)]="form.celular" required>
+                  </div>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-user"></i></span>
+                    </div>
+                    <select class="form-control" name="dia[]" id="dia" size="5" multiple="" [(ngModel)]="form.dia"
+                      required>
+                      <option>Lunes</option>
+                      <option>Martes</option>
+                      <option>Miercoles</option>
+                      <option>Jueves</option>
+                      <option>Viernes</option>
+                    </select>
+                  </div>
+                  <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-lock"></i></span>
+                    </div>
+                    <input type="password" name="password" class="form-control" placeholder="Contraseña"
+                      id="inputPassword3" autocomplete="current-password" [(ngModel)]="form.password" required>
+                  </div>
+                  <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-lock"></i></span>
+                    </div>
+                    <input type="password" name="password_confirmation" class="form-control" placeholder="Contraseña"
+                      id="inputPassword4" autocomplete="password_confirmation" [(ngModel)]="form.password_confirmation"
+                      required>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <button type="submit" class="btn btn-primary px-4"
+                        [disabled]="!alumnoForm.valid">Ingresar</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

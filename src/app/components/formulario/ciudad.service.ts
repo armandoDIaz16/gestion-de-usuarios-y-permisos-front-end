@@ -7,9 +7,7 @@ import { ICiudad } from './serviciosListas';
 export class CiudadService{
   constructor(private http: HttpClient){}
   
-  getCiudad():Observable<ICiudad[]>{
-    return this.http.get<ICiudad[]>('http://127.0.0.1:8000/api/Ciudad/'+
-    localStorage.getItem("opcionEntidadFederativa")
-    );
+  getCiudad(entidadFederativa):Observable<ICiudad[]>{
+    return this.http.get<ICiudad[]>('http://127.0.0.1:8000/api/Ciudad/'+entidadFederativa);
   }
 }
