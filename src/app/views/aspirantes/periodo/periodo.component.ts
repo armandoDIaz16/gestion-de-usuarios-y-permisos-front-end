@@ -77,7 +77,7 @@ export class PeriodoComponent implements OnInit {
             "PK_PERIODO_PREFICHAS": this.idPeriodo,
             "FECHA_INICIO": this.fechaInicio,
             "FECHA_FIN": this.fechaFin,
-            "FK_USUARIO_MODIFICACION": sessionStorage.getItem('IdUsuario') 
+            "FK_USUARIO_MODIFICACION": sessionStorage.getItem('IdUsuario')
         });
         console.log("Modificacion");
     }else{        
@@ -86,7 +86,11 @@ export class PeriodoComponent implements OnInit {
               "FECHA_FIN": this.fechaFin,
               "FK_USUARIO_REGISTRO": sessionStorage.getItem('IdUsuario') 
       });
-      console.log("Insertar");       
+      //Corregir con promise
+/*       this.periodoService.getPeriodo().subscribe(data => {
+        this.idPeriodo=data[0].PK_PERIODO_PREFICHAS;
+      }); */
+        console.log("Insertar");       
     }  
           
 

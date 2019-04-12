@@ -11,7 +11,7 @@ export interface Periodo{
 export class PeriodoService{  
     constructor(private http: HttpClient){}
     addPeriodo(fechas){
-        return this.http.post('http://127.0.0.1:8000/api/Periodo', fechas
+        return this.http.post('http://127.0.0.1:8000/api/Periodo?token='+sessionStorage.getItem('token'), fechas
             ).subscribe(
                 (response) => {
                     //response;
