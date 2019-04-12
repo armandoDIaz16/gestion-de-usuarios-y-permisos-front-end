@@ -46,7 +46,7 @@ import { SistemsComponent } from './sistems/sistems.component';
 
 // login
 // import { NavbarComponent } from './components/navbar/navbar.component';
-import { SignupComponent } from './components/signup/signup.component';
+//import { SignupComponent } from './components/signup/signup.component';
 // import { ProfileComponent } from './components/profile/profile.component';
 import { RequestResetComponent } from './components/password/request-reset/request-reset.component';
 import { ResponseResetComponent } from './components/password/response-reset/response-reset.component';
@@ -58,7 +58,6 @@ import { AuthService } from './services/auth.service';
 import { AfterLoginService } from './services/after-login.service';
 import { BeforeLoginService } from './services/before-login.service';
 // @ts-ignore
-import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormularioComponent } from './components/formulario/formulario.component';
 import { EstadoCivilService } from './components/formulario/estado-civil.service';
@@ -90,7 +89,7 @@ import {DocumentacionComponent} from './views/residencias/documentacion/document
     ChartsModule,
     FormsModule,
     HttpClientModule,
-    SnotifyModule,
+    //SnotifyModule,
     MDBBootstrapModule.forRoot(),
     BrowserAnimationsModule
     ],
@@ -100,7 +99,7 @@ import {DocumentacionComponent} from './views/residencias/documentacion/document
     P404Component,
     P500Component,
     LoginComponent,
-    SignupComponent,
+    //SignupComponent,
     RegisterComponent,
     RequestResetComponent,
     ResponseResetComponent,
@@ -123,9 +122,7 @@ import {DocumentacionComponent} from './views/residencias/documentacion/document
     {
     provide: LocationStrategy,
     useClass: HashLocationStrategy
-  }, JarwisService, TokenService, AuthService, AfterLoginService, BeforeLoginService,
-    { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
-SnotifyService],
+  }, JarwisService, TokenService, AuthService, AfterLoginService, BeforeLoginService],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

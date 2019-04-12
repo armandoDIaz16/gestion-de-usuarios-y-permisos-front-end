@@ -1,0 +1,21 @@
+<form (ngSubmit)="onSubmit()">
+<p>
+  Buenos días alumnos.
+</p>
+<br>
+<p>Este correo es para avisarles de la junta de información de recidencias.</p>
+<br>
+<p><u>Información:</u></p>
+<br>
+<div>
+  <p><b>Dia:</b><input [(ngModel)]="dia" class="form-control form-control-lg" type="text" placeholder="Fecha" name="dia"></p><br>
+  <p><b>Hora:</b><input [(ngModel)]="hora" class="form-control form-control-lg" type="text" placeholder="Hora" name="hora">&nbsp;</p><br>
+  <p><b>Lugar:</b><input [(ngModel)]="lugar" class="form-control form-control-lg" type="text" placeholder="Lugar" name="lugar">&nbsp;</p><br>
+</div>
+<br/>
+
+<p>Atentamente: <input [(ngModel)]="persona" class="form-control form-control-lg" type="text" placeholder="Nombre/Puesto" name="persona"></p>
+  <div style="text-align: center;">
+    <br> <button class="btn btn-dark" type="submit" value="Submit">Enviar correo</button>
+  </div>
+</form>
