@@ -14,6 +14,7 @@ import { PagoSinFormalizarComponent } from './pago_sin_formalizar/pago_sin_forma
 import { SinPagoRegistradoComponent } from './sin_pago_registrado/sin_pago_registrado.component';
 import { ReporteCompletoComponent } from './reporte_completo/reporte_completo.component';
 import { AceptadosComponent } from './aceptados/aceptados.component';
+import { PeriodoComponent } from './periodo/periodo.component';
 
 var rutas=[];
 
@@ -159,6 +160,15 @@ function agregarModulos(modulo){
         component: AceptadosComponent,
         data: {
           title: 'Aceptados'
+        }
+      });
+      break;
+    case 'Periodo':
+      modulos.push({
+        path: 'periodo',
+        component: PeriodoComponent,
+        data: {
+          title: 'Periodo'
         }
       });
       break;
