@@ -41,7 +41,6 @@ import { AppRoutingModule } from './app.routing';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
-import { EgresadosComponent } from './views/egresados/egresados.component';
 import { SistemsComponent } from './sistems/sistems.component';
 
 // login
@@ -103,7 +102,6 @@ import {DocumentacionComponent} from './views/residencias/documentacion/document
     RegisterComponent,
     RequestResetComponent,
     ResponseResetComponent,
-    EgresadosComponent,
     SistemsComponent,
     FormularioComponent,
     ControlComponent,
@@ -118,7 +116,7 @@ import {DocumentacionComponent} from './views/residencias/documentacion/document
     CarreraService,
     EntidadFederativaService,
     CiudadService,
-    
+
     {
     provide: LocationStrategy,
     useClass: HashLocationStrategy
