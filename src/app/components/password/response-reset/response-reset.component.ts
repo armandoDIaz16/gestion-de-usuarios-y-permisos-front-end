@@ -9,7 +9,7 @@ import { JarwisService } from '../../../services/jarwis.service';
 export class ResponseResetComponent implements OnInit {
   public error=[];
   public form = {
-    email : sessionStorage.getItem("email"),
+    email : localStorage.getItem("email"),
     password : null,
     password_confirmation:null,
     resetToken :null

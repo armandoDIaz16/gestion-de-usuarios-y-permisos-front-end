@@ -4,7 +4,7 @@ import {TokenService} from '../../services/token.service';
 import {Router} from '@angular/router';
 
 @Component({
-    selector: 'app-dashboard',
+  selector: 'app-dashboard',
     templateUrl: './student-old.component.html',
     styleUrls: ['./student-old.component.scss']
 })
@@ -15,7 +15,7 @@ export class StudentOldComponent implements OnInit {
         return json;
     }
 
-    public datos_alumno = this.get_datos_alumno();
+  	public datos_alumno = this.get_datos_alumno();
 
     public form = {
         email: null,
@@ -59,7 +59,7 @@ export class StudentOldComponent implements OnInit {
 
     public error = [];
 
-    constructor(private Jarwis: JarwisService,
+  constructor(private Jarwis: JarwisService,
                 private Token: TokenService,
                 private router: Router) {
     }
