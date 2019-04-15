@@ -12,6 +12,8 @@ import { ResidenciasRoutingModule } from './residencias-routing.module';
 import { BancoProyectosComponent } from './banco_proyectos/banco_proyectos.component';
 import { DocumentacionComponent } from './documentacion/documentacion.component';
 import { CorreosComponent } from './correos/correos.component';
+import { Banco_vistaComponent } from './banco_vista/banco_vista.component';
+import { Banco_seleccionComponent } from './banco_seleccion/banco_seleccion.component';
 
 // Angular
 
@@ -25,7 +27,9 @@ import { CorreosComponent } from './correos/correos.component';
   declarations: [
     BancoProyectosComponent,
     DocumentacionComponent,
-    CorreosComponent
+    CorreosComponent,
+    Banco_vistaComponent,
+    Banco_seleccionComponent
   ]
 })
 export class ResidenciasModule { }

@@ -4,6 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { BancoProyectosComponent } from './banco_proyectos/banco_proyectos.component';
 import { DocumentacionComponent } from './documentacion/documentacion.component';
 import {CorreosComponent} from './correos/correos.component';
+import {Banco_vistaComponent} from './banco_vista/banco_vista.component';
+import {Banco_seleccionComponent} from './banco_seleccion/banco_seleccion.component';
 
 var rutas=[];
 
@@ -59,6 +61,24 @@ function agregarModulos(modulo){
         component: CorreosComponent,
         data: {
           title: 'Correos'
+        }
+      });
+      break;
+    case 'Banco vista':
+      modulos.push({
+        path: 'banco_vista',
+        component: Banco_vistaComponent,
+        data: {
+          title: 'Banco'
+        }
+      });
+      break;
+    case 'Banco seleccion':
+      modulos.push({
+        path: 'banco_seleccion',
+        component: Banco_seleccionComponent,
+        data: {
+          title: 'Banco'
         }
       });
       break;

@@ -8,7 +8,7 @@ import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
-import { SignupComponent } from './components/signup/signup.component';
+//import { SignupComponent } from './components/signup/signup.component';
 import { RequestResetComponent } from './components/password/request-reset/request-reset.component';
 import { ResponseResetComponent } from './components/password/response-reset/response-reset.component';
 import { BeforeLoginService } from './services/before-login.service';
@@ -62,14 +62,14 @@ export const routes: Routes = [
       title: 'Obtener contraseña'
     }
   },
-  {
+ /* {
     path: 'signup',
     component: SignupComponent,
     canActivate: [BeforeLoginService],
     data: {
       title: 'MOSNOS'
     }
-  },
+  }, */
   {
     path: '500',
     component: P500Component,

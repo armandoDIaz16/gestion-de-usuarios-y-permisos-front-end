@@ -1,0 +1,22 @@
+<div class="columns">
+  <div class="column">
+    <table class="table" >
+      <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Area</th>
+        <th>Empresa</th>
+        <th>Especialidad</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let antep of anteproyectosLista">
+        <td>{{ antep.Nombre }}</td>
+        <td>{{ antep.AreaAcademica}}</td>
+        <td>{{ antep.Empresa }}</td>
+        <td>{{ antep.TipoEspecialidad }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
