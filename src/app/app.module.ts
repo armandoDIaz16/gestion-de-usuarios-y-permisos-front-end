@@ -41,7 +41,6 @@ import { AppRoutingModule } from './app.routing';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
-import { EgresadosComponent } from './views/egresados/egresados.component';
 import { SistemsComponent } from './sistems/sistems.component';
 
 // login
@@ -58,7 +57,6 @@ import { AuthService } from './services/auth.service';
 import { AfterLoginService } from './services/after-login.service';
 import { BeforeLoginService } from './services/before-login.service';
 // @ts-ignore
-import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormularioComponent } from './components/formulario/formulario.component';
 import { EstadoCivilService } from './components/formulario/estado-civil.service';
@@ -91,7 +89,7 @@ import {DocumentacionComponent} from './views/residencias/documentacion/document
     ChartsModule,
     FormsModule,
     HttpClientModule,
-    SnotifyModule,
+    //SnotifyModule,
     MDBBootstrapModule.forRoot(),
     BrowserAnimationsModule
     ],
@@ -105,7 +103,6 @@ import {DocumentacionComponent} from './views/residencias/documentacion/document
     RegisterComponent,
     RequestResetComponent,
     ResponseResetComponent,
-    EgresadosComponent,
     SistemsComponent,
     FormularioComponent,
     ControlComponent,
@@ -120,13 +117,11 @@ import {DocumentacionComponent} from './views/residencias/documentacion/document
     CarreraService,
     EntidadFederativaService,
     CiudadService,
-    
+
     {
     provide: LocationStrategy,
     useClass: HashLocationStrategy
-  }, JarwisService, TokenService, AuthService, AfterLoginService, BeforeLoginService,
-    { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
-SnotifyService],
+  }, JarwisService, TokenService, AuthService, AfterLoginService, BeforeLoginService],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

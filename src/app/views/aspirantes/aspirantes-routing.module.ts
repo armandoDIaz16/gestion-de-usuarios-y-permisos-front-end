@@ -14,36 +14,37 @@ import { PagoSinFormalizarComponent } from './pago_sin_formalizar/pago_sin_forma
 import { SinPagoRegistradoComponent } from './sin_pago_registrado/sin_pago_registrado.component';
 import { ReporteCompletoComponent } from './reporte_completo/reporte_completo.component';
 import { AceptadosComponent } from './aceptados/aceptados.component';
+import { PeriodoComponent } from './periodo/periodo.component';
 
-var rutas=[];
+var rutas = [];
 
 
-if(sessionStorage.rutas){
+if (sessionStorage.rutas){
   let sistemas = JSON.parse(sessionStorage.sistemas);
-  rutas=[];
-  for(var sistema in sistemas[0].SISTEMAS){
-    if(sistemas[0].SISTEMAS[sistema].PK_SISTEMA==sessionStorage.getItem('sistema')){
-      var modulos=[];
-      //console.log("--"+sistemas[0].SISTEMAS[sistema].NOMBRE)
-      for(var rol in sistemas[0].SISTEMAS[sistema].ROLES){
-        //console.log("----"+sistemas[0].SISTEMAS[sistema].ROLES[rol].NOMBRE)
-        for(var modulo in sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS){
-          //console.log("------"+sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE)
+  rutas = [];
+  for (var sistema in sistemas[0].SISTEMAS) {
+    if (sistemas[0].SISTEMAS[sistema].PK_SISTEMA == sessionStorage.getItem('sistema')) {
+      var modulos = [];
+      // console.log("--"+sistemas[0].SISTEMAS[sistema].NOMBRE)
+      for (var rol in sistemas[0].SISTEMAS[sistema].ROLES) {
+        // console.log("----"+sistemas[0].SISTEMAS[sistema].ROLES[rol].NOMBRE)
+        for (var modulo in sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS) {
+          // console.log("------"+sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE)
           agregarModulos(sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE);
         }
       }
-      rutas.push({ 
+      rutas.push({
         path: '',
-        data: { 
+        data: {
           title: 'Aspitantes'
         },
-        children: modulos                            
+        children: modulos
       });
     }
-  }  
+  }
 }
 
-function agregarModulos(modulo){
+function agregarModulos(modulo) {
   switch (modulo) {
     case 'Dashboard':
       modulos.push({
@@ -81,7 +82,7 @@ function agregarModulos(modulo){
         }
       });
       break;
-    case 'Matriculados':    
+    case 'Matriculados':
       modulos.push({
         path: 'matriculados',
         component: MatriculadosComponent,
@@ -90,7 +91,7 @@ function agregarModulos(modulo){
         }
       });
       break;
-    case 'Formulario':    
+    case 'Formulario':
       modulos.push({
         path: 'formulario',
         component: FormularioComponent,
@@ -159,6 +160,15 @@ function agregarModulos(modulo){
         component: AceptadosComponent,
         data: {
           title: 'Aceptados'
+        }
+      });
+      break;
+    case 'Periodo':
+      modulos.push({
+        path: 'periodo',
+        component: PeriodoComponent,
+        data: {
+          title: 'Periodo'
         }
       });
       break;
