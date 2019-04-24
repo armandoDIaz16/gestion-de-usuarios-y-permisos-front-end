@@ -23,7 +23,7 @@ export class BancoProyectosComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit(){
+  onSubmit() {
       this.http.post('http://127.0.0.1:8000/api/Anteproyecto',{
         "Nombre": this.nombre.toString(),
         "AreaAcademica": this.opcionSeleccionado.toString(),

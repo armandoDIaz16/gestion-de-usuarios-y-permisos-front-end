@@ -1,0 +1,24 @@
+<div class="columns">
+  <div class="column">
+    <table class="table" >
+      <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Ruta</th>
+        <th>Area</th>
+        <th>Empresa</th>
+        <th>Especialidad</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let antep of anteproyectosLista">
+        <td>{{ antep.NOMBRE }}</td>
+          <td><a href="{{'http://127.0.0.1:8000/'+antep.PDF}}" target="_blank">{{antep.PDF}}</a></td>
+        <td>{{ antep.AREA_ACADEMICA}}</td>
+        <td>{{ antep.EMPRESA }}</td>
+        <td>{{ antep.TIPO_ESPECIALIDAD }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

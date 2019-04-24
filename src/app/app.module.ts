@@ -73,6 +73,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {DocumentacionComponent} from './views/residencias/documentacion/documentacion.component';
 
 
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -98,7 +99,7 @@ import {DocumentacionComponent} from './views/residencias/documentacion/document
     P404Component,
     P500Component,
     LoginComponent,
-    //SignupComponent,
+  //  SignupComponent,
     RegisterComponent,
     RequestResetComponent,
     ResponseResetComponent,
@@ -106,7 +107,7 @@ import {DocumentacionComponent} from './views/residencias/documentacion/document
     FormularioComponent,
     ControlComponent,
     StudentOldComponent,
-    NavbarSistemsComponent
+    NavbarSistemsComponent,
   ],
   providers: [
     EstadoCivilService,

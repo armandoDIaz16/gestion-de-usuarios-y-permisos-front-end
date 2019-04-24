@@ -117,6 +117,7 @@ export const routes: Routes = [
         path: 'egresados',
         loadChildren: './views/egresados/egresados.module#EgresadosModule'
       },
+        {
         path: 'residencias',
         loadChildren: './views/residencias/residencias.module#ResidenciasModule'
       },
