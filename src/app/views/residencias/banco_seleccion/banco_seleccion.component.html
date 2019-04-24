@@ -13,13 +13,13 @@
       </thead>
       <tbody>
       <tr *ngFor="let antep of anteproyectosLista">
-        <td>{{antep.id}}</td>
-        <td>{{ antep.Nombre }}</td>
-        <td>{{ antep.AreaAcademica}}</td>
-        <td>{{ antep.Empresa }}</td>
-        <td>{{ antep.TipoEspecialidad }}</td>
+        <td>{{antep.ID_ANTEPROYECTO}}</td>
+        <td>{{ antep.NOMBRE }}</td>
+        <td>{{ antep.AREA_ACADEMICA}}</td>
+        <td>{{ antep.EMPRESA }}</td>
+        <td>{{ antep.TIPO_ESPECIALIDAD }}</td>
         <td>  <label class="btn btn-dark">
-          Seleccionar<input type="submit" value="submit" name="submit" hidden (click)="uploadFile(antep.id)">
+          Seleccionar<input type="submit" value="submit" name="submit" hidden (click)="uploadFile(antep.ID_ANTEPROYECTO)">
         </label></td>
       </tr>
       </tbody>

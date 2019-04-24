@@ -6,21 +6,24 @@ import { DocumentacionComponent } from './documentacion/documentacion.component'
 import {CorreosComponent} from './correos/correos.component';
 import {Banco_vistaComponent} from './banco_vista/banco_vista.component';
 import {Banco_seleccionComponent} from './banco_seleccion/banco_seleccion.component';
+import {ProyectosComponent} from './proyectos/proyectos.component';
+import {BancoEdicionComponent} from './banco_edicion/banco_edicion.component';
+import {BancoAprobacionComponent} from './banco_aprobacion/banco_aprobacion.component';
 
-var rutas=[];
+var rutas = [];
 
 
-if(sessionStorage.rutas){
+if (sessionStorage.rutas) {
   let sistemas = JSON.parse(sessionStorage.sistemas);
-  rutas=[];
-  for(var sistema in sistemas[0].SISTEMAS){
-    if(sistemas[0].SISTEMAS[sistema].PK_SISTEMA==sessionStorage.getItem('sistema')){
-      var modulos=[];
-      //console.log("--"+sistemas[0].SISTEMAS[sistema].NOMBRE)
+  rutas = [];
+  for (var sistema in sistemas[0].SISTEMAS) {
+    if (sistemas[0].SISTEMAS[sistema].PK_SISTEMA==sessionStorage.getItem('sistema')){
+      var modulos = [];
+      // console.log("--"+sistemas[0].SISTEMAS[sistema].NOMBRE)
       for(var rol in sistemas[0].SISTEMAS[sistema].ROLES){
-        //console.log("----"+sistemas[0].SISTEMAS[sistema].ROLES[rol].NOMBRE)
+        // console.log("----"+sistemas[0].SISTEMAS[sistema].ROLES[rol].NOMBRE)
         for(var modulo in sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS){
-          //console.log("------"+sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE)
+          // console.log("------"+sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE)
           agregarModulos(sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE);
         }
       }
@@ -35,7 +38,7 @@ if(sessionStorage.rutas){
   }
 }
 
-function agregarModulos(modulo){
+function agregarModulos(modulo) {
   switch (modulo) {
     case 'Banco Proyectos':
       modulos.push({
@@ -82,6 +85,33 @@ function agregarModulos(modulo){
         }
       });
       break;
+      case 'Proyectos':
+          modulos.push({
+             path: 'proyectos',
+             component: ProyectosComponent,
+             data: {
+                 title: 'Proyecto'
+             }
+          });
+          break;
+      case 'Banco edicion':
+          modulos.push({
+              path: 'banco_edicion',
+              component: BancoEdicionComponent,
+              data: {
+                  title: 'Edición'
+              }
+          });
+          break;
+      case 'Banco aprobacion':
+          modulos.push({
+              path: 'banco_aprobacion',
+              component: BancoAprobacionComponent,
+              data: {
+                  title: 'Aprobar'
+              }
+          });
+          break;
   }
 }
 

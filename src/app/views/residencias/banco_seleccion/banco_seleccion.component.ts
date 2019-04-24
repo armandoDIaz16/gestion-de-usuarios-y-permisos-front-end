@@ -11,19 +11,19 @@ import {HttpClient} from '@angular/common/http';
 export class Banco_seleccionComponent implements OnInit {
 
   public anteproyectosLista = [];
-  id = this.id;
+  ID_ANTEPROYECTO = this.ID_ANTEPROYECTO;
   usuario = sessionStorage.getItem('IdUsuario');
 
-  constructor(private anteproyectosService: AnteproyectosSeleccion, private http: HttpClient){}
+  constructor(private anteproyectosService: AnteproyectosSeleccion, private http: HttpClient) {}
 
-  ngOnInit(){
+  ngOnInit() {
     this.anteproyectosService.getAnteproyectos().subscribe(data => this.anteproyectosLista = data);
   }
 
-  uploadFile(id){
+  uploadFile(id) {
     console.log(id);
     console.log(this.usuario);
-    this.http.put('http://127.0.0.1:8000/api/Anteproyecto/'+id,{"Usuario": this.usuario.toString()}).subscribe((response) => {
+    this.http.put('http://127.0.0.1:8000/api/Anteproyecto/' + id, {'Alumno': this.usuario.toString()}).subscribe((response) => {
       console.log(response);
     });
   }
