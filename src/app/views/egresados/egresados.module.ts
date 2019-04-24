@@ -10,9 +10,16 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { EgresadosRoutingModule } from './egresados-routing.module';
 
 // Component
-import {EncuestaComponent} from './encuesta/encuesta.component';
-import {AdministradorComponent} from './administrador/administrador.component';
+import { AdministradorComponent} from './administrador/administrador.component';
 import { ReportesComponent } from './reportes/reportes.component';
+import { EncuestasComponent} from './encuestas/encuestas.component';
+import { AdminCarruselComponent } from './admin-carrusel/admin-carrusel.component';
+import { NoticiasCarruselComponent } from './noticias-carrusel/noticias-carrusel.component';
+import { AdminUsuariosComponent } from './admin-usuarios/admin-usuarios.component';
+import { SeccionesComponent } from './secciones/secciones.component';
+import { PreguntasComponent } from './preguntas/preguntas.component';
+import { EncuestaComponent } from './encuesta/encuesta.component';
+import { AltasComponent } from './encuestas/altas/altas.component';
 
 
 @NgModule({
@@ -23,9 +30,16 @@ import { ReportesComponent } from './reportes/reportes.component';
     FormsModule
   ],
   declarations: [
-    EncuestaComponent,
+    EncuestasComponent,
     AdministradorComponent,
-    ReportesComponent
+    ReportesComponent,
+    AdminCarruselComponent,
+    NoticiasCarruselComponent,
+    AdminUsuariosComponent,
+    SeccionesComponent,
+    PreguntasComponent,
+    EncuestaComponent,
+    AltasComponent
   ]
 })
 export class EgresadosModule { }
