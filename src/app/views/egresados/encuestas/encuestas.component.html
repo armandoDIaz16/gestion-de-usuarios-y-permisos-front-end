@@ -1,0 +1,169 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card text-white bg-info">
+      <div class="card-header">Bienvenido Administrador
+        <small>Gestor de Encuestas</small>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-6">
+            <button class="btn btn-block btn-light" type="button" (click)="mostrar(crearEncuesta)">
+              Crear Encuesta
+            </button>
+          </div>
+        </div>
+        <br>
+        <br>
+
+        <table class="table table-responsive-sm table-hover table-outline ">
+          <thead class="thead-light">
+          <tr>
+            <th class="text-center">
+              <i class="icon-people"></i>
+            </th>
+            <th>Título de la Encuesta</th>
+            <th class="text-center">Creada</th>
+            <th>Vista Previa</th>
+            <th class="text-center">Diseñar</th>
+            <th>Configurar</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td class="text-center">
+              <div class="avatar">
+                <img alt="admin@bootstrapmaster.com" class="img-avatar" src="assets/img/avatars/1.jpg">
+                <span class="avatar-status badge-success"></span>
+              </div>
+            </td>
+            <td>
+              <div>Yiorgos Avraamu</div>
+              <div class="small text-muted">
+                <span>New</span> | Registered: Jan 1, 2015
+              </div>
+            </td>
+            <td class="text-center">
+              <i class="flag-icon flag-icon-us h4 mb-0" id="us" title="us"></i>
+            </td>
+            <td>
+              <div class="clearfix">
+                <div class="float-left">
+                  <strong>50%</strong>
+                </div>
+                <div class="float-right">
+                  <small class="text-muted">Jun 11, 2015 - Jul 10, 2015</small>
+                </div>
+              </div>
+              <div class="progress progress-xs">
+                <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="50" class="progress-bar bg-success" role="progressbar" style="width: 50%">
+                </div>
+              </div>
+            </td>
+            <td class="text-center">
+              <i class="fa fa-cc-mastercard" style="font-size:24px"></i>
+            </td>
+            <td>
+              <div class="small text-muted">Last login</div>
+              <strong>10 sec ago</strong>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-center">
+              <div class="avatar">
+                <img alt="admin@bootstrapmaster.com" class="img-avatar" src="assets/img/avatars/2.jpg">
+                <span class="avatar-status badge-danger"></span>
+              </div>
+            </td>
+            <td>
+              <div>Avram Tarasios</div>
+              <div class="small text-muted">
+                <span>Recurring</span> | Registered: Jan 1, 2015
+              </div>
+            </td>
+            <td class="text-center">
+              <i class="flag-icon flag-icon-br h4 mb-0" id="br" title="br"></i>
+            </td>
+            <td>
+              <div class="clearfix">
+                <div class="float-left">
+                  <strong>10%</strong>
+                </div>
+                <div class="float-right">
+                  <small class="text-muted">Jun 11, 2015 - Jul 10, 2015</small>
+                </div>
+              </div>
+              <div class="progress progress-xs">
+                <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" class="progress-bar bg-info" role="progressbar" style="width: 10%">
+                </div>
+              </div>
+            </td>
+            <td class="text-center">
+              <i class="fa fa-cc-visa" style="font-size:24px"></i>
+            </td>
+            <td>
+              <div class="small text-muted">Last login</div>
+              <strong>5 minutes ago</strong>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-center">
+              <div class="avatar">
+                <img alt="admin@bootstrapmaster.com" class="img-avatar" src="assets/img/avatars/3.jpg">
+                <span class="avatar-status badge-warning"></span>
+              </div>
+            </td>
+            <td>
+              <div>Quintin Ed</div>
+              <div class="small text-muted">
+                <span>New</span> | Registered: Jan 1, 2015
+              </div>
+            </td>
+            <td class="text-center">
+              <i class="flag-icon flag-icon-in h4 mb-0" id="in" title="in"></i>
+            </td>
+            <td>
+              <div class="clearfix">
+                <div class="float-left">
+                  <strong>74%</strong>
+                </div>
+                <div class="float-right">
+                  <small class="text-muted">Jun 11, 2015 - Jul 10, 2015</small>
+                </div>
+              </div>
+              <div class="progress progress-xs">
+                <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="74" class="progress-bar bg-warning" role="progressbar" style="width: 74%">
+                </div>
+              </div>
+            </td>
+            <td class="text-center">
+              <i class="fa fa-cc-stripe" style="font-size:24px"></i>
+            </td>
+            <td>
+              <div class="small text-muted">Last login</div>
+              <strong>1 hour ago</strong>
+            </td>
+          </tr>
+
+          </tbody>
+        </table>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #crearEncuesta let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Crear Encuesta</h4>
+    <button type="button" class="close" (click)="c('')"> Cerrar</button>
+  </div>
+  <div class="modal-body">
+    <div>Nombre: </div>
+    <div>Objetivo: </div>
+    <div>Instruciones: </div>
+  </div>
+  <div class="modal-footer">
+
+  </div>
+</ng-template>
