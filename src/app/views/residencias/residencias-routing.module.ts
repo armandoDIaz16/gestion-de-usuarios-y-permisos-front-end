@@ -9,6 +9,11 @@ import {Banco_seleccionComponent} from './banco_seleccion/banco_seleccion.compon
 import {ProyectosComponent} from './proyectos/proyectos.component';
 import {BancoEdicionComponent} from './banco_edicion/banco_edicion.component';
 import {BancoAprobacionComponent} from './banco_aprobacion/banco_aprobacion.component';
+import {MaestrosComponent} from './maestros/maestros.component';
+import {ReporteVistaComponent} from './reporte_vista/reporte_vista.component';
+import {VistaComentariosComponent} from './vista_comentarios/vista_comentarios.component';
+import {Reporte_docenteComponent} from './reporte_docente/reporte_docente.component';
+import {Vista_reportesComponent} from './vista_reportes/vista_reportes.component';
 
 var rutas = [];
 
@@ -109,6 +114,51 @@ function agregarModulos(modulo) {
               component: BancoAprobacionComponent,
               data: {
                   title: 'Aprobar'
+              }
+          });
+          break;
+      case 'Maestros':
+          modulos.push({
+              path: 'maestros',
+              component: MaestrosComponent,
+              data: {
+                  title: 'Asignacion de docentes'
+              }
+          });
+          break;
+      case 'Reporte vista':
+          modulos.push({
+              path: 'reporte_vista',
+              component: ReporteVistaComponent,
+              data: {
+                  title: 'Vista de reportes'
+              }
+          });
+          break;
+      case 'Vista comentarios':
+          modulos.push({
+              path: 'vista_comentarios',
+              component: VistaComentariosComponent,
+              data: {
+                  title: 'Comentarios reporte'
+              }
+          });
+          break;
+      case 'Reporte docente':
+          modulos.push({
+              path: 'reporte_docente',
+              component: Reporte_docenteComponent,
+              data: {
+                  title: 'Reporte'
+              }
+          });
+          break;
+      case 'Vista reportes':
+          modulos.push({
+              path: 'vista_reportes',
+              component: Vista_reportesComponent,
+              data: {
+                  title: 'Reporte de Docente'
               }
           });
           break;

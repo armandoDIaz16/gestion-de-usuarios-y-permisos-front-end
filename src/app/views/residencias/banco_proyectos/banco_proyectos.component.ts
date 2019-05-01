@@ -24,11 +24,11 @@ export class BancoProyectosComponent implements OnInit {
   }
 
   onSubmit() {
-      this.http.post('http://127.0.0.1:8000/api/Anteproyecto',{
-        "Nombre": this.nombre.toString(),
-        "AreaAcademica": this.opcionSeleccionado.toString(),
-        "Empresa": this.empresa.toString(),
-        "TipoEspecialidad": this.opcionSeleccionadoEsp.toString()
+      this.http.post('http://127.0.0.1:8000/api/Anteproyecto', {
+        'Nombre': this.nombre.toString(),
+        'AreaAcademica': this.opcionSeleccionado.toString(),
+        'Empresa': this.empresa.toString(),
+        'TipoEspecialidad': this.opcionSeleccionadoEsp.toString()
       }).subscribe(
         (response) => {
           console.log(response);

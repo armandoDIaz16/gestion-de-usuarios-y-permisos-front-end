@@ -17,16 +17,23 @@ import { Banco_seleccionComponent } from './banco_seleccion/banco_seleccion.comp
 import { ProyectosComponent } from './proyectos/proyectos.component';
 import { BancoEdicionComponent } from './banco_edicion/banco_edicion.component';
 import { BancoAprobacionComponent } from './banco_aprobacion/banco_aprobacion.component';
+import { MaestrosComponent } from './maestros/maestros.component';
+import { ReporteVistaComponent } from './reporte_vista/reporte_vista.component';
+import { VistaComentariosComponent } from './vista_comentarios/vista_comentarios.component';
+import {CollapseModule} from 'ngx-bootstrap';
+import { Reporte_docenteComponent } from './reporte_docente/reporte_docente.component';
+import { Vista_reportesComponent } from './vista_reportes/vista_reportes.component';
 
 // Angular
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ResidenciasRoutingModule,
-    BsDropdownModule.forRoot(),
-    FormsModule
-  ],
+    imports: [
+        CommonModule,
+        ResidenciasRoutingModule,
+        BsDropdownModule.forRoot(),
+        FormsModule,
+        CollapseModule
+    ],
   declarations: [
     BancoProyectosComponent,
     DocumentacionComponent,
@@ -35,7 +42,12 @@ import { BancoAprobacionComponent } from './banco_aprobacion/banco_aprobacion.co
     Banco_seleccionComponent,
     ProyectosComponent,
     BancoEdicionComponent,
-    BancoAprobacionComponent
+    BancoAprobacionComponent,
+    MaestrosComponent,
+    ReporteVistaComponent,
+    VistaComentariosComponent,
+    Reporte_docenteComponent,
+    Vista_reportesComponent
   ]
 })
 export class ResidenciasModule { }

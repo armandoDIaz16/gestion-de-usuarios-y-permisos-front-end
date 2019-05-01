@@ -14,7 +14,7 @@ export class Banco_vistaComponent implements OnInit {
 
     public anteproyectosLista = [];
 
-    constructor(private anteproyectosService: Anteproyectos){}
+    constructor(private anteproyectosService: Anteproyectos) {}
 
     ngOnInit(){
       this.anteproyectosService.getAnteproyectos().subscribe(data => this.anteproyectosLista = data);

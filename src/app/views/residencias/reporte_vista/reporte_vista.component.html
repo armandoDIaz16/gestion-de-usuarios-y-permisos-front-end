@@ -1,0 +1,26 @@
+<div class="columns">
+    <div class="column">
+        <table class="table" >
+            <thead>
+            <tr>
+                <th>Alumno</th>
+                <th>Reporte</th>
+                <th>No. Reporte</th>
+                <th>Comentarios</th>
+                <th> </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let antep of reporteLista; let i = index">
+                <td>{{antep.name}}</td>
+                <td><a href="{{'http://127.0.0.1:8000/'+antep.PDF}}" target="_blank">{{ antep.NOMBRE }}</a></td>
+                <td>{{ antep.NUMERO}}</td>
+                <td><input [(ngModel)]="comentario[i]" type="text"></td>
+                <td>  <label class="btn btn-dark">
+                    Guardar<input type="submit" value="submit" name="submit" hidden (click)="uploadComentario(antep.NUMERO, comentario[i])">
+                </label></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
