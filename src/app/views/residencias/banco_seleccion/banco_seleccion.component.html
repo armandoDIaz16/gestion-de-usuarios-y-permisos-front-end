@@ -1,0 +1,28 @@
+<div class="columns">
+  <div class="column">
+    <table class="table" >
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Area</th>
+        <th>Empresa</th>
+        <th>Especialidad</th>
+        <th>Seleccionar</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let antep of anteproyectosLista">
+        <td>{{antep.ID_ANTEPROYECTO}}</td>
+        <td>{{ antep.NOMBRE }}</td>
+        <td>{{ antep.AREA_ACADEMICA}}</td>
+        <td>{{ antep.EMPRESA }}</td>
+        <td>{{ antep.TIPO_ESPECIALIDAD }}</td>
+        <td>  <label class="btn btn-dark">
+          Seleccionar<input type="submit" value="submit" name="submit" hidden (click)="uploadFile(antep.ID_ANTEPROYECTO)">
+        </label></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

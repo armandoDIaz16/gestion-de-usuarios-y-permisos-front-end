@@ -1,0 +1,34 @@
+<div style="align-content: center">
+<form (ngSubmit)="onSubmit()">
+    <input [(ngModel)]="id" type="text" class="form-control form-control-lg" placeholder="Id Proyecto" name="id">
+   <div style="text-align: center;"><br> <button class="btn btn-dark" type="submit" value="Submit">Buscar</button><br></div>
+</form>
+    <br>
+<form (ngSubmit)="onUpdate($event)">
+    <table class="table" >
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Alumno</th>
+            <th>Estatus</th>
+            <th>Area Academica</th>
+            <th>Autor</th>
+            <th>Empresa</th>
+            <th>Tipo Especialidad</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let antep of anteproyectosLista">
+            <td><input type="text" name="Nombre" id="Nombre" [value]="antep.NOMBRE"></td>
+            <td><input type="text" name="Alumno" id="Alumno" [value]="antep.ALUMNO"> </td>
+            <td><input type="text" name="Estatus" id="Estatus" [value]="antep.ESTATUS"></td>
+            <td><input type="text" name="AreaAcademica" id="AreaAcademica" [value]="antep.AREA_ACADEMICA"></td>
+            <td><input type="text" name="Autor" id="Autor" [value]="antep.AUTOR"></td>
+            <td><input type="text" name="Empresa" id="Empresa" [value]="antep.EMPRESA"> </td>
+            <td><input type="text" name="TipoEspecialidad" id="TipoEspecialidad" [value]="antep.TIPO_ESPECIALIDAD" ></td>
+        </tr>
+        </tbody>
+    </table>
+    <div style="text-align: center;"><br> <button class="btn btn-dark" type="submit" value="Submit">Actualizar</button><br></div>
+</form>
+</div>

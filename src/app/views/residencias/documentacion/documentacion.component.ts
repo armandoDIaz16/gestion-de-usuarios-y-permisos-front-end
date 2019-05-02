@@ -12,6 +12,7 @@ export class DocumentacionComponent implements OnInit {
 
   id = this.id;
   file = this.file;
+  usuario = sessionStorage.getItem('IdUsuario');
 
   const; header = 'Access-Control-Allow-Origin: *';
 
@@ -27,6 +28,7 @@ export class DocumentacionComponent implements OnInit {
     if(elem.files.length > 0){
       let formData = new FormData();
       formData.append('myfile', elem.files[0]);
+      formData.append('id', this.usuario );
       if(ex == 1) {
         this.http.post('http://127.0.0.1:8000/api/documentacion', formData).subscribe(
           (response) => {

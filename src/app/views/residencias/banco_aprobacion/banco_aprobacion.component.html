@@ -1,0 +1,38 @@
+<div class="columns">
+    <div class="column">
+        <table class="table" >
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Anteproyecto</th>
+                <th>Alumno</th>
+                <th>Estatus</th>
+                <th>Area</th>
+                <th>Empresa</th>
+                <th>Especialidad</th>
+                <th>Aprobar</th>
+                <th>Rechazar</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let antep of anteproyectosLista">
+                <td>{{antep.ID_ANTEPROYECTO}}</td>
+                <td>{{ antep.NOMBRE }}</td>
+                <td><a href="{{'http://127.0.0.1:8000/'+antep.PDF}}" target="_blank">{{antep.PDF}}</a></td>
+                <td>{{antep.ALUMNO}}</td>
+                <td>{{antep.ESTATUS}}</td>
+                <td>{{ antep.AREA_ACADEMICA}}</td>
+                <td>{{ antep.EMPRESA }}</td>
+                <td>{{ antep.TIPO_ESPECIALIDAD }}</td>
+                <td>  <label class="btn btn-success">
+                    Aprobar<input type="submit" value="submit" name="submit" hidden (click)="aprobarProyecto(antep.ID_ANTEPROYECTO); crearProyecto(antep.ID_ANTEPROYECTO)">
+                </label></td>
+                <td>  <label class="btn btn-danger">
+                    Rechazar<input type="submit" value="submit" name="submit" hidden (click)="rechazarProyecto(antep.ID_ANTEPROYECTO)">
+                </label></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
