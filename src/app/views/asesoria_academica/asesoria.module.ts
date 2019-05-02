@@ -10,7 +10,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { AsesoriaRoutingModule } from './asesoria-routing.module';
 
 // Component
-import { Form_alumnoComponent } from './form_alumno/form_alumno.component'
+import { Form_alumnoComponent } from './form_alumno/form_alumno.component';
+import { Form_asesorComponent } from './form_asesor/form_asesor.component';
 import { AperturaComponent } from './apertura/apertura.component';
 import { GeneralidadesComponent } from './generalidades/generalidades.component';
 
@@ -36,6 +37,7 @@ import { GeneralidadesComponent } from './generalidades/generalidades.component'
     GruposComponent,
     PagoSinFormalizarComponent,
     SinPagoRegistradoComponent,*/
+    Form_asesorComponent,
     Form_alumnoComponent,
     AperturaComponent, 
     GeneralidadesComponent

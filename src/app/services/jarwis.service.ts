@@ -30,8 +30,8 @@ export class JarwisService {
     return this.http.post(`${this.baseUrl}/control`,data)
   }
 
-  periodo(data){
-    return this.http.post(`${this.baseUrl}/periodo`,data)
+  hora(control,dia){
+    return this.http.get(`${this.baseUrl}/Hora?control=`+control+`&dia=`+dia)
   }
 }
 

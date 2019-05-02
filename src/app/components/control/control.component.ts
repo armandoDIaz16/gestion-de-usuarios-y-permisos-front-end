@@ -31,6 +31,7 @@ export class ControlComponent implements OnInit {
 
   handleResponse(data){
     this.data=data.data;
+    console.log(this.data)
     localStorage.setItem("nombre", this.data);
     this.router.navigateByUrl('/create-password');
   }

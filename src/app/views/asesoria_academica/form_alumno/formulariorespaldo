@@ -1,0 +1,118 @@
+import { Component, OnInit } from '@angular/core';
+import { JarwisService } from '../../../services/jarwis.service';
+import { TokenService } from '../../../services/token.service';
+import { Router } from '@angular/router';
+import { AperturaService} from '../../../services/apertura.service';
+//import * as $ from 'jquery';
+
+@Component({
+  selector: 'app-form_alumno',
+  templateUrl: './form_alumno.component.html',
+  styleUrls: ['./form_alumno.component.scss'],
+  providers: [AperturaService]
+})
+export class Form_alumnoComponent implements OnInit {
+  activado=false;
+  fechaInicio=null;
+  fechaFin=null;
+  fechaActual=null;
+  hora=[];
+  public error =  [];
+  public data = null;
+
+  public form ={
+     email:null,
+     name:localStorage.getItem("nombre"),
+     control : '18240602',
+     apep: null,
+     apem: null,
+     carrera: null,
+     celular: null,
+     dia: null,   
+     lunes: null,
+     martes: null,
+     miercoles: null,
+     jueves: null,
+     viernes: null,
+
+   };
+ 
+ 
+   constructor (private Jarwis: JarwisService,
+     private Token : TokenService,
+     private router : Router,
+     private periodoService: AperturaService,
+     ) { }
+ 
+   onSubmit(){
+     alert(this.form.dia)
+    }
+  
+   ngOnInit() {
+    this.periodoService.getPeriodo().subscribe(data => {
+      this.fechaInicio=data[0].FECHA_INICIO;
+      this.fechaFin=data[0].FECHA_FIN;
+      this.fechaActual=data[0].FECHA_ACTUAL;
+      this.compararFechas();     
+    });
+   }
+ 
+  compararFechas(){ 
+    var fechaInicio=this.fechaInicio.split('-');
+    var fechaFin=this.fechaFin.split('-');
+    var fechaActual=this.fechaActual.split('-');
+    var fechaInicio2=new Date(fechaInicio[0],(fechaInicio[1]-1),fechaInicio[2]);
+    var fechaFin2=new Date(fechaFin[0],(fechaFin[1]-1),fechaFin[2]);
+    var fechaActual2=new Date(fechaActual[0],(fechaActual[1]-1),fechaActual[2]);
+    if(fechaActual2>=fechaInicio2 && fechaActual2<=fechaFin2 )
+    {    
+      console.log('La fecha esta en el rango');
+      this.activado=true;     
+    }else{
+      console.log('La fecha no esta en el rango');
+    }
+  }
+
+  ver(){
+   if(this.form.lunes){
+     console.log('Lunes')
+     this.Jarwis.hora(this.form).subscribe(
+      data =>  this.handleResponse(data),
+      error => this.handleError(error)
+    );
+   }else{
+    console.log('es FAKE parce')
+   }
+   if(this.form.martes){
+    console.log('martes')
+  }else{
+   console.log('es FAKE parce')
+  }
+  if(this.form.miercoles){
+    console.log('miercoles')
+  }else{
+   console.log('es FAKE parce')
+  }
+  if(this.form.jueves){
+    console.log('jueves')
+  }else{
+   console.log('es FAKE parce')
+  }
+  if(this.form.viernes){
+    console.log('viernes')
+  }else{
+   console.log('es FAKE parce')
+  }
+    
+  }
+
+  handleResponse(data){
+    this.hora=data.horario;
+   console.log(this.hora);
+  }
+
+  handleError(error){
+    this.error= error.error.error;
+  }
+
+}

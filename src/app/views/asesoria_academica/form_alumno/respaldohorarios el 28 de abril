@@ -1,0 +1,141 @@
+
+        if (Horarios[dia].HoraInicial == this.form.inicio || Horarios[dia].HoraFinal == this.form.fin) {
+          console.log('Tienes clase mamawebo')
+          this.form.inicio = null;
+          this.form.fin = null;
+        }
+        if (Horarios[dia].HoraInicial < this.form.inicio) {
+          if (Horarios[dia].HoraFinal > this.form.inicio) {
+            console.log('Tienes clase mamawebo')
+            this.form.inicio = null;
+            this.form.fin = null;
+          }
+          if (Horarios[dia].HoraFinal < this.form.fin) {
+            console.log('Tienes clase mamawebo')
+            this.form.inicio = null;
+            this.form.fin = null;
+          }
+        }
+        if (Horarios[dia].HoraInicial > this.form.inicio) {
+          console.log('nuevo')
+          if (Horarios[dia].HoraInicial == this.form.fin) {
+            console.log('no nuevo')
+          }
+
+        }
+
+        **************************************************************************************************
+
+          if(Horarios[dia].HoraInicial == this.form.inicio){
+          console.log('Clase')
+        }
+        if(Horarios[dia].HoraFinal == this.form.fin){
+          console.log('Clase')
+        }
+        if(Horarios[dia].HoraInicial <= this.form.inicio && Horarios[dia].HoraFinal >= this.form.fin){
+          console.log('Clase del yyy')
+        }
+        if(Horarios[dia].HoraInicial[0] <= this.form.inicio && Horarios[dia].HoraFinal[0] <= this.form.fin){
+          console.log('Clase del nnn')
+        }
+        if(Horarios[dia].HoraInicial[1] <= this.form.inicio && Horarios[dia].HoraFinal[1] <= this.form.fin){
+          console.log('Clase del mmm')
+        }
+        if(Horarios[dia].HoraInicial[2] <= this.form.inicio && Horarios[dia].HoraFinal[2] <= this.form.fin){
+          console.log('Clase del bbb')
+        }
+        **********************************************************************************************************
+
+        var ite = 0;
+    for (var clase in horarios2) {
+      var horaClase = horarios2[clase].split(',');
+      var ele1 = parseInt(horaClase[0]);
+      var ele2 = parseInt(horaClase[1]);
+      
+      console.log(ele1, ele2);
+      if (ele1 > this.form.inicio && ele1 >= this.form.fin) {
+        console.log("valido :V");
+        break
+      }
+      if (ele1 <= this.form.inicio && ele2 >= this.form.fin) {
+        console.log('hay clase :V')
+        this.form.inicio = null;
+        this.form.fin = null;
+        break
+      }
+      if (ele1 < this.form.inicio && ele2 < this.form.fin && this.form.inicio > ele2) {
+        console.log('valido :V')
+        break
+      }
+      /* if (ele1 <= this.form.inicio && ele2 <= this.form.fin) {
+        console.log('hay clase :V')
+        this.form.inicio = null;
+        this.form.fin = null;
+        break
+      } */
+      ite++
+      console.log(ite)
+
+      ************************************************************************************************************************
+
+        //console.log(horarios2);
+    /*     for (var dia in Horarios) {
+          if (Horarios[dia].Dia == 1) { 
+            for (var HoraFinal in Horarios) {
+              console.log(Horarios[HoraFinal].HoraInicial)
+              console.log(Horarios[HoraFinal].HoraFinal)
+              uno = Horarios[HoraFinal].HoraInicial
+              dos = Horarios[HoraFinal].HoraFinal
+            }
+            if (Horarios[dia].HoraInicial > this.form.inicio && Horarios[dia].HoraInicial >= this.form.fin) {
+              console.log('valido')
+              break;
+            }
+            for (var HoraFinal in Horarios) {
+              uno = Horarios[HoraFinal].HoraInicial
+              dos = Horarios[HoraFinal].HoraFinal
+              console.log(uno)
+              console.log(dos)
+    
+              if (uno <= this.form.inicio && dos >= this.form.fin) {
+                console.log('Tienes clase mamawebo')
+                this.form.inicio = null;
+                this.form.fin = null;
+                break;
+              }
+              break;
+    
+            } 
+    
+            if (this.form.inicio > Horarios[dia].HoraFinal) {
+              if (Horarios[dia].HoraInicial != this.form.inicio && Horarios[dia].HoraFinal != this.form.fin) {
+                console.log('valido')
+                break;
+              }
+            }
+          }
+          if (Horarios[dia].Dia == 2) {
+            if (Horarios[dia].HoraInicial == this.form.inicio) {
+              alert('Tienes clase mamon')
+              this.form.inicio = null;
+            }
+          }
+          if (Horarios[dia].Dia == 3) {
+            if (Horarios[dia].HoraInicial == this.form.inicio) {
+              alert('Tienes clase mamon')
+              this.form.inicio = null;
+            }
+          }
+          if (Horarios[dia].Dia == 4) {
+            if (Horarios[dia].HoraInicial == this.form.inicio) {
+              alert('Tienes clase mamon')
+              this.form.inicio = null;
+            }
+          }
+          if (Horarios[dia].Dia == 5) {
+            if (Horarios[dia].HoraInicial == this.form.inicio) {
+              alert('Tienes clase mamon')
+              this.form.inicio = null;
+            }
+          }
+        } */
