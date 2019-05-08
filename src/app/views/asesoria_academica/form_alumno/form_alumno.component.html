@@ -1,119 +1,151 @@
-<div class="text-center">
-  <h1>DEPARTAMENTO DE DESARROLLO ACADEMICO</h1>
-  <h3>PROGRAMA DE ASESORIA ACADEMICA ENTRE ESTUDIANTES</h3>
-  <h3>DE SOLICITUD DE ASESORIA</h3>
-</div>
-<div class="app-body">
-  <main class="main d-flex align-items-center">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-7 mx-auto">
-          <div class="card-group">
-            <div class="card p-3">
-              <div class="card-body">
-                <form #alumnoForm=ngForm (ngSubmit)="onSubmit()">
-                  <div class="alert alert-danger" [hidden]="!error.curp">
-                    {{error.curp}}
-                  </div>
-                  <div class="alert alert-danger" [hidden]="!error.email">
-                    {{error.email}}
-                  </div>
-                  <div class="alert alert-danger" [hidden]="!error.password">
-                    {{error.password}}
-                  </div>
-                  <div class="alert alert-danger" [hidden]="!error.password_confirmation">
-                    {{error.password_confirmation}}
-                  </div>
-                  <h1>Solicitud de asesoria</h1>
-                  <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="icon-user"></i></span>
+<div *ngIf="activado" class="container">
+  <div class="text-center">
+    <h1>DEPARTAMENTO DE DESARROLLO ACADEMICO</h1>
+    <h3>PROGRAMA DE ASESORIA ACADEMICA ENTRE ESTUDIANTES</h3>
+    <h3>REGISTRO SOLICITUD DE ASESORIA</h3>
+  </div>
+  <div class="app-body">
+    <main class="main d-flex align-items-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 mx-auto">
+            <div class="card-group">
+              <div class="card p-3">
+                <div class="card-body">
+                  <form #alumnoForm=ngForm (ngSubmit)="onSubmit()">
+                    <!--  <div class="alert alert-danger" [hidden]="!error.email">
+                      {{error.email}}
+                    </div> -->
+                    <h1>Solicitud de asesoria</h1>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-user"></i></span>
+                      </div>
+                      <input type="text" name="control" class="form-control" placeholder="Numero de comtrol"
+                        id="inputControl" autocomplete="control" [(ngModel)]="form.control" required>
                     </div>
-                    <input type="text" name="control" class="form-control" placeholder="Numero de comtrol"
-                      id="inputControl" autocomplete="control" [(ngModel)]="form.control" required>
-                  </div>
-                  <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="icon-user"></i></span>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-user"></i></span>
+                      </div>
+                      <input type="text" name="apep" class="form-control" placeholder="Apellido Paterno" id="inputApep"
+                        autocomplete="apep" [(ngModel)]="form.apep" required>
                     </div>
-                    <input type="text" name="name" class="form-control" placeholder="Nombre(s)" id="inputName"
-                      autocomplete="name" [(ngModel)]="form.name" required>
-                  </div>
-                  <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="icon-user"></i></span>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-user"></i></span>
+                      </div>
+                      <input type="text" name="apem" class="form-control" placeholder="Apellido Materno" id="inputApem"
+                        autocomplete="apem" [(ngModel)]="form.apem" required>
                     </div>
-                    <input type="text" name="apep" class="form-control" placeholder="Apellido Paterno" id="inputApep"
-                      autocomplete="apep" [(ngModel)]="form.apep" required>
-                  </div>
-                  <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="icon-user"></i></span>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="icon-user"></i></span>
+                        </div>
+                        <input type="text" name="name" class="form-control" placeholder="Nombre(s)" id="inputName"
+                          autocomplete="name" [(ngModel)]="form.name" required>
+                      </div>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-user"></i></span>
+                      </div>
+                      <select class="col-10" type="text" name="carrera" [(ngModel)]="form.carrera">
+                          <option value='0' disabled>selecciona tu carrera</option>
+                          <option *ngFor="let carrera of carreras">{{carrera}}</option>
+                        </select>
+                      <!-- <input type="text" name="carrera" class="form-control" placeholder="Carrera" id="inputCarrera"
+                        autocomplete="carrera" [(ngModel)]="form.carrera" required> -->
                     </div>
-                    <input type="text" name="apem" class="form-control" placeholder="Apellido Materno" id="inputApem"
-                      autocomplete="apem" [(ngModel)]="form.apem" required>
-                  </div>
-                  <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="icon-user"></i></span>
+                    <div class="input-group mb-4">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-envelope-open"></i></span>
+                      </div>
+                      <input type="email" name="email" class="form-control" placeholder="Correo Electronico"
+                        id="inputemail5" autocomplete="email" [(ngModel)]="form.email" required>
                     </div>
-                    <input type="text" name="carrera" class="form-control" placeholder="Carrera" id="inputCarrera"
-                      autocomplete="carrera" [(ngModel)]="form.carrera" required>
-                  </div>
-                  <div class="input-group mb-4">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="icon-envelope-open"></i></span>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-user"></i></span>
+                      </div>
+                      <input type="text" name="celular" class="form-control" placeholder="Numero Celular"
+                        id="inputCelular" autocomplete="celular" [(ngModel)]="form.celular" required>
                     </div>
-                    <input type="email" name="email" class="form-control" placeholder="Correo Electronico"
-                      id="inputemail5" autocomplete="email" [(ngModel)]="form.email" required>
-                  </div>
-                  <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="icon-user"></i></span>
+                    <div class="input-group mb-3">
+                      <h5>Elige los dias de tu asesoria</h5>
                     </div>
-                    <input type="text" name="celular" class="form-control" placeholder="Numero Celular"
-                      id="inputCelular" autocomplete="celular" [(ngModel)]="form.celular" required>
-                  </div>
-                  <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="icon-user"></i></span>
+                    <div class="input-group mb-3">
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"
+                          (change)="ver()" (change)="habilitar()" name="lunes" [(ngModel)]="form.lunes">
+                        <label class="form-check-label" for="inlineCheckbox1">Lunes</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"
+                          (change)="ver()" (change)="habilitar()" name="martes" [(ngModel)]="form.martes">
+                        <label class="form-check-label" for="inlineCheckbox2">Martes</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"
+                          (change)="ver()" (change)="habilitar()" name="miercoles" [(ngModel)]="form.miercoles">
+                        <label class="form-check-label" for="inlineCheckbox3">Miercoles</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4"
+                          (change)="ver()" (change)="habilitar()" name="jueves" [(ngModel)]="form.jueves">
+                        <label class="form-check-label" for="inlineCheckbox3">Jueves</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5"
+                          (change)="ver()" (change)="habilitar()" name="viernes" [(ngModel)]="form.viernes">
+                        <label class="form-check-label" for="inlineCheckbox3">Viernes</label>
+                      </div>
                     </div>
-                    <select class="form-control" name="dia[]" id="dia" size="5" multiple="" [(ngModel)]="form.dia"
-                      required>
-                      <option>Lunes</option>
-                      <option>Martes</option>
-                      <option>Miercoles</option>
-                      <option>Jueves</option>
-                      <option>Viernes</option>
-                    </select>
-                  </div>
-                  <div class="input-group mb-4">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="icon-lock"></i></span>
+                    <div class="input-group mb-3">
+                      <a class="btn btn-sm btn-pill btn-danger col-12" (click)="borraHora()">Cargar Horario</a>
                     </div>
-                    <input type="password" name="password" class="form-control" placeholder="Contraseña"
-                      id="inputPassword3" autocomplete="current-password" [(ngModel)]="form.password" required>
-                  </div>
-                  <div class="input-group mb-4">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="icon-lock"></i></span>
+                    <div class="input-group mb-3">
+                      <h5>Elige la hora de tu asesoria</h5>
                     </div>
-                    <input type="password" name="password_confirmation" class="form-control" placeholder="Contraseña"
-                      id="inputPassword4" autocomplete="password_confirmation" [(ngModel)]="form.password_confirmation"
-                      required>
-                  </div>
-                  <div class="row">
-                    <div class="col-6">
-                      <button type="submit" class="btn btn-primary px-4"
-                        [disabled]="!alumnoForm.valid">Ingresar</button>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-hourglass"></i></span>
+                      </div>
+                      <select type="number" name="lavelNum" [(ngModel)]="form.levelNum" (ngModelChange)="toNumber()">
+                        <option value='0' disabled>selecciona la hora de tu asesoria</option>
+                        <option *ngFor="let level of levels">{{level}}</option>
+                      </select>
                     </div>
-                  </div>
-                </form>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-hourglass"></i></span>
+                      </div>
+                      <select type="number" name="lavelNum1" [(ngModel)]="form.levelNum1" (ngModelChange)="toNumber()">
+                        <option value='0' disabled>selecciona la hora de tu asesoria</option>
+                        <option *ngFor="let level of levels">{{level}}</option>
+                      </select>
+                    </div>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-hourglass"></i></span>
+                      </div>
+                      <select type="number" name="lavelNum2" [(ngModel)]="form.levelNum2" (ngModelChange)="toNumber()">
+                        <option value='0' disabled>selecciona la hora de tu asesoria</option>
+                        <option *ngFor="let level of levels">{{level}}</option>
+                      </select>
+                    </div>
+                    <div class="row">
+                      <div class="col-6">
+                        <button type="submit" class="btn btn-primary px-4"
+                          [disabled]="!alumnoForm.valid">Ingresar</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </main>
+    </main>
+  </div>
 </div>

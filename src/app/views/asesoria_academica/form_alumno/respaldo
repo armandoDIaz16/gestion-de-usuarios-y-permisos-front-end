@@ -1,0 +1,957 @@
+
+    if (this.form.lunes) {
+      /*       console.log('Lunes')
+            console.log(this.form.control); */
+      this.Jarwis.hora(this.form.control, 1).subscribe(
+        data => {
+          Horarios1 = data;
+          //console.log(Horarios1);
+          this.compararHorarios();
+        },
+        error => this.handleError(error)
+      );
+
+    } else {
+      // console.log('es FAKE parce')
+     // this.compararHorarios();
+    }
+    if (this.form.martes) {
+      this.Jarwis.hora(this.form.control, 2).subscribe(
+        data => {
+          Horarios2 = data;
+          //console.log(Horarios2);
+          this.compararHorarios();
+        },
+        error => this.handleError(error)
+      );
+    } else {
+      //console.log('es FAKE parce')
+      this.compararHorarios();
+    }
+    if (this.form.miercoles) {
+      this.Jarwis.hora(this.form.control, 3).subscribe(
+        data => {
+          Horarios3 = data;
+          //console.log(Horarios3);
+          this.compararHorarios();
+        },
+        error => this.handleError(error)
+      );
+      //console.log('miercoles')
+    } else {
+      //console.log('es FAKE parce')
+      this.compararHorarios();
+    }
+    if (this.form.jueves) {
+      this.Jarwis.hora(this.form.control, 4).subscribe(
+        data => {
+          Horarios4 = data;
+          //console.log(Horarios4);
+          this.compararHorarios();
+        },
+        error => this.handleError(error)
+      );
+      //console.log('jueves')
+    } else {
+      //console.log('es FAKE parce')
+      this.compararHorarios();
+    }
+    if (this.form.viernes) {
+      this.Jarwis.hora(this.form.control, 5).subscribe(
+        data => {
+          Horarios5 = data;
+          //console.log(Horarios5);
+          this.compararHorarios();
+        },
+        error => this.handleError(error)
+      );
+      //console.log('viernes')
+    } else {
+      //console.log('es FAKE parce')
+      this.compararHorarios();
+    }
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+     if (this.form.lunes) {
+      /*       console.log('Lunes')
+            console.log(this.form.control); */
+      this.Jarwis.hora(this.form.control, 1).subscribe(
+        data => {
+          Horarios1 = data;
+          //console.log(Horarios1);
+          this.compararHorarios();
+        },
+        error => this.handleError(error)
+      );
+
+    } else {
+      // console.log('es FAKE parce')
+     // this.compararHorarios();
+    }
+    if (this.form.martes) {
+      this.Jarwis.hora(this.form.control, 2).subscribe(
+        data => {
+          Horarios2 = data;
+          //console.log(Horarios2);
+          this.compararHorarios();
+        },
+        error => this.handleError(error)
+      );
+    } else {
+      //console.log('es FAKE parce')
+      //this.compararHorarios();
+    }
+    if (this.form.miercoles) {
+      this.Jarwis.hora(this.form.control, 3).subscribe(
+        data => {
+          Horarios3 = data;
+          //console.log(Horarios3);
+          //this.compararHorarios();
+        },
+        error => this.handleError(error)
+      );
+      //console.log('miercoles')
+    } else {
+      //console.log('es FAKE parce')
+      //this.compararHorarios();
+    }
+    if (this.form.jueves) {
+      this.Jarwis.hora(this.form.control, 4).subscribe(
+        data => {
+          Horarios4 = data;
+          //console.log(Horarios4);
+         // this.compararHorarios();
+        },
+        error => this.handleError(error)
+      );
+      //console.log('jueves')
+    } else {
+      //console.log('es FAKE parce')
+     // this.compararHorarios();
+    }
+    if (this.form.viernes) {
+      this.Jarwis.hora(this.form.control, 5).subscribe(
+        data => {
+          Horarios5 = data;
+          //console.log(Horarios5);
+          this.compararHorarios();
+        },
+        error => this.handleError(error)
+      );
+      //console.log('viernes')
+    } else {
+      //console.log('es FAKE parce')
+     // this.compararHorarios();
+    }
+
+  }
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+lunes(){
+  this.ver()
+  if(this.form.lunes){
+  this.Jarwis.hora(this.form.control, 1).subscribe(
+    data => {
+      Horarios1 = data;
+      //console.log(Horarios1);
+      this.compararHorarios();
+    },
+    error => this.handleError(error)
+  );
+}else{
+  this.compararHorarios
+}
+
+}
+
+martes(){
+  if(this.form.martes){
+  this.Jarwis.hora(this.form.control, 2).subscribe(
+    data => {
+      Horarios2 = data;
+      this.compararHorarios();
+    },
+    error => this.handleError(error)
+  );
+}else{
+  this.compararHorarios();
+
+}
+}
+***********************************************************************
+
+import { Component, OnInit } from '@angular/core';
+import { JarwisService } from '../../../services/jarwis.service';
+import { TokenService } from '../../../services/token.service';
+import { Router } from '@angular/router';
+import { AperturaService } from '../../../services/apertura.service';
+//import * as $ from 'jquery';
+
+let Horarios;
+let Horarios1;
+let Horarios2;
+let Horarios3;
+let Horarios4;
+let Horarios5;
+@Component({
+  selector: 'app-form_alumno',
+  templateUrl: './form_alumno.component.html',
+  styleUrls: ['./form_alumno.component.scss'],
+  providers: [AperturaService]
+})
+
+export class Form_alumnoComponent implements OnInit {
+  activado = false;
+  fechaInicio = null;
+  fechaFin = null;
+  fechaActual = null;
+  hora = [];
+
+  //Arreglos horarios
+  Dia = [];
+  HoraInicial = [];
+  MinutoInicial = [];
+  HoraFinal = [];
+  MinutoFinal = [];
+
+  public data = [];
+
+  public form = {
+    email: null,
+    //name:null,
+    name: null,/* localStorage.getItem("nombre"), */
+    password: null,
+    password_confirmation: null,
+    curp: null,
+    control: '18240602',
+    apep: null,
+    apem: null,
+    carrera: null,
+    celular: null,
+    dia: null,
+    lunes: null,
+    martes: null,
+    miercoles: null,
+    jueves: null,
+    viernes: null,
+
+  };
+
+  public error = [];
+
+  constructor(private Jarwis: JarwisService,
+    private Token: TokenService,
+    private router: Router,
+    private periodoService: AperturaService,
+  ) { }
+
+  onSubmit() {
+    alert(this.form.dia)
+  }
+
+  /* handleResponse(data){
+    this.Token.handle(data.access_token);
+    this.router.navigateByUrl('/home');
+  }
+ 
+ 
+  handleError(error){
+    this.error= error.error.errors;
+  } */
+
+  ngOnInit() {
+    this.periodoService.getPeriodo().subscribe(data => {
+      this.fechaInicio = data[0].FECHA_INICIO;
+      this.fechaFin = data[0].FECHA_FIN;
+      this.fechaActual = data[0].FECHA_ACTUAL;
+      this.compararFechas();
+    });
+  }
+
+  compararFechas() {
+    var fechaInicio = this.fechaInicio.split('-');
+    var fechaFin = this.fechaFin.split('-');
+    var fechaActual = this.fechaActual.split('-');
+    var fechaInicio2 = new Date(fechaInicio[0], (fechaInicio[1] - 1), fechaInicio[2]);
+    var fechaFin2 = new Date(fechaFin[0], (fechaFin[1] - 1), fechaFin[2]);
+    var fechaActual2 = new Date(fechaActual[0], (fechaActual[1] - 1), fechaActual[2]);
+    if (fechaActual2 >= fechaInicio2 && fechaActual2 <= fechaFin2) {
+      console.log('La fecha esta en el rango');
+      this.activado = true;
+    } else {
+      console.log('La fecha no esta en el rango');
+    }
+  }
+
+  ver() {
+    Horarios = [];
+    Horarios1 = [];
+    Horarios2 = [];
+    Horarios3 = [];
+    Horarios4 = [];
+    Horarios5 = [];
+
+    if (this.form.lunes) {
+      /*       console.log('Lunes')
+            console.log(this.form.control); */
+      this.Jarwis.hora(this.form.control, 1).subscribe(
+        data => {
+          Horarios1 = data;
+          //console.log(Horarios1);
+          this.compararHorarios();
+        },
+        error => this.handleError(error)
+      );
+
+    } else {
+      // console.log('es FAKE parce')
+     // this.compararHorarios();
+    }
+    if (this.form.martes) {
+      this.Jarwis.hora(this.form.control, 2).subscribe(
+        data => {
+          Horarios2 = data;
+          //console.log(Horarios2);
+          this.compararHorarios();
+        },
+        error => this.handleError(error)
+      );
+    } else {
+      //console.log('es FAKE parce')
+      this.compararHorarios();
+    }
+    if (this.form.miercoles) {
+      this.Jarwis.hora(this.form.control, 3).subscribe(
+        data => {
+          Horarios3 = data;
+          //console.log(Horarios3);
+          this.compararHorarios();
+        },
+        error => this.handleError(error)
+      );
+      //console.log('miercoles')
+    } else {
+      //console.log('es FAKE parce')
+      this.compararHorarios();
+    }
+    if (this.form.jueves) {
+      this.Jarwis.hora(this.form.control, 4).subscribe(
+        data => {
+          Horarios4 = data;
+          //console.log(Horarios4);
+          this.compararHorarios();
+        },
+        error => this.handleError(error)
+      );
+      //console.log('jueves')
+    } else {
+      //console.log('es FAKE parce')
+      this.compararHorarios();
+    }
+    if (this.form.viernes) {
+      this.Jarwis.hora(this.form.control, 5).subscribe(
+        data => {
+          Horarios5 = data;
+          //console.log(Horarios5);
+          this.compararHorarios();
+        },
+        error => this.handleError(error)
+      );
+      //console.log('viernes')
+    } else {
+      console.log('Viernes no seleccionado')
+      this.compararHorarios();
+    }
+
+  }
+  compararHorarios() {
+    Horarios = (Horarios1.concat(Horarios2.concat(Horarios3.concat(Horarios4.concat(Horarios5)))));
+    //console.log(Horarios);
+
+    for (var dia in Horarios) {
+      if (Horarios[dia].Dia==1) {
+        if(Horarios[dia].HoraInicial==8){
+          if(Horarios[dia].MinutoInicial==45){
+          console.log("Lunes "+ dia+ " Hora inicial " + Horarios[dia].HoraInicial+ " Minuto inicial "+Horarios[dia].MinutoInicial );
+          }
+        }
+      }      
+      if (Horarios[dia].Dia==2) {
+        if(Horarios[dia].HoraInicial==8){
+          if(Horarios[dia].MinutoInicial==45){
+          console.log("Martes "+ dia+ " Hora inicial " + Horarios[dia].HoraInicial+ " Minuto inicial "+Horarios[dia].MinutoInicial );
+          }
+        }
+      }
+    }
+/*     [
+      {
+        "Dia": "1",
+        "HoraInicial": "8",
+        "MinutoInicial": "45",
+        "HoraFinal": "10",
+        "MinutoFinal": "25"
+      },
+      {
+        "Dia": "1",
+        "HoraInicial": "10",
+        "MinutoInicial": "30",
+        "HoraFinal": "12",
+        "MinutoFinal": "10"
+      },
+      {
+        "Dia": "1",
+        "HoraInicial": "12",
+        "MinutoInicial": "15",
+        "HoraFinal": "13",
+        "MinutoFinal": "55"
+      }
+    ] */
+
+  }
+
+  handleResponse(data) {
+    this.data = data.data;
+    console.log(this.data)
+  }
+
+  handleError(error) {
+    this.error = error.error.error;
+  }
+
+}
+********************************************************************************************
+<?php
+
+namespace App\Http\Controllers;
+
+use App\PAAE;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\Response;
+
+
+class PAAE_Periodo extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $PK_PAAE_PERIODO = PAAE::select('FECHA_INICIO','FECHA_FIN')->max('PK_PAAE_PERIODO');
+
+        $periodo = PAAE::select('FECHA_INICIO','FECHA_FIN')
+        ->where('PK_PAAE_PERIODO',$PK_PAAE_PERIODO)
+        ->get()[0];
+        
+        return [
+            array(
+            'FECHA_INICIO' => $periodo->FECHA_INICIO,
+            'FECHA_FIN' => $periodo->FECHA_FIN,
+            'FECHA_ACTUAL' => $this->fechaActual()
+            )
+        ];
+    }
+
+    public function fechaActual(){
+        $fechaActual = Date('Y').'-';
+        $fechaActual = $fechaActual .Date('m').'-';
+        $fechaActual = $fechaActual .Date('d');
+        return $fechaActual;
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        if($request->FK_USUARIO_REGISTRO){
+            $periodo = new PAAE();
+            $periodo->FECHA_INICIO = $request->FECHA_INICIO;
+            $periodo->FECHA_FIN = $request->FECHA_FIN;
+            $periodo->FK_USUARIO_REGISTRO = $request->FK_USUARIO_REGISTRO;
+            $periodo->save();
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+
+    public function horario(Request $request){
+        //$dia = 1;
+        $horario=[];
+        // while($dia<=5){
+        $hora = DB::connection('sqlsrv2')
+        ->table('view_horarioalumno')
+            ->select('Dia','HoraInicial','MinutoInicial','HoraFinal','MinutoFinal')
+            ->where([['NumeroControl',$request->control],    
+                    ['IdPeriodoEscolar','20191'],
+                    ['Dia',$request->dia]
+                    ])   
+            ->orderBy('dia')
+            ->orderBy('HoraInicial')
+            ->get();
+            //$dia = $dia +1;
+  
+            array_push ( $horario , $hora);
+        // }
+         if($horario){
+             return $hora;
+        /* return response()->json(['data' => $horario], Response::HTTP_OK); */
+         }else{
+            return $this->failedResponse();
+         }
+    }
+
+    public function failedResponse()
+    {
+        return response()->json([
+            'error' => 'Numero de control no encontrado o estado de alumno no valido'
+        ], Response::HTTP_NOT_FOUND);
+    }
+}
+*******************************************************************************************************
+<div *ngIf="activado" class="container">
+  <div class="text-center">
+    <h1>DEPARTAMENTO DE DESARROLLO ACADEMICO</h1>
+    <h3>PROGRAMA DE ASESORIA ACADEMICA ENTRE ESTUDIANTES</h3>
+    <h3>REGISTRO SOLICITUD DE ASESORIA</h3>
+  </div>
+  <div class="app-body">
+    <main class="main d-flex align-items-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7 mx-auto">
+            <div class="card-group">
+              <div class="card p-3">
+                <div class="card-body">
+                  <form #alumnoForm=ngForm (ngSubmit)="onSubmit()">
+                   <!--  <div class="alert alert-danger" [hidden]="!error.email">
+                      {{error.email}}
+                    </div> -->
+                    <h1>Solicitud de asesoria</h1>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-user"></i></span>
+                      </div>
+                      <input type="text" name="control" class="form-control" placeholder="Numero de comtrol"
+                        id="inputControl" autocomplete="control" [(ngModel)]="form.control" required>
+                    </div>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-user"></i></span>
+                      </div>
+                      <input type="text" name="name" class="form-control" placeholder="Nombre(s)" id="inputName"
+                        autocomplete="name" [(ngModel)]="form.name" required>
+                    </div>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-user"></i></span>
+                      </div>
+                      <input type="text" name="apep" class="form-control" placeholder="Apellido Paterno" id="inputApep"
+                        autocomplete="apep" [(ngModel)]="form.apep" required>
+                    </div>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-user"></i></span>
+                      </div>
+                      <input type="text" name="apem" class="form-control" placeholder="Apellido Materno" id="inputApem"
+                        autocomplete="apem" [(ngModel)]="form.apem" required>
+                    </div>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-user"></i></span>
+                      </div>
+                      <input type="text" name="carrera" class="form-control" placeholder="Carrera" id="inputCarrera"
+                        autocomplete="carrera" [(ngModel)]="form.carrera" required>
+                    </div>
+                    <div class="input-group mb-4">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-envelope-open"></i></span>
+                      </div>
+                      <input type="email" name="email" class="form-control" placeholder="Correo Electronico"
+                        id="inputemail5" autocomplete="email" [(ngModel)]="form.email" required>
+                    </div>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-user"></i></span>
+                      </div>
+                      <input type="text" name="celular" class="form-control" placeholder="Numero Celular"
+                        id="inputCelular" autocomplete="celular" [(ngModel)]="form.celular" required>
+                    </div>
+                    <!--     <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-user"></i></span>
+                      </div>
+                      <select class="form-control" name="dia[]" id="dia" size="5" multiple="" [(ngModel)]="form.dia"
+                        required>
+                        <option>Lunes</option>
+                        <option>Martes</option>
+                        <option>Miercoles</option>
+                        <option>Jueves</option>
+                        <option>Viernes</option>
+                      </select>
+                    </div> -->
+                    <div class="input-group mb-3">
+                      <h5>Elige los dias de tu asesoria</h5>
+                    </div>
+
+                    <div class="input-group mb-3">
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"
+                        (change)="ver()" name="lunes" [(ngModel)]="form.lunes">
+                        <label class="form-check-label" for="inlineCheckbox1">Lunes</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"
+                        (change)="ver()" name="martes" [(ngModel)]="form.martes">
+                        <label class="form-check-label" for="inlineCheckbox2">Martes</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"
+                        (change)="ver()" name="miercoles" [(ngModel)]="form.miercoles">
+                        <label class="form-check-label" for="inlineCheckbox3">Miercoles</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4"
+                        (change)="ver()" name="jueves" [(ngModel)]="form.jueves">
+                        <label class="form-check-label" for="inlineCheckbox3">Jueves</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5"
+                        (change)="ver()" name="viernes" [(ngModel)]="form.viernes">
+                        <label class="form-check-label" for="inlineCheckbox3">Viernes</label>
+                      </div>
+                      <!-- <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option5"
+                          (change)="validarHora()" name="checar" [(ngModel)]="form.checar">
+                          <label class="form-check-label" for="inlineCheckbox3">checar horario</label>
+                        </div> -->
+                    </div>
+                    <div class="input-group mb-3">
+                      <a class="btn btn-sm btn-pill btn-danger" (click)="validarHora()">Validar Horario</a>
+                    </div>     
+                    <div class="row">
+                      <div class="col-6">
+                        <button type="submit" class="btn btn-primary px-4"
+                          [disabled]="!alumnoForm.valid">Ingresar</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+***************************************form alumno component respaldo el jueves 18 de abril************************
+
+      if (Horarios[dia].Dia == 2) {
+
+        if (Horarios[dia].HoraInicial == 7) {
+          if (Horarios[dia].HoraInicial == 0) {
+            if (Horarios[dia].HoraInicial == 8) {
+              if (Horarios[dia].HoraInicial == 40) {
+                console.log('primera hora')
+              }
+            }
+          }
+        }
+        if (Horarios[dia].HoraInicial == 8) {
+          if (Horarios[dia].MinutoInicial == 45) {
+            /* console.log("Lunes "+ dia+ " Hora inicial " + Horarios[dia].HoraInicial+ " Minuto inicial "+Horarios[dia].MinutoInicial ); */
+            if (Horarios[dia].HoraFinal == 10) {
+              if (Horarios[dia].MinutoFinal == 25) {
+                console.log('Lunes ' + 'Segunda Hora')
+
+              }
+
+
+            }
+          }
+        }
+        if (Horarios[dia].HoraInicial == 10) {
+          if (Horarios[dia].MinutoInicial == 30) {
+            /* console.log("Lunes "+ dia+ " Hora inicial " + Horarios[dia].HoraInicial+ " Minuto inicial "+Horarios[dia].MinutoInicial ); */
+            if (Horarios[dia].HoraFinal == 12) {
+              if (Horarios[dia].MinutoFinal == 10) {
+                console.log('Lunes ' + 'Tercera Hora')
+
+              }
+
+
+            }
+          }
+        }
+        if (Horarios[dia].HoraInicial == 12) {
+          if (Horarios[dia].MinutoInicial == 15) {
+            /* console.log("Lunes "+ dia+ " Hora inicial " + Horarios[dia].HoraInicial+ " Minuto inicial "+Horarios[dia].MinutoInicial ); */
+            if (Horarios[dia].HoraFinal == 13) {
+              if (Horarios[dia].MinutoFinal == 55) {
+                console.log('Lunes ' + 'Cuarta Hora')
+
+              }
+
+
+            }
+          }
+        }
+      }
+      if (Horarios[dia].Dia == 3) {
+
+        if (Horarios[dia].HoraInicial == 7) {
+          if (Horarios[dia].HoraInicial == 0) {
+            if (Horarios[dia].HoraInicial == 8) {
+              if (Horarios[dia].HoraInicial == 40) {
+                console.log('primera hora')
+              }
+            }
+          }
+        }
+        if (Horarios[dia].HoraInicial == 8) {
+          if (Horarios[dia].MinutoInicial == 45) {
+            /* console.log("Lunes "+ dia+ " Hora inicial " + Horarios[dia].HoraInicial+ " Minuto inicial "+Horarios[dia].MinutoInicial ); */
+            if (Horarios[dia].HoraFinal == 10) {
+              if (Horarios[dia].MinutoFinal == 25) {
+                console.log('Lunes ' + 'Segunda Hora')
+
+              }
+
+
+            }
+          }
+        }
+        if (Horarios[dia].HoraInicial == 10) {
+          if (Horarios[dia].MinutoInicial == 30) {
+            /* console.log("Lunes "+ dia+ " Hora inicial " + Horarios[dia].HoraInicial+ " Minuto inicial "+Horarios[dia].MinutoInicial ); */
+            if (Horarios[dia].HoraFinal == 12) {
+              if (Horarios[dia].MinutoFinal == 10) {
+                console.log('Lunes ' + 'Tercera Hora')
+
+              }
+
+
+            }
+          }
+        }
+        if (Horarios[dia].HoraInicial == 12) {
+          if (Horarios[dia].MinutoInicial == 15) {
+            /* console.log("Lunes "+ dia+ " Hora inicial " + Horarios[dia].HoraInicial+ " Minuto inicial "+Horarios[dia].MinutoInicial ); */
+            if (Horarios[dia].HoraFinal == 13) {
+              if (Horarios[dia].MinutoFinal == 55) {
+                console.log('Lunes ' + 'Cuarta Hora')
+
+              }
+
+
+            }
+          }
+        }
+      }
+      if (Horarios[dia].Dia == 4) {
+
+        if (Horarios[dia].HoraInicial == 7) {
+          if (Horarios[dia].HoraInicial == 0) {
+            if (Horarios[dia].HoraInicial == 8) {
+              if (Horarios[dia].HoraInicial == 40) {
+                console.log('primera hora')
+              }
+            }
+          }
+        }
+        if (Horarios[dia].HoraInicial == 8) {
+          if (Horarios[dia].MinutoInicial == 45) {
+            /* console.log("Lunes "+ dia+ " Hora inicial " + Horarios[dia].HoraInicial+ " Minuto inicial "+Horarios[dia].MinutoInicial ); */
+            if (Horarios[dia].HoraFinal == 10) {
+              if (Horarios[dia].MinutoFinal == 25) {
+                console.log('Lunes ' + 'Segunda Hora')
+
+              }
+
+
+            }
+          }
+        }
+        if (Horarios[dia].HoraInicial == 10) {
+          if (Horarios[dia].MinutoInicial == 30) {
+            /* console.log("Lunes "+ dia+ " Hora inicial " + Horarios[dia].HoraInicial+ " Minuto inicial "+Horarios[dia].MinutoInicial ); */
+            if (Horarios[dia].HoraFinal == 12) {
+              if (Horarios[dia].MinutoFinal == 10) {
+                console.log('Lunes ' + 'Tercera Hora')
+
+              }
+
+
+            }
+          }
+        }
+        if (Horarios[dia].HoraInicial == 12) {
+          if (Horarios[dia].MinutoInicial == 15) {
+            /* console.log("Lunes "+ dia+ " Hora inicial " + Horarios[dia].HoraInicial+ " Minuto inicial "+Horarios[dia].MinutoInicial ); */
+            if (Horarios[dia].HoraFinal == 13) {
+              if (Horarios[dia].MinutoFinal == 55) {
+                console.log('Lunes ' + 'Cuarta Hora')
+
+              }
+
+
+            }
+          }
+        }
+      }
+      if (Horarios[dia].Dia == 5) {
+
+        if (Horarios[dia].HoraInicial == 7) {
+          if (Horarios[dia].HoraInicial == 0) {
+            if (Horarios[dia].HoraInicial == 8) {
+              if (Horarios[dia].HoraInicial == 40) {
+                console.log('primera hora')
+              }
+            }
+          }
+        }
+        if (Horarios[dia].HoraInicial == 8) {
+          if (Horarios[dia].MinutoInicial == 45) {
+            /* console.log("Lunes "+ dia+ " Hora inicial " + Horarios[dia].HoraInicial+ " Minuto inicial "+Horarios[dia].MinutoInicial ); */
+            if (Horarios[dia].HoraFinal == 10) {
+              if (Horarios[dia].MinutoFinal == 25) {
+                console.log('Lunes ' + 'Segunda Hora')
+
+              }
+
+
+            }
+          }
+        }
+        if (Horarios[dia].HoraInicial == 10) {
+          if (Horarios[dia].MinutoInicial == 30) {
+            /* console.log("Lunes "+ dia+ " Hora inicial " + Horarios[dia].HoraInicial+ " Minuto inicial "+Horarios[dia].MinutoInicial ); */
+            if (Horarios[dia].HoraFinal == 12) {
+              if (Horarios[dia].MinutoFinal == 10) {
+                console.log('Lunes ' + 'Tercera Hora')
+
+              }
+
+
+            }
+          }
+        }
+        if (Horarios[dia].HoraInicial == 12) {
+          if (Horarios[dia].MinutoInicial == 15) {
+            /* console.log("Lunes "+ dia+ " Hora inicial " + Horarios[dia].HoraInicial+ " Minuto inicial "+Horarios[dia].MinutoInicial ); */
+            if (Horarios[dia].HoraFinal == 13) {
+              if (Horarios[dia].MinutoFinal == 55) {
+                console.log('Lunes ' + 'Cuarta Hora')
+
+              }
+
+
+            }
+          }
+        }
+      }
+      if(Horarios[dia].HoraInicial != this.form.inicio){
+        alert('es entre clases')
+      }
+      *******************************************************************igal el dia 18 de abril********************************
+
+        if (Horarios[dia].HoraInicial == this.form.inicio) {
+          alert('entro al if perro')
+          if (Horarios[dia].MinutoInicial == 45) {
+            /* console.log("Lunes "+ dia+ " Hora inicial " + Horarios[dia].HoraInicial+ " Minuto inicial "+Horarios[dia].MinutoInicial ); */
+            if (Horarios[dia].HoraFinal == 10) {
+              if (Horarios[dia].MinutoFinal == 25) {
+                console.log('Lunes ' + 'Segunda Hora')
+
+              }
+
+
+            }
+          }
+        }
+        if (Horarios[dia].HoraInicial == this.form.inicio) {
+          if (Horarios[dia].MinutoInicial == 30) {
+            /* console.log("Lunes "+ dia+ " Hora inicial " + Horarios[dia].HoraInicial+ " Minuto inicial "+Horarios[dia].MinutoInicial ); */
+            if (Horarios[dia].HoraFinal == 12) {
+              if (Horarios[dia].MinutoFinal == 10) {
+                console.log('Lunes ' + 'Tercera Hora')
+
+              }
+
+
+            }
+          }
+        }
+        if (Horarios[dia].HoraInicial == this.form.inicio) {
+          if (Horarios[dia].MinutoInicial == 15) {
+            /* console.log("Lunes "+ dia+ " Hora inicial " + Horarios[dia].HoraInicial+ " Minuto inicial "+Horarios[dia].MinutoInicial ); */
+            if (Horarios[dia].HoraFinal == 13) {
+              if (Horarios[dia].MinutoFinal == 55) {
+                console.log('Lunes ' + 'Cuarta Hora')
+
+              }
+
+
+            }
+          }
+        }

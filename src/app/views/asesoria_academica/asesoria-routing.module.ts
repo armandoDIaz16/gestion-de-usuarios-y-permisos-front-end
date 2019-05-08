@@ -13,6 +13,7 @@ import { GruposComponent } from './grupos/grupos.component';
 import { PagoSinFormalizarComponent } from './pago_sin_formalizar/pago_sin_formalizar.component';
 import { SinPagoRegistradoComponent } from './sin_pago_registrado/sin_pago_registrado.component';
 import { ReporteCompletoComponent } from './reporte_completo/reporte_completo.component'; */
+import { Form_asesorComponent } from './form_asesor/form_asesor.component';
 import { Form_alumnoComponent } from './form_alumno/form_alumno.component'
 import { GeneralidadesComponent } from './generalidades/generalidades.component';
 import { AperturaComponent } from './apertura/apertura.component';
@@ -128,16 +129,16 @@ function agregarModulos(modulo){
           title: 'Grupos'
         }
       });
-      break;
-    case 'Pago sin formalizar':
+      break;*/
+    case 'Solicitud asesor':
       modulos.push({
-        path: 'pago_sin_formalizar',
-        component: PagoSinFormalizarComponent,
+        path: 'solicitud_asesor',
+        component: Form_asesorComponent,
         data: {
-          title: 'Pago sin formalizar'
+          title: 'Solicitud Asesor'
         }
       });
-      break;*/
+      break;
     case 'Solicitud almno':
       modulos.push({
         path: 'solicitud_almno',

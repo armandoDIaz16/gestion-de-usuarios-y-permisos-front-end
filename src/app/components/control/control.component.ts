@@ -23,16 +23,13 @@ export class ControlComponent implements OnInit {
     ) {
     }
 
-    onSubmit() {
-        this.Jarwis.control(this.form).subscribe(
-            data => this.handleResponse(data),
-            error => this.handleError(error)
-        );
-    }
-
+/*   handleResponse(data){
+    this.data=data.data;
+    localStorage.setItem("nombre", this.data);
+    this.router.navigateByUrl('/create-password');
+  } */
     handleResponse(data) {
         this.data = data.data;
-
         localStorage.setItem('datos_alumno', JSON.stringify(this.data));
         this.router.navigateByUrl('/create-password');
     }
