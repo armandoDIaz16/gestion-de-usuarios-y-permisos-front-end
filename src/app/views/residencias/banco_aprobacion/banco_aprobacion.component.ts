@@ -11,11 +11,12 @@ import {HttpClient} from '@angular/common/http';
 export class BancoAprobacionComponent implements OnInit {
 
     public anteproyectosLista = [];
+    usuario = sessionStorage.getItem('IdUsuario');
 
   constructor(private anteproyectosService: AnteproyectosAprobacion, private http: HttpClient) { }
 
   ngOnInit() {
-      this.anteproyectosService.getAnteproyectos().subscribe(data => this.anteproyectosLista = data);
+      this.anteproyectosService.getAnteproyectos(this.usuario).subscribe(data => this.anteproyectosLista = data);
   }
 
   aprobarProyecto(id) {

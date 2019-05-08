@@ -6,9 +6,9 @@ import {IAnteproyectos} from './anteproyectos.service';
 
 @Injectable()
   export class Anteproyectos{
-  constructor(private http: HttpClient){}
-  getAnteproyectos():Observable<IAnteproyectos[]>{
-    return this.http.get<IAnteproyectos[]>('http://127.0.0.1:8000/api/Anteproyecto');
+  constructor(private http: HttpClient) {}
+  getAnteproyectos(id): Observable<IAnteproyectos[]> {
+    return this.http.get<IAnteproyectos[]>('http://127.0.0.1:8000/api/Proyecto2/' + id);
   }
 }
 

@@ -1,7 +1,7 @@
-<div class="animated fadeIn" >
-    <div class="card-body">
+<div class="card" >
+        <h2 class="card-header">Sube tu reporte.</h2>
         <div style="text-align: center;">
-            <br> <h2>Sube tu reporte.</h2> <br>
+            <br> <h2>Reporte</h2> <br>
             <select [(ngModel)]="ID" name="ID" class="form-control form-control-lg" placeholder="Reporte">
                 <option value="1">1er Reporte parcial</option>
                 <option value="2">2do Reporte parcial</option>
@@ -19,5 +19,4 @@
                 Selecciona reporte<input type="file" name="file" hidden multiple (change)="uploadFile($event)">
             </label>
         </div>
-    </div>
 </div>

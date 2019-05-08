@@ -23,6 +23,14 @@ import { VistaComentariosComponent } from './vista_comentarios/vista_comentarios
 import {CollapseModule} from 'ngx-bootstrap';
 import { Reporte_docenteComponent } from './reporte_docente/reporte_docente.component';
 import { Vista_reportesComponent } from './vista_reportes/vista_reportes.component';
+import {FichaUnicaAsignacionComponent } from './ficha_unica_asignacion/ficha_unica_asignacion.component';
+import { ConveniosComponent } from './convenios/convenios.component';
+import { PeriodosComponent } from './periodos/periodos.component';
+import { Periodos_reportesComponent } from './periodos_reportes/periodos_reportes.component';
+import { Calificacion_alumnoComponent } from './calificacion_alumno/calificacion_alumno.component';
+import { Habilitar_residentesComponent } from './habilitar_residentes/habilitar_residentes.component';
+import { Reporte_asesor_externoComponent } from './reporte_asesor_externo/reporte_asesor_externo.component';
+import { Vista_documentacionComponent } from './vista_documentacion/vista_documentacion.component';
 
 // Angular
 
@@ -47,7 +55,15 @@ import { Vista_reportesComponent } from './vista_reportes/vista_reportes.compone
     ReporteVistaComponent,
     VistaComentariosComponent,
     Reporte_docenteComponent,
-    Vista_reportesComponent
+    Vista_reportesComponent,
+    FichaUnicaAsignacionComponent,
+    ConveniosComponent,
+    PeriodosComponent,
+    Periodos_reportesComponent,
+    Calificacion_alumnoComponent,
+    Habilitar_residentesComponent,
+    Reporte_asesor_externoComponent,
+    Vista_documentacionComponent
   ]
 })
 export class ResidenciasModule { }

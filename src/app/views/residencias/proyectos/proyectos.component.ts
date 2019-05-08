@@ -55,4 +55,19 @@ export class ProyectosComponent implements OnInit {
         elem.value = ''; // line 9
 
     }
+
+    uploadFile3(event) {
+        let elem = event.target;
+        if (elem.files.length > 0) {
+            let formData = new FormData();
+            formData.append('myfile', elem.files[0]);
+            formData.append('FK_ALUMNO', this.usuario);
+            this.http.post('http://127.0.0.1:8000/api/Informe', formData).subscribe(
+                (response) => {
+                    console.log(response);
+                });
+        }
+        elem.value = ''; // line 9
+
+    }
 }

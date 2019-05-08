@@ -1,14 +1,12 @@
-<div class="columns">
-    <div class="column">
+<div class="card">
         <table class="table" >
             <thead>
-            <tr>
+            <tr class="card-header">
                 <th>Id</th>
                 <th>Nombre</th>
                 <th>Anteproyecto</th>
                 <th>Alumno</th>
                 <th>Estatus</th>
-                <th>Area</th>
                 <th>Empresa</th>
                 <th>Especialidad</th>
                 <th>Aprobar</th>
@@ -22,7 +20,6 @@
                 <td><a href="{{'http://127.0.0.1:8000/'+antep.PDF}}" target="_blank">{{antep.PDF}}</a></td>
                 <td>{{antep.ALUMNO}}</td>
                 <td>{{antep.ESTATUS}}</td>
-                <td>{{ antep.AREA_ACADEMICA}}</td>
                 <td>{{ antep.EMPRESA }}</td>
                 <td>{{ antep.TIPO_ESPECIALIDAD }}</td>
                 <td>  <label class="btn btn-success">
@@ -34,5 +31,4 @@
             </tr>
             </tbody>
         </table>
-    </div>
 </div>

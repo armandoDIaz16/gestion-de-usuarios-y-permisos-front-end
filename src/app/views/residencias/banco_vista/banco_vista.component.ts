@@ -13,11 +13,12 @@ import {Anteproyectos} from './anteproyectos';
 export class Banco_vistaComponent implements OnInit {
 
     public anteproyectosLista = [];
+    usuario = sessionStorage.getItem('IdUsuario');
 
     constructor(private anteproyectosService: Anteproyectos) {}
 
-    ngOnInit(){
-      this.anteproyectosService.getAnteproyectos().subscribe(data => this.anteproyectosLista = data);
+    ngOnInit() {
+      this.anteproyectosService.getAnteproyectos(this.usuario).subscribe(data => this.anteproyectosLista = data);
     }
 
 }
