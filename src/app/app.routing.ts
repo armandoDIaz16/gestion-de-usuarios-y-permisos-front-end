@@ -130,6 +130,10 @@ export const routes: Routes = [
         loadChildren: './views/asesoria_academica/asesoria.module#AsesoriaModule'
       },
       {
+        path: 'creditos',
+        loadChildren: './views/creditos/creditos.module#CreditosModule'
+      },
+      {
         path: 'charts',
         loadChildren: './views/chartjs/chartjs.module#ChartJSModule'
       },
