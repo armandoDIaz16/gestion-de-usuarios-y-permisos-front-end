@@ -35,11 +35,11 @@ export class LoginComponent implements OnInit {
     private Auth: AuthService,
     private usuarioRolesService: UsuarioRolesService
 
-    ) {  }
+  ) { }
 
   onSubmit() {
     this.Jarwis.login(this.form).subscribe(
-      data =>  this.handleResponse(data),
+      data => this.handleResponse(data),
       error => this.handleError(error)
     );
   }
@@ -47,13 +47,15 @@ export class LoginComponent implements OnInit {
   handleResponse(data) {
     this.Token.handle(data.access_token);
     this.Auth.changeAuthStatus(true);
+    //NO MODIFICAR
     sessionStorage.setItem('IdUsuario', data.IdUsuario);
-
-     this.usuarioRolesService.getUsuarioRoles().subscribe(data => {
-     sessionStorage['sistemas'] = JSON.stringify(data);
-     this.router.navigateByUrl('/home');
-     // agregar el json de sistemas para empezar a comparar
-   });
+    sessionStorage.setItem('control', data.control);
+    //NO MODIFICAR
+    this.usuarioRolesService.getUsuarioRoles().subscribe(data => {
+      sessionStorage['sistemas'] = JSON.stringify(data);
+      this.router.navigateByUrl('/home');
+      // agregar el json de sistemas para empezar a comparar
+    });
 
   }
 
@@ -68,6 +70,6 @@ export class LoginComponent implements OnInit {
       location.reload();
     }
   }
- }
+}
 
- export const rutasSistemas = rutasSistema;
+export const rutasSistemas = rutasSistema;

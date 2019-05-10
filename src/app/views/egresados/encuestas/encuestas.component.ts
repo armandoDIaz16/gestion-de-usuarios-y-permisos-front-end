@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalService } from ;
+//import { ModalService } from;
 
 @Component({
   selector: 'app-encuestas',
