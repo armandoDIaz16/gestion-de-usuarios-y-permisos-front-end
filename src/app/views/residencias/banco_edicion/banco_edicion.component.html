@@ -1,13 +1,17 @@
 <div style="align-content: center">
+    <div class="card">
+        <h2 class="card-header">Proyecto</h2>
 <form (ngSubmit)="onSubmit()">
     <input [(ngModel)]="id" type="text" class="form-control form-control-lg" placeholder="Id Proyecto" name="id">
-   <div style="text-align: center;"><br> <button class="btn btn-dark" type="submit" value="Submit">Buscar</button><br></div>
+   <div style="text-align: center;"><br> <button class="btn btn-dark" type="submit" value="Submit">Buscar</button><br><br></div>
 </form>
+    </div>
     <br>
+    <div class="card">
 <form (ngSubmit)="onUpdate($event)">
     <table class="table" >
         <thead>
-        <tr>
+        <tr class="card-header">
             <th>Nombre</th>
             <th>Alumno</th>
             <th>Estatus</th>
@@ -29,6 +33,7 @@
         </tr>
         </tbody>
     </table>
-    <div style="text-align: center;"><br> <button class="btn btn-dark" type="submit" value="Submit">Actualizar</button><br></div>
+    <div style="text-align: center;"><br> <button class="btn btn-dark" type="submit" value="Submit">Actualizar</button><br><br></div>
 </form>
+    </div>
 </div>

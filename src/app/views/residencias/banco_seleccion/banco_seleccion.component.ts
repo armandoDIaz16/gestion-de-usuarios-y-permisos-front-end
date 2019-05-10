@@ -17,7 +17,7 @@ export class Banco_seleccionComponent implements OnInit {
   constructor(private anteproyectosService: AnteproyectosSeleccion, private http: HttpClient) {}
 
   ngOnInit() {
-    this.anteproyectosService.getAnteproyectos().subscribe(data => this.anteproyectosLista = data);
+    this.anteproyectosService.getAnteproyectos(this.usuario).subscribe(data => this.anteproyectosLista = data);
   }
 
   uploadFile(id) {

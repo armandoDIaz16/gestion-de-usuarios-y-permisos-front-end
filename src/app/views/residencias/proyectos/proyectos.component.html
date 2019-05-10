@@ -1,9 +1,9 @@
+<div class="card">
 <table class="table" >
     <thead>
-    <tr>
+    <tr class="card-header">
         <th>Id</th>
         <th>Nombre</th>
-        <th>Area</th>
         <th>Empresa</th>
         <th>Especialidad</th>
         <th>Abandonar</th>
@@ -13,7 +13,6 @@
     <tr *ngFor="let antep of anteproyectosLista">
         <td>{{antep.ID_ANTEPROYECTO}}</td>
         <td>{{ antep.NOMBRE }}</td>
-        <td>{{ antep.AREA_ACADEMICA}}</td>
         <td>{{ antep.EMPRESA }}</td>
         <td>{{ antep.TIPO_ESPECIALIDAD }}</td>
         <td>  <label class="btn btn-danger">
@@ -22,23 +21,40 @@
     </tr>
     </tbody>
 </table>
-<br>
-<h2>Sube tu anteproyecto.</h2>
-<div style="text-align: center;" >
-<label class="btn btn-dark">
-    Selecciona anteproyecto<input type="file" name="file" hidden multiple (change)="uploadFile2($event)">
-</label>
 </div>
 <br>
-<h2>Sube tu reporte.</h2>
+<div class="card">
+<h2 class="card-header">Sube tu anteproyecto.</h2>
 <div style="text-align: center;" >
+    <br>
+<label class="btn btn-dark">
+    Seleccionar<input type="file" name="file" hidden multiple (change)="uploadFile2($event)">
+</label>
+</div>
+</div>
+<br>
+<div class="card">
+<h2 class="card-header">Sube tu reporte.</h2>
+<div style="text-align: center;" >
+    <br>
     <select [(ngModel)]="ID" name="ID" class="form-control form-control-lg" placeholder="Reporte">
         <option value="1">1er Reporte parcial</option>
         <option value="2">2do Reporte parcial</option>
         <option value="3">Reporte final</option>
     </select>
-   <br>
+   <br><br>
     <label class="btn btn-dark">
-        Selecciona reporte<input type="file" name="file" hidden multiple (change)="uploadFile($event)">
+        Seleccionar<input type="file" name="file" hidden multiple (change)="uploadFile($event)">
     </label>
+</div>
+</div>
+<br>
+<div class="card">
+    <h2 class="card-header">Sube tu informe tecnico.</h2>
+    <div style="text-align: center;" >
+        <br>
+        <label class="btn btn-dark">
+            Seleccionar<input type="file" name="file" hidden multiple (change)="uploadFile3($event)">
+        </label>
+    </div>
 </div>

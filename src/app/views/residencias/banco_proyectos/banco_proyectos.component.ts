@@ -17,6 +17,7 @@ export class BancoProyectosComponent implements OnInit {
    opcionSeleccionado = this.opcionSeleccionado;
    empresa = this.empresa;
    opcionSeleccionadoEsp = this.opcionSeleccionadoEsp;
+   usuario = sessionStorage.getItem('IdUsuario');
 
    const; header = 'Access-Control-Allow-Origin: *';
 
@@ -28,7 +29,8 @@ export class BancoProyectosComponent implements OnInit {
         'Nombre': this.nombre.toString(),
         'AreaAcademica': this.opcionSeleccionado.toString(),
         'Empresa': this.empresa.toString(),
-        'TipoEspecialidad': this.opcionSeleccionadoEsp.toString()
+        'TipoEspecialidad': this.opcionSeleccionadoEsp.toString(),
+         'Autor': this.usuario.toString()
       }).subscribe(
         (response) => {
           console.log(response);

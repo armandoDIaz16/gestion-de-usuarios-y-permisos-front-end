@@ -1,0 +1,18 @@
+<div class="card text-center">
+    <h2 class="card-header">Calificación de residencias</h2>
+    <div class="card-body text-left">
+    <h5>Alumno:</h5>
+    <select [(ngModel)]="opcion" name="teacher" class="form-control form-control-lg" id="teacher">
+        <option *ngFor="let estadoCivil of alumnosLista" value="{{estadoCivil.PK_USUARIO}}"> {{estadoCivil.name}} </option>
+    </select>
+        <br>
+    <h5>Calificación:</h5>
+    <input [(ngModel)]="cal" type="text" class="form-control form-control-lg" name="cal">
+        <br>
+        <div align="center">
+        <label class="btn btn-dark">
+            Asentar<input type="file" name="file" hidden multiple (change)="guardarCalificacion()">
+        </label>
+        </div>
+    </div>
+</div>

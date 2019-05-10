@@ -1,11 +1,9 @@
-<div class="columns">
-  <div class="column">
+<div class="card">
     <table class="table" >
       <thead>
-      <tr>
+      <tr class="card-header">
         <th>Id</th>
         <th>Nombre</th>
-        <th>Area</th>
         <th>Empresa</th>
         <th>Especialidad</th>
         <th>Seleccionar</th>
@@ -15,7 +13,6 @@
       <tr *ngFor="let antep of anteproyectosLista">
         <td>{{antep.ID_ANTEPROYECTO}}</td>
         <td>{{ antep.NOMBRE }}</td>
-        <td>{{ antep.AREA_ACADEMICA}}</td>
         <td>{{ antep.EMPRESA }}</td>
         <td>{{ antep.TIPO_ESPECIALIDAD }}</td>
         <td>  <label class="btn btn-dark">
@@ -24,5 +21,4 @@
       </tr>
       </tbody>
     </table>
-  </div>
 </div>
