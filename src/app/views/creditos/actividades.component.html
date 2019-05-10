@@ -1,0 +1,128 @@
+
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-3">
+          <h3 class="card-title mb-0">Actividades disponibles</h3>
+        </div>
+<div style="width: 100%"></div>
+<hr>
+<hr>
+<div style="width: 100%;" *ngIf="showAD; else sinActividadesDisponibles" >
+<div style="width: 75%;" *ngFor="let actividad of actividades">
+  <table class="table table-responsive-sm table-hover table-outline mb-0" style="width:100%;" >
+    <thead class="thead-light">
+      <tr>
+        <th class="text-center" rowspan="2"><h2>{{actividad.NOMBRE}}</h2></th>
+            <td style="width: 25%;">Fecha: {{actividad.FECHA}}</td>
+            <td>Registrados: {{actividad.REGISTRADOS}}/{{actividad.CUPO}}</td>
+        </tr>
+        <tr>
+            <td>Lugar: {{actividad.LUGAR}}</td>
+            <td><a routerLink="../detalle-actividad/{{actividad.PK_ACTIVIDAD}}">Ver detalles e inscribirse</a></td>
+        </tr>
+    </thead>
+  </table>
+  <br>
+</div>
+</div>
+<ng-template #sinActividadesDisponibles> <p>No hay actividades disponibles</p>  </ng-template>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-sm-3">
+    <h3 class="card-title mb-0">Inscrito</h3>
+  </div>
+<div style="width: 100%"></div>
+<hr>
+<hr>
+
+<div style="width: 75%;"  *ngFor="let actividadInscritas of actividadesInscritas">
+<table class="table table-responsive-sm table-hover table-outline mb-0" style="width:100%;" >
+<thead class="thead-light">
+<tr>
+  <th class="text-center" rowspan="2"><h2>{{actividadInscritas.NOMBRE}}</h2></th>
+      <td style="width: 25%;">Fecha: {{actividadInscritas.FECHA}}</td>
+      <td>Registrados: {{actividadInscritas.REGISTRADOS}}/{{actividadInscritas.CUPO}}</td>
+  </tr>
+  <tr>
+      <td>Lugar: {{actividadInscritas.LUGAR}}</td>
+      <td><a routerLink="../detalle-actividad/{{actividadInscritas.PK_ACTIVIDAD}}">Ver detalles</a></td>
+  </tr>
+</thead>
+</table>
+<br>
+</div>
+</div>
+</div>
+</div>
+  <!--
+        <th>Descripcion</th>
+        <th>Lugar</th>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Cupo</th>
+        <th>Lineamiento</th>
+        <th>Tipo</th>
+        <th>Responsable</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let actividad of actividades">
+        <td class="text-center">
+        </td>
+        <td>
+          <div>{{actividad.PK_ACTIVIDAD}}</div>
+        </td>
+        <td>
+          <div>{{actividad.NOMBRE}}</div>
+        </td>
+        <td>
+          <div>{{actividad.DESCRIPCION}}</div>   
+        </td>
+        <td>
+          <div>{{actividad.LUGAR}}</div>
+        </td>
+        <td>
+          <div>{{actividad.FECHA}}</div>
+        </td>
+        <td>
+            <div>{{actividad.HORA}}</div>
+          </td>
+        <td>
+            <div>{{actividad.CUPO}}</div>
+        </td>
+        <td>
+            <div>{{actividad.FK_LINEAMIENTO}}</div>
+        </td>
+        <td>
+            <div>{{actividad.FK_TIPO}}</div>
+        </td>
+        <td>
+            <div>{{actividad.FK_RESPONSABLE}}</div>
+        </td>
+        
+        <td>
+            <a class="btn btn-primary btn-sm" routerLink="../gestion-actividades-form/{{actividad.PK_ACTIVIDAD}}">Editar</a>
+        </td>
+        <td>
+            <a class="btn btn-primary btn-sm btn-danger" (click)="deleteActividades(actividad.PK_ACTIVIDAD)">Eliminar</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+  <div class="row">
+       <div class="col-sm-12">
+          <div class="form-group">
+              <a class="btn btn-primary btn-sm" routerLink="../gestion-actividades-form">Registrar Actividad</a>
+         </div>
+       </div>
+   </div>
+</div>
+-->

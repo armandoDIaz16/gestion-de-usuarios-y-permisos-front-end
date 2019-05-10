@@ -1,0 +1,36 @@
+<div class="card">
+    <div class="card-body">
+      <div class="row">
+            <div class="col-sm-5">
+                    <h3 class="card-title mb-0">Lista de asistencia</h3>
+            </div>
+<div style="width: 100%"></div>
+<hr>
+<hr>
+<!-- <div style="width: 100%;" *ngIf="showAR; else sinActividadesDisponibles" > -->
+<!-- <div style="width: 75%;" *ngFor="let actividad of actividades"> -->
+  <table class="table table-responsive-sm table-hover table-outline mb-0" style="width:100%;" >
+    <thead class="thead-light">
+      <tr>
+        <th class="text-center" colspan="3"><h2>{{actividad.NOMBRE}}</h2></th>
+           <!--  <td style="width: 25%;">Fecha: {{actividad.FECHA}}</td> -->
+        </tr>
+        <tr>
+            <th>Primer Apellido</th>
+            <th>Segundo Apellido</th>
+            <th>Nombre</th>
+        </tr>
+        <tr *ngFor="let alumno of alumnos">
+            <td><div>{{alumno.PRIMER_APELLIDO}}</div></td>
+            <td><div>{{alumno.SEGUNDO_APELLIDO}}</div></td>
+            <td><div>{{alumno.name}}</div></td>
+        </tr>
+    </thead>
+  </table>
+  <br>
+<!-- </div> -->
+<!-- </div> -->
+<!-- <ng-template #sinActividadesDisponibles> <p>No hay actividades designadas</p>  </ng-template> -->
+</div>
+</div>
+</div>
