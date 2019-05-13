@@ -1,6 +1,17 @@
 <div *ngIf="activado" class="container">
   <div class="animated fadeIn">
-    <form (ngSubmit)="onSubmit()">
+    <form #aspiranteForm=ngForm (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card text-black bg text-center">
+            <div class="card-body">
+              <h2>SOLICITUD DE FICHA PARA ADMISIÓN</h2>
+              <h1><img src="assets/itl.ico" style="width:128px;height:128px;"></h1>
+              <h4>TECNOLÓGICO NACIONAL DE MÉXICO EN LEÓN</h4>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="row">
         <div class="col-sm-6">
           <div class="card">
@@ -13,12 +24,16 @@
                   <div class="form-group">
                     <label for="curp">CURP:</label>
                     <label style="color:#ff0000;" for="asterisco">*</label>
-                    <input [(ngModel)]="CURP" type="text" class="form-control" name="curp" id="curp" size=18 minlength=18 maxlength=18 onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase().replace(' ','')">
+                    <input [(ngModel)]="CURP" type="text" class="form-control" name="curp" id="curp" size=18
+                      minlength=18 maxlength=18
+                      onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase().replace(' ','')"
+                      required>
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <a href="https://www.gob.mx/curp/" target="_blank"><button type="button" class="btn btn-sm btn-primary">Consulta de CURP</button></a>
+                    <a href="https://www.gob.mx/curp/" target="_blank"><button type="button"
+                        class="btn btn-primary">Consulta de CURP</button></a>
                   </div>
                 </div>
               </div>
@@ -28,7 +43,7 @@
                   <div class="form-group">
                     <label for="nombre">Nombre:</label>
                     <label style="color:#ff0000;" for="asterisco">*</label>
-                    <input [(ngModel)]="nombre" type="text" class="form-control" name="nombre">
+                    <input [(ngModel)]="nombre" type="text" class="form-control" name="nombre" required>
                   </div>
                 </div>
               </div>
@@ -38,7 +53,7 @@
                   <div class="form-group">
                     <label for="pApellido">Primer Apellido:</label>
                     <label style="color:#ff0000;" for="asterisco">*</label>
-                    <input [(ngModel)]="pApellido" type="text" class="form-control" name="pApellido">
+                    <input [(ngModel)]="pApellido" type="text" class="form-control" name="pApellido" required>
                   </div>
                 </div>
               </div>
@@ -57,7 +72,8 @@
                   <div class="form-group">
                     <label for="fechaNacimiento">Fecha de Nacimiento:</label>
                     <label style="color:#ff0000;" for="asterisco">*</label>
-                    <input [(ngModel)]="fechaNacimiento" type="date" class="form-control" name="fechaNacimiento">
+                    <input [(ngModel)]="fechaNacimiento" type="date" class="form-control" name="fechaNacimiento"
+                      required>
                     <!-- <p>Ejemplo: 1994-12-03</p> -->
                   </div>
                 </div>
@@ -67,8 +83,8 @@
                 <div class="form-group col-sm-6">
                   <label for="genero">Género:</label>
                   <label style="color:#ff0000;" for="asterisco">*</label>
-                  <select [(ngModel)]="genero" class="form-control" name="genero">
-                    <option [value]=0>Selecciona</option>
+                  <select [(ngModel)]="genero" class="form-control" name="genero" required>
+                    <option [value]=null>Selecciona</option>
                     <option [value]=1>Masculino</option>
                     <option [value]=2>Femenino</option>
                   </select>
@@ -76,9 +92,10 @@
                 <div class="form-group col-sm-6">
                   <label for="estadoCivil">Estado Civil:</label>
                   <label style="color:#ff0000;" for="asterisco">*</label>
-                  <select [(ngModel)]="estadoCivil" class="form-control" name="estadoCivil">
-                    <option [value]=0>Selecciona</option>
-                    <option *ngFor="let estadoCivil of estadoCivilLista" value="{{estadoCivil.PK_ESTADO_CIVIL}}">{{estadoCivil.NOMBRE}}</option>
+                  <select [(ngModel)]="estadoCivil" class="form-control" name="estadoCivil" required>
+                    <option [value]=null>Selecciona</option>
+                    <option *ngFor="let estadoCivil of estadoCivilLista" value="{{estadoCivil.PK_ESTADO_CIVIL}}">
+                      {{estadoCivil.NOMBRE}}</option>
                   </select>
                 </div>
               </div>
@@ -91,12 +108,74 @@
               <strong>Datos de Contacto:</strong>
             </div>
             <div class="card-body">
+
+
+              <!--               <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label for="contactoEntidadFederativa">Estado:</label>
+                    <label style="color:#ff0000;" for="asterisco">*</label>
+                    <select [(ngModel)]="contactoEntidadFederativa" (change)="cargarCiudades3()" class="form-control" name="contactoEntidadFederativa">
+                      <option [value]=0>Selecciona</option>
+                      <option *ngFor="let entidadFederativa of entidadFederativaLista" value="{{entidadFederativa.PK_ENTIDAD_FEDERATIVA}}">{{entidadFederativa.NOMBRE}}</option>  
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label for="contactoCiudad">Ciudad:</label>
+                    <label style="color:#ff0000;" for="asterisco">*</label>
+                    <select [(ngModel)]="contactoCiudad" class="form-control" name="contactoCiudad">
+                      <option [value]=0>Selecciona</option>
+                      <option *ngFor="let ciudad of ciudadLista3" value="{{ciudad.PK_CIUDAD}}">{{ciudad.NOMBRE}}</option>  
+                    </select>
+                  </div>
+                </div>
+              </div> -->
+
+
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label for="cp">Código Postal:</label>
+                    <label style="color:#ff0000;" for="asterisco">*</label>
+                    <input [(ngModel)]="cp" (keyup)="cargarColonias()" type="text" class="form-control" name="cp"
+                      required>
+                  </div>
+                </div>
+              </div>
+              <!--/.row-->
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label for="colonia">Colonia:</label>
+                    <label style="color:#ff0000;" for="asterisco">*</label>
+                    <select [(ngModel)]="colonia" class="form-control" name="colonia" required>
+                      <option [value]=null>Selecciona</option>
+                      <option [value]=1>Otra</option>
+                      <option *ngFor="let colonia of coloniaLista" value="{{colonia.PK_COLONIA}}">{{colonia.NOMBRE}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <!--                 <div class="col-sm-12">
+                  <div class="form-group">
+                    <label for="colonia">Colonia:</label>
+                    <label style="color:#ff0000;" for="asterisco">*</label>
+                    <input [(ngModel)]="colonia" type="text" class="form-control" name="colonia">
+                  </div>
+                </div> -->
+              </div>
+              <!--/.row-->
               <div class="row">
                 <div class="col-sm-12">
                   <div class="form-group">
                     <label for="calle">Calle:</label>
                     <label style="color:#ff0000;" for="asterisco">*</label>
-                    <input [(ngModel)]="calle" type="text" class="form-control" name="calle">
+                    <input [(ngModel)]="calle" type="text" class="form-control" name="calle" required>
                   </div>
                 </div>
               </div>
@@ -106,7 +185,7 @@
                   <div class="form-group">
                     <label for="numExt">Número Exterior:</label>
                     <label style="color:#ff0000;" for="asterisco">*</label>
-                    <input [(ngModel)]="numExt" type="text" class="form-control" name="numExt">
+                    <input [(ngModel)]="numExt" type="text" class="form-control" name="numExt" required>
                   </div>
                 </div>
               </div>
@@ -123,39 +202,9 @@
               <div class="row">
                 <div class="col-sm-12">
                   <div class="form-group">
-                    <label for="colonia">Colonia:</label>
-                    <label style="color:#ff0000;" for="asterisco">*</label>
-                    <input [(ngModel)]="colonia" type="text" class="form-control" name="colonia">
-                  </div>
-                </div>
-              </div>
-              <!--/.row-->
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="form-group">
-                    <label for="localidad">Localidad:</label>
-                    <label style="color:#ff0000;" for="asterisco">*</label>
-                    <input [(ngModel)]="localidad" type="text" class="form-control" name="localidad">
-                  </div>
-                </div>
-              </div>
-              <!--/.row-->
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="form-group">
-                    <label for="cp">Código Postal:</label>
-                    <label style="color:#ff0000;" for="asterisco">*</label>
-                    <input [(ngModel)]="cp" type="text" class="form-control" name="cp">
-                  </div>
-                </div>
-              </div>
-              <!--/.row-->
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="form-group">
                     <label for="tFijo">Teléfono Fijo:</label>
                     <label style="color:#ff0000;" for="asterisco">*</label>
-                    <input [(ngModel)]="tFijo" type="text" class="form-control" name="tFijo">
+                    <input [(ngModel)]="tFijo" type="text" class="form-control" name="tFijo" required>
                   </div>
                 </div>
               </div>
@@ -163,61 +212,68 @@
               <div class="row">
                 <div class="col-sm-12">
                   <div class="form-group">
-                    <label for="celular">Teléfono Celular:</label>
-                    <input [(ngModel)]="celular" type="text" class="form-control" name="celular">
+                    <label for="tMovil">Teléfono Celular:</label>
+                    <input [(ngModel)]="tMovil" type="text" class="form-control" name="tMovil">
                   </div>
                 </div>
               </div>
               <!--/.row-->
+
+              <form [formGroup]="formGroup" >
+
               <div class="row">
-                <div class="col-sm-12">
-                  <div class="form-group">
-                    <label for="correo">Correo Electrónico:</label>
-                    <label style="color:#ff0000;" for="asterisco">*</label>
-                    <input [(ngModel)]="correo" type="text" class="form-control" name="correo">
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <label for="correo">Correo Electrónico:</label>
+                      <label style="color:#ff0000;" for="asterisco">*</label>
+                      <input type="text" class="form-control" [formControl]="formGroup.controls['email']">
+                    </div>
                   </div>
                 </div>
-              </div>
-              <!--/.row-->
-              <div class="row">
+                <!--/.row-->
+                <div class="row">
                 <div class="col-sm-12">
-                  <div class="form-group">
-                    <label for="correo2">Confirma tu correo electrónico:</label>
-                    <label style="color:#ff0000;" for="asterisco">*</label>
-                    <input [(ngModel)]="correo2" type="text" class="form-control" name="correo2" oncopy="return false" onpaste="return false">
+                    <div class="form-group">
+                      <label for="correo2">Confirma tu correo electrónico:</label>
+                      <label style="color:#ff0000;" for="asterisco">*</label>
+
+                      <input type="text" class="form-control" [formControl]="formGroup.controls['repeat_email']"  oncopy="return false"
+                      onpaste="return false" required>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <!--/.row-->
+                <!--/.row-->
+              </form>
+
             </div>
           </div>
           <!--Datos de contato-->
           <div class="card">
-          <div class="card-header">
-            <strong>Datos de Padre(s) o Tutor(es):</strong>
-          </div>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-sm-12">
-                <div class="form-group">
-                  <label for="nombrePadre">Nombre de Padre/Tutor:</label>
-                  <label style="color:#ff0000;" for="asterisco">*</label>
-                  <input [(ngModel)]="nombrePadre" type="text" class="form-control" name="nombrePadre">
+            <div class="card-header">
+              <strong>Datos de Padre(s) o Tutor(es):</strong>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label for="nombrePadre">Nombre de Padre/Tutor:</label>
+                    <label style="color:#ff0000;" for="asterisco">*</label>
+                    <input [(ngModel)]="nombrePadre" type="text" class="form-control" name="nombrePadre" required>
+                  </div>
                 </div>
               </div>
-            </div>
-            <!--/.row-->
-            <div class="row">
-              <div class="col-sm-12">
-                <div class="form-group">
-                  <label for="nombreMadre">Nombre de Madre:</label>
-                  <input [(ngModel)]="nombreMadre" type="text" class="form-control" name="nombreMadre">
+              <!--/.row-->
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label for="nombreMadre">Nombre de Madre:</label>
+                    <input [(ngModel)]="nombreMadre" type="text" class="form-control" name="nombreMadre">
+                  </div>
                 </div>
               </div>
+              <!--/.row-->
             </div>
-            <!--/.row-->
           </div>
-        </div>
           <!--Datos de Padre(s) o Tutor(es):-->
           <div class="card">
             <div class="card-header">
@@ -227,30 +283,51 @@
               <div class="row">
                 <div class="col-sm-12">
                   <div class="form-group">
-                    <div class="form-check checkbox">
+                    <label for="incapacidad">Discapacidades:</label>
+                    <!-- <div class="form-check checkbox">
                       <input class="form-check-input" type="checkbox" [value]="ninguna" name="cbNinguna">
-                      <label class="form-check-label">
-                        Ninguna
-                      </label>
+                      <label class="form-check-label">Ninguna</label>
+                    </div> -->
+
+                    <!--                     <div *ngFor="let incapacidad of incapacidadLista; let i = index">
+                      <input type="checkbox" (change)="habilitarAyuda2()" value="{{incapacidad.PK_INCAPACIDAD}}">
+                      <label>{{incapacidad.NOMBRE}}{{i}}</label>
                     </div>
-                    <div *ngFor="let incapacidad of incapacidadLista" class="form-check checkbox">
-                      <input class="form-check-input" type="checkbox" value="{{incapacidad.PK_INCAPACIDAD}}" name="cb{{incapacidad.NOMBRE}}">
-                      <label class="form-check-label">
-                        {{incapacidad.NOMBRE}}
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="form-group">
                     <label for="ayuda">¿Qué tipo de ayuda necesitas?</label>
-                    <input [(ngModel)]="ayuda" type="text" class="form-control" name="ayuda">
+                    <input [(ngModel)]="ayuda" [disabled]="habilitarAyuda" type="text" class="form-control" name="ayuda" required> -->
+
+
+
+
+                    <form [formGroup]="formGroup" >
+                      <div formArrayName="incapacidadLista"
+                        *ngFor="let incapacidad of formGroup.controls.incapacidadLista.controls; let i = index">
+                        <input type="checkbox" (change)="habilitarAyuda2()" [formControlName]="i">
+                        <label>{{incapacidadLista[i].NOMBRE}}</label>
+                      </div>
+                    </form>
+
+                 <!--      <div *ngIf="!form.valid">At least one order must be selected</div>
+                      <br>
+                      <button [disabled]="!form.valid">submit</button> -->
+                    <label for="ayuda">¿Qué tipo de ayuda necesitas?</label>
+                    <input [(ngModel)]="ayuda" [disabled]="habilitarAyuda" type="text" class="form-control" name="ayuda" required>
+
+                    <!--                     <form [formGroup]="form" (ngSubmit)="submit()">
+                        <label formArrayName="incapacidadLista" *ngFor="let incapacidad of form.controls.incapacidadLista.controls; let i = index">
+                          <input type="checkbox" [formControlName]="i">
+                          {{incapacidadLista[i].NOMBRE}}
+                        </label>
+                      
+                        <div *ngIf="!form.valid">At least one order must be selected</div>
+                        <br>
+                        <button [disabled]="!form.valid">submit</button>
+                      </form> -->
+
+
                   </div>
                 </div>
               </div>
-              <!--/.row-->
             </div>
           </div>
           <!--Actualmente, ¿tienes alguna discapacidad? :-->
@@ -267,8 +344,9 @@
                   <div class="form-group">
                     <label for="nacioPais">Pais:</label>
                     <label style="color:#ff0000;" for="asterisco">*</label>
-                    <select [(ngModel)]="nacioPais" class="form-control" name="nacioPais">
-                      <option [value]=0>Selecciona</option>
+                    <select [(ngModel)]="nacioPais" (change)="habilitarNacionalidad2()" class="form-control"
+                      name="nacioPais" required>
+                      <option [value]=null>Selecciona</option>
                       <option [value]=1>México​</option>
                       <option [value]=2>Otro</option>
                     </select>
@@ -280,9 +358,11 @@
                   <div class="form-group">
                     <label for="nacioEntidadFederativa">Estado:</label>
                     <label style="color:#ff0000;" for="asterisco">*</label>
-                    <select [(ngModel)]="nacioEntidadFederativa" (change)="cargarCiudades()" class="form-control" name="nacioEntidadFederativa">
-                      <option [value]=0>Selecciona</option>
-                      <option *ngFor="let entidadFederativa of entidadFederativaLista" value="{{entidadFederativa.PK_ENTIDAD_FEDERATIVA}}">{{entidadFederativa.NOMBRE}}</option>  
+                    <select [(ngModel)]="nacioEntidadFederativa" [disabled]="habilitarNacionalidad"
+                      (change)="cargarCiudades()" class="form-control" name="nacioEntidadFederativa" required>
+                      <option [value]=null>Selecciona</option>
+                      <option *ngFor="let entidadFederativa of entidadFederativaLista"
+                        value="{{entidadFederativa.PK_ENTIDAD_FEDERATIVA}}">{{entidadFederativa.NOMBRE}}</option>
                     </select>
                     <!-- <p [hidden]="nacioEntidadFederativa == '0'">Haz seleccionado la opción # {{ nacioEntidadFederativa }}</p> -->
                   </div>
@@ -293,9 +373,10 @@
                   <div class="form-group">
                     <label for="nacioCiudad">Ciudad:</label>
                     <label style="color:#ff0000;" for="asterisco">*</label>
-                    <select [(ngModel)]="nacioCiudad" class="form-control" name="nacioCiudad">
-                      <option [value]=0>Selecciona</option>
-                      <option *ngFor="let ciudad of ciudadLista" value="{{ciudad.PK_CIUDAD}}">{{ciudad.NOMBRE}}</option>  
+                    <select [(ngModel)]="nacioCiudad" [disabled]="habilitarNacionalidad" class="form-control"
+                      name="nacioCiudad" required>
+                      <option [value]=null>Selecciona</option>
+                      <option *ngFor="let ciudad of ciudadLista" value="{{ciudad.PK_CIUDAD}}">{{ciudad.NOMBRE}}</option>
                     </select>
                   </div>
                 </div>
@@ -305,7 +386,8 @@
                   <div class="form-group">
                     <label for="nacionalidad">Nacionalidad:</label>
                     <label style="color:#ff0000;" for="asterisco">*</label>
-                    <input [(ngModel)]="nacionalidad" type="text" class="form-control" name="nacionalidad">
+                    <input [(ngModel)]="nacionalidad" [disabled]="habilitarNacionalidadOtro" type="text"
+                      class="form-control" name="nacionalidad" required>
                   </div>
                 </div>
               </div>
@@ -313,7 +395,7 @@
             </div>
           </div>
           <!--Nacionalidad-->
-          <p style="text-align: justify;" name="textoCarrera" >
+          <p style="text-align: justify;" name="textoCarrera">
             En el programa a cursar primera opción,
             elige la carrera a la que más quieras ingresar. Como 2ª.
             opción escoge aquella que de no poder estudiar tu primera opción,
@@ -331,9 +413,10 @@
                   <div class="form-group">
                     <label for="especialidad1">Especialidad 1:</label>
                     <label style="color:#ff0000;" for="asterisco">*</label>
-                    <select [(ngModel)]="especialidad1" class="form-control" name="especialidad1">
-                      <option [value]=0>Selecciona</option>
-                      <option *ngFor="let carrera of carreraLista" value="{{carrera.PK_CARRERA}}">{{carrera.NOMBRE}}</option>
+                    <select [(ngModel)]="especialidad1" class="form-control" name="especialidad1" required>
+                      <option [value]=null>Selecciona</option>
+                      <option *ngFor="let carrera of carreraLista" value="{{carrera.PK_CARRERA}}">{{carrera.NOMBRE}}
+                      </option>
                     </select>
                   </div>
                 </div>
@@ -342,10 +425,10 @@
                 <div class="col-sm-12">
                   <div class="form-group">
                     <label for="especialidad2">Especialidad 2:</label>
-                    <label style="color:#ff0000;" for="asterisco">*</label>
                     <select [(ngModel)]="especialidad2" class="form-control" name="especialidad2">
-                      <option [value]=0>Selecciona</option>
-                      <option *ngFor="let carrera of carreraLista" value="{{carrera.PK_CARRERA}}">{{carrera.NOMBRE}}</option>
+                      <option [value]=null>Selecciona</option>
+                      <option *ngFor="let carrera of carreraLista" value="{{carrera.PK_CARRERA}}">{{carrera.NOMBRE}}
+                      </option>
                     </select>
                   </div>
                 </div>
@@ -363,9 +446,11 @@
                   <div class="form-group">
                     <label for="escuelaEstado">Estado:</label>
                     <label style="color:#ff0000;" for="asterisco">*</label>
-                    <select [(ngModel)]="escuelaEstado" (change)="cargarCiudades()" class="form-control" name="escuelaEstado">
-                      <option [value]=0>Selecciona</option>
-                      <option *ngFor="let entidadFederativa of entidadFederativaLista" value="{{entidadFederativa.PK_ENTIDAD_FEDERATIVA}}">{{entidadFederativa.NOMBRE}}</option>  
+                    <select [(ngModel)]="escuelaEstado" (change)="cargarCiudades2()" class="form-control"
+                      name="escuelaEstado" required>
+                      <option [value]=null>Selecciona</option>
+                      <option *ngFor="let entidadFederativa of entidadFederativaLista"
+                        value="{{entidadFederativa.PK_ENTIDAD_FEDERATIVA}}">{{entidadFederativa.NOMBRE}}</option>
                     </select>
                   </div>
                 </div>
@@ -375,9 +460,11 @@
                   <div class="form-group">
                     <label for="escuelaMunicio">Ciudad:</label>
                     <label style="color:#ff0000;" for="asterisco">*</label>
-                    <select [(ngModel)]="escuelaMunicio" class="form-control" name="escuelaMunicio">
-                      <option [value]=0>Selecciona</option>
-                      <option *ngFor="let ciudad of ciudadLista" value="{{ciudad.PK_CIUDAD}}">{{ciudad.NOMBRE}}</option>  
+                    <select [(ngModel)]="escuelaMunicio" (change)="cargarEscuelas()" class="form-control"
+                      name="escuelaMunicio" required>
+                      <option [value]=null>Selecciona</option>
+                      <option *ngFor="let ciudad of ciudadLista2" value="{{ciudad.PK_CIUDAD}}">{{ciudad.NOMBRE}}
+                      </option>
                     </select>
                   </div>
                 </div>
@@ -387,8 +474,10 @@
                   <div class="form-group">
                     <label for="escuela">Escuela procendencia:</label>
                     <label style="color:#ff0000;" for="asterisco">*</label>
-                    <select [(ngModel)]="escuela" class="form-control" name="escuela">
-                      <option [value]=0>Selecciona</option>
+                    <select [(ngModel)]="escuela" class="form-control" name="escuela" required>
+                      <option [value]=null>Selecciona</option>
+                      <option *ngFor="let bachillerato of bachilleratoLista" value="{{bachillerato.PK_BACHILLERATO}}">
+                        {{bachillerato.NOMBRE}}</option>
                     </select>
                   </div>
                 </div>
@@ -398,7 +487,8 @@
                   <div class="form-group">
                     <label for="escuelaEspecialidad">Especialidad:</label>
                     <label style="color:#ff0000;" for="asterisco">*</label>
-                    <input [(ngModel)]="escuelaEspecialidad" type="text" class="form-control" name="escuelaEspecialidad">
+                    <input [(ngModel)]="escuelaEspecialidad" type="text" class="form-control" name="escuelaEspecialidad"
+                      required>
                   </div>
                 </div>
               </div>
@@ -408,7 +498,8 @@
                   <div class="form-group">
                     <label for="promedio">Promedio:</label>
                     <label style="color:#ff0000;" for="asterisco">*</label>
-                    <input [(ngModel)]="promedio" type="text" class="form-control" name="promedio">
+                    <input [(ngModel)]="promedio" (change)="validarPromedio()" type="text" class="form-control" name="promedio" required>
+                    <p>En escala de 0 a 10 Ejemplo: 8.6</p>
                   </div>
                 </div>
               </div>
@@ -426,9 +517,11 @@
                   <div class="form-group">
                     <label for="institucion">En que institución?:</label>
                     <label style="color:#ff0000;" for="asterisco">*</label>
-                    <select [(ngModel)]="institucion" class="form-control" name="institucion">
-                      <option [value]=0>Selecciona</option>
-                      <option *ngFor="let universidad of universidadLista" value="{{universidad.PK_UNIVERSIDAD}}">{{universidad.NOMBRE}}</option>  
+                    <select [(ngModel)]="institucion" (change)="habilitarUniversidad2()" class="form-control" name="institucion" required>
+                      <option [value]=null>Selecciona</option>
+                      <option value="ninguna">Ninguna</option>
+                      <option *ngFor="let universidad of universidadLista" value="{{universidad.PK_UNIVERSIDAD}}">
+                        {{universidad.NOMBRE}}</option>
                     </select>
                   </div>
                 </div>
@@ -438,9 +531,10 @@
                   <div class="form-group">
                     <label for="carreraUniversidad">Carrera:</label>
                     <label style="color:#ff0000;" for="asterisco">*</label>
-                    <select [(ngModel)]="carreraUniversidad" class="form-control" name="carreraUniversidad">
-                      <option [value]=0>Selecciona</option>
-                      <option *ngFor="let carreraUniversidad of carreraUniversidadLista" value="{{carreraUniversidad.PK_CARRERA_UNIVERSIDAD}}">{{carreraUniversidad.NOMBRE}}</option>  
+                    <select [(ngModel)]="carreraUniversidad" [disabled]="habilitarUniversidad" class="form-control" name="carreraUniversidad" required>
+                      <option [value]=null>Selecciona</option>
+                      <option *ngFor="let carreraUniversidad of carreraUniversidadLista"
+                        value="{{carreraUniversidad.PK_CARRERA_UNIVERSIDAD}}">{{carreraUniversidad.NOMBRE}}</option>
                     </select>
                   </div>
                 </div>
@@ -458,9 +552,10 @@
                   <div class="form-group">
                     <label for="dependencia">De quién dependes económicamente:</label>
                     <label style="color:#ff0000;" for="asterisco">*</label>
-                    <select [(ngModel)]="dependencia" class="form-control" name="dependencia">
-                      <option [value]=0>Selecciona</option>
-                      <option *ngFor="let dependencia of dependenciaLista" value="{{dependencia.PK_DEPENDENCIA}}">{{dependencia.NOMBRE}}</option>
+                    <select [(ngModel)]="dependencia" class="form-control" name="dependencia" required>
+                      <option [value]=null>Selecciona</option>
+                      <option *ngFor="let dependencia of dependenciaLista" value="{{dependencia.PK_DEPENDENCIA}}">
+                        {{dependencia.NOMBRE}}</option>
                     </select>
                   </div>
                 </div>
@@ -470,8 +565,8 @@
                   <div class="form-group">
                     <label for="trabajas">Trabajas además de estudiar:</label>
                     <label style="color:#ff0000;" for="asterisco">*</label>
-                    <select [(ngModel)]="trabajas" class="form-control" name="trabajas">
-                      <option [value]=0>Selecciona</option>
+                    <select [(ngModel)]="trabajas" class="form-control" name="trabajas" required>
+                      <option [value]=null>Selecciona</option>
                       <option [value]=1>Si</option>
                       <option [value]=2>No</option>
                     </select>
@@ -483,9 +578,11 @@
                   <div class="form-group">
                     <label for="propaganda">Cómo te enteraste del Instituto Tecnológico de León:</label>
                     <label style="color:#ff0000;" for="asterisco">*</label>
-                    <select [(ngModel)]="propaganda" class="form-control" name="propaganda">
-                      <option [value]=0>Selecciona</option>
-                      <option *ngFor="let propagandaTecnologico of propagandaTecnologicoLista" value="{{propagandaTecnologico.PK_PROPAGANDA_TECNOLOGICO}}">{{propagandaTecnologico.NOMBRE}}</option>
+                    <select [(ngModel)]="propaganda" class="form-control" name="propaganda" required>
+                      <option [value]=null>Selecciona</option>
+                      <option *ngFor="let propagandaTecnologico of propagandaTecnologicoLista"
+                        value="{{propagandaTecnologico.PK_PROPAGANDA_TECNOLOGICO}}">{{propagandaTecnologico.NOMBRE}}
+                      </option>
                     </select>
                   </div>
                 </div>
@@ -501,15 +598,34 @@
               <div class="row">
                 <div class="col-sm-12">
                   <div class="form-group">
-                    <label for="dependencia">Estoy de acuerdo que la información proporcionada en el formulario de registro en todos sus campos son datos válidos y sirvan para poder utilizar los servicios de acuerdo a ley.</label>
+
+                    <div class="form-check checkbox">
+                      <input class="form-check-input" type="checkbox" [(ngModel)]="aviso" [value]="" name="aviso" required>
+                      <label class="form-check-label">
+                        Estoy de acuerdo que la información proporcionada en el formulario de registro en todos sus
+                        campos son datos válidos y sirvan para poder utilizar los servicios de acuerdo a ley.
+                      </label>
+                      <a href="https://www.itleon.edu.mx/index.php?option=com_content&view=article&id=126:aviso-de-privacidad&catid=2&Itemid=101"
+                        target="_blank">
+                        Aviso de Privacidad
+                      </a>
+                    </div>
+
+                    <!-- <label for="aviso">Estoy de acuerdo que la información proporcionada en el formulario de registro en todos sus campos son datos válidos y sirvan para poder utilizar los servicios de acuerdo a ley.</label>
                     <a href="https://www.itleon.edu.mx/index.php?option=com_content&view=article&id=126:aviso-de-privacidad&catid=2&Itemid=101" target="_blank">
                       Aviso de Privacidad
-                    </a>
+                    </a> -->
                   </div>
                   <div class="form-group">
-                    <button type="submit" value="Submit" class="btn btn-sm btn-primary">Aceptar</button>
-  <!--                   <button type="button" class="btn btn-block btn-primary col-sm-2">Aceptar</button>
-  -->                </div>
+                     <!-- <button type="submit" value="Submit" class="btn btn-sm btn-primary">Aceptar</button> -->
+                   
+ 
+                     <button type="submit" value="Submit" class="btn btn-sm btn-primary"
+                     [disabled]="aspiranteForm.invalid || formGroup.invalid">Aceptar</button>
+
+                    <!--                   <button type="button" class="btn btn-block btn-primary col-sm-2">Aceptar</button>
+  -->
+                  </div>
                 </div>
               </div>
             </div>

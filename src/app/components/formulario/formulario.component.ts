@@ -1,74 +1,97 @@
 import { Component, OnInit } from '@angular/core';
-import { EstadoCivilService } from './estado-civil.service';
-import { DependenciaService } from './dependencia.service';
-import { PropagandaTecnologicoService } from './propaganda-tecnologico.service';
-import { IncapacidadService } from './incapacidad.service';
-import { CarreraService } from './carrera.service';
-import { EntidadFederativaService } from './entidad-federativa.service';
-import { CiudadService } from './ciudad.service';
-import { UniversidadService } from './universidad.service';
-import { CarreraUniversidadService } from './carrera-universidad.service';
+import { EstadoCivilService } from  '../../services/estado-civil.service';
+import { DependenciaService } from '../../services/dependencia.service';
+import { PropagandaTecnologicoService } from '../../services/propaganda-tecnologico.service';
+import { IncapacidadService } from '../../services/incapacidad.service';
+import { CarreraService } from '../../services/carrera.service';
+import { EntidadFederativaService } from '../../services/entidad-federativa.service';
+import { CiudadService } from '../../services/ciudad.service';
+import { UniversidadService } from '../../services/universidad.service';
+import { CarreraUniversidadService } from '../../services/carrera-universidad.service';
+import { BachilleratoService } from '../../services/bachillerato.service';
+import { ColoniaService } from '../../services/colonia.service';
+import { AspiranteService } from '../../services/aspirante.service';
 import { PeriodoService } from '../../services/periodo.service';
+import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn, AbstractControl, Validators } from '@angular/forms';
+
+
 
 @Component({
   selector: 'app-formulario',
   templateUrl: './formulario.component.html',
   styleUrls: ['./formulario.component.scss'],
   providers: [EstadoCivilService,
-              DependenciaService,
-              PropagandaTecnologicoService,
-              IncapacidadService,
-              CarreraService,
-              EntidadFederativaService,
-              CiudadService,
-              PeriodoService,
-              UniversidadService,
-              CarreraUniversidadService]
+    DependenciaService,
+    PropagandaTecnologicoService,
+    IncapacidadService,
+    CarreraService,
+    EntidadFederativaService,
+    CiudadService,
+    PeriodoService,
+    UniversidadService,
+    CarreraUniversidadService,
+    BachilleratoService,
+    ColoniaService,
+    AspiranteService]
 })
 export class FormularioComponent implements OnInit {
-  
-  genero=0;
-  estadoCivil=0;
-  nacioPais=0;
-  nacioEntidadFederativa=0;
-  nacioCiudad=0;
-  especialidad1=0;
-  especialidad2=0;
-  escuelaEstado=0;
-  escuelaMunicio=0;
-  escuela=0;
-  institucion=0;
-  carreraUniversidad=0;
-  dependencia=0;
-  trabajas=0;
-  propaganda=0;
+  formGroup: FormGroup | null = null;
+  //form: FormGroup;
+  discapacidades="";
 
-  CURP;
-  nombre;
-  pApellido;
-  sApellido;
-  fechaNacimiento;
-  calle;
-  numExt;
-  numInt;
-  colonia;
-  localidad;
-  cp;
-  tFijo;
-  celular;
-  correo;
-  correo2;
-  nombrePadre;
-  nombreMadre;
-  ayuda;
-  nacionalidad;
-  escuelaEspecialidad;
-  promedio;
+  habilitarNacionalidad = true;
+  habilitarNacionalidadOtro = true;
+  habilitarAyuda = true;
+  habilitarUniversidad = true;
 
-  activado=false;
-  fechaInicio=null;
-  fechaFin=null;
-  fechaActual=null;
+  genero = null;
+  estadoCivil = null;
+  nacioPais = null;
+  nacioEntidadFederativa = null;
+  contactoEntidadFederativa = null;
+  contactoCiudad = null;
+  nacioCiudad = null;
+  especialidad1 = null;
+  especialidad2 = null;
+  escuelaEstado = null;
+  escuelaMunicio = null;
+  escuela = null;
+  institucion = null;
+  carreraUniversidad = null;
+  dependencia = null;
+  trabajas = null;
+  propaganda = null;
+
+  CURP = null;
+  nombre = null;
+  pApellido = null;
+  sApellido = null;
+  fechaNacimiento = null;
+  calle = null;
+  numExt = null;
+  numInt = null;
+  colonia = null;
+  localidad = null;
+  cp = null;
+  tFijo = null;
+  tMovil = null;
+  correo = null;
+  correo2 = null;
+  nombrePadre = null;
+  nombreMadre = null;
+  incapacidad = null;
+  ayuda = null;
+  nacionalidad = null;
+  escuelaEspecialidad = null;
+  promedio = null;
+
+  activado = false;
+  pkPeriodo = null;
+  fechaInicio = null;
+  fechaFin = null;
+  fechaActual = null;
+
+
 
   public estadoCivilLista = [];
   public dependenciaLista = [];
@@ -77,33 +100,63 @@ export class FormularioComponent implements OnInit {
   public carreraLista = [];
   public entidadFederativaLista = [];
   public ciudadLista = [];
+  public ciudadLista2 = [];
+  public ciudadLista3 = [];
   public universidadLista = [];
   public carreraUniversidadLista = [];
+  public bachilleratoLista = [];
+  public coloniaLista = [];
 
-  constructor(private estadoCivilService: EstadoCivilService,
-              private dependenciaService: DependenciaService,
-              private propagandaTecnologicoService: PropagandaTecnologicoService,              
-              private incapacidadService: IncapacidadService,
-              private carreraService: CarreraService,
-              private entidadFederativaService: EntidadFederativaService,
-              private ciudadService: CiudadService,
-              private periodoService: PeriodoService,
-              private universidadService: UniversidadService,
-              private carreraUniversidadService: CarreraUniversidadService) {
+  constructor(private formBuilder: FormBuilder,
+    //private fb: FormBuilder,
+    private estadoCivilService: EstadoCivilService,
+    private dependenciaService: DependenciaService,
+    private propagandaTecnologicoService: PropagandaTecnologicoService,
+    private incapacidadService: IncapacidadService,
+    private carreraService: CarreraService,
+    private entidadFederativaService: EntidadFederativaService,
+    private ciudadService: CiudadService,
+    private periodoService: PeriodoService,
+    private universidadService: UniversidadService,
+    private carreraUniversidadService: CarreraUniversidadService,
+    private bachilleratoService: BachilleratoService,
+    private coloniaService: ColoniaService,
+    private aspiranteService: AspiranteService) {
+    this.formGroup = this.formBuilder.group({
+      incapacidadLista: new FormArray([], minSelectedCheckboxes(0)),    
+      email: ['', [Validators.required]],
+      repeat_email: ''
+    });
+    this.incapacidadService.getIncapacidad().subscribe(data => {
+      this.incapacidadLista = data;
+      this.addCheckboxes();
+    });
+/*     this.formGroup = this.fb.group({
+      email: ['', [Validators.required]],
+      repeat_email: ''
+    }); */
+    
+    this.formGroup.get('repeat_email').setValidators(
+      CustomValidators.equals(this.formGroup.get('email'))
+    );
   }
+  
+
+
 
   ngOnInit() {
     this.periodoService.getPeriodo().subscribe(data => {
-      this.fechaInicio=data[0].FECHA_INICIO;
-      this.fechaFin=data[0].FECHA_FIN;
-      this.fechaActual=data[0].FECHA_ACTUAL;
-      this.compararFechas();     
+      this.pkPeriodo = data[0].PK_PERIODO_PREFICHAS;
+      this.fechaInicio = data[0].FECHA_INICIO;
+      this.fechaFin = data[0].FECHA_FIN;
+      this.fechaActual = data[0].FECHA_ACTUAL;
+      this.compararFechas();
     });
 
     this.estadoCivilService.getEstadoCivil().subscribe(data => this.estadoCivilLista = data);
     this.dependenciaService.getDependencia().subscribe(data => this.dependenciaLista = data);
     this.propagandaTecnologicoService.getPropagandaTecnologico().subscribe(data => this.propagandaTecnologicoLista = data);
-    this.incapacidadService.getIncapacidad().subscribe(data => this.incapacidadLista = data);
+    //this.incapacidadService.getIncapacidad().subscribe(data => this.incapacidadLista = data);
     this.carreraService.getCarrera().subscribe(data => this.carreraLista = data);
     this.entidadFederativaService.getEntidadFederativa().subscribe(data => this.entidadFederativaLista = data);
     this.universidadService.getUniversidad().subscribe(data => this.universidadLista = data);
@@ -111,18 +164,17 @@ export class FormularioComponent implements OnInit {
 
   }
 
-  compararFechas(){ 
-    var fechaInicio=this.fechaInicio.split('-');
-    var fechaFin=this.fechaFin.split('-');
-    var fechaActual=this.fechaActual.split('-');
-    var fechaInicio2=new Date(fechaInicio[0],(fechaInicio[1]-1),fechaInicio[2]);
-    var fechaFin2=new Date(fechaFin[0],(fechaFin[1]-1),fechaFin[2]);
-    var fechaActual2=new Date(fechaActual[0],(fechaActual[1]-1),fechaActual[2]);
-    if(fechaActual2>=fechaInicio2 && fechaActual2<=fechaFin2 )
-    {    
+  compararFechas() {
+    var fechaInicio = this.fechaInicio.split('-');
+    var fechaFin = this.fechaFin.split('-');
+    var fechaActual = this.fechaActual.split('-');
+    var fechaInicio2 = new Date(fechaInicio[0], (fechaInicio[1] - 1), fechaInicio[2]);
+    var fechaFin2 = new Date(fechaFin[0], (fechaFin[1] - 1), fechaFin[2]);
+    var fechaActual2 = new Date(fechaActual[0], (fechaActual[1] - 1), fechaActual[2]);
+    if (fechaActual2 >= fechaInicio2 && fechaActual2 <= fechaFin2) {
       //console.log('La fecha esta en el rango');
-      this.activado=true;     
-    }else{
+      this.activado = true;
+    } else {
       //console.log('La fecha no esta en el rango');
     }
   }
@@ -131,7 +183,206 @@ export class FormularioComponent implements OnInit {
     //localStorage.setItem("nacioEntidadFederativa", this.nacioEntidadFederativa);
     this.ciudadService.getCiudad(this.nacioEntidadFederativa).subscribe(data => this.ciudadLista = data);
   }
+  cargarCiudades2() {
+    //localStorage.setItem("nacioEntidadFederativa", this.nacioEntidadFederativa);
+    this.ciudadService.getCiudad(this.escuelaEstado).subscribe(data => this.ciudadLista2 = data);
+  }
+  cargarCiudades3() {
+    //localStorage.setItem("nacioEntidadFederativa", this.nacioEntidadFederativa);
+    this.ciudadService.getCiudad(this.contactoEntidadFederativa).subscribe(data => this.ciudadLista3 = data);
+  }
+  cargarColonias() {
+    //localStorage.setItem("nacioEntidadFederativa", this.nacioEntidadFederativa);
+    this.coloniaService.getColonia(this.cp).subscribe(data => this.coloniaLista = data);
+  }
+  cargarEscuelas() {
+    //localStorage.setItem("nacioEntidadFederativa", this.nacioEntidadFederativa);
+    this.bachilleratoService.getBachillerato(this.escuelaMunicio).subscribe(data => this.bachilleratoLista = data);
+  }
 
-  onSubmit(){
+  validarPromedio(){
+    if(this.promedio>=10){
+      this.promedio=10.0;
+    }else if(this.promedio<=0){
+      this.promedio=0.0;
+    }
+  }
+
+  
+
+  habilitarAyuda2() {
+    const selectedOrderIds = this.formGroup.value.incapacidadLista
+      .map((v, i) => v ? this.incapacidadLista[i].PK_INCAPACIDAD : null)
+      .filter(v => v !== null);
+    this.discapacidades="";
+    for(var sistema in selectedOrderIds){
+/*         this.discapacidades.push(
+          selectedOrderIds[sistema]
+          );   */ 
+          if(this.discapacidades==""){
+            this.discapacidades= selectedOrderIds[sistema];
+          }else{
+            this.discapacidades= this.discapacidades+","+selectedOrderIds[sistema];
+          }
+    }
+    //console.log(this.discapacidades);
+    //console.log(selectedOrderIds);
+    if(selectedOrderIds.length==0){
+      this.habilitarAyuda = true;
+      this.ayuda=null;
+    }else{
+      this.habilitarAyuda = false;
+    }
+    
+  }
+
+  habilitarUniversidad2() {
+    if (this.institucion == "ninguna") {
+      this.habilitarUniversidad = true;
+      this.carreraUniversidad = null;
+    } else {
+      this.habilitarUniversidad = false;
+    }
+  }
+
+  habilitarNacionalidad2() {
+    if (this.nacioPais == 1) {
+      this.habilitarNacionalidad = false;
+      this.habilitarNacionalidadOtro = true;
+      this.nacionalidad=null;
+    } else if (this.nacioPais == 2) {
+      this.habilitarNacionalidad = true;
+      this.habilitarNacionalidadOtro = false;
+      this.nacioEntidadFederativa = null;
+      this.nacioCiudad = null;
+    } else {
+      this.habilitarNacionalidad = true;
+      this.habilitarNacionalidadOtro = true;
+      this.nacioEntidadFederativa = null;
+      this.nacioCiudad = null;
+      this.nacionalidad = null;
+    }
+  }
+  onSubmit() {
+    if (this.sApellido == null) {
+      this.sApellido = ""
+    }
+    if (this.numInt == null) {
+      this.numInt = ""
+    }
+    if (this.tMovil == null) {
+      this.tMovil = ""
+    }
+    if (this.especialidad2 == null) {
+      this.especialidad2 = "null"
+    }
+    if (this.nombreMadre == null) {
+      this.nombreMadre = ""
+    }
+    if (this.ayuda == null) {
+      this.ayuda = ""
+    }
+    if (this.nacioEntidadFederativa== null) {
+      this.nacioEntidadFederativa = "null"
+    }
+    if (this.nacioCiudad == null) {
+      this.nacioCiudad = "null"
+    }
+    if (this.nacionalidad == null) {
+      this.nacionalidad = ""
+    }
+    if (this.institucion == "ninguna") {
+      this.institucion = "null"
+    }
+    if (this.carreraUniversidad == null) {
+      this.carreraUniversidad = "null"
+    }
+    this.aspiranteService.addAspirante(
+      {
+        "PK_PERIODO": this.pkPeriodo,
+        "name": "'" + this.nombre + "'",
+        "PRIMER_APELLIDO": "'" + this.pApellido + "'",
+        "SEGUNDO_APELLIDO": "'" + this.sApellido + "'",
+        "FECHA_NACIMIENTO": "'" + this.fechaNacimiento + "'",
+        "SEXO": this.genero,
+        "CURP": "'" + this.CURP + "'",
+        "FK_ESTADO_CIVIL": this.estadoCivil,
+        "CALLE": "'" + this.calle + "'",
+        "NUMERO_EXTERIOR":  "'" +this.numExt + "'",
+        "NUMERO_INTERIOR":  "'" +this.numInt + "'",
+        "FK_COLONIA": this.colonia,
+        "TELEFONO_CASA": "'" + this.tFijo + "'",
+        "TELEFONO_MOVIL": "'" +this.tMovil + "'",
+        "email": "'" + this.formGroup.get('email').value + "'",
+        "PADRE_TUTOR": "'" + this.nombrePadre + "'",
+        "MADRE": "'" + this.nombreMadre + "'",
+        "FK_BACHILLERATO": this.escuela,
+        "ESPECIALIDAD": "'" + this.escuelaEspecialidad + "'",
+        "PROMEDIO": "'" +this.promedio+ "'",
+        "NACIONALIDAD": "'" +this.nacionalidad+ "'",
+        "FK_CIUDAD": this.nacioCiudad,
+        "FK_CARRERA_1": this.especialidad1,
+        "FK_CARRERA_2": this.especialidad2,
+        "FK_PROPAGANDA_TECNOLOGICO": this.propaganda,
+        "FK_UNIVERSIDAD": this.institucion,
+        "FK_CARRERA_UNIVERSIDAD": this.carreraUniversidad,
+        "FK_DEPENDENCIA": this.dependencia,
+        "TRABAJAS_Y_ESTUDIAS": this.trabajas,
+        "AYUDA_INCAPACIDAD": "'" + this.ayuda + "'",
+        "DISCAPASIDADES": this.discapacidades
+      });
+  }
+  private addCheckboxes() {
+    this.incapacidadLista.map((o, i) => {
+      const control = new FormControl(i === null); // if first item set to true, else false
+      (this.formGroup.controls.incapacidadLista as FormArray).push(control);
+    });
+  }
+  submit() {
+ /*    const selectedOrderIds = this.form.value.incapacidadLista
+      .map((v, i) => v ? this.incapacidadLista[i].PK_INCAPACIDAD : null)
+      .filter(v => v !== null);
+
+
+    let arreglo2=[];
+    for(var sistema in selectedOrderIds){
+       arreglo2.push(
+         selectedOrderIds[sistema]
+         );   
+    }   
+    let arreglo1 = [{
+      "PK_PERIODO": ":v",
+      "name": ":v",
+      "PRIMER_APELLIDO": ":v",
+      "DISCAPACIDADES": arreglo2
+  }];
+
+  this.aspiranteService.addAspirante(
+    {
+      arreglo1
+    });
+    console.log(arreglo1); */
   }
 }
+function minSelectedCheckboxes(min = 1) {
+  const validator: ValidatorFn = (formArray: FormArray) => {
+    const totalSelected = formArray.controls
+      .map(control => control.value)
+      .reduce((prev, next) => next ? prev + next : prev, 0);
+
+    return totalSelected >= min ? null : { required: true };
+  };
+  return validator;
+}
+
+function equalsValidator(otherControl: AbstractControl): ValidatorFn {
+  return (control: AbstractControl): {[key: string]: any} => {
+    const value: any = control.value;
+    const otherValue: any = otherControl.value;
+    return otherValue === value ? null : { 'notEquals': { value, otherValue } };
+  };
+}
+
+export const CustomValidators = {
+  equals: equalsValidator
+};
