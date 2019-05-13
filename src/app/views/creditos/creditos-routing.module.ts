@@ -22,6 +22,7 @@ import { ActividadesComponent } from './actividades.component';
 import { DetalleActividadComponent} from './detalleActividad.component';
 import { SeguimientoAlumnoComponent } from './seguimientoAlumno.component';
 import { ActividadesResponsableComponent } from './actividadesResponsable.component';
+import { ListaAsistenciaResponsableComponent } from './listaAsistenciaResponsable.component';
 import { AsistentesResponsableComponent } from './asistentesResponsable.component';
 import { typeSourceSpan } from '@angular/compiler';
 
@@ -29,7 +30,8 @@ var rutas = [];
 var moduloLinForm: Boolean = false;
 var moduloDetAct: Boolean = false;
 var moduloGestActForm: Boolean = false;
-var moduloAsisRes: Boolean = false;
+var moduloListAsisRes: Boolean = false;
+var moduloAsisRes: boolean = false;
 
 
 if (sessionStorage.rutas){
@@ -94,12 +96,21 @@ if (sessionStorage.rutas){
         }
         });
       }
-      if(moduloAsisRes){
+      if(moduloListAsisRes){
         rutas.push({
-          path: 'lista-asistentes-res/:id',
-          component: AsistentesResponsableComponent,
+          path: 'lista-asistencia-res/:id',
+          component: ListaAsistenciaResponsableComponent,
           data:{
             title: 'Lista de asistencia'
+          }
+        });
+      }
+      if(moduloAsisRes){
+        rutas.push({
+          path: 'asistentes-res/:id',
+          component: AsistentesResponsableComponent,
+          data:{
+            title: 'Registro de asistencias'
           }
         });
       }
@@ -130,7 +141,7 @@ function agregarModulos(modulo){
     });
     moduloGestActForm = true;
     break; 
-    case 'actividades':
+    case 'Actividades':
     modulos.push({
       path: 'actividades',
       component:  ActividadesComponent,
@@ -157,6 +168,7 @@ function agregarModulos(modulo){
         title: 'Actividades designadas'
       }
     });
+    moduloListAsisRes = true;
     moduloAsisRes = true;
     break;
 

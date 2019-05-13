@@ -14,6 +14,7 @@ import { ActividadesComponent} from './actividades.component';
 import { DetalleActividadComponent} from './detalleActividad.component';
 import { SeguimientoAlumnoComponent } from './seguimientoAlumno.component';
 import { ActividadesResponsableComponent } from './actividadesResponsable.component';
+import { ListaAsistenciaResponsableComponent } from './listaAsistenciaResponsable.component';
 import { AsistentesResponsableComponent } from './asistentesResponsable.component';
 // Dropdowns Component
 
@@ -40,6 +41,7 @@ import { CreditosRoutingModule } from './creditos-routing.module';
     DetalleActividadComponent,
     SeguimientoAlumnoComponent,
     ActividadesResponsableComponent,
+    ListaAsistenciaResponsableComponent,
     AsistentesResponsableComponent
   ]
 })

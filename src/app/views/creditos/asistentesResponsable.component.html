@@ -2,7 +2,7 @@
     <div class="card-body">
       <div class="row">
             <div class="col-sm-5">
-                    <h3 class="card-title mb-0">Lista de asistencia</h3>
+                    <h3 class="card-title mb-0">Usuarios designados para registrar asistencias</h3>
             </div>
 <div style="width: 100%"></div>
 <hr>
@@ -11,19 +11,15 @@
 <!-- <div style="width: 75%;" *ngFor="let actividad of actividades"> -->
   <table class="table table-responsive-sm table-hover table-outline mb-0" style="width:100%;" >
     <thead class="thead-light">
-      <tr>
-        <th class="text-center" colspan="3"><h2>{{actividad.NOMBRE}}</h2></th>
-           <!--  <td style="width: 25%;">Fecha: {{actividad.FECHA}}</td> -->
-        </tr>
         <tr>
             <th>Primer Apellido</th>
             <th>Segundo Apellido</th>
             <th>Nombre</th>
         </tr>
-        <tr *ngFor="let alumno of alumnos">
-            <td><div>{{alumno.PRIMER_APELLIDO}}</div></td>
-            <td><div>{{alumno.SEGUNDO_APELLIDO}}</div></td>
-            <td><div>{{alumno.name}}</div></td>
+        <tr *ngFor="let ususario of usuarios">
+            <td><div>{{ususario.PRIMER_APELLIDO}}</div></td>
+            <td><div>{{ususario.SEGUNDO_APELLIDO}}</div></td>
+            <td><div>{{ususario.name}}</div></td>
         </tr>
     </thead>
   </table>
@@ -34,3 +30,52 @@
 </div>
 </div>
 </div>
+
+
+
+
+<div class="card">
+  <div class="card-header">
+    <strong>Agregar usuario</strong>
+  </div>
+  <div class="card-body">
+    <form #buscarAlumnoForm=ngForm (ngSubmit)="getAlumno()">
+    <div class="form-group row">
+      <div class="col-md-5">
+        <div class="input-group">
+          <input [(ngModel)]="num_control" type="number" class="form-control" id="num_control" name="num_control" placeholder="Numero de control" required>
+          <span class="input-group-append">
+            <button type="submit" class="btn btn-primary" [disabled]="!buscarAlumnoForm.valid"><i class="fa fa-search"></i> Buscar</button>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    </form>
+    <form *ngFor="let alumno of alumnos" #registroAsistentesForm=ngForm (ngSubmit)="registrar(alumno.ApellidoPaterno, alumno.ApellidoMaterno, alumno.Nombre)"> 
+      <div class="row">
+        <div class="form-group col-sm-4">
+            <label for="name">Primer apelido: </label>
+            <input [(ngModel)]="alumno.ApellidoPaterno" type="text" class="form-control" id="primer_apellido" name="primer_apellido" readonly required>
+        </div>
+        <div class="form-group col-sm-4">
+            <label for="name">Segundo apelido: </label>
+            <input [(ngModel)]="alumno.ApellidoMaterno" type="text" class="form-control" id="segundo_apellido" name="segundo_apellido" readonly required>
+        </div>
+        <div class="form-group col-sm-4">
+            <label for="name">Nombre: </label>
+            <input [(ngModel)]="alumno.Nombre" type="text" class="form-control" id="nombre" name="nombre" readonly required>
+        </div>
+      </div>
+       <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-sm" [disabled]="!registroAsistentesForm.valid" ><i class="fa fa-dot-circle-o"></i> Registrar </button>
+          </div>
+        </div>
+      </div>
+      </form>
+  </div>
+</div>
+<!-- 
+Sigue modificar el diseño para un mejor acomodo y crear la funcion de registro del alumno para pasar asistencia -->

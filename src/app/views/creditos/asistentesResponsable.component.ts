@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { Usuario } from './interfaces/usuario';
-import { Actividad } from './interfaces/actividad';
+import { Alumno } from './interfaces/alumno';
+import { AsistenteActividad } from './interfaces/asistenteActividad';
 import { CreditosService } from '../../services/creditos.service'
 import { ActivatedRoute} from '@angular/router'; 
-
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { NUMBER_FORMAT_REGEXP } from '@angular/common/src/i18n/format_number';
 
 @Component({
     templateUrl: './asistentesResponsable.component.html'
@@ -11,45 +13,53 @@ import { ActivatedRoute} from '@angular/router';
 
 export class AsistentesResponsableComponent{
 
-    actividad: Actividad = {
-        NOMBRE: null,
-        DESCRIPCION: null,
-        LUGAR: null,
-        FECHA: null,
-        HORA: null,
-        CUPO: null,
-        FK_LINEAMIENTO: null,
-        FK_TIPO: null,
-        FK_RESPONSABLE: null,
-      };
-      
-    alumnos: Usuario[];
-    actividades: Actividad[];
     pk_actividad: any;
+    num_control: number;
+    usuarios: Usuario[];
+    alumnos: Alumno[];
+    asistente: AsistenteActividad = {
+        FK_USUARIO: null,
+    };
+    pk_usuario: number;
 
     constructor(private responsablesService: CreditosService, private activatedRoute: ActivatedRoute){
-        this.getActRes();
-        this.getListaAsistentes();
+        this.getAsistentes();
 
     }
 
-    getListaAsistentes(){
+    getAsistentes(){
         this.pk_actividad = this.activatedRoute.snapshot.params['id'];
-        this.responsablesService.getListaAsistentes(this.pk_actividad).subscribe((data: Usuario[])=>{
-            this.alumnos = data;
+        this.responsablesService.getAsistentes(this.pk_actividad).subscribe((data : Usuario[])=>{
+            this.usuarios = data;
         },(error)=>{
-            alert('Ocurrió un error');
+            alert('Ocurrio un error');
         });
     }
 
-    getActRes(){
-        this.pk_actividad = this.activatedRoute.snapshot.params['id'];
-        this.responsablesService.getActividades().subscribe((data: Actividad[])=>{
-            this.actividades = data;
-            this.actividad = this.actividades.find((m)=>{return m.PK_ACTIVIDAD == this.pk_actividad});
-            console.log(this.actividad);
-          },(error)=>{
-            console.log(error);
-          });
+    getAlumno(){
+        this.responsablesService.getAlumnoByNc(this.num_control).subscribe((data: Alumno[])=>{
+            this.alumnos = data;
+        },(error)=>{
+            alert("Ocurrio un error");
+        });
     }
+
+    registrar(p_apellido, s_apellido, nombre){
+        this.responsablesService.getPkUsuario(p_apellido,s_apellido,nombre).subscribe((data: AsistenteActividad[])=>{
+            for(let d of data){
+                this.asistente.FK_USUARIO = d.FK_USUARIO;
+            }
+            this.asistente.FK_ACTIVIDAD = this.pk_actividad;
+            this.responsablesService.RegistrarAsistAct(this.asistente).subscribe((data)=>{
+                alert("Registrado Correctamente");
+                this.getAsistentes();
+            },(error)=>{
+                alert("Ocurrio un error");
+                console.log(error);
+            });
+        },(error)=>{
+            alert("Ocurrio un error");
+        });
+    }
+
 }
