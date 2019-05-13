@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Lineamiento } from '../views/creditos/interfaces/lineamiento';
 import { Actividad } from '../views/creditos/interfaces/actividad';
 import {UsuarioActividad } from '../views/creditos/interfaces/usuarioActividad';
+import { AsistenteActividad } from '../views/creditos/interfaces/asistenteActividad';
 
 
 
@@ -73,7 +74,7 @@ getRegistrados(PK_ACTIVIDAD){
 }
 
 saveAlumnoActividad(usuarioActividad: UsuarioActividad){
-  console.log(usuarioActividad);
+  //console.log(usuarioActividad);
   const Headers = new HttpHeaders({'Content-Type':'application/json'});
   	return this.httpclient.post(this.API_ENDPOINT + '/alumno-actividades', usuarioActividad, {headers : Headers});
 
@@ -99,10 +100,28 @@ getActRes(FK_ALUMNO){//mostrar las actividades designadas a un reponsable en esp
   return this.httpclient.get(this.API_ENDPOINT + '/responsables-actividad/' + FK_ALUMNO);
 }
 
-getListaAsistentes(PK_ACTIVIDAD){//mostrar la lista de asistentes a alguna actividad en específico
+getListaAsistencia(PK_ACTIVIDAD){//mostrar la lista de asistentes a alguna actividad en específico
   return this.httpclient.get(this.API_ENDPOINT + '/responsable-lista-asistentes/' + PK_ACTIVIDAD);
 
 }
 
+getAsistentes(PK_ACTIVIDAD){//mostrar los alumnos designados para tomar asistencia en una actividad
+  return this.httpclient.get(this.API_ENDPOINT + '/asistentes-actividad/' + PK_ACTIVIDAD);
+}
+
+getAlumnoByNc(NUM_CONTROL){
+  return this.httpclient.get(this.API_ENDPOINT + '/alumnos-num-control/' + NUM_CONTROL);
+}
+
+getPkUsuario(P_APELLIDO, S_APELLIDO, NOMBRE){
+  return this.httpclient.get(this.API_ENDPOINT + '/alumnos-num-control/' + P_APELLIDO + '/' + S_APELLIDO + '/' + NOMBRE);
+}
+
+RegistrarAsistAct(asistenteActividad: AsistenteActividad){
+  //console.log(asistenteActividad);
+   const Headers = new HttpHeaders({'Content-Type':'application/json'});
+  return this.httpclient.post(this.API_ENDPOINT + '/asistentes-actividad', asistenteActividad, {headers : Headers}); 
+}
     
+
 }

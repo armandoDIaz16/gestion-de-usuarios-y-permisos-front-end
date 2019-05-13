@@ -15,12 +15,12 @@
         <th class="text-center" rowspan="2"><h2>{{actividad.NOMBRE}}</h2></th>
             <td style="width: 25%;">Fecha: {{actividad.FECHA}}</td>
             <!-- <td>Registrados: {{actividad.REGISTRADOS}}/{{actividad.CUPO}}</td> -->
-            <td><a routerLink="../lista-asistentes-res/{{actividad.PK_ACTIVIDAD}}">Lista de asistentes</a></td>
+            <td><a routerLink="../lista-asistencia-res/{{actividad.PK_ACTIVIDAD}}">Lista de asistentes</a></td>
         </tr>
         <tr>
             <td>Lugar: {{actividad.LUGAR}}</td>
             <td><a routerLink="../detalle-actividad/{{actividad.PK_ACTIVIDAD}}">Ver detalles</a></td>
-            <td>Toma de asistencia</td>
+            <td><a routerLink="../asistentes-res/{{actividad.PK_ACTIVIDAD}}">Registro de asistencias</a></td>
         </tr>
     </thead>
   </table>
@@ -29,3 +29,4 @@
 </div>
 <ng-template #sinActividadesDisponibles> <p>No hay actividades designadas</p>  </ng-template>
 </div>
+
