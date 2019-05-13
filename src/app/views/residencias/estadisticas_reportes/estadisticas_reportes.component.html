@@ -1,0 +1,64 @@
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                <i class="icon-pie-chart"></i>
+                <strong>Reportes de docentes</strong>
+            </div>
+            <div class="card-body">
+                <canvas id="myChart" ></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                <i class="icon-pie-chart"></i>
+                <strong>Reportes de externos</strong>
+            </div>
+            <div class="card-body">
+                <canvas id="myChart2" ></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                <i class="icon-pie-chart"></i>
+                <strong>Reportes de docentes - </strong>
+                <select [(ngModel)]="OpcionSeleccionado">
+                    <option value="1">1er Reporte</option>
+                    <option value="2">2do Reporte</option>
+                    <option value="3">3er Reporte</option>
+                </select>
+                <label class="btn btn-dark">
+                    Seleccionar<input type="submit" name="file" hidden multiple (click)="graficaDocente()">
+                </label>
+            </div>
+            <div class="card-body">
+                <canvas id="myChart3" ></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                <i class="icon-pie-chart"></i>
+                <strong>Reportes de externos - </strong>
+                <select [(ngModel)]="OpcionSeleccionado2">
+                    <option value="1">1er Reporte</option>
+                    <option value="2">2do Reporte</option>
+                    <option value="3">3er Reporte</option>
+                </select>
+                <label class="btn btn-dark">
+                    Seleccionar<input type="submit" name="file" hidden multiple (click)="graficaExterno()">
+                </label>
+            </div>
+            <div class="card-body">
+                <canvas id="myChart4" ></canvas>
+            </div>
+        </div>
+    </div>
+</div>

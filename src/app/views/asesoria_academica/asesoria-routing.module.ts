@@ -13,9 +13,12 @@ import { GruposComponent } from './grupos/grupos.component';
 import { PagoSinFormalizarComponent } from './pago_sin_formalizar/pago_sin_formalizar.component';
 import { SinPagoRegistradoComponent } from './sin_pago_registrado/sin_pago_registrado.component';
 import { ReporteCompletoComponent } from './reporte_completo/reporte_completo.component'; */
+import { Form_asesorComponent } from './form_asesor/form_asesor.component';
 import { Form_alumnoComponent } from './form_alumno/form_alumno.component'
 import { GeneralidadesComponent } from './generalidades/generalidades.component';
 import { AperturaComponent } from './apertura/apertura.component';
+import { SolicitudesComponent } from './solicitudes/solicitudes.component';
+
 
 
 var rutas=[];
@@ -119,25 +122,25 @@ function agregarModulos(modulo){
           title: 'Vigencia de pagos'
         }
       });
-      break;
-    case 'Grupos':
-      modulos.push({
-        path: 'grupos',
-        component: GruposComponent,
-        data: {
-          title: 'Grupos'
-        }
-      });
-      break;
-    case 'Pago sin formalizar':
-      modulos.push({
-        path: 'pago_sin_formalizar',
-        component: PagoSinFormalizarComponent,
-        data: {
-          title: 'Pago sin formalizar'
-        }
-      });
       break;*/
+    case 'Solicitudes':
+      modulos.push({
+        path: 'solicitudes',
+        component: SolicitudesComponent,
+        data: {
+          title: 'Solicitudes'
+        }
+      });
+      break;
+    case 'Solicitud asesor':
+      modulos.push({
+        path: 'solicitud_asesor',
+        component: Form_asesorComponent,
+        data: {
+          title: 'Solicitud Asesor'
+        }
+      });
+      break;
     case 'Solicitud almno':
       modulos.push({
         path: 'solicitud_almno',

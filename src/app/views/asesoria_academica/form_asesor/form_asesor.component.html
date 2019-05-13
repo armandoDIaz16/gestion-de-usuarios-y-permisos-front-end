@@ -1,0 +1,260 @@
+<div *ngIf="activado" class="container">
+  <div class="app-body">
+    <main class="main d-flex align-items-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 mx-auto">
+            <div align="center">
+              <h2>DEPARTAMENTO DE DESARROLLO ACADEMICO</h2>
+              <hr size=10 noshade="noshade">
+              <h4>PROGRAMA DE ASESORIA ACADEMICA ENTRE ESTUDIANTES</h4>
+              <h4>REGISTRO DE ESTUDIANTES ASESORES/AS</h4>
+            </div>
+            <div class="card-group">
+              <div class="card p-6">
+                <div class="card-body">
+                  <form #alumnoForm=ngForm (ngSubmit)="onSubmit()">
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-user"></i></span>
+                      </div>
+                      <input type="text" name="control" class="form-control" placeholder="Numero de comtrol"
+                        id="inputControl" autocomplete="control" [disabled]="true" [(ngModel)]="form.control" required>
+                    </div>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-user"></i></span>
+                      </div>
+                      <input type="text" name="apep" class="form-control" placeholder="Apellido Paterno" id="inputApep"
+                        autocomplete="apep" [disabled]="true" [(ngModel)]="form.apep" required>
+                    </div>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-user"></i></span>
+                      </div>
+                      <input type="text" name="apem" class="form-control" placeholder="Apellido Materno" id="inputApem"
+                        autocomplete="apem" [disabled]="true" [(ngModel)]="form.apem" required>
+                    </div>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-user"></i></span>
+                      </div>
+                      <input type="text" name="name" class="form-control" placeholder="Nombre(s)" id="inputName"
+                        autocomplete="name" [disabled]="true" [(ngModel)]="form.name" required>
+                    </div>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-user"></i></span>
+                      </div>
+                      <!--<select class="col-10" type="text" name="carrera" [(ngModel)]="form.carrera">
+                          <option value='0' disabled>selecciona tu carrera</option>
+                          <option *ngFor="let carrera of carreras">{{carrera}}</option>
+                        </select> -->
+                      <input type="text" name="carrera" class="form-control" placeholder="Carrera" id="inputCarrera"
+                        autocomplete="carrera" [disabled]="true" [(ngModel)]="form.carrera" required>
+                    </div>
+                    <div class="input-group mb-4">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-envelope-open"></i></span>
+                      </div>
+                      <input type="email" name="email" class="form-control" placeholder="Correo Electronico"
+                        id="inputemail5" autocomplete="email" [disabled]="true" [(ngModel)]="form.email" required>
+                    </div>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-user"></i></span>
+                      </div>
+                      <input type="text" name="celular" class="form-control" placeholder="Numero Celular"
+                        id="inputCelular" autocomplete="celular" [disabled]="true" [(ngModel)]="form.celular" required>
+                    </div>
+
+
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-user"></i></span>
+                      </div>
+                      <input type="text" name="semestre" class="form-control" placeholder="Semestre" id="semestre"
+                        autocomplete="semestre" [disabled]="true" [(ngModel)]="form.semestre" required>
+                    </div>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-user"></i></span>
+                      </div>
+                      <input type="text" name="promedio" class="form-control" placeholder="Promedio" id="promedio"
+                        autocomplete="promedio" [disabled]="true" [(ngModel)]="form.promedio" required>
+                    </div>
+
+
+                    <div class="input-group mb-3">
+                      <h5>Elige los dias de tu asesoria</h5>
+                    </div>
+                    <div class="input-group mb-3">
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"
+                          (change)="habilitarHoras()" name="lunes" [(ngModel)]="form.lunes">
+                        <label class="form-check-label" for="inlineCheckbox1">Lunes</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"
+                          (change)="habilitarHoras()" name="martes" [(ngModel)]="form.martes">
+                        <label class="form-check-label" for="inlineCheckbox2">Martes</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"
+                          (change)="habilitarHoras()" name="miercoles" [(ngModel)]="form.miercoles">
+                        <label class="form-check-label" for="inlineCheckbox3">Miercoles</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4"
+                          (change)="habilitarHoras()" name="jueves" [(ngModel)]="form.jueves">
+                        <label class="form-check-label" for="inlineCheckbox3">Jueves</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5"
+                          (change)="habilitarHoras()" name="viernes" [(ngModel)]="form.viernes">
+                        <label class="form-check-label" for="inlineCheckbox3">Viernes</label>
+                      </div>
+                    </div>
+                    <!-- <div class="input-group mb-3">
+                        <a class="btn btn-sm btn-pill btn-danger col-12" (click)="borraHora()">Cargar Horario</a>
+                      </div> -->
+                    <div class="input-group mb-3">
+                      <h5>Elige la hora de tu asesoria</h5>
+                    </div>
+
+                    <div class="input-group mb-3" *ngIf="!habilitarHoraLunes">
+                      <div class="input-group-prepend">
+                        Lunes
+                        <span class="input-group-text"><i class="icon-hourglass"></i></span>
+                      </div>
+                      <select type="number" name="levelNum" [(ngModel)]="form.levelNum" [disabled]="habilitarHoraLunes"
+                        [hidden]="habilitarHoraLunes">
+                        <option value='0' disabled>HORA</option>
+                        <option *ngFor="let level of horariosLunes">{{level}}</option>
+                      </select>
+                    </div>
+
+                    <div class="input-group mb-3" *ngIf="!habilitarHoraMartes">
+                      Martes
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-hourglass"></i></span>
+                      </div>
+                      <select type="number" name="levelNum1" [(ngModel)]="form.levelNum1"
+                        [disabled]="habilitarHoraMartes" [hidden]="habilitarHoraMartes">
+                        <option value='0' disabled>HORA</option>
+                        <option *ngFor="let level of horariosMartes">{{level}}</option>
+                      </select>
+                    </div>
+
+                    <div class="input-group mb-3" *ngIf="!habilitarHoraMiercoles">
+                      Miercoles
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-hourglass"></i></span>
+                      </div>
+                      <select type="number" name="levelNum2" [(ngModel)]="form.levelNum2"
+                        [disabled]="habilitarHoraMiercoles" [hidden]="habilitarHoraMiercoles">
+                        <option value='0' disabled>HORA</option>
+                        <option *ngFor="let level of horariosMiercoles">{{level}}</option>
+                      </select>
+                    </div>
+
+                    <div class="input-group mb-3" *ngIf="!habilitarHoraJueves">
+                      Jueves
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-hourglass"></i></span>
+                      </div>
+                      <select type="number" name="levelNum3" [(ngModel)]="form.levelNum3"
+                        [disabled]="habilitarHoraJueves" [hidden]="habilitarHoraJueves">
+                        <option value='0' disabled>HORA</option>
+                        <option *ngFor="let level of horariosJueves">{{level}}</option>
+                      </select>
+                    </div>
+
+                    <div class="input-group mb-3" *ngIf="!habilitarHoraViernes">
+                      Viernes
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-hourglass"></i></span>
+                      </div>
+                      <select type="number" name="levelNum4" [(ngModel)]="form.levelNum4"
+                        [disabled]="habilitarHoraViernes" [hidden]="habilitarHoraViernes">
+                        <option value='0' disabled>HORA</option>
+                        <option *ngFor="let level of horariosViernes">{{level}}</option>
+                      </select>
+                    </div>
+                    <div class="input-group mb-3">
+                      <h5>Elige la materia de tu asesoria</h5>
+                    </div>
+                    <div class="input-group mb-3" *ngIf="!habilitarMaterias">
+                     <!--  <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-hourglass"></i></span>
+                      </div> -->
+                       <select  style="width:150px"  type="text"  name="materia" [(ngModel)]="form.materia" [disabled]="habilitarMaterias"
+                        [hidden]="habilitarMaterias">
+                        <option value='0' disabled>MATERIA</option>
+                        <option *ngFor="let mate of materias2">{{mate}}</option>
+                      </select>
+                    </div>
+                    <div class="input-group mb-3" *ngIf="!habilitarMaterias">
+                      <!-- <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-hourglass"></i></span>
+                      </div> -->
+                        <select  style="width:150px"  type="text" name="materia1" [(ngModel)]="form.materia1" [disabled]="habilitarMaterias"
+                        [hidden]="habilitarMaterias">
+                        <option value='0' disabled>MATERIA</option>
+                        <option *ngFor="let mate of materias2">{{mate}}</option>
+                      </select>
+                    </div>
+                    <div class="input-group mb-3" *ngIf="!habilitarMaterias">
+                      <!-- <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-hourglass"></i></span>
+                      </div> -->
+                        <select  style="width:150px"  type="text" name="materia2" [(ngModel)]="form.materia2" [disabled]="habilitarMaterias"
+                        [hidden]="habilitarMaterias">
+                        <option value='0' disabled>MATERIA</option>
+                        <option *ngFor="let mate of materias2">{{mate}}</option>
+                      </select>
+                    </div>
+                    <div class="input-group mb-3">
+                      <h5>Elige interes en validar</h5>
+                    </div>
+                    <div class="input-group mb-3" *ngIf="!habilitarMaterias">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-hourglass"></i></span>
+                      </div>
+                        <select  style="width:150px"  type="text" name="validar" [(ngModel)]="form.validar" [disabled]="habilitarMaterias"
+                        [hidden]="habilitarMaterias">
+                        <option value='0' disabled>VALIDAR</option>
+                        <option value='CREDITO COMPLEMENTARIO'>CREDITO COMPLEMENTARIO</option>
+                        <option value='SERVICIO SOCIAL'>SERVICIO SOCIAL</option>
+                      </select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <h5>Elige Campus</h5>
+                      </div>
+                    <div class="input-group mb-3" *ngIf="!habilitarMaterias">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-hourglass"></i></span>
+                      </div>
+                        <select  style="width:150px"  type="text" name="campus" [(ngModel)]="form.campus" [disabled]="habilitarMaterias"
+                        [hidden]="habilitarMaterias">
+                        <option value='0' disabled>CAMPUS</option>
+                        <option value='CAMPUS I'>CAMPUS I</option>
+                        <option value='CAMPUS IIL'>CAMPUS II</option>
+                      </select>
+                    </div>
+                    <div class="row">
+                      <div class="col-6">
+                        <button type="submit" class="btn btn-primary px-4"
+                          [disabled]="!alumnoForm.valid">Ingresar</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

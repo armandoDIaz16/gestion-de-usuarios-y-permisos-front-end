@@ -13,7 +13,7 @@ import { RequestResetComponent } from './components/password/request-reset/reque
 import { ResponseResetComponent } from './components/password/response-reset/response-reset.component';
 import { BeforeLoginService } from './services/before-login.service';
 import { AfterLoginService } from './services/after-login.service';
-import { EgresadosComponent } from './views/egresados/egresados.component';
+// import { EgresadosComponent } from './views/egresados/egresados.component';
 import { FormularioComponent } from './components/formulario/formulario.component';
 import { ControlComponent } from './components/control/control.component';
 import { StudentOldComponent } from './components/student-old/student-old.component';
@@ -31,14 +31,9 @@ export const routes: Routes = [
   {
     path: '404',
     component: P404Component,
-    canActivate: [BeforeLoginService]},
-  {
-    path: 'egresados',
-    component: EgresadosComponent,
-    data: {
-      title: 'Egresados'
-    }
+    canActivate: [BeforeLoginService]
   },
+
   {
     path: 'formulario',
     component: FormularioComponent,
@@ -119,6 +114,10 @@ export const routes: Routes = [
         loadChildren: './views/aspirantes/aspirantes.module#AspirantesModule'
       },
       {
+        path: 'egresados',
+        loadChildren: './views/egresados/egresados.module#EgresadosModule'
+      },
+        {
         path: 'residencias',
         loadChildren: './views/residencias/residencias.module#ResidenciasModule'
       },
@@ -129,6 +128,10 @@ export const routes: Routes = [
       {
         path: 'asesoria_academica',
         loadChildren: './views/asesoria_academica/asesoria.module#AsesoriaModule'
+      },
+      {
+        path: 'creditos',
+        loadChildren: './views/creditos/creditos.module#CreditosModule'
       },
       {
         path: 'charts',

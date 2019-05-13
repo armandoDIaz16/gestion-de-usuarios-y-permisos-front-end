@@ -1,0 +1,64 @@
+<div class="card text-center">
+    <div class="card-header">
+        <h5 class="card-title">Maestro</h5>
+    </div>
+    <div class="card-body">
+        <select [(ngModel)]="opcion" name="teacher" id="teacher" class="form-control form-control-lg">
+            <option *ngFor="let estadoCivil of maestrosLista" value="{{estadoCivil.PK_USUARIO}}"> {{estadoCivil.name}} </option>
+        </select>
+        <br>
+        <label class="btn btn-dark">
+            Reportes<input type="submit" value="submit" name="submit" hidden (click)="cargarReportes(opcion)">
+        </label>
+    </div>
+</div>
+<div class="card">
+<table class="table" >
+    <thead>
+    <tr>
+        <th>Usuario</th>
+        <th>Reporte</th>
+        <th>Alumno</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let com of reporteLista; let e = index">
+        <td>{{com.PK_REPORTE_DOCENTE}}</td>
+        <td>{{com.PDF}}</td>
+        <td>{{com.ALUMNO}}</td>
+    </tr>
+    </tbody>
+</table>
+</div>
+<div class="card text-center">
+    <div class="card-header">
+        <h5 class="card-title">Externo</h5>
+    </div>
+    <div class="card-body">
+        <select [(ngModel)]="opcion2" name="externo" id="externo" class="form-control form-control-lg">
+            <option *ngFor="let estado of externoLista" value="{{estado.PK_USUARIO}}"> {{estado.name}} </option>
+        </select>
+        <br>
+        <label class="btn btn-dark">
+            Reportes<input type="submit" value="submit" name="submit" hidden (click)="cargarReportes2(opcion2)">
+        </label>
+    </div>
+</div>
+<div class="card">
+    <table class="table" >
+        <thead>
+        <tr>
+            <th>Usuario</th>
+            <th>Reporte</th>
+            <th>Alumno</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let como of repextLista; let e = index">
+            <td>{{como.PK_REPORTE_EXTERNO}}</td>
+            <td>{{como.PDF}}</td>
+            <td>{{como.ALUMNO}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

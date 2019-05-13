@@ -1,0 +1,60 @@
+<div class="card">
+<table class="table" >
+    <thead>
+    <tr class="card-header">
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Empresa</th>
+        <th>Especialidad</th>
+        <th>Abandonar</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let antep of anteproyectosLista">
+        <td>{{antep.ID_ANTEPROYECTO}}</td>
+        <td>{{ antep.NOMBRE }}</td>
+        <td>{{ antep.EMPRESA }}</td>
+        <td>{{ antep.TIPO_ESPECIALIDAD }}</td>
+        <td>  <label class="btn btn-danger">
+            Dejar proyecto<input type="submit" value="submit" name="submit" hidden (click)="updateProyect(antep.ID_ANTEPROYECTO)">
+        </label></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+<br>
+<div class="card">
+<h2 class="card-header">Sube tu anteproyecto.</h2>
+<div style="text-align: center;" >
+    <br>
+<label class="btn btn-dark">
+    Seleccionar<input type="file" name="file" hidden multiple (change)="uploadFile2($event)">
+</label>
+</div>
+</div>
+<br>
+<div class="card">
+<h2 class="card-header">Sube tu reporte.</h2>
+<div style="text-align: center;" >
+    <br>
+    <select [(ngModel)]="ID" name="ID" class="form-control form-control-lg" placeholder="Reporte">
+        <option value="1">1er Reporte parcial</option>
+        <option value="2">2do Reporte parcial</option>
+        <option value="3">Reporte final</option>
+    </select>
+   <br><br>
+    <label class="btn btn-dark">
+        Seleccionar<input type="file" name="file" hidden multiple (change)="uploadFile($event)">
+    </label>
+</div>
+</div>
+<br>
+<div class="card">
+    <h2 class="card-header">Sube tu informe tecnico.</h2>
+    <div style="text-align: center;" >
+        <br>
+        <label class="btn btn-dark">
+            Seleccionar<input type="file" name="file" hidden multiple (change)="uploadFile3($event)">
+        </label>
+    </div>
+</div>

@@ -40,7 +40,7 @@ import { AppRoutingModule } from './app.routing';
 // Import 3rd party components
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
-import { EgresadosComponent } from './views/egresados/egresados.component';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { SistemsComponent } from './sistems/sistems.component';
 import { ChartsModule } from 'ng2-charts';
 
@@ -74,6 +74,7 @@ import { ReactiveFormsModule} from '@angular/forms';
 import {DocumentacionComponent} from './views/residencias/documentacion/documentacion.component';
 
 
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -101,16 +102,15 @@ import {DocumentacionComponent} from './views/residencias/documentacion/document
     P404Component,
     P500Component,
     LoginComponent,
-    //SignupComponent,
+  //  SignupComponent,
     RegisterComponent,
     RequestResetComponent,
     ResponseResetComponent,
-    EgresadosComponent,
     SistemsComponent,
     FormularioComponent,
     ControlComponent,
     StudentOldComponent,
-    NavbarSistemsComponent
+    NavbarSistemsComponent,
   ],
   providers: [
     EstadoCivilService,
@@ -120,7 +120,7 @@ import {DocumentacionComponent} from './views/residencias/documentacion/document
     CarreraService,
     EntidadFederativaService,
     CiudadService,
-    
+
     {
     provide: LocationStrategy,
     useClass: HashLocationStrategy

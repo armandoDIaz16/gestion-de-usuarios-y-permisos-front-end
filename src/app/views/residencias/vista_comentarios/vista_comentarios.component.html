@@ -1,0 +1,46 @@
+<div class="card">
+        <table class="table" >
+            <thead>
+            <tr class="card-header">
+                <th>Alumno</th>
+                <th>Reporte</th>
+                <th>No. Reporte</th>
+                <th>Comentarios</th>
+                <th></th>
+                <th> </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let antep of reporteLista; let i = index">
+                <td>{{antep.name}}</td>
+                <td><a href="{{'http://127.0.0.1:8000/'+antep.PDF}}" target="_blank">{{ antep.NOMBRE }}</a></td>
+                <td>{{ antep.NUMERO}}</td>
+                <td><textarea [(ngModel)]="comentario[i]" type="text"></textarea></td>
+                <td>  <label class="btn btn-dark">
+                    Guardar<input type="submit" value="submit" name="submit" hidden (click)="enviarComentarios(antep.NUMERO, comentario[i])">
+                </label></td>
+                <td>  <label class="btn btn-dark">
+                    Comentarios<input type="submit" value="submit" name="submit" hidden (click)="cargarComentario(antep.PK_REPORTE)">
+                </label></td>
+            </tr>
+            </tbody>
+        </table>
+</div>
+<div class="card">
+        <table class="table" >
+               <thead>
+               <tr class="card-header">
+                   <th>Usuario</th>
+                   <th>Reporte</th>
+                   <th>Comentario</th>
+               </tr>
+               </thead>
+               <tbody>
+                <tr *ngFor="let com of comentarioLista; let e = index">
+                        <td>{{com.name}}</td>
+                        <td>{{com.NOMBRE}}</td>
+                        <td>{{com.COMENTARIO}}</td>
+                    </tr>
+              </tbody>
+        </table>
+</div>

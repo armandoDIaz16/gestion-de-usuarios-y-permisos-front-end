@@ -1,0 +1,16 @@
+<div class="card">
+    <table class="table" >
+        <thead>
+        <tr class="card-header">
+            <th>Alumno</th>
+            <th>Archivo</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let antep of informeLista">
+            <td>{{ antep.name }}</td>
+            <td><a href="{{'http://127.0.0.1:8000/'+antep.INFORME}}" target="_blank">{{antep.INFORME}}</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

@@ -77,8 +77,8 @@ export class PeriodoComponent implements OnInit {
             "PK_PERIODO_PREFICHAS": this.idPeriodo,
             "FECHA_INICIO": this.fechaInicio,
             "FECHA_FIN": this.fechaFin,
-            "FK_USUARIO_MODIFICACION": sessionStorage.getItem('IdUsuario')
-        });
+
+          });
         console.log("Modificacion");
     }else{        
       this.periodoService.addPeriodo({

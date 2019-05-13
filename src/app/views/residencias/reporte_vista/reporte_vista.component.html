@@ -1,0 +1,32 @@
+<div class="card text-center">
+    <div class="card-header">
+        <h5 class="card-title">Maestro</h5>
+    </div>
+    <div class="card-body">
+        <select [(ngModel)]="opcion" name="teacher" id="teacher" class="form-control form-control-lg">
+            <option *ngFor="let estadoCivil of maestrosLista" value="{{estadoCivil.PK_USUARIO}}"> {{estadoCivil.name}} </option>
+        </select>
+        <br>
+        <label class="btn btn-dark">
+            Comentarios<input type="submit" value="submit" name="submit" hidden (click)="cargarReportes(opcion)">
+        </label>
+    </div>
+</div>
+<div class="card">
+    <table class="table" >
+        <thead>
+        <tr class="card-header">
+            <th>Usuario</th>
+            <th>Reporte</th>
+            <th>Comentario</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let com of reporteLista; let e = index">
+            <td>{{com.name}}</td>
+            <td><a href="{{'http://127.0.0.1:8000/'+com.PDF}}" target="_blank">{{ com.NOMBRE }}</a></td>
+            <td>{{com.NUMERO}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

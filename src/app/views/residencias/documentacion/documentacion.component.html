@@ -1,7 +1,6 @@
-<div class="animated fadeIn">
-
+<div class="card">
 <div style="text-align: left">
-  <label>Documento a subir:</label><br>
+  <h2 class="card-header">Documento a subir:</h2><br>
 </div>
 <div style="text-align: center;">  <!--  <input [(ngModel)]="id" type="text" autofocus maxlength="2" name="id"> -->
   <select [(ngModel)]="id" name="id" class="form-control form-control-lg" placeholder="Area academica">
@@ -9,9 +8,8 @@
     <option value="1">Solicitud de residencias</option>
     <option value="2">Carta de aceptación</option>
   </select><br>
-  <label >Documento a subir</label><br>
   <label class="btn btn-dark">
-    Upload file<input type="file" name="file" hidden multiple (change)="uploadFile($event)">
+    Selecciona archivo<input type="file" name="file" hidden multiple (change)="uploadFile($event)">
   </label>
 </div>
 </div>
