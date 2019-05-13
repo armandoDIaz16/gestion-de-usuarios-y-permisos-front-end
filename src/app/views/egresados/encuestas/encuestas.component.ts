@@ -1,8 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
-
-=======
->>>>>>> 9941b46248d4f757da7405609c3bdadfd5d3e406
 
 @Component({
   selector: 'app-encuestas',
