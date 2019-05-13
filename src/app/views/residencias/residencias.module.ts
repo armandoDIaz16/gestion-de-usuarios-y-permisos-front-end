@@ -31,6 +31,9 @@ import { Calificacion_alumnoComponent } from './calificacion_alumno/calificacion
 import { Habilitar_residentesComponent } from './habilitar_residentes/habilitar_residentes.component';
 import { Reporte_asesor_externoComponent } from './reporte_asesor_externo/reporte_asesor_externo.component';
 import { Vista_documentacionComponent } from './vista_documentacion/vista_documentacion.component';
+import { Banco_estadisticaComponent } from './banco_estadistica/banco_estadistica.component';
+import { Estadisticas_reportesComponent } from './estadisticas_reportes/estadisticas_reportes.component';
+import { Informe_tecnicoComponent } from './informe_tecnico/informe_tecnico.component';
 
 // Angular
 
@@ -63,7 +66,10 @@ import { Vista_documentacionComponent } from './vista_documentacion/vista_docume
     Calificacion_alumnoComponent,
     Habilitar_residentesComponent,
     Reporte_asesor_externoComponent,
-    Vista_documentacionComponent
+    Vista_documentacionComponent,
+    Banco_estadisticaComponent,
+    Estadisticas_reportesComponent,
+    Informe_tecnicoComponent
   ]
 })
 export class ResidenciasModule { }
