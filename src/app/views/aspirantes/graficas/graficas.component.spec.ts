@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ReimpresiónComponent } from './reimpresión.component';
+import { GraficasComponent } from './graficas.component';
 
-describe('ReimpresiónComponent', () => {
-  let component: ReimpresiónComponent;
-  let fixture: ComponentFixture<ReimpresiónComponent>;
+describe('GraficasComponent', () => {
+  let component: GraficasComponent;
+  let fixture: ComponentFixture<GraficasComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ReimpresiónComponent ]
+      declarations: [ GraficasComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ReimpresiónComponent);
+    fixture = TestBed.createComponent(GraficasComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

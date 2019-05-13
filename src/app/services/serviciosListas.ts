@@ -16,3 +16,11 @@ export interface IUniversidad{
 }
 export interface ICarreraUniversidad{
 }
+export interface IBachillerato{
+}
+export interface IColonia{
+}
+export interface ISalon{
+}
+export interface ITurno{
+}

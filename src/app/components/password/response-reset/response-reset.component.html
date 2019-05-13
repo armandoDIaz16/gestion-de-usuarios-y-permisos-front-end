@@ -7,7 +7,7 @@
             <div class="card p-3">
               <div class="card-body">
                 <form #ResetPasswordForm=ngForm (ngSubmit)="onSubmit()"> 
-                  <h1>Restablece contraseña</h1>
+                  <h1>Cambio de contraseña</h1>
 
                   <!-- <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -35,7 +35,7 @@
                   </div>
                   <div class="row">
                     <div class="col-6">
-                      <button type="submit" class="btn btn-primary px-4" [disabled]="!ResetPasswordForm.valid">Restablecer contraseña</button>
+                      <button type="submit" class="btn btn-primary px-4" [disabled]="!ResetPasswordForm.valid">Guardar</button>
                     </div>
                   </div>
                 </form>

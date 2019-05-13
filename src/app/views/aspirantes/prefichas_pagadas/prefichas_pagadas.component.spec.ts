@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PagoSinFormalizarComponent } from './pago_sin_formalizar.component';
+import { PrefichasPagadasComponent } from './prefichas_pagadas.component';
 
-describe('PagoSinFormalizarComponent', () => {
-  let component: PagoSinFormalizarComponent;
-  let fixture: ComponentFixture<PagoSinFormalizarComponent>;
+describe('PrefichasPagadasComponent', () => {
+  let component: PrefichasPagadasComponent;
+  let fixture: ComponentFixture<PrefichasPagadasComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PagoSinFormalizarComponent ]
+      declarations: [ PrefichasPagadasComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PagoSinFormalizarComponent);
+    fixture = TestBed.createComponent(PrefichasPagadasComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

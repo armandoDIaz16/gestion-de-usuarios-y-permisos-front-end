@@ -9,10 +9,11 @@ import { JarwisService } from '../../../services/jarwis.service';
 export class ResponseResetComponent implements OnInit {
   public error=[];
   public form = {
-    email : localStorage.getItem("email"),
+    email : null,
     password : null,
     password_confirmation:null,
     resetToken :null
+    
   }
   constructor(
     private route:ActivatedRoute,
@@ -20,7 +21,8 @@ export class ResponseResetComponent implements OnInit {
     private router:Router
   ) { 
     route.queryParams.subscribe(params => {
-      this.form.resetToken = params['token']
+      this.form.resetToken = params['token'];
+      this.form.email = params['email'];
     });
   }
 
@@ -32,7 +34,7 @@ export class ResponseResetComponent implements OnInit {
   }
   handleResponse(data){
     
-  this.router.navigateByUrl('/home');
+  this.router.navigateByUrl('/login');
   }
 
   handleError(error){
