@@ -1,0 +1,99 @@
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+        <div class="col-sm-5">
+             <h3 class="card-title mb-0">Seguimiento de actividades</h3>
+        <!-- Nav tabs -->
+        <tabset>
+          <tab *ngFor="let lineamiento of lineamientos"  heading="{{(lineamiento.NOMBRE.length>10)? (lineamiento.NOMBRE | slice:0:6)+'..':(lineamiento.NOMBRE)}}" (select)="onClick(lineamiento.PK_LINEAMIENTO)">
+            <h3>{{lineamiento.NOMBRE}}</h3>
+            <div *ngIf="showTable1; else elseBlock">
+            <table class="table table-responsive-sm table-hover table-outline mb-0">
+                <thead class="thead-light">
+                 <tr>
+                <th>Actividad</th>
+                <th>Fecha</th>
+                <th>Tipo</th>
+                <th>Entrada</th>
+                <th>Salida</th>
+                </tr>
+            </thead>
+                <tr *ngFor="let list of listaActividades">
+                    <td>
+                        <div>{{list.NOMBRE}}</div>
+                    </td>
+                    <td>
+                        <div>{{list.FECHA}}</div>
+                    </td>
+                    <td>
+                        <div>{{list.FK_TIPO}}</div>
+                    </td>
+                    <td>
+                        <div>&#10004;</div>
+                    </td>
+                    <td *ngIf="list.SALIDA == 1; else equis"> 
+                        <div>&#10004;</div>
+                    </td>
+                    <ng-template #equis>
+                        <td>
+                            <div>&#x274c;</div>
+                        </td>
+                    </ng-template>
+                </tr>
+            </table>
+            </div>
+            <ng-template #elseBlock>
+                    <p>No has asistido a ninguna actividad</p>
+            </ng-template>
+        </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-5">
+        <h3 class="card-title mb-0">Creditos cumplidos</h3>
+      </div>
+      <hr>
+<div style="width: 100%" ngIF="showTable2; else #sinCreditos">
+<table class="table table-responsive-sm table-hover table-outline mb-0">
+  <thead class="thead-light">
+    <tr>
+      <th>Credito</th>
+      <th>Periodo</th>
+      <th>Validacion 1</th>
+      <th>Validacion 2</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let cc of creditosCumplidos">
+      <td>
+        <div>{{cc.NOMBRE}}</div>
+      </td>
+      <td>
+        <div>{{cc.PERIODO}}</div>
+      </td>
+      <td>
+        <div>{{cc.VALIDACION_1}}</div>   
+      </td>
+      <td>
+        <div>{{cc.VALIDACION_2}}</div>
+      </td>
+      <td>
+        <div>Ver constancia</div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+  <ng-template #sinCreditos>
+    <p>Aun no cumples con ningun credito</p>
+  </ng-template>
+</div>
+</div>
+</div>

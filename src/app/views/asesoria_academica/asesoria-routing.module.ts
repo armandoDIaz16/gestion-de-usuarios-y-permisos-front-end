@@ -17,6 +17,8 @@ import { Form_asesorComponent } from './form_asesor/form_asesor.component';
 import { Form_alumnoComponent } from './form_alumno/form_alumno.component'
 import { GeneralidadesComponent } from './generalidades/generalidades.component';
 import { AperturaComponent } from './apertura/apertura.component';
+import { SolicitudesComponent } from './solicitudes/solicitudes.component';
+
 
 
 var rutas=[];
@@ -120,16 +122,16 @@ function agregarModulos(modulo){
           title: 'Vigencia de pagos'
         }
       });
-      break;
-    case 'Grupos':
+      break;*/
+    case 'Solicitudes':
       modulos.push({
-        path: 'grupos',
-        component: GruposComponent,
+        path: 'solicitudes',
+        component: SolicitudesComponent,
         data: {
-          title: 'Grupos'
+          title: 'Solicitudes'
         }
       });
-      break;*/
+      break;
     case 'Solicitud asesor':
       modulos.push({
         path: 'solicitud_asesor',

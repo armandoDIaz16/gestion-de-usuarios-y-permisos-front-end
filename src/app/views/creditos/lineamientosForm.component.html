@@ -1,0 +1,34 @@
+<div class="card">
+        <div class="card-header">
+          <strong>{{titulo}}</strong>
+          <small>Form</small>
+        </div>
+        <div class="card-body">
+          <form #lineamientosForm=ngForm (ngSubmit)="saveLineamiento()">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="name">Nombre</label>
+                <input [(ngModel)]="lineamiento.NOMBRE" type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingresa el nombre del lineamiento" required>
+              </div>
+            </div>
+          </div>
+           <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="name">Limite</label>
+                <input [(ngModel)]="lineamiento.LIMITE" type="number" class="form-control" id="limite" name="limite" placeholder="Ingresa el limite de créditos para este lineamiento" required>
+              </div>
+            </div>
+          </div>
+           <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <!--<a class="btn btn-primary btn-sm" (click)="saveLineamiento();">Registrar</a>-->
+                <button type="submit" class="btn btn-primary btn-sm" [disabled]="!lineamientosForm.valid" ><i class="fa fa-dot-circle-o"></i> Registrar</button>
+              </div>
+            </div>
+          </div>
+          </form>
+        </div>
+      </div>
