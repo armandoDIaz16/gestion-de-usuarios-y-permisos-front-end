@@ -1,10 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 import { JarwisService } from '../../../services/jarwis.service';
 import { TokenService } from '../../../services/token.service';
 import { Router } from '@angular/router';
 import { AperturaService } from '../../../services/apertura.service';
-import { formArrayNameProvider } from '@angular/forms/src/directives/reactive_directives/form_group_name';
-import { CodegenComponentFactoryResolver } from '@angular/core/src/linker/component_factory_resolver';
 //import * as $ from 'jquery';
 
 let Horarios;
@@ -13,6 +11,8 @@ let Horarios2;
 let Horarios3;
 let Horarios4;
 let Horarios5;
+let json
+//let Materias;
 @Component({
   selector: 'app-form_alumno',
   templateUrl: './form_alumno.component.html',
@@ -26,61 +26,68 @@ export class Form_alumnoComponent implements OnInit {
   fechaFin = null;
   fechaActual = null;
   levels = [];
-  real = 0;
-  periodo = 0;
-  carreras = ['ISC','LOX','LAI','IIX','IN2','MC4','IN4','DC1','II','II4','MC2','IME','EM2','IS4','IS1','IEM','TC2','EMX', 
-    'MCC','EL4','SCA','GE9','TA2','IIP','ISX','LAV','GEV','MC1','TIX','EM1','IE1','IIV','MCX','EM5','LA4','INF','MC3','LO8', 
-    'IE2','IA','TIV','IS2','EMV','LA1','ELX','II2']
-
-
-
-
+  levels1 = [];
+  horariosLunes = [];
+  horariosMartes = [];
+  horariosMiercoles = [];
+  horariosJueves = [];
+  horariosViernes = [];
+  materias2 = [];
+  //materias = [];
 
 
   //Arreglos horarios
-  Dia = [];
-  HoraInicial = [];
-  HoraFinal = [];
-  MinutoInicial = [];
-  MinutoFinal = [];
+  /*   Dia = [];
+    HoraInicial = [];
+    HoraFinal = [];
+    MinutoInicial = [];
+    MinutoFinal = []; */
 
-  public data = [];
 
   public form = {
+    id: sessionStorage.getItem("IdUsuario"),
+    dia: null,
+    hora: null,
     email: null,
-    //name:null,
-    name: null,/* localStorage.getItem("nombre"), */
-    password: null,
-    password_confirmation: null,
+    name: null,
     curp: null,
     control: null,
     apep: null,
     apem: null,
-    carrera: 0,
+    carrera: null,
     celular: null,
-    dia: null,
     lunes: null,
     martes: null,
     miercoles: null,
     jueves: null,
     viernes: null,
-    checar: null,
-    inicio: null,
-    fin: null,
     levelNum: '0',
     levelNum1: '0',
     levelNum2: '0',
-    anio: null,
-    semestre: null,
-
-
+    levelNum3: '0',
+    levelNum4: '0',
+    materia: '0',
+    campus: '0'
   };
 
-  toNumber() {
-    //this.levelNum = +this.levelNum;
-    console.log(this.form.levelNum + ' no se que sea');
-  }
+  habilitarHoraLunes = true;
+  habilitarHoraMartes = true;
+  habilitarHoraMiercoles = true;
+  habilitarHoraJueves = true;
+  habilitarHoraViernes = true;
+  habilitarMaterias = true;
+
+
+  /*  toNumber() {
+     //this.levelNum = +this.levelNum;
+     console.log(this.form.levelNum + ' no se que sea');
+     console.log(this.form.levelNum1 + ' no se que sea');
+     console.log(this.form.levelNum2 + ' no se que sea');
+     console.log(this.form.materia)
+   } */
   public error = [];
+  public data = [];
+
 
   constructor(private Jarwis: JarwisService,
     private Token: TokenService,
@@ -88,10 +95,137 @@ export class Form_alumnoComponent implements OnInit {
     private periodoService: AperturaService,
   ) { }
 
-  onSubmit() {
-    alert(this.form.dia)
+  habilitarHoras() {
+    if (this.form.lunes) {
+      this.habilitarHoraLunes = false;
+      this.habilitarMaterias = false;
+      this.Jarwis.hora(this.form.control, 1).subscribe(
+        data => {
+          this.form.lunes = 'Lunes';
+          this.borraHora2(data, 1);
+          //console.log(data);
+        },
+        error => this.handleError(error)
+      );
+    } else {
+      this.habilitarHoraLunes = true;
+    }
+    if (this.form.martes) {
+      this.habilitarHoraMartes = false;
+      this.habilitarMaterias = false;
+      this.Jarwis.hora(this.form.control, 2).subscribe(
+        data => {
+          this.form.martes = 'Martes';
+          this.borraHora2(data, 2);
+          // console.log(data);
+        },
+        error => this.handleError(error)
+      );
+    } else {
+      this.habilitarHoraMartes = true;
+    }
+    if (this.form.miercoles) {
+      this.habilitarMaterias = false;
+      this.habilitarHoraMiercoles = false;
+      this.Jarwis.hora(this.form.control, 3).subscribe(
+        data => {
+          this.form.miercoles = 'Miercoles';
+          this.borraHora2(data, 3);
+          //console.log(data);
+        },
+        error => this.handleError(error)
+      );
+    } else {
+      this.habilitarHoraMiercoles = true;
+    }
+    if (this.form.jueves) {
+      this.habilitarMaterias = false;
+      this.habilitarHoraJueves = false;
+      this.Jarwis.hora(this.form.control, 4).subscribe(
+        data => {
+          this.form.jueves = 'Jueves';
+          this.borraHora2(data, 4);
+          // console.log(data);
+        },
+        error => this.handleError(error)
+      );
+    } else {
+      this.habilitarHoraJueves = true;
+    }
+    if (this.form.viernes) {
+      this.habilitarMaterias = false;
+      this.habilitarHoraViernes = false;
+      this.Jarwis.hora(this.form.control, 5).subscribe(
+        data => {
+          this.form.viernes = 'Viernes';
+          this.borraHora2(data, 5);
+          // console.log(data);
+        },
+        error => this.handleError(error)
+      );
+    } else {
+      this.habilitarHoraViernes = true;
+    }
   }
 
+  onSubmit() {
+    if (this.form.levelNum != '0') {
+      this.form.dia = 'Lunes';
+      this.form.hora = this.form.levelNum;
+      console.log(this.form.dia)
+      console.log(this.form.hora)
+      this.Jarwis.solicitud(this.form).subscribe(
+        data => this.handleResponse(data),
+        error => this.handleError(error)
+      );
+    }
+    if (this.form.levelNum1 != '0') {
+      this.form.dia = 'Martes';
+      this.form.hora = this.form.levelNum1;
+      console.log(this.form.dia)
+      console.log(this.form.hora)
+      this.Jarwis.solicitud(this.form).subscribe(
+        data => this.handleResponse(data),
+        error => this.handleError(error)
+      );
+    }
+    if (this.form.levelNum2 != '0') {
+      this.form.dia = 'Miercoles';
+      this.form.hora = this.form.levelNum2;
+      console.log(this.form.dia)
+      console.log(this.form.hora)
+      this.Jarwis.solicitud(this.form).subscribe(
+        data => this.handleResponse(data),
+        error => this.handleError(error)
+      );
+    }
+    if (this.form.levelNum3 != '0') {
+      this.form.dia = 'Jueves';
+      this.form.hora = this.form.levelNum3;
+      console.log(this.form.dia)
+      console.log(this.form.hora)
+      this.Jarwis.solicitud(this.form).subscribe(
+        data => this.handleResponse(data),
+        error => this.handleError(error)
+      );
+    }
+    if (this.form.levelNum4 != '0') {
+      console.log(this.form.levelNum)
+      console.log(this.form.levelNum1)
+      console.log(this.form.levelNum2)
+      console.log(this.form.levelNum3)
+      console.log(this.form.levelNum4)
+
+      this.form.dia = 'Viernes';
+      this.form.hora = this.form.levelNum4;
+      console.log(this.form.dia)
+      console.log(this.form.hora)
+      this.Jarwis.solicitud(this.form).subscribe(
+        data => this.handleResponse(data),
+        error => this.handleError(error)
+      );
+    }
+  }
 
   ngOnInit() {
     this.periodoService.getPeriodo().subscribe(data => {
@@ -100,6 +234,18 @@ export class Form_alumnoComponent implements OnInit {
       this.fechaActual = data[0].FECHA_ACTUAL;
       this.compararFechas();
     });
+    this.Jarwis.datos(this.form.id).subscribe(
+      data => {
+        this.form.control = data[0].control
+        this.form.apep = data[0].apep
+        this.form.apem = data[0].apem
+        this.form.name = data[0].name
+        this.form.carrera = data[0].carrera
+        this.form.email = data[0].email
+        this.form.celular = data[0].celular
+      },
+      error => this.handleError(error)
+    );
   }
 
   compararFechas() {
@@ -117,88 +263,41 @@ export class Form_alumnoComponent implements OnInit {
     }
   }
 
-  ver() {
-    Horarios = [];
-    Horarios1 = [];
-    Horarios2 = [];
-    Horarios3 = [];
-    Horarios4 = [];
-    Horarios5 = [];
-    if (this.form.lunes) {
-      this.Jarwis.hora(this.form.control, 1).subscribe(
-        data => {
-          Horarios1 = data;
-          this.compararHorarios();
-          // this.borraHora();
-        },
-        error => this.handleError(error)
-      );
-    } if (this.form.martes) {
-      this.Jarwis.hora(this.form.control, 2).subscribe(
-        data => {
-          Horarios2 = data;
-          this.compararHorarios();
-          // this.borraHora();
-        },
-        error => this.handleError(error)
-      );
-    } if (this.form.miercoles) {
-      this.Jarwis.hora(this.form.control, 3).subscribe(
-        data => {
-          Horarios3 = data;
-          this.compararHorarios();
-          //this.borraHora();
-        },
-        error => this.handleError(error)
-      );
-    } if (this.form.jueves) {
-      this.Jarwis.hora(this.form.control, 4).subscribe(
-        data => {
-          Horarios4 = data;
-          this.compararHorarios();
-          //this.borraHora();
-        },
-        error => this.handleError(error)
-      );
-    } if (this.form.viernes) {
-      this.Jarwis.hora(this.form.control, 5).subscribe(
-        data => {
-          Horarios5 = data;
-          this.compararHorarios();
-          //this.borraHora();
-        },
-        error => this.handleError(error)
-      );
-    }
+  handleResponse(data) {
+    this.data = data.data;
+    console.log(this.data)
+    this.form.lunes = null;
+    this.form.martes = null;
+    this.form.miercoles = null;
+    this.form.jueves = null;
+    this.form.viernes = null;
+    this.form.levelNum = '0';
+    this.form.levelNum1 = '0';
+    this.form.levelNum2 = '0';
+    this.form.levelNum3 = '0';
+    this.form.levelNum4 = '0';
+    this.form.dia = null;
+    this.form.hora = null;
+    this.form.materia = '0';
+    this.habilitarHoraLunes = true;
+    this.habilitarHoraMartes = true;
+    this.habilitarHoraMiercoles = true;
+    this.habilitarHoraJueves = true;
+    this.habilitarHoraViernes = true;
+    this.habilitarMaterias = true;
+
   }
 
-  habilitar() {
-    this.real = 0;
-    this.levels = [];
-    if (this.form.lunes) {
-      this.real = 1;
-    }
-    if (this.form.martes) {
-      this.real = 1;
-    }
-    if (this.form.miercoles) {
-      this.real = 1;
-    }
-    if (this.form.jueves) {
-      this.real = 1;
-    }
-    if (this.form.viernes) {
-      this.real = 1;
-    }
+  handleError(error) {
+    this.error = error.error.error;
   }
 
-  compararHorarios() {
-    Horarios = (Horarios1.concat(Horarios2.concat(Horarios3.concat(Horarios4.concat(Horarios5)))));
-  }
 
-  borraHora() {
-    if (this.real == 1 && this.form.control) {
-      this.levels = new Array('7-8', '8-9', '9-10', '10-11', '11-12', '12-13', '13-14', '14-15', '15-16', '16-17', '17-18', '18-19', '19-20', '20-21');
+
+  borraHora2(Horarios, diaNum) {
+    if (this.form.control) {
+      this.levels = new Array('7-8', '8-9', '9-10', '10-11', '11-12', '12-13', '13-14', '14-15', '15-16', '16-17', '17-18', '18-19', '19-20', '20-21');      
+      this.levels1 = new Array('7:00-8:40', '8:45-10:25', '10:30-12:10', '12:15-13:55', '14:05-15:45', '15:50-17:30', '17:35-19:15', '19:20-21:00');
       var horarios2 = [];
       for (var dia in Horarios) {
         horarios2.push(Horarios[dia].HoraInicial + "-" + Horarios[dia].HoraFinal);
@@ -206,21 +305,30 @@ export class Form_alumnoComponent implements OnInit {
       if (horarios2.indexOf('7-8') != -1) {
         var index = this.levels.indexOf('7-8');
         this.levels.splice(index, 1);
+        var index = this.levels1.indexOf('7:00-8:40');
+        this.levels1.splice(index, 1);
+
       } else {
       }
       if (horarios2.indexOf('8-10') != -1) {
         var index = this.levels.indexOf('8-9');
         this.levels.splice(index, 2);
+        var index = this.levels1.indexOf('8:45-10:25');
+        this.levels1.splice(index, 1);
       } else {
       }
       if (horarios2.indexOf('10-12') != -1) {
         var index = this.levels.indexOf('10-11');
         this.levels.splice(index, 2);
+        var index = this.levels1.indexOf('10:30-12:10');
+        this.levels1.splice(index, 1);
       } else {
       }
       if (horarios2.indexOf('12-13') != -1) {
         var index = this.levels.indexOf('12-13');
         this.levels.splice(index, 2);
+        var index = this.levels1.indexOf('12:15-13:55');
+        this.levels1.splice(index, 1);
       } else {
       }
       if (horarios2.indexOf('7-7') != -1) {
@@ -257,21 +365,29 @@ export class Form_alumnoComponent implements OnInit {
       if (horarios2.indexOf('14-15') != -1) {
         var index = this.levels.indexOf('14-15');
         this.levels.splice(index, 1);
+        var index = this.levels1.indexOf('14:05-15:45');
+        this.levels1.splice(index, 1);
       } else {
       }
       if (horarios2.indexOf('15-17') != -1) {
         var index = this.levels.indexOf('15-16');
         this.levels.splice(index, 2);
+        var index = this.levels1.indexOf('15:50-17:30');
+        this.levels1.splice(index, 1);
       } else {
       }
       if (horarios2.indexOf('17-19') != -1) {
         var index = this.levels.indexOf('17-18');
         this.levels.splice(index, 2);
+        var index = this.levels1.indexOf('17:35-19:15');
+        this.levels1.splice(index, 1);
       } else {
       }
       if (horarios2.indexOf('19-21') != -1) {
         var index = this.levels.indexOf('19-20');
         this.levels.splice(index, 2);
+        var index = this.levels1.indexOf('19:20-21:00');
+        this.levels1.splice(index, 1);
       } else {
       }
       //viernes tarde
@@ -310,18 +426,33 @@ export class Form_alumnoComponent implements OnInit {
         this.levels.splice(index, 2);
       } else {
       }
+      //Materias= [];
+      this.Jarwis.materia(this.form.control).subscribe(
+        Materias => {
+          //Materias = data;
+          this.materias2 = [];
+          for (var num in Materias) {
+            this.materias2.push(Materias[num].Nombre);
+          }
+        },
+        error => this.handleError(error)
+      );
+    }
+    switch (diaNum) {
+      case 1: this.horariosLunes = this.levels1;
+        break;
+      case 2: this.horariosMartes = this.levels1;
+        break;
+      case 3: this.horariosMiercoles = this.levels1;
+        break;
+      case 4: this.horariosJueves = this.levels1;
+        break;
+      case 5: this.horariosViernes = this.levels;
+        break;
     }
   }
-
-
-  handleResponse(data) {
-    this.data = data.data;
-    console.log(this.data)
-  }
-
-  handleError(error) {
-    this.error = error.error.error;
-  }
-
-
 }
+
+
+
+

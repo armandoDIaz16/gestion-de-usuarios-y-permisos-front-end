@@ -1,0 +1,341 @@
+<div class="row">
+  <div class="col-sm-12 ">
+    <div class="card">
+      <div class="card-header">
+        <i class="fa fa-align-justify"></i> SOLICITUDES
+        <small>PAAE</small>
+      </div>
+      <div class="card-body">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" (click)="asesor()" href="#">Solicitud Asesor</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" (click)="alumno()" href="#">Solicitud de Asesoria</a>
+          </li>
+        </ul>
+        <br><br>
+        <div *ngIf="visasesor">
+          <nav>
+            <label class="btn btn-primary" style="cursor:pointer;">Leer Excel
+              <input type="file" name="file" hidden accept=".csv, .xls, .xlsx" (change)="onFileChange($event)">
+            </label>
+            <label class="btn btn-primary" style="cursor:pointer;">Imprimir Excel
+              <button type="button" (click)="generarExcel()" hidden></button></label>
+            <label class="btn btn-primary">
+              <select class="btn btn-primary" type="text"  [(ngModel)]="periodo" (ngModelChange)="toNumber()">
+                <option value="20191">20191</option>
+                    <option value="20192">20192</option>
+                    <option value="20201">20201</option>
+                    <option value="20202">20202</option>
+                    <option value="20211">20211</option>
+                    <option value="20212">20212</option>
+                    <option value="20221">20221</option>
+                    <option value="20222">20222</option>
+                    <option value="20231">20231</option>
+                    <option value="20232">20232</option>
+                    <option value="20241">20241</option>
+              </select>
+
+            </label>
+            <!-- <button type="button" class="btn btn-primary" (click)="leerExcel()">Leer Excel</button> -->
+            <ul class="pagination pull-right float-sm-right">
+              <li class="page-item {{select1}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros('2')">2</a></li>
+              <li class="page-item {{select2}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros('5')">5</a></li>
+              <li class="page-item {{select3}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros('10')">10</a></li>
+              <li class="page-item {{select4}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros('todos')">Mostrar todos</a></li>
+            </ul>
+          </nav>
+          <table class="table table-bordered table-striped table-sm">
+            <thead>
+              <tr>
+                <th scope="row">#</th>
+                <th>ID</th>
+                <th>NOMBRE</th>
+                <th>PRIMER APELLIDO</th>
+                <th>SEGUNDO APELLIDO</th>
+                <th>CORREO</th>
+                <th>CELULAR</th>
+                <th>MATERIA 1</th>
+                <th>MATERIA 2</th>
+                <th>MATERIA 3</th>
+                <th>DIA</th>
+                <th>HORA</th>
+                <th>CAMPUS</th>
+                <th>PERIODO</th>
+                <th>STATUS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td><input [(ngModel)]="filtroPK_ASESOR_ASESORIA_HORARIO" type="text" class="form-control"
+                    (keyup)="buscar()">
+                </td>
+                <td><input [(ngModel)]="filtroname" type="text" class="form-control" (keyup)="buscar()"></td>
+                <td><input [(ngModel)]="filtroPRIMER_APELLIDO" type="text" class="form-control" (keyup)="buscar()"></td>
+                <td><input [(ngModel)]="filtroSEGUNDO_APELLIDO" type="text" class="form-control" (keyup)="buscar()">
+                </td>
+                <td><input [(ngModel)]="filtroCORREO" type="text" class="form-control" (keyup)="buscar()"></td>
+                <td><input [(ngModel)]="filtroTELEFONO_MOVIL" type="text" class="form-control" (keyup)="buscar()">
+                </td>
+                <td>
+                  <select [(ngModel)]="filtroMATERIA1" class="form-control" name="materia1" (change)="buscar()">
+                    <option value="todas">Todas</option>
+                    <option *ngFor="let asesor of asesor1" value="{{asesor.MATERIA}}">{{asesor.MATERIA}}
+                  </select>
+                </td>
+                <td>
+                  <select [(ngModel)]="filtroMATERIA2" class="form-control" name="materia2" (change)="buscar()">
+                    <option value="todas">Todas</option>
+                    <option *ngFor="let asesor of asesor1" value="{{asesor.MATERIA1}}">{{asesor.MATERIA1}}
+                  </select>
+                </td>
+                <td>
+                  <select [(ngModel)]="filtroMATERIA3" class="form-control" name="materia3" (change)="buscar()">
+                    <option value="todos">Todos</option>
+                    <option *ngFor="let asesor of asesor1" value="{{asesor.MATERIA2}}">{{asesor.MATERIA2}}
+                  </select>
+                </td>
+                <td>
+                  <select [(ngModel)]="filtroDIA" class="form-control" name="dia" (change)="buscar()">
+                    <option value="todos">Todos</option>
+                    <option *ngFor="let asesor of asesor1" value="{{asesor.DIA}}">{{asesor.DIA}}
+                  </select>
+                </td>
+                <td>
+                  <select [(ngModel)]="filtroHORA" class="form-control" name="hora" (change)="buscar()">
+                    <option value="todos">Todos</option>
+                    <option *ngFor="let asesor of asesor1" value="{{asesor.HORA}}">{{asesor.HORA}}
+                  </select>
+                </td>
+                <td>
+                  <select [(ngModel)]="filtroCAMPUS" class="form-control" name="hora" (change)="buscar()">
+                    <option value="todos">Todos</option>
+                    <option *ngFor="let asesor of asesor1" value="{{asesor.CAMPUS}}">{{asesor.CAMPUS}}
+                  </select>
+                </td>
+                <td>
+                  <select [(ngModel)]="filtroPERIODO" class="form-control" name="hora" (change)="buscar()">
+                    <option value="todos">Todos</option>
+                    <option *ngFor="let asesor of asesor1" value="{{asesor.PERIODO}}">{{asesor.PERIODO}}
+                  </select>
+                </td>
+                <td>
+                  <select [(ngModel)]="filtroSTATUS" class="form-control" name="hora" (change)="buscar()">
+                    <option value="todos">Todos</option>
+                    <option *ngFor="let asesor of asesor1" value="{{asesor.STATUS}}">{{asesor.STATUS}}
+                  </select>
+                </td>
+              </tr>
+              <tr
+                *ngFor="let asesor of asesor1 | paginate: {itemsPerPage: registrosPagina, currentPage:pageActual} let i = index">
+                <td>{{i+1}}</td>
+                <td>{{asesor.PK_ASESOR_ASESORIA_HORARIO}}</td>
+                <td>{{asesor.name}}</td>
+                <td>{{asesor.PRIMER_APELLIDO}}</td>
+                <td>{{asesor.SEGUNDO_APELLIDO}}</td>
+                <td>{{asesor.email}}</td>
+                <td>{{asesor.TELEFONO_MOVIL}}</td>
+                <td>{{asesor.MATERIA}}</td>
+                <td>{{asesor.MATERIA1}}</td>
+                <td>{{asesor.MATERIA2}}</td>
+                <td>{{asesor.DIA}}</td>
+                <td>{{asesor.HORA}}</td>
+                <td>{{asesor.CAMPUS}}</td>
+                <td>{{asesor.PERIODO}}</td>
+                <td><span class="badge badge-success">{{asesor.STATUS}}</span></td>
+              </tr>
+
+              <!--               <tr>
+                            <td>Zbyněk Phoibos</td>
+                            <td>2012/02/01</td>
+                            <td>Staff</td>
+                            <td>
+                              <span class="badge badge-danger">Banned</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Einar Randall</td>
+                            <td>2012/02/01</td>
+                            <td>Admin</td>
+                            <td>
+                              <span class="badge badge-secondary">Inactive</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Félix Troels</td>
+                            <td>2012/03/01</td>
+                            <td>Member</td>
+                            <td>
+                              <span class="badge badge-warning">Pending</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Aulus Agmundr</td>
+                            <td>2012/01/21</td>
+                            <td>Staff</td>
+                            <td>
+                              <span class="badge badge-success">Active</span>
+                            </td>
+                          </tr> -->
+            </tbody>
+          </table>
+
+          <div class="d-flex justify-content-center">
+            <pagination-controls class="myPagination" previousLabel="" nextLabel="" maxSize="10"
+              (pageChange)="pageActual = $event">
+            </pagination-controls>
+          </div>
+          <!--           <nav>
+                        <ul class="pagination">
+                          <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+                          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                          <li class="page-item"><a class="page-link" href="#">2</a></li>
+                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                          <li class="page-item"><a class="page-link" href="#">4</a></li>
+                          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                      </nav>   -->
+
+
+
+          <!--/.col-->
+
+
+        </div>
+        <div *ngIf="visalumno">
+          <nav>
+              <label class="btn btn-primary" style="cursor:pointer;">Leer Excel
+                  <input type="file" name="file" hidden accept=".csv, .xls, .xlsx" (change)="onFileChange($event)">
+                </label>
+                <label class="btn btn-primary" style="cursor:pointer;">Imprimir Excel
+                  <button type="button" (click)="generarExcel1()" hidden></button></label>
+                <label class="btn btn-primary">
+                  <select class="btn btn-primary" type="text"  [(ngModel)]="periodo" (ngModelChange)="toNumber1()">
+                    <option value="20191">20191</option>
+                        <option value="20192">20192</option>
+                        <option value="20201">20201</option>
+                        <option value="20202">20202</option>
+                        <option value="20211">20211</option>
+                        <option value="20212">20212</option>
+                        <option value="20221">20221</option>
+                        <option value="20222">20222</option>
+                        <option value="20231">20231</option>
+                        <option value="20232">20232</option>
+                        <option value="20241">20241</option>
+                  </select>
+    
+                </label>
+            <ul class="pagination pull-right float-sm-right">
+              <li class="page-item {{select1}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros('2')">2</a></li>
+              <li class="page-item {{select2}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros('5')">5</a></li>
+              <li class="page-item {{select3}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros('10')">10</a></li>
+              <li class="page-item {{select4}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros('todos')">Mostrar todos</a></li>
+            </ul>
+          </nav>
+          <table class="table table-bordered table-striped table-sm">
+            <thead>
+              <tr>
+                <th scope="row">#</th>
+                <th>ID</th>
+                <th>NOMBRE</th>
+                <th>PRIMER APELLIDO</th>
+                <th>SEGUNDO APELLIDO</th>
+                <th>CORREO</th>
+                <th>CELULAR</th>
+                <th>MATERIA</th>
+                <th>DIA</th>
+                <th>HORA</th>
+                <th>CAMPUS</th>
+                <th>STATUS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td><input [(ngModel)]="filtroPK_ASESOR_ASESORIA_HORARIO" type="text" class="form-control"
+                    (keyup)="buscar()">
+                </td>
+                <td><input [(ngModel)]="filtroname" type="text" class="form-control" (keyup)="buscar()"></td>
+                <td><input [(ngModel)]="filtroPRIMER_APELLIDO" type="text" class="form-control" (keyup)="buscar()"></td>
+                <!--  <td><input [(ngModel)]="filtroPRIMER_APELLIDO" type="text" class="form-control" (keyup)="buscar()">
+                </td> -->
+                <td><input [(ngModel)]="filtroSEGUNDO_APELLIDO" type="text" class="form-control" (keyup)="buscar()">
+                </td>
+                <td><input [(ngModel)]="filtroCORREO" type="text" class="form-control" (keyup)="buscar()"></td>
+                <td><input [(ngModel)]="filtroTELEFONO_CASA" type="text" class="form-control" (keyup)="buscar()">
+                </td>
+                <td><input [(ngModel)]="filtroTELEFONO_MOVIL" type="text" class="form-control" (keyup)="buscar()">
+                </td>
+                <td>
+                  <select [(ngModel)]="filtroMATERIA1" class="form-control" name="carrera1" (change)="buscar()">
+                    <option value="todas">Todas</option>
+                    <option *ngFor="let carrera of carreras" value="{{carrera.NOMBRE}}">{{carrera.NOMBRE}}
+                  </select>
+                </td>
+                <td>
+                  <select [(ngModel)]="filtroMATERIA2" class="form-control" name="carrera2" (change)="buscar()">
+                    <option value="todas">Todas</option>
+                    <option *ngFor="let carrera of carreras" value="{{carrera.NOMBRE}}">{{carrera.NOMBRE}}
+                  </select>
+                </td>
+                <td>
+                  <select [(ngModel)]="filtroESTATUS" class="form-control" name="estatus" (change)="buscar()">
+                    <option value="todos">Todos</option>
+                    <option *ngFor="let estatus2 of estatus" value="{{estatus2.NOMBRE}}">{{estatus2.NOMBRE}}
+                  </select>
+                </td>
+              </tr>
+              <tr
+                *ngFor="let asesor of solicitud | paginate: {itemsPerPage: registrosPagina, currentPage:pageActual} let i = index">
+                <td>{{i+1}}</td>
+                <td>{{asesor.PK_USER_ASESORIA_HORARIO}}</td>
+                <td>{{asesor.name}}</td>
+                <td>{{asesor.PRIMER_APELLIDO}}</td>
+                <td>{{asesor.SEGUNDO_APELLIDO}}</td>
+                <td>{{asesor.email}}</td>
+                <td>{{asesor.TELEFONO_MOVIL}}</td>
+                <td>{{asesor.MATERIA}}</td>
+                <td>{{asesor.DIA}}</td>
+                <td>{{asesor.HORA}}</td>
+                <td>{{asesor.CAMPUS}}</td>
+                <td><span class="badge badge-success">{{asesor.STATUS}}</span></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="d-flex justify-content-center">
+            <pagination-controls class="myPagination" previousLabel="" nextLabel="" maxSize="10"
+              (pageChange)="pageActual = $event">
+            </pagination-controls>
+          </div>
+          <!--           <nav>
+                        <ul class="pagination">
+                          <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+                          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                          <li class="page-item"><a class="page-link" href="#">2</a></li>
+                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                          <li class="page-item"><a class="page-link" href="#">4</a></li>
+                          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                      </nav>   -->
+
+
+
+          <!--/.col-->
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

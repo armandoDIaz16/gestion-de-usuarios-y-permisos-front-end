@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 
 
 // Dropdowns Component
@@ -14,6 +16,8 @@ import { Form_alumnoComponent } from './form_alumno/form_alumno.component';
 import { Form_asesorComponent } from './form_asesor/form_asesor.component';
 import { AperturaComponent } from './apertura/apertura.component';
 import { GeneralidadesComponent } from './generalidades/generalidades.component';
+import { SolicitudesComponent } from './solicitudes/solicitudes.component';
+
 
 // Angular
 
@@ -22,7 +26,8 @@ import { GeneralidadesComponent } from './generalidades/generalidades.component'
     CommonModule,
     AsesoriaRoutingModule,
     BsDropdownModule.forRoot(),
-    FormsModule
+    FormsModule,
+    NgxPaginationModule,
   ],
   declarations: [
 /*     FormularioComponent,
@@ -40,7 +45,8 @@ import { GeneralidadesComponent } from './generalidades/generalidades.component'
     Form_asesorComponent,
     Form_alumnoComponent,
     AperturaComponent, 
-    GeneralidadesComponent
+    GeneralidadesComponent,
+    SolicitudesComponent
   ]
 })
 export class AsesoriaModule {}
