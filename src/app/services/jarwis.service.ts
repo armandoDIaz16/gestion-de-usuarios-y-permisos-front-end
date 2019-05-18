@@ -29,9 +29,11 @@ export class JarwisService {
   control(data) {
     return this.http.post(`${this.baseUrl}/control`, data)
   }
-
   hora(control, dia) {
     return this.http.get(`${this.baseUrl}/Hora?control=` + control + `&dia=` + dia)
+  }
+  horaAll(control) {
+    return this.http.get(`${this.baseUrl}/HoraAll?control=` + control)
   }
   materia(control) {
     return this.http.get(`${this.baseUrl}/Materia?control=` + control)
@@ -54,11 +56,29 @@ export class JarwisService {
   obtenerSolicitud() {
     return this.http.get(`${this.baseUrl}/Solicitudes`)
   }
+  obtenerSolicitudPeriodo(periodo) {
+    return this.http.get(`${this.baseUrl}/SolicitudesPeriodo?periodo=` + periodo)
+  }
+  seguimiento(control) {
+    return this.http.get(`${this.baseUrl}/Seguimiento?control=` + control)
+  }
   solicitud(data) {
     return this.http.post(`${this.baseUrl}/SolicitudAsesoria`, data)
   }
   solicitudAsesor(data) {
     return this.http.post(`${this.baseUrl}/SolicitudAsesor`, data)
+  }
+  actualizAsesor(data) {
+    return this.http.post(`${this.baseUrl}/ActualizAsesor`, data)
+  }
+  actualizaSolicitud(data) {
+    return this.http.post(`${this.baseUrl}/ActualizaSolicitud`, data)
+  }
+  borrAsesor(data) {
+    return this.http.post(`${this.baseUrl}/BorrAsesor`, data)
+  }
+  borraSolicitud(data) {
+    return this.http.post(`${this.baseUrl}/BorraSolicitud`, data)
   }
 }
 

@@ -1,6 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
+import { NgxPaginationModule } from 'ngx-pagination';
+//import { ChartsModule } from 'ng2-charts';
+//import { Chart } from 'chart.js';
+import { ModalModule } from "ngx-bootstrap";
 
 
 // Dropdowns Component
@@ -10,47 +14,42 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { AspirantesRoutingModule } from './aspirantes-routing.module';
 
 // Component
-import { FormularioComponent } from './formulario/formulario.component';
-import { AdministradorComponent } from './administrador/formulario.component';
-import { AltasComponent } from './administrador/altas/altas.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { MatriculaComponent } from './matricula/matricula.component';
-import { ReimpresiónComponent } from './reimpresión/reimpresión.component';
-import { ReferenciaComponent } from './referencia/referencia.component';
-import { MatriculadosComponent } from './matriculados/matriculados.component';
-import { VigenciaDePagosComponent } from './vigencia_de_pagos/vigencia_de_pagos.component';
-import { GruposComponent } from './grupos/grupos.component';
-import { PagoSinFormalizarComponent } from './pago_sin_formalizar/pago_sin_formalizar.component';
-import { SinPagoRegistradoComponent } from './sin_pago_registrado/sin_pago_registrado.component';
-import { ReporteCompletoComponent } from './reporte_completo/reporte_completo.component';
-import { AceptadosComponent } from './aceptados/aceptados.component';
+import { GraficasComponent } from './graficas/graficas.component';
+import { ArchivosComponent } from './archivos/archivos.component';
+import { PrefichasPagadasComponent } from './prefichas_pagadas/prefichas_pagadas.component';
+import { ListaGruposComponent } from './lista_grupos/lista_grupos.component';
+import { PrefichasComponent } from './prefichas/prefichas.component';
 import { PeriodoComponent } from './periodo/periodo.component';
+import { DatosComponent } from './datos/datos.component';
+import { CrearGruposComponent } from './crear_grupos/crear_grupos.component';
 
 // Angular
 
 @NgModule({
   imports: [
     CommonModule,
+    ModalModule.forRoot(),
     AspirantesRoutingModule,
     BsDropdownModule.forRoot(),
-    FormsModule
+    FormsModule,
+    NgxPaginationModule,
+    //ChartsModule,
+    //Chart
   ],
   declarations: [
-    FormularioComponent,
-    AdministradorComponent,
-    AltasComponent,
     DashboardComponent,
-    MatriculaComponent,
-    ReimpresiónComponent,
-    ReferenciaComponent,
-    MatriculadosComponent,
-    VigenciaDePagosComponent,
-    GruposComponent,
-    PagoSinFormalizarComponent,
-    SinPagoRegistradoComponent,
-    ReporteCompletoComponent,
-    AceptadosComponent,
-    PeriodoComponent
-  ]
+    GraficasComponent,
+    ArchivosComponent,
+    PrefichasPagadasComponent,
+    ListaGruposComponent,
+    CrearGruposComponent,
+    PrefichasComponent,
+    PeriodoComponent,
+    DatosComponent
+  ],
+  exports: [
+    ModalModule
+]
 })
 export class AspirantesModule {}

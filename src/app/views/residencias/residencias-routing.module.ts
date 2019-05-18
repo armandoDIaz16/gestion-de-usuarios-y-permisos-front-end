@@ -22,6 +22,9 @@ import {Calificacion_alumnoComponent} from './calificacion_alumno/calificacion_a
 import {Habilitar_residentesComponent} from './habilitar_residentes/habilitar_residentes.component';
 import {Reporte_asesor_externoComponent} from './reporte_asesor_externo/reporte_asesor_externo.component';
 import {Vista_documentacionComponent} from './vista_documentacion/vista_documentacion.component';
+import {Banco_estadisticaComponent} from './banco_estadistica/banco_estadistica.component';
+import {Estadisticas_reportesComponent} from './estadisticas_reportes/estadisticas_reportes.component';
+import {Informe_tecnicoComponent} from './informe_tecnico/informe_tecnico.component';
 
 var rutas = [];
 
@@ -239,6 +242,33 @@ function agregarModulos(modulo) {
               component: Vista_documentacionComponent,
               data: {
                   title: 'Vista documentacion'
+              }
+          });
+          break;
+      case 'Banco estadistica':
+          modulos.push({
+              path: 'banco_estadistica',
+              component: Banco_estadisticaComponent,
+              data: {
+                  title: 'Estadisticas'
+              }
+          });
+          break;
+      case 'Estadisticas reportes':
+          modulos.push({
+              path: 'estadisticas_reportes',
+              component: Estadisticas_reportesComponent,
+              data: {
+                  title: 'Estadisticas'
+              }
+          });
+          break;
+      case 'Informe tecnico':
+          modulos.push({
+              path: 'informe_tecnico',
+              component: Informe_tecnicoComponent,
+              data: {
+                  title: 'Informe Técnico'
               }
           });
           break;

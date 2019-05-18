@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { LocationStrategy, HashLocationStrategy, CommonModule } from '@angular/common';
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
@@ -40,8 +40,8 @@ import { AppRoutingModule } from './app.routing';
 // Import 3rd party components
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
-import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { SistemsComponent } from './sistems/sistems.component';
+import { ChartsModule } from 'ng2-charts';
 
 // login
 // import { NavbarComponent } from './components/navbar/navbar.component';
@@ -59,17 +59,17 @@ import { BeforeLoginService } from './services/before-login.service';
 // @ts-ignore
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormularioComponent } from './components/formulario/formulario.component';
-import { EstadoCivilService } from './components/formulario/estado-civil.service';
-import { DependenciaService } from './components/formulario/dependencia.service';
-import { PropagandaTecnologicoService } from './components/formulario/propaganda-tecnologico.service';
-import { IncapacidadService } from './components/formulario/incapacidad.service';
-import { CarreraService } from './components/formulario/carrera.service';
-import { EntidadFederativaService } from './components/formulario/entidad-federativa.service';
-import { CiudadService } from './components/formulario/ciudad.service';
+import { EstadoCivilService } from './services/estado-civil.service';
+import { DependenciaService } from './services/dependencia.service';
+import { PropagandaTecnologicoService } from './services/propaganda-tecnologico.service';
+import { IncapacidadService } from './services/incapacidad.service';
+import { CarreraService } from './services/carrera.service';
+import { EntidadFederativaService } from './services/entidad-federativa.service';
+import { CiudadService } from './services/ciudad.service';
 import { ControlComponent } from './components/control/control.component';
 import { StudentOldComponent } from './components/student-old/student-old.component';
 import { NavbarSistemsComponent } from './components/navbar-sistems/navbar-sistems.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule} from '@angular/forms';
 import {DocumentacionComponent} from './views/residencias/documentacion/documentacion.component';
 
 
@@ -86,12 +86,14 @@ import {DocumentacionComponent} from './views/residencias/documentacion/document
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    ChartsModule,
     FormsModule,
     HttpClientModule,
+    ChartsModule,
     //SnotifyModule,
     MDBBootstrapModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,    
+    CommonModule,
+    ReactiveFormsModule
     ],
   declarations: [
     AppComponent,

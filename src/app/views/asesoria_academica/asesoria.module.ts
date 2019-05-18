@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
+// @ts-ignore
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ModalModule } from 'ngx-bootstrap';
 
 
 
@@ -24,6 +26,7 @@ import { SolicitudesComponent } from './solicitudes/solicitudes.component';
 @NgModule({
   imports: [
     CommonModule,
+    ModalModule.forRoot(),
     AsesoriaRoutingModule,
     BsDropdownModule.forRoot(),
     FormsModule,
@@ -44,9 +47,12 @@ import { SolicitudesComponent } from './solicitudes/solicitudes.component';
     SinPagoRegistradoComponent,*/
     Form_asesorComponent,
     Form_alumnoComponent,
-    AperturaComponent, 
+    AperturaComponent,
     GeneralidadesComponent,
     SolicitudesComponent
-  ]
+  ],
+  exports: [
+    ModalModule
+]
 })
 export class AsesoriaModule {}
