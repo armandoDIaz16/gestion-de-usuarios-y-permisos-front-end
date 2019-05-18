@@ -52,7 +52,7 @@
     </div>
 
     </form>
-    <form *ngFor="let alumno of alumnos" #registroAsistentesForm=ngForm (ngSubmit)="registrar(alumno.ApellidoPaterno, alumno.ApellidoMaterno, alumno.Nombre)"> 
+    <form *ngFor="let alumno of alumnos" #registroAsistentesForm=ngForm (ngSubmit)="registrar(alumno.NumeroControl)"> 
       <div class="row">
         <div class="form-group col-sm-4">
             <label for="name">Primer apelido: </label>
