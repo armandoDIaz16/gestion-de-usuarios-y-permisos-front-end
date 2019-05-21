@@ -7,6 +7,7 @@
         </div>
         <div class="card-body">
           <nav>
+            <button type="button" class="btn btn-primary" [disabled]="habilitarCorreo" (click)="largeModal2.show()">Enviar correo</button>
             <!-- <button type="button" class="btn btn-primary" (click)="leerExcel()">Leer Excel</button> -->
             <ul class="pagination pull-right float-sm-right">
               <li class="page-item {{select1}}"><a class="page-link" style="cursor: pointer"
@@ -273,42 +274,34 @@
     </div>
   </div>
 </div>
-
-<!-- <div bsModal #smallModal1="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+<div bsModal #largeModal2="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">HORARIO DEL ASESOR</h4>
-        <button type="button" class="close" (click)="smallModal1.hide()" aria-label="Close">
+        <h4 class="modal-title">Correo</h4>
+        <button type="button" class="close" (click)="largeModal2.hide()" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <table class="table table-bordered table-striped table-sm">
-          <thead>
-            <tr>
-              <th>DIA</th>
-              <th>HORA_INICIAL</th>
-              <th>MINUTO_INICIAL</th>
-              <th>HORA_FINAL</th>
-              <th>MINUTO_FINAL</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let soli of horarioUser">
-              <td>{{soli.Dia}}</td>
-              <td>{{soli.HoraInicial}}</td>
-              <td>{{soli.MinutoInicial}}</td>
-              <td>{{soli.HoraFinal}}</td>
-              <td>{{soli.MinutoFinal}}</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="form-group row">
+          <label class="col-md-2 col-form-label" for="text-input">Asunto</label>
+          <div class="col-md-10">
+            <input type="text" [(ngModel)]="asunto" class="form-control" placeholder="Asunto">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-2 col-form-label" for="textarea-input">Mensaje</label>
+          <div class="col-md-10">
+            <textarea [(ngModel)]="mensaje" rows="9" class="form-control" placeholder="Contenido..."></textarea>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="smallModal1.hide()">Cerrar</button>
+        <button type="button" class="btn btn-secondary" (click)="largeModal2.hide()">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="enviarCorreo()" (click)="largeModal2.hide()">Enviar</button>
       </div>
     </div>
   </div>
-</div>-->
+</div>

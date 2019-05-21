@@ -44,10 +44,10 @@ export class AspiranteService {
             //+sessionStorage.getItem('sistema')
         );
     }
-    getReferencia(preficha): Observable<IReferencia[]> {
+/*     getReferencia(preficha): Observable<IReferencia[]> {
         return this.http.get<IReferencia[]>('http://127.0.0.1:8000/api/Referencia/' + preficha
         );
-    }
+    } */
 /*     getFicha(preficha){
         return this.http.get('http://127.0.0.1:8000/api/Ficha/' + preficha
         );
@@ -107,9 +107,25 @@ export class AspiranteService {
                 console.log(response);
             }
         );
+    }  
+    addAceptados(datos,pk_periodo) {
+        return this.http.post('http://127.0.0.1:8000/api/CargarArchivoAceptados/'+pk_periodo, datos
+        ).subscribe(
+            (response) => {
+                console.log(response);
+            }
+        );
     }
     updateAspirante(datos) {
         return this.http.post('http://127.0.0.1:8000/api/Aspirante2/', datos
+        ).subscribe(
+            (response) => {
+                console.log(response);
+            }
+        );
+    }
+    enviarCorreo(datos) {
+        return this.http.post('http://127.0.0.1:8000/api/EnviarCorreos/', datos
         ).subscribe(
             (response) => {
                 console.log(response);

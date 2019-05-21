@@ -51,8 +51,6 @@
     "flag-icon-css": "^3.2.1",
     "font-awesome": "^4.7.0",
     "jquery": "^1.9.1",
-    "jspdf": "^1.5.3",
-    "jspdf-autotable": "^3.1.1",
     "moment": "^2.23.0",
     "mutationobserver-shim": "^0.3.3",
     "ng2-charts": "^2.2.3",

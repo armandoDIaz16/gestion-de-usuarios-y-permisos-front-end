@@ -91,9 +91,7 @@
             },
             "assets": [
               "src/assets",
-              "src/tecNM.ico",
-              "src/assets/logotio/bancomer.png",
-              "src/assets/logotio/banner-tecnmleon.jpeg"
+              "src/tecNM.ico"
             ]
           }
         },
