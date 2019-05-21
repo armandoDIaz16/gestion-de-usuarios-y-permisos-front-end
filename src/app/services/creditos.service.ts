@@ -40,8 +40,12 @@ getTipos(){
 }
 /*-------------------------------------Actividades -------*/
 
-  getActividades(){ /* para la gestion de las actividades */
+  getActividades(){ /* para la gestion de las actividades, obtiene la vista actividades_v */
     return this.httpclient.get(this.API_ENDPOINT + '/actividades');
+  }
+
+  getActividadesRaw(){
+    return this.httpclient.get(this.API_ENDPOINT + '/actividades-raw');
   }
 
   getActividadesDisponibles(id){ /* Para los alumnos */
@@ -113,8 +117,8 @@ getAlumnoByNc(NUM_CONTROL){
   return this.httpclient.get(this.API_ENDPOINT + '/alumnos-num-control/' + NUM_CONTROL);
 }
 
-getPkUsuario(P_APELLIDO, S_APELLIDO, NOMBRE){
-  return this.httpclient.get(this.API_ENDPOINT + '/alumnos-num-control/' + P_APELLIDO + '/' + S_APELLIDO + '/' + NOMBRE);
+getPkUsuario(NUM_CONTROL){
+  return this.httpclient.get(this.API_ENDPOINT + '/userid-num-control/' +  NUM_CONTROL);
 }
 
 RegistrarAsistAct(asistenteActividad: AsistenteActividad){
@@ -123,5 +127,45 @@ RegistrarAsistAct(asistenteActividad: AsistenteActividad){
   return this.httpclient.post(this.API_ENDPOINT + '/asistentes-actividad', asistenteActividad, {headers : Headers}); 
 }
     
+/*------------------------------- Alumnos con el rol para registrar asistencias -----------------------*/
+
+getActTomaAsist(PK_USUARIO){//Lista  de actividades en las que el alumno tomará asistencia
+  return this.httpclient.get(this.API_ENDPOINT + '/actividades-tomar-asistencia/' + PK_USUARIO);
+}
+
+habilitarRegistro(PK_ACTIVIDAD){
+  return this.httpclient.get(this.API_ENDPOINT + '/registrar-asistencia/' + PK_ACTIVIDAD, {responseType: 'text'});
+}
+
+eliminarAsistente(PK_USUARIO, PK_ACTIVIDAD){
+  return this.httpclient.get(this.API_ENDPOINT + '/eliminar-asistente-act/' + PK_USUARIO + '/' + PK_ACTIVIDAD);
+}
+
+eliminarRolAsistente(PK_USUARIO){
+  return this.httpclient.get(this.API_ENDPOINT + '/eliminar-rol-asistente/' + PK_USUARIO);
+}
+
+/*----------------------------- Servicios escolares -------------------------------------------------*/
+
+getCreditorPorValidar(){
+  return this.httpclient.get(this.API_ENDPOINT + '/creditos-por-validar');
+}
+
+getCreditosPorValidarByNumC(NUM_CONTROL){
+  return this.httpclient.get(this.API_ENDPOINT + '/creditos-por-validar-nc/' + NUM_CONTROL);
+}
+
+getCreditosPorValidarByLin(LINEAMIENTO){
+  return this.httpclient.get(this.API_ENDPOINT + '/creditos-por-validar-ln/' + LINEAMIENTO);
+}
+
+getActByCredito(PK_ALUMNO_CREDITO){
+  return this.httpclient.get(this.API_ENDPOINT + '/actividades-credito-cumplidos/' + PK_ALUMNO_CREDITO);
+}
+
+validarCreditos(PK_ALUMNO_CREDITO){
+  const Headers = new HttpHeaders({'Content-Type':'application/json'});
+  return this.httpclient.put(this.API_ENDPOINT + '/validar-credito/' + PK_ALUMNO_CREDITO, {headers: Headers} );
+}
 
 }

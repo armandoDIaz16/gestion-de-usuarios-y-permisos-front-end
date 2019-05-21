@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { JarwisService } from '../../../services/jarwis.service';
+// @ts-ignore
 import * as XLSX from 'xlsx';
 
 @Component({

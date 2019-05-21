@@ -55,7 +55,7 @@ export class DetalleActividadComponent {
         this.actividadesService.getActividades().subscribe((data: Actividad[])=>{
             this.actividades = data;
             this.actividad = this.actividades.find((m)=>{return m.PK_ACTIVIDAD == this.id});
-            console.log(this.actividad);
+            this.getRegistrados(this.actividad);
           },(error)=>{
             console.log(error);
           });
@@ -100,6 +100,20 @@ export class DetalleActividadComponent {
       }
     }
     
+  }
+
+  getRegistrados(actividad){
+
+      this.actividadesService.getRegistrados(actividad.PK_ACTIVIDAD).subscribe((data: number)=>{
+      actividad.REGISTRADOS = data;
+      console.log(actividad.PK_ACTIVIDAD +" - "+actividad.REGISTRADOS);
+      console.log(this.actividad);
+    }, (error)=>{
+      console.log("ocurrion un error al guardar Registrados");
+    });
+
+    
+      
   }
     
 }

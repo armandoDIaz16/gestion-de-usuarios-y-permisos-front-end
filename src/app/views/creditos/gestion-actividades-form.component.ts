@@ -43,7 +43,7 @@ export class GestionActividadesFormComponent implements OnInit {
     if(this.id){
       this.titulo = "Editar actividad";
       this.editing = true;
-      this.actividadesService.getActividades().subscribe((data: Actividad[])=>{
+      this.actividadesService.getActividadesRaw().subscribe((data: Actividad[])=>{
         this.actividades = data;
         this.actividad = this.actividades.find((m)=>{return m.PK_ACTIVIDAD == this.id});
         console.log(this.actividad);
