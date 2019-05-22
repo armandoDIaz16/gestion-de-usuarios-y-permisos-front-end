@@ -54,7 +54,7 @@
             <thead>
               <tr>
                 <th scope="row">#</th>
-                <th>ID</th>
+                <th>ID ASESOR</th>
                 <th>NOMBRE</th>
                 <th>PRIMER APELLIDO</th>
                 <th>SEGUNDO APELLIDO</th>
@@ -67,8 +67,8 @@
                 <th>HORA</th>
                 <th>CAMPUS</th>
                 <th>PERIODO</th>
-                <th>VALIDA</th>
-                <th>STATUS</th>
+                <th>VALIDA</th><!-- 
+                <th>STATUS</th> -->
                 <th>HOR/SEG</th>
                 <th>ACCIONES</th>
               </tr>
@@ -134,19 +134,19 @@
                     <option *ngFor="let asesor of asesor1" value="{{asesor.VALIDA}}">{{asesor.VALIDA}}
                   </select>
                 </td>
-                <td>
+               <!--  <td>
                   <select [(ngModel)]="filtroSTATUS" class="form-control" name="hora" (change)="buscar()">
                     <option value="todos">Todos</option>
                     <option *ngFor="let asesor of asesor1" value="{{asesor.STATUS}}">{{asesor.STATUS}}
                   </select>
-                </td>
+                </td> -->
                 <td></td>
                 <td></td>
               </tr>
               <tr
                 *ngFor="let asesor of asesor1 | paginate: {itemsPerPage: registrosPagina, currentPage:pageActual, id: 'first' } let i = index">
                 <td>{{i+1}}</td>
-                <td>{{asesor.PK_ASESOR_ASESORIA_HORARIO}}</td>
+                <td>{{asesor.FK_USUARIO}}</td>
                 <td>{{asesor.name}}</td>
                 <td>{{asesor.PRIMER_APELLIDO}}</td>
                 <td>{{asesor.SEGUNDO_APELLIDO}}</td>
@@ -159,8 +159,8 @@
                 <td>{{asesor.HORA}}</td>
                 <td>{{asesor.CAMPUS}}</td>
                 <td>{{asesor.PERIODO}}</td>
-                <td>{{asesor.VALIDA}}</td>
-                <td><span class="badge badge-success">{{asesor.STATUS}}</span></td>
+                <td>{{asesor.VALIDA}}</td><!-- 
+                <td><span class="badge badge-success">{{asesor.STATUS}}</span></td> -->
                 <td><button class="btn btn-brand btn-sm btn-facebook mr-1" style="margin-bottom: 4px" type="button"
                     data-toggle="modal" (click)="smallModal1.show()" (click)="horario(asesor.NUMERO_CONTROL)"><i
                       class="fa fa-clock-o"></i></button>
@@ -274,7 +274,7 @@
             <thead>
               <tr>
                 <th scope="row">#</th>
-                <th>ID</th>
+                <th>ID ALUMNO</th>
                 <th>NOMBRE</th>
                 <th>PRIMER APELLIDO</th>
                 <th>SEGUNDO APELLIDO</th>
@@ -284,8 +284,8 @@
                 <th>DIA</th>
                 <th>HORA</th>
                 <th>CAMPUS</th>
-                <th>PERIODO</th>
-                <th>STATUS</th>
+                <th>PERIODO</th><!-- 
+                <th>STATUS</th> -->
                 <th>ACCIONES</th>
               </tr>
             </thead>
@@ -335,18 +335,18 @@
                     <option *ngFor="let estatus2 of solicitud" value="{{estatus2.PERIODO}}">{{estatus2.PERIODO}}
                   </select>
                 </td>
-                <td>
+              <!--   <td>
                   <select [(ngModel)]="filtroSTATUS1" class="form-control" name="estatus" (change)="buscar1()">
                     <option value="todos">Todos</option>
                     <option *ngFor="let estatus2 of solicitud" value="{{estatus2.STATUS}}">{{estatus2.STATUS}}
                   </select>
-                </td>
+                </td> -->
                 <td></td>
               </tr>
               <tr
                 *ngFor="let soli of solicitud | paginate: {itemsPerPage: registrosPagina1, currentPage:pageActual1, id: 'second'} let i = index">
                 <td>{{i+1}}</td>
-                <td>{{soli.PK_USER_ASESORIA_HORARIO}}</td>
+                <td>{{soli.FK_USUARIO}}</td>
                 <td>{{soli.name}}</td>
                 <td>{{soli.PRIMER_APELLIDO}}</td>
                 <td>{{soli.SEGUNDO_APELLIDO}}</td>
@@ -356,8 +356,8 @@
                 <td>{{soli.DIA}}</td>
                 <td>{{soli.HORA}}</td>
                 <td>{{soli.CAMPUS}}</td>
-                <td>{{soli.PERIODO}}</td>
-                <td><span class="badge badge-success">{{soli.STATUS}}</span></td>
+                <td>{{soli.PERIODO}}</td><!-- 
+                <td><span class="badge badge-success">{{soli.STATUS}}</span></td> -->
                 <td><button class="btn btn-brand btn-sm btn-openid" type="button" (click)="smallModal3.show()"
                     style="margin-bottom: 4px" (click)="modificarSol(soli.PK_USER_ASESORIA_HORARIO,soli.MATERIA,
                   soli.DIA,soli.HORA)"><i

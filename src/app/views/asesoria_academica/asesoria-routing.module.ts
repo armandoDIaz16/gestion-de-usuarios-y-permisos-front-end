@@ -18,38 +18,46 @@ import { Form_alumnoComponent } from './form_alumno/form_alumno.component'
 import { GeneralidadesComponent } from './generalidades/generalidades.component';
 import { AperturaComponent } from './apertura/apertura.component';
 import { SolicitudesComponent } from './solicitudes/solicitudes.component';
+import { PerfilComponent } from './perfil/perfil.component';
+import { AsignacionComponent } from './asignacion/asignacion.component';
+import { MateriasComponent } from './materias/materias.component';
+import { FormatoAlmnoComponent } from './formatoAlmno/formatoAlmno.component';
+import { FormatoAsesorComponent } from './formatoAsesor/formatoAsesor.component';
 
 
 
-var rutas=[];
 
 
-if(sessionStorage.rutas){
+
+var rutas = [];
+
+
+if (sessionStorage.rutas) {
   let sistemas = JSON.parse(sessionStorage.sistemas);
-  rutas=[];
-  for(var sistema in sistemas[0].SISTEMAS){
-    if(sistemas[0].SISTEMAS[sistema].PK_SISTEMA==sessionStorage.getItem('sistema')){
-      var modulos=[];
+  rutas = [];
+  for (var sistema in sistemas[0].SISTEMAS) {
+    if (sistemas[0].SISTEMAS[sistema].PK_SISTEMA == sessionStorage.getItem('sistema')) {
+      var modulos = [];
       //console.log("--"+sistemas[0].SISTEMAS[sistema].NOMBRE)
-      for(var rol in sistemas[0].SISTEMAS[sistema].ROLES){
+      for (var rol in sistemas[0].SISTEMAS[sistema].ROLES) {
         //console.log("----"+sistemas[0].SISTEMAS[sistema].ROLES[rol].NOMBRE)
-        for(var modulo in sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS){
+        for (var modulo in sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS) {
           //console.log("------"+sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE)
           agregarModulos(sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE);
         }
       }
-      rutas.push({ 
+      rutas.push({
         path: '',
-        data: { 
+        data: {
           title: 'Asesoria academica'
         },
-        children: modulos                            
+        children: modulos
       });
     }
-  }  
+  }
 }
 
-function agregarModulos(modulo){
+function agregarModulos(modulo) {
   switch (modulo) {
     /* case 'Dashboard':
       modulos.push({
@@ -77,58 +85,58 @@ function agregarModulos(modulo){
           title: 'Reimpresión'
         }
       });
-      break;
-    case 'Referencia':
-      modulos.push({
-        path: 'referencia',
-        component: ReferenciaComponent,
-        data: {
-          title: 'Referencia'
-        }
-      });
-      break;
-    case 'Matriculados':    
-      modulos.push({
-        path: 'matriculados',
-        component: MatriculadosComponent,
-        data: {
-          title: 'Matriculados'
-        }
-      });
-      break;
-    case 'Formulario':    
-      modulos.push({
-        path: 'formulario',
-        component: FormularioComponent,
-        data: {
-          title: 'Formulario'
-        }
-      });
-      break;
-    case 'Administrador':
-      modulos.push({
-        path: 'administrador',
-        component: AdministradorComponent,
-        data: {
-          title: 'Administrador'
-        }
-      });
-      break;
-    case 'Vigencia de pagos':
-      modulos.push({
-        path: 'vigencia_de_pagos',
-        component: VigenciaDePagosComponent,
-        data: {
-          title: 'Vigencia de pagos'
-        }
-      });
       break;*/
+    case 'Formatos ases':
+      modulos.push({
+        path: 'formatos_ases',
+        component: FormatoAsesorComponent,
+        data: {
+          title: 'Formato Asesor'
+        }
+      });
+      break;
+    case 'Formatos almno':    
+      modulos.push({
+        path: 'formatos_almno',
+        component: FormatoAlmnoComponent,
+        data: {
+          title: 'Formatos Alumno'
+        }
+      });
+      break;
+    case 'Materias':    
+      modulos.push({
+        path: 'materias',
+        component: MateriasComponent,
+        data: {
+          title: 'Materias'
+        }
+      });
+      break;
+    case 'Asignacion':
+      modulos.push({
+        path: 'asignacion',
+        component: AsignacionComponent,
+        data: {
+          title: 'Asignacion'
+        }
+      });
+      break;
     case 'Solicitudes':
       modulos.push({
         path: 'solicitudes',
         component: SolicitudesComponent,
         data: {
-          title: 'Solicitudes'
+          title: 'Lista de solicitudes'
+        }
+      });
+      break;
+    case 'Perfil de asesor':
+      modulos.push({
+        path: 'perfil_de_asesor',
+        component: PerfilComponent,
+        data: {
+          title: 'Perfil'
         }
       });
       break;
@@ -158,7 +166,7 @@ function agregarModulos(modulo){
           title: 'Apertura'
         }
       });
-      break; 
+      break;
     case 'Generalidades':
       modulos.push({
         path: 'generalidades',
@@ -179,9 +187,9 @@ const routes: Routes = rutas;
   exports: [RouterModule]
 })
 
-export class AsesoriaRoutingModule {}
+export class AsesoriaRoutingModule { }
 
- 
+
 
 
 
@@ -199,10 +207,10 @@ export class AsesoriaRoutingModule {}
       if(sistemaPermisos[0].NOMBRE==usuarioPermisos[0].SISTEMAS[sistema].NOMBRE){
         for(var rol in usuarioPermisos[0].SISTEMAS[sistema].ROLES){
           console.log("----"+usuarioPermisos[0].SISTEMAS[sistema].ROLES[rol].NOMBRE)
-          for(var modulo in usuarioPermisos[0].SISTEMAS[sistema].ROLES[rol].MODULOS){              
+          for(var modulo in usuarioPermisos[0].SISTEMAS[sistema].ROLES[rol].MODULOS){
             console.log("------"+usuarioPermisos[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE)
             for(var accion in usuarioPermisos[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].ACCIONES){
-              console.log("--------"+usuarioPermisos[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].ACCIONES[accion].NOMBRE)            
+              console.log("--------"+usuarioPermisos[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].ACCIONES[accion].NOMBRE)
             }
           }
         }
