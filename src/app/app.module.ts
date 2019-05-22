@@ -38,10 +38,10 @@ import {
 import {AppRoutingModule} from './app.routing';
 
 // Import 3rd party components
-import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
-import {TabsModule} from 'ngx-bootstrap/tabs';
-import {SistemsComponent} from './sistems/sistems.component';
-import {ChartsModule} from 'ng2-charts';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { SistemsComponent } from './sistems/sistems.component';
+import { ChartsModule } from 'ng2-charts';
 
 // login
 // import { NavbarComponent } from './components/navbar/navbar.component';

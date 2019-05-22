@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SalonService } from '../../../services/salon.service';
-import { TurnoService } from '../../../services/turno.service';
+import { LugarExamenService } from '../../../services/lugar-examen.service';
 import { AspiranteService } from '../../../services/aspirante.service';
 
 
@@ -8,29 +7,31 @@ import { AspiranteService } from '../../../services/aspirante.service';
   selector: 'app-lista_grupos',
   templateUrl: './lista_grupos.component.html',
   styleUrls: ['./lista_grupos.component.scss'],
-  providers: [SalonService,
-    TurnoService,
+  providers: [LugarExamenService,
   AspiranteService]
 })
 export class ListaGruposComponent implements OnInit {
-  constructor(private salonService: SalonService,
-    private turnoService: TurnoService,
+  constructor(private lugarExamenService: LugarExamenService,
     private aspiranteService: AspiranteService) {
   }
 
-  public salonLista = [];
-  public turnoLista = [];
+  public espacioLista = [];
+  public diaLista = [];
+  public horaLista = [];
   public aspirantes = [];
-  public salon = null;
+  public espacio = null;
   public dia = null;
   public hora = null;
 
   ngOnInit() {
-    this.salonService.getSalon().subscribe(data => this.salonLista = data);
-    this.turnoService.getTurno().subscribe(data => this.turnoLista = data);
+    this.lugarExamenService.getEspacio().subscribe(data => this.espacioLista = data);
+    this.lugarExamenService.getTurno().subscribe(data =>{ 
+      this.diaLista = data[0].DIAS;
+      this.horaLista = data[0].HORAS;
+    });
   }
 
   generarLista(){
-    this.aspiranteService.getGrupos(this.salon,this.dia,this.hora).subscribe(data => this.aspirantes = data);
+    this.aspiranteService.getGrupos(this.espacio,this.dia,this.hora).subscribe(data => this.aspirantes = data);
   }
 }
