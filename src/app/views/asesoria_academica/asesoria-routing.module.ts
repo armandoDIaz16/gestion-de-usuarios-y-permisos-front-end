@@ -23,6 +23,7 @@ import { AsignacionComponent } from './asignacion/asignacion.component';
 import { MateriasComponent } from './materias/materias.component';
 import { FormatoAlmnoComponent } from './formatoAlmno/formatoAlmno.component';
 import { FormatoAsesorComponent } from './formatoAsesor/formatoAsesor.component';
+import { ReportesComponent } from './reportes/reportes.component';
 
 
 
@@ -95,7 +96,7 @@ function agregarModulos(modulo) {
         }
       });
       break;
-    case 'Formatos almno':    
+    case 'Formatos almno':
       modulos.push({
         path: 'formatos_almno',
         component: FormatoAlmnoComponent,
@@ -104,7 +105,7 @@ function agregarModulos(modulo) {
         }
       });
       break;
-    case 'Materias':    
+    case 'Materias':
       modulos.push({
         path: 'materias',
         component: MateriasComponent,
@@ -173,6 +174,15 @@ function agregarModulos(modulo) {
         component: GeneralidadesComponent,
         data: {
           title: 'General'
+        }
+      });
+      break;
+    case 'Reportes':
+      modulos.push({
+        path: 'reportes',
+        component: ReportesComponent,
+        data: {
+          title: 'Reportes'
         }
       });
       break;

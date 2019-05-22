@@ -24,6 +24,7 @@ import { AsignacionComponent } from './asignacion/asignacion.component';
 import { MateriasComponent } from './materias/materias.component';
 import { FormatoAlmnoComponent } from './formatoAlmno/formatoAlmno.component';
 import { FormatoAsesorComponent } from './formatoAsesor/formatoAsesor.component';
+import { ReportesComponent } from './reportes/reportes.component';
 
 
 
@@ -62,6 +63,7 @@ import { FormatoAsesorComponent } from './formatoAsesor/formatoAsesor.component'
     MateriasComponent,
     FormatoAlmnoComponent,
     FormatoAsesorComponent,
+    ReportesComponent
   ],
   exports: [
     ModalModule
