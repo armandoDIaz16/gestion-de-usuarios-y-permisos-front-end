@@ -39,13 +39,14 @@ export class AsistentesResponsableComponent{
     getAlumno(){
         this.responsablesService.getAlumnoByNc(this.num_control).subscribe((data: Alumno[])=>{
             this.alumnos = data;
+            console.log(this.alumnos);
         },(error)=>{
             alert("Ocurrio un error");
         });
     }
 
-    registrar(p_apellido, s_apellido, nombre){
-        this.responsablesService.getPkUsuario(p_apellido,s_apellido,nombre).subscribe((data: AsistenteActividad[])=>{
+    registrar(num_control){
+        this.responsablesService.getPkUsuario(num_control).subscribe((data: AsistenteActividad[])=>{
             for(let d of data){
                 this.asistente.FK_USUARIO = d.FK_USUARIO;
             }

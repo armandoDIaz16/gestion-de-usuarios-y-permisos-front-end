@@ -1,0 +1,75 @@
+<div class="animated fadeIn">
+  <form (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            <strong>Listas de grupos:</strong>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label for="salon">Salon:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <select [(ngModel)]="salon" class="form-control" name="salon">
+                    <option [value]=null>Selecciona</option>
+                    <option *ngFor="let salon of salonLista" value="{{salon.PK_ESPACIO}}">
+                      {{salon.NOMBRE}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label for="dia">Dia:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <select [(ngModel)]="dia" class="form-control" name="dia">
+                    <option [value]=null>Selecciona</option>
+                    <option *ngFor="let turno of turnoLista" value="{{turno.DIA}}">
+                      {{turno.DIA}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label for="hora">Hora:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <select [(ngModel)]="hora" class="form-control" name="hora">
+                    <option [value]=null>Selecciona</option>
+                    <option *ngFor="let turno of turnoLista" value="{{turno.HORA}}">
+                      {{turno.HORA}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+              <label class="btn btn-primary" style="cursor:pointer;">Generar lista
+                <button type="button" (click)="generarLista()" hidden></button>
+              </label>
+            </div>
+            <table class="table table-bordered table-striped table-sm">
+              <thead>
+                <tr>     
+                  <th scope="row">#</th>   
+                  <th>NOMBRE</th>
+                  <th>PREFICHA</th>
+                  <th>CARRERA</th>
+                  <th>FOLIO CENEVAL</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let aspirante of aspirantes let i = index">
+                  <td>{{i+1}}</td>
+                  <td>{{aspirante.NOMBRE}} {{aspirante.PRIMER_APELLIDO}} {{aspirante.SEGUNDO_APELLIDO}}</td>
+                  <td>{{aspirante.PREFICHA}}</td>
+                  <td>{{aspirante.CLAVE_CARRERA}}</td>
+                  <td>{{aspirante.FOLIO_CENEVAL}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>      
+    </div>
+  </form>
+</div>

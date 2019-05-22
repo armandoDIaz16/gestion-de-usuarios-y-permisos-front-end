@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+//import { ModalService } from ;
+
 
 @Component({
   selector: 'app-encuestas',
@@ -6,12 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./encuestas.component.scss']
 })
 export class EncuestasComponent implements OnInit {
-  private modalService: any;
+  //private modalService: any;
 
   constructor() { }
 
   public close() {
-    this.modalService.destroy();
+    //this.modalService.destroy();
   }
 
   ngOnInit() {

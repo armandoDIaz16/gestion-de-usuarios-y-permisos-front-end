@@ -1,6 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 
 // Tabs Component
 import { TabsModule } from 'ngx-bootstrap/tabs';
@@ -16,6 +19,9 @@ import { SeguimientoAlumnoComponent } from './seguimientoAlumno.component';
 import { ActividadesResponsableComponent } from './actividadesResponsable.component';
 import { ListaAsistenciaResponsableComponent } from './listaAsistenciaResponsable.component';
 import { AsistentesResponsableComponent } from './asistentesResponsable.component';
+import { ActividadesAsistenteComponent } from './actividadesAsistente.component';
+import { RegistroAsistenciasComponent } from './registroAsistencias.component';
+import { CreditosPorValidarComponent } from './creditosPorValidar.component';
 // Dropdowns Component
 
 
@@ -31,6 +37,8 @@ import { CreditosRoutingModule } from './creditos-routing.module';
     CreditosRoutingModule,
     FormsModule,
     TabsModule,
+    BsDropdownModule.forRoot(),
+    NgxPaginationModule,
   ],
   declarations: [
     LineamientosComponent,
@@ -42,7 +50,10 @@ import { CreditosRoutingModule } from './creditos-routing.module';
     SeguimientoAlumnoComponent,
     ActividadesResponsableComponent,
     ListaAsistenciaResponsableComponent,
-    AsistentesResponsableComponent
+    AsistentesResponsableComponent,
+    ActividadesAsistenteComponent,
+    RegistroAsistenciasComponent,
+    CreditosPorValidarComponent
   ]
 })
 export class CreditosModule { }

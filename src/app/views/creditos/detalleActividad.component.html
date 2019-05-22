@@ -1,4 +1,4 @@
-<div class="animated fadeIn" ngFor="let actividad of actividades">
+<div class="animated fadeIn" ngFor="let actividad of actividad">
     <div class="card">
       <div class="card-header">
         <H2>{{actividad.NOMBRE}}</H2>
@@ -17,6 +17,7 @@
       </div>
       <div><p>{{actividad.LUGAR}}</p></div>
       <div><p>{{actividad.HORA}}</p></div>
+      <div><p>{{actividad.REGISTRADOS}}</p></div>
       </div>
       <div *ngIf="inscrito == false" class="card-footer">
         <a class="btn btn-primary btn-sm" (click)="registrarse(actividad.PK_ACTIVIDAD, actividad.REGISTRADOS, actividad.CUPO)">Inscribirse</a>

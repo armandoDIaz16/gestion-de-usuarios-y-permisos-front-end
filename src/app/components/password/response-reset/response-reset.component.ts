@@ -20,7 +20,8 @@ export class ResponseResetComponent implements OnInit {
     private router: Router
   ) {
     route.queryParams.subscribe(params => {
-      this.form.resetToken = params['token']
+      this.form.resetToken = params['token'];
+      this.form.email = params['email'];
     });
   }
 
