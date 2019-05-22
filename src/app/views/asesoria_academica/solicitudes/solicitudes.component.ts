@@ -8,7 +8,7 @@ import * as XLSX from 'xlsx';
   styleUrls: ['./solicitudes.component.scss']
 })
 export class SolicitudesComponent implements OnInit {
-  activado = true;
+ // activado = true;
   visasesor = false;
   visalumno = false;
   public estatus = [];
@@ -194,7 +194,7 @@ export class SolicitudesComponent implements OnInit {
     this.asesor1 = this.asesor2;
     if (this.filtroPK_ASESOR_ASESORIA_HORARIO) {
       var re = new RegExp(this.filtroPK_ASESOR_ASESORIA_HORARIO, 'g');
-      this.asesor1 = this.asesor2.filter(item => item.PK_ASESOR_ASESORIA_HORARIO.match(re));
+      this.asesor1 = this.asesor2.filter(item => item.FK_USUARIO.match(re));
     }
     if (this.filtroname) {
       var re = new RegExp(this.filtroname, 'g');
@@ -260,13 +260,13 @@ export class SolicitudesComponent implements OnInit {
         this.asesor1 = this.asesor1.filter(item => item.CAMPUS === this.filtroCAMPUS);
       }
     }
-    if (this.filtroSTATUS) {
+ /*    if (this.filtroSTATUS) {
       if (this.filtroSTATUS == "todos") {
         this.asesor1 = this.asesor1;
       } else {
         this.asesor1 = this.asesor1.filter(item => item.STATUS === this.filtroSTATUS);
       }
-    }
+    } */
     if (this.filtroPERIODO) {
       if (this.filtroPERIODO == "todos") {
         this.asesor1 = this.asesor1;
@@ -279,7 +279,7 @@ export class SolicitudesComponent implements OnInit {
     this.solicitud = this.solicitud1;
     if (this.filtroPK_USER_ASESORIA_HORARIO) {
       var re = new RegExp(this.filtroPK_USER_ASESORIA_HORARIO, 'g');
-      this.solicitud = this.solicitud1.filter(item => item.PK_USER_ASESORIA_HORARIO.match(re));
+      this.solicitud = this.solicitud1.filter(item => item.FK_USUARIO.match(re));
     }
     if (this.filtroname1) {
       var re = new RegExp(this.filtroname1, 'g');
@@ -329,13 +329,13 @@ export class SolicitudesComponent implements OnInit {
         this.solicitud = this.solicitud.filter(item => item.CAMPUS === this.filtroCAMPUS1);
       }
     }
-    if (this.filtroSTATUS1) {
+   /*  if (this.filtroSTATUS1) {
       if (this.filtroSTATUS1 == "todos") {
         this.solicitud = this.solicitud;
       } else {
         this.solicitud = this.solicitud.filter(item => item.STATUS === this.filtroSTATUS1);
       }
-    }
+    } */
     if (this.filtroPERIODO1) {
       if (this.filtroPERIODO1 == "todos") {
         this.solicitud = this.solicitud;

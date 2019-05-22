@@ -7,35 +7,34 @@ import { JarwisService } from '../../../services/jarwis.service';
   templateUrl: './response-reset.component.html',
 })
 export class ResponseResetComponent implements OnInit {
-  public error=[];
+  public error = [];
   public form = {
-    email : localStorage.getItem("email"),
-    password : null,
-    password_confirmation:null,
-    resetToken :null
+    email: localStorage.getItem("email"),
+    password: null,
+    password_confirmation: null,
+    resetToken: null
   }
   constructor(
-    private route:ActivatedRoute,
+    private route: ActivatedRoute,
     private Jarwis: JarwisService,
-    private router:Router
-  ) { 
+    private router: Router
+  ) {
     route.queryParams.subscribe(params => {
       this.form.resetToken = params['token']
     });
   }
 
-  onSubmit(){
-   this.Jarwis.changePassword(this.form).subscribe(
-     data => this.handleResponse(data),
-     error => this.handleError(error)
-   )
+  onSubmit() {
+    this.Jarwis.changePassword(this.form).subscribe(
+      data => this.handleResponse(data),
+      error => this.handleError(error)
+    )
   }
-  handleResponse(data){
-    
-  this.router.navigateByUrl('/home');
+  handleResponse(data) {
+    this.router.navigateByUrl('/login')    
   }
 
-  handleError(error){
+  handleError(error) {
     this.error = error.error.errors;
   }
   ngOnInit() {

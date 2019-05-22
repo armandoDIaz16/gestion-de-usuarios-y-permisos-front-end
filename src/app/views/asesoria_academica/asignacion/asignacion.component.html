@@ -1,0 +1,396 @@
+<div class="row">
+  <div class="col-sm-12 ">
+    <div class="card">
+      <div class="card-header">
+        <i class="fa fa-align-justify"></i> SOLICITUDES
+        <small>PAAE</small>
+      </div>
+      <div class="card-body">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" (click)="individual()" href="#">Asignacion Individual</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" (click)="grupal()" href="#">Asignacion Grupal</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" (click)="academica()" href="#">Asignacion Situacion Academica</a>
+          </li>
+        </ul>
+        <br><br>
+        <div *ngIf="visindividual">
+          <div class="app-body">
+              <main class="main d-flex align-items-center">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-6 mx-auto">
+                      <div align="center">
+                        <h2>ASIGNACION INDIVIDUAL</h2>
+                      </div>
+                      <div class="card-group">
+                        <div class="card p-3">
+                          <div class="card-body">
+                            <form #individualForm=ngForm>                            
+                              <div class="input-group mb-3">
+                                <h5></h5>
+                              </div>
+                              <div class="input-group mb-3">
+                                <h5>Crea la asesoria</h5>
+                              </div>
+          
+                              <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  ASESOR/A
+                                  <span class="input-group-text"><i class="icon-hourglass"></i></span>
+                                </div>
+                                <select type="text" name="selectasesor" [(ngModel)]="form.selectasesor" [disabled]="habilitarHoraLunes" (ngModelChange)="ver()"
+                                  [hidden]="habilitarHoraLunes">
+                                  <option value='0' disabled>ASESOR/A</option>
+                                  <option *ngFor="let asesor of asesores" value="{{asesor.PK_USUARIO}}">{{asesor.name+" "+asesor.PRIMER_APELLIDO+" "+asesor.SEGUNDO_APELLIDO}}</option>
+                                </select>
+                              </div>
+          
+                              <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  SOLICITANTE
+                                  <span class="input-group-text"><i class="icon-hourglass"></i></span>
+                                </div>
+                                <select type="text" name="selectsolicitante" [(ngModel)]="form.selectsolicitante" (ngModelChange)="ver()"
+                                  [disabled]="habilitarHoraMartes" [hidden]="habilitarHoraMartes">
+                                  <option value='0' disabled>SOLICITANTE</option>
+                                  <option *ngFor="let solicitud of solicitudes" value="{{solicitud.PK_USUARIO}}">{{solicitud.name+" "+solicitud.PRIMER_APELLIDO+" "+solicitud.SEGUNDO_APELLIDO}}</option>
+                                </select>
+                              </div>
+          
+                              <div class="input-group mb-3">
+                                DIA
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="icon-hourglass"></i></span>
+                                </div>
+                                <select type="text" name="dia" [(ngModel)]="form.dia"
+                                  [disabled]="habilitarHoraMiercoles" [hidden]="habilitarHoraMiercoles">
+                                  <option value='0' disabled>DIA</option>
+                                  <option value='LUNES' >LUNES</option>
+                                  <option value='MARTES' >MARTES</option>
+                                  <option value='MIERCOLES' >MIERCOLES</option>
+                                  <option value='JUEVES' >JUEVES</option>
+                                  <option value='VIERNES' >VIERNES</option>
+                                <!--   <option *ngFor="let level of horariosMiercoles">{{level}}</option> -->
+                                </select>
+                              </div>
+          
+                              <div class="input-group mb-3">
+                                HORA
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="icon-hourglass"></i></span>
+                                </div>
+                                <select type="text" name="levelNum3" [(ngModel)]="form.hora"
+                                  [disabled]="habilitarHoraJueves" [hidden]="habilitarHoraJueves">
+                                  <option value='0' disabled>HORA</option>
+                                  <option *ngFor="let hora of horario">{{hora}}</option>
+                                </select>
+                              </div>
+          
+                              <div class="input-group mb-3">
+                                MATERIA
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="icon-hourglass"></i></span>
+                                </div>
+                                <select style="width:350px" type="text" name="levelNum4" [(ngModel)]="form.selectmateria"
+                                  [disabled]="habilitarHoraViernes" [hidden]="habilitarHoraViernes">
+                                  <option value='0' disabled>MATERIA</option>
+                                  <option *ngFor="let mat of materias">{{mat.Nombre}}</option>
+                                </select>
+                              </div>
+                              <div class="input-group mb-3" *ngIf="!habilitarMaterias">
+                                CAMPUS
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="icon-hourglass"></i></span>
+                                </div>
+                                <select style="width:150px"  type="text" name="materia" [(ngModel)]="form.campus" [disabled]="habilitarMaterias"
+                                  [hidden]="habilitarMaterias">
+                                  <option value='0' disabled>CAMPUS</option>
+                                  <option value='CAMPUS I' >CAMPUS I</option>
+                                  <option value='CAMPUS II' >CAMPUS II</option>
+                                </select>
+                              </div>
+                              <div class="input-group mb-3" *ngIf="!habilitarMaterias">
+                                ESPACIO
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="icon-hourglass"></i></span>
+                                </div>
+                                <select type="text" name="campus" [(ngModel)]="form.espacio" [disabled]="habilitarMaterias"
+                                  [hidden]="habilitarMaterias">
+                                  <option value='0' disabled>ESPACIO</option>
+                                  <option value='ESPACIO I'>ESPACIO I</option>
+                                  <option value='ESPACIO II'>ESPACIO II</option>
+                                </select>
+                              </div>
+                              <div class="row">
+                                <div class="col-6">
+                                  <button (click)=registroInd() class="btn btn-primary px-4"
+                                    [disabled]="!individualForm.valid">Ingresar</button>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </main>
+            </div>
+        </div>
+        <div *ngIf="visgrupal">
+          <h1>GRUPAL</h1>
+          <div class="app-body">
+              <main class="main d-flex align-items-center">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-6 mx-auto">
+                      <div align="center">
+                        <h2>ASIGNACION GRUPAL</h2>
+                      </div>
+                      <div class="card-group">
+                        <div class="card p-3">
+                          <div class="card-body">
+                            <form #grupalForm=ngForm>                            
+                              <div class="input-group mb-3">
+                                <h5></h5>
+                              </div>
+                              <div class="input-group mb-3">
+                                <h5>Crea la asesoria</h5>
+                              </div>
+          
+                              <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  ASESOR/A
+                                  <span class="input-group-text"><i class="icon-hourglass"></i></span>
+                                </div>
+                                <select type="text" name="selectasesor" [(ngModel)]="form.selectasesorgrupo" [disabled]="habilitarHoraLunes"
+                                  [hidden]="habilitarHoraLunes">
+                                  <option value='0' disabled>ASESOR/A</option>
+                                  <option *ngFor="let asesor of asesores" value="{{asesor.PK_USUARIO}}">{{asesor.name+" "+asesor.PRIMER_APELLIDO+" "+asesor.SEGUNDO_APELLIDO}}</option>
+                                </select>
+                              </div>
+          
+                              <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  GRUPO
+                                  <span class="input-group-text"><i class="icon-hourglass"></i></span>
+                                </div>
+                                <select type="text" name="clavegrupo" [(ngModel)]="form.clavegrupo" (ngModelChange)="addclave()"
+                                  [disabled]="habilitarHoraMartes" [hidden]="habilitarHoraMartes">
+                                  <option value='0' disabled>GRUPO</option>
+                                  <option *ngFor="let cla of clave" value="{{cla.clavegrupo}}">{{cla.clavegrupo}}</option>
+                                </select>
+                              </div>
+          
+                              <div class="input-group mb-3">
+                                DIA
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="icon-hourglass"></i></span>
+                                </div>
+                                <select type="text" name="dia" [(ngModel)]="form.diagru" (ngModelChange)="diagrupo()"
+                                  [disabled]="habilitarHoraMiercoles" [hidden]="habilitarHoraMiercoles">
+                                  <option value='0' disabled>DIA</option>
+                                  <option *ngFor="let hora of horasgrupo" value="{{hora.Dia}}">{{hora.Dia}}</option>
+                                <!--   <option *ngFor="let level of horariosMiercoles">{{level}}</option> -->
+                                </select>
+                              </div>
+          
+                              <div class="input-group mb-3">
+                                HORA
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="icon-hourglass"></i></span>
+                                </div>
+                                <select type="text" name="levelNum3" [(ngModel)]="form.horagrupo" 
+                                  [disabled]="habilitarHoraJueves" [hidden]="habilitarHoraJueves">
+                                  <option value='0' disabled>HORA</option>
+                                  <option *ngFor="let hora of horasgrupo" value="{{hora.HoraInicial+':'+hora.MinutoInicial+'-'+
+                                    hora.HoraFinal+':'+hora.MinutoFinal}}">{{hora.HoraInicial+":"+hora.MinutoInicial+"-"+
+                                    hora.HoraFinal+":"+hora.MinutoFinal}}</option>
+                                </select>
+                              </div>
+          
+                              <div class="input-group mb-3">
+                                MATERIA
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="icon-hourglass"></i></span>
+                                </div>
+                                <select style="width:350px" type="text" name="levelNum4" [(ngModel)]="form.selectmateriagrupo"
+                                  [disabled]="habilitarHoraViernes" [hidden]="habilitarHoraViernes">
+                                  <option value='0' disabled>MATERIA</option>
+                                  <option *ngFor="let mat of materias">{{mat.Nombre}}</option>
+                                </select>
+                              </div>
+                              <div class="input-group mb-3" *ngIf="!habilitarMaterias">
+                                CAMPUS
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="icon-hourglass"></i></span>
+                                </div>
+                                <select style="width:150px"  type="text" name="materia" [(ngModel)]="form.campusgrupo" [disabled]="habilitarMaterias"
+                                  [hidden]="habilitarMaterias">
+                                  <option value='0' disabled>CAMPUS</option>
+                                  <option value='CAMPUS I' >CAMPUS I</option>
+                                  <option value='CAMPUS II' >CAMPUS II</option>
+                                </select>
+                              </div>
+                              <div class="input-group mb-3" *ngIf="!habilitarMaterias">
+                                ESPACIO
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="icon-hourglass"></i></span>
+                                </div>
+                                <select type="text" name="campus" [(ngModel)]="form.espaciogrupo" [disabled]="habilitarMaterias"
+                                  [hidden]="habilitarMaterias">
+                                  <option value='0' disabled>ESPACIO</option>
+                                  <option value='ESPACIO I'>ESPACIO I</option>
+                                  <option value='ESPACIO II'>ESPACIO II</option>
+                                </select>
+                              </div>
+                              <div class="row">
+                                <div class="col-6">
+                                  <button (click)=registroGrupal() class="btn btn-primary px-4"
+                                    [disabled]="!grupalForm.valid">Registrar</button>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </main>
+            </div>
+        </div>
+        <div *ngIf="visacademica">
+          <h1>ACADEMICA</h1>
+          <div class="app-body">
+            <main class="main d-flex align-items-center">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6 mx-auto">
+                    <div align="center">
+                      <h2>ASIGNACION ACADEMICA</h2>
+                    </div>
+                    <div class="card-group">
+                      <div class="card p-3">
+                        <div class="card-body">
+                          <form #individualForm=ngForm>                            
+                            <div class="input-group mb-3">
+                              <h5></h5>
+                            </div>
+                            <div class="input-group mb-3">
+                              <h5>Crea la asesoria</h5>
+                            </div>
+        
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                ASESOR/A
+                                <span class="input-group-text"><i class="icon-hourglass"></i></span>
+                              </div>
+                              <select type="text" name="selectasesor" [(ngModel)]="form.selectasesor" [disabled]="habilitarHoraLunes" (ngModelChange)="ver()"
+                                [hidden]="habilitarHoraLunes">
+                                <option value='0' disabled>ASESOR/A</option>
+                                <option *ngFor="let asesor of asesores" value="{{asesor.PK_USUARIO}}">{{asesor.name+" "+asesor.PRIMER_APELLIDO+" "+asesor.SEGUNDO_APELLIDO}}</option>
+                              </select>
+                            </div>
+        
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                SOLICITANTE
+                                <span class="input-group-text"><i class="icon-hourglass"></i></span>
+                              </div>
+                              <select type="text" name="selectsolicitante" [(ngModel)]="form.selectsolicitante" (ngModelChange)="ver()"
+                                [disabled]="habilitarHoraMartes" [hidden]="habilitarHoraMartes">
+                                <option value='0' disabled>SOLICITANTE</option>
+                                <option *ngFor="let solicitud of solicitudes" value="{{solicitud.PK_USUARIO}}">{{solicitud.name+" "+solicitud.PRIMER_APELLIDO+" "+solicitud.SEGUNDO_APELLIDO}}</option>
+                              </select>
+                            </div>
+        
+                            <div class="input-group mb-3">
+                              DIA
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="icon-hourglass"></i></span>
+                              </div>
+                              <select type="text" name="dia" [(ngModel)]="form.dia"
+                                [disabled]="habilitarHoraMiercoles" [hidden]="habilitarHoraMiercoles">
+                                <option value='0' disabled>DIA</option>
+                                <option value='LUNES' >LUNES</option>
+                                <option value='MARTES' >MARTES</option>
+                                <option value='MIERCOLES' >MIERCOLES</option>
+                                <option value='JUEVES' >JUEVES</option>
+                                <option value='VIERNES' >VIERNES</option>
+                              <!--   <option *ngFor="let level of horariosMiercoles">{{level}}</option> -->
+                              </select>
+                            </div>
+        
+                            <div class="input-group mb-3">
+                              HORA
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="icon-hourglass"></i></span>
+                              </div>
+                              <select type="text" name="levelNum3" [(ngModel)]="form.hora"
+                                [disabled]="habilitarHoraJueves" [hidden]="habilitarHoraJueves">
+                                <option value='0' disabled>HORA</option>
+                                <option *ngFor="let hora of horario">{{hora}}</option>
+                              </select>
+                            </div>
+        
+                            <div class="input-group mb-3">
+                              MATERIA
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="icon-hourglass"></i></span>
+                              </div>
+                              <select style="width:350px" type="text" name="levelNum4" [(ngModel)]="form.selectmateria"
+                                [disabled]="habilitarHoraViernes" [hidden]="habilitarHoraViernes">
+                                <option value='0' disabled>MATERIA</option>
+                                <option *ngFor="let mat of materias">{{mat.Nombre}}</option>
+                              </select>
+                            </div>
+                            <div class="input-group mb-3" *ngIf="!habilitarMaterias">
+                              CAMPUS
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="icon-hourglass"></i></span>
+                              </div>
+                              <select style="width:150px"  type="text" name="materia" [(ngModel)]="form.campus" [disabled]="habilitarMaterias"
+                                [hidden]="habilitarMaterias">
+                                <option value='0' disabled>CAMPUS</option>
+                                <option value='CAMPUS I' >CAMPUS I</option>
+                                <option value='CAMPUS II' >CAMPUS II</option>
+                              </select>
+                            </div>
+                            <div class="input-group mb-3" *ngIf="!habilitarMaterias">
+                              ESPACIO
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="icon-hourglass"></i></span>
+                              </div>
+                              <select type="text" name="campus" [(ngModel)]="form.espacio" [disabled]="habilitarMaterias"
+                                [hidden]="habilitarMaterias">
+                                <option value='0' disabled>ESPACIO</option>
+                                <option value='ESPACIO I'>ESPACIO I</option>
+                                <option value='ESPACIO II'>ESPACIO II</option>
+                              </select>
+                            </div>
+                            <div class="row">
+                              <div class="col-6">
+                                <button (click)=registroInd() class="btn btn-primary px-4"
+                                  [disabled]="!individualForm.valid">Ingresar</button>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </main>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
