@@ -8,7 +8,7 @@
       <div class="card-body">
         <ul class="nav nav-tabs">
           <li class="nav-item">
-            <a class="nav-link active" (click)="individual()" href="#">ENTREVISTA MOTIVOS</a>
+            <a class="nav-link active" (click)="individual()" href="#">REPORTE DE SESIONES</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" (click)="grupal()" href="#">CARTA COMPROMISO</a>
@@ -44,7 +44,7 @@
                               </div>
                               <select class="form-control" type="text" name="materia" [(ngModel)]="form.materia">
                                 <option value='0' disabled>NOMBRE DE LA MATERIA</option>
-                                <option *ngFor="let mat of materias" [ngValue]="mat.Nombre">{{mat.Nombre}}</option>
+                                <option *ngFor="let mat of asesores" [ngValue]="mat.MATERIA">{{mat.MATERIA}}</option>
                               </select>
                             </div>
                             <div class="input-group mb-3">
@@ -83,7 +83,7 @@
                               </div>
                               <select class="form-control" type="text" name="sesion" [(ngModel)]="form.sesion"
                                 [disabled]="habilitarMaterias" [hidden]="habilitarMaterias">
-                                <option value='0' disabled>NO. DE SESIONES EN QUE PARTICIPASTE</option>
+                                <option value='0' disabled>NO. DE SESION</option>
                                 <option value='1'>1</option>
                                 <option value='2'>2</option>
                                 <option value='3'>3</option>
@@ -106,13 +106,23 @@
                                 <option value='20'>20</option>
                                 <option value='21'>21</option>
                                 <option value='22'>22</option>
+                                <option value='23'>23</option>
+                                <option value='24'>24</option>
+                                <option value='25'>25</option>
+                                <option value='26'>26</option>
+                                <option value='27'>27</option>
+                                <option value='28'>28</option>
+                                <option value='29'>29</option>
+                                <option value='30'>30</option>
+                                <option value='31'>31</option>
+                                <option value='32'>32</option>
                               </select>
                             </div>
                             <div class="input-group mb-3">
                               <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="icon-user"></i></span>
                               </div>
-                              <input type="date" (change)="validarFechas()" class="form-control" name='fechaFin'
+                              <input type="date" class="form-control" name='fecha'
                                 [(ngModel)]="form.fecha" required>
                             </div>
                             <div class="input-group mb-3">
@@ -144,6 +154,34 @@
                                 <option value='20'>20</option>
                                 <option value='21'>21</option>
                                 <option value='22'>22</option>
+                                <option value='23'>23</option>
+                                <option value='24'>24</option>
+                                <option value='25'>25</option>
+                                <option value='26'>26</option>
+                                <option value='27'>27</option>
+                                <option value='28'>28</option>
+                                <option value='29'>29</option>
+                                <option value='30'>30</option>
+                                <option value='31'>31</option>
+                                <option value='32'>32</option>
+                                <option value='33'>33</option>
+                                <option value='34'>34</option>
+                                <option value='35'>35</option>
+                                <option value='36'>36</option>
+                                <option value='37'>37</option>
+                                <option value='38'>38</option>
+                                <option value='39'>39</option>
+                                <option value='40'>40</option>
+                                <option value='41'>41</option>
+                                <option value='42'>42</option>
+                                <option value='43'>43</option>
+                                <option value='44'>44</option>
+                                <option value='45'>45</option>
+                                <option value='46'>46</option>
+                                <option value='47'>47</option>
+                                <option value='48'>48</option>
+                                <option value='49'>49</option>
+                                <option value='50'>50</option>
                               </select>
                             </div>
                             <div class="input-group mb-3">
@@ -152,7 +190,7 @@
                               </div>
                               <select class="form-control" type="text" name="horainicio" [(ngModel)]="form.horainicio"
                                 [disabled]="habilitarMaterias" [hidden]="habilitarMaterias">
-                                <option value='0' disabled>NO. DE ASISTENTES</option>
+                                <option value='0' disabled>HORA INICIO</option>
                                 <option value='7:00'>7:00</option>
                                 <option value='8:45'>8:45</option>
                                 <option value='10:30'>10:30</option>
@@ -169,7 +207,7 @@
                               </div>
                               <select class="form-control" type="text" name="horafinal" [(ngModel)]="form.horafinal"
                                 [disabled]="habilitarMaterias" [hidden]="habilitarMaterias">
-                                <option value='0' disabled>NO. DE ASISTENTES</option>
+                                <option value='0' disabled>HORA FIN</option>
                                 <option value='8:40'>8:40</option>
                                 <option value='10:25'>10:25</option>
                                 <option value='12:10'>12:10</option>

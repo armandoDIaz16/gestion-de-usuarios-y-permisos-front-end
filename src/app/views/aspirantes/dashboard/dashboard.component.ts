@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import * as jsPDF from 'jspdf';
-import 'jspdf-autotable';
+//import * as jsPDF from 'jspdf';
+//import 'jspdf-autotable';
 import { AspiranteService } from '../../../services/aspirante.service';
 //import 'angular-base64/angular-base64'; 
 
@@ -70,7 +70,7 @@ export class DashboardComponent implements OnInit {
   generarReferencia() {
 
 
-    var pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF  ;
+    var pdf //= new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF  ;
 
     var columns = [{
       dataKey: "nombre"

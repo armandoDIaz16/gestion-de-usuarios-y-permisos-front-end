@@ -99,6 +99,9 @@ export class JarwisService {
   nameAses(id) {
     return this.http.get(`${this.baseUrl}/NameAses?id=` + id)
   }
+  asesorSesion(id) {
+    return this.http.get(`${this.baseUrl}/AsesorSesion?id=` + id)
+  }
 
 
 
