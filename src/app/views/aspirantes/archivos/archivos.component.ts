@@ -75,6 +75,17 @@ export class ArchivosComponent implements OnInit {
     this.aspiranteService.addRegistrados(formData, this.periodo);
   }
 
+  enviarAceptados(evt: any) {
+    var archivo = null;
+    archivo = evt.target.files[0];
+    if (!archivo) {
+      return;
+    }
+    let formData = new FormData();
+    formData.append('myfile', archivo);
+    this.aspiranteService.addAceptados(formData, this.periodo);
+  }
+
   
 generarExcel(){
   var n = new Date();

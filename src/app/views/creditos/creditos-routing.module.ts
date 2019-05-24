@@ -24,6 +24,9 @@ import { SeguimientoAlumnoComponent } from './seguimientoAlumno.component';
 import { ActividadesResponsableComponent } from './actividadesResponsable.component';
 import { ListaAsistenciaResponsableComponent } from './listaAsistenciaResponsable.component';
 import { AsistentesResponsableComponent } from './asistentesResponsable.component';
+import { ActividadesAsistenteComponent } from './actividadesAsistente.component';
+import { RegistroAsistenciasComponent } from './registroAsistencias.component';
+import { CreditosPorValidarComponent } from './creditosPorValidar.component';
 import { typeSourceSpan } from '@angular/compiler';
 
 var rutas = [];
@@ -32,6 +35,8 @@ var moduloDetAct: Boolean = false;
 var moduloGestActForm: Boolean = false;
 var moduloListAsisRes: Boolean = false;
 var moduloAsisRes: boolean = false;
+var moduloRegAsis: boolean = false;
+var moduloCreditosPorValidar: boolean = false;
 
 
 if (sessionStorage.rutas){
@@ -114,6 +119,25 @@ if (sessionStorage.rutas){
           }
         });
       }
+      if(moduloRegAsis){
+        rutas.push({
+          path: 'registro_asistencias/:id',
+          component: RegistroAsistenciasComponent,
+          data:{
+            title: 'Registro de asistencias'
+          }
+        });
+      }
+      if(moduloCreditosPorValidar){
+        rutas.push({
+          path: 'creditos_por_validar',
+          component: CreditosPorValidarComponent,
+          data:{
+            title: 'Creditos cumplidos'
+          }
+        });
+      }
+      
 
     }
   }
@@ -150,6 +174,7 @@ function agregarModulos(modulo){
       }
     });
     moduloDetAct = true;
+    moduloCreditosPorValidar = true;
     break;
     case 'Seguimiento de actividades':
     modulos.push({
@@ -170,6 +195,16 @@ function agregarModulos(modulo){
     });
     moduloListAsisRes = true;
     moduloAsisRes = true;
+    break;
+    case 'Actividades designadas para asistencia':
+    modulos.push({
+      path: 'actividades_designadas_para_asistencia',
+      component:  ActividadesAsistenteComponent,
+      data: {
+        title: 'Actividades designadas'
+      }
+    });
+    moduloRegAsis = true;
     break;
 
   }

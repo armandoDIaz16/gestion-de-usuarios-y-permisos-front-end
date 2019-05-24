@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+
 //import * as jsPDF from 'jspdf';
 //import 'jspdf-autotable';
-import { AspiranteService } from '../../../services/aspirante.service';
-//import 'angular-base64/angular-base64'; 
 
+import { AspiranteService } from '../../../services/aspirante.service';
 
 
 
@@ -29,7 +29,7 @@ export class DashboardComponent implements OnInit {
     this.aspiranteService.getAspirante().subscribe(data => {
       this.aspirante = data;
       //this.aspirante[0].PREFICHA = this.aspirante[0].PREFICHA.replace(/ /g, "")
-      this.aspiranteService.getReferencia(this.aspirante[0].PREFICHA).subscribe(data => this.referencia = data);
+      //this.aspiranteService.getReferencia(this.aspirante[0].PREFICHA).subscribe(data => this.referencia = data);
       if (this.aspirante[0].SEGUNDO_APELLIDO == null) {
         this.aspirante[0].SEGUNDO_APELLIDO = "";
       }
@@ -45,6 +45,7 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
+
 
   generarReferencia2()    
   {
@@ -212,9 +213,15 @@ export class DashboardComponent implements OnInit {
     pdf.save('Referencia' + this.aspirante[0].PREFICHA + '.pdf');
 
 
+
+  generarReferencia(){
+    window.open("http://127.0.0.1:8000/api/Referencia/"+sessionStorage.getItem('IdUsuario'));
+    //location.href = "http://127.0.0.1:8000/api/Referencia/"+sessionStorage.getItem('IdUsuario');
+
   }
 
   generarFicha(){
-    location.href = "http://127.0.0.1:8000/api/Ficha/"+sessionStorage.getItem('IdUsuario');
+    window.open("http://127.0.0.1:8000/api/Ficha/"+sessionStorage.getItem('IdUsuario'));
+    //location.href = "http://127.0.0.1:8000/api/Ficha/"+sessionStorage.getItem('IdUsuario');
   }
 }

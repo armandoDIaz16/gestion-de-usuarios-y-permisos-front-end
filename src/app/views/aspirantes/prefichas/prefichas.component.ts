@@ -27,6 +27,9 @@ export class PrefichasComponent implements OnInit {
   especialidad2 = null;
   CURP = null;
 
+  public habilitarCorreo = true;
+  public asunto = "";
+  public mensaje = "";
 
 
   public estatus = [];
@@ -131,8 +134,10 @@ export class PrefichasComponent implements OnInit {
     if (this.filtroESTATUS) {
       if (this.filtroESTATUS == "todos") {
         this.aspirantes = this.aspirantes;
+        this.habilitarCorreo = true;
       } else {
         this.aspirantes = this.aspirantes.filter(item => item.ESTATUS === this.filtroESTATUS);
+        this.habilitarCorreo = false;
       }
     }
   }
@@ -187,6 +192,46 @@ export class PrefichasComponent implements OnInit {
       
       this.obtenerAspirantes(this.periodo);
   }
+
+  enviarCorreo(){
+/*     var correos = "";
+    for (var i=0; this.aspirantes.length>i; i++){
+      correos = correos+this.aspirantes[i].CORREO+","
+    }
+    correos = correos.slice(0,-1); */
+    var correos = [];
+    for (var i=0; this.aspirantes.length>i; i++){
+      correos.push(this.aspirantes[i].CORREO);
+    }
+
+    this.aspiranteService.enviarCorreo({
+      'CORREOS': correos,
+      'ASUNTO': this.asunto,
+      'MENSAJE': this.mensaje
+    });
+
+  this.asunto = "";
+  this.mensaje = "";
+    console.log(correos);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   leerExcel(evt: any){     
     const target: DataTransfer = <DataTransfer>(evt.target);

@@ -10,12 +10,12 @@
             <div class="row">
               <div class="col-sm-4">
                 <div class="form-group">
-                  <label for="salon">Salon:</label>
+                  <label for="espacio">Espacio:</label>
                   <label style="color:#ff0000;" for="asterisco">*</label>
-                  <select [(ngModel)]="salon" class="form-control" name="salon">
+                  <select [(ngModel)]="espacio" class="form-control" name="espacio">
                     <option [value]=null>Selecciona</option>
-                    <option *ngFor="let salon of salonLista" value="{{salon.PK_ESPACIO}}">
-                      {{salon.NOMBRE}}</option>
+                    <option *ngFor="let espacio of espacioLista" value="{{espacio.PK_ESPACIO}}">
+                      {{espacio.NOMBRE}}</option>
                   </select>
                 </div>
               </div>
@@ -25,8 +25,8 @@
                   <label style="color:#ff0000;" for="asterisco">*</label>
                   <select [(ngModel)]="dia" class="form-control" name="dia">
                     <option [value]=null>Selecciona</option>
-                    <option *ngFor="let turno of turnoLista" value="{{turno.DIA}}">
-                      {{turno.DIA}}</option>
+                    <option *ngFor="let dia of diaLista" value="{{dia.DIA}}">
+                      {{dia.DIA}}</option>
                   </select>
                 </div>
               </div>
@@ -36,8 +36,8 @@
                   <label style="color:#ff0000;" for="asterisco">*</label>
                   <select [(ngModel)]="hora" class="form-control" name="hora">
                     <option [value]=null>Selecciona</option>
-                    <option *ngFor="let turno of turnoLista" value="{{turno.HORA}}">
-                      {{turno.HORA}}</option>
+                    <option *ngFor="let hora of horaLista" value="{{hora.HORA}}">
+                      {{hora.HORA}}</option>
                   </select>
                 </div>
               </div>
