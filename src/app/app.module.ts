@@ -42,7 +42,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { SistemsComponent } from './sistems/sistems.component';
-import { ChartsModule } from 'ng2-charts';
+//import { ChartsModule } from 'ng2-charts';
 
 // login
 // import { NavbarComponent } from './components/navbar/navbar.component';
@@ -92,7 +92,7 @@ import {DocumentacionComponent} from './views/residencias/documentacion/document
     ChartsModule,
     //SnotifyModule,
     MDBBootstrapModule.forRoot(),
-    BrowserAnimationsModule,    
+    BrowserAnimationsModule,
     CommonModule,
     ReactiveFormsModule
     ],

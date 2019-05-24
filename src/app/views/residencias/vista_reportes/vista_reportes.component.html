@@ -16,7 +16,7 @@
 <table class="table" >
     <thead>
     <tr>
-        <th>Usuario</th>
+        <th>ID reporte</th>
         <th>Reporte</th>
         <th>Alumno</th>
     </tr>
@@ -25,7 +25,7 @@
     <tr *ngFor="let com of reporteLista; let e = index">
         <td>{{com.PK_REPORTE_DOCENTE}}</td>
         <td>{{com.PDF}}</td>
-        <td>{{com.ALUMNO}}</td>
+        <td>{{com.name}}</td>
     </tr>
     </tbody>
 </table>
@@ -48,7 +48,7 @@
     <table class="table" >
         <thead>
         <tr>
-            <th>Usuario</th>
+            <th>ID reporte</th>
             <th>Reporte</th>
             <th>Alumno</th>
         </tr>
@@ -57,7 +57,7 @@
         <tr *ngFor="let como of repextLista; let e = index">
             <td>{{como.PK_REPORTE_EXTERNO}}</td>
             <td>{{como.PDF}}</td>
-            <td>{{como.ALUMNO}}</td>
+            <td>{{como.name}}</td>
         </tr>
         </tbody>
     </table>

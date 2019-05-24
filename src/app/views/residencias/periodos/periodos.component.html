@@ -1,5 +1,5 @@
-<div class="card text-center">
-    <h5 class="card-header">Periodos</h5>
+<div class="card">
+    <h2 class="card-header">Periodos</h2>
     <div class="card-body">
         <h5>Proceso</h5>
         <select [(ngModel)]="opcionSeleccionado" class="form-control form-control-lg">
@@ -10,8 +10,11 @@
         <input type="date" [(ngModel)]="fini" class="form-control form-control-lg">
         <h5>Fecha final</h5>
         <input type="date" [(ngModel)]="ffin" class="form-control form-control-lg">
+        <br>
+        <div style="text-align: center;">
         <label class="btn btn-dark">
             Guardar<input type="submit" value="submit" name="submit" hidden (click)="cargarFechas()">
         </label>
+        </div>
     </div>
 </div>

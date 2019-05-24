@@ -30,6 +30,10 @@ export class Banco_estadisticaComponent implements OnInit {
   generar() {
       this.x = <number>this.TotalProyectos;
       this.y = <number>this.ProyectosAlumno;
+      let z = this.y - this.x;
+      if (z < 0) {
+          z = 0;
+      }
       const canvas = <HTMLCanvasElement> document.getElementById('myChart');
       const ctx = canvas.getContext('2d');
       this.myChart = [new Chart(ctx, {
@@ -38,7 +42,7 @@ export class Banco_estadisticaComponent implements OnInit {
               labels: ['Proyectos propuestos por alumnos', 'Proyectos propuestos por la institución'],
               datasets: [{
                   label: '# of Votes',
-                  data: [this.x, this.y - this.x],
+                  data: [this.x, z],
                   backgroundColor: [
                       'rgba(255, 99, 132, 0.7)',
                       'rgba(54, 162, 235, 0.7)',
