@@ -98,18 +98,12 @@ export class GraficasComponent implements OnInit {
         datasets: [{
           //label: "Population (millions)",
           backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(255, 159, 64)',
+            'rgb(255, 159, 64)',            
+            'rgb(54, 162, 235)',
             'rgb(255, 205, 86)',
             'rgb(75, 192, 192)',
-            'rgb(54, 162, 235)',
             'rgb(153, 102, 255)',
-            'rgb(201, 203, 207)',
-            "#3e95cd",
-            "#8e5ea2",
-            "#3cba9f",
-            "#e8c3b9",
-            "#c45850"],
+            'rgb(201, 203, 207)'],
           data: this.campusCANTIDAD
         }]
       },

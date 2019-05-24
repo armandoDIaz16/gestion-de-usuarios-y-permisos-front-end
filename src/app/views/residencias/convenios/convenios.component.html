@@ -58,9 +58,11 @@
         <h5>Nombre y cargo del Testigo:</h5>
         <input [(ngModel)]="NombreTestigo" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
         <br>
+        <div style="text-align: center;">
         <h5>Logo empresa</h5>
         <label class="btn btn-dark">
             Seleccionar<input type="file" name="file" hidden multiple (change)="uploadFile($event)">
         </label>
+        </div>
     </div>
 </div>
