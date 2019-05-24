@@ -15,11 +15,13 @@
             <th>Primer Apellido</th>
             <th>Segundo Apellido</th>
             <th>Nombre</th>
+            <th></th>
         </tr>
         <tr *ngFor="let ususario of usuarios">
             <td><div>{{ususario.PRIMER_APELLIDO}}</div></td>
             <td><div>{{ususario.SEGUNDO_APELLIDO}}</div></td>
             <td><div>{{ususario.name}}</div></td>
+            <td><button type="button" class="btn btn-block btn-danger" (click)="eliminar(ususario.PK_ASISTENTE_ACTIVIDAD)">Quitar</button></td>
         </tr>
     </thead>
   </table>

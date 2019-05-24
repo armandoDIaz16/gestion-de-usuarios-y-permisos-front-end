@@ -3,4 +3,6 @@ export interface Usuario {
     PRIMER_APELLIDO: string;
     SEGUNDO_APELLIDO: string;
     name: string;
+    ENTRADA?: string;
+    SALIDA?: string;
 }

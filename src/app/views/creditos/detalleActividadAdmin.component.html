@@ -1,0 +1,36 @@
+<div class="animated fadeIn" *ngFor="let actividad of actividad">
+        <div class="card">
+          <div class="card-header">
+            <H2>{{actividad.NOMBRE}}</H2>
+            <div class="card-header-actions">
+            </div>
+          </div>
+          <div class="card-body">
+              <div class="row">
+                <div style="background-color:chocolate" class="form-group col-sm-4" *ngIf="actividad.IMAGEN">
+                  <div><img src={{actividad.IMAGEN}} width="400px" height="150px" alt="{{actividad.NOMBRE}}"></div>
+                </div>
+                <div class="form-group col-sm-8">
+                    <dt class="col-sm-3">FECHA</dt>
+                    <dd class="col-sm-3">{{actividad.FECHA}}</dd>
+                    <dt class="col-sm-3">LUGAR</dt>
+                    <dd class="col-sm-3">{{actividad.LUGAR}}</dd>
+                    <dt class="col-sm-3">HORA</dt>
+                    <dd class="col-sm-3">{{actividad.HORA}}</dd>
+                </div>
+                
+              </div>
+            <div class="row">
+              <div class="form-group col-sm-12">
+              <p align="justify">
+              {{actividad.DESCRIPCION}}
+              </p>
+              </div>
+          </div>
+          
+          </div>
+        </div>
+      </div>
+    
+    
+    

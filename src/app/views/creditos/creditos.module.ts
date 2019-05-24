@@ -22,6 +22,8 @@ import { AsistentesResponsableComponent } from './asistentesResponsable.componen
 import { ActividadesAsistenteComponent } from './actividadesAsistente.component';
 import { RegistroAsistenciasComponent } from './registroAsistencias.component';
 import { CreditosPorValidarComponent } from './creditosPorValidar.component';
+import { CreditosValidadosComponent } from './creditosValidados.component';
+import { DetalleActividadAdminComponent } from './detalleActividadAdmin.component';
 // Dropdowns Component
 
 
@@ -53,7 +55,9 @@ import { CreditosRoutingModule } from './creditos-routing.module';
     AsistentesResponsableComponent,
     ActividadesAsistenteComponent,
     RegistroAsistenciasComponent,
-    CreditosPorValidarComponent
+    CreditosPorValidarComponent,
+    CreditosValidadosComponent,
+    DetalleActividadAdminComponent
   ]
 })
 export class CreditosModule { }
