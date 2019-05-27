@@ -12,19 +12,19 @@ export class CrearGruposComponent implements OnInit {
 
   constructor(private lugarExamenService: LugarExamenService) {
   }
-  public dia=null;
-  public hora=null;
-  public edificio=null;
-  public tipoEspacio=null;
+  public dia = null;
+  public hora = null;
+  public edificio = null;
+  public tipoEspacio = null;
   public espacio = null;
   public turno2 = null;
   public nombre = null;
   public identificador = null;
   public capacidad = null;
-  public edificioLista=[];
+  public edificioLista = [];
   public espacioLista = [];
-  public tipoEspacioLista=[];
-  public turno2Lista=[];
+  public tipoEspacioLista = [];
+  public turno2Lista = [];
 
 
   ngOnInit() {
@@ -34,13 +34,16 @@ export class CrearGruposComponent implements OnInit {
     this.lugarExamenService.getTipoEspacio().subscribe(data => this.tipoEspacioLista = data);
   }
 
-  guardarTurno(){
+  guardarTurno() {
     this.lugarExamenService.addTurnoExamen({
       "DIA": this.dia,
       "HORA": this.hora
     });
+    setTimeout(()=>{
+      this.recargarEspacioTurno()
+    }, 1000);
   }
-  guardarEspacio(){
+  guardarEspacio() {
     this.lugarExamenService.addEspacioExamen({
       'FK_EDIFICIO': this.edificio,
       'FK_TIPO_ESPACIO': this.tipoEspacio,
@@ -48,11 +51,18 @@ export class CrearGruposComponent implements OnInit {
       'IDENTIFICADOR': this.identificador,
       'CAPACIDAD': this.capacidad
     });
+    setTimeout(()=>{
+      this.recargarEspacioTurno()
+    }, 1000); 
   }
-  guardarGrupo(){
+  guardarGrupo() {
     this.lugarExamenService.addGrupoExamen({
       'FK_ESPACIO': this.espacio,
       'FK_TURNO': this.turno2
     });
   }
+  recargarEspacioTurno(){
+    this.lugarExamenService.getTurno2().subscribe(data => this.turno2Lista = data);
+    this.lugarExamenService.getEspacio().subscribe(data => this.espacioLista = data);
+  }     
 }

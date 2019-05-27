@@ -11,18 +11,7 @@ import { ActivatedRoute} from '@angular/router';
 
 export class ListaAsistenciaResponsableComponent{
 
-    actividad: Actividad = {
-        NOMBRE: null,
-        DESCRIPCION: null,
-        LUGAR: null,
-        FECHA: null,
-        HORA: null,
-        CUPO: null,
-        FK_LINEAMIENTO: null,
-        FK_TIPO: null,
-        FK_RESPONSABLE: null,
-      };
-      
+    actividad: Actividad[];
     alumnos: Usuario[];
     actividades: Actividad[];
     pk_actividad: any;
@@ -44,12 +33,10 @@ export class ListaAsistenciaResponsableComponent{
 
     getActRes(){
         this.pk_actividad = this.activatedRoute.snapshot.params['id'];
-        this.responsablesService.getActividades().subscribe((data: Actividad[])=>{
-            this.actividades = data;
-            this.actividad = this.actividades.find((m)=>{return m.PK_ACTIVIDAD == this.pk_actividad});
-            console.log(this.actividad);
+        this.responsablesService.getActividadById(this.pk_actividad).subscribe((data: Actividad[])=>{
+            this.actividad = data;
           },(error)=>{
-            console.log(error);
+            alert("Ocurrio un error");
           });
     }
 }

@@ -6,8 +6,8 @@ import { Injectable } from '@angular/core';
 export class TokenService {
 
   private iss = {
-    login : 'http://localhost:8000/api/login',
-    signup : 'http://localhost:8000/api/signup'
+    login : 'http://10.0.31.11/backend_swiitl/server.php/api/login',
+    signup : 'http://10.0.31.11/backend_swiitl/server.php/api/signup'
   }
 
   constructor() { }

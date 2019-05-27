@@ -7,25 +7,27 @@
 <div style="width: 100%"></div>
 <hr>
 <hr>
-<div style="width: 100%;" *ngIf="showAR; else sinActividadesDisponibles" >
-<div style="width: 75%;" *ngFor="let actividad of actividades">
+<div class="form-group col-sm-12" *ngIf="showAR; else sinActividadesDisponibles" >
+<div class="form-group col-sm-12" *ngFor="let actividad of actividades  | paginate: {itemsPerPage: 10, currentPage: pageActual}">
   <table class="table table-responsive-sm table-hover table-outline mb-0" style="width:100%;" >
     <thead class="thead-light">
       <tr>
-        <th class="text-center" rowspan="2"><h2>{{actividad.NOMBRE}}</h2></th>
-            <td style="width: 25%;">Fecha: {{actividad.FECHA}}</td>
+        <th style="width: 50%;" rowspan="2"><h2>{{(actividad.NOMBRE.length>45)? (actividad.NOMBRE | slice:0:43)+'..':(actividad.NOMBRE)}}</h2></th>
+            <td style="width: 20%;">Fecha: {{actividad.FECHA}}</td>
             <!-- <td>Registrados: {{actividad.REGISTRADOS}}/{{actividad.CUPO}}</td> -->
-            <td><a routerLink="../lista-asistencia-res/{{actividad.PK_ACTIVIDAD}}">Lista de asistentes</a></td>
+            <td style="width: 10%;"><a routerLink="../lista-asistencia-res/{{actividad.PK_ACTIVIDAD}}">Lista de asistentes</a></td>
+            <td style="width: 20%;"></td>
         </tr>
         <tr>
-            <td>Lugar: {{actividad.LUGAR}}</td>
-            <td><a routerLink="../detalle-actividad/{{actividad.PK_ACTIVIDAD}}">Ver detalles</a></td>
-            <td><a routerLink="../asistentes-res/{{actividad.PK_ACTIVIDAD}}">Registro de asistencias</a></td>
+            <td style="width: 20%;">Lugar: {{actividad.LUGAR}}</td>
+            <td style="width: 10%;"><a routerLink="../detalle_actividad_adm/{{actividad.PK_ACTIVIDAD}}">Ver detalles</a></td>
+            <td style="width: 20%;"><a routerLink="../asistentes-res/{{actividad.PK_ACTIVIDAD}}">Registro de asistencias</a></td>
         </tr>
     </thead>
   </table>
   <br>
 </div>
+<pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
 </div>
 <ng-template #sinActividadesDisponibles> <p>No hay actividades designadas</p>  </ng-template>
 </div>

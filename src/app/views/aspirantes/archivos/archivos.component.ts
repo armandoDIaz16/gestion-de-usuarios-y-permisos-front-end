@@ -20,6 +20,8 @@ export class ArchivosComponent implements OnInit {
   public fechaInicio = null;
   public periodo = null;
   public aspirantes = [];
+  public excelLeerAceptadosCENVEAL=[];
+  public excelGeneradoAceptadosCENVEAL=[];
 
   ngOnInit() {
     var fecha = new Date(); //Fecha actual
@@ -166,4 +168,66 @@ leerDatosParaExcel() {
       }
     });    
   }
-}
+  
+
+
+  leerExcel(evt: any){     
+    const target: DataTransfer = <DataTransfer>(evt.target);
+    if (target.files.length !== 1) throw new Error('Cannot use multiple files');
+    const reader: FileReader = new FileReader();
+    reader.onload = (e: any) => {
+      
+      const bstr: string = e.target.result;
+      const wb: XLSX.WorkBook = XLSX.read(bstr, {type: 'binary'});
+
+      const wsname: string = wb.SheetNames[0];
+      const ws: XLSX.WorkSheet = wb.Sheets[wsname];
+      this.excelLeerAceptadosCENVEAL=(XLSX.utils.sheet_to_json(ws, {header: 0}));
+
+    this.elegirAceptados(target.files[0].name.split('.')[0]);
+    };
+    reader.readAsBinaryString(target.files[0]);  
+  } 
+
+  elegirAceptados(nombreArchivo){    
+    for (var i = 0; i < this.excelLeerAceptadosCENVEAL.length; i++) {
+      if(this.excelLeerAceptadosCENVEAL[i].DDD_MG_MAT==2){
+        this.excelGeneradoAceptadosCENVEAL.push(this.excelLeerAceptadosCENVEAL[i]);    
+      }
+    }
+    this.excelGeneradoAceptadosCENVEAL=this.excelGeneradoAceptadosCENVEAL.sort(function(a, b){return b.ICNE-a.ICNE});
+    this.generarExcelAceptadosCENEVAL(nombreArchivo);    
+  }
+
+  generarExcelAceptadosCENEVAL(nombreArchivo){  
+    var rows = [Object.keys(this.excelGeneradoAceptadosCENVEAL[0])];  
+
+    for (var i = 0; i < this.excelGeneradoAceptadosCENVEAL.length; i++) {
+      var row =[]
+      for (var key in this.excelGeneradoAceptadosCENVEAL[i]) {
+          row.push(this.excelGeneradoAceptadosCENVEAL[i][key])
+      }
+      rows.push(row);
+    }  
+      var wb = XLSX.utils.book_new();
+      wb.Props = {
+        Title: "Resultados",
+        Subject: "Resultados",
+        Author: "Resultados",
+        CreatedDate: new Date(2017, 12, 19)
+      };
+  
+      wb.SheetNames.push("Resultados");
+      var ws_data = rows;
+      var ws = XLSX.utils.aoa_to_sheet(ws_data);
+      wb.Sheets["Resultados"] = ws;
+      var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
+      function s2ab(s) {
+        var buf = new ArrayBuffer(s.length);
+        var view = new Uint8Array(buf);
+        for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+        return buf;
+      }
+      XLSX.writeFile(wb, nombreArchivo + ".xlsx");
+  }
+}    
