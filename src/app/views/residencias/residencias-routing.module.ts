@@ -27,6 +27,7 @@ import {Estadisticas_reportesComponent} from './estadisticas_reportes/estadistic
 import {Informe_tecnicoComponent} from './informe_tecnico/informe_tecnico.component';
 import {Generar_conveniosComponent} from './generar_convenios/generar_convenios.component';
 import {Configuracion_actaComponent} from './configuracion_acta/configuracion_acta.component';
+import {Informacion_residenciasComponent} from './informacion_residencias/informacion_residencias.component';
 
 var rutas = [];
 
@@ -289,6 +290,15 @@ function agregarModulos(modulo) {
               component: Configuracion_actaComponent,
               data: {
                   title: 'Configuración'
+              }
+          });
+          break;
+      case 'Informacion residencias':
+          modulos.push({
+              path: 'informacion_residencias',
+              component: Informacion_residenciasComponent,
+              data: {
+                  title: 'Información residencias'
               }
           });
           break;

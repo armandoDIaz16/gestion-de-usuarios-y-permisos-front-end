@@ -6,7 +6,12 @@
                 <strong>Proyectos Institución / Alumno</strong>
             </div>
             <div class="card-body">
-            <canvas id="myChart" ></canvas>
+            <canvas baseChart
+                [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartsOptions"
+            [legend]="barChartLegend"
+            [chartType]="barChartType"></canvas>
             </div>
         </div>
     </div>
