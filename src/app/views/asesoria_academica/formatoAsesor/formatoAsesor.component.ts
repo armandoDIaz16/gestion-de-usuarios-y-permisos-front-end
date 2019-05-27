@@ -61,11 +61,8 @@ export class FormatoAsesorComponent implements OnInit {
 
   public form = {
     id: sessionStorage.getItem("IdUsuario"),
-    name: null,
-    control: null,
     apep: null,
     apem: null,
-    carrera: null,
     email: null,
     celular: null,
     sexo: null,
@@ -77,13 +74,24 @@ export class FormatoAsesorComponent implements OnInit {
     maestro: '0',
     maestro1: '0',
     motivo: null,
-    semestre: null,
     asesorSa: '0',
     materiaSa: '0',
-    sesion: '0',
     afirmacion: null,
 
-
+// sesiones
+materia: '0',
+name: null,
+carrera: null,
+control: null,
+semestre: null,
+sesion: '0',
+fecha: null,
+asistentes: '0',
+horainicio: '0',
+horafinal: '0',
+tema: null,
+actividades: null,
+//
     inciso: null,
     inciso1: null,
     inciso2: null,
@@ -111,7 +119,6 @@ export class FormatoAsesorComponent implements OnInit {
 
     asesor: null,
     alumno: null,
-    materia: null,
     dia: null,
     hora: null,
     valida: null,
@@ -182,8 +189,9 @@ export class FormatoAsesorComponent implements OnInit {
       },
       error => this.handleError(error)
     );
-    this.Jarwis.nameAses(this.form.id).subscribe(
+    this.Jarwis.asesorSesion(this.form.id).subscribe(
       data => {
+        console.log(data)
         for (var num in data) {
           this.asesores.push(data[num]);
         }

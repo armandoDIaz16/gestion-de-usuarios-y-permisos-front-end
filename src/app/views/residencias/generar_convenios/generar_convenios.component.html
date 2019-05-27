@@ -1,0 +1,14 @@
+<div class="card text-center">
+    <div class="card-header">
+        <h5 class="card-title">Maestro</h5>
+    </div>
+    <div class="card-body">
+        <select [(ngModel)]="opcion" name="teacher" id="teacher" class="form-control form-control-lg">
+            <option *ngFor="let estadoCivil of empresasLista" value="{{estadoCivil.PK_INFO_EMPRESA}}"> {{estadoCivil.NOMBRE_EMPRESA}} </option>
+        </select>
+        <br>
+        <label class="btn btn-dark">
+            Generar<input type="submit" value="submit" name="submit" hidden (click)="generarConvenio(opcion)">
+        </label>
+    </div>
+</div>

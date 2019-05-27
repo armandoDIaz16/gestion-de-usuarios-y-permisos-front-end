@@ -34,6 +34,8 @@ import { Vista_documentacionComponent } from './vista_documentacion/vista_docume
 import { Banco_estadisticaComponent } from './banco_estadistica/banco_estadistica.component';
 import { Estadisticas_reportesComponent } from './estadisticas_reportes/estadisticas_reportes.component';
 import { Informe_tecnicoComponent } from './informe_tecnico/informe_tecnico.component';
+import { Generar_conveniosComponent } from './generar_convenios/generar_convenios.component';
+import {Configuracion_actaComponent} from './configuracion_acta/configuracion_acta.component';
 
 // Angular
 
@@ -69,7 +71,9 @@ import { Informe_tecnicoComponent } from './informe_tecnico/informe_tecnico.comp
     Vista_documentacionComponent,
     Banco_estadisticaComponent,
     Estadisticas_reportesComponent,
-    Informe_tecnicoComponent
+    Informe_tecnicoComponent,
+    Generar_conveniosComponent,
+    Configuracion_actaComponent
   ]
 })
 export class ResidenciasModule { }

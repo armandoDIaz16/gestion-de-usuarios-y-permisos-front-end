@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+
+//import * as jsPDF from 'jspdf';
+//import 'jspdf-autotable';
+
 import { AspiranteService } from '../../../services/aspirante.service';
 
 
@@ -20,8 +24,8 @@ export class DashboardComponent implements OnInit {
   habilitarRegistro = false;
   habilitarAceptado = false;
 
-  constructor(private aspiranteService: AspiranteService) {
-  }
+    constructor(private aspiranteService: AspiranteService) {
+    }
 
   ngOnInit() {
     this.aspiranteService.getAspirante().subscribe(data => {

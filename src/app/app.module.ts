@@ -67,6 +67,7 @@ import {DocumentacionComponent} from './views/residencias/documentacion/document
 
 
 @NgModule({
+
     imports: [
         BrowserModule,
         AppRoutingModule,
@@ -102,6 +103,7 @@ import {DocumentacionComponent} from './views/residencias/documentacion/document
         ControlComponent,
         StudentOldComponent,
         NavbarSistemsComponent,
+
     ],
     providers: [
         {

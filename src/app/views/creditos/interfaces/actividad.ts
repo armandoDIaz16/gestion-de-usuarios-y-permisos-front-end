@@ -10,6 +10,7 @@ export interface Actividad {
     FK_LINEAMIENTO: number;
     FK_TIPO: number;
     FK_RESPONSABLE: number;
+    IMAGEN?: string;
 	FK_USUARIO_REGISTRO?: number; 
 	FECHA_REGISTRO?: string;
 	FK_USUARIO_MODIFICACION?: number;

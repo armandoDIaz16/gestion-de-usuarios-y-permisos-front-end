@@ -26,3 +26,30 @@
             </tbody>
         </table>
 </div>
+<br>
+<div class="card">
+    <h2 class="card-header"> Cambiar asesores </h2>
+    <h3>Numero de Control:</h3> <input type="text" [(ngModel)]="alumnos" class="form-control form-control-lg">
+   <div style="text-align: center;">
+    <label class="btn btn-dark">
+        Buscar<input type="submit" value="submit" name="submit" hidden (click)="buscarAlumno()">
+    </label>
+   </div>
+    <table class="table" >
+        <tbody>
+        <tr *ngFor="let antep of alumnoLista; let i = index">
+            <td>{{antep.ID_ANTEPROYECTO}}</td>
+            <td>{{ antep.NOMBRE }}</td>
+            <td>  <select [(ngModel)]="opcion[i]" name="teacher2" id="teacher2">
+                <option *ngFor="let estadoCivil of maestrosLista" value="{{estadoCivil.PK_USUARIO}}"> {{estadoCivil.name}} </option>
+            </select> </td>
+            <td>  <select [(ngModel)]="opcion2[i]" name="externo2" id="externo2">
+                <option *ngFor="let estadoCivil of externoLista" value="{{estadoCivil.ID_PADRE}}"> {{estadoCivil.name}} </option>
+            </select> </td>
+            <td>  <label class="btn btn-dark">
+                Asignar<input type="submit" value="submit" name="submit" hidden (click)="asignarMaestro(antep.ID_ANTEPROYECTO,opcion[i],opcion2[i])">
+            </label> <!--<button class="btn btn-dark" type="submit" value="Submit">Asignar</button> --> </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

@@ -17,7 +17,7 @@
       <div class="col-sm-12">
         <div class="form-group">
           <label for="name">Descripcion</label>
-          <input [(ngModel)]="actividad.DESCRIPCION" type="text"  class="form-control" name="descrpcion" id="descripcion" placeholder="Ingresa la descripcion de la actividad" required>
+          <textarea [(ngModel)]="actividad.DESCRIPCION" type="textarea"  class="form-control" name="descrpcion" id="descripcion" placeholder="Ingresa la descripcion de la actividad" required ></textarea>
         </div>
       </div>
     </div>
@@ -33,7 +33,7 @@
       <div class="col-sm-12">
         <div class="form-group">
           <label for="name">Fecha</label>
-          <input [ngModel]="actividad.FECHA | date:'yyyy-MM-dd' : 'UTC'" type="date" class="form-control" name="fecha" id="fecha" placeholder="Ingresa la fecha de la actividad" required>
+          <input [(ngModel)]="actividad.FECHA" type="date" class="form-control" name="fecha" id="fecha" placeholder="Ingresa la fecha de la actividad" required>
           
         </div>
       </div>
@@ -58,11 +58,9 @@
       <div class="col-sm-12">
         <div class="form-group">
           <label for="name">Lineamiento</label>
-          <select [(ngModel)]="actividad.FK_LINEAMIENTO" (ngModelChange)="onDropdownChange($event)" class="form-control" name="lineamiento" id="lineamiento" required>
-            <option *ngFor="let lineamiento of lineamientos" [ngValue]="lineamiento.PK_LINEAMIENTO" [selected]="actividad.FK_LINEAMIENTO" class="form-control">{{lineamiento.NOMBRE}}</option>
-            
+          <select  [(ngModel)]="actividad.FK_LINEAMIENTO" (ngModelChange)="onDropdownChange($event)" class="form-control" name="lineamiento" id="lineamiento" required>
+          <option *ngFor="let lineamiento of lineamientos" [value]="lineamiento.PK_LINEAMIENTO" ng-selected="lineamiento.PK_LINEAMIENTO == actividad.FK_LINEAMIENTO" class="form-control">{{lineamiento.NOMBRE}}</option>    
           </select>
-          <!-- <input [(ngModel)]="actividad.FK_LINEAMIENTO" type="text" class="form-control" name="lineamiento" id="lineamiento" placeholder="Ingresa el lineamiento de la actividad" required> -->
         </div>
       </div>
     </div>
@@ -71,7 +69,7 @@
         <div class="form-group">
           <label for="name">Tipo</label>
           <select [(ngModel)]="actividad.FK_TIPO" (ngModelChange)="onDropdownChange1($event)" class="form-control" name="tipo" id="tipo" required>
-            <option *ngFor="let tipo of tipos"  ng-selected="actividad.FK_TIPO == tipo.PK_TIPO" [ngValue]="tipo.PK_TIPO"  class="form-control">{{tipo.NOMBRE}}</option>
+            <option *ngFor="let tipo of tipos" [value]="tipo.PK_TIPO"  ng-selected="tipo.PK_TIPO == actividad.FK_TIPO"  class="form-control">{{tipo.NOMBRE}}</option>
           </select>
         </div>
       </div>
@@ -81,9 +79,17 @@
         <div class="form-group">
           <label for="name">Responsable</label>
           <select [(ngModel)]="actividad.FK_RESPONSABLE" (ngModelChange)="onDropdownChange2($event)" class="form-control" name="responsable" id="responsable" required>
-            <option *ngFor="let res of responsables" [ngValue]="res.PK_USUARIO" [selected]="res.NOMBRE" class="form-control">{{res.NOMBRE}}</option>
+            <option *ngFor="let res of responsables" [value]="res.PK_USUARIO" ng-selected="res.PK_USUARIO == actividad.FK_RESPONSABLE" class="form-control">{{res.NOMBRE}}</option>
           </select>
 
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="form-group">
+          <label for="name">Imagen o logotipo referente a la actividad (opcional)</label>
+          <input [(ngModel)]="actividad.IMAGEN" type="text" class="form-control" name="imagen" id="imagen" placeholder="Ingresa la url de la imagen" >
         </div>
       </div>
     </div>

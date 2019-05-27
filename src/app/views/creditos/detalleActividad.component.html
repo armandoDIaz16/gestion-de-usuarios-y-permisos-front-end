@@ -9,18 +9,34 @@
         </div>
       </div>
       <div class="card-body">
-        <div><p>{{actividad.FECHA}}</p></div>
-        <div>
-          <p>
+          <div class="row">
+            <div style="background-color:chocolate" class="form-group col-sm-4" *ngIf="actividad.IMAGEN">
+              <div><img src={{actividad.IMAGEN}} width="400px" height="150px" alt="{{actividad.NOMBRE}}"></div>
+            </div>
+            <div class="form-group col-sm-8">
+                <dt class="col-sm-3">FECHA</dt>
+                <dd class="col-sm-3">{{actividad.FECHA}}</dd>
+                <dt class="col-sm-3">LUGAR</dt>
+                <dd class="col-sm-3">{{actividad.LUGAR}}</dd>
+                <dt class="col-sm-3">HORA</dt>
+                <dd class="col-sm-3">{{actividad.HORA}}</dd>
+             <!--  <div><p>FECHA: {{actividad.FECHA}}</p></div>
+              <div><p>LUGAR: {{actividad.LUGAR}}</p></div>
+              <div><p>HORA:  {{actividad.HORA}}</p></div> -->
+            </div>
+            
+          </div>
+        <div class="row">
+          <div class="form-group col-sm-12">
+          <p align="justify">
           {{actividad.DESCRIPCION}}
           </p>
+          </div>
       </div>
-      <div><p>{{actividad.LUGAR}}</p></div>
-      <div><p>{{actividad.HORA}}</p></div>
-      <div><p>{{actividad.REGISTRADOS}}</p></div>
+      
       </div>
       <div *ngIf="inscrito == false" class="card-footer">
-        <a class="btn btn-primary btn-sm" (click)="registrarse(actividad.PK_ACTIVIDAD, actividad.REGISTRADOS, actividad.CUPO)">Inscribirse</a>
+        <button type="button" class="btn btn-block btn-primary" (click)="registrarse(actividad.PK_ACTIVIDAD, actividad.REGISTRADOS, actividad.CUPO)">Inscribirse</button>
       </div>
     </div>
   </div>
