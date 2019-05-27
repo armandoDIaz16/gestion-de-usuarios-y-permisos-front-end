@@ -9,21 +9,40 @@
 <hr>
 <!-- <div style="width: 100%;" *ngIf="showAR; else sinActividadesDisponibles" > -->
 <!-- <div style="width: 75%;" *ngFor="let actividad of actividades"> -->
-  <table class="table table-responsive-sm table-hover table-outline mb-0" style="width:100%;" >
+  <table *ngFor="let actividad of actividad" class="table table-responsive-sm table-hover table-outline mb-0" style="width:100%;" >
     <thead class="thead-light">
       <tr>
-        <th class="text-center" colspan="3"><h2>{{actividad.NOMBRE}}</h2></th>
+        <th class="text-center" colspan="5"><h2>{{actividad.NOMBRE}}</h2></th>
            <!--  <td style="width: 25%;">Fecha: {{actividad.FECHA}}</td> -->
         </tr>
         <tr>
             <th>Primer Apellido</th>
             <th>Segundo Apellido</th>
             <th>Nombre</th>
+            <th>Entrada</th>
+            <th>Salida</th>
         </tr>
         <tr *ngFor="let alumno of alumnos">
             <td><div>{{alumno.PRIMER_APELLIDO}}</div></td>
             <td><div>{{alumno.SEGUNDO_APELLIDO}}</div></td>
             <td><div>{{alumno.name}}</div></td>
+            <td *ngIf="alumno.ENTRADA == 1; else equis"> 
+                <div>&#10004;</div>
+            </td>
+            <ng-template #equis>
+                <td>
+                    <div>&#x274c;</div>
+                </td>
+            </ng-template>
+            <td *ngIf="alumno.SALIDA == 1; else equis2"> 
+                <div>&#10004;</div>
+            </td>
+            <ng-template #equis2>
+                <td>
+                    <div>&#x274c;</div>
+                </td>
+            </ng-template>
+            
         </tr>
     </thead>
   </table>

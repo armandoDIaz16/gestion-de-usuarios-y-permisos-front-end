@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+/* import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { IDependencia } from './serviciosListas';
@@ -10,3 +10,4 @@ export class DependenciaService{
     return this.http.get<IDependencia[]>('http://127.0.0.1:8000/api/Dependencia');
   }
 }
+ */

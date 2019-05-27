@@ -70,4 +70,10 @@ getLineamientos(){ //Obtener los lineamientos para clasificar las actividades y 
     })
  }
 
+ mostrarConstancia(pk_alumno_credito){
+    var win = window.open('http://localhost:8000/api/constancia-preview/' + pk_alumno_credito.toString(), '_blank');
+    win.focus();
+
+}
+
 }

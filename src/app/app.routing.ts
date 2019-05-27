@@ -4,11 +4,10 @@ import {Routes, RouterModule} from '@angular/router';
 // Import Containers
 import {DefaultLayoutComponent} from './containers';
 
-import {P404Component} from './views/error/404.component';
-import {P500Component} from './views/error/500.component';
+
 import {LoginComponent} from './views/login/login.component';
 import {RegisterComponent} from './views/register/register.component';
-//import { SignupComponent } from './components/signup/signup.component';
+
 import {RequestResetComponent} from './components/password/request-reset/request-reset.component';
 import {ResponseResetComponent} from './components/password/response-reset/response-reset.component';
 import {BeforeLoginService} from './services/before-login.service';
@@ -22,15 +21,14 @@ import {StudentOldComponent} from './components/student-old/student-old.componen
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: 'login',
+        component: LoginComponent,
         pathMatch: 'full',
-        canActivate: [BeforeLoginService]
+        canActivate: [BeforeLoginService],
+        data: {
+            title: 'Login Page'
+        }
     },
-    {
-        path: '404',
-        component: P404Component,
-        canActivate: [BeforeLoginService]
-    },
+
 
     {
         path: 'formulario',
@@ -53,22 +51,6 @@ export const routes: Routes = [
         canActivate: [BeforeLoginService],
         data: {
             title: 'Obtener contraseña'
-        }
-    },/*
-  {
-    path: 'signup',
-    component: SignupComponent,
-    canActivate: [BeforeLoginService],
-    data: {
-      title: 'MOSNOS'
-    }
-  }, */
-    {
-        path: '500',
-        component: P500Component,
-        canActivate: [BeforeLoginService],
-        data: {
-            title: 'Page 500'
         }
     },
     {
@@ -104,10 +86,6 @@ export const routes: Routes = [
         },
         children: [
             {
-                path: 'base',
-                loadChildren: './views/base/base.module#BaseModule'
-            },
-            {
                 path: 'aspirantes',
                 loadChildren: './views/aspirantes/aspirantes.module#AspirantesModule'
             },
@@ -134,30 +112,6 @@ export const routes: Routes = [
             {
                 path: 'creditos',
                 loadChildren: './views/creditos/creditos.module#CreditosModule'
-            },
-            {
-                path: 'charts',
-                loadChildren: './views/chartjs/chartjs.module#ChartJSModule'
-            },
-            {
-                path: 'dashboard',
-                loadChildren: './views/dashboard/dashboard.module#DashboardModule'
-            },
-            {
-                path: 'icons',
-                loadChildren: './views/icons/icons.module#IconsModule'
-            },
-            {
-                path: 'notifications',
-                loadChildren: './views/notifications/notifications.module#NotificationsModule'
-            },
-            {
-                path: 'theme',
-                loadChildren: './views/theme/theme.module#ThemeModule'
-            },
-            {
-                path: 'widgets',
-                loadChildren: './views/widgets/widgets.module#WidgetsModule'
             }
         ]
     },
@@ -171,7 +125,6 @@ export const routes: Routes = [
         component: ResponseResetComponent,
         canActivate: [BeforeLoginService],
     },
-    {path: '**', component: P404Component},
 
 ];
 

@@ -60,7 +60,12 @@ export class StudentOldComponent implements OnInit {
           BORRADO:'0' */
     };
 
-    public error = [];
+    public error = {
+        curp: null,
+        email: null,
+        password: null,
+        password_confirmation: null
+    };
 
   constructor(private Jarwis: JarwisService,
                 private Token: TokenService,

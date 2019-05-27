@@ -4,6 +4,7 @@ import { Lineamiento } from '../views/creditos/interfaces/lineamiento';
 import { Actividad } from '../views/creditos/interfaces/actividad';
 import {UsuarioActividad } from '../views/creditos/interfaces/usuarioActividad';
 import { AsistenteActividad } from '../views/creditos/interfaces/asistenteActividad';
+import { AsistenciaAlumnoActividad } from '../views/creditos/interfaces/asistenciaAlumnoActividad'; 
 
 
 
@@ -42,6 +43,10 @@ getTipos(){
 
   getActividades(){ /* para la gestion de las actividades, obtiene la vista actividades_v */
     return this.httpclient.get(this.API_ENDPOINT + '/actividades');
+  }
+
+  getActividadById(PK_ACTIVIDAD){
+    return this.httpclient.get(this.API_ENDPOINT + '/actividad-por-id/' + PK_ACTIVIDAD);
   }
 
   getActividadesRaw(){
@@ -126,6 +131,10 @@ RegistrarAsistAct(asistenteActividad: AsistenteActividad){
    const Headers = new HttpHeaders({'Content-Type':'application/json'});
   return this.httpclient.post(this.API_ENDPOINT + '/asistentes-actividad', asistenteActividad, {headers : Headers}); 
 }
+
+eliminarAsistAct(ID){
+  return this.httpclient.delete(this.API_ENDPOINT + '/asistentes-actividad/' + ID);
+}
     
 /*------------------------------- Alumnos con el rol para registrar asistencias -----------------------*/
 
@@ -154,9 +163,14 @@ getCreditorPorValidar(){
 getCreditosPorValidarByNumC(NUM_CONTROL){
   return this.httpclient.get(this.API_ENDPOINT + '/creditos-por-validar-nc/' + NUM_CONTROL);
 }
-
+getCreditosValidadosByNumC(NUM_CONTROL){
+  return this.httpclient.get(this.API_ENDPOINT + '/creditos-validados-nc/' + NUM_CONTROL);
+}
 getCreditosPorValidarByLin(LINEAMIENTO){
   return this.httpclient.get(this.API_ENDPOINT + '/creditos-por-validar-ln/' + LINEAMIENTO);
+}
+getCreditosValidadosByLin(LINEAMIENTO){
+  return this.httpclient.get(this.API_ENDPOINT + '/creditos-validados-ln/' + LINEAMIENTO);
 }
 
 getActByCredito(PK_ALUMNO_CREDITO){
@@ -166,6 +180,28 @@ getActByCredito(PK_ALUMNO_CREDITO){
 validarCreditos(PK_ALUMNO_CREDITO){
   const Headers = new HttpHeaders({'Content-Type':'application/json'});
   return this.httpclient.put(this.API_ENDPOINT + '/validar-credito/' + PK_ALUMNO_CREDITO, {headers: Headers} );
+}
+getCreditosValidados(){
+  return this.httpclient.get(this.API_ENDPOINT + '/creditos-validados');
+}
+
+generarConstancia(PK_ALUMNO_CREDITO){
+  return this.httpclient.get(this.API_ENDPOINT + '/generar-constancia/' + PK_ALUMNO_CREDITO);
+
+}
+/* 
+verConstancia(PK_ALUMNO_CREDITO){
+  return this.httpclient.get(this.API_ENDPOINT + '/constancia-view/' + PK_ALUMNO_CREDITO,  {responseType: 'arraybuffer'});
+} */
+
+
+
+/**registro de enttrada y salida actividades */
+
+registrarEntrada(asistenciaAlumnoActividad: AsistenciaAlumnoActividad){
+  const Headers = new HttpHeaders({'Content-Type':'application/json'});
+  return this.httpclient.post(this.API_ENDPOINT + '/asistencia-alumnos', asistenciaAlumnoActividad, {headers: Headers});
+
 }
 
 }
