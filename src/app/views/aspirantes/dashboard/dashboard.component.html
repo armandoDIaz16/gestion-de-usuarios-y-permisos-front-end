@@ -1,7 +1,7 @@
 <div class="animated fadeIn">
     <h2 class="">Bienvenido aspirante</h2>    
     <hr>
-      <div id="contentToConvert" class="col-md-12 hidden-xs">
+      <div id="contentToConvert" class="col-md-12 hidden-xs d-flex justify-content-center">
         <ul class="wizard-steps">
           <li class="wizardbar-i completed">
             <h5>Paso 1</h5>
@@ -30,9 +30,19 @@
         <button type="button" class="btn btn-block btn-primary" (click)="generarReferencia()">Generar referencia</button>
       </div>  
     </div>
+    <div class="d-flex justify-content-center"  *ngIf="habilitarRegistro">
+      <div class="w-50">
+        <a href="http://registroenlinea.ceneval.edu.mx/RegistroLinea/indexCerrado.php" target="_blank">
+          <button type="button" class="btn btn-block btn-primary">Registro CENEVAL</button>
+        </a>
+      </div>  
+    </div>
     <div class="d-flex justify-content-center"  *ngIf="habilitarFicha">
       <div class="w-50">
         <button type="button" class="btn btn-block btn-primary" (click)="generarFicha()">Descargar ficha oficial</button>
       </div>  
+    </div>
+    <div class="d-flex justify-content-center"  *ngIf="habilitarAceptado">
+        <h4>Fuiste aceptado</h4>
     </div>
 </div>

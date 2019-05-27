@@ -8,6 +8,6 @@ import { IRoles } from './rolesLista';
 export class UsuarioRolesService{
     constructor(private http: HttpClient){}
     getUsuarioRoles(): Observable<IRoles[]>{
-        return this.http.get<IRoles[]>('http://localhost:8000/api/Usuario_Rol/' + sessionStorage.getItem('IdUsuario'));
+        return this.http.get<IRoles[]>('http://10.0.31.11/backend_swiitl/server.php/api/Usuario_Rol/' + sessionStorage.getItem('IdUsuario'));
     }
 }

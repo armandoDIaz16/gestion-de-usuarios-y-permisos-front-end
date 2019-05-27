@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class JarwisService {
 
-  private baseUrl = 'http://localhost:8000/api';
+  private baseUrl = 'http://10.0.31.11/backend_swiitl/server.php/api';
 
   constructor(private http: HttpClient) { }
 

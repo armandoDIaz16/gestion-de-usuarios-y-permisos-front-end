@@ -59,13 +59,6 @@ import {BeforeLoginService} from './services/before-login.service';
 // @ts-ignore
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormularioComponent} from './components/formulario/formulario.component';
-import {EstadoCivilService} from './services/estado-civil.service';
-import {DependenciaService} from './services/dependencia.service';
-import {PropagandaTecnologicoService} from './services/propaganda-tecnologico.service';
-import {IncapacidadService} from './services/incapacidad.service';
-import {CarreraService} from './services/carrera.service';
-import {EntidadFederativaService} from './services/entidad-federativa.service';
-import {CiudadService} from './services/ciudad.service';
 import {ControlComponent} from './components/control/control.component';
 import {StudentOldComponent} from './components/student-old/student-old.component';
 import {NavbarSistemsComponent} from './components/navbar-sistems/navbar-sistems.component';
@@ -111,14 +104,6 @@ import {DocumentacionComponent} from './views/residencias/documentacion/document
         NavbarSistemsComponent,
     ],
     providers: [
-        EstadoCivilService,
-        DependenciaService,
-        PropagandaTecnologicoService,
-        IncapacidadService,
-        CarreraService,
-        EntidadFederativaService,
-        CiudadService,
-
         {
             provide: LocationStrategy,
             useClass: HashLocationStrategy

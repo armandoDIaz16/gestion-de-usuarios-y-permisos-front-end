@@ -17,6 +17,8 @@ export class DashboardComponent implements OnInit {
   paso4 = null;
   habilitarReferencia = false;
   habilitarFicha = false;
+  habilitarRegistro = false;
+  habilitarAceptado = false;
 
   constructor(private aspiranteService: AspiranteService) {
   }
@@ -34,21 +36,23 @@ export class DashboardComponent implements OnInit {
           break;
         case 2: this.paso2 = 'completed'; this.habilitarReferencia = false;
           break;
-        case 3: this.paso2 = 'completed'; this.paso3 = 'completed'; this.habilitarReferencia = false;
+        case 3: this.paso2 = 'completed'; this.paso3 = 'completed'; this.habilitarReferencia = false; this.habilitarRegistro = true;
           break;
         case 4: this.paso2 = 'completed'; this.paso3 = 'completed'; this.paso4 = 'completed'; this.habilitarReferencia = false; this.habilitarFicha = true;
+          break;
+        case 5: this.paso2 = 'completed'; this.paso3 = 'completed'; this.paso4 = 'completed'; this.habilitarAceptado = true;      
           break;
       }
     });
   }
 
   generarReferencia(){
-    window.open("http://127.0.0.1:8000/api/Referencia/"+sessionStorage.getItem('IdUsuario'));
-    //location.href = "http://127.0.0.1:8000/api/Referencia/"+sessionStorage.getItem('IdUsuario');
+    window.open("http://10.0.31.11/backend_swiitl/server.php/api/Referencia/"+sessionStorage.getItem('IdUsuario'));
+    //location.href = "http://10.0.31.11/backend_swiitl/server.php/api/Referencia/"+sessionStorage.getItem('IdUsuario');
   }
 
   generarFicha(){
-    window.open("http://127.0.0.1:8000/api/Ficha/"+sessionStorage.getItem('IdUsuario'));
-    //location.href = "http://127.0.0.1:8000/api/Ficha/"+sessionStorage.getItem('IdUsuario');
+    window.open("http://10.0.31.11/backend_swiitl/server.php/api/Ficha/"+sessionStorage.getItem('IdUsuario'));
+    //location.href = "http://10.0.31.11/backend_swiitl/server.php/api/Ficha/"+sessionStorage.getItem('IdUsuario');
   }
 }
