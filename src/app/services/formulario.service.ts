@@ -2,46 +2,49 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { IBachillerato, ICarreraUniversidad, ICarrera, ICiudad, IColonia, IDependencia, IEntidadFederativa, IEstadoCivil, IIncapacidad, IPropagndaTecnologico, IUniversidad } from './serviciosListas';
+import { GenericServicesService } from './generic-services.service';
 
 @Injectable()
-export class FormularioService {
+export class FormularioService extends GenericServicesService{ 
+    
+    constructor(private http: HttpClient,
+      private genericServicesService: GenericServicesService ){ super(http); }
 
-    private baseUrl = 'http://10.0.31.11/backend_swiitl/server.php/api';
-
-    constructor(private http: HttpClient) { }
+    private baseUrl = GenericServicesService.API_ENDPOINT;
+    private headers = GenericServicesService.HEADERS;
 
     getBachillerato(ciudad): Observable<IBachillerato[]> {
-        return this.http.get<IBachillerato[]>(this.baseUrl+'/Bachillerato/' + ciudad);
+        return this.http.get<IBachillerato[]>(this.baseUrl+'Bachillerato/' + ciudad, this.headers);
     }  
     getCarreraUniversidad():Observable<ICarreraUniversidad[]>{
-        return this.http.get<ICarreraUniversidad[]>(this.baseUrl+'/Carrera_Universidad');
+        return this.http.get<ICarreraUniversidad[]>(this.baseUrl+'Carrera_Universidad', this.headers);
       }
       getCarrera():Observable<ICarrera[]>{
-        return this.http.get<ICarrera[]>(this.baseUrl+'/Carrera');
+        return this.http.get<ICarrera[]>(this.baseUrl+'Carrera', this.headers);
       }
       getCiudad(entidadFederativa):Observable<ICiudad[]>{
-        return this.http.get<ICiudad[]>(this.baseUrl+'/Ciudad/'+entidadFederativa);
+        return this.http.get<ICiudad[]>(this.baseUrl+'Ciudad/'+entidadFederativa, this.headers);
       }
       getColonia(cp):Observable<IColonia[]>{
-        return this.http.get<IColonia[]>(this.baseUrl+'/Colonia/'+cp);
+        return this.http.get<IColonia[]>(this.baseUrl+'Colonia/'+cp, this.headers);
       }
       getDependencia():Observable<IDependencia[]>{
-        return this.http.get<IDependencia[]>(this.baseUrl+'/Dependencia');
+        return this.http.get<IDependencia[]>(this.baseUrl+'Dependencia', this.headers);
       }
       getEntidadFederativa():Observable<IEntidadFederativa[]>{
-        return this.http.get<IEntidadFederativa[]>(this.baseUrl+'/Entidad_Federativa');
+        return this.http.get<IEntidadFederativa[]>(this.baseUrl+'Entidad_Federativa', this.headers);
       }
       getEstadoCivil():Observable<IEstadoCivil[]>{
-        return this.http.get<IEstadoCivil[]>(this.baseUrl+'/Estado_Civil');
+        return this.http.get<IEstadoCivil[]>(this.baseUrl+'Estado_Civil', this.headers);
       }
       getIncapacidad():Observable<IIncapacidad[]>{
-        return this.http.get<IIncapacidad[]>(this.baseUrl+'/Incapacidad');
+        return this.http.get<IIncapacidad[]>(this.baseUrl+'Incapacidad', this.headers);
       }
       getPropagandaTecnologico():Observable<IPropagndaTecnologico[]>{
-        return this.http.get<IPropagndaTecnologico[]>(this.baseUrl+'/Propaganda_Tecnologico');
+        return this.http.get<IPropagndaTecnologico[]>(this.baseUrl+'Propaganda_Tecnologico', this.headers);
       }
       getUniversidad():Observable<IUniversidad[]>{
-        return this.http.get<IUniversidad[]>(this.baseUrl+'/Universidad');
+        return this.http.get<IUniversidad[]>(this.baseUrl+'Universidad', this.headers);
       }
 
 }
