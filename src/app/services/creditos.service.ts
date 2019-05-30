@@ -31,7 +31,6 @@ export class CreditosService extends GenericServicesService{
 
   put(lineamiento){
   return this.httpclient.put(this.API_ENDPOINT + 'lineamientos/' + lineamiento.PK_LINEAMIENTO, lineamiento,  this.headers);
-  Authorization
   }
 
   delete(id){
