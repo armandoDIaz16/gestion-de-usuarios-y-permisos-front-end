@@ -1,0 +1,15 @@
+<div class="card">
+    <div class="card-body">
+        <button (click)="generarExcel()">Hola</button>
+        <table>
+            <tbody>
+            <tr *ngFor="let antep of listaBase">
+                <td>{{ antep.OBSERVACIONES }}</td>
+                <td>{{antep.CALIFICACION}}</td>
+                <td>{{ antep.NOMBRE }}</td>
+                <td>{{ antep.EMPRESA }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

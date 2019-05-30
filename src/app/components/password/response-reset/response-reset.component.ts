@@ -7,7 +7,10 @@ import { JarwisService } from '../../../services/jarwis.service';
   templateUrl: './response-reset.component.html',
 })
 export class ResponseResetComponent implements OnInit {
-  public error = [];
+  public error = {
+      password: null,
+      password_confirmation: null
+};
   public form = {
     email: localStorage.getItem("email"),
     password: null,

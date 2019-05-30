@@ -8,7 +8,7 @@ import { IPermisos } from './permisosLista';
 export class SistemaPermisosService {
   constructor(private http: HttpClient){}
   getPermisosSistemas():Observable<IPermisos[]>{
-    return this.http.get<IPermisos[]>('http://localhost:8000/api/Sistema_Permiso/'
+    return this.http.get<IPermisos[]>('http://127.0.0.1:8000/api/Sistema_Permiso/'
     +sessionStorage.getItem('sistema')
     );    
   }
