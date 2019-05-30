@@ -204,4 +204,28 @@ registrarEntrada(asistenciaAlumnoActividad: AsistenciaAlumnoActividad){
 
 }
 
+
+
+/*-----------------ADMINISTRADOR DE USUARIOS --------- */
+singupAdmin(data){
+  
+  return this.httpclient.post(this.API_ENDPOINT + '/signupAdminCC', data);
+}
+
+getUsuarioByCurp(curp){
+  return this.httpclient.get(this.API_ENDPOINT + '/usuario-by-curp/' + curp);
+}
+
+AgregarUsuarioCA(usuario){
+ return this.httpclient.get(this.API_ENDPOINT + '/agregar-user-ca/' + usuario);
+}
+
+AgregarUsuarioJC(usuario){
+  return this.httpclient.get(this.API_ENDPOINT + '/agregar-user-jc/' + usuario);
+ }
+ AgregarUsuarioRA(usuario){
+  return this.httpclient.get(this.API_ENDPOINT + '/agregar-user-ra/' + usuario);
+ }
+ 
+
 }
