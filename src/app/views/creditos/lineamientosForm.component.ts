@@ -51,7 +51,7 @@ export class LineamientosFormComponent {
       console.log(this.lineamiento);
       this.lineamientosService.save(this.lineamiento).subscribe((data)=>{
         alert("lineamiento guardado correctamente");
-        this.router.navigate(['./creditos/lineamientos']);
+        this.router.navigate(['./creditos/gestion_de_lineamientos']);
       },(error)=>{
         alert("ocurrio un error " + error);
       });
