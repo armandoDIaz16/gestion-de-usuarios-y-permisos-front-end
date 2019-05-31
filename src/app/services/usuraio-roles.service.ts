@@ -15,10 +15,12 @@ export class UsuarioRolesService extends GenericServicesService{
 } */
 
 @Injectable()
-export class UsuarioRolesService extends GenericServicesService{    
+
+
+export class UsuarioRolesService extends GenericServicesService {
     constructor(private http: HttpClient,
-    private genericServicesService: GenericServicesService ){ super(http); }
-    getUsuarioRoles(): Observable<IRoles[]>{
+    private genericServicesService: GenericServicesService ) { super(http); }
+    getUsuarioRoles(): Observable<IRoles[]> {
         return this.http.get<IRoles[]>(GenericServicesService.API_ENDPOINT + 'Usuario_Rol/' + sessionStorage.getItem('IdUsuario'));
     }
 }

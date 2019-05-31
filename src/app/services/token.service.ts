@@ -5,56 +5,58 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class TokenService extends GenericServicesService{
+export class TokenService extends GenericServicesService {
   constructor(private http: HttpClient,
-  private genericServicesService: GenericServicesService ){ super(http); }
+  private genericServicesService: GenericServicesService ) { super(http); }
 
   private baseUrl = GenericServicesService.API_ENDPOINT;
 
   private iss = {
-    login : this.baseUrl+'login',
-    signup : this.baseUrl+'signup'
+
+    login : 'http://127.0.0.1:8000/api/login',
+    signup : 'http://127.0.0.1:8000/api/signup'
   }
 
-  handle(token){
+  handle(token) {
+
     this.set(token);
   }
 
-  set(token){
-    sessionStorage.setItem('token',token);
+  set(token) {
+    sessionStorage.setItem('token', token);
   }
 
-  get2(){
+  get2() {
     return sessionStorage.getItem('token');
   }
 
-  remove(){
-    sessionStorage.removeItem('token'); 
+  remove() {
+    sessionStorage.removeItem('token');
   }
 
-  isValid(){
+
+  isValid() {
     const token = this.get2();
-    if(token){
+    if (token) {
       const payload = this.payload(token);
-      if(payload){
+      if (payload) {
         return Object.values(this.iss).indexOf(payload.iss) > -1 ? true : false;
       }
     }
     return false;
   }
 
-  payload(token){
+  payload(token) {
     const payload = token.split('.')[1];
     return this.decode(payload);
   }
 
-  decode(payload)
-  {
-    return JSON.parse(atob(payload));   
+  decode(payload) {
+    return JSON.parse(atob(payload));
   }
 
-  loggedIn(){
+  loggedIn() {
     return this.isValid();
   }
-  
+
 }

@@ -45,11 +45,8 @@ export class AsistentesResponsableComponent{
         });
     }
 
-    registrar(num_control){
-        this.responsablesService.getPkUsuario(num_control).subscribe((data: AsistenteActividad[])=>{
-            for(let d of data){
-                this.asistente.FK_USUARIO = d.FK_USUARIO;
-            }
+    registrar(FK_USUARIO){
+            this.asistente.FK_USUARIO = FK_USUARIO;
             this.asistente.FK_ACTIVIDAD = this.pk_actividad;
             this.responsablesService.RegistrarAsistAct(this.asistente).subscribe((data)=>{
                 alert("Registrado Correctamente");
@@ -58,9 +55,7 @@ export class AsistentesResponsableComponent{
                 alert("Ocurrio un error");
                 console.log(error);
             });
-        },(error)=>{
-            alert("Ocurrio un error");
-        });
+        
     }
 
     eliminar(id){
