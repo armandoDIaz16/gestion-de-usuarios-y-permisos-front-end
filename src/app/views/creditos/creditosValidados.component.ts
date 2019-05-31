@@ -4,6 +4,7 @@ import { Lineamiento } from './interfaces/lineamiento';
 import { Actividad } from './interfaces/actividad';
 import { CreditosService } from '../../services/creditos.service'
 
+
 @Component({
     templateUrl: './creditosValidados.component.html'
 })
@@ -83,5 +84,13 @@ export class CreditosValidadosComponent{
             }
         }
         
+    }
+
+    generarExcel(){
+        if(confirm("Se generara un listado de los alumnos que ya  han acreditado las actividades complementarias ¿Desea continuar?")){
+            var win = window.open('http://localhost:8000/api/generar-excel-ac', '_blank');
+            win.focus();
+        }
+
     }
 }

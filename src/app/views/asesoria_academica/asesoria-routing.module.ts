@@ -1,18 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-/* import { FormularioComponent } from './formulario/formulario.component';
-import { AdministradorComponent } from './administrador/formulario.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { MatriculaComponent } from './matricula/matricula.component';
-import { ReimpresiónComponent } from './reimpresión/reimpresión.component';
-import { ReferenciaComponent } from './referencia/referencia.component';
-import { MatriculadosComponent } from './matriculados/matriculados.component';
-import { VigenciaDePagosComponent } from './vigencia_de_pagos/vigencia_de_pagos.component';
-import { GruposComponent } from './grupos/grupos.component';
-import { PagoSinFormalizarComponent } from './pago_sin_formalizar/pago_sin_formalizar.component';
-import { SinPagoRegistradoComponent } from './sin_pago_registrado/sin_pago_registrado.component';
-import { ReporteCompletoComponent } from './reporte_completo/reporte_completo.component'; */
 import { Form_asesorComponent } from './form_asesor/form_asesor.component';
 import { Form_alumnoComponent } from './form_alumno/form_alumno.component'
 import { GeneralidadesComponent } from './generalidades/generalidades.component';
@@ -24,6 +12,18 @@ import { MateriasComponent } from './materias/materias.component';
 import { FormatoAlmnoComponent } from './formatoAlmno/formatoAlmno.component';
 import { FormatoAsesorComponent } from './formatoAsesor/formatoAsesor.component';
 import { ReportesComponent } from './reportes/reportes.component';
+import { NotificacionesComponent } from './notificaciones/notificaciones.component';
+import { ConstanciasComponent } from './constancias/constancias.component';
+import { FormatosComponent } from './formatos/formatos.component';
+import { CronogramaComponent } from './cronograma/cronograma.component';
+import { ReportesCoordComponent } from './reportesCoor/reportesCoor.component';
+import { NotificacionesAsesComponent } from './notificacionesAses/notificacionesAses.component';
+import { AsignacionAseComponent } from './asignacionAse/asignacionAse.component';
+import { NotificacionesAlmComponent } from './notificacionesAlm/notificacionesAlm.component';
+
+
+
+
 
 
 
@@ -60,33 +60,78 @@ if (sessionStorage.rutas) {
 
 function agregarModulos(modulo) {
   switch (modulo) {
-    /* case 'Dashboard':
+     case 'Formatos':
       modulos.push({
-        path: 'dashboard',
-        component: DashboardComponent,
+        path: 'formatos',
+        component: FormatosComponent,
         data: {
-          title: 'Dashboard'
+          title: 'Formatos PAAE'
         }
       });
       break;
-    case 'Matricula':
+      case 'Notifiacion almno':
       modulos.push({
-        path: 'matricula',
-        component: MatriculaComponent,
+        path: 'notifiacion_almno',
+        component: NotificacionesAlmComponent,
         data: {
-          title: 'Matricula'
+          title: 'Notificaciones Alumno'
         }
       });
       break;
-    case 'Reimpresión':
+      case 'Asignacion ases':
       modulos.push({
-        path: 'reimpresión',
-        component: ReimpresiónComponent,
+        path: 'asignacion_ases',
+        component: AsignacionAseComponent,
         data: {
-          title: 'Reimpresión'
+          title: 'Lista Alumnos'
         }
       });
-      break;*/
+      break;
+      case 'Notificacion ases':
+      modulos.push({
+        path: 'notificacion_ases',
+        component: NotificacionesAsesComponent,
+        data: {
+          title: 'Notificacion Asesor'
+        }
+      });
+      break;
+      case 'Reportes coord':
+      modulos.push({
+        path: 'reportes_coord',
+        component: ReportesCoordComponent,
+        data: {
+          title: 'Reportes'
+        }
+      });
+      break;
+      case 'Cronograma':
+      modulos.push({
+        path: 'cronograma',
+        component: CronogramaComponent,
+        data: {
+          title: 'Cronograma'
+        }
+      });
+      break;
+    case 'Constancias':
+      modulos.push({
+        path: 'constancias',
+        component: ConstanciasComponent,
+        data: {
+          title: 'Constancias'
+        }
+      });
+      break;
+    case 'Notificacion ases':
+      modulos.push({
+        path: 'notificaciones',
+        component: NotificacionesComponent,
+        data: {
+          title: 'Notificaciones'
+        }
+      });
+      break;
     case 'Formatos ases':
       modulos.push({
         path: 'formatos_ases',

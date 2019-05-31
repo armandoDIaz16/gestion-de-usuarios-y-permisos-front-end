@@ -53,7 +53,7 @@
       </tr>
     </thead>
     <tbody>
-      <ng-container *ngFor="let c of creditos | paginate: {itemsPerPage: 1, currentPage: pageActual}">
+      <ng-container *ngFor="let c of creditos | paginate: {itemsPerPage: 15, currentPage: pageActual}">
       <tr> 
         <td>
           <div>{{c.PK_ALUMNO_CREDITO}}</div>

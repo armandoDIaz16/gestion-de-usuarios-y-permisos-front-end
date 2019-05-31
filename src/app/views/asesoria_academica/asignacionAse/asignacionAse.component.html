@@ -1,0 +1,52 @@
+<div>
+  <nav>
+    <!-- <button type="button" class="btn btn-primary" (click)="leerExcel()">Leer Excel</button> -->
+    <ul class="pagination pull-right float-sm-right">
+      <li class="page-item {{select1}}"><a class="page-link" style="cursor: pointer"
+          (click)="mostrarRegistros('2')">2</a></li>
+      <li class="page-item {{select2}}"><a class="page-link" style="cursor: pointer"
+          (click)="mostrarRegistros('5')">5</a></li>
+      <li class="page-item {{select3}}"><a class="page-link" style="cursor: pointer"
+          (click)="mostrarRegistros('10')">10</a></li>
+      <li class="page-item {{select4}}"><a class="page-link" style="cursor: pointer"
+          (click)="mostrarRegistros('todos')">Mostrar todos</a></li>
+    </ul>
+  </nav>
+  <table class="table table-bordered table-striped table-sm">
+    <thead>
+      <tr>
+        <th scope="row">#</th>
+        <th>MATERIA</th>
+        <th>ESPACIO</th>
+        <th>DIA</th>
+        <th>HORA</th>
+        <th>NOMBRE ALUMNO</th>
+        <th>NUMERO CONTROL</th>
+        <th>EMAIL</th>
+        <th>CARRERA</th>
+        <th>PERIODO</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let asesor of asesor | paginate: {itemsPerPage: registrosPagina, currentPage:pageActual, id: 'first' } let i = index">
+        <td>{{i+1}}</td>
+        <td>{{asesor.MATERIA}}</td>
+        <td>{{asesor.ESPACIO}}</td>
+        <td>{{asesor.DIA}}</td>
+        <td>{{asesor.HORA}}</td>
+        <td>{{asesor.name+' '+asesor.PRIMER_APELLIDO+' '+asesor.SEGUNDO_APELLIDO}}</td>
+        <td>{{asesor.NUMERO_CONTROL}}</td>
+        <td>{{asesor.email}}</td>
+        <td>{{asesor.CLAVE_CARRERA}}</td>
+        <td>{{asesor.PERIODO}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="d-flex justify-content-center">
+    <pagination-controls id="first" class="myPagination" previousLabel="" nextLabel="" maxSize="10"
+      (pageChange)="pageActual = $event">
+    </pagination-controls>
+  </div>
+</div>

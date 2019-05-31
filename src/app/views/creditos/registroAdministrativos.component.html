@@ -1,0 +1,100 @@
+<div class="card">
+    <div class="card-header">
+      <strong>Registrar usuario</strong>
+    </div>
+    <div class="card-body">
+ <!--      <form #buscarAlumnoForm=ngForm>
+      <div class="form-group row">
+        <div class="col-md-5">
+          <div class="input-group">
+            <input [(ngModel)]="num_control" type="number" class="form-control" id="num_control" name="num_control" placeholder="Numero de control" required>
+            <span class="input-group-append">
+              <button type="submit" class="btn btn-primary" [disabled]="!buscarAlumnoForm.valid"><i class="fa fa-search"></i> Buscar</button>
+            </span>
+          </div>
+        </div>
+      </div>
+  
+      </form> -->
+      <form #registroAsistentesForm=ngForm (ngSubmit)="registrar()"> 
+        <div class="row">
+                <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label style="color:#ff0000;" for="inputEmail4">*</label>
+                            <span class="input-group-text"><i class="icon-user"></i></span>
+                        </div>
+                        <input type="text" name="curp" class="form-control" placeholder="Curp"
+                            id="inputEmail4" autocomplete="curp"  maxlength=18
+                            onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase().replace(' ','')"
+                            [(ngModel)]="form.curp" required>
+                        <!--  <label style="color:#ff0000;" for="asterisco">*</label>
+                           <input type="text" class="form-control" id="curp" size=18 maxlength=18 onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase().replace(' ','')"> -->
+                    </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <a href="https://www.gob.mx/curp/" target="_blank">
+                    <button type="button" class="btn btn-block btn-primary">Consulta de CURP
+                    </button>
+                </a>
+            </div>
+        </div>
+        <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="icon-user"></i></span>
+                </div>
+                <input type="text" name="name" class="form-control" placeholder="Nombre"
+                [(ngModel)]="form.name" id="inputEmail3"  required>
+        </div>
+        <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="icon-user"></i></span>
+                </div>
+                <input type="text" name="PRIMER_APELLIDO" class="form-control"
+                    placeholder="Apellido paterno" id="PRIMER_APELLIDO"
+                    [(ngModel)]="form.PRIMER_APELLIDO" required>
+        </div>
+        <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="icon-user"></i></span>
+                </div>
+                <input type="text" name="SEGUNDO_APELLIDO" class="form-control"
+                    placeholder="Apellido materno" id="SEGUNDO_APELLIDO"
+                    [(ngModel)]="form.SEGUNDO_APELLIDO" required>
+        </div>
+        <div class="input-group mb-4">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="icon-envelope-open"></i></span>
+            </div>
+            <input type="email" name="email" class="form-control" placeholder="email"
+            [(ngModel)]="form.email" id="inputemail5" autocomplete="email" required>
+        </div>
+        <div class="input-group mb-4">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="icon-lock"></i></span>
+            </div>
+            <input type="password" name="password" class="form-control"
+                placeholder="Contraseña" id="inputPassword3" autocomplete="current-password"
+                [(ngModel)]="form.password" required>
+        </div>
+        <div class="input-group mb-4">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="icon-lock"></i></span>
+            </div>
+            <input type="password" name="password_confirmation" class="form-control"
+                placeholder="Confirmar contraseña" id="inputPassword4"
+                autocomplete="password_confirmation"
+                [(ngModel)]="form.password_confirmation" required>
+        </div>
+        </div>
+        
+            
+         <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-sm" [disabled]="!registroAsistentesForm.valid" ><i class="fa fa-dot-circle-o"></i> Registrar </button>
+            </div>
+          </div>
+        </div>
+        </form>
+    </div>
+  </div>

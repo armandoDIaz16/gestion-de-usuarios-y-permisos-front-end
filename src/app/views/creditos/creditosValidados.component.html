@@ -32,6 +32,9 @@
                     </ng-template>
                     </div>
                   </div>
+                  <div class="col-md-6">
+                      <button type="submit" class="btn btn-dark" (click)="generarExcel()">Generar excel</button>
+                  </div>
                 </div>
                 </form>
           <div class="row">
@@ -51,7 +54,7 @@
           </tr>
         </thead>
         <tbody>
-          <ng-container *ngFor="let c of creditos | paginate: {itemsPerPage: 1, currentPage: pageActual}">
+          <ng-container *ngFor="let c of creditos | paginate: {itemsPerPage: 15, currentPage: pageActual}">
           <tr> 
             <td>
               <div>{{c.PK_ALUMNO_CREDITO}}</div>

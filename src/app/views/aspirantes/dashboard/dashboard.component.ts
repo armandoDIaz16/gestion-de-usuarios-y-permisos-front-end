@@ -51,12 +51,12 @@ export class DashboardComponent implements OnInit {
   }
 
   generarReferencia(){
-    window.open("http://10.0.31.11/backend_swiitl/server.php/api/Referencia/"+sessionStorage.getItem('IdUsuario'));
-    //location.href = "http://10.0.31.11/backend_swiitl/server.php/api/Referencia/"+sessionStorage.getItem('IdUsuario');
+    window.open("http://127.0.0.1:8000/api/Referencia/"+sessionStorage.getItem('IdUsuario'));
+    //location.href = "http://127.0.0.1:8000/api/Referencia/"+sessionStorage.getItem('IdUsuario');
   }
 
   generarFicha(){
-    window.open("http://10.0.31.11/backend_swiitl/server.php/api/Ficha/"+sessionStorage.getItem('IdUsuario'));
-    //location.href = "http://10.0.31.11/backend_swiitl/server.php/api/Ficha/"+sessionStorage.getItem('IdUsuario');
+    window.open("http://127.0.0.1:8000/api/Ficha/"+sessionStorage.getItem('IdUsuario'));
+    //location.href = "http://127.0.0.1:8000/api/Ficha/"+sessionStorage.getItem('IdUsuario');
   }
 }
