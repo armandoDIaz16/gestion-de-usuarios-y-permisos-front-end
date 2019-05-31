@@ -25,6 +25,15 @@ import { MateriasComponent } from './materias/materias.component';
 import { FormatoAlmnoComponent } from './formatoAlmno/formatoAlmno.component';
 import { FormatoAsesorComponent } from './formatoAsesor/formatoAsesor.component';
 import { ReportesComponent } from './reportes/reportes.component';
+import { NotificacionesComponent } from './notificaciones/notificaciones.component';
+import { ConstanciasComponent } from './constancias/constancias.component';
+import { FormatosComponent } from './formatos/formatos.component';
+import { CronogramaComponent } from './cronograma/cronograma.component';
+import { ReportesCoordComponent } from './reportesCoor/reportesCoor.component';
+import { NotificacionesAsesComponent } from './notificacionesAses/notificacionesAses.component';
+import { AsignacionAseComponent } from './asignacionAse/asignacionAse.component';
+import { NotificacionesAlmComponent } from './notificacionesAlm/notificacionesAlm.component';
+
 
 
 
@@ -41,18 +50,6 @@ import { ReportesComponent } from './reportes/reportes.component';
     NgxPaginationModule,
   ],
   declarations: [
-    /*     FormularioComponent,
-        AdministradorComponent,
-        AltasComponent,
-        DashboardComponent,
-        MatriculaComponent,
-        ReimpresiónComponent,
-        ReferenciaComponent,
-        MatriculadosComponent,
-        VigenciaDePagosComponent,
-        GruposComponent,
-        PagoSinFormalizarComponent,
-        SinPagoRegistradoComponent,*/
     Form_asesorComponent,
     Form_alumnoComponent,
     AperturaComponent,
@@ -63,7 +60,15 @@ import { ReportesComponent } from './reportes/reportes.component';
     MateriasComponent,
     FormatoAlmnoComponent,
     FormatoAsesorComponent,
-    ReportesComponent
+    ReportesComponent,
+    NotificacionesComponent,
+    ConstanciasComponent,
+    FormatosComponent,
+    CronogramaComponent,
+    ReportesCoordComponent,
+    NotificacionesAsesComponent,
+    AsignacionAseComponent,
+    NotificacionesAlmComponent
   ],
   exports: [
     ModalModule

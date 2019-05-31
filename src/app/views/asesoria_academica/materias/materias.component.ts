@@ -12,17 +12,20 @@ import * as XLSX from 'xlsx';
 export class MateriasComponent implements OnInit {
   visindividual = false;
   visgrupal = false;
+  visituacion = false;
   public error = [];
   public data = [];
 
 
   periodo = '20191';
   periodo1 = '20191';
+  periodo2 = '20191';
 
   asesoria = [];
   asesoria1 = [];
   grupo = [];
   grupo1 = [];
+  asignacion = [];
   select1 = 'active';
   select2 = null;
   select3 = null;
@@ -31,10 +34,16 @@ export class MateriasComponent implements OnInit {
   select22 = null;
   select33 = null;
   select44 = null;
+  select12 = 'active';
+  select13 = null;
+  select14 = null;
+  select15 = null;
   registrosPagina = 2;
   registrosPagina1 = 2;
+  registrosPagina2 = 2;
   pageActual: number = 1;
   pageActual1: number = 1;
+  pageActual2: number = 1;
 
   filtroIdAsesor = null;
   filtroIdAlumno = null;
@@ -90,6 +99,10 @@ export class MateriasComponent implements OnInit {
     this.visgrupal = !this.visgrupal;
   }
 
+  situacion(){
+    this.visituacion = !this.visituacion;
+
+  }
   ngOnInit() {
     this.Jarwis.getAsesoria().subscribe(
       data => {
@@ -105,6 +118,14 @@ export class MateriasComponent implements OnInit {
         for (var num in data) {
           this.grupo.push(data[num]);
           this.grupo1.push(data[num]);
+        }
+      },
+      error => this.handleError(error)
+    );
+    this.Jarwis.getAsignacion().subscribe(
+      data => {
+        for (var num in data) {
+          this.asignacion.push(data[num]);
         }
       },
       error => this.handleError(error)
@@ -145,6 +166,23 @@ export class MateriasComponent implements OnInit {
     }
   }
 
+  mostrarRegistros2(numRegistros2) {
+    switch (numRegistros2) {
+      case "2":
+        this.registrosPagina2 = 2; this.select12 = 'active'; this.select13 = ''; this.select14 = ''; this.select15 = '';
+        break;
+      case "5":
+        this.registrosPagina2 = 5; this.select12 = ''; this.select13 = 'active'; this.select14 = ''; this.select15 = '';
+        break;
+      case "10":
+        this.registrosPagina2 = 10; this.select12 = ''; this.select13 = ''; this.select14 = 'active'; this.select15 = '';
+        break;
+      case "todos":
+        this.registrosPagina2 = this.asignacion.length; this.select12 = ''; this.select13 = ''; this.select14 = ''; this.select15 = 'active';
+        break;
+    }
+  }
+
   toNumber() {
     this.Jarwis.getAsesoriaPeriodo(this.periodo).subscribe(
       data => {
@@ -160,13 +198,27 @@ export class MateriasComponent implements OnInit {
   }
 
   toNumber1() {
-    this.Jarwis.getAsesoriaGrupoPeriodo(this.periodo1).subscribe(
+    this.Jarwis.getSituacionPeriodo(this.periodo1).subscribe(
       data => {
         this.grupo = []
         this.grupo1 = []
         for (var num in data) {
           this.grupo.push(data[num]);
           this.grupo1.push(data[num]);
+        }
+
+
+      },
+      error => this.handleError(error)
+    );
+  }
+
+  toNumber2() {
+    this.Jarwis.getAsesoriaGrupoPeriodo(this.periodo2).subscribe(
+      data => {
+        this.asignacion = []
+        for (var num in data) {
+          this.asignacion.push(data[num]);
         }
 
 
@@ -447,6 +499,61 @@ export class MateriasComponent implements OnInit {
     }
 
     XLSX.writeFile(wb, 'ASESORIA_GRUPO ' + y + "-" + m + "-" + d + '.xlsx');
+  }
+
+  generarExcel2() {
+    var n = new Date();
+    var y = n.getFullYear();
+    var m = n.getMonth() + 1;
+    var d = n.getDate();
+
+    var soli = [[
+      'NOMBRE ASESOR',
+      'NUMERO CONTROL ALUMNO',
+      'MATERIA',
+      'DIA',
+      'HORA',
+      'CAMPUS',
+      'ESPACIO',
+      'PERIODO',
+      'VALIDA'
+    ]];
+
+    for (var i = 0; i < this.asignacion.length; i++) {
+      soli.push([
+        this.asignacion[i].name + " " + this.asignacion[i].PRIMER_APELLIDO + " " + this.asignacion[i].SEGUNDO_APELLIDO,
+        this.asignacion[i].CONTROL_ALUMNO,
+        this.asignacion[i].MATERIA,
+        this.asignacion[i].DIA,
+        this.asignacion[i].HORA,
+        this.asignacion[i].CAMPUS,
+        this.asignacion[i].ESPACIO,
+        this.asignacion[i].PERIODO,
+        this.asignacion[i].VALIDA
+      ]);
+    }
+
+    var wb = XLSX.utils.book_new();
+    wb.Props = {
+      Title: "Ref " + y + "-" + m + "-" + d,
+      Subject: "ASESORIA_SITUACION",
+      Author: "Tecnologico de leon",
+      CreatedDate: new Date(2017, 12, 19)
+    };
+
+    wb.SheetNames.push("Ref " + y + "-" + m + "-" + d);
+    var ws_data = soli;
+    var ws = XLSX.utils.aoa_to_sheet(ws_data);
+    wb.Sheets["Ref " + y + "-" + m + "-" + d] = ws;
+    var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
+    function s2ab(s) {
+      var buf = new ArrayBuffer(s.length);
+      var view = new Uint8Array(buf);
+      for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+      return buf;
+    }
+
+    XLSX.writeFile(wb, 'ASESORIA_SITUACION ' + y + "-" + m + "-" + d + '.xlsx');
   }
 
 handleError(error) {

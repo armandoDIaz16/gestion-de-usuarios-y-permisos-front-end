@@ -20,6 +20,8 @@ export class AsignacionComponent implements OnInit {
   horasgrupo = [];
   public error = [];
   public data = [];
+  reprobados = [];
+  reprobadas = [];
   horario = new Array('7:00-8:40', '8:45-10:25', '10:30-12:10', '12:15-13:55', '14:05-15:45', '15:50-17:30', '17:35-19:15', '19:20-21:00');
   clavegrupo = '0';
 
@@ -39,6 +41,18 @@ export class AsignacionComponent implements OnInit {
     espaciogrupo: '0',
     selectasesorgrupo: '0',
     clavegrupo: '0',
+    validaIndividual: null,
+    validaSituacion: null,
+
+    //situacion
+    selectreprobado:'0',
+    clavemateriasituacion : '0',
+    asesorsituacion: '0',
+    diasituacion: '0',
+    horasituacion: '0',
+    campussituacion: '0',
+    espaciosituacion: '0',
+
   };
 
   registroInd() {
@@ -99,6 +113,14 @@ export class AsignacionComponent implements OnInit {
       },
       error => this.handleError(error)
     );
+    this.Jarwis.getReprobados().subscribe(
+      data => {
+        for (var num in data) {
+          this.reprobados.push(data[num]);
+        }
+      },
+      error => this.handleError(error)
+    );
   }
 
   addclave() {
@@ -146,6 +168,58 @@ export class AsignacionComponent implements OnInit {
     console.log('asesor: ' + this.form.selectasesorgrupo + 'clave: ' + this.form.clavegrupo + 'DIA: ' + this.form.diagrupo +
       'HORA' + this.form.horagrupo + 'Materia: ' + this.form.selectmateriagrupo + 'CAMPUS: ' + this.form.campusgrupo + 'ESPACIO: ' + this.form.espaciogrupo)
   }
+
+
+
+  obtenerMaterias(){
+    this.Jarwis.getMateriasReprobadas(this.form.selectreprobado).subscribe(
+      data => {
+        this.reprobadas = [];
+        for (var num in data) {
+          this.reprobadas.push(data[num]);
+        }
+      },
+      error => this.handleError(error)
+    );
+  }
+
+  checaHorario(){
+    this.Jarwis.getMateriasRecursando(this.form.clavemateriasituacion,this.form.selectreprobado).subscribe(
+    data => {
+      this.reprobadas = [];
+      alert('El alumno esta tomando la materia en el periodo actual')
+      for (var num in data) {
+          this.reprobadas.push(data[num]);
+        }
+      },
+      error => {
+        this.handleError(error)
+      alert('El alumno no esta tomando la materia en el periodo actual')
+        
+      }
+    );
+  }
+
+  registroSituacion(){
+    this.Jarwis.asignaSituacion(this.form).subscribe(
+      data => {
+        alert('Asesoria registrada')
+        },
+        error => {
+          this.handleError(error)
+        }
+      );
+
+  }
+
+  validaIndividual(a){
+    this.form.validaIndividual = a
+
+  }
+  validaSituacion(a){
+    this.form.validaSituacion = a
+  }
+  
 
   handleError(error) {
     this.error = error.error.error;
