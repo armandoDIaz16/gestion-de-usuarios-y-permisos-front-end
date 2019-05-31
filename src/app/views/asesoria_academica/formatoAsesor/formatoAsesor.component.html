@@ -14,12 +14,73 @@
             <a class="nav-link active" (click)="grupal()" href="#">CARTA COMPROMISO</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" (click)="satisfaccion()" href="#">EVALUACION DE SATISFACCION</a>
+            <a class="nav-link active" (click)="satisfaccion()" href="#">LISTA DE ASISTENCIA</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" (click)="final()" href="#">REPORTE FINAL</a>
           </li>
         </ul>
         <br><br>
         <div *ngIf="visindividual">
-          <h1>GRUPAL</h1>
+            <div>
+                <nav>
+                  <!-- <button type="button" class="btn btn-primary" (click)="leerExcel()">Leer Excel</button> -->
+                  <ul class="pagination pull-right float-sm-right">
+                    <li class="page-item {{select1}}"><a class="page-link" style="cursor: pointer"
+                        (click)="mostrarRegistros('2')">2</a></li>
+                    <li class="page-item {{select2}}"><a class="page-link" style="cursor: pointer"
+                        (click)="mostrarRegistros('5')">5</a></li>
+                    <li class="page-item {{select3}}"><a class="page-link" style="cursor: pointer"
+                        (click)="mostrarRegistros('10')">10</a></li>
+                    <li class="page-item {{select4}}"><a class="page-link" style="cursor: pointer"
+                        (click)="mostrarRegistros('todos')">Mostrar todos</a></li>
+                  </ul>
+                </nav>
+                <table class="table table-bordered table-striped table-sm">
+                  <thead>
+                    <tr>
+                      <th scope="row">#</th>
+                      <th>MATERIA</th>
+                      <th>SESION</th>
+                      <th>FECHA</th>
+                      <th>ASISTENTES</th>
+                      <th>HORA INICIO</th>
+                      <th>HORA FIN</th>
+                      <th>TEMA</th>
+                      <th>ACTIVIDADES U OBSERVACIONES</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr
+                      *ngFor="let asesor of sesiona | paginate: {itemsPerPage: registrosPagina, currentPage:pageActual, id: 'first' } let i = index">
+                      <td>{{i+1}}</td>
+                      <td>{{asesor.MATERIA}}</td>
+                      <td>{{asesor.SESION}}</td>
+                      <td>{{asesor.FECHA}}</td>
+                      <td>{{asesor.ASISTENTES}}</td>
+                      <td>{{asesor.HORAINICIO}}</td>
+                      <td>{{asesor.HORAFINAL}}</td>
+                      <td>{{asesor.TEMA}}</td>
+                      <td>{{asesor.ACTIVIDADES_OBSERVACIONES}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              
+                <!--   "MATERIA": "QUIMICA",
+"SESION": "1",
+"FECHA": "2019-01-02",
+"ASISTENTES": "1",
+"HORAINICIO": "7:00",
+"HORAFINAL": "8:00",
+"TEMA": "NO",
+"ACTIVIDADES_OBSERVACIONES": "NO"-->
+              
+                <div class="d-flex justify-content-center">
+                  <pagination-controls id="first" class="myPagination" previousLabel="" nextLabel="" maxSize="10"
+                    (pageChange)="pageActual = $event">
+                  </pagination-controls>
+                </div>
+              </div>
           <div class="app-body">
             <main class="main d-flex align-items-center">
               <div class="container">
@@ -122,8 +183,7 @@
                               <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="icon-user"></i></span>
                               </div>
-                              <input type="date" class="form-control" name='fecha'
-                                [(ngModel)]="form.fecha" required>
+                              <input type="date" class="form-control" name='fecha' [(ngModel)]="form.fecha" required>
                             </div>
                             <div class="input-group mb-3">
                               <div class="input-group-prepend">
@@ -235,7 +295,7 @@
                             </div>
                             <div class="row">
                               <div class="col-6">
-                                <button (click)=saveMotivos() class="btn btn-primary px-4"
+                                <button (click)=saveSesion() class="btn btn-primary px-4"
                                   [disabled]="!grupalForm.valid">Registrar</button>
                               </div>
                             </div>
@@ -250,7 +310,6 @@
           </div>
         </div>
         <div *ngIf="visgrupal">
-          <h1>GRUPAL</h1>
           <div class="app-body">
             <main class="main d-flex align-items-center">
               <div class="container">
@@ -347,14 +406,13 @@
           </div>
         </div>
         <div *ngIf="visatisfaccion">
-          <h1>GRUPAL</h1>
           <div class="app-body">
             <main class="main d-flex align-items-center">
               <div class="container">
                 <div class="row">
                   <div class="col-md-6 mx-auto">
                     <div align="center">
-                      <h2>EVALUACION DE SATISFACCION</h2>
+                      <h2>LISTA DE ASISTENCIA</h2>
                     </div>
                     <div class="card-group">
                       <div class="card p-3">
@@ -364,72 +422,209 @@
                               <h5></h5>
                             </div>
                             <div class="input-group mb-3">
-                              <h5>Con el objeto de detectar áreas de oportunidad que apoyen la mejora continua de la
-                                asesoría,
-                                solicitamos contestes el siguiente cuestionario.
-                                <br><br>
-                                DATOS GENERALES</h5>
-                            </div>
-                            <div class="input-group mb-3">
                               <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="icon-user"></i></span>
                               </div>
-                              <input type="text" name="name" class="form-control" placeholder="name" id="name"
-                                autocomplete="" [disabled]="true" [(ngModel)]="form.name" required>
-                            </div>
-                            <div class="input-group mb-3">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="icon-user"></i></span>
-                              </div>
-                              <input type="text" name="carrera" class="form-control" placeholder="carrera" id="carrera"
-                                autocomplete="carrera" [disabled]="true" [(ngModel)]="form.carrera" required>
-                            </div>
-                            <div class="input-group mb-3">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="icon-user"></i></span>
-                              </div>
-                              <input type="text" name="semestre" class="form-control" placeholder="semestre"
-                                id="semestre" autocomplete="semestre" [disabled]="true" [(ngModel)]="form.semestre"
-                                required>
-                            </div>
-                            <div class="input-group mb-3" *ngIf="!habilitarMaterias">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="icon-user"></i></span>
-                              </div>
-                              <input type="text" name="control" class="form-control" placeholder="Numero de comtrol"
-                                id="control" autocomplete="control" [disabled]="true" [(ngModel)]="form.control"
-                                required>
-                            </div>
-                            <div class="input-group mb-3">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="icon-user"></i></span>
-                                <!--  (ngModelChange)="addclave()" -->
-                              </div>
-                              <select class="form-control" type="text" name="asesorSa" [(ngModel)]="form.asesorSa"
-                                [disabled]="habilitarHoraMartes" [hidden]="habilitarHoraMartes">
-                                <option value='0' disabled>NOMBRE ASESOR(RA)</option>
-                                <option *ngFor="let ase of asesores" value={{ase.PK_USUARIO}}>
-                                  {{ase.name+' '+ase.PRIMER_APELLIDO+' '+ase.SEGUNDO_APELLIDO}}</option>
-                              </select>
-                            </div>
-                            <div class="input-group mb-3" *ngIf="!habilitarMaterias">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="icon-user"></i></span>
-                              </div>
-                              <select class="form-control" type="text" name="materiaSa" [(ngModel)]="form.materiaSa"
-                                [disabled]="habilitarMaterias" [hidden]="habilitarMaterias">
-                                <option value='0' disabled>MATERIA EN ASESORIA</option>
-                                <option *ngFor="let ase of asesores" value={{ase.MATERIA}}>
-                                  {{ase.MATERIA}}</option>
+                              <select class="form-control" type="text" name="materialis" (change)="traeAlumno()"
+                                [(ngModel)]="form.materialis">
+                                <option value='0' disabled>NOMBRE DE LA MATERIA</option>
+                                <option *ngFor="let mat of asesores" [ngValue]="mat.MATERIA">{{mat.MATERIA}}</option>
                               </select>
                             </div>
                             <div class="input-group mb-3">
                               <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="icon-user"></i></span>
                               </div>
-                              <select class="form-control" type="text" name="sesion" [(ngModel)]="form.sesion"
+                              <input type="text" name="namelis" class="form-control" placeholder="namelis" id="namelis"
+                                autocomplete="name" [disabled]="true" [(ngModel)]="form.namelis" required>
+                            </div>
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="icon-user"></i></span>
+                              </div>
+                              <input type="text" name="carreralis" class="form-control" placeholder="carreralis"
+                                id="carreralis" autocomplete="carreralis" [disabled]="true"
+                                [(ngModel)]="form.carreralis" required>
+                            </div>
+                            <div class="input-group mb-3" *ngIf="!habilitarMaterias">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="icon-user"></i></span>
+                              </div>
+                              <input type="text" name="controllis" class="form-control" placeholder="Numero de comtrol"
+                                id="controllis" autocomplete="controllis" [disabled]="true"
+                                [(ngModel)]="form.controllis" required>
+                            </div>
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="icon-user"></i></span>
+                              </div>
+                              <input type="text" name="semestrelis" class="form-control" placeholder="semestrelis"
+                                id="semestrelis" autocomplete="semestrelis" [disabled]="true"
+                                [(ngModel)]="form.semestrelis" required>
+                            </div>
+                            <div class="input-group mb-3">
+                              <h5>FECHA</h5>
+                            </div>
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="icon-user"></i></span>
+                              </div>
+                              <input type="date" class="form-control" name='fechalis' [(ngModel)]="form.fechalis"
+                                required>
+                            </div>
+                            <table class="table table-bordered table-striped table-sm">
+                              <thead>
+                                <tr>
+                                  <th scope="row">#</th>
+                                  <th>NOMBRE</th>
+                                  <th>ASISTIO</th>
+                                </tr>
+                              </thead>
+                              <tbody *ngFor="let asesor of alumnos let i = index">
+                                <tr>
+                                  <td>{{i+1}}</td>
+                                  <td>{{asesor.name}} {{asesor.PRIMER_APELLIDO}} {{asesor.SEGUNDO_APELLIDO}}</td>
+                                  <td>
+
+                                    <button class="btn btn-brand btn-sm btn-spotify" style="margin-bottom: 4px"
+                                      type="button" data-toggle="modal" (click)="idalumno(asesor.PK_USUARIO)"><i
+                                        class="fa fa-clock-o"></i></button>
+                                    PRESENTE
+                                    <br>
+                                    <button class="btn btn-brand btn-sm btn-youtube" style="margin-bottom: 4px"
+                                      type="button" data-toggle="modal" (click)="idalumno1(asesor.PK_USUARIO)"><i
+                                        class="cui-info"></i></button>
+                                    AUSENTE
+                                    <!-- <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" id="checkbox1"
+                                        (change)="idalumno(asesor.PK_USUARIO)" name="asistio"
+                                        [(ngModel)]="form.asistio1">
+                                      <label class="form-check-label" for="checkbox1">
+                                        PRESENTE
+                                      </label>
+                                      <br>
+                                      <input class="form-check-input" type="checkbox" id="checkbox1"
+                                        (change)="idalumno1(asesor.PK_USUARIO)" name="asistio"
+                                        [(ngModel)]="form.asistio2">
+                                      <label class="form-check-label" for="checkbox1">
+                                        AUSENTE
+                                      </label>
+                                    </div> -->
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <!-- <div class="row">
+                              <div class="col-6">
+                                <button (click)=lista() class="btn btn-primary px-4"
+                                  [disabled]="!grupalForm.valid">Registrar</button>
+                              </div>
+                            </div> -->
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </main>
+          </div>
+        </div>
+        <div *ngIf="visfinal">
+          <h1>REPORTE FINAL</h1>
+          <div class="app-body">
+            <main class="main d-flex align-items-center">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6 mx-auto">
+                    <div align="center">
+                      <h2>REPORTE FINAL</h2>
+                    </div>
+                    <div class="card-group">
+                      <div class="card p-3">
+                        <div class="card-body">
+                          <form #grupalForm=ngForm>
+                            <div class="input-group mb-3">
+                              <h5>I. DATOS DE IDENTIFICACIÓN</h5>
+                            </div>
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="icon-user"></i></span>
+                              </div>
+                              <select class="form-control" type="text" name="materiafin" (change)="traeSesion()"
+                                [(ngModel)]="form.materiafin">
+                                <option value='0' disabled>NOMBRE DE LA MATERIA</option>
+                                <option *ngFor="let mat of asesores" [ngValue]="mat.MATERIA">{{mat.MATERIA}}</option>
+                              </select>
+                            </div>
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="icon-user"></i></span>
+                              </div>
+                              <input type="text" name="namefin" class="form-control" placeholder="namefin" id="namefin"
+                                autocomplete="name" [disabled]="true" [(ngModel)]="form.namefin" required>
+                            </div>
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="icon-user"></i></span>
+                              </div>
+                              <input type="text" name="carrerafin" class="form-control" placeholder="carrerafin"
+                                id="carrerafin" autocomplete="carrerafin" [disabled]="true"
+                                [(ngModel)]="form.carrerafin" required>
+                            </div>
+                            <div class="input-group mb-3" *ngIf="!habilitarMaterias">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="icon-user"></i></span>
+                              </div>
+                              <input type="text" name="controlfin" class="form-control" placeholder="Numero de comtrol"
+                                id="controlfin" autocomplete="controlfin" [disabled]="true"
+                                [(ngModel)]="form.controlfin" required>
+                            </div>
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="icon-user"></i></span>
+                              </div>
+                              <input type="text" name="semestrefin" class="form-control" placeholder="semestrefin"
+                                id="semestrefin" autocomplete="semestrefin" [disabled]="true"
+                                [(ngModel)]="form.semestrefin" required>
+                            </div>
+                            <div class="input-group mb-3">
+                              <h5>FECHA DE ENTREGA</h5>
+                            </div>
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="icon-user"></i></span>
+                              </div>
+                              <input type="date" class="form-control" name='fechafin' [(ngModel)]="form.fechafin"
+                                required>
+                            </div>
+                            <div class="input-group mb-3">
+                              <h5>FECHA DE INICIO Y TERMINO</h5>
+                            </div>
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="icon-user"></i></span>
+                              </div>
+                              <input type="date" class="form-control" name='fechafin1' [(ngModel)]="form.fechafin1"
+                                required>
+                              <input type="date" class="form-control" name='fechafin2' [(ngModel)]="form.fechafin2"
+                                required>
+                            </div>
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="icon-user"></i></span>
+                              </div>
+                              <input type="text" name="lugar" class="form-control"
+                                placeholder="Lugar y hora de la asesoria" id="lugar" autocomplete="name"
+                                [(ngModel)]="form.lugar" required>
+                            </div>
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="icon-user"></i></span>
+                              </div>
+                              <select class="form-control" type="text" name="asesorados" [(ngModel)]="form.asesorados"
                                 [disabled]="habilitarMaterias" [hidden]="habilitarMaterias">
-                                <option value='0' disabled>NO. DE SESIONES EN QUE PARTICIPASTE</option>
+                                <option value='0' disabled>TOTAL DE ASESORADOS</option>
                                 <option value='1'>1</option>
                                 <option value='2'>2</option>
                                 <option value='3'>3</option>
@@ -452,205 +647,137 @@
                                 <option value='20'>20</option>
                                 <option value='21'>21</option>
                                 <option value='22'>22</option>
+                                <option value='23'>23</option>
+                                <option value='24'>24</option>
+                                <option value='25'>25</option>
+                                <option value='26'>26</option>
+                                <option value='27'>27</option>
+                                <option value='28'>28</option>
+                                <option value='29'>29</option>
+                                <option value='30'>30</option>
+                                <option value='31'>31</option>
+                                <option value='32'>32</option>
+                                <option value='33'>33</option>
+                                <option value='34'>34</option>
+                                <option value='35'>35</option>
+                                <option value='36'>36</option>
+                                <option value='37'>37</option>
+                                <option value='38'>38</option>
+                                <option value='39'>39</option>
+                                <option value='40'>40</option>
+                                <option value='41'>41</option>
+                                <option value='42'>42</option>
+                                <option value='43'>43</option>
+                                <option value='44'>44</option>
+                                <option value='45'>45</option>
+                                <option value='46'>46</option>
+                                <option value='47'>47</option>
+                                <option value='48'>48</option>
+                                <option value='49'>49</option>
+                                <option value='50'>50</option>
                               </select>
                             </div>
-                            <h4>1. La asesoría me ayudó a comprender la materia</h4>
-                            <div class="form-group">
-                              <div class="input-group">
-                                <div class="input-group-prepend">
-                                  <span class="input-group-text"><i class="icon-user"></i></span>
-                                </div>
-                                <select type="text" class="form-control" name="respuesta1" [(ngModel)]="form.respuesta1"
-                                  [disabled]="habilitarMaterias" [hidden]="habilitarMaterias">
-                                  <option value='0' disabled>OPCIONES DE RESPUESTA</option>
-                                  <option value='Totalmente de acuerdo'>Totalmente de acuerdo</option>
-                                  <option value='De acuerdo'>De acuerdo</option>
-                                  <option value='Sin elementos'>Sin elementos</option>
-                                  <option value='En desacuerdo'>En desacuerdo</option>
-                                  <option value='Totalmente en desacuerdo'>Totalmente en desacuerdo</option>
-                                </select>
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="icon-user"></i></span>
                               </div>
+                              <select class="form-control" type="text" name="sesionfin" [(ngModel)]="form.sesionfin"
+                                [disabled]="habilitarMaterias" [hidden]="habilitarMaterias">
+                                <option value='0' disabled>TOTAL DE SESIONES</option>
+                                <option value='1'>1</option>
+                                <option value='2'>2</option>
+                                <option value='3'>3</option>
+                                <option value='4'>4</option>
+                                <option value='5'>5</option>
+                                <option value='6'>6</option>
+                                <option value='7'>7</option>
+                                <option value='8'>8</option>
+                                <option value='9'>9</option>
+                                <option value='10'>10</option>
+                                <option value='11'>11</option>
+                                <option value='12'>12</option>
+                                <option value='13'>13</option>
+                                <option value='14'>14</option>
+                                <option value='15'>15</option>
+                                <option value='16'>16</option>
+                                <option value='17'>17</option>
+                                <option value='18'>18</option>
+                                <option value='19'>19</option>
+                                <option value='20'>20</option>
+                                <option value='21'>21</option>
+                                <option value='22'>22</option>
+                                <option value='23'>23</option>
+                                <option value='24'>24</option>
+                                <option value='25'>25</option>
+                                <option value='26'>26</option>
+                                <option value='27'>27</option>
+                                <option value='28'>28</option>
+                                <option value='29'>29</option>
+                                <option value='30'>30</option>
+                                <option value='31'>31</option>
+                                <option value='32'>32</option>
+                              </select>
+                            </div>
+                            <div class="input-group mb-3">
+                              <h5>II. INFORMACIÓN DE LAS SESIONES</h5>
                             </div>
 
-                            <h4>2. La asesoría fue una herramienta para aprobar las unidades de la materia</h4>
-                            <div class="form-group">
-                              <div class="input-group">
-                                <div class="input-group-prepend">
-                                  <span class="input-group-text"><i class="icon-user"></i></span>
-                                </div>
-                                <select type="text" class="form-control" name="respuesta2" [(ngModel)]="form.respuesta2"
-                                  [disabled]="habilitarMaterias" [hidden]="habilitarMaterias">
-                                  <option value='0' disabled>OPCIONES DE RESPUESTA</option>
-                                  <option value='Totalmente de acuerdo'>Totalmente de acuerdo</option>
-                                  <option value='De acuerdo'>De acuerdo</option>
-                                  <option value='Sin elementos'>Sin elementos</option>
-                                  <option value='En desacuerdo'>En desacuerdo</option>
-                                  <option value='Totalmente en desacuerdo'>Totalmente en desacuerdo</option>
-                                </select>
-                              </div>
+
+                            <table class="table table-bordered table-striped table-sm">
+                              <thead>
+                                <tr>
+                                  <th scope="row">#</th>
+                                  <th>FECHA</th>
+                                  <th>TEMA</th>
+                                </tr>
+                              </thead>
+                              <tbody *ngFor="let sesion of sesiones let i = index">
+                                <tr>
+                                  <td>{{i+1}}</td>
+                                  <td>{{sesion.FECHA}}</td>
+                                  <td>{{sesion.TEMA}}</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <div class="input-group mb-3">
+                              <h5>III. DATOS DE ESTUDIATES ASESORADOS (AS)</h5>
                             </div>
 
-                            <h4>3. Fui constante en la asistencia a la asesoría</h4>
-                            <div class="form-group">
-                              <div class="input-group">
-                                <div class="input-group-prepend">
-                                  <span class="input-group-text"><i class="icon-user"></i></span>
-                                </div>
-                                <select type="text" class="form-control" name="respuesta3" [(ngModel)]="form.respuesta3"
-                                  [disabled]="habilitarMaterias" [hidden]="habilitarMaterias">
-                                  <option value='0' disabled>OPCIONES DE RESPUESTA</option>
-                                  <option value='Totalmente de acuerdo'>Totalmente de acuerdo</option>
-                                  <option value='De acuerdo'>De acuerdo</option>
-                                  <option value='Sin elementos'>Sin elementos</option>
-                                  <option value='En desacuerdo'>En desacuerdo</option>
-                                  <option value='Totalmente en desacuerdo'>Totalmente en desacuerdo</option>
-                                </select>
-                              </div>
-                            </div>
 
-                            <h4>4. El horario de la asesoría me facilitó la asistencia</h4>
-                            <div class="form-group">
-                              <div class="input-group">
+                            <table class="table table-bordered table-striped table-sm">
+                              <thead>
+                                <tr>
+                                  <th scope="row">#</th>
+                                  <th>CARRERA</th>
+                                  <th>NO. CONTROL</th>
+                                  <th>NOMBRE</th>
+                                </tr>
+                              </thead>
+                              <tbody *ngFor="let sesion of alumnos let i = index">
+                                <tr>
+                                  <td>{{i+1}}</td>
+                                  <td>{{sesion.CLAVE_CARRERA}}</td>
+                                  <td>{{sesion.NUMERO_CONTROL}}</td>
+                                  <td>{{sesion.name}} {{sesion.PRIMER_APELLIDO}} {{sesion.SEGUNDO_APELLIDO}}</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <div class="input-group mb-3">
+                                <h5>OBSERVACIONES Y SUGERENCIAS</h5>
+                              </div>
+                            <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                   <span class="input-group-text"><i class="icon-user"></i></span>
                                 </div>
-                                <select type="text" class="form-control" name="respuesta4" [(ngModel)]="form.respuesta4"
-                                  [disabled]="habilitarMaterias" [hidden]="habilitarMaterias">
-                                  <option value='0' disabled>OPCIONES DE RESPUESTA</option>
-                                  <option value='Totalmente de acuerdo'>Totalmente de acuerdo</option>
-                                  <option value='De acuerdo'>De acuerdo</option>
-                                  <option value='Sin elementos'>Sin elementos</option>
-                                  <option value='En desacuerdo'>En desacuerdo</option>
-                                  <option value='Totalmente en desacuerdo'>Totalmente en desacuerdo</option>
-                                </select>
+                                <input type="text" class="form-control" placeholder="OBSERVACIONES Y SUGERENCIAS" name='sugerenciafin' [(ngModel)]="form.sugerenciafin"
+                                  required>
                               </div>
-                            </div>
-
-                            <h4>5. El contenido revisado en la asesoría fue congruente con los temas que abordó el Mtro.
-                              en la materia</h4>
-                            <div class="form-group">
-                              <div class="input-group">
-                                <div class="input-group-prepend">
-                                  <span class="input-group-text"><i class="icon-user"></i></span>
-                                </div>
-                                <select type="text" class="form-control" name="respuesta5" [(ngModel)]="form.respuesta5"
-                                  [disabled]="habilitarMaterias" [hidden]="habilitarMaterias">
-                                  <option value='0' disabled>OPCIONES DE RESPUESTA</option>
-                                  <option value='Totalmente de acuerdo'>Totalmente de acuerdo</option>
-                                  <option value='De acuerdo'>De acuerdo</option>
-                                  <option value='Sin elementos'>Sin elementos</option>
-                                  <option value='En desacuerdo'>En desacuerdo</option>
-                                  <option value='Totalmente en desacuerdo'>Totalmente en desacuerdo</option>
-                                </select>
-                              </div>
-                            </div>
-
-                            <h4>6. El asesor o asesora dominaba la materia</h4>
-                            <div class="form-group">
-                              <div class="input-group">
-                                <div class="input-group-prepend">
-                                  <span class="input-group-text"><i class="icon-user"></i></span>
-                                </div>
-                                <select type="text" class="form-control" name="respuesta6" [(ngModel)]="form.respuesta6"
-                                  [disabled]="habilitarMaterias" [hidden]="habilitarMaterias">
-                                  <option value='0' disabled>OPCIONES DE RESPUESTA</option>
-                                  <option value='Totalmente de acuerdo'>Totalmente de acuerdo</option>
-                                  <option value='De acuerdo'>De acuerdo</option>
-                                  <option value='Sin elementos'>Sin elementos</option>
-                                  <option value='En desacuerdo'>En desacuerdo</option>
-                                  <option value='Totalmente en desacuerdo'>Totalmente en desacuerdo</option>
-                                </select>
-                              </div>
-                            </div>
-
-                            <h4>7. La forma de explicar del Asesor o asesora facilitó mi aprendizaje</h4>
-                            <div class="form-group">
-                              <div class="input-group">
-                                <div class="input-group-prepend">
-                                  <span class="input-group-text"><i class="icon-user"></i></span>
-                                </div>
-                                <select type="text" class="form-control" name="respuesta7" [(ngModel)]="form.respuesta7"
-                                  [disabled]="habilitarMaterias" [hidden]="habilitarMaterias">
-                                  <option value='0' disabled>OPCIONES DE RESPUESTA</option>
-                                  <option value='Totalmente de acuerdo'>Totalmente de acuerdo</option>
-                                  <option value='De acuerdo'>De acuerdo</option>
-                                  <option value='Sin elementos'>Sin elementos</option>
-                                  <option value='En desacuerdo'>En desacuerdo</option>
-                                  <option value='Totalmente en desacuerdo'>Totalmente en desacuerdo</option>
-                                </select>
-                              </div>
-                            </div>
-
-                            <h4>8. El tiempo de la asesoría fue adecuado</h4>
-                            <div class="form-group">
-                              <div class="input-group">
-                                <div class="input-group-prepend">
-                                  <span class="input-group-text"><i class="icon-user"></i></span>
-                                </div>
-                                <select type="text" class="form-control" name="respuesta8" [(ngModel)]="form.respuesta8"
-                                  [disabled]="habilitarMaterias" [hidden]="habilitarMaterias">
-                                  <option value='0' disabled>OPCIONES DE RESPUESTA</option>
-                                  <option value='Totalmente de acuerdo'>Totalmente de acuerdo</option>
-                                  <option value='De acuerdo'>De acuerdo</option>
-                                  <option value='Sin elementos'>Sin elementos</option>
-                                  <option value='En desacuerdo'>En desacuerdo</option>
-                                  <option value='Totalmente en desacuerdo'>Totalmente en desacuerdo</option>
-                                </select>
-                              </div>
-                            </div>
-
-                            <h4>9. Los ejercicios y tareas de la asesoría apoyaron la comprensión de la materia</h4>
-                            <div class="form-group">
-                              <div class="input-group">
-                                <div class="input-group-prepend">
-                                  <span class="input-group-text"><i class="icon-user"></i></span>
-                                </div>
-                                <select type="text" class="form-control" name="respuesta9" [(ngModel)]="form.respuesta9"
-                                  [disabled]="habilitarMaterias" [hidden]="habilitarMaterias">
-                                  <option value='0' disabled>OPCIONES DE RESPUESTA</option>
-                                  <option value='Totalmente de acuerdo'>Totalmente de acuerdo</option>
-                                  <option value='De acuerdo'>De acuerdo</option>
-                                  <option value='Sin elementos'>Sin elementos</option>
-                                  <option value='En desacuerdo'>En desacuerdo</option>
-                                  <option value='Totalmente en desacuerdo'>Totalmente en desacuerdo</option>
-                                </select>
-                              </div>
-                            </div>
-
-                            <h4>10. En la asesoría pude expresar mis dudas sobre temas de la materia</h4>
-                            <div class="form-group">
-                              <div class="input-group">
-                                <div class="input-group-prepend">
-                                  <span class="input-group-text"><i class="icon-user"></i></span>
-                                </div>
-                                <select type="text" class="form-control" name="respuesta10"
-                                  [(ngModel)]="form.respuesta10" [disabled]="habilitarMaterias"
-                                  [hidden]="habilitarMaterias">
-                                  <option value='0' disabled>OPCIONES DE RESPUESTA</option>
-                                  <option value='Totalmente de acuerdo'>Totalmente de acuerdo</option>
-                                  <option value='De acuerdo'>De acuerdo</option>
-                                  <option value='Sin elementos'>Sin elementos</option>
-                                  <option value='En desacuerdo'>En desacuerdo</option>
-                                  <option value='Totalmente en desacuerdo'>Totalmente en desacuerdo</option>
-                                </select>
-                              </div>
-                            </div>
-                            <h4>Escribe tus sugerencias u observaciones</h4>
-                            <div class="form-group">
-                              <div class="input-group">
-                                <div class="input-group-prepend">
-                                  <span class="input-group-text"><i class="icon-user"></i></span>
-                                </div>
-                                <input type="text" name="sugerencia" class="form-control" placeholder="Sugerencias"
-                                  id="sugerencia" autocomplete="sugerencia" [(ngModel)]="form.sugerencia" required>
-                              </div>
-                            </div>
                             <div class="row">
-                              <div class="col-6">
-                                <button (click)=evaluacion() class="btn btn-primary px-4"
-                                  [disabled]="!grupalForm.valid">Registrar</button>
+                                <div class="col-6">
+                                  <button (click)=creaFinal() class="btn btn-primary px-4"
+                                    [disabled]="!grupalForm.valid">Registrar</button>
+                                </div>
                               </div>
-                            </div>
                           </form>
                         </div>
                       </div>

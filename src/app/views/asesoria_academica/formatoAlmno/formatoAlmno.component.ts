@@ -12,6 +12,9 @@ export class FormatoAlmnoComponent implements OnInit {
   visindividual = false;
   visgrupal = false;
   visatisfaccion = false;
+  viscalificacion = false;
+  
+  mostrarOtro1 = false;
   public error = [];
   public data = [];
 
@@ -82,7 +85,7 @@ export class FormatoAlmnoComponent implements OnInit {
     materiaSa: '0',
     sesion: '0',
     afirmacion: null,
-
+    otro: 'ninguno',
 
     inciso: null,
     inciso1: null,
@@ -127,7 +130,10 @@ export class FormatoAlmnoComponent implements OnInit {
     valida1: null,
     espacio1: null,
     campus1: null,
-    idGrupo: null
+    idGrupo: null,
+
+    calificacionun: null,
+    unidad: null
   };
 
   constructor(private Jarwis: JarwisService) {
@@ -138,19 +144,28 @@ export class FormatoAlmnoComponent implements OnInit {
     this.visindividual = !this.visindividual;
     this.visgrupal = false;
     this.visatisfaccion = false;
-
+    this.viscalificacion = false;
   }
 
   grupal() {
     this.visgrupal = !this.visgrupal;
     this.visindividual = false;
     this.visatisfaccion = false;
+    this.viscalificacion = false;
   }
 
   satisfaccion() {
     this.visatisfaccion = !this.visatisfaccion;
     this.visindividual = false;
     this.visgrupal = false;
+    this.viscalificacion = false;
+  }
+  calificacion(){
+    this.viscalificacion = !this.viscalificacion;
+    this.visindividual = false;
+    this.visgrupal = false;
+    this.visatisfaccion = false;
+
   }
 
   ngOnInit() {
@@ -682,6 +697,7 @@ export class FormatoAlmnoComponent implements OnInit {
     }
 
     alert('RESPUESTAS GUARDADAS');
+    this.form.otro = 'ninguno';
   }
 
   cartaUser() {
@@ -796,6 +812,20 @@ export class FormatoAlmnoComponent implements OnInit {
     }
 
     alert('RESPUESTAS GUARDADAS');
+
+  }
+
+  parcial(){
+    this.Jarwis.creaCalificacion(this.form).subscribe(
+      data => {
+    alert('RESPUESTAS GUARDADAS');
+      },
+      error => this.handleError(error)
+    );
+  }
+
+  mostrarOtro(){
+    this.mostrarOtro1 = !this.mostrarOtro1 
 
   }
 

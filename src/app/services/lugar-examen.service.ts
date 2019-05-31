@@ -2,28 +2,35 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { ITurno, IEspacio, ITipoEspacio, IEdificio, ITurno2 } from './lugar-examen';
+import { GenericServicesService } from './generic-services.service';
 
 @Injectable()
-export class LugarExamenService {
-    constructor(private http: HttpClient) { }
+export class LugarExamenService  extends GenericServicesService {
+
+    constructor(private http: HttpClient,
+        private genericServicesService: GenericServicesService ){ super(http);}
+
+
+    private baseUrl = GenericServicesService.API_ENDPOINT;
+    private headers = GenericServicesService.HEADERS;
 
     getTurno(): Observable<ITurno[]> {
-        return this.http.get<ITurno[]>('http://127.0.0.1:8000/api/Turno');
+        return this.http.get<ITurno[]>(this.baseUrl+'Turno', this.headers);
     }
     getTurno2(): Observable<ITurno2[]> {
-        return this.http.get<ITurno2[]>('http://127.0.0.1:8000/api/Turno2');
+        return this.http.get<ITurno2[]>(this.baseUrl+'Turno2', this.headers);
     }
     getEspacio(): Observable<IEspacio[]> {
-        return this.http.get<IEspacio[]>('http://127.0.0.1:8000/api/Espacio');
+        return this.http.get<IEspacio[]>(this.baseUrl+'Espacio', this.headers);
     }
     getTipoEspacio(): Observable<ITipoEspacio[]> {
-        return this.http.get<ITipoEspacio[]>('http://127.0.0.1:8000/api/TipoEspacio');
+        return this.http.get<ITipoEspacio[]>(this.baseUrl+'TipoEspacio', this.headers);
     }
     getEdificio(): Observable<IEdificio[]> {
-        return this.http.get<IEdificio[]>('http://127.0.0.1:8000/api/Edificio');
+        return this.http.get<IEdificio[]>(this.baseUrl+'Edificio', this.headers);
     }    
     addTurnoExamen(datos) {
-        return this.http.post('http://127.0.0.1:8000/api/AgregarTurno/', datos
+        return this.http.post(this.baseUrl+'AgregarTurno/', datos, this.headers
         ).subscribe(
             (response) => {
                 console.log(response);
@@ -31,7 +38,7 @@ export class LugarExamenService {
         );
     }   
     addEspacioExamen(datos) {
-        return this.http.post('http://127.0.0.1:8000/api/AgregarEspacio/', datos
+        return this.http.post(this.baseUrl+'AgregarEspacio/', datos, this.headers
         ).subscribe(
             (response) => {
                 console.log(response);
@@ -39,7 +46,7 @@ export class LugarExamenService {
         );
     }
     addGrupoExamen(datos) {
-        return this.http.post('http://127.0.0.1:8000/api/AgregarGrupo/', datos
+        return this.http.post(this.baseUrl+'AgregarGrupo/', datos, this.headers
         ).subscribe(
             (response) => {
                 console.log(response);

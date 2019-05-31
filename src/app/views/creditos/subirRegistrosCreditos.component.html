@@ -1,0 +1,27 @@
+<div class="card">
+    <div class="card-header">
+        <h3>Registro de actividades complementarias mediante archivo</h3>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <label>
+                    Subir archivo desde la computadora - formato xlsx (Excel)
+                </label>
+                <label class="btn btn-dark">
+                    Seleccionar<input type="file" name="file" hidden multiple (change)="uploadFile2($event)">
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div *ngIf="res == 'correcto'" class="col-sm-9">
+                <label class="btn btn-success">El archivo fue registrado correctamente, puede continuar subiendo archivos</label>
+            </div>
+            <div *ngIf="res == 'error'" class="col-sm-9">
+                    <label class="btn btn-danger">Ocurio un error con la carga del archivo</label>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -20,13 +20,6 @@ export interface IAspirante {
   ESPECIALIDAD: string;
 }
 
-export interface IReferencia {
-  REFERENCIA: string;
-  FECHA_LIMITE_PAGO: string;
-  CLAVE: number;
-  MONTO: string;
-}
-
 export interface IAspirantes {
   PREFICHA: string;
   NUMERO_PREFICHA: string;

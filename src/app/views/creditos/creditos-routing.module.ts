@@ -29,6 +29,16 @@ import { RegistroAsistenciasComponent } from './registroAsistencias.component';
 import { CreditosPorValidarComponent } from './creditosPorValidar.component';
 import { CreditosValidadosComponent } from './creditosValidados.component';
 import { DetalleActividadAdminComponent } from './detalleActividadAdmin.component';
+import { UsuariosComiteAcademicoFormComponent } from './usuariosComiteAcademico-Form.component';
+import { registroAdministrativosComponent } from './registroAdministrativos.component';
+import { UsuarioJefeCarreraComponent } from './usuarioJefeCarrera-form.component';
+import { UsuarioResponsableActFormComponent} from './usuarioResponsableAct-form.component';
+import { SubirRegistrosCreditosComponent } from './subirRegistrosCreditos.component';
+import { UsuariosTutoriasExtraescolaresComponent } from './usuariosTutoriasExtraescolares.component';
+
+
+
+
 import { typeSourceSpan } from '@angular/compiler';
 
 var rutas = [];
@@ -231,6 +241,60 @@ function agregarModulos(modulo){
       }
     });
     moduloDetalleActividadAdmin = true;
+    break;
+    case 'Registro administrativos':
+    modulos.push({
+      path: 'registro_administrativos',
+      component:  registroAdministrativosComponent,
+      data: {
+        title: 'Gestion de usuarios'
+      }
+    });
+    break;
+    case 'Usuarios comite academico':
+    modulos.push({
+      path: 'usuarios_comite_academico',
+      component:  UsuariosComiteAcademicoFormComponent,
+      data: {
+        title: 'Gestion de usuarios'
+      }
+    });
+    break;
+    case 'Usuarios jefes de carrera':
+    modulos.push({
+      path: 'usuarios_jefes_de_carrera',
+      component:  UsuarioJefeCarreraComponent,
+      data: {
+        title: 'Gestion de usuarios'
+      }
+    });
+    break;
+    case 'Usuarios responsables de actividad':
+    modulos.push({
+      path: 'usuarios_responsables_de_actividad',
+      component:  UsuarioResponsableActFormComponent,
+      data: {
+        title: 'Gestion de usuarios'
+      }
+    });
+    break; 
+    case 'Usuarios tutorias-extraescolares':
+    modulos.push({
+      path: 'usuarios_tutorias-extraescolares',
+      component:  UsuariosTutoriasExtraescolaresComponent,
+      data: {
+        title: 'Gestion de usuarios'
+      }
+    });
+    break;
+    case 'Cargar registro actividades':
+    modulos.push({
+      path: 'cargar_registro_actividades',
+      component:  SubirRegistrosCreditosComponent,
+      data: {
+        title: 'Registro de creditos'
+      }
+    });
     break;
 
   }

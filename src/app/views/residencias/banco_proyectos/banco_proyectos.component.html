@@ -14,14 +14,9 @@
     </select>
    <br><label>Empresa:</label> <br>
     <input [(ngModel)]="empresa" class="form-control form-control-lg" type="text" placeholder="Nombre de la empresa" name="empresa"><br>
-    <label>Tipo especialidad:</label><br>
-    <select [(ngModel)]="opcionSeleccionadoEsp" class="form-control form-control-lg" placeholder="Especialidad" name="especialidad">
-      <option value="No especificado">No especificado</option>
-      <option value="software" [hidden]="opcionSeleccionado != '1'">Software</option>
-      <option value="hardware" [hidden]="opcionSeleccionado != '1'">Hardware</option>
-      <option value="bd" [hidden]="opcionSeleccionado != '1'">Base de datos</option>
-      <option value="redes" [hidden]="opcionSeleccionado != '1'">Redes</option>
-    </select>
+    <label>Comentarios:</label><br>
+    <textarea [(ngModel)]="comentario" class="form-control form-control-lg" placeholder="Comentarios acerca del proyecto" name="especialidad">
+    </textarea>
     <div style="text-align: center;">
     <br> <button class="btn btn-dark" type="submit" value="Submit">Guardar</button>
     </div>

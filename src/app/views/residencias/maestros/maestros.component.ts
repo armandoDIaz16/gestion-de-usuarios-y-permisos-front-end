@@ -4,6 +4,7 @@ import {Maestro} from './maestroMaestro';
 import {Externo} from './externoMaestro';
 import {Alumno} from './alumno';
 import {HttpClient} from '@angular/common/http';
+import {GenericServicesService} from '../../../services/generic-services.service';
 
 @Component({
   selector: 'app-maestros',
@@ -11,7 +12,7 @@ import {HttpClient} from '@angular/common/http';
   styleUrls: ['./maestros.component.scss'],
     providers: [Proyecto , Maestro, Externo, Alumno]
 })
-export class MaestrosComponent implements OnInit {
+export class MaestrosComponent extends GenericServicesService implements OnInit {
     public anteproyectosLista = [];
     public maestrosLista = [];
     public externoLista = [];
@@ -23,6 +24,7 @@ export class MaestrosComponent implements OnInit {
     // opcion = { 'hola' : String , 'hola2' : String , 'hola3' : String };
   constructor(private proyecto: Proyecto , private maestro: Maestro , private externo: Externo,
               private http: HttpClient, private alumno: Alumno) {
+      super(http);
       this.proyecto.getAnteproyectos(this.usuario).subscribe(data => this.anteproyectosLista = data);
       const aux = this.anteproyectosLista.length;
       for (let i = 0; i < aux; i++) {
@@ -37,10 +39,10 @@ export class MaestrosComponent implements OnInit {
   }
 
   asignarMaestro(id, as, ex) {
-      this.http.put('http://127.0.0.1:8000/api/proyecto/' + id  , {
+      this.http.put(GenericServicesService.API_ENDPOINT + 'proyecto/' + id  , {
           'Maestro': as,
           'Externo': ex
-      }).subscribe(
+      }, GenericServicesService.HEADERS).subscribe(
           (response) => {
               console.log(response);
           }

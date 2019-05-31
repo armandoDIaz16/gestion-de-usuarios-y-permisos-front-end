@@ -16,6 +16,9 @@
           <li class="nav-item">
             <a class="nav-link active" (click)="satisfaccion()" href="#">EVALUACION DE SATISFACCION</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link active" (click)="calificacion()" href="#">CALIFICACIONES PARCIALES</a>
+          </li>
         </ul>
         <br><br>
         <div *ngIf="visindividual">
@@ -140,7 +143,7 @@
                                 </select>
                               </div>
                             </div>
-                            <div class="input-group mb-3" *ngIf="!habilitarMaterias">
+                            <!-- <div class="input-group mb-3" *ngIf="!habilitarMaterias">
                               <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="icon-user"></i></span>
                               </div>
@@ -164,7 +167,7 @@
                                     {{doc.Nombre+' '+doc.ApellidoPaterno+' '+doc.ApellidoMaterno}}</option>
                                 </select>
                               </div>
-                            </div>
+                            </div> -->
                             <!-- 
                             <div class="input-group mb-3" *ngIf="!habilitarMaterias">
                               <div class="input-group-prepend">
@@ -236,21 +239,20 @@
                                   D) Estoy en repetición o especial
                                 </label>
                               </div>
-                              <br>
-                              <div class="form-check checkbox">
+                              <!-- <div class="form-check checkbox">
                                 <input class="form-check-input" type="checkbox" value="option1" id="checkbox3"
                                   (change)="di()" name="inciso4" [(ngModel)]="form.inciso4">
                                 <label class="form-check-label" for="checkbox3">
                                   E) Considero que tengo deficiencias académicas desde preparatoria
 
                                 </label>
-                              </div>
+                              </div> -->
                               <br>
                               <div class="form-check checkbox">
                                 <input class="form-check-input" type="checkbox" value="option1" id="checkbox3"
                                   (change)="di()" name="inciso5" [(ngModel)]="form.inciso5">
                                 <label class="form-check-label" for="checkbox3">
-                                  F) Me falta tiempo para estudiar
+                                  E) Me falta tiempo para estudiar
                                 </label>
                               </div>
                               <br>
@@ -258,7 +260,7 @@
                                 <input class="form-check-input" type="checkbox" value="option1" id="checkbox3"
                                   (change)="di()" name="inciso6" [(ngModel)]="form.inciso6">
                                 <label class="form-check-label" for="checkbox3">
-                                  G) Los temas se revisan muy rápido
+                                  F) Los temas se revisan muy rápido
                                 </label>
                               </div>
                               <br>
@@ -266,7 +268,7 @@
                                 <input class="form-check-input" type="checkbox" value="option1" id="checkbox3"
                                   (change)="di()" name="inciso7" [(ngModel)]="form.inciso7">
                                 <label class="form-check-label" for="checkbox3">
-                                  H) Se me dificulta la forma de enseñar del Maestro
+                                  G) Se me dificulta la forma de enseñar del Maestro
                                 </label>
                               </div>
                               <br>
@@ -274,7 +276,7 @@
                                 <input class="form-check-input" type="checkbox" value="option1" id="checkbox3"
                                   (change)="di()" name="inciso8" [(ngModel)]="form.inciso8">
                                 <label class="form-check-label" for="checkbox3">
-                                  I) No me gusta la materia
+                                  H) No me gusta la materia
                                 </label>
                               </div>
                               <br>
@@ -282,16 +284,24 @@
                                 <input class="form-check-input" type="checkbox" value="option1" id="checkbox3"
                                   (change)="di()" name="inciso9" [(ngModel)]="form.inciso9">
                                 <label class="form-check-label" for="checkbox3">
-                                  J) Me distraigo del estudio por situaciones personales y/o familiares
+                                  I) Me distraigo del estudio por situaciones personales y/o familiares
                                 </label>
                               </div>
                               <br>
                               <div class="form-check checkbox">
                                 <input class="form-check-input" type="checkbox" value="option1" id="checkbox3"
-                                  (change)="di()" name="inciso10" [(ngModel)]="form.inciso10">
+                                  (change)="di()" (change)="mostrarOtro()" name="inciso10" [(ngModel)]="form.inciso10">
                                 <label class="form-check-label" for="checkbox3">
                                   K) Otro
                                 </label>
+                              </div>
+                              <br>
+                              <div class="input-group mb-3" *ngIf="mostrarOtro1">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="icon-user"></i></span>
+                                </div>
+                                <input type="text" name="otro" class="form-control" placeholder="ESCRIBE TU MOTIVO"
+                                  id="otro" autocomplete="" [(ngModel)]="form.otro" required>
                               </div>
                               <br>
                             </div>
@@ -678,6 +688,150 @@
                             <div class="row">
                               <div class="col-6">
                                 <button (click)=evaluacion() class="btn btn-primary px-4"
+                                  [disabled]="!grupalForm.valid">Registrar</button>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </main>
+          </div>
+        </div>
+        <div *ngIf="viscalificacion">
+          <h1>GRUPAL</h1>
+          <div class="app-body">
+            <main class="main d-flex align-items-center">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6 mx-auto">
+                    <div align="center">
+                      <h2>CALIFICACIONES PARCIALES</h2>
+                    </div>
+                    <div class="card-group">
+                      <div class="card p-3">
+                        <div class="card-body">
+                          <form #grupalForm=ngForm>
+                            <div class="input-group mb-3">
+                              <h5></h5>
+                            </div>
+                            <div class="input-group mb-3">
+                              <h5>DATOS GENERALES</h5>
+                            </div>
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="icon-user"></i></span>
+                              </div>
+                              <input type="text" name="name" class="form-control" placeholder="name" id="name"
+                                autocomplete="" [disabled]="true" [(ngModel)]="form.name" required>
+                            </div>
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="icon-user"></i></span>
+                              </div>
+                              <input type="text" name="carrera" class="form-control" placeholder="carrera" id="carrera"
+                                autocomplete="carrera" [disabled]="true" [(ngModel)]="form.carrera" required>
+                            </div>
+                            <div class="input-group mb-3" *ngIf="!habilitarMaterias">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="icon-user"></i></span>
+                              </div>
+                              <input type="text" name="control" class="form-control" placeholder="Numero de comtrol"
+                                id="control" autocomplete="control" [disabled]="true" [(ngModel)]="form.control"
+                                required>
+                            </div>
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="icon-user"></i></span>
+                                <!--  (ngModelChange)="addclave()" -->
+                              </div>
+                              <select class="form-control" type="text" name="asesorSa" [(ngModel)]="form.asesorSa"
+                                [disabled]="habilitarHoraMartes" [hidden]="habilitarHoraMartes">
+                                <option value='0' disabled>NOMBRE ASESOR(RA)</option>
+                                <option *ngFor="let ase of asesores" value={{ase.PK_USUARIO}}>
+                                  {{ase.name+' '+ase.PRIMER_APELLIDO+' '+ase.SEGUNDO_APELLIDO}}</option>
+                              </select>
+                            </div>
+                            <div class="input-group mb-3" *ngIf="!habilitarMaterias">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="icon-user"></i></span>
+                              </div>
+                              <select class="form-control" type="text" name="materiaSa" [(ngModel)]="form.materiaSa"
+                                [disabled]="habilitarMaterias" [hidden]="habilitarMaterias">
+                                <option value='0' disabled>MATERIA EN ASESORIA</option>
+                                <option *ngFor="let ase of asesores" value={{ase.MATERIA}}>
+                                  {{ase.MATERIA}}</option>
+                              </select>
+                            </div>
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="icon-user"></i></span>
+                              </div>
+                              <input type="text" name="aula" class="form-control" placeholder="Aula" id="aula"
+                                autocomplete=""  [(ngModel)]="form.aula" required>
+                            </div>
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="icon-user"></i></span>
+                              </div>
+                              <input type="text" name="dia" class="form-control" placeholder="Dia(s)" id="dia"
+                                autocomplete=""  [(ngModel)]="form.dia" required>
+                            </div>
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="icon-user"></i></span>
+                              </div>
+                              <input type="text" name="hora" class="form-control" placeholder="Hora(s)" id="hora"
+                                autocomplete=""  [(ngModel)]="form.hora" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <h5>CALIFICACIONES</h5>
+                              </div>
+                            <div class="form-group">
+                              <div class="input-group">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="icon-user"></i></span>
+                                </div>
+                                <select type="text" class="form-control" name="unidad"
+                                  [(ngModel)]="form.unidad" [disabled]="habilitarMaterias"
+                                  [hidden]="habilitarMaterias">
+                                  <option value=null disabled>UNIDAD</option>
+                                  <option value='UNIDAD 1'>UNIDAD 1</option>
+                                  <option value='UNIDAD 2'>UNIDAD 2</option>
+                                  <option value='UNIDAD 3'>UNIDAD 3</option>
+                                  <option value='UNIDAD 4'>UNIDAD 4</option>
+                                  <option value='UNIDAD 5'>UNIDAD 5</option>
+                                  <option value='UNIDAD 5'>UNIDAD 6</option>
+                                  <option value='UNIDAD 5'>UNIDAD 7</option>
+                                  <option value='UNIDAD 5'>UNIDAD 8</option>
+                                  <option value='UNIDAD 5'>UNIDAD 9</option>
+                                  <option value='FINAL'>FINAL</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="icon-user"></i></span>
+                                </div>
+                                <input type="text" name="calificacionun" class="form-control" placeholder="CALIFICACION" id="calificacionun"
+                                  autocomplete=""  [(ngModel)]="form.calificacionun" required>
+                              </div>
+                            <h4>Escribe tus sugerencias u observaciones</h4>
+                            <div class="form-group">
+                              <div class="input-group">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="icon-user"></i></span>
+                                </div>
+                                <input type="text" name="sugerencia" class="form-control" placeholder="OBSERVACIONES"
+                                  id="sugerencia" autocomplete="sugerencia" [(ngModel)]="form.sugerencia" required>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-6">
+                                <button (click)=parcial() class="btn btn-primary px-4"
                                   [disabled]="!grupalForm.valid">Registrar</button>
                               </div>
                             </div>

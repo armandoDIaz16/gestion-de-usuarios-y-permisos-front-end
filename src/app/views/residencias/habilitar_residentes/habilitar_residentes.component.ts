@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {GenericServicesService} from '../../../services/generic-services.service';
 
 @Component({
   selector: 'app-habilitar-residentes',
   templateUrl: './habilitar_residentes.component.html',
   styleUrls: ['./habilitar_residentes.component.scss']
 })
-export class Habilitar_residentesComponent implements OnInit {
+export class Habilitar_residentesComponent extends GenericServicesService implements OnInit {
     nocontrol = this.nocontrol;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { super(http); }
 
   ngOnInit() {
   }
 
   habilitarAlumnos() {
-      this.http.get('http://127.0.0.1:8000/api/CreditosSiia').subscribe(
+      this.http.get(GenericServicesService.API_ENDPOINT + 'CreditosSiia', GenericServicesService.HEADERS).subscribe(
           (response) => {
               console.log(response);
           }
@@ -22,7 +23,7 @@ export class Habilitar_residentesComponent implements OnInit {
   }
 
   deshabilitarAlumnos() {
-      this.http.get('http://127.0.0.1:8000/api/CreditosSiia/1').subscribe(
+      this.http.get(GenericServicesService.API_ENDPOINT + 'CreditosSiia/1', GenericServicesService.HEADERS).subscribe(
           (response) => {
               console.log(response);
           }
@@ -30,7 +31,7 @@ export class Habilitar_residentesComponent implements OnInit {
   }
 
     bajaAlumnos() {
-        this.http.get('http://127.0.0.1:8000/api/BajaAlumnoR/' + this.nocontrol).subscribe(
+        this.http.get(GenericServicesService.API_ENDPOINT + 'BajaAlumnoR/' + this.nocontrol, GenericServicesService.HEADERS).subscribe(
             (response) => {
                 console.log(response);
             }

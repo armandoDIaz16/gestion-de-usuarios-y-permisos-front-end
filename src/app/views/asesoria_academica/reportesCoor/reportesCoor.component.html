@@ -1,0 +1,692 @@
+<div class="row">
+  <div class="col-sm-12 ">
+    <div class="card">
+      <div class="card-header">
+        <i class="fa fa-align-justify"></i> SOLICITUDES
+        <small>PAAE</small>
+      </div>
+      <div class="card-body">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" (click)="asesor()" href="#">Respuestas Motivos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" (click)="alumno()" href="#">Compromiso User</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" (click)="carta()" href="#">Compromiso Asesor</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" (click)="evalua()" href="#">Respuestas Evaluacion</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" (click)="califica()" href="#">Respuestas Calificacion</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" (click)="sesion()" href="#">Sesiones</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" (click)="asistencia()" href="#">Lista de Asistencia</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" (click)="final()" href="#">Reporte Final</a>
+          </li>
+        </ul>
+        <br><br>
+        <div *ngIf="visasesor">
+          <nav>
+            <!-- <label class="btn btn-primary" style="cursor:pointer;">Leer Excel
+              <input type="file" name="file" hidden accept=".csv, .xls, .xlsx" (change)="onFileChange($event)">
+            </label> -->
+            <label class="btn btn-primary" style="cursor:pointer;">Imprimir Excel
+              <button type="button" (click)="generarExcel()" hidden></button></label>
+            <label class="btn btn-primary">
+              <select class="btn btn-primary" type="text" [(ngModel)]="periodo" (ngModelChange)="toNumber()">
+                <option value="20191">20191</option>
+                <option value="20192">20192</option>
+                <option value="20201">20201</option>
+                <option value="20202">20202</option>
+                <option value="20211">20211</option>
+                <option value="20212">20212</option>
+                <option value="20221">20221</option>
+                <option value="20222">20222</option>
+                <option value="20231">20231</option>
+                <option value="20232">20232</option>
+                <option value="20241">20241</option>
+              </select>
+
+            </label>
+            <!-- <button type="button" class="btn btn-primary" (click)="leerExcel()">Leer Excel</button> -->
+            <ul class="pagination pull-right float-sm-right">
+              <li class="page-item {{select1}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros('2')">2</a></li>
+              <li class="page-item {{select2}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros('5')">5</a></li>
+              <li class="page-item {{select3}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros('10')">10</a></li>
+              <li class="page-item {{select4}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros('todos')">Mostrar todos</a></li>
+            </ul>
+          </nav>
+          <table class="table table-bordered table-striped table-sm">
+            <thead>
+              <tr>
+                <th scope="row">#</th>
+                <th>NOMBRE</th>
+                <th>CONTROL</th>
+                <th>CARRERA</th>
+                <th>NOMBRE MOTIVO</th>
+                <th>EDAD</th>
+                <th>SEXO</th>
+                <th>RESIDENCIA</th>
+                <th>TURNO</th>
+                <th>EMAIL</th>
+                <th>MATERIA APOYO</th>
+                <th>DOCENTE</th>
+                <th>PERIODO</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let asesor of motivos | paginate: {itemsPerPage: registrosPagina, currentPage:pageActual, id: 'first' } let i = index">
+                <td>{{i+1}}</td>
+                <td>{{asesor.name+' '+asesor.PRIMER_APELLIDO+' '+asesor.SEGUNDO_APELLIDO}}</td>
+                <td>{{asesor.NUMERO_CONTROL}}</td>
+                <td>{{asesor.CLAVE_CARRERA}}</td>
+                <td>{{asesor.NOMBRE}}</td>
+                <td>{{asesor.EDAD}}</td>
+                <td>{{asesor.SEXO}}</td>
+                <td>{{asesor.RESIDENCIA}}</td>
+                <td>{{asesor.TURNO}}</td>
+                <td>{{asesor.email}}</td>
+                <td>{{asesor.MATERIA_APOYO1}}</td>
+                <td>{{asesor.DOCENTE1}}</td>
+                <td>{{asesor.PERIODO}}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="d-flex justify-content-center">
+            <pagination-controls id="first" class="myPagination" previousLabel="" nextLabel="" maxSize="10"
+              (pageChange)="pageActual = $event">
+            </pagination-controls>
+          </div>
+        </div>
+        <div *ngIf="visalumno">
+          <nav>
+            <!-- <label class="btn btn-primary" style="cursor:pointer;">Leer Excel
+              <input type="file" name="file" hidden accept=".csv, .xls, .xlsx" (change)="onFileChange($event)">
+            </label> -->
+            <label class="btn btn-primary" style="cursor:pointer;">Imprimir Excel
+              <button type="button" (click)="generarExcel1()" hidden></button></label>
+            <label class="btn btn-primary">
+              <select class="btn btn-primary" type="text" [(ngModel)]="periodo1" (ngModelChange)="toNumber1()">
+                <option value="20191">20191</option>
+                <option value="20192">20192</option>
+                <option value="20201">20201</option>
+                <option value="20202">20202</option>
+                <option value="20211">20211</option>
+                <option value="20212">20212</option>
+                <option value="20221">20221</option>
+                <option value="20222">20222</option>
+                <option value="20231">20231</option>
+                <option value="20232">20232</option>
+                <option value="20241">20241</option>
+              </select>
+
+            </label>
+            <ul class="pagination pull-right float-sm-right">
+              <li class="page-item {{select11}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros1('2')">2</a></li>
+              <li class="page-item {{select22}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros1('5')">5</a></li>
+              <li class="page-item {{select33}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros1('10')">10</a></li>
+              <li class="page-item {{select44}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros1('todos')">Mostrar todos</a></li>
+            </ul>
+          </nav>
+          <table class="table table-bordered table-striped table-sm">
+            <thead>
+              <tr>
+                <th scope="row">#</th>
+                <th>NOMBRE</th>
+                <th>NUMERO CONTROL</th>
+                <th>CARRERA</th>
+                <th>PERIODO</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let soli of compromiso | paginate: {itemsPerPage: registrosPagina1, currentPage:pageActual1, id: 'second'} let i = index">
+                <td>{{i+1}}</td>
+                <td>{{soli.name+' '+soli.PRIMER_APELLIDO+' '+soli.SEGUNDO_APELLIDO}}</td>
+                <td>{{soli.NUMERO_CONTROL}}</td>
+                <td>{{soli.CLAVE_CARRERA}}</td>
+                <td>{{soli.PERIODO}}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="d-flex justify-content-center">
+            <pagination-controls id="second" class="myPagination" previousLabel="" nextLabel="" maxSize="10"
+              (pageChange)="pageActual1 = $event">
+            </pagination-controls>
+          </div>
+          <!--           <nav>
+                        <ul class="pagination">
+                          <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+                          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                          <li class="page-item"><a class="page-link" href="#">2</a></li>
+                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                          <li class="page-item"><a class="page-link" href="#">4</a></li>
+                          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                      </nav>   -->
+
+
+
+          <!--/.col-->
+
+
+        </div>
+        <div *ngIf="viscarta">
+          <nav>
+            <!-- <label class="btn btn-primary" style="cursor:pointer;">Leer Excel
+                <input type="file" name="file" hidden accept=".csv, .xls, .xlsx" (change)="onFileChange($event)">
+              </label> -->
+            <label class="btn btn-primary" style="cursor:pointer;">Imprimir Excel
+              <button type="button" (click)="generarExcel2()" hidden></button></label>
+            <label class="btn btn-primary">
+              <select class="btn btn-primary" type="text" [(ngModel)]="periodo2" (ngModelChange)="toNumber2()">
+                <option value="20191">20191</option>
+                <option value="20192">20192</option>
+                <option value="20201">20201</option>
+                <option value="20202">20202</option>
+                <option value="20211">20211</option>
+                <option value="20212">20212</option>
+                <option value="20221">20221</option>
+                <option value="20222">20222</option>
+                <option value="20231">20231</option>
+                <option value="20232">20232</option>
+                <option value="20241">20241</option>
+              </select>
+
+            </label>
+            <ul class="pagination pull-right float-sm-right">
+              <li class="page-item {{select5}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros2('2')">2</a></li>
+              <li class="page-item {{select6}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros2('5')">5</a></li>
+              <li class="page-item {{select7}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros2('10')">10</a></li>
+              <li class="page-item {{select8}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros2('todos')">Mostrar todos</a></li>
+            </ul>
+          </nav>
+          <table class="table table-bordered table-striped table-sm">
+            <thead>
+              <tr>
+                <th scope="row">#</th>
+                <th>NOMBRE</th>
+                <th>NUMERO CONTROL</th>
+                <th>CARRERA</th>
+                <th>PERIODO</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let soli of compromisoAsesor | paginate: {itemsPerPage: registrosPagina2, currentPage:pageActual2, id: 'tercera'} let i = index">
+                <td>{{i+1}}</td>
+                <td>{{soli.name+' '+soli.PRIMER_APELLIDO+' '+soli.SEGUNDO_APELLIDO}}</td>
+                <td>{{soli.NUMERO_CONTROL}}</td>
+                <td>{{soli.CLAVE_CARRERA}}</td>
+                <td>{{soli.PERIODO}}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="d-flex justify-content-center">
+            <pagination-controls id="tercera" class="myPagination" previousLabel="" nextLabel="" maxSize="10"
+              (pageChange)="pageActual2 = $event">
+            </pagination-controls>
+          </div>
+        </div>
+        <div *ngIf="visevaluacion">
+          <nav>
+            <!-- <label class="btn btn-primary" style="cursor:pointer;">Leer Excel
+                  <input type="file" name="file" hidden accept=".csv, .xls, .xlsx" (change)="onFileChange($event)">
+                </label> -->
+            <label class="btn btn-primary" style="cursor:pointer;">Imprimir Excel
+              <button type="button" (click)="generarExcel3()" hidden></button></label>
+            <label class="btn btn-primary">
+              <select class="btn btn-primary" type="text" [(ngModel)]="periodo3" (ngModelChange)="toNumber3()">
+                <option value="20191">20191</option>
+                <option value="20192">20192</option>
+                <option value="20201">20201</option>
+                <option value="20202">20202</option>
+                <option value="20211">20211</option>
+                <option value="20212">20212</option>
+                <option value="20221">20221</option>
+                <option value="20222">20222</option>
+                <option value="20231">20231</option>
+                <option value="20232">20232</option>
+                <option value="20241">20241</option>
+              </select>
+
+            </label>
+            <ul class="pagination pull-right float-sm-right">
+              <li class="page-item {{select12}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros3('2')">2</a></li>
+              <li class="page-item {{select13}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros3('5')">5</a></li>
+              <li class="page-item {{select14}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros3('10')">10</a></li>
+              <li class="page-item {{select15}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros3('todos')">Mostrar todos</a></li>
+            </ul>
+          </nav>
+          <table class="table table-bordered table-striped table-sm">
+            <thead>
+              <tr>
+                <th scope="row">#</th>
+                <th>NOMBRE ALUMNO</th>
+                <th>NUMERO CONTROL</th>
+                <th>CARRERA</th>
+                <th>NOMBRE ASESOR</th>
+                <th>MATERIA</th>
+                <th>SESIONES</th>
+                <th>PREGUNTA</th>
+                <th>RESPUESTA</th>
+                <th>SUGERENCIA</th>
+                <th>PERIODO</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let soli of evaluacion | paginate: {itemsPerPage: registrosPagina3, currentPage:pageActual3, id: 'tercera'} let i = index">
+                <td>{{i+1}}</td>
+                <td>{{soli.name+' '+soli.PRIMER_APELLIDO+' '+soli.SEGUNDO_APELLIDO}}</td>
+                <td>{{soli.NUMERO_CONTROL}}</td>
+                <td>{{soli.CLAVE_CARRERA}}</td>
+                <td>{{soli.namea+' '+soli.apellidop+' '+soli.apellidom}}</td>
+                <td>{{soli.MATERIA}}</td>
+                <td>{{soli.SESIONES}}</td>
+                <td>{{soli.NOMBRE}}</td>
+                <td>{{soli.RESPUESTA}}</td>
+                <td>{{soli.SUGERENCIA}}</td>
+                <td>{{soli.PERIODO}}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="d-flex justify-content-center">
+            <pagination-controls id="tercera" class="myPagination" previousLabel="" nextLabel="" maxSize="10"
+              (pageChange)="pageActual3 = $event">
+            </pagination-controls>
+          </div>
+        </div>
+        <div *ngIf="viscalificacion">
+          <nav>
+            <!-- <label class="btn btn-primary" style="cursor:pointer;">Leer Excel
+                    <input type="file" name="file" hidden accept=".csv, .xls, .xlsx" (change)="onFileChange($event)">
+                  </label> -->
+            <label class="btn btn-primary" style="cursor:pointer;">Imprimir Excel
+              <button type="button" (click)="generarExcel4()" hidden></button></label>
+            <label class="btn btn-primary">
+              <select class="btn btn-primary" type="text" [(ngModel)]="periodo4" (ngModelChange)="toNumber4()">
+                <option value="20191">20191</option>
+                <option value="20192">20192</option>
+                <option value="20201">20201</option>
+                <option value="20202">20202</option>
+                <option value="20211">20211</option>
+                <option value="20212">20212</option>
+                <option value="20221">20221</option>
+                <option value="20222">20222</option>
+                <option value="20231">20231</option>
+                <option value="20232">20232</option>
+                <option value="20241">20241</option>
+              </select>
+
+            </label>
+            <ul class="pagination pull-right float-sm-right">
+              <li class="page-item {{select16}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros4('2')">2</a></li>
+              <li class="page-item {{select17}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros4('5')">5</a></li>
+              <li class="page-item {{select18}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros4('10')">10</a></li>
+              <li class="page-item {{select19}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros4('todos')">Mostrar todos</a></li>
+            </ul>
+          </nav>
+          <table class="table table-bordered table-striped table-sm">
+            <thead>
+              <tr>
+                <th scope="row">#</th>
+                <th>NOMBRE ALUMNO</th>
+                <th>NUMERO CONTROL</th>
+                <th>CARRERA</th>
+                <th>NOMBRE ASESOR</th>
+                <th>MATERIA</th>
+                <th>AULA</th>
+                <th>DIA</th>
+                <th>HORA</th>
+                <th>UNIDAD</th>
+                <th>CALIFICACION</th>
+                <th>OBSERVACIONES</th>
+                <th>PERIODO</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let soli of calificacion | paginate: {itemsPerPage: registrosPagina4, currentPage:pageActual4, id: 'cuarta'} let i = index">
+                <td>{{i+1}}</td>
+                <td>{{soli.name+' '+soli.PRIMER_APELLIDO+' '+soli.SEGUNDO_APELLIDO}}</td>
+                <td>{{soli.NUMERO_CONTROL}}</td>
+                <td>{{soli.CLAVE_CARRERA}}</td>
+                <td>{{soli.namea+' '+soli.apellidop+' '+soli.apellidom}}</td>
+                <td>{{soli.MATERIA}}</td>
+                <td>{{soli.AULA}}</td>
+                <td>{{soli.DIA}}</td>
+                <td>{{soli.HORA}}</td>
+                <td>{{soli.UNIDAD}}</td>
+                <td>{{soli.CALIFICACION}}</td>
+                <td>{{soli.OBSERVACIONES}}</td>
+                <td>{{soli.PERIODO}}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- {
+        "PRIMER_APELLIDO": "CHAVEZ",
+        "SEGUNDO_APELLIDO": "BARAJAS",
+        "name": "EDUARDO DE JESUS",
+        "NUMERO_CONTROL": "14240683",
+        "CLAVE_CARRERA": "ISC",
+        "MATERIA": "QUIMICA",
+        "AULA": "123",
+        "DIA": "456",
+        "HORA": "456",
+        "UNIDAD": "UNIDAD 1",
+        "CALIFICACION": "856",
+        "OBSERVACIONES": "YA DEJEN DORMIR PRRO",
+        "PERIODO": "20191",
+        "apellidop": "CHAVEZ",
+        "apellidom": "BARAJAS",
+        "namea": "EDUARDO DE JESUS"
+    }
+] -->
+
+          <div class="d-flex justify-content-center">
+            <pagination-controls id="cuarta" class="myPagination" previousLabel="" nextLabel="" maxSize="10"
+              (pageChange)="pageActual4 = $event">
+            </pagination-controls>
+          </div>
+        </div>
+        <div *ngIf="vissesion">
+          <nav>
+            <!-- <label class="btn btn-primary" style="cursor:pointer;">Leer Excel
+                      <input type="file" name="file" hidden accept=".csv, .xls, .xlsx" (change)="onFileChange($event)">
+                    </label> -->
+            <label class="btn btn-primary" style="cursor:pointer;">Imprimir Excel
+              <button type="button" (click)="generarExcel5()" hidden></button></label>
+            <label class="btn btn-primary">
+              <select class="btn btn-primary" type="text" [(ngModel)]="periodo5" (ngModelChange)="toNumber5()">
+                <option value="20191">20191</option>
+                <option value="20192">20192</option>
+                <option value="20201">20201</option>
+                <option value="20202">20202</option>
+                <option value="20211">20211</option>
+                <option value="20212">20212</option>
+                <option value="20221">20221</option>
+                <option value="20222">20222</option>
+                <option value="20231">20231</option>
+                <option value="20232">20232</option>
+                <option value="20241">20241</option>
+              </select>
+
+            </label>
+            <ul class="pagination pull-right float-sm-right">
+              <li class="page-item {{select23}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros5('2')">2</a></li>
+              <li class="page-item {{select24}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros5('5')">5</a></li>
+              <li class="page-item {{select25}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros5('10')">10</a></li>
+              <li class="page-item {{select26}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros5('todos')">Mostrar todos</a></li>
+            </ul>
+          </nav>
+          <table class="table table-bordered table-striped table-sm">
+            <thead>
+              <tr>
+                <th scope="row">#</th>
+                <th>NOMBRE ALUMNO</th>
+                <th>NUMERO CONTROL</th>
+                <th>CARRERA</th>
+                <th>MATERIA</th>
+                <th>SESION</th>
+                <th>FECHA</th>
+                <th>ASISTENTES</th>
+                <th>HORAINICIO</th>
+                <th>HORAFINAL</th>
+                <th>TEMA</th>
+                <th>ACTIVIDADES OBSERVACIONES</th>
+                <th>PERIODO</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let soli of sesiones | paginate: {itemsPerPage: registrosPagina5, currentPage:pageActual5, id: 'quinta'} let i = index">
+                <td>{{i+1}}</td>
+                <td>{{soli.name+' '+soli.PRIMER_APELLIDO+' '+soli.SEGUNDO_APELLIDO}}</td>
+                <td>{{soli.NUMERO_CONTROL}}</td>
+                <td>{{soli.CLAVE_CARRERA}}</td>
+                <td>{{soli.MATERIA}}</td>
+                <td>{{soli.SESION}}</td>
+                <td>{{soli.FECHA}}</td>
+                <td>{{soli.ASISTENTES}}</td>
+                <td>{{soli.HORAINICIO}}</td>
+                <td>{{soli.HORAFINAL}}</td>
+                <td>{{soli.TEMA}}</td>
+                <td>{{soli.ACTIVIDADES_OBSERVACIONES}}</td>
+                <td>{{soli.PERIODO}}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!--  "PRIMER_APELLIDO": "CHAVEZ",
+        "SEGUNDO_APELLIDO": "BARAJAS",
+        "name": "EDUARDO DE JESUS",
+        "NUMERO_CONTROL": "14240683",
+        "CLAVE_CARRERA": "ISC",
+        "MATERIA": "QUIMICA",
+        "SESION": "1",
+        "FECHA": "2019-01-02",
+        "ASISTENTES": "1",
+        "HORAINICIO": "7:00",
+        "HORAFINAL": "8:00",
+        "TEMA": "NO",
+        "ACTIVIDADES_OBSERVACIONES": "NO",
+        "PERIODO": "20191" -->
+
+          <div class="d-flex justify-content-center">
+            <pagination-controls id="quinta" class="myPagination" previousLabel="" nextLabel="" maxSize="10"
+              (pageChange)="pageActual5 = $event">
+            </pagination-controls>
+          </div>
+        </div>
+        <div *ngIf="visasistencia">
+          <nav>
+            <!-- <label class="btn btn-primary" style="cursor:pointer;">Leer Excel
+                        <input type="file" name="file" hidden accept=".csv, .xls, .xlsx" (change)="onFileChange($event)">
+                      </label> -->
+            <label class="btn btn-primary" style="cursor:pointer;">Imprimir Excel
+              <button type="button" (click)="generarExcel6()" hidden></button></label>
+            <label class="btn btn-primary">
+              <select class="btn btn-primary" type="text" [(ngModel)]="periodo6" (ngModelChange)="toNumber6()">
+                <option value="20191">20191</option>
+                <option value="20192">20192</option>
+                <option value="20201">20201</option>
+                <option value="20202">20202</option>
+                <option value="20211">20211</option>
+                <option value="20212">20212</option>
+                <option value="20221">20221</option>
+                <option value="20222">20222</option>
+                <option value="20231">20231</option>
+                <option value="20232">20232</option>
+                <option value="20241">20241</option>
+              </select>
+
+            </label>
+            <ul class="pagination pull-right float-sm-right">
+              <li class="page-item {{select27}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros6('2')">2</a></li>
+              <li class="page-item {{select28}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros6('5')">5</a></li>
+              <li class="page-item {{select29}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros6('10')">10</a></li>
+              <li class="page-item {{select30}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros6('todos')">Mostrar todos</a></li>
+            </ul>
+          </nav>
+          <table class="table table-bordered table-striped table-sm">
+            <thead>
+              <tr>
+                <th scope="row">#</th>
+                <th>NOMBRE ASESOR</th>
+                <th>NOMBRE ALUMNO</th>
+                <th>FECHA</th>
+                <th>ASISTIO</th>
+                <th>PERIODO</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let soli of asistencias | paginate: {itemsPerPage: registrosPagina6, currentPage:pageActual6, id: 'sexta'} let i = index">
+                <td>{{i+1}}</td>
+                <td>{{soli.name+' '+soli.PRIMER_APELLIDO+' '+soli.SEGUNDO_APELLIDO}}</td>
+                <td>{{soli.namea+' '+soli.apellidop+' '+soli.apellidom}}</td>
+                <td>{{soli.FECHA}}</td>
+                <td>{{soli.ASISTIO}}</td>
+                <td>{{soli.PERIODO}}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!--    "PRIMER_APELLIDO": "CHAVEZ",
+        "SEGUNDO_APELLIDO": "BARAJAS",
+        "name": "EDUARDO DE JESUS",
+        "NUMERO_CONTROL": "14240683",
+        "CLAVE_CARRERA": "ISC",
+        "FECHA": "2019-01-01 00:00:00.000",
+        "ASISTIO": "0",
+        "PERIODO": "20191",
+        "apellidop": "CAMARILLO",
+        "apellidom": "BRANDI",
+        "namea": "ANDREA JANETH" -->
+
+          <div class="d-flex justify-content-center">
+            <pagination-controls id="sexta" class="myPagination" previousLabel="" nextLabel="" maxSize="10"
+              (pageChange)="pageActual6 = $event">
+            </pagination-controls>
+          </div>
+        </div>
+        <div *ngIf="visfinal">
+          <nav>
+            <!-- <label class="btn btn-primary" style="cursor:pointer;">Leer Excel
+                          <input type="file" name="file" hidden accept=".csv, .xls, .xlsx" (change)="onFileChange($event)">
+                        </label> -->
+            <label class="btn btn-primary" style="cursor:pointer;">Imprimir Excel
+              <button type="button" (click)="generarExcel7()" hidden></button></label>
+            <label class="btn btn-primary">
+              <select class="btn btn-primary" type="text" [(ngModel)]="periodo7" (ngModelChange)="toNumber7()">
+                <option value="20191">20191</option>
+                <option value="20192">20192</option>
+                <option value="20201">20201</option>
+                <option value="20202">20202</option>
+                <option value="20211">20211</option>
+                <option value="20212">20212</option>
+                <option value="20221">20221</option>
+                <option value="20222">20222</option>
+                <option value="20231">20231</option>
+                <option value="20232">20232</option>
+                <option value="20241">20241</option>
+              </select>
+
+            </label>
+            <ul class="pagination pull-right float-sm-right">
+              <li class="page-item {{select34}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros7('2')">2</a></li>
+              <li class="page-item {{select35}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros7('5')">5</a></li>
+              <li class="page-item {{select36}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros7('10')">10</a></li>
+              <li class="page-item {{select37}}"><a class="page-link" style="cursor: pointer"
+                  (click)="mostrarRegistros7('todos')">Mostrar todos</a></li>
+            </ul>
+          </nav>
+          <table class="table table-bordered table-striped table-sm">
+            <thead>
+              <tr>
+                <th scope="row">#</th>
+                <th>NOMBRE ASESOR</th>
+                <th>NUMERO CONTROL</th>
+                <th>CARRERA</th>
+                <th>MATERIA</th>
+                <th>FECHA ENTREGA</th>
+                <th>FECHA INICIO</th>
+                <th>FECHA FIN</th>
+                <th>LUGAR</th>
+                <th>ASESORADOS</th>
+                <th>SESIONES</th>
+                <th>SUGERENCIAS</th>
+                <th>PERIODO</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let soli of reportefinal | paginate: {itemsPerPage: registrosPagina6, currentPage:pageActual6, id: 'sexta'} let i = index">
+                <td>{{i+1}}</td>
+                <td>{{soli.name+' '+soli.PRIMER_APELLIDO+' '+soli.SEGUNDO_APELLIDO}}</td>
+                <td>{{soli.NUMERO_CONTROL}}</td>
+                <td>{{soli.CLAVE_CARRERA}}</td>
+                <td>{{soli.MATERIA}}</td>
+                <td>{{soli.FECHA_ENTREGA}}</td>
+                <td>{{soli.FECHA_INICIO}}</td>
+                <td>{{soli.FECHA_FIN}}</td>
+                <td>{{soli.LUGAR}}</td>
+                <td>{{soli.ASESORADOS}}</td>
+                <td>{{soli.SESIONES}}</td>
+                <td>{{soli.SUGERENCIAS}}</td>
+                <td>{{soli.PERIODO}}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- "PRIMER_APELLIDO": "CHAVEZ",
+        "SEGUNDO_APELLIDO": "BARAJAS",
+        "name": "EDUARDO DE JESUS",
+        "NUMERO_CONTROL": "14240683",
+        "CLAVE_CARRERA": "ISC",
+        "MATERIA": "QUIMICA",
+        "FECHA_ENTREGA": "2019-12-30",
+        "FECHA_INICIO": "2019-12-31",
+        "FECHA_FIN": "2019-12-31",
+        "LUGAR": "ÑLLLL",
+        "ASESORADOS": "1",
+        "SESIONES": "1",
+        "SUGERENCIAS": "FSDFDF",
+        "PERIODO": "20191" -->
+
+          <div class="d-flex justify-content-center">
+            <pagination-controls id="sexta" class="myPagination" previousLabel="" nextLabel="" maxSize="10"
+              (pageChange)="pageActual6 = $event">
+            </pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
