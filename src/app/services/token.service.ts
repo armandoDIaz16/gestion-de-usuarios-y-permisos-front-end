@@ -13,8 +13,8 @@ export class TokenService extends GenericServicesService {
 
   private iss = {
 
-    login : 'http://127.0.0.1:8000/api/login',
-    signup : 'http://127.0.0.1:8000/api/signup'
+    login : this.baseUrl + 'login',
+    signup : this.baseUrl + 'signup'
   }
 
   handle(token) {

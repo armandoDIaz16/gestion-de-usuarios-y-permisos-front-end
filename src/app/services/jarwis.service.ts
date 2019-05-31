@@ -16,7 +16,7 @@ export class JarwisService extends GenericServicesService{
 
 
   signup(data) {
-    return this.http.post(`${this.baseUrl}signup`, data)
+    return this.http.post(`${this.baseUrl}signup`, data);
   }
 
   login(data) {
