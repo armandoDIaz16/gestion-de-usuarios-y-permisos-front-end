@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import {IAlumnos} from './proyectoMaestro.service';
+import {GenericServicesService} from '../../../services/generic-services.service';
 
 @Injectable()
-export class Alumno {
-    constructor(private http: HttpClient) {}
+export class Alumno extends GenericServicesService {
+    constructor(private http: HttpClient) {super(http); }
     getAlumno(id): Observable<IAlumnos[]> {
-        return this.http.get<IAlumnos[]>('http://127.0.0.1:8000/api/ProyectoAlumno/' + id);
+        return this.http.get<IAlumnos[]>(GenericServicesService.API_ENDPOINT + 'ProyectoAlumno/' + id, GenericServicesService.HEADERS);
     }
 }

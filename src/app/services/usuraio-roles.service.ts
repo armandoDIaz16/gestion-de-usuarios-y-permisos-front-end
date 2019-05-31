@@ -5,9 +5,10 @@ import { IRoles } from './rolesLista';
 
 
 @Injectable()
-export class UsuarioRolesService{
-    constructor(private http: HttpClient){}
-    getUsuarioRoles(): Observable<IRoles[]>{
-        return this.http.get<IRoles[]>('http://10.0.31.11/backend_swiitl/server.php/api/Usuario_Rol/' + sessionStorage.getItem('IdUsuario'));
+export class UsuarioRolesService {
+    constructor(private http: HttpClient) {}
+    getUsuarioRoles(): Observable<IRoles[]> {
+        return this.http.get<IRoles[]>('http://127.0.0.1:8000/api/Usuario_Rol/'
+            + sessionStorage.getItem('IdUsuario'));
     }
 }

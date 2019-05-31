@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Maestro} from './maestro';
 import {Reportes} from './reporte';
-import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-reporte-vista',
@@ -14,7 +13,7 @@ export class ReporteVistaComponent implements OnInit {
     public reporteLista = [];
     usuario = sessionStorage.getItem('IdUsuario');
     opcion = {};
-    constructor(private reporteService: Reportes, private maestro: Maestro, private http: HttpClient) {
+    constructor(private reporteService: Reportes, private maestro: Maestro) {
 
     }
 

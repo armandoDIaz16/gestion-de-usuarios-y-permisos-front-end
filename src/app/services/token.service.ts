@@ -6,51 +6,50 @@ import { Injectable } from '@angular/core';
 export class TokenService {
 
   private iss = {
-    login : 'http://10.0.31.11/backend_swiitl/server.php/api/login',
-    signup : 'http://10.0.31.11/backend_swiitl/server.php/api/signup'
+    login : 'http://127.0.0.1:8000/api/login',
+    signup : 'http://127.0.0.1:8000/api/signup'
   }
 
   constructor() { }
 
-  handle(token){
+  handle(token) {
     this.set(token);
   }
 
-  set(token){
-    sessionStorage.setItem('token',token);
+  set(token) {
+    sessionStorage.setItem('token', token);
   }
 
-  get(){
+  get() {
     return sessionStorage.getItem('token');
   }
 
-  remove(){
-    sessionStorage.removeItem('token'); 
+  remove() {
+    sessionStorage.removeItem('token');
   }
 
-  isValid(){
+  isValid() {
     const token = this.get();
-    if(token){
+    if (token) {
       const payload = this.payload(token);
-      if(payload){
+      if (payload) {
         return Object.values(this.iss).indexOf(payload.iss) > -1 ? true : false;
       }
     }
     return false;
   }
 
-  payload(token){
+  payload(token) {
     const payload = token.split('.')[1];
     return this.decode(payload);
   }
 
-  decode(payload)
-  {
-    return JSON.parse(atob(payload));   
+  decode(payload) {
+    return JSON.parse(atob(payload));
   }
 
-  loggedIn(){
+  loggedIn() {
     return this.isValid();
   }
-  
+
 }
