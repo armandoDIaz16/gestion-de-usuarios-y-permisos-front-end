@@ -1,8 +1,10 @@
 <div class="card">
   <div class="card-body">
     <div class="row">
-        <div class="col-sm-5">
+        <div class="col-sm-8">
              <h3 class="card-title mb-0">Seguimiento de actividades</h3>
+        </div>
+        <div class="form-group col-sm-8">
         <!-- Nav tabs -->
         <tabset>
           <tab *ngFor="let lineamiento of lineamientos"  heading="{{(lineamiento.NOMBRE.length>10)? (lineamiento.NOMBRE | slice:0:6)+'..':(lineamiento.NOMBRE)}}" (select)="onClick(lineamiento.PK_LINEAMIENTO)">
@@ -77,12 +79,22 @@
       <td>
         <div>{{cc.PERIODO}}</div>
       </td>
+      <ng-container *ngIf="cc.VALIDADO == 1; else noValidado">
       <td>
-        <div>{{cc.VALIDADO}}</div>   
+        <div>&#10004;</div>   
       </td>
       <td>
-        <div>Ver constancia</div>
+        <div><button type="button" class="btn btn-block btn-link active" aria-pressed="true" (click)="mostrarConstancia(cc.PK_ALUMNO_CREDITO)">Ver constancia</button></div>
       </td>
+      </ng-container>
+      <ng-template #noValidado>
+        <td>
+          <div>&#x274c;</div>
+        </td>
+        <td>
+          <div>Ver constancia</div>
+        </td>
+      </ng-template>
     </tr>
   </tbody>
 </table>

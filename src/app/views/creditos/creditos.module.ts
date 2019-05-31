@@ -22,6 +22,14 @@ import { AsistentesResponsableComponent } from './asistentesResponsable.componen
 import { ActividadesAsistenteComponent } from './actividadesAsistente.component';
 import { RegistroAsistenciasComponent } from './registroAsistencias.component';
 import { CreditosPorValidarComponent } from './creditosPorValidar.component';
+import { CreditosValidadosComponent } from './creditosValidados.component';
+import { DetalleActividadAdminComponent } from './detalleActividadAdmin.component';
+import { UsuariosComiteAcademicoFormComponent } from './usuariosComiteAcademico-Form.component';
+import { registroAdministrativosComponent } from './registroAdministrativos.component';
+import { UsuarioJefeCarreraComponent } from './usuarioJefeCarrera-form.component';
+import { UsuarioResponsableActFormComponent} from './usuarioResponsableAct-form.component';
+import { SubirRegistrosCreditosComponent } from './subirRegistrosCreditos.component';
+import { UsuariosTutoriasExtraescolaresComponent } from './usuariosTutoriasExtraescolares.component';
 // Dropdowns Component
 
 
@@ -53,7 +61,15 @@ import { CreditosRoutingModule } from './creditos-routing.module';
     AsistentesResponsableComponent,
     ActividadesAsistenteComponent,
     RegistroAsistenciasComponent,
-    CreditosPorValidarComponent
+    CreditosPorValidarComponent,
+    CreditosValidadosComponent,
+    DetalleActividadAdminComponent,
+    UsuariosComiteAcademicoFormComponent,
+    registroAdministrativosComponent,
+    UsuarioJefeCarreraComponent,
+    UsuarioResponsableActFormComponent,
+    SubirRegistrosCreditosComponent,
+    UsuariosTutoriasExtraescolaresComponent
   ]
 })
 export class CreditosModule { }

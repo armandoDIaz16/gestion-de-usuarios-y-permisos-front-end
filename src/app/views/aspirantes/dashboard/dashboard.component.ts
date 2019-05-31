@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+
+//import * as jsPDF from 'jspdf';
+//import 'jspdf-autotable';
+
 import { AspiranteService } from '../../../services/aspirante.service';
 
 
@@ -17,9 +21,11 @@ export class DashboardComponent implements OnInit {
   paso4 = null;
   habilitarReferencia = false;
   habilitarFicha = false;
+  habilitarRegistro = false;
+  habilitarAceptado = false;
 
-  constructor(private aspiranteService: AspiranteService) {
-  }
+    constructor(private aspiranteService: AspiranteService) {
+    }
 
   ngOnInit() {
     this.aspiranteService.getAspirante().subscribe(data => {
@@ -34,9 +40,11 @@ export class DashboardComponent implements OnInit {
           break;
         case 2: this.paso2 = 'completed'; this.habilitarReferencia = false;
           break;
-        case 3: this.paso2 = 'completed'; this.paso3 = 'completed'; this.habilitarReferencia = false;
+        case 3: this.paso2 = 'completed'; this.paso3 = 'completed'; this.habilitarReferencia = false; this.habilitarRegistro = true;
           break;
         case 4: this.paso2 = 'completed'; this.paso3 = 'completed'; this.paso4 = 'completed'; this.habilitarReferencia = false; this.habilitarFicha = true;
+          break;
+        case 5: this.paso2 = 'completed'; this.paso3 = 'completed'; this.paso4 = 'completed'; this.habilitarAceptado = true;      
           break;
       }
     });

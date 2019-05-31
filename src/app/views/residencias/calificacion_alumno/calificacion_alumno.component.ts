@@ -10,6 +10,8 @@ import {Alumnos} from './alumnos';
 })
 export class Calificacion_alumnoComponent implements OnInit {
     opcion = this.opcion;
+    opcion2 = this.opcion2;
+    observaciones = this.observaciones;
     alumnosLista = [];
     usuario = sessionStorage.getItem('IdUsuario');
     cal = this.cal;
@@ -21,13 +23,20 @@ export class Calificacion_alumnoComponent implements OnInit {
   }
 
     guardarCalificacion() {
-        this.http.post('http://127.0.0.1:8000/api/Informe', {
-            'CALIFICACION': this.cal.toString(),
-            'FK_ALUMNO': this.opcion.toString(),
-            'FK_DOCENTE': this.usuario.toString()
+        this.http.post('http://127.0.0.1:8000/api/CalificacionR', {
+            'CALIFICACION': this.cal,
+            'FK_ALUMNO': this.opcion,
+            'FK_DOCENTE': this.usuario,
+            'TITULACION': this.opcion2,
+            'OBSERVACIONES': this.observaciones
         }).subscribe(
             (response) => {
                 console.log(response);
             });
+    }
+
+    generarActa() {
+        var win = window.open('http://127.0.0.1:8000/api/ActaResidencias/' + this.opcion, '_blank');
+        win.focus();
     }
 }

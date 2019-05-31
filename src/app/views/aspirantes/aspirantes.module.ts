@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { NgxPaginationModule } from 'ngx-pagination';
-//import { ChartsModule } from 'ng2-charts';
+import { ChartsModule } from 'ng2-charts';
 //import { Chart } from 'chart.js';
 import { ModalModule } from "ngx-bootstrap";
 
@@ -34,7 +34,7 @@ import { CrearGruposComponent } from './crear_grupos/crear_grupos.component';
     BsDropdownModule.forRoot(),
     FormsModule,
     NgxPaginationModule,
-    //ChartsModule,
+    ChartsModule
     //Chart
   ],
   declarations: [

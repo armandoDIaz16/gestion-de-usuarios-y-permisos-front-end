@@ -17,8 +17,7 @@ import {AppComponent} from './app.component';
 // Import containers
 import {DefaultLayoutComponent} from './containers';
 
-import {P404Component} from './views/error/404.component';
-import {P500Component} from './views/error/500.component';
+
 import {LoginComponent} from './views/login/login.component';
 import {RegisterComponent} from './views/register/register.component';
 
@@ -59,13 +58,6 @@ import {BeforeLoginService} from './services/before-login.service';
 // @ts-ignore
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormularioComponent} from './components/formulario/formulario.component';
-import {EstadoCivilService} from './services/estado-civil.service';
-import {DependenciaService} from './services/dependencia.service';
-import {PropagandaTecnologicoService} from './services/propaganda-tecnologico.service';
-import {IncapacidadService} from './services/incapacidad.service';
-import {CarreraService} from './services/carrera.service';
-import {EntidadFederativaService} from './services/entidad-federativa.service';
-import {CiudadService} from './services/ciudad.service';
 import {ControlComponent} from './components/control/control.component';
 import {StudentOldComponent} from './components/student-old/student-old.component';
 import {NavbarSistemsComponent} from './components/navbar-sistems/navbar-sistems.component';
@@ -74,6 +66,7 @@ import {DocumentacionComponent} from './views/residencias/documentacion/document
 
 
 @NgModule({
+
     imports: [
         BrowserModule,
         AppRoutingModule,
@@ -97,8 +90,6 @@ import {DocumentacionComponent} from './views/residencias/documentacion/document
     declarations: [
         AppComponent,
         ...APP_CONTAINERS,
-        P404Component,
-        P500Component,
         LoginComponent,
         //  SignupComponent,
         RegisterComponent,
@@ -109,16 +100,9 @@ import {DocumentacionComponent} from './views/residencias/documentacion/document
         ControlComponent,
         StudentOldComponent,
         NavbarSistemsComponent,
+
     ],
     providers: [
-        EstadoCivilService,
-        DependenciaService,
-        PropagandaTecnologicoService,
-        IncapacidadService,
-        CarreraService,
-        EntidadFederativaService,
-        CiudadService,
-
         {
             provide: LocationStrategy,
             useClass: HashLocationStrategy

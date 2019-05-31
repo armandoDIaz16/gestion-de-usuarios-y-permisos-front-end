@@ -18,5 +18,6 @@ export class EncuestasComponent implements OnInit {
 
   ngOnInit() {
   }
+  mostrar(id) {}
 
 }

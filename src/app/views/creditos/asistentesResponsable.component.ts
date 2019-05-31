@@ -63,4 +63,12 @@ export class AsistentesResponsableComponent{
         });
     }
 
+    eliminar(id){
+        this.responsablesService.eliminarAsistAct(id).subscribe((data)=>{
+            alert("Eliminado correctamente");
+            this.getAsistentes();
+        },(error)=>{alert("Ocurrio un error");
+        });
+    }
+
 }

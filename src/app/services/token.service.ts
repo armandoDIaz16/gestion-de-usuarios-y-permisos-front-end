@@ -1,16 +1,20 @@
 import { Injectable } from '@angular/core';
+import { GenericServicesService } from './generic-services.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TokenService {
+export class TokenService extends GenericServicesService{
+  constructor(private http: HttpClient,
+  private genericServicesService: GenericServicesService ){ super(http); }
+
+  private baseUrl = GenericServicesService.API_ENDPOINT;
 
   private iss = {
-    login : 'http://localhost:8000/api/login',
-    signup : 'http://localhost:8000/api/signup'
+    login : this.baseUrl+'login',
+    signup : this.baseUrl+'signup'
   }
-
-  constructor() { }
 
   handle(token){
     this.set(token);
@@ -20,7 +24,7 @@ export class TokenService {
     sessionStorage.setItem('token',token);
   }
 
-  get(){
+  get2(){
     return sessionStorage.getItem('token');
   }
 
@@ -29,7 +33,7 @@ export class TokenService {
   }
 
   isValid(){
-    const token = this.get();
+    const token = this.get2();
     if(token){
       const payload = this.payload(token);
       if(payload){

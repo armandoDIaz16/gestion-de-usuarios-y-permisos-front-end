@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+/* import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { IColonia } from './serviciosListas';
@@ -10,3 +10,4 @@ export class ColoniaService{
     return this.http.get<IColonia[]>('http://127.0.0.1:8000/api/Colonia/'+cp);
   }
 }
+ */
