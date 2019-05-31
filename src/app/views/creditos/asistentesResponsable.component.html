@@ -54,19 +54,19 @@
     </div>
 
     </form>
-    <form *ngFor="let alumno of alumnos" #registroAsistentesForm=ngForm (ngSubmit)="registrar(alumno.NumeroControl)"> 
+    <form *ngFor="let alumno of alumnos" #registroAsistentesForm=ngForm (ngSubmit)="registrar(alumno.FK_USUARIO)"> 
       <div class="row">
         <div class="form-group col-sm-4">
             <label for="name">Primer apelido: </label>
-            <input [(ngModel)]="alumno.ApellidoPaterno" type="text" class="form-control" id="primer_apellido" name="primer_apellido" readonly required>
+            <input [(ngModel)]="alumno.PRIMER_APELLIDO" type="text" class="form-control" id="primer_apellido" name="primer_apellido" readonly required>
         </div>
         <div class="form-group col-sm-4">
             <label for="name">Segundo apelido: </label>
-            <input [(ngModel)]="alumno.ApellidoMaterno" type="text" class="form-control" id="segundo_apellido" name="segundo_apellido" readonly required>
+            <input [(ngModel)]="alumno.SEGUNDO_APELLIDO" type="text" class="form-control" id="segundo_apellido" name="segundo_apellido" readonly required>
         </div>
         <div class="form-group col-sm-4">
             <label for="name">Nombre: </label>
-            <input [(ngModel)]="alumno.Nombre" type="text" class="form-control" id="nombre" name="nombre" readonly required>
+            <input [(ngModel)]="alumno.name" type="text" class="form-control" id="nombre" name="nombre" readonly required>
         </div>
       </div>
        <div class="row">

@@ -13,6 +13,7 @@ export class JarwisService extends GenericServicesService{
 /*  private baseUrl = 'http://127.0.0.1:8000/api';*/
 
   private baseUrl = GenericServicesService.API_ENDPOINT;
+  //private baseUrl = 'http://localhost:8000/api/';
 
 
   signup(data) {
@@ -108,109 +109,109 @@ export class JarwisService extends GenericServicesService{
     return this.http.get(`${this.baseUrl}AsesorSesion?id=` + id)
   }
   alumnoAsesoriaLista(id) {
-    return this.http.get(`${this.baseUrl}/AlumnosAsesoria?id=` + id)
+    return this.http.get(`${this.baseUrl}AlumnosAsesoria?id=` + id)
   }
   alumnoAsesoriaListaMateria(id,materialis) {
-    return this.http.get(`${this.baseUrl}/AlumnosAsesoriaMateria?id=` + id + `&materialis=` + materialis)
+    return this.http.get(`${this.baseUrl}AlumnosAsesoriaMateria?id=` + id + `&materialis=` + materialis)
   }
   obtenerSesion(id,materiafin) {
-    return this.http.get(`${this.baseUrl}/Sesion?id=` + id + `&materiafin=` + materiafin)
+    return this.http.get(`${this.baseUrl}Sesion?id=` + id + `&materiafin=` + materiafin)
   }
   getReprobados() {
-    return this.http.get(`${this.baseUrl}/Reprobados`)
+    return this.http.get(`${this.baseUrl}Reprobados`)
   }
   getMateriasReprobadas(selectreprobado) {
-    return this.http.get(`${this.baseUrl}/Recursando?selectreprobado=`+selectreprobado)
+    return this.http.get(`${this.baseUrl}Recursando?selectreprobado=`+selectreprobado)
   }
   getMateriasRecursando(clavemateriasituacion,selectreprobado) {
-    return this.http.get(`${this.baseUrl}/MateriaRepeticion?clavemateriasituacion=`+clavemateriasituacion+ `&selectreprobado=` + selectreprobado)
+    return this.http.get(`${this.baseUrl}MateriaRepeticion?clavemateriasituacion=`+clavemateriasituacion+ `&selectreprobado=` + selectreprobado)
   }
   asesorFinal() {
-    return this.http.get(`${this.baseUrl}/AsesorFinal`)
+    return this.http.get(`${this.baseUrl}AsesorFinal`)
   }
   asesorFinalPeriodo(a) {
-    return this.http.get(`${this.baseUrl}/AsesorFinalPeriodo?periodo=`+a)
+    return this.http.get(`${this.baseUrl}AsesorFinalPeriodo?periodo=`+a)
   }
   complementaria(a,b,c,d,e,f,g,h,i,j,k,l,m,n) {
-    window.open(`${this.baseUrl}/PdfComplementaria?destinatario=`+a+ `&suscribe=` + b+ `&estudiante=` + c+ `&control=` + d+ `&carrera=` + e
+    window.open(`${this.baseUrl}PdfComplementaria?destinatario=`+a+ `&suscribe=` + b+ `&estudiante=` + c+ `&control=` + d+ `&carrera=` + e
     + `&actividad=` + f+ `&desempeno=` + g+ `&valor=` + h+ `&periodo=` + i+ `&extiende=` + j+ `&nombre1=` + k+ `&cargo1=` + l
     + `&nombre2=` + m+ `&cargo2=` + n)
   }
   servicio(a,b,c,d,e,f,g,h,i,j,k) {
-    window.open(`${this.baseUrl}/PdfServicio?oficio=`+a+ `&asunto=` + b+ `&director=` + c+ `&atencion=` + d+ `&prestador=` + e
+    window.open(`${this.baseUrl}PdfServicio?oficio=`+a+ `&asunto=` + b+ `&director=` + c+ `&atencion=` + d+ `&prestador=` + e
     + `&carreraSer=` + f+ `&controlSer=` + g+ `&periodoSer=` + h+ `&caracter=` + i+ `&diasmes=` + j+ `&atentamente=` + k)
   }
   getMotivos() {
-    return this.http.get(`${this.baseUrl}/TodosMotivos`)
+    return this.http.get(`${this.baseUrl}TodosMotivos`)
   }
   getMotivosPeriodo(a) {
-    return this.http.get(`${this.baseUrl}/MotivosPeriodo?periodo=`+a)
+    return this.http.get(`${this.baseUrl}MotivosPeriodo?periodo=`+a)
   }
   getComprimisoUser() {
-    return this.http.get(`${this.baseUrl}/TodosCompromisoUser`)
+    return this.http.get(`${this.baseUrl}TodosCompromisoUser`)
   }
   getComprimisoUserPeriodo(a) {
-    return this.http.get(`${this.baseUrl}/CompromisoUserPeriodo?periodo1=`+a)
+    return this.http.get(`${this.baseUrl}CompromisoUserPeriodo?periodo1=`+a)
   }
   getComprimisoAsesor() {
-    return this.http.get(`${this.baseUrl}/TodosCompromisoAsesor`)
+    return this.http.get(`${this.baseUrl}TodosCompromisoAsesor`)
   }
   getComprimisoAsesorPeriodo(a) {
-    return this.http.get(`${this.baseUrl}/CompromisoAsesorPeriodo?periodo2=`+a)
+    return this.http.get(`${this.baseUrl}CompromisoAsesorPeriodo?periodo2=`+a)
   }
   getEvaluacion() {
-    return this.http.get(`${this.baseUrl}/TodosEvaluacion`)
+    return this.http.get(`${this.baseUrl}TodosEvaluacion`)
   }
   getEvaluacionPeriodo(a) {
-    return this.http.get(`${this.baseUrl}/EvaluacionPeriodo?periodo3=`+a)
+    return this.http.get(`${this.baseUrl}EvaluacionPeriodo?periodo3=`+a)
   }
   getCalificacion() {
-    return this.http.get(`${this.baseUrl}/TodosCalificacion`)
+    return this.http.get(`${this.baseUrl}TodosCalificacion`)
   }
   getCalificacionPeriodo(a) {
-    return this.http.get(`${this.baseUrl}/CalificacionPeriodo?periodo4=`+a)
+    return this.http.get(`${this.baseUrl}CalificacionPeriodo?periodo4=`+a)
   }
   getSesiones() {
-    return this.http.get(`${this.baseUrl}/TodosSesiones`)
+    return this.http.get(`${this.baseUrl}TodosSesiones`)
   }
   getSesionesPeriodo(a) {
-    return this.http.get(`${this.baseUrl}/SesionesPeriodo?periodo5=`+a)
+    return this.http.get(`${this.baseUrl}SesionesPeriodo?periodo5=`+a)
   }
   getAsistencia() {
-    return this.http.get(`${this.baseUrl}/TodosAsistencia`)
+    return this.http.get(`${this.baseUrl}TodosAsistencia`)
   }
   getAsistenciaPeriodo(a) {
-    return this.http.get(`${this.baseUrl}/AsistenciaPeriodo?periodo6=`+a)
+    return this.http.get(`${this.baseUrl}AsistenciaPeriodo?periodo6=`+a)
   }
   getReporteFinal() {
-    return this.http.get(`${this.baseUrl}/TodosReporteFinal`)
+    return this.http.get(`${this.baseUrl}TodosReporteFinal`)
   }
   getReporteFinalPeriodo(a) {
-    return this.http.get(`${this.baseUrl}/ReporteFinalPeriodo?periodo7=`+a)
+    return this.http.get(`${this.baseUrl}ReporteFinalPeriodo?periodo7=`+a)
   }
   getAsignacion() {
-    return this.http.get(`${this.baseUrl}/TodosAsignacion`)
+    return this.http.get(`${this.baseUrl}TodosAsignacion`)
   }
   getSituacionPeriodo(a) {
-    return this.http.get(`${this.baseUrl}/SituacionPeriodo?periodo2=`+a)
+    return this.http.get(`${this.baseUrl}SituacionPeriodo?periodo2=`+a)
   }
   getAsesores() {
-    return this.http.get(`${this.baseUrl}/TodosAsesores`)
+    return this.http.get(`${this.baseUrl}TodosAsesores`)
   }
   getAsesoresPeriodo(a) {
-    return this.http.get(`${this.baseUrl}/AsesoresPeriodo?periodo=`+a)
+    return this.http.get(`${this.baseUrl}AsesoresPeriodo?periodo=`+a)
   }
   getSesionAsesor(a) {
-    return this.http.get(`${this.baseUrl}/SesionAsesor?id=`+a)
+    return this.http.get(`${this.baseUrl}SesionAsesor?id=`+a)
   }
   getCorreosAlumnos(a) {
-    return this.http.get(`${this.baseUrl}/CorreosAlumnos?id=`+a)
+    return this.http.get(`${this.baseUrl}CorreosAlumnos?id=`+a)
   }
   getListaAlumnos(a) {
-    return this.http.get(`${this.baseUrl}/ListaAlumnos?id=`+a)
+    return this.http.get(`${this.baseUrl}ListaAlumnos?id=`+a)
   }
   getAsesorCorreo(a) {
-    return this.http.get(`${this.baseUrl}/CorreoAsesor?id=`+a)
+    return this.http.get(`${this.baseUrl}CorreoAsesor?id=`+a)
   }
 
 
@@ -265,22 +266,22 @@ export class JarwisService extends GenericServicesService{
     return this.http.post(`${this.baseUrl}CompromisoAsesor`, data)
   }
   creaSesion(data) {
-    return this.http.post(`${this.baseUrl}/CreaSesion`, data)
+    return this.http.post(`${this.baseUrl}CreaSesion`, data)
   }
   creaLista(data) {
-    return this.http.post(`${this.baseUrl}/CreaLista`, data)
+    return this.http.post(`${this.baseUrl}CreaLista`, data)
   }
   creaFin(data) {
-    return this.http.post(`${this.baseUrl}/CreaFin`, data)
+    return this.http.post(`${this.baseUrl}CreaFin`, data)
   }
   asignaSituacion(data) {
-    return this.http.post(`${this.baseUrl}/AsignaSituacion`, data)
+    return this.http.post(`${this.baseUrl}AsignaSituacion`, data)
   }
   enviarCorreo(data) {
-    return this.http.post(`${this.baseUrl}/EnviarCorreoPAAE`, data)
+    return this.http.post(`${this.baseUrl}EnviarCorreoPAAE`, data) 
   }
   creaCalificacion(data) {
-    return this.http.post(`${this.baseUrl}/CreaCalificacion`, data)
+    return this.http.post(`${this.baseUrl}CreaCalificacion`, data) 
   }
 }
 
