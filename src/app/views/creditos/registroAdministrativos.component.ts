@@ -33,7 +33,7 @@ import { Router} from '@angular/router';
     handleResponse() {
         //this.Token.handle(data.access_token);
         alert("Usuario registrado correctamente");
-        this.router.navigate(['./creditos/registro_administrativos']);
+        this.router.navigate(['./creditos']);
         //this.router.navigateByUrl('./login');
     }
 

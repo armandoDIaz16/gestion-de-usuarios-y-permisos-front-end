@@ -28,6 +28,8 @@ import { UsuariosComiteAcademicoFormComponent } from './usuariosComiteAcademico-
 import { registroAdministrativosComponent } from './registroAdministrativos.component';
 import { UsuarioJefeCarreraComponent } from './usuarioJefeCarrera-form.component';
 import { UsuarioResponsableActFormComponent} from './usuarioResponsableAct-form.component';
+import { SubirRegistrosCreditosComponent } from './subirRegistrosCreditos.component';
+import { UsuariosTutoriasExtraescolaresComponent } from './usuariosTutoriasExtraescolares.component';
 // Dropdowns Component
 
 
@@ -65,7 +67,9 @@ import { CreditosRoutingModule } from './creditos-routing.module';
     UsuariosComiteAcademicoFormComponent,
     registroAdministrativosComponent,
     UsuarioJefeCarreraComponent,
-    UsuarioResponsableActFormComponent
+    UsuarioResponsableActFormComponent,
+    SubirRegistrosCreditosComponent,
+    UsuariosTutoriasExtraescolaresComponent
   ]
 })
 export class CreditosModule { }

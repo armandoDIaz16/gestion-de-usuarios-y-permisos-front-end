@@ -33,6 +33,9 @@ import { UsuariosComiteAcademicoFormComponent } from './usuariosComiteAcademico-
 import { registroAdministrativosComponent } from './registroAdministrativos.component';
 import { UsuarioJefeCarreraComponent } from './usuarioJefeCarrera-form.component';
 import { UsuarioResponsableActFormComponent} from './usuarioResponsableAct-form.component';
+import { SubirRegistrosCreditosComponent } from './subirRegistrosCreditos.component';
+import { UsuariosTutoriasExtraescolaresComponent } from './usuariosTutoriasExtraescolares.component';
+
 
 
 
@@ -272,6 +275,24 @@ function agregarModulos(modulo){
       component:  UsuarioResponsableActFormComponent,
       data: {
         title: 'Gestion de usuarios'
+      }
+    });
+    break; 
+    case 'Usuarios tutorias-extraescolares':
+    modulos.push({
+      path: 'usuarios_tutorias-extraescolares',
+      component:  UsuariosTutoriasExtraescolaresComponent,
+      data: {
+        title: 'Gestion de usuarios'
+      }
+    });
+    break;
+    case 'Cargar registro actividades':
+    modulos.push({
+      path: 'cargar_registro_actividades',
+      component:  SubirRegistrosCreditosComponent,
+      data: {
+        title: 'Registro de creditos'
       }
     });
     break;

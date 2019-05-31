@@ -22,12 +22,13 @@ export class CreditosService extends GenericServicesService{
   private headers = GenericServicesService.HEADERS;
 
   get(){
-  	return this.httpclient.get(this.API_ENDPOINT + 'lineamientos');
+  	return this.httpclient.get(this.API_ENDPOINT + 'lineamientos', this.headers);
   }
 
   save(lineamiento: Lineamiento){
   	return this.httpclient.post(this.API_ENDPOINT + 'lineamientos', lineamiento,  this.headers);
   }
+ 
 
   put(lineamiento){
   return this.httpclient.put(this.API_ENDPOINT + 'lineamientos/' + lineamiento.PK_LINEAMIENTO, lineamiento,  this.headers);
@@ -218,6 +219,16 @@ AgregarUsuarioJC(usuario){
  AgregarUsuarioRA(usuario){
   return this.httpclient.get(this.API_ENDPOINT + 'agregar-user-ra/' + usuario);
  }
+ AgregarUsuarioTE(usuario){
+   return this.httpClient.get(this.API_ENDPOINT + 'agregar-user-te/' + usuario);
+ }
+
  
+ /*----------------Subir listas en excel ------------------------*/
+ enviarExcel(file){
+ return this.httpClient.post(this.API_ENDPOINT + 'import-excel-ac', file, {responseType: 'text'});
+ }
+
+
 
 }
