@@ -3,8 +3,7 @@ import {Proyectos} from './proyectos';
 import {Totalp} from './totalproyectos';
 import {HttpClient} from '@angular/common/http';
 import {Chart} from 'chart.js';
-
-
+import {GenericServicesService} from '../../../services/generic-services.service';
 
 
 @Component({
@@ -13,13 +12,19 @@ import {Chart} from 'chart.js';
   styleUrls: ['./banco_estadistica.component.scss'],
     providers: [Proyectos, Totalp]
 })
-export class Banco_estadisticaComponent implements OnInit {
+export class Banco_estadisticaComponent extends GenericServicesService implements OnInit {
     ProyectosAlumno;
     TotalProyectos;
     myChart = [];
     x: number;
     y: number;
+    public barChartsOptions;
+    public barChartLabels;
+    public barChartType;
+    public barChartLegend;
+    public barChartData;
   constructor(private proyecto: Proyectos, private total: Totalp, private http: HttpClient) {
+      super(http);
       this.proyecto.getProyectos().subscribe(data => this.ProyectosAlumno = data);
       this.total.getTotalProyectos().subscribe(data => {this.TotalProyectos = data; this.generar(); });
   }
@@ -30,7 +35,21 @@ export class Banco_estadisticaComponent implements OnInit {
   generar() {
       this.x = <number>this.TotalProyectos;
       this.y = <number>this.ProyectosAlumno;
-      const canvas = <HTMLCanvasElement> document.getElementById('myChart');
+      let z = this.y - this.x;
+      if (z < 0) {
+          z = 0;
+      }
+      this.barChartsOptions = {
+          scaleShowVerticalLines: false,
+          responsive: true
+      };
+  this.barChartLabels = ['Alumnos', 'Institución'];
+  this.barChartType = 'pie';
+  this.barChartLegend = true;
+  this.barChartData = [
+          {data: [this.y, z], label: 'Alumno'}
+      ];
+/*      const canvas = <HTMLCanvasElement> document.getElementById('myChart');
       const ctx = canvas.getContext('2d');
       this.myChart = [new Chart(ctx, {
           type: 'pie',
@@ -38,36 +57,19 @@ export class Banco_estadisticaComponent implements OnInit {
               labels: ['Proyectos propuestos por alumnos', 'Proyectos propuestos por la institución'],
               datasets: [{
                   label: '# of Votes',
-                  data: [this.x, this.y - this.x],
+                  data: [this.x, z],
                   backgroundColor: [
                       'rgba(255, 99, 132, 0.7)',
-                      'rgba(54, 162, 235, 0.7)',
-                      'rgba(255, 206, 86, 0.2)',
-                      'rgba(75, 192, 192, 0.2)',
-                      'rgba(153, 102, 255, 0.2)',
-                      'rgba(255, 159, 64, 0.2)'
+                      'rgba(54, 162, 235, 0.7)'
                   ],
                   borderColor: [
                       'rgba(255, 99, 132, 1)',
-                      'rgba(54, 162, 235, 1)',
-                      'rgba(255, 206, 86, 1)',
-                      'rgba(75, 192, 192, 1)',
-                      'rgba(153, 102, 255, 1)',
-                      'rgba(255, 159, 64, 1)'
+                      'rgba(54, 162, 235, 1)'
                   ],
                   borderWidth: 1
               }]
-          },
-          options: {
-              scales: {
-                  yAxes: [{
-                      ticks: {
-                          beginAtZero: true
-                      }
-                  }]
-              }
           }
-      })];
+      })];*/
   }
 
 }

@@ -26,12 +26,14 @@ export class GestionActividadesFormComponent implements OnInit {
     FK_LINEAMIENTO: null,
     FK_TIPO: null,
     FK_RESPONSABLE: null,
+    IMAGEN: null
   };
 
   titulo: string = "Registrar Actividad";
   id: any;
   editing: boolean = false;
   actividades: Actividad[];
+  pruebal = "Tutoria 2";
 
   /*-------*/
   lineamientos: Lineamiento[];
@@ -51,9 +53,7 @@ export class GestionActividadesFormComponent implements OnInit {
         console.log(error);
       });
     }
-    this.actividadesService.get().subscribe((data: Lineamiento[])=>{
-      this.lineamientos = data;
-    });
+    
 
     this.actividadesService.getTipos().subscribe((data: Tipo[])=>{
       this.tipos = data;
@@ -62,9 +62,14 @@ export class GestionActividadesFormComponent implements OnInit {
     this.actividadesService.getResponsables().subscribe((data: Responsable[])=>{
       this.responsables = data;
     });
+
+    this.actividadesService.get().subscribe((data: Lineamiento[])=>{
+      this.lineamientos = data;
+    });
   }
 
   saveActividad(){
+    console.log(this.actividad);
     if(this.editing){
       this.actividadesService.putActividades(this.actividad).subscribe((data)=>{
         alert("Actividad actualizada correctamente");
@@ -101,5 +106,6 @@ export class GestionActividadesFormComponent implements OnInit {
 
   ngOnInit() {
   }
+
 
 }

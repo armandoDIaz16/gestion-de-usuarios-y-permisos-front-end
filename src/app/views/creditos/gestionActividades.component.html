@@ -10,7 +10,6 @@
     <table class="table table-responsive-sm table-hover table-outline mb-0">
       <thead class="thead-light">
         <tr>
-          <th class="text-center"><i class="icon-people"></i></th>
           <th>ID</th>
           <th>Nombre</th>
           <th>Descripcion</th>
@@ -27,16 +26,14 @@
       </thead>
       <tbody>
           <tr *ngFor="let actividad of actividades">
-          <td class="text-center">
-          </td>
           <td>
             <div>{{actividad.PK_ACTIVIDAD}}</div>
           </td>
           <td>
-            <div>{{actividad.NOMBRE}}</div>
+            <div>{{(actividad.NOMBRE.length>25)? (actividad.NOMBRE | slice:0:23)+'..':(actividad.NOMBRE)}}</div>
           </td>
           <td>
-            <div>{{actividad.DESCRIPCION}}</div>   
+            <div>{{(actividad.DESCRIPCION.length>25)? (actividad.DESCRIPCION | slice:0:23)+'..':(actividad.DESCRIPCION)}}</div>   
           </td>
           <td>
             <div>{{actividad.LUGAR}}</div>

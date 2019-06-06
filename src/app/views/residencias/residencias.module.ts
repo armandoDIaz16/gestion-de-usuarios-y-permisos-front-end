@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
+import { ChartsModule } from 'ng2-charts';
 
 // Dropdowns Component
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -34,6 +35,9 @@ import { Vista_documentacionComponent } from './vista_documentacion/vista_docume
 import { Banco_estadisticaComponent } from './banco_estadistica/banco_estadistica.component';
 import { Estadisticas_reportesComponent } from './estadisticas_reportes/estadisticas_reportes.component';
 import { Informe_tecnicoComponent } from './informe_tecnico/informe_tecnico.component';
+import { Generar_conveniosComponent } from './generar_convenios/generar_convenios.component';
+import {Configuracion_actaComponent} from './configuracion_acta/configuracion_acta.component';
+import { Informacion_residenciasComponent } from './informacion_residencias/informacion_residencias.component';
 
 // Angular
 
@@ -43,7 +47,8 @@ import { Informe_tecnicoComponent } from './informe_tecnico/informe_tecnico.comp
         ResidenciasRoutingModule,
         BsDropdownModule.forRoot(),
         FormsModule,
-        CollapseModule
+        CollapseModule,
+        ChartsModule
     ],
   declarations: [
     BancoProyectosComponent,
@@ -69,7 +74,10 @@ import { Informe_tecnicoComponent } from './informe_tecnico/informe_tecnico.comp
     Vista_documentacionComponent,
     Banco_estadisticaComponent,
     Estadisticas_reportesComponent,
-    Informe_tecnicoComponent
+    Informe_tecnicoComponent,
+    Generar_conveniosComponent,
+    Configuracion_actaComponent,
+    Informacion_residenciasComponent
   ]
 })
 export class ResidenciasModule { }

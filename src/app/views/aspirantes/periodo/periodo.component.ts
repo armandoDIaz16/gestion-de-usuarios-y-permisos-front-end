@@ -79,7 +79,7 @@ export class PeriodoComponent implements OnInit {
             "FECHA_FIN": this.fechaFin,
 
           });
-        console.log("Modificacion");
+        //console.log("Modificacion");
     }else{        
       this.periodoService.addPeriodo({
               "FECHA_INICIO": this.fechaInicio,
@@ -87,10 +87,12 @@ export class PeriodoComponent implements OnInit {
               "FK_USUARIO_REGISTRO": sessionStorage.getItem('IdUsuario') 
       });
       //Corregir con promise
-/*       this.periodoService.getPeriodo().subscribe(data => {
-        this.idPeriodo=data[0].PK_PERIODO_PREFICHAS;
-      }); */
-        console.log("Insertar");       
+      setTimeout(()=>{
+        this.periodoService.getPeriodo().subscribe(data => {
+          this.idPeriodo=data[0].PK_PERIODO_PREFICHAS;
+        });
+      }, 1000); 
+        //console.log("Insertar");       
     }  
           
 

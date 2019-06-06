@@ -3,7 +3,6 @@ import {Maestro} from './maestro';
 import {Reporte} from './reporte';
 import {Externo} from './externo';
 import {ReporteE} from './reporteexterno';
-import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-vista-reportes',

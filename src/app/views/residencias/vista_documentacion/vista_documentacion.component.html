@@ -41,6 +41,7 @@
             <th>Alumno</th>
             <th>Carta de aceptacion</th>
             <th>Solicitud de residencias</th>
+            <th>Carta finalización residencias</th>
         </tr>
         </thead>
         <tbody>
@@ -48,6 +49,7 @@
             <td>{{doc.name}}</td>
             <td><a href="{{'http://127.0.0.1:8000/'+doc.CARTA_ACEPTACION}}" target="_blank">{{doc.CARTA_ACEPTACION}}</a></td>
             <td><a href="{{'http://127.0.0.1:8000/'+doc.SOLICITUD}}" target="_blank">{{doc.SOLICITUD}}</a></td>
+            <td><a href="{{'http://127.0.0.1:8000/'+doc.CARTA}}" target="_blank">{{doc.CARTA}}</a></td>
         </tr>
         </tbody>
     </table>

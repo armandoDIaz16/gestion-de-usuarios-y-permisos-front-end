@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PeriodoService } from '../../../services/periodo.service';
 import { AspiranteService } from '../../../services/aspirante.service';
-import { CarreraService } from '../../../services/carrera.service';
+import { FormularioService } from '../../../services/formulario.service';
 import * as XLSX from 'xlsx';
 
 
@@ -10,11 +10,11 @@ import * as XLSX from 'xlsx';
   selector: 'app-prefichas',
   templateUrl: './prefichas.component.html',
   styleUrls: ['./prefichas.component.scss'],
-  providers: [PeriodoService, CarreraService, AspiranteService]
+  providers: [PeriodoService, FormularioService, AspiranteService]
 })
 export class PrefichasComponent implements OnInit {
   constructor(private periodoService: PeriodoService,
-    private carreraService: CarreraService,
+    private formularioService: FormularioService,
     private aspiranteService: AspiranteService) {
   }
 
@@ -66,7 +66,7 @@ export class PrefichasComponent implements OnInit {
     });
 
     this.aspiranteService.getEstatus().subscribe(data => this.estatus = data);
-    this.carreraService.getCarrera().subscribe(data => {
+    this.formularioService.getCarrera().subscribe(data => {
       this.carreras = data;
       this.carreraLista = data;
     });
@@ -212,7 +212,6 @@ export class PrefichasComponent implements OnInit {
 
   this.asunto = "";
   this.mensaje = "";
-    console.log(correos);
   }
 
 

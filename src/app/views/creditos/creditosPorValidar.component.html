@@ -53,7 +53,7 @@
       </tr>
     </thead>
     <tbody>
-      <ng-container *ngFor="let c of creditos | paginate: {itemsPerPage: 1, currentPage: pageActual}">
+      <ng-container *ngFor="let c of creditos | paginate: {itemsPerPage: 15, currentPage: pageActual}">
       <tr> 
         <td>
           <div>{{c.PK_ALUMNO_CREDITO}}</div>
@@ -101,11 +101,13 @@
         <th>Clave de actividad</th>
         <th>Nombre</th>
         <th>Fecha</th>
+        <th></th>
       </tr>
       <tr *ngFor="let a of actividades">
         <td>{{a.PK_ACTIVIDAD}}</td>
-        <td>{{a.NOMBRE}}</td>
+        <td>{{(a.NOMBRE.length>25)? (a.NOMBRE | slice:0:23)+'..':(a.NOMBRE)}}</td>
         <td>{{a.FECHA}}</td>
+        <td><a routerLink="../detalle_actividad_adm/{{a.PK_ACTIVIDAD}}">ver detalles</a></td>
       </tr>
      <!--  </table> -->
       </ng-container>

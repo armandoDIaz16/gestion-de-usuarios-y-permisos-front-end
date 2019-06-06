@@ -1,15 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EstadoCivilService } from  '../../services/estado-civil.service';
-import { DependenciaService } from '../../services/dependencia.service';
-import { PropagandaTecnologicoService } from '../../services/propaganda-tecnologico.service';
-import { IncapacidadService } from '../../services/incapacidad.service';
-import { CarreraService } from '../../services/carrera.service';
-import { EntidadFederativaService } from '../../services/entidad-federativa.service';
-import { CiudadService } from '../../services/ciudad.service';
-import { UniversidadService } from '../../services/universidad.service';
-import { CarreraUniversidadService } from '../../services/carrera-universidad.service';
-import { BachilleratoService } from '../../services/bachillerato.service';
-import { ColoniaService } from '../../services/colonia.service';
+import { FormularioService } from '../../services/formulario.service';
 import { AspiranteService } from '../../services/aspirante.service';
 import { PeriodoService } from '../../services/periodo.service';
 import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn, AbstractControl, Validators } from '@angular/forms';
@@ -20,18 +10,9 @@ import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn, AbstractCo
   selector: 'app-formulario',
   templateUrl: './formulario.component.html',
   styleUrls: ['./formulario.component.scss'],
-  providers: [EstadoCivilService,
-    DependenciaService,
-    PropagandaTecnologicoService,
-    IncapacidadService,
-    CarreraService,
-    EntidadFederativaService,
-    CiudadService,
+  providers: [
+    FormularioService,
     PeriodoService,
-    UniversidadService,
-    CarreraUniversidadService,
-    BachilleratoService,
-    ColoniaService,
     AspiranteService]
 })
 export class FormularioComponent implements OnInit {
@@ -109,25 +90,15 @@ export class FormularioComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     //private fb: FormBuilder,
-    private estadoCivilService: EstadoCivilService,
-    private dependenciaService: DependenciaService,
-    private propagandaTecnologicoService: PropagandaTecnologicoService,
-    private incapacidadService: IncapacidadService,
-    private carreraService: CarreraService,
-    private entidadFederativaService: EntidadFederativaService,
-    private ciudadService: CiudadService,
     private periodoService: PeriodoService,
-    private universidadService: UniversidadService,
-    private carreraUniversidadService: CarreraUniversidadService,
-    private bachilleratoService: BachilleratoService,
-    private coloniaService: ColoniaService,
+    private formularioService: FormularioService,
     private aspiranteService: AspiranteService) {
     this.formGroup = this.formBuilder.group({
       incapacidadLista: new FormArray([], minSelectedCheckboxes(0)),    
       email: ['', [Validators.required]],
       repeat_email: ''
     });
-    this.incapacidadService.getIncapacidad().subscribe(data => {
+    this.formularioService.getIncapacidad().subscribe(data => {
       this.incapacidadLista = data;
       this.addCheckboxes();
     });
@@ -153,14 +124,14 @@ export class FormularioComponent implements OnInit {
       this.compararFechas();
     });
 
-    this.estadoCivilService.getEstadoCivil().subscribe(data => this.estadoCivilLista = data);
-    this.dependenciaService.getDependencia().subscribe(data => this.dependenciaLista = data);
-    this.propagandaTecnologicoService.getPropagandaTecnologico().subscribe(data => this.propagandaTecnologicoLista = data);
-    //this.incapacidadService.getIncapacidad().subscribe(data => this.incapacidadLista = data);
-    this.carreraService.getCarrera().subscribe(data => this.carreraLista = data);
-    this.entidadFederativaService.getEntidadFederativa().subscribe(data => this.entidadFederativaLista = data);
-    this.universidadService.getUniversidad().subscribe(data => this.universidadLista = data);
-    this.carreraUniversidadService.getCarreraUniversidad().subscribe(data => this.carreraUniversidadLista = data);
+    this.formularioService.getEstadoCivil().subscribe(data => this.estadoCivilLista = data);
+    this.formularioService.getDependencia().subscribe(data => this.dependenciaLista = data);
+    this.formularioService.getPropagandaTecnologico().subscribe(data => this.propagandaTecnologicoLista = data);
+    //this.formularioService.getIncapacidad().subscribe(data => this.incapacidadLista = data);
+    this.formularioService.getCarrera().subscribe(data => this.carreraLista = data);
+    this.formularioService.getEntidadFederativa().subscribe(data => this.entidadFederativaLista = data);
+    this.formularioService.getUniversidad().subscribe(data => this.universidadLista = data);
+    this.formularioService.getCarreraUniversidad().subscribe(data => this.carreraUniversidadLista = data);
 
   }
 
@@ -181,23 +152,23 @@ export class FormularioComponent implements OnInit {
 
   cargarCiudades() {
     //localStorage.setItem("nacioEntidadFederativa", this.nacioEntidadFederativa);
-    this.ciudadService.getCiudad(this.nacioEntidadFederativa).subscribe(data => this.ciudadLista = data);
+    this.formularioService.getCiudad(this.nacioEntidadFederativa).subscribe(data => this.ciudadLista = data);
   }
   cargarCiudades2() {
     //localStorage.setItem("nacioEntidadFederativa", this.nacioEntidadFederativa);
-    this.ciudadService.getCiudad(this.escuelaEstado).subscribe(data => this.ciudadLista2 = data);
+    this.formularioService.getCiudad(this.escuelaEstado).subscribe(data => this.ciudadLista2 = data);
   }
   cargarCiudades3() {
     //localStorage.setItem("nacioEntidadFederativa", this.nacioEntidadFederativa);
-    this.ciudadService.getCiudad(this.contactoEntidadFederativa).subscribe(data => this.ciudadLista3 = data);
+    this.formularioService.getCiudad(this.contactoEntidadFederativa).subscribe(data => this.ciudadLista3 = data);
   }
   cargarColonias() {
     //localStorage.setItem("nacioEntidadFederativa", this.nacioEntidadFederativa);
-    this.coloniaService.getColonia(this.cp).subscribe(data => this.coloniaLista = data);
+    this.formularioService.getColonia(this.cp).subscribe(data => this.coloniaLista = data);
   }
   cargarEscuelas() {
     //localStorage.setItem("nacioEntidadFederativa", this.nacioEntidadFederativa);
-    this.bachilleratoService.getBachillerato(this.escuelaMunicio).subscribe(data => this.bachilleratoLista = data);
+    this.formularioService.getBachillerato(this.escuelaMunicio).subscribe(data => this.bachilleratoLista = data);
   }
 
   validarPromedio(){
