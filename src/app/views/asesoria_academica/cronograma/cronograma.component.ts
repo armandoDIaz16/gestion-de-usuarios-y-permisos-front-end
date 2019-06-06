@@ -21,38 +21,9 @@ export class CronogramaComponent implements OnInit {
 
   periodo = '20191'
   public form = {
-    name: null,
-    destinatario: null,
-    suscribe: null,
     estudiante: null,
     control: null,
     carrera: null,
-    actividad: null,
-    desempeno: null,
-    valor: null,
-    periodo: null,
-    extiende: null,
-    nombre1: null,
-    cargo1: null,
-    nombre2: null,
-    cargo2: null,
-
-    //SERVICIO
-    oficio: null,
-    asunto: null,
-    director: null,
-    atencion: null,
-    prestador: null,
-    carreraSer: null,
-    controlSer: null,
-    periodoSer: null,
-    caracter: null,
-    diasmes: null,
-    atentamente: null
-
-
-
-
   }
 
   constructor(
