@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { PeriodoService } from '../../../services/periodo.service';
+import { ValidarModuloService } from '../../../services/validarModulo.service';
 
 
 @Component({
   selector: 'app-periodo',
   templateUrl: './periodo.component.html',
   styleUrls: ['./periodo.component.scss'],
-  providers: [PeriodoService]
+  providers: [PeriodoService, ValidarModuloService]
 })
 
 export class PeriodoComponent implements OnInit {
+  public mostrarModulo = false;
   idPeriodo= this.idPeriodo;
   fechaInicio= this.fechaInicio;
   fechaFin= this.fechaFin;
@@ -17,11 +19,16 @@ export class PeriodoComponent implements OnInit {
 
 
   constructor(
-    private periodoService: PeriodoService
+    private periodoService: PeriodoService,
+    private validarModuloService: ValidarModuloService
     ) {
   }
 
   ngOnInit() {    
+    this.mostrarModulo = this.validarModuloService.getMostrarModulo("Periodo");
+    if (!this.mostrarModulo) {
+      return;
+    }
     this.periodoService.getPeriodo().subscribe(data => {
       if(data){
         this.idPeriodo=data[0].PK_PERIODO_PREFICHAS;

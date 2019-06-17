@@ -15,7 +15,7 @@ export class AspiranteService extends GenericServicesService{
       private headers = GenericServicesService.HEADERS;
 
     addAspirante(datos) {
-        return this.http.post(this.baseUrl + 'Aspirante', datos, this.headers
+        return this.http.post(this.baseUrl + 'Aspirante', datos
         ).subscribe(
             (response) => {
                 switch (response) {
@@ -42,49 +42,49 @@ export class AspiranteService extends GenericServicesService{
         );
     }
     getAspirante(): Observable<IAspirante[]> {
-        return this.http.get<IAspirante[]>(this.baseUrl + 'Aspirante/' + sessionStorage.getItem('IdUsuario'), this.headers
+        return this.http.get<IAspirante[]>(this.baseUrl + 'Aspirante/' + sessionStorage.getItem('IdUsuario')
             //+sessionStorage.getItem('sistema')
         );
     }
     getEditAspirante(pk_usuario): Observable<IAspirante[]> {
-        return this.http.get<IAspirante[]>(this.baseUrl + 'Aspirante/' + pk_usuario, this.headers
+        return this.http.get<IAspirante[]>(this.baseUrl + 'Aspirante/' + pk_usuario
             //+sessionStorage.getItem('sistema')
         );
     }
     getAspirantes(pk_periodo): Observable<IAspirantes[]> {
-        return this.http.get<IAspirantes[]>(this.baseUrl + 'Aspirantes/' + pk_periodo, this.headers
+        return this.http.get<IAspirantes[]>(this.baseUrl + 'Aspirantes/' + pk_periodo
         );
     }
     getAspirantes2(pk_periodo, fechaInicio, fechaFin): Observable<IAspirantes[]> {
-        return this.http.get<IAspirantes[]>(this.baseUrl + 'Aspirantes2?PK_PERIODO=' + pk_periodo + '&FECHA_INICIO=' + fechaInicio + '&FECHA_FIN=' + fechaFin, this.headers
+        return this.http.get<IAspirantes[]>(this.baseUrl + 'Aspirantes2?PK_PERIODO=' + pk_periodo + '&FECHA_INICIO=' + fechaInicio + '&FECHA_FIN=' + fechaFin
         );
     }
     getAspirantes3(pk_periodo): Observable<IAspirantes[]> {
-        return this.http.get<IAspirantes[]>(this.baseUrl + 'Aspirantes3/' + pk_periodo, this.headers
+        return this.http.get<IAspirantes[]>(this.baseUrl + 'Aspirantes3/' + pk_periodo
         );
     }
     getGrupos(pk_espacio, dia, hora): Observable<IGrupos[]> {
-        return this.http.get<IGrupos[]>(this.baseUrl + 'Grupo?PK_ESPACIO=' + pk_espacio + '&DIA=' + dia + '&HORA=' + hora, this.headers
+        return this.http.get<IGrupos[]>(this.baseUrl + 'Grupo?PK_ESPACIO=' + pk_espacio + '&DIA=' + dia + '&HORA=' + hora
         );
     }
     getEstatus(): Observable<IEstatus[]> {
-        return this.http.get<IEstatus[]>(this.baseUrl + 'EstatusAspirante/', this.headers
+        return this.http.get<IEstatus[]>(this.baseUrl + 'EstatusAspirante/'
         );
     }
     getGraficaEstatus(pk_periodo): Observable<IGraficaEstatus[]> {
-        return this.http.get<IGraficaEstatus[]>(this.baseUrl + 'GraficaEstatus/' + pk_periodo, this.headers
+        return this.http.get<IGraficaEstatus[]>(this.baseUrl + 'GraficaEstatus/' + pk_periodo
         );
     }
     getGraficaCarreras(pk_periodo): Observable<IGraficaCarreras[]> {
-        return this.http.get<IGraficaCarreras[]>(this.baseUrl + 'GraficaCarreras/' + pk_periodo, this.headers
+        return this.http.get<IGraficaCarreras[]>(this.baseUrl + 'GraficaCarreras/' + pk_periodo
         );
     }
     getGraficaCampus(pk_periodo): Observable<IGraficaCampus[]> {
-        return this.http.get<IGraficaCampus[]>(this.baseUrl + 'GraficaCampus/' + pk_periodo, this.headers
+        return this.http.get<IGraficaCampus[]>(this.baseUrl + 'GraficaCampus/' + pk_periodo
         );
     }
     addPagos(datos, pk_periodo) {
-        return this.http.post(this.baseUrl + 'CargarArchivoBanco/' + pk_periodo, datos, this.headers
+        return this.http.post(this.baseUrl + 'CargarArchivoBanco/' + pk_periodo, datos
         ).subscribe(
             (response) => {
                 console.log(response);
@@ -92,7 +92,7 @@ export class AspiranteService extends GenericServicesService{
         );
     }
     addPreRegistrados(datos, pk_periodo) {
-        return this.http.post(this.baseUrl + 'CargarArchivoPreRegistroCENEVAL/' + pk_periodo, datos, this.headers
+        return this.http.post(this.baseUrl + 'CargarArchivoPreRegistroCENEVAL/' + pk_periodo, datos
         ).subscribe(
             (response) => {
                 console.log(response);
@@ -100,7 +100,7 @@ export class AspiranteService extends GenericServicesService{
         );
     }
     addRegistrados(datos, pk_periodo) {
-        return this.http.post(this.baseUrl + 'CargarArchivoRegistroCENEVAL/' + pk_periodo, datos, this.headers
+        return this.http.post(this.baseUrl + 'CargarArchivoRegistroCENEVAL/' + pk_periodo, datos
         ).subscribe(
             (response) => {
                 console.log(response);
@@ -108,7 +108,7 @@ export class AspiranteService extends GenericServicesService{
         );
     }
     addAceptados(datos, pk_periodo) {
-        return this.http.post(this.baseUrl + 'CargarArchivoAceptados/' + pk_periodo, datos, this.headers
+        return this.http.post(this.baseUrl + 'CargarArchivoAceptados/' + pk_periodo, datos
         ).subscribe(
             (response) => {
                 console.log(response);
@@ -116,7 +116,7 @@ export class AspiranteService extends GenericServicesService{
         );
     }
     updateAspirante(datos) {
-        return this.http.post(this.baseUrl + 'Aspirante2/', datos, this.headers
+        return this.http.post(this.baseUrl + 'Aspirante2/', datos
         ).subscribe(
             (response) => {
                 console.log(response);
@@ -124,7 +124,7 @@ export class AspiranteService extends GenericServicesService{
         );
     }
     enviarCorreo(datos) {
-        return this.http.post(this.baseUrl + 'EnviarCorreos/', datos, this.headers
+        return this.http.post(this.baseUrl + 'EnviarCorreos/', datos
         ).subscribe(
             (response) => {
                 console.log(response);

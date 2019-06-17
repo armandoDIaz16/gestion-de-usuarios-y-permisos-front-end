@@ -6,8 +6,8 @@ import {HttpClient, HttpHeaders, HttpRequest} from '@angular/common/http';
 })
 export class GenericServicesService {
 
-    //protected static API_ENDPOINT = 'http://127.0.0.1:8000/api/';
-    protected static API_ENDPOINT = 'http://10.0.31.10:8000/backend_swiitl/server.php/api/';
+    protected static API_ENDPOINT = 'http://127.0.0.1:8000/api/';
+    //protected static API_ENDPOINT = 'http://10.0.31.10:8000/backend_swiitl/server.php/api/';
 
     protected static HEADERS = {
         headers: new HttpHeaders({

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PeriodoService } from '../../../services/periodo.service';
 import { AspiranteService } from '../../../services/aspirante.service';
 import * as XLSX from 'xlsx';
+import { ValidarModuloService } from '../../../services/validarModulo.service';
 
 
 
@@ -9,17 +10,23 @@ import * as XLSX from 'xlsx';
   selector: 'app-prefichas_pagadas',
   templateUrl: './prefichas_pagadas.component.html',
   styleUrls: ['./prefichas_pagadas.component.scss'],
-  providers: [PeriodoService,AspiranteService]
+  providers: [PeriodoService,AspiranteService, ValidarModuloService]
 })
 export class PrefichasPagadasComponent implements OnInit {
 
   constructor(private periodoService: PeriodoService,
-    private aspiranteService: AspiranteService) {
+    private aspiranteService: AspiranteService,
+    private validarModuloService: ValidarModuloService) {
   }
 
+  public mostrarModulo = false;
   public aspirantes = [];
 
   ngOnInit() {
+    this.mostrarModulo = this.validarModuloService.getMostrarModulo("Prefichas pagadas");
+    if (!this.mostrarModulo) {
+      return;
+    }
     this.periodoService.getPeriodo().subscribe(data => {
       this.obtenerAspirantes(data[0].PK_PERIODO_PREFICHAS);
     });

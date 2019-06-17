@@ -3,6 +3,7 @@ import { PeriodoService } from '../../../services/periodo.service';
 import { AspiranteService } from '../../../services/aspirante.service';
 import { FormularioService } from '../../../services/formulario.service';
 import * as XLSX from 'xlsx';
+import { ValidarModuloService } from '../../../services/validarModulo.service';
 
 
 
@@ -10,14 +11,16 @@ import * as XLSX from 'xlsx';
   selector: 'app-prefichas',
   templateUrl: './prefichas.component.html',
   styleUrls: ['./prefichas.component.scss'],
-  providers: [PeriodoService, FormularioService, AspiranteService]
+  providers: [PeriodoService, FormularioService, AspiranteService, ValidarModuloService]
 })
 export class PrefichasComponent implements OnInit {
   constructor(private periodoService: PeriodoService,
     private formularioService: FormularioService,
-    private aspiranteService: AspiranteService) {
+    private aspiranteService: AspiranteService,
+    private validarModuloService: ValidarModuloService) {
   }
 
+  public mostrarModulo = false;
   public carreraLista = [];
   public aspirante = [];
   telefonoCasa = null;
@@ -58,6 +61,10 @@ export class PrefichasComponent implements OnInit {
   //pkPeriodo=null;
 
   ngOnInit() {
+    this.mostrarModulo = this.validarModuloService.getMostrarModulo("Prefichas");
+    if (!this.mostrarModulo) {
+      return;
+    }
     this.periodoService.getPeriodo().subscribe(data => {
       //this.pkPeriodo = data[0].PK_PERIODO_PREFICHAS;
       //console.log(this.pkPeriodo);

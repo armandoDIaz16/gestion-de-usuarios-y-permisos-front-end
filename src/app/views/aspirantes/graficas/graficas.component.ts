@@ -2,16 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { Chart } from 'chart.js';
 import { AspiranteService } from '../../../services/aspirante.service';
 import { PeriodoService } from '../../../services/periodo.service';
+import { ValidarModuloService } from '../../../services/validarModulo.service';
 @Component({
   selector: 'app-graficas',
   templateUrl: './graficas.component.html',
   styleUrls: ['./graficas.component.scss'],
-  providers: [AspiranteService, PeriodoService]
+  providers: [AspiranteService, PeriodoService, ValidarModuloService]
 })
 
 export class GraficasComponent implements OnInit {
-  constructor(private aspiranteService: AspiranteService, private periodoService: PeriodoService) {
+  constructor(private aspiranteService: AspiranteService, private periodoService: PeriodoService,
+    private validarModuloService: ValidarModuloService) {
   }
+  public mostrarModulo = false;
   estatusPieChart = [];
   estatusNOMBRE = [];
   estatusCANTIDAD = [];
@@ -24,6 +27,10 @@ export class GraficasComponent implements OnInit {
   carrerasCANTIDAD = [];
 
   ngOnInit() {
+    this.mostrarModulo = this.validarModuloService.getMostrarModulo("Graficas");
+    if (!this.mostrarModulo) {
+      return;
+    }
     this.periodoService.getPeriodo().subscribe(data => {
       this.aspiranteService.getGraficaEstatus(data[0].PK_PERIODO_PREFICHAS).subscribe(data => {
         for (var estatus in data) {

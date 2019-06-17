@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 //import 'jspdf-autotable';
 
 import { AspiranteService } from '../../../services/aspirante.service';
+import { ValidarModuloService } from '../../../services/validarModulo.service';
 
 
 
@@ -11,9 +12,10 @@ import { AspiranteService } from '../../../services/aspirante.service';
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  providers: [AspiranteService]
+  providers: [AspiranteService, ValidarModuloService]
 })
 export class DashboardComponent implements OnInit {
+  public mostrarModulo = false;
   public aspirante = [];
   public referencia = [];
   paso2 = null;
@@ -24,10 +26,15 @@ export class DashboardComponent implements OnInit {
   habilitarRegistro = false;
   habilitarAceptado = false;
 
-    constructor(private aspiranteService: AspiranteService) {
-    }
+  constructor(private aspiranteService: AspiranteService,
+    private validarModuloService: ValidarModuloService) {
+  }
 
   ngOnInit() {
+    this.mostrarModulo = this.validarModuloService.getMostrarModulo("Dashboard");
+    if (!this.mostrarModulo) {
+      return;
+    }
     this.aspiranteService.getAspirante().subscribe(data => {
       this.aspirante = data;
       //this.aspirante[0].PREFICHA = this.aspirante[0].PREFICHA.replace(/ /g, "")
@@ -44,19 +51,19 @@ export class DashboardComponent implements OnInit {
           break;
         case 4: this.paso2 = 'completed'; this.paso3 = 'completed'; this.paso4 = 'completed'; this.habilitarReferencia = false; this.habilitarFicha = true;
           break;
-        case 5: this.paso2 = 'completed'; this.paso3 = 'completed'; this.paso4 = 'completed'; this.habilitarAceptado = true;      
+        case 5: this.paso2 = 'completed'; this.paso3 = 'completed'; this.paso4 = 'completed'; this.habilitarAceptado = true;
           break;
       }
     });
   }
 
-  generarReferencia(){
-    window.open("http://127.0.0.1:8000/api/Referencia/"+sessionStorage.getItem('IdUsuario'));
+  generarReferencia() {
+    window.open("http://127.0.0.1:8000/api/Referencia/" + sessionStorage.getItem('IdUsuario'));
     //location.href = "http://127.0.0.1:8000/api/Referencia/"+sessionStorage.getItem('IdUsuario');
   }
 
-  generarFicha(){
-    window.open("http://127.0.0.1:8000/api/Ficha/"+sessionStorage.getItem('IdUsuario'));
+  generarFicha() {
+    window.open("http://127.0.0.1:8000/api/Ficha/" + sessionStorage.getItem('IdUsuario'));
     //location.href = "http://127.0.0.1:8000/api/Ficha/"+sessionStorage.getItem('IdUsuario');
   }
 }
