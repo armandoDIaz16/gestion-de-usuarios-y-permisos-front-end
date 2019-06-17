@@ -22,38 +22,6 @@ export class AsignacionAseComponent implements OnInit {
   periodo = '20191'
   public form = {
     id: sessionStorage.getItem("IdUsuario"),
-    name: null,
-    destinatario: null,
-    suscribe: null,
-    estudiante: null,
-    control: null,
-    carrera: null,
-    actividad: null,
-    desempeno: null,
-    valor: null,
-    periodo: null,
-    extiende: null,
-    nombre1: null,
-    cargo1: null,
-    nombre2: null,
-    cargo2: null,
-
-    //SERVICIO
-    oficio: null,
-    asunto: null,
-    director: null,
-    atencion: null,
-    prestador: null,
-    carreraSer: null,
-    controlSer: null,
-    periodoSer: null,
-    caracter: null,
-    diasmes: null,
-    atentamente: null
-
-
-
-
   }
 
   constructor(
@@ -88,27 +56,6 @@ export class AsignacionAseComponent implements OnInit {
         this.registrosPagina = this.asesor.length; this.select1 = ''; this.select2 = ''; this.select3 = ''; this.select4 = 'active';
         break;
     }
-  }
-
-  datos(a,b,c,d,e){
-    this.form.estudiante = b+' '+c+' '+a;
-    this.form.carrera = d;
-    this.form.control = e;
-
-  }
-
-  complementaria() {
-  //  window.open('http://localhost:8000/api/PdfComplementaria','this.form')
-  /*   alert('peeee')
-    this.form.name = a;*/
-    this.Jarwis.complementaria(this.form.destinatario,this.form.suscribe,this.form.estudiante,this.form.control,this.form.carrera,
-      this.form.actividad,this.form.desempeno,this.form.valor,this.form.periodo,this.form.extiende,this.form.nombre1,this.form.cargo1,
-      this.form.nombre2,this.form.cargo2); 
-  }
-
-  servicio(){
-    this.Jarwis.servicio(this.form.oficio,this.form.asunto,this.form.director,this.form.atencion,this.form.prestador,
-      this.form.carreraSer,this.form.controlSer,this.form.periodoSer,this.form.caracter,this.form.diasmes,this.form.atentamente); 
   }
 
   toNumber(){

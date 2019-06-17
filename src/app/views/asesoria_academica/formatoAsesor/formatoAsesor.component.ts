@@ -205,7 +205,6 @@ export class FormatoAsesorComponent implements OnInit {
   }
 
 
-
   toNumber() {
     this.Jarwis.getAsesoriaPeriodo(this.periodo).subscribe(
       data => {
