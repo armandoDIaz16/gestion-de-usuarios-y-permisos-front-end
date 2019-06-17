@@ -11,7 +11,7 @@ import { PrefichasComponent } from './prefichas/prefichas.component';
 import { PeriodoComponent } from './periodo/periodo.component';
 import { CrearGruposComponent } from './crear_grupos/crear_grupos.component';
 
-var rutas = [
+const routes: Routes = [
   {
     path: '',
     data: {
@@ -83,10 +83,6 @@ var rutas = [
       }
     ]
   }];
-
-const routes: Routes = rutas;  
-
-
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
