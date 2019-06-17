@@ -83,6 +83,4 @@ export class NavbarSistemsComponent implements OnInit {
   }   
   }  
 }
-
-
 export const rutasNav = rutasRoles;
