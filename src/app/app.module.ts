@@ -63,13 +63,13 @@ import {StudentOldComponent} from './components/student-old/student-old.componen
 import {NavbarSistemsComponent} from './components/navbar-sistems/navbar-sistems.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {DocumentacionComponent} from './views/residencias/documentacion/documentacion.component';
+import {ResidenciasRoutingModule} from './views/residencias/residencias-routing.module';
 
 
 @NgModule({
 
     imports: [
         BrowserModule,
-        AppRoutingModule,
         AppAsideModule,
         AppBreadcrumbModule.forRoot(),
         AppFooterModule,
@@ -85,7 +85,8 @@ import {DocumentacionComponent} from './views/residencias/documentacion/document
         MDBBootstrapModule.forRoot(),
         BrowserAnimationsModule,
         CommonModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        AppRoutingModule
     ],
     declarations: [
         AppComponent,

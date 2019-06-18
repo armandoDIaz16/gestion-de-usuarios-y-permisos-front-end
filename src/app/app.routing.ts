@@ -16,6 +16,7 @@ import {AfterLoginService} from './services/after-login.service';
 import {FormularioComponent} from './components/formulario/formulario.component';
 import {ControlComponent} from './components/control/control.component';
 import {StudentOldComponent} from './components/student-old/student-old.component';
+import {ResidenciasRoutingModule} from './views/residencias/residencias-routing.module';
 
 
 export const routes: Routes = [

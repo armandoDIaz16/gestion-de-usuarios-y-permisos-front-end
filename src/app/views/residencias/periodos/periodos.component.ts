@@ -17,6 +17,7 @@ export class PeriodosComponent extends GenericServicesService implements OnInit 
   }
 
   cargarFechas() {
+      confirm('Hola mijo');
       if (this.fini < this.ffin) {
          this.http.post(GenericServicesService.API_ENDPOINT + 'PeriodoR', {
              'FK_AREA_ACADEMICA': 5,

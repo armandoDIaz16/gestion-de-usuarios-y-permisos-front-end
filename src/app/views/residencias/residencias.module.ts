@@ -21,7 +21,7 @@ import { BancoAprobacionComponent } from './banco_aprobacion/banco_aprobacion.co
 import { MaestrosComponent } from './maestros/maestros.component';
 import { ReporteVistaComponent } from './reporte_vista/reporte_vista.component';
 import { VistaComentariosComponent } from './vista_comentarios/vista_comentarios.component';
-import {CollapseModule} from 'ngx-bootstrap';
+import {CollapseModule, ModalModule} from 'ngx-bootstrap';
 import { Reporte_docenteComponent } from './reporte_docente/reporte_docente.component';
 import { Vista_reportesComponent } from './vista_reportes/vista_reportes.component';
 import {FichaUnicaAsignacionComponent } from './ficha_unica_asignacion/ficha_unica_asignacion.component';
@@ -48,7 +48,8 @@ import { Informacion_residenciasComponent } from './informacion_residencias/info
         BsDropdownModule.forRoot(),
         FormsModule,
         CollapseModule,
-        ChartsModule
+        ChartsModule,
+        ModalModule
     ],
   declarations: [
     BancoProyectosComponent,

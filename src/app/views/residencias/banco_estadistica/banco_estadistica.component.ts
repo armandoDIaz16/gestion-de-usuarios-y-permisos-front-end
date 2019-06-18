@@ -18,11 +18,6 @@ export class Banco_estadisticaComponent extends GenericServicesService implement
     myChart = [];
     x: number;
     y: number;
-    public barChartsOptions;
-    public barChartLabels;
-    public barChartType;
-    public barChartLegend;
-    public barChartData;
   constructor(private proyecto: Proyectos, private total: Totalp, private http: HttpClient) {
       super(http);
       this.proyecto.getProyectos().subscribe(data => this.ProyectosAlumno = data);
@@ -33,23 +28,10 @@ export class Banco_estadisticaComponent extends GenericServicesService implement
   }
 
   generar() {
-      this.x = <number>this.TotalProyectos;
-      this.y = <number>this.ProyectosAlumno;
-      let z = this.y - this.x;
-      if (z < 0) {
-          z = 0;
-      }
-      this.barChartsOptions = {
-          scaleShowVerticalLines: false,
-          responsive: true
-      };
-  this.barChartLabels = ['Alumnos', 'Institución'];
-  this.barChartType = 'pie';
-  this.barChartLegend = true;
-  this.barChartData = [
-          {data: [this.y, z], label: 'Alumno'}
-      ];
-/*      const canvas = <HTMLCanvasElement> document.getElementById('myChart');
+       this.x = <number>this.TotalProyectos;
+       this.y = <number>this.ProyectosAlumno;
+       let z = this.x - this.y;
+      const canvas = <HTMLCanvasElement> document.getElementById('myChart');
       const ctx = canvas.getContext('2d');
       this.myChart = [new Chart(ctx, {
           type: 'pie',
@@ -57,7 +39,7 @@ export class Banco_estadisticaComponent extends GenericServicesService implement
               labels: ['Proyectos propuestos por alumnos', 'Proyectos propuestos por la institución'],
               datasets: [{
                   label: '# of Votes',
-                  data: [this.x, z],
+                  data: [this.y, z],
                   backgroundColor: [
                       'rgba(255, 99, 132, 0.7)',
                       'rgba(54, 162, 235, 0.7)'
@@ -69,7 +51,7 @@ export class Banco_estadisticaComponent extends GenericServicesService implement
                   borderWidth: 1
               }]
           }
-      })];*/
+      })];
   }
 
 }
