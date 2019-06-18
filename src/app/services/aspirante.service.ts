@@ -15,7 +15,7 @@ export class AspiranteService extends GenericServicesService{
       private headers = GenericServicesService.HEADERS;
 
     addAspirante(datos) {
-        return this.http.post(this.baseUrl + 'Aspirante', datos, this.headers
+        return this.http.post(this.baseUrl + 'Aspirante', datos
         ).subscribe(
             (response) => {
                 switch (response) {

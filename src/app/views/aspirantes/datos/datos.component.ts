@@ -1,21 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { AspiranteService } from '../../../services/aspirante.service';
+import { ValidarModuloService } from '../../../services/validarModulo.service';
 
 
 @Component({
   selector: 'app-datos',
   templateUrl: './datos.component.html',
   styleUrls: ['./datos.component.scss'],
-  providers: [AspiranteService]
+  providers: [AspiranteService,ValidarModuloService, ValidarModuloService]
 })
 export class DatosComponent implements OnInit {
+  public mostrarModulo = false;
   public aspirante = [];
   FECHA_NACIMIENTO_TEXTO="";
+  //public mostrarModulo = true;
 
-  constructor( private aspiranteService: AspiranteService) {
+  constructor( 
+    private aspiranteService: AspiranteService,
+    private validarModuloService: ValidarModuloService) {
   }
 
+
   ngOnInit() {
+    this.mostrarModulo=this.validarModuloService.getMostrarModulo("Datos");
+    if(!this.mostrarModulo){
+      return;
+    }
     this.aspiranteService.getAspirante().subscribe(data => {
       this.aspirante = data;
       this.aspirante[0].FECHA_REGISTRO = this.aspirante[0].FECHA_REGISTRO.split('-')[0];

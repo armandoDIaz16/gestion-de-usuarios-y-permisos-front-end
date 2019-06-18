@@ -123,7 +123,7 @@ function agregarModulos(modulo) {
         }
       });
       break;
-    case 'Notificacion ases':
+    case 'Notificaciones':
       modulos.push({
         path: 'notificaciones',
         component: NotificacionesComponent,

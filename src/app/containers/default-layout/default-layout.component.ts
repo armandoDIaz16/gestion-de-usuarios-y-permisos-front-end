@@ -16,6 +16,7 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
   private changes: MutationObserver;
   public element: HTMLElement;
   public navItems=navItems;
+  public mostrarModulo = false;
 
 
   constructor(
@@ -38,12 +39,11 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
   ngOnDestroy(): void {
     this.changes.disconnect();
   }
-  ngOnInit() {
+  ngOnInit(){
     //this.Auth.authStatus.subscribe(value => this.loggedIn = value);
     //console.log(rutasRoles);
     //navItems;
   }
-
 
   logout(event: MouseEvent) {
     event.preventDefault();

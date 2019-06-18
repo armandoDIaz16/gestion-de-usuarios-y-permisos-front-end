@@ -7,9 +7,7 @@ import { GenericServicesService } from './generic-services.service';
 @Injectable()
 export class LugarExamenService  extends GenericServicesService {
 
-    constructor(private http: HttpClient,
-        private genericServicesService: GenericServicesService ){ super(http);}
-
+    constructor(private http: HttpClient){ super(http);}
 
     private baseUrl = GenericServicesService.API_ENDPOINT;
     private headers = GenericServicesService.HEADERS;
