@@ -12,7 +12,7 @@ export class GenericServicesService {
     protected static HEADERS = {
         headers: new HttpHeaders({
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer' + sessionStorage.getItem('token')
+            'Authorization': 'Bearer ' + sessionStorage.getItem('token')
         })
     };
 
