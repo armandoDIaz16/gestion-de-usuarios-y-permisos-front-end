@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
-//import * as jsPDF from 'jspdf';
-//import 'jspdf-autotable';
-
 import { AspiranteService } from '../../../services/aspirante.service';
 import { ValidarModuloService } from '../../../services/validarModulo.service';
+import { GenericServicesService } from '../../../services/generic-services.service';
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -14,7 +12,9 @@ import { ValidarModuloService } from '../../../services/validarModulo.service';
   styleUrls: ['./dashboard.component.scss'],
   providers: [AspiranteService, ValidarModuloService]
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent extends GenericServicesService implements OnInit {
+  private baseUrl = GenericServicesService.API_ENDPOINT;
+  private headers = GenericServicesService.HEADERS;
   public mostrarModulo = false;
   public aspirante = [];
   public referencia = [];
@@ -26,8 +26,10 @@ export class DashboardComponent implements OnInit {
   habilitarRegistro = false;
   habilitarAceptado = false;
 
-  constructor(private aspiranteService: AspiranteService,
+  constructor(private http: HttpClient,
+    private aspiranteService: AspiranteService,
     private validarModuloService: ValidarModuloService) {
+    super(http);
   }
 
   ngOnInit() {
@@ -55,15 +57,11 @@ export class DashboardComponent implements OnInit {
           break;
       }
     });
-  }
-
+  } 
   generarReferencia() {
-    window.open("http://127.0.0.1:8000/api/Referencia/" + sessionStorage.getItem('IdUsuario'));
-    //location.href = "http://127.0.0.1:8000/api/Referencia/"+sessionStorage.getItem('IdUsuario');
+    window.open(this.baseUrl+"Referencia/" + sessionStorage.getItem('IdUsuario'));
   }
-
   generarFicha() {
-    window.open("http://127.0.0.1:8000/api/Ficha/" + sessionStorage.getItem('IdUsuario'));
-    //location.href = "http://127.0.0.1:8000/api/Ficha/"+sessionStorage.getItem('IdUsuario');
+    window.open(this.baseUrl+"Ficha/" + sessionStorage.getItem('IdUsuario'));
   }
 }
