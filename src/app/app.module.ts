@@ -83,7 +83,8 @@ import { ReactiveFormsModule } from '@angular/forms';
         HttpClientModule,
         MDBBootstrapModule.forRoot(),
         CommonModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        AppRoutingModule
     ],
     declarations: [
         AppComponent,

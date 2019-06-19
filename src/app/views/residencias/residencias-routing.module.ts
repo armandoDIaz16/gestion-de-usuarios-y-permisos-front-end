@@ -309,6 +309,8 @@ function agregarModulos(modulo) {
 const routes: Routes = rutas;
 
 
+export const rutas2 = rutas;
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
