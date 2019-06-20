@@ -2,23 +2,29 @@ import { Component, OnInit } from '@angular/core';
 import {Base} from './base';
 import {InfoSiia} from './info_siia';
 import * as XLSX from 'xlsx';
+import { ValidarModuloService } from '../../../services/validarModulo.service';
 
 @Component({
   selector: 'app-informacion-residencias',
   templateUrl: './informacion_residencias.component.html',
   styleUrls: ['./informacion_residencias.component.scss'],
-    providers: [Base, InfoSiia]
+    providers: [Base, InfoSiia, ValidarModuloService]
 })
 export class Informacion_residenciasComponent implements OnInit {
 
      listaBase = [];
      listaInfo = [];
-  constructor(private base: Base, private info: InfoSiia) {
+    public mostrarModulo = false;
+  constructor(private base: Base, private info: InfoSiia, private validarModuloService: ValidarModuloService) {
       this.base.getBase().subscribe(data => this.listaBase = data);
       this.info.getInfoSiia().subscribe(data => this.listaInfo = data);
   }
 
   ngOnInit() {
+      this.mostrarModulo = this.validarModuloService.getMostrarModulo('Informacion residencias');
+      if (!this.mostrarModulo) {
+          return;
+      }
   }
 
   generarExcel() {

@@ -1,7 +1,10 @@
-<div class="card" >
+<app-404 *ngIf=!mostrarModulo></app-404>
+<div class="animated fadeIn" *ngIf=mostrarModulo>
+    <div class="card">
         <h2 class="card-header">Sube tu reporte.</h2>
         <div style="text-align: center;">
-            <br> <h2>Reporte</h2> <br>
+            <br>
+            <h2>Reporte</h2> <br>
             <select [(ngModel)]="ID" name="ID" class="form-control form-control-lg" placeholder="Reporte">
                 <option value="1">1er Reporte parcial</option>
                 <option value="2">2do Reporte parcial</option>
@@ -11,7 +14,8 @@
             <h2>Alumno</h2>
             <br>
             <select [(ngModel)]="opcion" name="teacher" class="form-control form-control-lg" id="teacher">
-                <option *ngFor="let estadoCivil of alumnosLista" value="{{estadoCivil.PK_USUARIO}}"> {{estadoCivil.name}} </option>
+                <option *ngFor="let estadoCivil of alumnosLista"
+                        value="{{estadoCivil.PK_USUARIO}}"> {{estadoCivil.name}} </option>
             </select>
             <br>
             <br>
@@ -19,4 +23,5 @@
                 Selecciona reporte<input type="file" name="file" hidden multiple (change)="uploadFile($event)">
             </label>
         </div>
+    </div>
 </div>

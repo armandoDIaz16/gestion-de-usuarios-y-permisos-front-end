@@ -1,19 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {GenericServicesService} from '../../../services/generic-services.service';
+import { ValidarModuloService } from '../../../services/validarModulo.service';
 
 @Component({
   selector: 'app-periodos',
   templateUrl: './periodos.component.html',
-  styleUrls: ['./periodos.component.scss']
+  styleUrls: ['./periodos.component.scss'],
+  providers: [ValidarModuloService]
 })
 export class PeriodosComponent extends GenericServicesService implements OnInit {
+
+    public mostrarModulo = false;
     fini = this.fini;
     ffin = this.ffin;
     opcionSeleccionado = this.opcionSeleccionado;
-  constructor(private http: HttpClient) { super(http); }
+  constructor(private http: HttpClient, private validarModuloService: ValidarModuloService) { super(http); }
 
   ngOnInit() {
+      this.mostrarModulo = this.validarModuloService.getMostrarModulo('Periodos');
+      if (!this.mostrarModulo) {
+          return;
+      }
   }
 
   cargarFechas() {

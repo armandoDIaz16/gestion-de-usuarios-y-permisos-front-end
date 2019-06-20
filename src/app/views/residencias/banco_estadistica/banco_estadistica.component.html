@@ -1,12 +1,15 @@
-<div class="row">
-    <div class="col-lg-8">
-        <div class="card" >
-            <div class="card-header">
-                <i class="icon-pie-chart"></i>
-                <strong>Proyectos Institución / Alumno</strong>
-            </div>
-            <div class="card-body">
-            <canvas id="myChart" > </canvas>
+<app-404 *ngIf=!mostrarModulo></app-404>
+<div class="animated fadeIn" *ngIf=mostrarModulo>
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card" >
+                <div class="card-header">
+                    <i class="icon-pie-chart"></i>
+                    <strong>Proyectos Institución / Alumno</strong>
+                </div>
+                <div class="card-body">
+                    <canvas id="myChart" > </canvas>
+                </div>
             </div>
         </div>
     </div>

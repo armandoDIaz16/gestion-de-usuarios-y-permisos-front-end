@@ -1,30 +1,33 @@
-<div class="card">
-    <h2 class="card-header">Calificación de residencias</h2>
-    <div class="card-body text-left">
-    <h5>Alumno:</h5>
-    <select [(ngModel)]="opcion" name="teacher" class="form-control form-control-lg" id="teacher">
-        <option *ngFor="let estadoCivil of alumnosLista" value="{{estadoCivil.PK_USUARIO}}"> {{estadoCivil.name}} </option>
-    </select>
-        <br>
-    <h5>Calificación:</h5>
-    <input [(ngModel)]="cal" type="text" class="form-control form-control-lg" name="cal">
-        <br>
-        <h5>Viable para titulación:</h5>
-        <select [(ngModel)]="opcion2" name="titulacion" class="form-control form-control-lg" id="titulacion">
-            <option value="si">Sí</option>
-            <option value="no">No</option>
-        </select>
-        <br>
-        <h5>Observaciones:</h5>
-        <textarea [(ngModel)]="observaciones" type="text" class="form-control form-control-lg"></textarea>
-        <br>
-        <div align="center">
-        <label class="btn btn-dark">
-            Asentar<input type="submit" name="file" hidden (click)="guardarCalificacion()">
-        </label><br>
-            <label class="btn btn-dark">
-                Generar acta<input type="submit" name="file" hidden (click)="generarActa()">
-            </label>
+<app-404 *ngIf=!mostrarModulo></app-404>
+<div class="animated fadeIn" *ngIf=mostrarModulo>
+    <div class="card">
+        <h2 class="card-header">Calificación de residencias</h2>
+        <div class="card-body text-left">
+            <h5>Alumno:</h5>
+            <select [(ngModel)]="opcion" name="teacher" class="form-control form-control-lg" id="teacher">
+                <option *ngFor="let estadoCivil of alumnosLista" value="{{estadoCivil.PK_USUARIO}}"> {{estadoCivil.name}} </option>
+            </select>
+            <br>
+            <h5>Calificación:</h5>
+            <input [(ngModel)]="cal" type="text" class="form-control form-control-lg" name="cal">
+            <br>
+            <h5>Viable para titulación:</h5>
+            <select [(ngModel)]="opcion2" name="titulacion" class="form-control form-control-lg" id="titulacion">
+                <option value="si">Sí</option>
+                <option value="no">No</option>
+            </select>
+            <br>
+            <h5>Observaciones:</h5>
+            <textarea [(ngModel)]="observaciones" type="text" class="form-control form-control-lg"></textarea>
+            <br>
+            <div align="center">
+                <label class="btn btn-dark">
+                    Asentar<input type="submit" name="file" hidden (click)="guardarCalificacion()">
+                </label><br>
+                <label class="btn btn-dark">
+                    Generar acta<input type="submit" name="file" hidden (click)="generarActa()">
+                </label>
+            </div>
         </div>
     </div>
 </div>

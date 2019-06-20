@@ -2,13 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Chart} from 'chart.js';
 import {GenericServicesService} from '../../../services/generic-services.service';
+import { ValidarModuloService } from '../../../services/validarModulo.service';
 
 @Component({
   selector: 'app-estadisticas-reportes',
   templateUrl: './estadisticas_reportes.component.html',
-  styleUrls: ['./estadisticas_reportes.component.scss']
+  styleUrls: ['./estadisticas_reportes.component.scss'],
+  providers: [ValidarModuloService]
 })
 export class Estadisticas_reportesComponent extends GenericServicesService implements OnInit {
+
+    public mostrarModulo = false;
     TotalMaestros;
     TotalRep1;
     TotalM;
@@ -22,7 +26,7 @@ export class Estadisticas_reportesComponent extends GenericServicesService imple
     myChart4 = [];
     OpcionSeleccionado = this.OpcionSeleccionado;
     OpcionSeleccionado2 = this.OpcionSeleccionado2;
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private validarModuloService: ValidarModuloService) {
       super(http);
       this.http.post(GenericServicesService.API_ENDPOINT + 'Totalr', {
           'id': this.usuario,
@@ -39,6 +43,10 @@ export class Estadisticas_reportesComponent extends GenericServicesService imple
   }
 
   ngOnInit() {
+      this.mostrarModulo = this.validarModuloService.getMostrarModulo('Estadisticas reportes');
+      if (!this.mostrarModulo) {
+          return;
+      }
   }
 
     generar() {

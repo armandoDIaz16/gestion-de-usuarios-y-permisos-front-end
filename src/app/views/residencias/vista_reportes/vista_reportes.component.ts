@@ -3,14 +3,17 @@ import {Maestro} from './maestro';
 import {Reporte} from './reporte';
 import {Externo} from './externo';
 import {ReporteE} from './reporteexterno';
+import { ValidarModuloService } from '../../../services/validarModulo.service';
 
 @Component({
   selector: 'app-vista-reportes',
   templateUrl: './vista_reportes.component.html',
   styleUrls: ['./vista_reportes.component.scss'],
-  providers: [Maestro, Reporte, Externo, ReporteE]
+  providers: [Maestro, Reporte, Externo, ReporteE, ValidarModuloService]
 })
 export class Vista_reportesComponent implements OnInit {
+
+    public mostrarModulo = false;
     public maestrosLista = [];
     public reporteLista = [];
     public externoLista = [];
@@ -18,9 +21,14 @@ export class Vista_reportesComponent implements OnInit {
     usuario = sessionStorage.getItem('IdUsuario');
     opcion = {};
     opcion2 = {};
-  constructor(private reporte: Reporte, private maestro: Maestro, private externo: Externo, private repext: ReporteE) { }
+  constructor(private reporte: Reporte, private maestro: Maestro, private externo: Externo, private repext: ReporteE,
+              private validarModuloService: ValidarModuloService) { }
 
   ngOnInit() {
+      this.mostrarModulo = this.validarModuloService.getMostrarModulo('Vista reportes');
+      if (!this.mostrarModulo) {
+          return;
+      }
       this.maestro.getMaestro(this.usuario).subscribe( data => this.maestrosLista = data);
       this.externo.getExterno(this.usuario).subscribe(data => this.externoLista = data);
   }

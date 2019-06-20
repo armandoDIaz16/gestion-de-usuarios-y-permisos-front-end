@@ -4,27 +4,36 @@ import {Totalp} from './totalproyectos';
 import {HttpClient} from '@angular/common/http';
 import {Chart} from 'chart.js';
 import {GenericServicesService} from '../../../services/generic-services.service';
+import { ValidarModuloService } from '../../../services/validarModulo.service';
 
 
 @Component({
   selector: 'app-banco-estadistica',
   templateUrl: './banco_estadistica.component.html',
   styleUrls: ['./banco_estadistica.component.scss'],
-    providers: [Proyectos, Totalp]
+    providers: [Proyectos, Totalp, ValidarModuloService]
 })
 export class Banco_estadisticaComponent extends GenericServicesService implements OnInit {
+
+    public mostrarModulo = false;
     ProyectosAlumno;
     TotalProyectos;
     myChart = [];
     x: number;
     y: number;
-  constructor(private proyecto: Proyectos, private total: Totalp, private http: HttpClient) {
+
+  constructor(private proyecto: Proyectos, private total: Totalp, private http: HttpClient,
+              private validarModuloService: ValidarModuloService) {
       super(http);
       this.proyecto.getProyectos().subscribe(data => this.ProyectosAlumno = data);
       this.total.getTotalProyectos().subscribe(data => {this.TotalProyectos = data; this.generar(); });
   }
 
   ngOnInit() {
+      this.mostrarModulo = this.validarModuloService.getMostrarModulo('Banco estadistica');
+      if (!this.mostrarModulo) {
+          return;
+      }
   }
 
   generar() {
