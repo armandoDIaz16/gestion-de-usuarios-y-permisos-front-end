@@ -2,22 +2,29 @@ import { Component, OnInit } from '@angular/core';
 import {AnteproyectosSeleccion} from './anteproyectosProyectos';
 import {HttpClient} from '@angular/common/http';
 import {GenericServicesService} from '../../../services/generic-services.service';
+import { ValidarModuloService } from '../../../services/validarModulo.service';
 
 @Component({
   selector: 'app-proyectos',
   templateUrl: './proyectos.component.html',
   styleUrls: ['./proyectos.component.scss'],
-    providers: [AnteproyectosSeleccion]
+    providers: [AnteproyectosSeleccion, ValidarModuloService]
 })
 export class ProyectosComponent extends GenericServicesService implements OnInit {
 
     public anteproyectosLista = [];
+    public mostrarModulo = false;
     usuario = sessionStorage.getItem('IdUsuario');
     ID = this.ID;
 
-  constructor(private anteproyectosService: AnteproyectosSeleccion, private http: HttpClient) { super(http); }
+  constructor(private anteproyectosService: AnteproyectosSeleccion, private http: HttpClient,
+              private validarModuloService: ValidarModuloService) { super(http); }
 
   ngOnInit() {
+      this.mostrarModulo = this.validarModuloService.getMostrarModulo('Proyectos');
+      if (!this.mostrarModulo) {
+          return;
+      }
     this.anteproyectosService.getAnteproyectos(this.usuario).subscribe(data => this.anteproyectosLista = data);
   }
 

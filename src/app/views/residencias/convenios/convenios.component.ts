@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {GenericServicesService} from '../../../services/generic-services.service';
+import { ValidarModuloService } from '../../../services/validarModulo.service';
 
 @Component({
   selector: 'app-convenios',
   templateUrl: './convenios.component.html',
-  styleUrls: ['./convenios.component.scss']
+  styleUrls: ['./convenios.component.scss'],
+  providers: [ValidarModuloService]
 })
 export class ConveniosComponent extends GenericServicesService implements OnInit {
 
@@ -28,9 +30,14 @@ export class ConveniosComponent extends GenericServicesService implements OnInit
     NoRFC = this.NoRFC;
     DirEmpresa = this.DirEmpresa;
     NombreTestigo = this.NombreTestigo;
-  constructor(private http: HttpClient) { super(http); }
+    public mostrarModulo = false;
+  constructor(private http: HttpClient, private validarModuloService: ValidarModuloService) { super(http); }
 
   ngOnInit() {
+      this.mostrarModulo = this.validarModuloService.getMostrarModulo('Convenios');
+      if (!this.mostrarModulo) {
+          return;
+      }
   }
 
   uploadFile(event) {

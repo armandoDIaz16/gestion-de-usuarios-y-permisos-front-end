@@ -1,39 +1,42 @@
-<div style="align-content: center">
-    <div class="card">
-        <h2 class="card-header">Proyecto</h2>
-<form (ngSubmit)="onSubmit()">
-    <input [(ngModel)]="id" type="text" class="form-control form-control-lg" placeholder="Id Proyecto" name="id">
-   <div style="text-align: center;"><br> <button class="btn btn-dark" type="submit" value="Submit">Buscar</button><br><br></div>
-</form>
-    </div>
-    <br>
-    <div class="card">
-<form (ngSubmit)="onUpdate($event)">
-    <table class="table" >
-        <thead>
-        <tr class="card-header">
-            <th>Nombre</th>
-            <th>Alumno</th>
-            <th>Estatus</th>
-            <th>Area Academica</th>
-            <th>Autor</th>
-            <th>Empresa</th>
-            <th>Comentarios</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let antep of anteproyectosLista">
-            <td><input type="text" name="Nombre" id="Nombre" [value]="antep.NOMBRE"></td>
-            <td><input type="text" name="Alumno" id="Alumno" [value]="antep.ALUMNO"> </td>
-            <td><input type="text" name="Estatus" id="Estatus" [value]="antep.ESTATUS"></td>
-            <td><input type="text" name="AreaAcademica" id="AreaAcademica" [value]="antep.AREA_ACADEMICA"></td>
-            <td><input type="text" name="Autor" id="Autor" [value]="antep.AUTOR"></td>
-            <td><input type="text" name="Empresa" id="Empresa" [value]="antep.EMPRESA"> </td>
-            <td><input type="text" name="Comentario" id="Comentario" [value]="antep.COMENTARIO" ></td>
-        </tr>
-        </tbody>
-    </table>
-    <div style="text-align: center;"><br> <button class="btn btn-dark" type="submit" value="Submit">Actualizar</button><br><br></div>
-</form>
+<app-404 *ngIf=!mostrarModulo></app-404>
+<div class="animated fadeIn" *ngIf=mostrarModulo>
+    <div style="align-content: center">
+        <div class="card">
+            <h2 class="card-header">Proyecto</h2>
+            <form (ngSubmit)="onSubmit()">
+                <input [(ngModel)]="id" type="text" class="form-control form-control-lg" placeholder="Id Proyecto" name="id">
+                <div style="text-align: center;"><br> <button class="btn btn-dark" type="submit" value="Submit">Buscar</button><br><br></div>
+            </form>
+        </div>
+        <br>
+        <div class="card">
+            <form (ngSubmit)="onUpdate($event)">
+                <table class="table" >
+                    <thead>
+                        <tr class="card-header">
+                            <th>Nombre</th>
+                            <th>Alumno</th>
+                            <th>Estatus</th>
+                            <th>Area Academica</th>
+                            <th>Autor</th>
+                            <th>Empresa</th>
+                            <th>Comentarios</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let antep of anteproyectosLista">
+                            <td><input type="text" name="Nombre" id="Nombre" [value]="antep.NOMBRE"></td>
+                            <td><input type="text" name="Alumno" id="Alumno" [value]="antep.ALUMNO"> </td>
+                            <td><input type="text" name="Estatus" id="Estatus" [value]="antep.ESTATUS"></td>
+                            <td><input type="text" name="AreaAcademica" id="AreaAcademica" [value]="antep.AREA_ACADEMICA"></td>
+                            <td><input type="text" name="Autor" id="Autor" [value]="antep.AUTOR"></td>
+                            <td><input type="text" name="Empresa" id="Empresa" [value]="antep.EMPRESA"> </td>
+                            <td><input type="text" name="Comentario" id="Comentario" [value]="antep.COMENTARIO" ></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="text-align: center;"><br> <button class="btn btn-dark" type="submit" value="Submit">Actualizar</button><br><br></div>
+            </form>
+        </div>
     </div>
 </div>
