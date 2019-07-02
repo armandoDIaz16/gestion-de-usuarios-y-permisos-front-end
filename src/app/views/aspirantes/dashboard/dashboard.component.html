@@ -46,4 +46,14 @@
     <div class="d-flex justify-content-center"  *ngIf="habilitarAceptado">
         <h4>Fuiste aceptado</h4>
     </div>
+    <div class="d-flex justify-content-center"  *ngIf="habilitarCurso">
+      <div class="w-50">
+        <button type="button" class="btn btn-block btn-primary" (click)="generarReferenciaCurso()">Generar referencia de curso</button>
+      </div>  
+    </div>
+    <div class="d-flex justify-content-center"  *ngIf="habilitarInscripcion">
+      <div class="w-50">
+        <button type="button" class="btn btn-block btn-primary" (click)="generarReferenciaInscripcion()">Generar referencia de Inscripción</button>
+      </div>  
+    </div>
 </div>

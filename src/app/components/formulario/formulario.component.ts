@@ -271,9 +271,9 @@ export class FormularioComponent implements OnInit {
     this.aspiranteService.addAspirante(
       {
         "PK_PERIODO": this.pkPeriodo,
-        "name": "'" + this.nombre + "'",
-        "PRIMER_APELLIDO": "'" + this.pApellido + "'",
-        "SEGUNDO_APELLIDO": "'" + this.sApellido + "'",
+        "name": "'" + this.nombre.toUpperCase() + "'",
+        "PRIMER_APELLIDO": "'" + this.pApellido.toUpperCase() + "'",
+        "SEGUNDO_APELLIDO": "'" + this.sApellido.toUpperCase() + "'",
         "FECHA_NACIMIENTO": "'" + this.fechaNacimiento + "'",
         "SEXO": this.genero,
         "CURP": "'" + this.CURP + "'",
