@@ -35,6 +35,8 @@ import { UsuarioJefeCarreraComponent } from './usuarioJefeCarrera-form.component
 import { UsuarioResponsableActFormComponent} from './usuarioResponsableAct-form.component';
 import { SubirRegistrosCreditosComponent } from './subirRegistrosCreditos.component';
 import { UsuariosTutoriasExtraescolaresComponent } from './usuariosTutoriasExtraescolares.component';
+import { GenerarConstanciasComponent } from './generarConstancias.component';
+
 
 
 
@@ -293,6 +295,15 @@ function agregarModulos(modulo){
       component:  SubirRegistrosCreditosComponent,
       data: {
         title: 'Registro de creditos'
+      }
+    });
+    break;
+    case 'Generar constancias':
+    modulos.push({
+      path: 'generar_constancias',
+      component:  GenerarConstanciasComponent,
+      data: {
+        title: 'Constancias por generar'
       }
     });
     break;

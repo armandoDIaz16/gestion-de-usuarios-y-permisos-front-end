@@ -19,6 +19,7 @@ export class DetalleActividadComponent {
     FK_LINEAMIENTO: null,
     FK_TIPO: null,
     FK_RESPONSABLE: null,
+    IMAGEN: null
   };
 
     actividadInscrita: Actividad = {
@@ -31,6 +32,7 @@ export class DetalleActividadComponent {
     FK_LINEAMIENTO: null,
     FK_TIPO: null,
     FK_RESPONSABLE: null,
+    IMAGEN: null
     };
 
     id: any;
@@ -55,6 +57,7 @@ export class DetalleActividadComponent {
         this.actividadesService.getActividades().subscribe((data: Actividad[])=>{
             this.actividades = data;
             this.actividad = this.actividades.find((m)=>{return m.PK_ACTIVIDAD == this.id});
+            console.log(this.actividad);
             this.getRegistrados(this.actividad);
           },(error)=>{
             console.log(error);

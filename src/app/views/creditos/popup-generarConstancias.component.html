@@ -1,0 +1,35 @@
+<!-- TÍTULO LIBRE, COMO QUIERAS -->
+<h2 class="card-title mb-0">Ingresar los siguientes datos </h2>
+<mat-dialog-content>
+    <!-- CONTENIDO DEL DIÁLOGO -->
+    <div class="row">
+        <div class="form-group col-sm-12">
+            <label for="name">Memorandum: </label>
+            <input  [(ngModel)]="datos.memorandum" type="text" class="form-control" id="primer_apellido" name="memorandum"  required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12">
+            <label for="name">El que suscribe: </label>
+            <input  [(ngModel)]="datos.suscribe" type="text" class="form-control" id="segundo_apellido" name="que_susribe"  required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12">
+            <label for="name">Nombre: </label>
+            <input  [(ngModel)]="datos.nombre" type="text" class="form-control" id="nombre" name="nombre"  required>
+        </div>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <!-- ACCIONES (GENERALMENTE BOTONES). BAJO EL CONTENIDO ALINEADAS -->
+    <div class="row">
+    <div class="form-group col-sm-6">
+      <button type="button" class="btn btn-block btn-danger" (click)="closeWithoutSave()">Cancelar</button>
+    </div>
+    <div class="form-group col-sm-6">  
+      <button type="button" class="btn btn-block btn-success" [mat-dialog-close]="datos">Generar</button>  
+    </div>
+    </div>
+</mat-dialog-actions>

@@ -31,10 +31,12 @@
           <div>{{lineamiento.LIMITE}}</div>   
         </td>
         <td>
-            <a class="btn btn-primary btn-sm" routerLink="../lineamientosform/{{lineamiento.PK_LINEAMIENTO}}">Editar</a>
+            <a class="btn btn-primary btn-sm" 
+               routerLink="../lineamientosform/{{lineamiento.PK_LINEAMIENTO}}">Editar</a>
         </td>
         <td>
-         <a class="btn btn-primary btn-sm btn-danger" (click)="deleteLineamientos(lineamiento.PK_LINEAMIENTO)">Eliminar</a>
+         <a class="btn btn-primary btn-sm btn-danger" 
+            (click)="deleteLineamientos(lineamiento.PK_LINEAMIENTO)">Eliminar</a>
         </td>
       </tr>
     </tbody>
