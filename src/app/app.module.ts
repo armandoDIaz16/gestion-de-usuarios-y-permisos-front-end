@@ -85,8 +85,8 @@ import {DocumentacionComponent} from './views/residencias/documentacion/document
         MDBBootstrapModule.forRoot(),
         BrowserAnimationsModule,
         CommonModule,
-        ReactiveFormsModule,
-        ],
+        ReactiveFormsModule
+    ],
     declarations: [
         AppComponent,
         ...APP_CONTAINERS,

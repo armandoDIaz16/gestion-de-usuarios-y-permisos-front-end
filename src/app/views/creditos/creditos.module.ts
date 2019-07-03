@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import {MatDialogModule, MatMenuModule, MatSelectModule} from '@angular/material';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgxPaginationModule } from 'ngx-pagination';
 
@@ -31,9 +30,6 @@ import { UsuarioJefeCarreraComponent } from './usuarioJefeCarrera-form.component
 import { UsuarioResponsableActFormComponent} from './usuarioResponsableAct-form.component';
 import { SubirRegistrosCreditosComponent } from './subirRegistrosCreditos.component';
 import { UsuariosTutoriasExtraescolaresComponent } from './usuariosTutoriasExtraescolares.component';
-import { GenerarConstanciasComponent } from './generarConstancias.component';
-import { popupGenerarConstanciasComponent } from './popup-generarConstancias.component';
-
 // Dropdowns Component
 
 
@@ -51,9 +47,6 @@ import { CreditosRoutingModule } from './creditos-routing.module';
     TabsModule,
     BsDropdownModule.forRoot(),
     NgxPaginationModule,
-    MatDialogModule,
-    MatMenuModule,
-    MatSelectModule
   ],
   declarations: [
     LineamientosComponent,
@@ -76,10 +69,7 @@ import { CreditosRoutingModule } from './creditos-routing.module';
     UsuarioJefeCarreraComponent,
     UsuarioResponsableActFormComponent,
     SubirRegistrosCreditosComponent,
-    UsuariosTutoriasExtraescolaresComponent,
-    GenerarConstanciasComponent,
-    popupGenerarConstanciasComponent
-  ],
-  entryComponents: [popupGenerarConstanciasComponent]
+    UsuariosTutoriasExtraescolaresComponent
+  ]
 })
 export class CreditosModule { }
