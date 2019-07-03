@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Ficha_unica_asignacionComponent } from './ficha_unica_asignacion.component';
+import { FichaUnicaAsignacionComponent } from './ficha_unica_asignacion.component';
 
 describe('Ficha_unica_asignacionComponent', () => {
-  let component: Ficha_unica_asignacionComponent;
-  let fixture: ComponentFixture<Ficha_unica_asignacionComponent>;
+  let component: FichaUnicaAsignacionComponent;
+  let fixture: ComponentFixture<FichaUnicaAsignacionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ Ficha_unica_asignacionComponent ]
+      declarations: [ FichaUnicaAsignacionComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(Ficha_unica_asignacionComponent);
+    fixture = TestBed.createComponent(FichaUnicaAsignacionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

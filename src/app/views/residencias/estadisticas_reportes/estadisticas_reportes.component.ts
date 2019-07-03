@@ -1,13 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Chart} from 'chart.js';
+import {GenericServicesService} from '../../../services/generic-services.service';
+import { ValidarModuloService } from '../../../services/validarModulo.service';
 
 @Component({
   selector: 'app-estadisticas-reportes',
   templateUrl: './estadisticas_reportes.component.html',
-  styleUrls: ['./estadisticas_reportes.component.scss']
+  styleUrls: ['./estadisticas_reportes.component.scss'],
+  providers: [ValidarModuloService]
 })
-export class Estadisticas_reportesComponent implements OnInit {
+export class Estadisticas_reportesComponent extends GenericServicesService implements OnInit {
+
+    public mostrarModulo = false;
     TotalMaestros;
     TotalRep1;
     TotalM;
@@ -21,22 +26,27 @@ export class Estadisticas_reportesComponent implements OnInit {
     myChart4 = [];
     OpcionSeleccionado = this.OpcionSeleccionado;
     OpcionSeleccionado2 = this.OpcionSeleccionado2;
-  constructor(private http: HttpClient) {
-      this.http.post('http://127.0.0.1:8000/api/Totalr', {
+  constructor(private http: HttpClient, private validarModuloService: ValidarModuloService) {
+      super(http);
+      this.http.post(GenericServicesService.API_ENDPOINT + 'Totalr', {
           'id': this.usuario,
           'total': 1
-      }).subscribe( data => this.TotalMaestros = data);
-      this.http.post('http://127.0.0.1:8000/api/Estadisticas', {
+      }, GenericServicesService.HEADERS).subscribe( data => this.TotalMaestros = data);
+      this.http.post(GenericServicesService.API_ENDPOINT + 'Estadisticas', {
           'id': this.usuario,
           'total': 3
-      }).subscribe(data => this.TotalE = data);
-      this.http.post('http://127.0.0.1:8000/api/Estadisticas', {
+      }, GenericServicesService.HEADERS).subscribe(data => this.TotalE = data);
+      this.http.post(GenericServicesService.API_ENDPOINT + 'Estadisticas', {
           'id': this.usuario,
           'total': 1
-      }).subscribe(data => {this.TotalM = data; this.generar(); });
+      }, GenericServicesService.HEADERS).subscribe(data => {this.TotalM = data; this.generar(); });
   }
 
   ngOnInit() {
+      this.mostrarModulo = this.validarModuloService.getMostrarModulo('Estadisticas reportes');
+      if (!this.mostrarModulo) {
+          return;
+      }
   }
 
     generar() {
@@ -102,15 +112,15 @@ export class Estadisticas_reportesComponent implements OnInit {
         })];
     }
     graficaDocente() {
-        this.http.post('http://127.0.0.1:8000/api/Totalr', {
+        this.http.post(GenericServicesService.API_ENDPOINT + 'Totalr', {
             'id': this.usuario,
             'total': 2,
-        }).subscribe( data => this.TotalRep1 = data);
-        this.http.post('http://127.0.0.1:8000/api/Estadisticas', {
+        }, GenericServicesService.HEADERS).subscribe( data => this.TotalRep1 = data);
+        this.http.post(GenericServicesService.API_ENDPOINT + 'Estadisticas', {
             'id': this.usuario,
             'total': 2,
             'NUMERO': this.OpcionSeleccionado
-        }).subscribe(data => {this.TotalM1 = data; this.generarDocente(); });
+        }, GenericServicesService.HEADERS).subscribe(data => {this.TotalM1 = data; this.generarDocente(); });
     }
 
     generarDocente() {
@@ -147,15 +157,15 @@ export class Estadisticas_reportesComponent implements OnInit {
     }
 
     graficaExterno() {
-        this.http.post('http://127.0.0.1:8000/api/Totalr', {
+        this.http.post(GenericServicesService.API_ENDPOINT + 'Totalr', {
             'id': this.usuario,
             'total': 2,
-        }).subscribe( data => this.TotalRep1 = data);
-        this.http.post('http://127.0.0.1:8000/api/Estadisticas', {
+        }, GenericServicesService.HEADERS).subscribe( data => this.TotalRep1 = data);
+        this.http.post(GenericServicesService.API_ENDPOINT + 'Estadisticas', {
             'id': this.usuario,
             'total': 4,
             'NUMERO': this.OpcionSeleccionado2
-        }).subscribe(data => {this.TotalE1 = data; this.generarExterno(); });
+        }, GenericServicesService.HEADERS).subscribe(data => {this.TotalE1 = data; this.generarExterno(); });
     }
     generarExterno() {
         const canvas4 = <HTMLCanvasElement> document.getElementById('myChart4');

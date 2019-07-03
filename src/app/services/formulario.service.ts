@@ -14,37 +14,37 @@ export class FormularioService extends GenericServicesService{
     private headers = GenericServicesService.HEADERS;
 
     getBachillerato(ciudad): Observable<IBachillerato[]> {
-        return this.http.get<IBachillerato[]>(this.baseUrl+'Bachillerato/' + ciudad, this.headers);
+        return this.http.get<IBachillerato[]>(this.baseUrl+'Bachillerato/' + ciudad);
     }  
     getCarreraUniversidad():Observable<ICarreraUniversidad[]>{
-        return this.http.get<ICarreraUniversidad[]>(this.baseUrl+'Carrera_Universidad', this.headers);
+        return this.http.get<ICarreraUniversidad[]>(this.baseUrl+'Carrera_Universidad');
       }
       getCarrera():Observable<ICarrera[]>{
-        return this.http.get<ICarrera[]>(this.baseUrl+'Carrera', this.headers);
+        return this.http.get<ICarrera[]>(this.baseUrl+'Carrera');
       }
       getCiudad(entidadFederativa):Observable<ICiudad[]>{
-        return this.http.get<ICiudad[]>(this.baseUrl+'Ciudad/'+entidadFederativa, this.headers);
+        return this.http.get<ICiudad[]>(this.baseUrl+'Ciudad/'+entidadFederativa);
       }
       getColonia(cp):Observable<IColonia[]>{
-        return this.http.get<IColonia[]>(this.baseUrl+'Colonia/'+cp, this.headers);
+        return this.http.get<IColonia[]>(this.baseUrl+'Colonia/'+cp);
       }
       getDependencia():Observable<IDependencia[]>{
-        return this.http.get<IDependencia[]>(this.baseUrl+'Dependencia', this.headers);
+        return this.http.get<IDependencia[]>(this.baseUrl+'Dependencia');
       }
       getEntidadFederativa():Observable<IEntidadFederativa[]>{
-        return this.http.get<IEntidadFederativa[]>(this.baseUrl+'Entidad_Federativa', this.headers);
+        return this.http.get<IEntidadFederativa[]>(this.baseUrl+'Entidad_Federativa');
       }
       getEstadoCivil():Observable<IEstadoCivil[]>{
-        return this.http.get<IEstadoCivil[]>(this.baseUrl+'Estado_Civil', this.headers);
+        return this.http.get<IEstadoCivil[]>(this.baseUrl+'Estado_Civil');
       }
       getIncapacidad():Observable<IIncapacidad[]>{
-        return this.http.get<IIncapacidad[]>(this.baseUrl+'Incapacidad', this.headers);
+        return this.http.get<IIncapacidad[]>(this.baseUrl+'Incapacidad');
       }
       getPropagandaTecnologico():Observable<IPropagndaTecnologico[]>{
-        return this.http.get<IPropagndaTecnologico[]>(this.baseUrl+'Propaganda_Tecnologico', this.headers);
+        return this.http.get<IPropagndaTecnologico[]>(this.baseUrl+'Propaganda_Tecnologico');
       }
       getUniversidad():Observable<IUniversidad[]>{
-        return this.http.get<IUniversidad[]>(this.baseUrl+'Universidad', this.headers);
+        return this.http.get<IUniversidad[]>(this.baseUrl+'Universidad');
       }
 
 }

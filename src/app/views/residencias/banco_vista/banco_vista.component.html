@@ -1,20 +1,23 @@
-<div class="card">
-    <table class="table" >
-      <thead>
-      <tr class="card-header">
-        <th>Nombre</th>
-        <th>Archivo</th>
-        <th>Empresa</th>
-        <th>Especialidad</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let antep of anteproyectosLista">
-        <td>{{ antep.NOMBRE }}</td>
-          <td><a href="{{'http://127.0.0.1:8000/'+antep.PDF}}" target="_blank">{{antep.PDF}}</a></td>
-        <td>{{ antep.EMPRESA }}</td>
-        <td>{{ antep.TIPO_ESPECIALIDAD }}</td>
-      </tr>
-      </tbody>
-    </table>
+<app-404 *ngIf=!mostrarModulo></app-404>
+<div class="animated fadeIn" *ngIf=mostrarModulo>
+    <div class="card">
+        <table class="table" >
+            <thead>
+                <tr class="card-header">
+                    <th>Nombre</th>
+                    <th>Archivo</th>
+                    <th>Empresa</th>
+                    <th>Comentarios</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let antep of anteproyectosLista">
+                    <td>{{ antep.NOMBRE }}</td>
+                    <td><a href="{{'http://127.0.0.1:8000/'+antep.PDF}}" target="_blank">{{antep.PDF}}</a></td>
+                    <td>{{ antep.EMPRESA }}</td>
+                    <td>{{ antep.COMENTARIO }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

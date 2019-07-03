@@ -8,7 +8,6 @@ import { UsuarioRolesService } from '../../services/usuraio-roles.service';
 // import { navItems } from './../../_nav';
 // import {showSystem} from '../../components/navbar-sistems/navbar-sistems.component';
 
-const rutasSistema = [];
 
 @Component({
   selector: 'app-dashboard',
@@ -71,5 +70,3 @@ export class LoginComponent implements OnInit {
     }
   }
 }
-
-export const rutasSistemas = rutasSistema;

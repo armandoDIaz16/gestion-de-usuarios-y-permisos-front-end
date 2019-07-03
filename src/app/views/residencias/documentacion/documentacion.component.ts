@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {GenericServicesService} from '../../../services/generic-services.service';
+import { ValidarModuloService } from '../../../services/validarModulo.service';
 
 @Component({
   selector: 'app-documentacion',
   templateUrl: './documentacion.component.html',
-  styleUrls: ['./documentacion.component.scss']
+  styleUrls: ['./documentacion.component.scss'],
+  providers: [ValidarModuloService]
 })
-export class DocumentacionComponent implements OnInit {
+export class DocumentacionComponent extends GenericServicesService implements OnInit {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private validarModuloService: ValidarModuloService) { super(http); }
 
+  public mostrarModulo = false;
   id = this.id;
   file = this.file;
   usuario = sessionStorage.getItem('IdUsuario');
@@ -18,6 +22,10 @@ export class DocumentacionComponent implements OnInit {
 
 
   ngOnInit() {
+      this.mostrarModulo = this.validarModuloService.getMostrarModulo('Documentacion');
+      if (!this.mostrarModulo) {
+          return;
+      }
   }
 
 
@@ -25,26 +33,26 @@ export class DocumentacionComponent implements OnInit {
     let elem = event.target;
     console.log(this.id);
     let ex = this.id;
-    if(elem.files.length > 0){
+    if (elem.files.length > 0){
       let formData = new FormData();
       formData.append('myfile', elem.files[0]);
       formData.append('id', this.usuario );
-      if(ex == 1) {
-        this.http.post('http://127.0.0.1:8000/api/documentacion', formData).subscribe(
+      if (ex === 1) {
+        this.http.post(GenericServicesService.API_ENDPOINT + 'documentacion', formData, GenericServicesService.HEADERS).subscribe(
           (response) => {
             console.log(response);
           }
         );
       }
-      if(ex == 2){
-        this.http.post('http://127.0.0.1:8000/api/documentacion2', formData).subscribe(
+      if (ex === 2) {
+        this.http.post(GenericServicesService.API_ENDPOINT + 'documentacion2', formData, GenericServicesService.HEADERS).subscribe(
           (response) => {
             console.log(response);
           }
         );
       }
     }
-    elem.value = "";
+    elem.value = '';
   }
 
 }

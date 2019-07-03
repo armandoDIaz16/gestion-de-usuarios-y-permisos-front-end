@@ -1,7 +1,7 @@
 export interface Alumno {
-    PK_ASISTENTE_ACTIVIDAD?: number;
-    NumeroControl: number;
-    ApellidoPaterno: string;
-    ApellidoMaterno: string;
-    Nombre: string;
+    NUMERO_CONTROL?: number;
+    FK_USUARIO?: number;
+    PRIMER_APELLIDO: string;
+    SEGUNDO_APELLIDO: string;
+    name: string;
 }

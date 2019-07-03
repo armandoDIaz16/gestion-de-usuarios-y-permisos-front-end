@@ -1,49 +1,239 @@
-<div class="animated fadeIn">
-  <form (ngSubmit)="onSubmit()">
-    <div class="row">
-      <div class="col-sm-12">
+<app-404 *ngIf=!mostrarModulo></app-404>
+<div class="animated fadeIn" *ngIf=mostrarModulo>
+  <div class="row">
+    <div class="col-sm-4">
+      <form (ngSubmit)="onSubmitFechaFichas()">
         <div class="card">
           <div class="card-header">
             <strong>Fechas para solicitar fichas:</strong>
           </div>
           <div class="card-body">
             <div class="row">
-              <div class="col-sm-6">
-                <div class="form-group">
-                    <label for="">Fecha inicio:</label>
-                    <label style="color:#ff0000;" for="asterisco">*</label>                  
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                    </div>      
-                  <input type="date" (change)="vaciarFechaFin()" class="form-control" name='fechaInicio' [(ngModel)]="fechaInicio"> 
+              <div class="form-group col-sm-12">
+                <label for="">Fecha inicio:</label>
+                <label style="color:#ff0000;" for="asterisco">*</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                  </div>
+                  <input type="date" (change)="validarFechas(fechaInicio,fechaFin,1)" class="form-control" name='fechaInicio'
+                    [(ngModel)]="fechaInicio">
                 </div>
               </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                    <label for="">Fecha final:</label>
-                    <label style="color:#ff0000;" for="asterisco">*</label>                  
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                    </div>      
-                  <input type="date" (change)="validarFechas()" class="form-control" name='fechaFin' [(ngModel)]="fechaFin"> 
+            </div>
+
+            <div class="row">
+              <div class="form-group col-sm-12">
+                <label for="">Fecha final:</label>
+                <label style="color:#ff0000;" for="asterisco">*</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                  </div>
+                  <input type="date" (change)="vaciarFechaFin(fechaInicio,fechaFin,1)" class="form-control" name='fechaFin'
+                    [(ngModel)]="fechaFin">
                 </div>
-              </div>
               </div>
             </div>
             <div class="row">
-                <div class="col-sm-1">
-                    <div class="form-group">
-                        <!-- <button type="button" class="btn btn-block btn-primary">Guardar</button> -->
-                        <button type="submit" value="Submit" class="btn btn-primary">Guardar</button>
-                    </div>
+              <div class="col-sm-1">
+                <div class="form-group">
+                  <!-- <button type="button" class="btn btn-block btn-primary">Guardar</button> -->
+                  <button type="submit" value="Submit" class="btn btn-primary">Guardar</button>
                 </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>      
+      </form>
     </div>
-  </form>
+    <div class="col-sm-4">
+        <form (ngSubmit)="onSubmitFechaCurso()">
+      <div class="card">
+        <div class="card-header">
+          <strong>Fechas para curso:</strong>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="form-group col-sm-12">
+              <label for="">Fecha inicio:</label>
+              <label style="color:#ff0000;" for="asterisco">*</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                </div>
+                <input type="date" (change)="validarFechas(fechaInicioCurso,fechaFinCurso,2)" class="form-control" name='fechaInicioCurso'
+                  [(ngModel)]="fechaInicioCurso">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-sm-12">
+              <label for="">Fecha final:</label>
+              <label style="color:#ff0000;" for="asterisco">*</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                </div>
+                <input type="date" (change)="vaciarFechaFin(fechaInicioCurso,fechaFinCurso,2)" class="form-control" name='fechaFinCurso'
+                  [(ngModel)]="fechaFinCurso">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-1">
+              <div class="form-group">
+                <!-- <button type="button" class="btn btn-block btn-primary">Guardar</button> -->
+                <button type="submit" value="Submit" class="btn btn-primary">Guardar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </form>
+    </div>
+    <div class="col-sm-4">
+        <form (ngSubmit)="onSubmitFechaInscripcion()">
+      <div class="card">
+        <div class="card-header">
+          <strong>Fechas para inscripción:</strong>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="form-group col-sm-12">
+              <label for="">Fecha inicio:</label>
+              <label style="color:#ff0000;" for="asterisco">*</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                </div>
+                <input type="date" (change)="validarFechas(fechaInicioInscripcion,fechaFinInscripcion,3)" class="form-control" name='fechaInicioInscripcion'
+                  [(ngModel)]="fechaInicioInscripcion">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-sm-12">
+              <label for="">Fecha final:</label>
+              <label style="color:#ff0000;" for="asterisco">*</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                </div>
+                <input type="date" (change)="vaciarFechaFin(fechaInicioInscripcion,fechaFinInscripcion,3)" class="form-control" name='fechaFinInscripcion'
+                  [(ngModel)]="fechaFinInscripcion">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-1">
+              <div class="form-group">
+                <!-- <button type="button" class="btn btn-block btn-primary">Guardar</button> -->
+                <button type="submit" value="Submit" class="btn btn-primary">Guardar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4">
+        <form (ngSubmit)="onSubmitMontoPreficha()">
+      <div class="card">
+        <div class="card-header">
+          <strong>Costo fichas:</strong>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="form-group col-sm-12">
+              <label for="">Monto:</label>
+              <label style="color:#ff0000;" for="asterisco">*</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-dollar"></i></span>
+                </div>
+                <input type="number" class="form-control" name='montoPreficha' [(ngModel)]="montoPreficha">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-1">
+              <div class="form-group">
+                <!-- <button type="button" class="btn btn-block btn-primary">Guardar</button> -->
+                <button type="submit" value="Submit" class="btn btn-primary">Guardar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </form>
+    </div>
+    <div class="col-sm-4">
+        <form (ngSubmit)="onSubmitMontoCurso()">
+      <div class="card">
+        <div class="card-header">
+          <strong>Costo curso:</strong>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="form-group col-sm-12">
+              <label for="">Monto:</label>
+              <label style="color:#ff0000;" for="asterisco">*</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-dollar"></i></span>
+                </div>
+                <input type="number" class="form-control" name='montoCurso' [(ngModel)]="montoCurso">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-1">
+              <div class="form-group">
+                <!-- <button type="button" class="btn btn-block btn-primary">Guardar</button> -->
+                <button type="submit" value="Submit" class="btn btn-primary">Guardar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </form>
+    </div>
+    <div class="col-sm-4">
+        <form (ngSubmit)="onSubmitMontoInscripcion()">
+      <div class="card">
+        <div class="card-header">
+          <strong>Costo inscripción:</strong>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="form-group col-sm-12">
+              <label for="">Monto:</label>
+              <label style="color:#ff0000;" for="asterisco">*</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-dollar"></i></span>
+                </div>
+                <input type="number" class="form-control" name='montoInscripcion' [(ngModel)]="montoInscripcion">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-1">
+              <div class="form-group">
+                <!-- <button type="button" class="btn btn-block btn-primary">Guardar</button> -->
+                <button type="submit" value="Submit" class="btn btn-primary">Guardar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
 </div>

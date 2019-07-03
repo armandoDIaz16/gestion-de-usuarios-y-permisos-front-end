@@ -5,11 +5,22 @@ import { IRoles } from './rolesLista';
 import { GenericServicesService } from './generic-services.service';
 
 
-@Injectable()
+/* @Injectable()
 export class UsuarioRolesService extends GenericServicesService{    
     constructor(private http: HttpClient,
     private genericServicesService: GenericServicesService ){ super(http); }
     getUsuarioRoles(): Observable<IRoles[]>{
+        return this.http.get<IRoles[]>('http://127.0.0.1:8000/api/Usuario_Rol/' + sessionStorage.getItem('IdUsuario'));
+    }
+} */
+
+@Injectable()
+
+
+export class UsuarioRolesService extends GenericServicesService {
+    constructor(private http: HttpClient,
+    private genericServicesService: GenericServicesService ) { super(http); }
+    getUsuarioRoles(): Observable<IRoles[]> {
         return this.http.get<IRoles[]>(GenericServicesService.API_ENDPOINT + 'Usuario_Rol/' + sessionStorage.getItem('IdUsuario'));
     }
 }

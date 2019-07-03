@@ -5,6 +5,8 @@ import {Routes, RouterModule} from '@angular/router';
 import {DefaultLayoutComponent} from './containers';
 
 
+import { P404Component } from './views/error/404.component';
+import { P500Component } from './views/error/500.component';
 import {LoginComponent} from './views/login/login.component';
 import {RegisterComponent} from './views/register/register.component';
 
@@ -16,6 +18,7 @@ import {AfterLoginService} from './services/after-login.service';
 import {FormularioComponent} from './components/formulario/formulario.component';
 import {ControlComponent} from './components/control/control.component';
 import {StudentOldComponent} from './components/student-old/student-old.component';
+import {ResidenciasRoutingModule} from './views/residencias/residencias-routing.module';
 
 
 export const routes: Routes = [
@@ -28,6 +31,13 @@ export const routes: Routes = [
             title: 'Login Page'
         }
     },
+      {
+        path: '500',
+        component: P500Component,
+        data: {
+          title: 'Page 500'
+        }
+      },
 
 
     {
@@ -124,7 +134,7 @@ export const routes: Routes = [
         path: 'response-password-reset',
         component: ResponseResetComponent,
         canActivate: [BeforeLoginService],
-    },
+    }
 
 ];
 

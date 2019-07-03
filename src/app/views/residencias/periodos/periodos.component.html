@@ -1,20 +1,23 @@
-<div class="card">
-    <h2 class="card-header">Periodos</h2>
-    <div class="card-body">
-        <h5>Proceso</h5>
-        <select [(ngModel)]="opcionSeleccionado" class="form-control form-control-lg">
-            <option value="1" >Seleccion de proyectos</option>
-            <option value="2" >Carga de documentacion</option>
-        </select>
-        <h5>Fecha inicial</h5>
-        <input type="date" [(ngModel)]="fini" class="form-control form-control-lg">
-        <h5>Fecha final</h5>
-        <input type="date" [(ngModel)]="ffin" class="form-control form-control-lg">
-        <br>
-        <div style="text-align: center;">
-        <label class="btn btn-dark">
-            Guardar<input type="submit" value="submit" name="submit" hidden (click)="cargarFechas()">
-        </label>
+<app-404 *ngIf=!mostrarModulo></app-404>
+<div class="animated fadeIn" *ngIf=mostrarModulo>
+    <div class="card">
+        <h2 class="card-header">Periodos</h2>
+        <div class="card-body">
+            <h5>Proceso</h5>
+            <select [(ngModel)]="opcionSeleccionado" class="form-control form-control-lg">
+                <option value="1" >Seleccion de proyectos</option>
+                <option value="2" >Carga de documentacion</option>
+            </select>
+            <h5>Fecha inicial</h5>
+            <input type="date" [(ngModel)]="fini" class="form-control form-control-lg">
+            <h5>Fecha final</h5>
+            <input type="date" [(ngModel)]="ffin" class="form-control form-control-lg">
+            <br>
+            <div style="text-align: center;">
+                <label class="btn btn-dark">
+                    Guardar<input type="submit" value="submit" name="submit" hidden (click)="cargarFechas()">
+                </label>
+            </div>
         </div>
     </div>
 </div>

@@ -1,29 +1,37 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {GenericServicesService} from '../../../services/generic-services.service';
+import { ValidarModuloService } from '../../../services/validarModulo.service';
 
 @Component({
   selector: 'app-configuracion',
   templateUrl: './configuracion_acta.component.html',
-  styleUrls: ['./configuracion_acta.component.scss']
+  styleUrls: ['./configuracion_acta.component.scss'],
+  providers: [ValidarModuloService]
 })
-export class Configuracion_actaComponent implements OnInit {
+export class Configuracion_actaComponent extends GenericServicesService implements OnInit {
     folio = this.folio;
     fecha = this.fecha;
-  constructor(private http: HttpClient) { }
+    public mostrarModulo = false;
+  constructor(private http: HttpClient, private validarModuloService: ValidarModuloService) { super(http); }
 
   ngOnInit() {
+      this.mostrarModulo = this.validarModuloService.getMostrarModulo('Configuracion acta');
+      if (!this.mostrarModulo) {
+          return;
+      }
   }
 
   guardarInformacion() {
-      this.http.post('http://localhost:8000/api/ConfiguracionE', {
+      this.http.post(GenericServicesService.API_ENDPOINT + 'ConfiguracionE', {
           'FOLIO': this.folio,
           'FECHA': this.fecha
-      }).subscribe(
+      }, GenericServicesService.HEADERS).subscribe(
          data => console.log(data)
       );
   }
 
   asignarFolios() {
-    this.http.get('http://localhost:8000/api/InfoActaR').subscribe(data => console.log(data));
+    this.http.get(GenericServicesService.API_ENDPOINT + 'InfoActaR', GenericServicesService.HEADERS).subscribe(data => console.log(data));
   }
 }

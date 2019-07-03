@@ -2,14 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import {Reportes} from './reporte';
 import {Comentarios} from './comentario';
 import {HttpClient} from '@angular/common/http';
+import {GenericServicesService} from '../../../services/generic-services.service';
+import { ValidarModuloService } from '../../../services/validarModulo.service';
 
 @Component({
   selector: 'app-vista-comentarios',
   templateUrl: './vista_comentarios.component.html',
   styleUrls: ['./vista_comentarios.component.scss'],
-  providers: [Reportes, Comentarios]
+  providers: [Reportes, Comentarios, ValidarModuloService]
 })
-export class VistaComentariosComponent implements OnInit {
+export class VistaComentariosComponent extends GenericServicesService implements OnInit {
+
+    public mostrarModulo = false;
     public comentarioLista = [];
     public reporteLista = [];
     usuario = sessionStorage.getItem('IdUsuario');
@@ -17,7 +21,9 @@ export class VistaComentariosComponent implements OnInit {
     comentario2 = {};
     reporte = {};
 
-  constructor(private comentarioService: Comentarios, private reporteService: Reportes, private http: HttpClient) {
+  constructor(private comentarioService: Comentarios, private reporteService: Reportes, private http: HttpClient,
+              private validarModuloService: ValidarModuloService) {
+      super(http);
       this.reporteService.getAnteproyectos(this.usuario.toString()).subscribe( data => this.reporteLista = data);
       const aux = this.reporteLista.length;
       for (let i = 0; i < aux; i++) {
@@ -31,15 +37,19 @@ export class VistaComentariosComponent implements OnInit {
   }
 
   ngOnInit() {
+      this.mostrarModulo = this.validarModuloService.getMostrarModulo('Vista comentarios');
+      if (!this.mostrarModulo) {
+          return;
+      }
   }
     cargarComentario(numero) {
         this.comentarioService.getComentarios(numero).subscribe(data => this.comentarioLista = data);
     }
     enviarComentarios(numero, comentario) {
-        this.http.post('http://127.0.0.1:8000/api/Comentario', {
+        this.http.post(GenericServicesService.API_ENDPOINT + 'Comentario', {
             'Numero': numero.toString(),
             'Comentario': comentario.toString(),
-            'Usuario': this.usuario.toString()}
+            'Usuario': this.usuario.toString()}, GenericServicesService.HEADERS
         ).subscribe((response) => {
             console.log(response);
         });

@@ -1,20 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {GenericServicesService} from '../../../services/generic-services.service';
+import { ValidarModuloService } from '../../../services/validarModulo.service';
 
 @Component({
   selector: 'app-ficha-unica-asignacion',
   templateUrl: './ficha_unica_asignacion.component.html',
-  styleUrls: ['./ficha_unica_asignacion.component.scss']
+  styleUrls: ['./ficha_unica_asignacion.component.scss'],
+  providers: [ValidarModuloService]
 })
-export class FichaUnicaAsignacionComponent implements OnInit {
+export class FichaUnicaAsignacionComponent extends GenericServicesService implements OnInit {
     usuario = sessionStorage.getItem('IdUsuario');
-  constructor(private http: HttpClient) { }
+    public mostrarModulo = false;
+  constructor(private http: HttpClient, private validarModuloService: ValidarModuloService) { super(http); }
 
   ngOnInit() {
+      this.mostrarModulo = this.validarModuloService.getMostrarModulo('Ficha unica asignacion');
+      if (!this.mostrarModulo) {
+          return;
+      }
   }
 
   fichas() {
-      var win = window.open('http://127.0.0.1:8000/api/Pdf/' + this.usuario.toString(), '_blank');
+      const url = [GenericServicesService.API_ENDPOINT + 'Pdf/' + this.usuario.toString(), GenericServicesService.HEADERS];
+      // @ts-ignore
+      const win = window.open(url, '_blank');
       win.focus();
   }
 }

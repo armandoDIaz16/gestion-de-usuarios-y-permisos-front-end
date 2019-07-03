@@ -1,15 +1,27 @@
-<div class="card">
-    <div class="card-body">
-        <button (click)="generarExcel()">Hola</button>
-        <table>
-            <tbody>
-            <tr *ngFor="let antep of listaBase">
-                <td>{{ antep.OBSERVACIONES }}</td>
-                <td>{{antep.CALIFICACION}}</td>
-                <td>{{ antep.NOMBRE }}</td>
-                <td>{{ antep.EMPRESA }}</td>
-            </tr>
-            </tbody>
-        </table>
+<app-404 *ngIf=!mostrarModulo></app-404>
+<div class="animated fadeIn" *ngIf=mostrarModulo>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <i class="icon-pie-chart"></i>
+                    <strong>Base residencias</strong>
+                </div>
+                <div class="card-body" align="center">
+                    <button class="btn btn-dark" (click)="generarExcel()">Generar Excel</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <i class="icon-pie-chart"></i>
+                    <strong>SIIA registro masivo</strong>
+                </div>
+                <div class="card-body" align="center">
+                    <button class="btn btn-dark" (click)="generar()">General Excel</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

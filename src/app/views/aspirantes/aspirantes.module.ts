@@ -23,6 +23,7 @@ import { PrefichasComponent } from './prefichas/prefichas.component';
 import { PeriodoComponent } from './periodo/periodo.component';
 import { DatosComponent } from './datos/datos.component';
 import { CrearGruposComponent } from './crear_grupos/crear_grupos.component';
+import { P404Component } from '../error/404.component';
 
 // Angular
 
@@ -46,7 +47,8 @@ import { CrearGruposComponent } from './crear_grupos/crear_grupos.component';
     CrearGruposComponent,
     PrefichasComponent,
     PeriodoComponent,
-    DatosComponent
+    DatosComponent,
+    P404Component
   ],
   exports: [
     ModalModule
