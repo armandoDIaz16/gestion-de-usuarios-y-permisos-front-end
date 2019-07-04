@@ -5,7 +5,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 
-// Tabs Component
+// Tabs Component edicion
 import { TabsModule } from 'ngx-bootstrap/tabs';
 
 

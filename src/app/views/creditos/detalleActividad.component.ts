@@ -3,7 +3,7 @@ import { Actividad } from './interfaces/actividad';
 import {UsuarioActividad } from './interfaces/usuarioActividad';
 import { CreditosService } from '../../services/creditos.service';
 import { ActivatedRoute, Router} from '@angular/router'; 
-
+//edicin
 @Component({
     templateUrl: './detalleActividad.component.html'
 })

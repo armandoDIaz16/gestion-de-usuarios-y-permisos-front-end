@@ -37,7 +37,7 @@ export class CreditosService extends GenericServicesService{
   delete(id){
     return this.httpclient.delete(this.API_ENDPOINT + 'lineamientos/' + id);
   }
-/*-------------------------------------Tipos--------------*/
+/*-------------------------------------Tipos-----------------*/
 getTipos(){
   return this.httpclient.get(this.API_ENDPOINT + 'tipos');
 }

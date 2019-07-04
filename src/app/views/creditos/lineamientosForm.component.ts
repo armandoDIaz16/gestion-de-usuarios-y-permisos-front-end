@@ -3,7 +3,7 @@ import { Lineamiento } from './interfaces/lineamiento'
 import { CreditosService } from '../../services/creditos.service';
 
 import { ActivatedRoute, Router } from '@angular/router';
-
+//edicion
 
 @Component({
   selector: 'app-lineamientosForm',

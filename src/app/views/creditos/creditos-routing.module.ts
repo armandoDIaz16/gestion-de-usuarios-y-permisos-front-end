@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-/*
+/*edicion
 import { CardsComponent } from './cards.component';
 import { FormsComponent } from './forms.component';
 import { SwitchesComponent } from './switches.component';
