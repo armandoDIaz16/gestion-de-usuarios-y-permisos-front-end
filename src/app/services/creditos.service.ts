@@ -230,5 +230,12 @@ AgregarUsuarioJC(usuario){
  }
 
 
+ 
+ /*--------------------generar constancias ---------------------*/
+ getAlumnosByCarrera(carrera){
+  return this.httpClient.get(this.API_ENDPOINT + 'creditos-carrera/' + carrera );
+}
+
+
 
 }
