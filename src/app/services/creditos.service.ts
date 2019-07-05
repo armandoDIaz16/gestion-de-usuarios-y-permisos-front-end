@@ -37,7 +37,7 @@ export class CreditosService extends GenericServicesService{
   delete(id){
     return this.httpclient.delete(this.API_ENDPOINT + 'lineamientos/' + id);
   }
-/*-------------------------------------Tipos--------------*/
+/*-------------------------------------Tipos-----------------*/
 getTipos(){
   return this.httpclient.get(this.API_ENDPOINT + 'tipos');
 }
@@ -228,6 +228,13 @@ AgregarUsuarioJC(usuario){
  enviarExcel(file){
  return this.httpClient.post(this.API_ENDPOINT + 'import-excel-ac', file, {responseType: 'text'});
  }
+
+
+ 
+ /*--------------------generar constancias ---------------------*/
+ getAlumnosByCarrera(carrera){
+  return this.httpClient.get(this.API_ENDPOINT + 'creditos-carrera/' + carrera );
+}
 
 
 
