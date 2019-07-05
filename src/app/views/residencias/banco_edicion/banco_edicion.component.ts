@@ -15,6 +15,7 @@ export class BancoEdicionComponent extends GenericServicesService implements OnI
     public anteproyectosLista = [];
     public mostrarModulo = false;
     id = this.id;
+    usuario = sessionStorage.getItem('IdUsuario');
   constructor(private anteproyectosService: AnteproyectosSeleccion, private http: HttpClient,
               private validarModuloService: ValidarModuloService) { super(http); }
   Nombre = this.Nombre;
@@ -43,10 +44,11 @@ export class BancoEdicionComponent extends GenericServicesService implements OnI
           'AreaAcademica': event.target.AreaAcademica.value.toString(),
           'Autor': event.target.Autor.value.toString(),
           'Empresa': event.target.Empresa.value.toString(),
-          'Comentario': event.target.Comentario.value.toString()
+          'Comentario': event.target.Comentario.value.toString(),
+          'Usuario': this.usuario
       }, GenericServicesService.HEADERS ).subscribe(
           (response) => {
-              console.log(response);
+              alert(response);
           }
       );
   }

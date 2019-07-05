@@ -28,6 +28,8 @@ import {Informe_tecnicoComponent} from './informe_tecnico/informe_tecnico.compon
 import {Generar_conveniosComponent} from './generar_convenios/generar_convenios.component';
 import {Configuracion_actaComponent} from './configuracion_acta/configuracion_acta.component';
 import {Informacion_residenciasComponent} from './informacion_residencias/informacion_residencias.component';
+import {Estadisticas_asesoresComponent} from './estadisticas_asesores/estadisticas_asesores.component';
+import {Vista_de_documentacionComponent} from './vista_de_documentacion/vista_de_documentacion.component';
 
 const routes: Routes = [
     {
@@ -223,6 +225,20 @@ const routes: Routes = [
                 component: Informacion_residenciasComponent,
                 data: {
                     title: 'Información residencias'
+                }
+            },
+            {
+                path: 'estadisticas_asesores',
+                component: Estadisticas_asesoresComponent,
+                data: {
+                    title: 'Estadisticas asesores'
+                }
+            },
+            {
+                path: 'vista_de_documentacion',
+                component: Vista_de_documentacionComponent,
+                data: {
+                    title: 'Vista documentacion'
                 }
             }
         ]

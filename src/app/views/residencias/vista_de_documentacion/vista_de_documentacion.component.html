@@ -1,0 +1,26 @@
+<app-404 *ngIf=!mostrarModulo></app-404>
+<div class="animated fadeIn" *ngIf=mostrarModulo>
+    <div class="card">
+        <table class="table">
+            <thead>
+            <tr class="card-header">
+                <th>Alumno</th>
+                <th>Carta de aceptación</th>
+                <th>Solicitud de residencias</th>
+                <th>Carta finalización residencias</th>
+                <th>Informe Técnico</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let doc of documentacionLista">
+                <td>{{doc.name}} {{doc.PRIMER_APELLIDO}} {{doc.SEGUNDO_APELLIDO}}</td>
+                <td><a href="{{'http://127.0.0.1:8000/'+doc.CARTA_ACEPTACION}}"
+                       target="_blank">{{doc.CARTA_ACEPTACION}}</a></td>
+                <td><a href="{{'http://127.0.0.1:8000/'+doc.SOLICITUD}}" target="_blank">{{doc.SOLICITUD}}</a></td>
+                <td><a href="{{'http://127.0.0.1:8000/'+doc.CARTA}}" target="_blank">{{doc.CARTA}}</a></td>
+                <td><a href="{{'http://127.0.0.1:8000/'+doc.INFORME}}" target="_blank">{{doc.INFORME}}</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

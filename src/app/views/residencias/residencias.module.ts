@@ -39,6 +39,8 @@ import { Generar_conveniosComponent } from './generar_convenios/generar_convenio
 import {Configuracion_actaComponent} from './configuracion_acta/configuracion_acta.component';
 import { Informacion_residenciasComponent } from './informacion_residencias/informacion_residencias.component';
 import { P404Component } from '../error/404.component';
+import { Estadisticas_asesoresComponent } from './estadisticas_asesores/estadisticas_asesores.component';
+import { Vista_de_documentacionComponent } from './vista_de_documentacion/vista_de_documentacion.component';
 
 // Angular
 
@@ -80,7 +82,9 @@ import { P404Component } from '../error/404.component';
     Generar_conveniosComponent,
     Configuracion_actaComponent,
     Informacion_residenciasComponent,
-    P404Component
+    P404Component,
+    Estadisticas_asesoresComponent,
+    Vista_de_documentacionComponent
   ]
 })
 export class ResidenciasModule { }
