@@ -23,7 +23,7 @@ import { PrefichasComponent } from './prefichas/prefichas.component';
 import { PeriodoComponent } from './periodo/periodo.component';
 import { DatosComponent } from './datos/datos.component';
 import { CrearGruposComponent } from './crear_grupos/crear_grupos.component';
-import { P404Component } from '../error/404.component';
+import { ErrorModule } from '../error/error.module';
 
 // Angular
 
@@ -35,7 +35,8 @@ import { P404Component } from '../error/404.component';
     BsDropdownModule.forRoot(),
     FormsModule,
     NgxPaginationModule,
-    ChartsModule
+    ChartsModule,
+    ErrorModule
     //Chart
   ],
   declarations: [
@@ -47,11 +48,7 @@ import { P404Component } from '../error/404.component';
     CrearGruposComponent,
     PrefichasComponent,
     PeriodoComponent,
-    DatosComponent,
-    P404Component
-  ],
-  exports: [
-    ModalModule
-]
+    DatosComponent
+  ]
 })
 export class AspirantesModule {}

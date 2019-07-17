@@ -98,7 +98,7 @@ import { ReactiveFormsModule } from '@angular/forms';
         FormularioComponent,
         ControlComponent,
         StudentOldComponent,
-        NavbarSistemsComponent,
+        NavbarSistemsComponent
     ],
     providers:
         [
