@@ -4,31 +4,42 @@ import {TokenService} from '../../services/token.service';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-dashboard',
+    selector: 'app-dashboard',
     templateUrl: './student-old.component.html',
     styleUrls: ['./student-old.component.scss']
 })
 export class StudentOldComponent implements OnInit {
 
-    public get_datos_alumno(){
+    public get_datos_alumno() {
         let json = JSON.parse(localStorage.getItem('datos_alumno'));
         return json;
     }
 
-  	public datos_alumno = this.get_datos_alumno();
+    public get_carrera(clave_carrera: String) {
+        switch (clave_carrera) {
+            case 'IIX':
+                return 'Ingeniería industrial';
+        }
+    }
+
+    public datos_alumno = this.get_datos_alumno();
+
+    private registrado = false;
 
     public form = {
         email: null,
         //name:null,
-        NUMERO_CONTROL:   this.datos_alumno.numero_control,
-        name:             this.datos_alumno.nombre,
-        PRIMER_APELLIDO:  this.datos_alumno.primer_apellido,
+        NUMERO_CONTROL: this.datos_alumno.numero_control,
+        name: this.datos_alumno.nombre,
+        PRIMER_APELLIDO: this.datos_alumno.primer_apellido,
         SEGUNDO_APELLIDO: this.datos_alumno.segundo_apellido,
-        CLAVE_CARRERA : this.datos_alumno.clave_carrera,
-        SEMESTRE: this.datos_alumno.semestre ,
+        CLAVE_CARRERA: this.datos_alumno.clave_carrera,
+        NOMBRE_CARRERA: this.get_carrera(this.datos_alumno.clave_carrera),
+        SEMESTRE: this.datos_alumno.semestre,
         password: null,
         password_confirmation: null,
         curp: null,
+        TELEFONO_FIJO: null,
         TELEFONO_MOVIL: null,
         //PRIMER_APELLIDO:'chavez',
         //SEGUNDO_APELLIDO:'barajas',
@@ -62,27 +73,32 @@ export class StudentOldComponent implements OnInit {
 
     public error = {
         curp: null,
-        email: null,
-        password: null,
-        password_confirmation: null
+        email: null
     };
 
-  constructor(private Jarwis: JarwisService,
+    constructor(private Jarwis: JarwisService,
                 private Token: TokenService,
                 private router: Router) {
     }
 
     onSubmit() {
-        this.Jarwis.signup(this.form).subscribe(
-            data => this.handleResponse(data),
-            error => this.handleError(error)
-        );
+        if (this.form.curp.trim().length == 18) {
+            if (confirm("Acepto que he leído y estoy de acuerdo con el aviso de privacidad")){
+                this.Jarwis.signup(this.form).subscribe(
+                    data => this.handleResponse(data),
+                    error => this.handleError(error)
+                );
+            }
+        } else {
+            alert('Vefirique su CURP');
+        }
     }
 
     handleResponse(data) {
-        //this.Token.handle(data.access_token);
-        localStorage.clear();
-        this.router.navigateByUrl('/login');
+        if (data){
+            this.registrado = true;
+            localStorage.clear();
+        }
     }
 
 
