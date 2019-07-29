@@ -46,6 +46,7 @@ import { ChartsModule } from 'ng2-charts';
 // import { NavbarComponent } from './components/navbar/navbar.component';
 // import { SignupComponent } from './components/signup/signup.component';
 // import { ProfileComponent } from './components/profile/profile.component';
+import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
 import { RequestResetComponent } from './components/password/request-reset/request-reset.component';
 import { ResponseResetComponent } from './components/password/response-reset/response-reset.component';
@@ -89,6 +90,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     declarations: [
         AppComponent,
         ...APP_CONTAINERS,
+        P404Component,
         P500Component,
         LoginComponent,
         RegisterComponent,
@@ -112,6 +114,9 @@ import { ReactiveFormsModule } from '@angular/forms';
             AfterLoginService,
             BeforeLoginService
         ],
+    exports: [
+        P404Component
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {
