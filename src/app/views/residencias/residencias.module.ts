@@ -40,6 +40,7 @@ import {Configuracion_actaComponent} from './configuracion_acta/configuracion_ac
 import { Informacion_residenciasComponent } from './informacion_residencias/informacion_residencias.component';
 import { Estadisticas_asesoresComponent } from './estadisticas_asesores/estadisticas_asesores.component';
 import { Vista_de_documentacionComponent } from './vista_de_documentacion/vista_de_documentacion.component';
+import { ErrorModule } from '../error/error.module';
 
 // Angular
 
@@ -51,7 +52,8 @@ import { Vista_de_documentacionComponent } from './vista_de_documentacion/vista_
         FormsModule,
         CollapseModule,
         ChartsModule,
-        ModalModule
+        ModalModule,
+        ErrorModule
     ],
   declarations: [
     BancoProyectosComponent,
