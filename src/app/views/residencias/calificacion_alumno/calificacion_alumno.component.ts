@@ -39,7 +39,7 @@ export class Calificacion_alumnoComponent extends GenericServicesService impleme
             'OBSERVACIONES': this.observaciones
         }, GenericServicesService.HEADERS).subscribe(
             (response) => {
-                console.log(response);
+                alert(response);
             });
     }
 

@@ -30,19 +30,19 @@ export class BancoAprobacionComponent extends GenericServicesService implements 
   aprobarProyecto(id) {
       this.http.put(GenericServicesService.API_ENDPOINT + 'Anteproyecto/' + id, {'Estatus': '2'},
           GenericServicesService.HEADERS).subscribe((response) => {
-          console.log(response);
+          alert(response);
       });
   }
   crearProyecto(id) {
       this.http.post(GenericServicesService.API_ENDPOINT + 'proyecto', {'id': id.toString()}
       , GenericServicesService.HEADERS).subscribe((response) => {
-          console.log(response);
+          alert(response);
       });
   }
   rechazarProyecto(id) {
       this.http.put( GenericServicesService.API_ENDPOINT + 'Anteproyecto/' + id, {'Estatus': '3'}
       , GenericServicesService.HEADERS).subscribe((response) => {
-          console.log(response);
+          alert(response);
       });
   }
 }

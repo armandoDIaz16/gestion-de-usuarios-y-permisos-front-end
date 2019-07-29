@@ -34,7 +34,7 @@ export class CorreosComponent extends GenericServicesService implements OnInit {
       'Persona': this.persona.toString()
     }, GenericServicesService.HEADERS).subscribe(
       (response) => {
-        console.log(response);
+        alert(response);
       }
     );
   }

@@ -31,7 +31,7 @@ export class ProyectosComponent extends GenericServicesService implements OnInit
     updateProyect(id) {
         this.http.put(GenericServicesService.API_ENDPOINT + 'Anteproyecto/' + id, {'Cancelar': 'valido'},
             GenericServicesService.HEADERS).subscribe((response) => {
-            console.log(response);
+            alert(response);
         });
     }
     uploadFile(event) {
@@ -43,7 +43,7 @@ export class ProyectosComponent extends GenericServicesService implements OnInit
             formData.append('id', this.usuario);
             this.http.post(GenericServicesService.API_ENDPOINT + 'Reporte', formData, GenericServicesService.HEADERS).subscribe(
                 (response) => {
-                    console.log(response);
+                    alert(response);
                 });
         }
         elem.value = ''; // line 9
@@ -58,7 +58,7 @@ export class ProyectosComponent extends GenericServicesService implements OnInit
             formData.append('id', this.usuario);
             this.http.post(GenericServicesService.API_ENDPOINT + 'anteproyecto2', formData, GenericServicesService.HEADERS).subscribe(
                 (response) => {
-                    console.log(response);
+                    alert(response);
                 });
         }
         elem.value = ''; // line 9
@@ -73,7 +73,7 @@ export class ProyectosComponent extends GenericServicesService implements OnInit
             formData.append('FK_ALUMNO', this.usuario);
             this.http.post(GenericServicesService.API_ENDPOINT + 'Informe', formData, GenericServicesService.HEADERS).subscribe(
                 (response) => {
-                    console.log(response);
+                    alert(response);
                 });
         }
         elem.value = ''; // line 9
@@ -88,7 +88,7 @@ export class ProyectosComponent extends GenericServicesService implements OnInit
             formData.append('FK_ALUMNO', this.usuario);
             this.http.post(GenericServicesService.API_ENDPOINT + 'CartaFinalR', formData, GenericServicesService.HEADERS).subscribe(
                 (response) => {
-                    console.log(response);
+                    alert(response);
                 });
         }
         elem.value = ''; // line 9

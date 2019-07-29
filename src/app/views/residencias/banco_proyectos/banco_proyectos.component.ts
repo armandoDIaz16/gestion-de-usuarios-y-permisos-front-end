@@ -39,7 +39,7 @@ export class BancoProyectosComponent extends GenericServicesService implements O
          'Autor': this.usuario.toString()
       }, GenericServicesService.HEADERS).subscribe(
         (response) => {
-          console.log(response);
+          alert(response);
         }
       );
   }

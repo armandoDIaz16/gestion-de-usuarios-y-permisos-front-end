@@ -34,11 +34,11 @@ export class Periodos_reportesComponent extends GenericServicesService implement
                 'FECHA_FIN': this.ffin.toString()
             }, GenericServicesService.HEADERS).subscribe(
                 (response) => {
-                    console.log(response);
+                    alert(response);
                 }
             );
         } else {
-            console.log('Error en la selección de fechas');
+            alert('Error en la selección de fechas');
         }
     }
 }

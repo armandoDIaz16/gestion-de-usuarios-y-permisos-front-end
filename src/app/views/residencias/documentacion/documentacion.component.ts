@@ -29,7 +29,7 @@ export class DocumentacionComponent extends GenericServicesService implements On
   }
 
 
-  uploadFile(event){
+  uploadFile(event) {
     let elem = event.target;
     console.log(this.id);
     let ex = this.id;
@@ -40,14 +40,14 @@ export class DocumentacionComponent extends GenericServicesService implements On
       if (ex === 1) {
         this.http.post(GenericServicesService.API_ENDPOINT + 'documentacion', formData, GenericServicesService.HEADERS).subscribe(
           (response) => {
-            console.log(response);
+            alert(response);
           }
         );
       }
       if (ex === 2) {
         this.http.post(GenericServicesService.API_ENDPOINT + 'documentacion2', formData, GenericServicesService.HEADERS).subscribe(
           (response) => {
-            console.log(response);
+            alert(response);
           }
         );
       }

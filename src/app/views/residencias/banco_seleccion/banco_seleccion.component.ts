@@ -33,7 +33,7 @@ export class Banco_seleccionComponent extends GenericServicesService implements 
     console.log(this.usuario);
     this.http.put(GenericServicesService.API_ENDPOINT + 'Anteproyecto/' + id, {'Alumno': this.usuario.toString()},
         GenericServicesService.HEADERS).subscribe((response) => {
-      console.log(response);
+      alert(response);
     });
   }
 

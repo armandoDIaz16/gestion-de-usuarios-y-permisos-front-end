@@ -51,7 +51,7 @@ export class VistaComentariosComponent extends GenericServicesService implements
             'Comentario': comentario.toString(),
             'Usuario': this.usuario.toString()}, GenericServicesService.HEADERS
         ).subscribe((response) => {
-            console.log(response);
+            alert(response);
         });
     }
 }

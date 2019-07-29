@@ -37,7 +37,7 @@ export class Reporte_docenteComponent extends GenericServicesService implements 
             formData.append('alumno', this.opcion);
             this.http.post(GenericServicesService.API_ENDPOINT + 'Repdocente', formData, GenericServicesService.HEADERS).subscribe(
                 (response) => {
-                    console.log(response);
+                    alert(response);
                 });
         }
         elem.value = ''; // line 9

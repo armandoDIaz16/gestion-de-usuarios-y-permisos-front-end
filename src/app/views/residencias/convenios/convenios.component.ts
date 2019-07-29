@@ -66,7 +66,7 @@ export class ConveniosComponent extends GenericServicesService implements OnInit
             formData.append('NombreTestigo', this.NombreTestigo);
             this.http.post(GenericServicesService.API_ENDPOINT + 'Convenio', formData).subscribe(
                 (response) => {
-                    console.log(response);
+                    alert(response);
                 });
         }
         elem.value = ''; // line 9

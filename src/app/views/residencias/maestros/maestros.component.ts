@@ -52,7 +52,7 @@ export class MaestrosComponent extends GenericServicesService implements OnInit 
           'Externo': ex
       }, GenericServicesService.HEADERS).subscribe(
           (response) => {
-              console.log(response);
+              alert(response);
           }
       );
   }

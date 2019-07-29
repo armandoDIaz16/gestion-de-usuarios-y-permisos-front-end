@@ -25,7 +25,7 @@ export class Habilitar_residentesComponent extends GenericServicesService implem
   habilitarAlumnos() {
       this.http.get(GenericServicesService.API_ENDPOINT + 'CreditosSiia', GenericServicesService.HEADERS).subscribe(
           (response) => {
-              console.log(response);
+              alert(response);
           }
       );
   }
@@ -33,7 +33,7 @@ export class Habilitar_residentesComponent extends GenericServicesService implem
   deshabilitarAlumnos() {
       this.http.get(GenericServicesService.API_ENDPOINT + 'CreditosSiia/1', GenericServicesService.HEADERS).subscribe(
           (response) => {
-              console.log(response);
+              alert(response);
           }
       );
   }
@@ -41,7 +41,7 @@ export class Habilitar_residentesComponent extends GenericServicesService implem
     bajaAlumnos() {
         this.http.get(GenericServicesService.API_ENDPOINT + 'BajaAlumnoR/' + this.nocontrol, GenericServicesService.HEADERS).subscribe(
             (response) => {
-                console.log(response);
+                alert(response);
             }
         );
     }

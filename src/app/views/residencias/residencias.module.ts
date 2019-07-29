@@ -38,7 +38,6 @@ import { Informe_tecnicoComponent } from './informe_tecnico/informe_tecnico.comp
 import { Generar_conveniosComponent } from './generar_convenios/generar_convenios.component';
 import {Configuracion_actaComponent} from './configuracion_acta/configuracion_acta.component';
 import { Informacion_residenciasComponent } from './informacion_residencias/informacion_residencias.component';
-import { P404Component } from '../error/404.component';
 import { Estadisticas_asesoresComponent } from './estadisticas_asesores/estadisticas_asesores.component';
 import { Vista_de_documentacionComponent } from './vista_de_documentacion/vista_de_documentacion.component';
 
@@ -82,7 +81,6 @@ import { Vista_de_documentacionComponent } from './vista_de_documentacion/vista_
     Generar_conveniosComponent,
     Configuracion_actaComponent,
     Informacion_residenciasComponent,
-    P404Component,
     Estadisticas_asesoresComponent,
     Vista_de_documentacionComponent
   ]

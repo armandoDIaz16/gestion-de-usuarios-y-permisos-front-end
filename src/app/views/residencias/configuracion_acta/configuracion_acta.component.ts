@@ -27,11 +27,11 @@ export class Configuracion_actaComponent extends GenericServicesService implemen
           'FOLIO': this.folio,
           'FECHA': this.fecha
       }, GenericServicesService.HEADERS).subscribe(
-         data => console.log(data)
+         data => alert(data)
       );
   }
 
   asignarFolios() {
-    this.http.get(GenericServicesService.API_ENDPOINT + 'InfoActaR', GenericServicesService.HEADERS).subscribe(data => console.log(data));
+    this.http.get(GenericServicesService.API_ENDPOINT + 'InfoActaR', GenericServicesService.HEADERS).subscribe(data => alert(data));
   }
 }

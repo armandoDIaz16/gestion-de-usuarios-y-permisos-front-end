@@ -38,7 +38,7 @@ export class Reporte_asesor_externoComponent extends GenericServicesService impl
             formData.append('alumno', this.opcion);
             this.http.post(GenericServicesService.API_ENDPOINT + 'Repexterno', formData, GenericServicesService.HEADERS).subscribe(
                 (response) => {
-                    console.log(response);
+                    alert(response);
                 });
         }
         elem.value = ''; // line 9
