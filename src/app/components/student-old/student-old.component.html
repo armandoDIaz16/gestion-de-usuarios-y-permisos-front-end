@@ -26,10 +26,16 @@
                                     <h1 class="text-center">Datos de identificación</h1>
                                     <div *ngIf="this.registrado">
                                         <div class="alert alert-success" role="alert">
-                                            <h4 class="alert-heading">¡Registro correcto!</h4>
-                                            <p>
+                                            <h4 class="alert-heading text-center">¡Registro correcto!</h4>
+                                            <p class="text-center">
                                                 Te has registrado correctamente, hemos enviado un correo electrónico
                                                 para que realices la activación de tu cuenta.
+                                                <br><br>
+                                                Recuerda revisar tu bandeja de <b>correo no deseado</b>
+                                                <br><br>
+                                                <a class="btn btn-success px-4" href="/">
+                                                    Aceptar
+                                                </a>
                                             </p>
                                         </div>
                                     </div>
@@ -73,11 +79,15 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="CLAVE_CARRERA">Carrera</label>
-                                                <input type="text" name="CLAVE_CARRERA" class="form-control"
-                                                       placeholder="CLAVE_CARRERA" id="CLAVE_CARRERA"
+                                                <label for="NOMBRE_CARRERA">Carrera</label>
+                                                <input type="text" name="NOMBRE_CARRERA" class="form-control"
+                                                       placeholder="NOMBRE_CARRERA" id="NOMBRE_CARRERA"
                                                        [(ngModel)]="form.NOMBRE_CARRERA"
                                                        required disabled>
+                                                <input type="text" name="CLAVE_CARRERA" class="form-control"
+                                                       placeholder="CLAVE_CARRERA" id="CLAVE_CARRERA"
+                                                       [(ngModel)]="form.CLAVE_CARRERA"
+                                                       hidden>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -185,11 +195,12 @@
 
                                             <br><br>
 
-                                            <button type="submit" class="btn btn-primary px-4"
+                                            <button *ngIf="!ocultar_boton_enviar" type="submit" class="btn btn-primary px-4"
                                                     [disabled]="!oldForm.valid">
                                                 Registrarme
                                             </button>
-                                            <a class="btn btn-danger px-4" href="/">
+
+                                            <a *ngIf="!ocultar_boton_enviar" class="btn btn-danger px-4" href="/">
                                                 Cancelar
                                             </a>
                                         </div>

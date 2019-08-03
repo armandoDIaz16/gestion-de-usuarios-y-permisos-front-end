@@ -19,7 +19,7 @@ export class ControlComponent implements OnInit {
     public data = null;
 
     constructor(private Jarwis: JarwisService,
-                //private Token : TokenService,
+                // private Token : TokenService,
                 private router: Router
     ) {
 

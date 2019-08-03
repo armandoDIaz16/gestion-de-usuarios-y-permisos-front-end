@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import {JarwisService} from '../../services/jarwis.service';
 import {TokenService} from '../../services/token.service';
 import {Router} from '@angular/router';
@@ -18,31 +18,35 @@ export class StudentOldComponent implements OnInit {
     public get_carrera(clave_carrera: String) {
         switch (clave_carrera) {
             case 'IIX':
-                return 'Ingeniería industrial';
+                return 'Ingeniería Industrial';
+            case 'ISX':
+                return 'Ingeniería en Sistemas Computacionales';
         }
     }
 
     public datos_alumno = this.get_datos_alumno();
 
-    private registrado = false;
+    private registrado    = false;
+    private ocultar_boton_enviar = false;
+    private ocultar_boton_cancelar = false;
 
     public form = {
         email: null,
-        //name:null,
+        // name:null,
         NUMERO_CONTROL: this.datos_alumno.numero_control,
         name: this.datos_alumno.nombre,
         PRIMER_APELLIDO: this.datos_alumno.primer_apellido,
         SEGUNDO_APELLIDO: this.datos_alumno.segundo_apellido,
         CLAVE_CARRERA: this.datos_alumno.clave_carrera,
-        NOMBRE_CARRERA: this.get_carrera(this.datos_alumno.clave_carrera),
+        NOMBRE_CARRERA: this.get_carrera(this.datos_alumno.clave_carrera.trim()),
         SEMESTRE: this.datos_alumno.semestre,
         password: null,
         password_confirmation: null,
         curp: null,
         TELEFONO_FIJO: null,
         TELEFONO_MOVIL: null,
-        //PRIMER_APELLIDO:'chavez',
-        //SEGUNDO_APELLIDO:'barajas',
+        // PRIMER_APELLIDO:'chavez',
+        // SEGUNDO_APELLIDO:'barajas',
         /*  FECHA_NACIMIENTO:'2019-01-11',
           CURP: 'cabe960224hgthrd02',
           ESTADO:1,
@@ -83,7 +87,8 @@ export class StudentOldComponent implements OnInit {
 
     onSubmit() {
         if (this.form.curp.trim().length == 18) {
-            if (confirm("Acepto que he leído y estoy de acuerdo con el aviso de privacidad")){
+            if (confirm('Acepto que he leído y estoy de acuerdo con el aviso de privacidad')) {
+                this.ocultar_boton_enviar = true;
                 this.Jarwis.signup(this.form).subscribe(
                     data => this.handleResponse(data),
                     error => this.handleError(error)
@@ -95,7 +100,8 @@ export class StudentOldComponent implements OnInit {
     }
 
     handleResponse(data) {
-        if (data){
+        if (data) {
+            this.ocultar_boton_enviar = true;
             this.registrado = true;
             localStorage.clear();
         }

@@ -13,7 +13,7 @@ export class JarwisService extends GenericServicesService {
 
     /*  private baseUrl = 'http://127.0.0.1:8000/api';*/
     private baseUrl = GenericServicesService.API_ENDPOINT;
-    //private baseUrl = 'http://localhost:8000/api/';
+    // private baseUrl = 'http://localhost:8000/api/';
 
     /*
     * Llamada a servicio para validar número de control
