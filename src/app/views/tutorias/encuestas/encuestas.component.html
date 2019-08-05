@@ -12,17 +12,20 @@
                 <th>Estatus</th>
             </tr>
             </thead>
-            <tbody>
-            <div *ngIf="this.hay_encuestas">
-                <tr *ngFor="this.array_encuestas as encuesta">
-                    <td>Yiorgos Avraamu</td>
-                    <td>2012/01/01</td>
-                    <td>Member</td>
-                    <td>Member</td>
-                    <td><span class="badge badge-success">Active</span></td>
+            <tbody *ngIf="this.hay_encuestas; else elseBlock">
+                <tr *ngFor="let encu of array_encuestas">
+                    <td>{{encu.numero}}</td>
+                    <td>{{encu.nombre}}</td>
+                    <td>{{encu.fechaa}}</td>
+                    <td>{{encu.fechar}}</td>
+                    <td><span class="badge badge-success">{{encu.estatus}}</span></td>
                 </tr>
-            </div>
             </tbody>
+            <ng-template #elseBlock>
+                <tbody>
+                <tr class="text-center">
+                <td colspan="5">No se encontraron encuestas pendientes</td>
+                </tr></tbody></ng-template>
         </table>
     </div>
 </div>

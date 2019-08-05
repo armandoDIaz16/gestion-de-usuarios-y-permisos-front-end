@@ -16,6 +16,9 @@ export class EncuestasComponent implements OnInit {
             {
                 numero: 1,
                 nombre: 'Encuesta 1',
+                fechaa: '16/05/2019',
+                fechar: '17/05/2019',
+                estatus: 'activo'
 
             }
         ];
