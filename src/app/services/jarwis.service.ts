@@ -24,6 +24,22 @@ export class JarwisService extends GenericServicesService {
     }
 
     /*
+    * Llamada a servicio para buscar datos de cuenta a activar
+    * en obtención de contraseña
+    * */
+    get_datos_activacion(data) {
+        return this.http.post(`${this.baseUrl}get_datos_activacion`, data);
+    }
+
+    /*
+    * Llamada a servicio para activar cuenta
+    * en obtención de contraseña
+    * */
+    activar_cuenta(data) {
+        return this.http.post(`${this.baseUrl}activar_cuenta`, data);
+    }
+
+    /*
     * Llamada a servicio para validar el curp y registrar nuevo usuario
     * en obtención de contraseña
     * */
@@ -31,6 +47,9 @@ export class JarwisService extends GenericServicesService {
         return this.http.post(`${this.baseUrl}signup`, data);
     }
 
+    /*
+    * Llamada a servicio para inicio de sesión de un usuario
+    * */
     login(data) {
         return this.http.post(`${this.baseUrl}login`, data);
     }

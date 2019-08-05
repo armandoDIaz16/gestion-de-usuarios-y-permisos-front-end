@@ -24,25 +24,68 @@
                             <div class="card p-3">
                                 <div class="card-body">
                                     <form #RequestControl=ngForm (ngSubmit)="onSubmit()">
-                                        <div class="alert alert-danger" [hidden]="!error">
-                                            {{error}}
-                                        </div>
-                                        <h1 class="text-center">Obtener Contraseña</h1>
+                                        <h1 class="text-center">Activación de cuenta</h1>
 
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="icon-user"></i></span>
+                                        <div class="alert alert-danger text-center" [hidden]="!error">
+                                            {{error}}
+                                            <br><br>
+                                            <a class="btn btn-danger px-4" href="/">
+                                                Aceptar
+                                            </a>
+                                        </div>
+
+                                        <div *ngIf="this.cuenta_activada">
+                                            <div class="alert alert-success" role="alert">
+                                                <h4 class="alert-heading text-center">¡Bienvenido!</h4>
+                                                <p class="text-center">
+                                                    Tu cuenta de estudiante se ha activado con éxito, ahora podrás
+                                                    acceder a la plataforma
+                                                    <br>
+                                                    TecVirtual del Tecnológico Nacional de México en León.
+                                                    <br><br>
+
+                                                    <a class="btn btn-success px-4" href="/">
+                                                        Aceptar
+                                                    </a>
+                                                </p>
                                             </div>
-                                            <input type="text" name="control" class="form-control"
-                                                   placeholder="Numero de control" id="control1" autocomplete="control"
-                                                   [(ngModel)]="form.control" required>
+                                        </div>
+
+                                        <div *ngIf="!ocultar_boton_enviar">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="icon-user"></i></span>
+                                                </div>
+                                                <input type="text" name="curp" class="form-control" id="curp"
+                                                       [(ngModel)]="this.form.curp" required [disabled]="true">
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="icon-user"></i></span>
+                                                </div>
+                                                <input type="password" name="password1" class="form-control"
+                                                       placeholder="Contraseña" id="password1"
+                                                       [(ngModel)]="form.password1" required>
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="icon-user"></i></span>
+                                                </div>
+                                                <input type="password" name="password2" class="form-control"
+                                                       placeholder="Confirmar contraseña" id="password2"
+                                                       [(ngModel)]="form.password2" required>
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-12 text-center">
-                                                <button type="submit" class="btn btn-primary px-4"
+                                                <button *ngIf="!ocultar_boton_enviar" type="submit"
+                                                        class="btn btn-primary px-4"
                                                         [disabled]="!RequestControl.valid">Siguiente
                                                 </button>
-                                                <a class="btn btn-danger px-4" routerLink="/">Cancelar</a>
+                                                <a *ngIf="!ocultar_boton_enviar" class="btn btn-danger px-4"
+                                                   routerLink="/">
+                                                    Cancelar
+                                                </a>
                                             </div>
                                         </div>
                                     </form>

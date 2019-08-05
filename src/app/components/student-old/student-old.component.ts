@@ -86,7 +86,7 @@ export class StudentOldComponent implements OnInit {
     }
 
     onSubmit() {
-        if (this.form.curp.trim().length == 18) {
+        if (this.form.curp.trim().length === 18) {
             if (confirm('Acepto que he leído y estoy de acuerdo con el aviso de privacidad')) {
                 this.ocultar_boton_enviar = true;
                 this.Jarwis.signup(this.form).subscribe(

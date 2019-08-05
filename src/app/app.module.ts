@@ -63,6 +63,7 @@ import { ControlComponent } from './components/control/control.component';
 import { StudentOldComponent } from './components/student-old/student-old.component';
 import { NavbarSistemsComponent } from './components/navbar-sistems/navbar-sistems.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ActivaCuentaComponent } from './components/activa-cuenta/activa-cuenta.component';
 
 
 @NgModule({
@@ -99,6 +100,7 @@ import { ReactiveFormsModule } from '@angular/forms';
         ControlComponent,
         StudentOldComponent,
         NavbarSistemsComponent,
+        ActivaCuentaComponent,
     ],
     providers:
         [
