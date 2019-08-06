@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {VerEncuestasService} from './ver-encuestas.service';
 import {InterfaceEncuestaCompleta} from '../_models/EncuestasModel';
@@ -17,7 +17,7 @@ export class VerEncuestasComponent implements OnInit {
     private hay_encuesta = null;
     private encuesta_completa: InterfaceEncuestaCompleta;
 
-    constructor(private ver_encuestas_service: VerEncuestasService, private route: ActivatedRoute, private http: HttpClient) {
+    constructor(private ver_encuestas_service: VerEncuestasService, private route: ActivatedRoute, private http: HttpClient, private router: Router) {
         this.pk_aplicacion_encuesta = parseInt(this.route.snapshot.queryParamMap.get('pk_aplicacion_encuesta'));
     }
 
@@ -37,8 +37,50 @@ export class VerEncuestasComponent implements OnInit {
         }
     }
 
-    handleError(error) { }
+    handleError(error) {
+    }
 
-    onSubmit() { }
+    onSubmit() {
+        var array_respuestas = [], array_original = [];
+        for (var _i = 0; _i < 15; _i++){
+            array_respuestas.push(
+                parseInt((<HTMLInputElement>document.getElementById("res_"+_i)).value)
+            );
+            array_original.push(
+                parseInt((<HTMLInputElement>document.getElementById("res_"+_i)).value)
+            );
+        }
+
+        array_respuestas.sort(this.mayor_a_menor);
+
+        if (this.valida_array_respuestas(array_respuestas)){
+            this.ver_encuestas_service.guarda_respuestas_pasatiempos(this.pk_aplicacion_encuesta.toString(), array_original).subscribe(
+                data => this.handleResponseGuardar(data),
+                error => this.handleError(error)
+            );
+        }  else {
+            alert("Los números no deben repetirse");
+        }
+    }
+
+    handleResponseGuardar(data) {
+        if (data.data) {
+            this.router.navigateByUrl('/tutorias/encuestas');
+        }
+    }
+
+    valida_array_respuestas(array_respuestas) {
+        for (var _i = 0; _i < 14; _i++) {
+            if (array_respuestas[_i] == array_respuestas[_i + 1]) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    mayor_a_menor(elem1, elem2) {
+        return elem1 - elem2;
+    }
 
 }

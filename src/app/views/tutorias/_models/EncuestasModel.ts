@@ -1,20 +1,20 @@
 export interface InterfaceEncuestaPendiente {
     PK_APLICACION_ENCUESTA: number;
     FK_USUARIO:             number;
-    FECHA_APLICACION:       String;
-    FECHA_RESPUESTA?:       String;
+    FECHA_APLICACION:       string;
+    FECHA_RESPUESTA?:       string;
     ESTADO_APLICACION:      number;
     PK_ENCUESTA:            number;
-    NOMBRE:                 String;
+    NOMBRE:                 string;
     ESTADO_ENCUESTA:        number;
 }
 
 export interface InterfaceEncuestaCompleta {
     PK_ENCUESTA:      number;
-    NOMBRE:           String;
-    OBJETIVO?:        String;
-    INSTRUCCIONES:    String;
-    FUENTE_CITA?:     String;
+    NOMBRE:           string;
+    OBJETIVO?:        string;
+    INSTRUCCIONES:    string;
+    FUENTE_CITA?:     string;
     ES_ADMINISTRABLE: number;
     SECCIONES:       InterfaceSeccionEncuesta[];
 }
@@ -22,11 +22,11 @@ export interface InterfaceEncuestaCompleta {
 export interface InterfaceSeccionEncuesta {
     PK_SECCION:    number;
     FK_ENCUESTA:   number;
-    NOMBRE:        String;
+    NOMBRE:        string;
     NUMERO:        number;
     ORDEN:         number;
-    OBJETIVO:      String;
-    INSTRUCCIONES: String;
+    OBJETIVO?:      string;
+    INSTRUCCIONES: string;
     PREGUNTAS:     InterfacePreguntaEncuesta[];
 }
 
@@ -34,17 +34,17 @@ export interface InterfacePreguntaEncuesta {
     PK_PREGUNTA:          number;
     FK_SECCION:           number;
     ORDEN:                number;
-    PLANTEAMIENTO:        String;
-    TEXTO_GUIA:           String;
+    PLANTEAMIENTO:        string;
+    TEXTO_GUIA:           string;
     FK_TIPO_PREGUNTA:     number;
-    NOMBRE_TIPO_PREGUNTA: String;
+    NOMBRE_TIPO_PREGUNTA: string;
     RESPUESTAS:           InterfaceRespuestaPosible[];
 }
 
 export interface InterfaceRespuestaPosible {
     PK_RESPUESTA_POSIBLE: number;
     FK_PREGUNTA:          number;
-    RESPUESTA:            String;
+    RESPUESTA:            string;
     VALOR_NUMERICO?:      number;
     MINIMO?:              number;
     MAXIMO?:              number;
