@@ -3,6 +3,7 @@ import {Routes, RouterModule} from '@angular/router';
 
 import {UsuariosTutoriasComponent} from './usuarios_tutorias/usuarios_tutorias.component';
 import {EncuestasComponent} from './encuestas/encuestas.component';
+import {VerEncuestasComponent} from './ver-encuestas/ver-encuestas.component';
 
 const routes: Routes = [
     {
@@ -23,6 +24,20 @@ const routes: Routes = [
                 component: EncuestasComponent,
                 data: {
                     title: 'Encuestas'
+                }
+            },
+            {
+                path: 'responder_encuesta',
+                component: VerEncuestasComponent,
+                data: {
+                    title: 'Responder encuesta'
+                }
+            },
+            {
+                path: 'mostrar_encuesta',
+                component: VerEncuestasComponent,
+                data: {
+                    title: 'Ver encuesta'
                 }
             }
         ]

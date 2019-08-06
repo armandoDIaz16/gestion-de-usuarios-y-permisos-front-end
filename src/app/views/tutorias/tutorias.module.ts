@@ -12,6 +12,7 @@ import { TutoriasRoutingModule } from './tutorias-routing.module';
 import {CollapseModule} from 'ngx-bootstrap';
 import { UsuariosTutoriasComponent } from './usuarios_tutorias/usuarios_tutorias.component';
 import { EncuestasComponent } from './encuestas/encuestas.component';
+import { VerEncuestasComponent } from './ver-encuestas/ver-encuestas.component';
 
 // Angular
 
@@ -25,7 +26,8 @@ import { EncuestasComponent } from './encuestas/encuestas.component';
     ],
     declarations: [
         UsuariosTutoriasComponent,
-        EncuestasComponent
+        EncuestasComponent,
+        VerEncuestasComponent
     ]
 })
 export class TutoriasModule { }

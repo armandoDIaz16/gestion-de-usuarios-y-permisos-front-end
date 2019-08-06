@@ -1,0 +1,67 @@
+<h2 class="text-center">
+    Responder encuesta
+    <br><br>
+
+    <b>"{{this.encuesta_completa.NOMBRE}}"</b>
+
+</h2>
+<br><br>
+
+<div class="row">
+    <div class="offset-3 col-md-6">
+        <h3 *ngIf="this.encuesta_completa.OBJETIVO" class="text-center">
+            Objetivo: {{this.encuesta_completa.OBJETIVO}}
+            <br>
+        </h3>
+        <h4 class="text-center">
+            Instrucciones: <b>{{this.encuesta_completa.INSTRUCCIONES}}</b>
+        </h4>
+
+        <form (ngSubmit)="onSubmit()">
+            <div *ngIf="this.encuesta_completa.PK_ENCUESTA == 1">
+                <div *ngFor="let seccion of this.encuesta_completa.SECCIONES">
+                    <div *ngFor="let pregunta of seccion.PREGUNTAS">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr class="text-center">
+                                <th>
+                                    Actividad
+                                </th>
+                                <th>
+                                    Frecuencia
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let respuesta of pregunta.RESPUESTAS; let i = index">
+                                <td class="text-center">
+                                    {{respuesta.RESPUESTA}}
+                                </td>
+                                <td>
+                                    <input type="number" min="1" max="15" [value]="[5]" class="form-control is-invalid">
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 text-center">
+                    <button type="submit" class="btn btn-primary px-4">
+                        Guardar respuestas
+                    </button>
+                    <a class="btn btn-danger px-4" routerLink="/tutorias/encuestas">Cancelar</a>
+                </div>
+            </div>
+        </form>
+
+        <br><br>
+
+        <div *ngIf="this.encuesta_completa.PK_ENCUESTA != 1">
+
+        </div>
+
+    </div>
+</div>

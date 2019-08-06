@@ -4,28 +4,44 @@
     <div class="offset-2 col-md-8">
         <table class="table table-striped">
             <thead>
-            <tr>
+            <tr class="text-center">
                 <th>Número</th>
                 <th>Nombre</th>
                 <th>Fecha aplicación</th>
                 <th>Fecha respuesta</th>
-                <th>Estatus</th>
+                <th>Operaciones</th>
             </tr>
             </thead>
             <tbody *ngIf="this.hay_encuestas; else elseBlock">
-                <tr *ngFor="let encu of array_encuestas">
-                    <td>{{encu.numero}}</td>
-                    <td>{{encu.nombre}}</td>
-                    <td>{{encu.fechaa}}</td>
-                    <td>{{encu.fechar}}</td>
-                    <td><span class="badge badge-success">{{encu.estatus}}</span></td>
-                </tr>
+            <tr *ngFor="let encuesta of this.lista_encuestas; let i = index" class="text-center">
+                <td>{{i + 1}}</td>
+                <td>{{encuesta.NOMBRE}}</td>
+                <td>{{encuesta.FECHA_APLICACION}}</td>
+                <td>{{encuesta.FECHA_RESPUESTA}}</td>
+                <td>
+                    <a *ngIf="encuesta.ESTADO_APLICACION == 1; else elseBlockRespuesta"
+                       [routerLink]="['/tutorias/responder_encuesta']"
+                       [queryParams]="{pk_aplicacion_encuesta: encuesta.PK_APLICACION_ENCUESTA}"
+                       class="btn btn-primary">
+                        Responder
+                    </a>
+                    <ng-template #elseBlockRespuesta>
+                        <a [routerLink]="['/tutorias/mostrar_encuesta']"
+                           [queryParams]="{pk_aplicacion_encuesta: encuesta.PK_APLICACION_ENCUESTA}"
+                           class="btn btn-success">
+                            Ver resultados
+                        </a>
+                    </ng-template>
+                </td>
+            </tr>
             </tbody>
             <ng-template #elseBlock>
                 <tbody>
                 <tr class="text-center">
-                <td colspan="5">No se encontraron encuestas pendientes</td>
-                </tr></tbody></ng-template>
+                    <td colspan="5">No se encontraron encuestas pendientes</td>
+                </tr>
+                </tbody>
+            </ng-template>
         </table>
     </div>
 </div>
