@@ -1,27 +1,32 @@
 <app-404 *ngIf=!mostrarModulo></app-404>
 <div class="animated fadeIn" *ngIf=mostrarModulo>
-    <div class="card">
-        <table class="table" >
-            <thead>
-                <tr class="card-header">
-                    <th>Id</th>
-                    <th>Nombre</th>
-                    <th>Empresa</th>
-                    <th>Comentarios</th>
-                    <th>Seleccionar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let antep of anteproyectosLista">
-                    <td>{{antep.ID_ANTEPROYECTO}}</td>
-                    <td>{{ antep.NOMBRE }}</td>
-                    <td>{{ antep.EMPRESA }}</td>
-                    <td>{{ antep.COMENTARIO }}</td>
-                    <td>  <label class="btn btn-dark">
-                        Seleccionar<input type="submit" value="submit" name="submit" hidden (click)="uploadFile(antep.ID_ANTEPROYECTO)">
+    <div class="row">
+        <div class="offset-2 col-md-8">
+            <div class="card">
+                <table class="table">
+                    <thead>
+                    <tr class="card-header">
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Empresa</th>
+                        <th>Comentarios</th>
+                        <th>Seleccionar</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let antep of anteproyectosLista">
+                        <td>{{antep.ID_ANTEPROYECTO}}</td>
+                        <td>{{ antep.NOMBRE }}</td>
+                        <td>{{ antep.EMPRESA }}</td>
+                        <td>{{ antep.COMENTARIO }}</td>
+                        <td><label class="btn btn-dark">
+                            Seleccionar<input type="submit" value="submit" name="submit" hidden
+                                              (click)="uploadFile(antep.ID_ANTEPROYECTO)">
                         </label></td>
-                </tr>
-            </tbody>
-        </table>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>

@@ -1,22 +1,27 @@
 <app-404 *ngIf=!mostrarModulo></app-404>
 <div class="animated fadeIn" *ngIf=mostrarModulo>
-    <div class="card">
-        <h2 class="card-header">Configuración</h2>
-        <div class="card-body">
-            <h5>Folio:</h5>
-            <input type="number" [(ngModel)]="folio" name="folio" id="folio" class="form-control form-control-lg">
-            <br>
-            <h5>Fecha:</h5>
-            <input type="date" [(ngModel)]="fecha" name="fecha" id="fecha" class="form-control form-control-lg">
-            <br>
-            <div align="center">
-                <label class="btn btn-dark">
-                    Guardar<input type="submit" name="file" hidden (click)="guardarInformacion()">
-                </label>
-                <br>
-                <label class="btn btn-dark">
-                    Asignar folios <input type="submit" name="file" hidden (click)="asignarFolios()">
-                </label>
+    <div class="row">
+        <div class="offset-2 col-md-8">
+            <div class="card">
+                <h2 class="card-header">Configuración</h2>
+                <div class="card-body">
+                    <h5>Folio:</h5>
+                    <input type="number" [(ngModel)]="folio" name="folio" id="folio"
+                           class="form-control form-control-lg">
+                    <br>
+                    <h5>Fecha:</h5>
+                    <input type="date" [(ngModel)]="fecha" name="fecha" id="fecha" class="form-control form-control-lg">
+                    <br>
+                    <div align="center">
+                        <label class="btn btn-dark">
+                            Guardar<input type="submit" name="file" hidden (click)="guardarInformacion()">
+                        </label>
+                        <br>
+                        <label class="btn btn-dark">
+                            Asignar folios <input type="submit" name="file" hidden (click)="asignarFolios()">
+                        </label>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

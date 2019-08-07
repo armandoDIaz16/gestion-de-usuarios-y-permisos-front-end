@@ -1,71 +1,95 @@
 <app-404 *ngIf=!mostrarModulo></app-404>
 <div class="animated fadeIn" *ngIf=mostrarModulo>
-<div class="card">
-    <h5 class="card-header">Datos Empresa</h5>
-    <div class="card-body">
-        <h5>Nombre o razón social de la empresa con la que se va a firmar el convenio:</h5>
-        <input [(ngModel)]="NombreEmpresa" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-        <br>
-        <h5>Señalar grado, nombre y apellidos del representante legal de la empresa:</h5>
-        <input [(ngModel)]="NombreRepresentante" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-        <br>
-        <h5>Precisar número del acta constitutiva:</h5>
-        <input [(ngModel)]="NoActaConstitutiva" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-        <br>
-        <h5>FECHA (señalar día mes y año) en que se firmó el acta constitutiva:</h5>
-        <input [(ngModel)]="FechaFirma" type="date" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-        <br>
-        <h5>Precisar grado académico, nombre y apellidos del notario público:</h5>
-        <input [(ngModel)]="NombreNotario" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-        <br>
-        <h5>Señalar número de la notaría:</h5>
-        <input [(ngModel)]="NoNotaria" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-        <br>
-        <h5>Sea del Distrito Federal o Entidad Federativa:</h5>
-        <input [(ngModel)]="EntidadFederativa" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-        <br>
-        <h5>Fecha en que se registro en el Registro Público de la Propiedad y de Comercio:</h5>
-        <input [(ngModel)]="FechaRegistro" type="date" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-        <br>
-        <h5>Bajo el folio mercantil número:</h5>
-        <input [(ngModel)]="FolioMercantil" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-        <br>
-        <h5>Número de Volumen:</h5>
-        <input [(ngModel)]="NoVolumen" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-        <br>
-        <h5>Describir el objeto social de la empresa:</h5>
-        <input [(ngModel)]="ObjetoSocial" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-        <br>
-        <h5>Señalar el número de la escritura o si fuera el caso el poder notarial:</h5>
-        <input [(ngModel)]="NoEscritura" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-        <br>
-        <h5>Señalar día, mes, año:</h5>
-        <input [(ngModel)]="FechaNotario" type="date" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-        <br>
-        <h5>(Precisar grado académico, nombre y apellidos)NOTARIO:</h5>
-        <input [(ngModel)]="NombreNotarioNotario" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-        <br>
-        <h5>Señalar número de la notaría:</h5>
-        <input [(ngModel)]="NoNotariaNotario" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-        <br>
-        <h5>Sea del Distrito Federal o Entidad Federativa:</h5>
-        <input [(ngModel)]="EntidadFederativaNotario" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-        <br>
-        <h5>Número del RFC:</h5>
-        <input [(ngModel)]="NoRFC" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-        <br>
-        <h5>Señalar calle o avenida, número, colonia o fraccionamiento, delegación o municipio,  código  postal, indicar sea el Distrito Federal o la Entidad Federativa (de la empresa):</h5>
-        <input [(ngModel)]="DirEmpresa" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-        <br>
-        <h5>Nombre y cargo del Testigo:</h5>
-        <input [(ngModel)]="NombreTestigo" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-        <br>
-        <div style="text-align: center;">
-        <h5>Logo empresa</h5>
-        <label class="btn btn-dark">
-            Seleccionar<input type="file" name="file" hidden multiple (change)="uploadFile($event)">
-        </label>
+    <div class="row">
+        <div class="offset-2 col-md-8">
+            <div class="card">
+                <h5 class="card-header">Datos Empresa</h5>
+                <div class="card-body">
+                    <h5>Nombre o razón social de la empresa con la que se va a firmar el convenio:</h5>
+                    <input [(ngModel)]="NombreEmpresa" type="text" class="form-control" aria-label="Small"
+                           aria-describedby="inputGroup-sizing-sm">
+                    <br>
+                    <h5>Señalar grado, nombre y apellidos del representante legal de la empresa:</h5>
+                    <input [(ngModel)]="NombreRepresentante" type="text" class="form-control" aria-label="Small"
+                           aria-describedby="inputGroup-sizing-sm">
+                    <br>
+                    <h5>Precisar número del acta constitutiva:</h5>
+                    <input [(ngModel)]="NoActaConstitutiva" type="text" class="form-control" aria-label="Small"
+                           aria-describedby="inputGroup-sizing-sm">
+                    <br>
+                    <h5>FECHA (señalar día mes y año) en que se firmó el acta constitutiva:</h5>
+                    <input [(ngModel)]="FechaFirma" type="date" class="form-control" aria-label="Small"
+                           aria-describedby="inputGroup-sizing-sm">
+                    <br>
+                    <h5>Precisar grado académico, nombre y apellidos del notario público:</h5>
+                    <input [(ngModel)]="NombreNotario" type="text" class="form-control" aria-label="Small"
+                           aria-describedby="inputGroup-sizing-sm">
+                    <br>
+                    <h5>Señalar número de la notaría:</h5>
+                    <input [(ngModel)]="NoNotaria" type="text" class="form-control" aria-label="Small"
+                           aria-describedby="inputGroup-sizing-sm">
+                    <br>
+                    <h5>Sea del Distrito Federal o Entidad Federativa:</h5>
+                    <input [(ngModel)]="EntidadFederativa" type="text" class="form-control" aria-label="Small"
+                           aria-describedby="inputGroup-sizing-sm">
+                    <br>
+                    <h5>Fecha en que se registro en el Registro Público de la Propiedad y de Comercio:</h5>
+                    <input [(ngModel)]="FechaRegistro" type="date" class="form-control" aria-label="Small"
+                           aria-describedby="inputGroup-sizing-sm">
+                    <br>
+                    <h5>Bajo el folio mercantil número:</h5>
+                    <input [(ngModel)]="FolioMercantil" type="text" class="form-control" aria-label="Small"
+                           aria-describedby="inputGroup-sizing-sm">
+                    <br>
+                    <h5>Número de Volumen:</h5>
+                    <input [(ngModel)]="NoVolumen" type="text" class="form-control" aria-label="Small"
+                           aria-describedby="inputGroup-sizing-sm">
+                    <br>
+                    <h5>Describir el objeto social de la empresa:</h5>
+                    <input [(ngModel)]="ObjetoSocial" type="text" class="form-control" aria-label="Small"
+                           aria-describedby="inputGroup-sizing-sm">
+                    <br>
+                    <h5>Señalar el número de la escritura o si fuera el caso el poder notarial:</h5>
+                    <input [(ngModel)]="NoEscritura" type="text" class="form-control" aria-label="Small"
+                           aria-describedby="inputGroup-sizing-sm">
+                    <br>
+                    <h5>Señalar día, mes, año:</h5>
+                    <input [(ngModel)]="FechaNotario" type="date" class="form-control" aria-label="Small"
+                           aria-describedby="inputGroup-sizing-sm">
+                    <br>
+                    <h5>(Precisar grado académico, nombre y apellidos)NOTARIO:</h5>
+                    <input [(ngModel)]="NombreNotarioNotario" type="text" class="form-control" aria-label="Small"
+                           aria-describedby="inputGroup-sizing-sm">
+                    <br>
+                    <h5>Señalar número de la notaría:</h5>
+                    <input [(ngModel)]="NoNotariaNotario" type="text" class="form-control" aria-label="Small"
+                           aria-describedby="inputGroup-sizing-sm">
+                    <br>
+                    <h5>Sea del Distrito Federal o Entidad Federativa:</h5>
+                    <input [(ngModel)]="EntidadFederativaNotario" type="text" class="form-control" aria-label="Small"
+                           aria-describedby="inputGroup-sizing-sm">
+                    <br>
+                    <h5>Número del RFC:</h5>
+                    <input [(ngModel)]="NoRFC" type="text" class="form-control" aria-label="Small"
+                           aria-describedby="inputGroup-sizing-sm">
+                    <br>
+                    <h5>Señalar calle o avenida, número, colonia o fraccionamiento, delegación o municipio, código
+                        postal, indicar sea el Distrito Federal o la Entidad Federativa (de la empresa):</h5>
+                    <input [(ngModel)]="DirEmpresa" type="text" class="form-control" aria-label="Small"
+                           aria-describedby="inputGroup-sizing-sm">
+                    <br>
+                    <h5>Nombre y cargo del Testigo:</h5>
+                    <input [(ngModel)]="NombreTestigo" type="text" class="form-control" aria-label="Small"
+                           aria-describedby="inputGroup-sizing-sm">
+                    <br>
+                    <div style="text-align: center;">
+                        <h5>Logo empresa</h5>
+                        <label class="btn btn-dark">
+                            Seleccionar<input type="file" name="file" hidden multiple (change)="uploadFile($event)">
+                        </label>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 </div>

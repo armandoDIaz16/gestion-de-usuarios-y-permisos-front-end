@@ -1,37 +1,43 @@
 <app-404 *ngIf=!mostrarModulo></app-404>
 <div class="animated fadeIn" *ngIf=mostrarModulo>
-    <div class="card">
-        <table class="table" >
-            <thead>
-            <tr class="card-header">
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Anteproyecto</th>
-                <th>Alumno</th>
-                <th>Estatus</th>
-                <th>Empresa</th>
-                <th>Comentarios</th>
-                <th>Aprobar</th>
-                <th>Rechazar</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let antep of anteproyectosLista">
-                <td>{{antep.ID_ANTEPROYECTO}}</td>
-                <td>{{ antep.NOMBRE }}</td>
-                <td><a href="{{'http://127.0.0.1:8000/'+antep.PDF}}" target="_blank">{{antep.PDF}}</a></td>
-                <td>{{antep.name}}</td>
-                <td>{{antep.ESTATUS}}</td>
-                <td>{{ antep.EMPRESA }}</td>
-                <td>{{ antep.COMENTARIO }}</td>
-                <td>  <label class="btn btn-success">
-                    Aprobar<input type="submit" value="submit" name="submit" hidden (click)="aprobarProyecto(antep.ID_ANTEPROYECTO); crearProyecto(antep.ID_ANTEPROYECTO)">
-                </label></td>
-                <td>  <label class="btn btn-danger">
-                    Rechazar<input type="submit" value="submit" name="submit" hidden (click)="rechazarProyecto(antep.ID_ANTEPROYECTO)">
-                </label></td>
-            </tr>
-            </tbody>
-        </table>
+    <div class="row">
+        <div class="offset-2 col-md-8">
+            <div class="card">
+                <table class="table">
+                    <thead>
+                    <tr class="card-header">
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Anteproyecto</th>
+                        <th>Alumno</th>
+                        <th>Estatus</th>
+                        <th>Empresa</th>
+                        <th>Comentarios</th>
+                        <th>Aprobar</th>
+                        <th>Rechazar</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let antep of anteproyectosLista">
+                        <td>{{antep.ID_ANTEPROYECTO}}</td>
+                        <td>{{ antep.NOMBRE }}</td>
+                        <td><a href="{{'http://127.0.0.1:8000/'+antep.PDF}}" target="_blank">{{antep.PDF}}</a></td>
+                        <td>{{antep.name}}</td>
+                        <td>{{antep.ESTATUS}}</td>
+                        <td>{{ antep.EMPRESA }}</td>
+                        <td>{{ antep.COMENTARIO }}</td>
+                        <td><label class="btn btn-success">
+                            Aprobar<input type="submit" value="submit" name="submit" hidden
+                                          (click)="aprobarProyecto(antep.ID_ANTEPROYECTO); crearProyecto(antep.ID_ANTEPROYECTO)">
+                        </label></td>
+                        <td><label class="btn btn-danger">
+                            Rechazar<input type="submit" value="submit" name="submit" hidden
+                                           (click)="rechazarProyecto(antep.ID_ANTEPROYECTO)">
+                        </label></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>

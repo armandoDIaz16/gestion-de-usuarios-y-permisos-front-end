@@ -1,32 +1,33 @@
 <app-404 *ngIf=!mostrarModulo></app-404>
 <div class="animated fadeIn" *ngIf=mostrarModulo>
-    <div class="col-lg-4">
+    <div class="offset-2 col-md-8">
         <div class="card">
             <div class="card-body">
                 <div style="text-align: left;">
                     <form (ngSubmit)="onSubmit()">
-                        <table>
-                            <tbody>
-                            <tr><label>Nombre del proyecto:</label></tr>
-                            <tr><input [(ngModel)]="nombre" class="form-control form-control-lg" type="text"
-                                       placeholder="Nombre del proyecto" name="nombre"></tr>
-                            <tr><label>Area Academica:</label></tr>
-                            <tr><select [(ngModel)]="opcionSeleccionado" class="form-control form-control-lg"
-                                        placeholder="Area academica" name="area">
-                                <option value="1">Sistemas y Computación</option>
-                                <option value="2">Metal-Mecánica</option>
-                                <option value="4">Industrial</option>
-                                <option value="3">Ciencias Económico - Administrativas</option>
-                            </select></tr>
-                            <tr><label>Empresa:</label></tr>
-                            <tr><input [(ngModel)]="empresa" class="form-control form-control-lg" type="text"
-                                       placeholder="Nombre de la empresa" name="empresa"></tr>
-                            <tr><label>Comentarios:</label></tr>
-                            <tr><textarea [(ngModel)]="comentario" class="form-control form-control-lg"
-                                          placeholder="Comentarios acerca del proyecto" name="especialidad">
-                            </textarea></tr>
-                            </tbody>
-                        </table>
+                        <label>Nombre del proyecto:</label>
+                        <input [(ngModel)]="nombre"
+                               class="form-control form-control-lg" type="text"
+                               placeholder="Nombre del proyecto"
+                               name="nombre">
+                        <label>Area Academica:</label>
+                        <select
+                            [(ngModel)]="opcionSeleccionado" class="form-control form-control-lg"
+                            placeholder="Area academica" name="area">
+                            <option value="1">Sistemas y Computación</option>
+                            <option value="2">Metal-Mecánica</option>
+                            <option value="4">Industrial</option>
+                            <option value="3">Ciencias Económico - Administrativas</option>
+                        </select>
+                        <label>Empresa:</label>
+                        <input [(ngModel)]="empresa" class="form-control form-control-lg"
+                               type="text"
+                               placeholder="Nombre de la empresa" name="empresa">
+                        <label>Comentarios:</label>
+                        <textarea
+                            [(ngModel)]="comentario" class="form-control form-control-lg"
+                            placeholder="Comentarios acerca del proyecto" name="especialidad">
+                            </textarea>
                         <div style="text-align: center;">
                             <br>
                             <button class="btn btn-dark" type="submit" value="Submit">Guardar</button>
