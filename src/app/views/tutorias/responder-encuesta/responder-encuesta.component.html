@@ -1,5 +1,5 @@
 <h2 class="text-center">
-    Ver resultados de encuesta
+    Responder encuesta
     <br><br>
 
     <b>"{{this.encuesta_completa.NOMBRE}}"</b>
@@ -39,6 +39,7 @@
                                 </td>
                                 <td>
                                     <input type="number" min="1" max="15" [value]="[i + 1]" class="form-control" [id]="['res_' + i]">
+                                    <input type="hidden" value="{{respuesta.PK_RESPUESTA_POSIBLE}}" [id]="['pk_res_' + i]">
                                 </td>
                             </tr>
                             </tbody>
@@ -49,6 +50,9 @@
 
             <div class="row">
                 <div class="col-12 text-center">
+                    <button type="submit" class="btn btn-primary px-4">
+                        Guardar respuestas
+                    </button>
                     <a class="btn btn-danger px-4" routerLink="/tutorias/encuestas">Cancelar</a>
                 </div>
             </div>

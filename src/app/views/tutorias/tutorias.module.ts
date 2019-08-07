@@ -13,6 +13,7 @@ import {CollapseModule} from 'ngx-bootstrap';
 import { UsuariosTutoriasComponent } from './usuarios_tutorias/usuarios_tutorias.component';
 import { EncuestasComponent } from './encuestas/encuestas.component';
 import { VerEncuestasComponent } from './ver-encuestas/ver-encuestas.component';
+import { ResponderEncuestaComponent } from './responder-encuesta/responder-encuesta.component';
 
 // Angular
 
@@ -27,7 +28,8 @@ import { VerEncuestasComponent } from './ver-encuestas/ver-encuestas.component';
     declarations: [
         UsuariosTutoriasComponent,
         EncuestasComponent,
-        VerEncuestasComponent
+        VerEncuestasComponent,
+        ResponderEncuestaComponent
     ]
 })
 export class TutoriasModule { }

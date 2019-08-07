@@ -4,6 +4,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {UsuariosTutoriasComponent} from './usuarios_tutorias/usuarios_tutorias.component';
 import {EncuestasComponent} from './encuestas/encuestas.component';
 import {VerEncuestasComponent} from './ver-encuestas/ver-encuestas.component';
+import {ResponderEncuestaComponent} from './responder-encuesta/responder-encuesta.component';
 
 const routes: Routes = [
     {
@@ -28,7 +29,7 @@ const routes: Routes = [
             },
             {
                 path: 'responder_encuesta',
-                component: VerEncuestasComponent,
+                component: ResponderEncuestaComponent,
                 data: {
                     title: 'Responder encuesta'
                 }
