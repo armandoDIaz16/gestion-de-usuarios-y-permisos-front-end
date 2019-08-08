@@ -8,8 +8,8 @@
 <br><br>
 
 <div class="row">
-    <div class="offset-3 col-md-6">
-        <h3 *ngIf="this.encuesta_completa.OBJETIVO != null" class="text-center">
+    <div class="offset-md-2 col-md-8 offset-sm-1 col-sm-10 offset-xs-1 col-xs-10">
+        <h3 *ngIf="this.encuesta_completa.OBJETIVO" class="text-center">
             Objetivo: {{this.encuesta_completa.OBJETIVO}}
             <br>
         </h3>
@@ -24,8 +24,8 @@
                 <div *ngIf="this.encuesta_completa.PK_ENCUESTA == 1">
                     <div *ngFor="let pregunta of seccion.PREGUNTAS">
                         <table class="table table-striped">
-                            <thead>
-                            <tr class="text-center">
+                            <thead class="table-header">
+                            <tr class="text-center h3">
                                 <th>
                                     Actividad
                                 </th>
@@ -35,7 +35,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr *ngFor="let respuesta of pregunta.RESPUESTAS; let i = index">
+                            <tr *ngFor="let respuesta of pregunta.RESPUESTAS; let i = index" class="h5">
                                 <td class="text-center">
                                     {{respuesta.RESPUESTA}}
                                 </td>
@@ -54,60 +54,97 @@
 
                 <!-- INICIO SI LA ENCUESTA NO ES 1 (DE ORDENAMIENTO) -->
                 <div *ngIf="this.encuesta_completa.PK_ENCUESTA != 1">
-                    <ol>
-                        <div *ngFor="let pregunta of seccion.PREGUNTAS">
-                            <li>
-                                {{pregunta.PLANTEAMIENTO}}
 
-                                <div *ngFor="let respuesta of pregunta.RESPUESTAS; let i = index">
-                                    <!-- ------------------------------- --
-                                     -- INICIO ESTILOS DE RESPUESTAS POR TIPO DE PREGUNTA --
-                                     -- -------------------------------- -->
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>{{this.seccion.PREGUNTAS.length}} preguntas</h3>
+                            </div>
+                            <div class="card-body">
+                                <hr>
+                                <div *ngFor="let pregunta of seccion.PREGUNTAS; let index = index">
+                                    <hr>
+                                    <h4>{{(index + 1) + '. ' + pregunta.PLANTEAMIENTO}}</h4>
 
-                                    <!-- INICIO DICOTÓMICA (DOS OPCIONES) -->
-                                    <div *ngIf="pregunta.FK_TIPO_PREGUNTA == 1 || pregunta.FK_TIPO_PREGUNTA == 2">
-                                        <label for="res">{{respuesta.RESPUESTA}}</label>
-                                        <input type="radio" name="res" id="res">
-                                    </div>
-                                    <!-- FIN DICOTÓMICA (DOS OPCIONES) -->
+                                    <table>
+                                        <div *ngFor="let respuesta of pregunta.RESPUESTAS; let i = index">
+                                            <!-- ------------------------------- --
+                                             -- INICIO ESTILOS DE RESPUESTAS POR TIPO DE PREGUNTA --
+                                             -- -------------------------------- -->
+                                            <!-- INICIO DICOTÓMICA (DOS OPCIONES) -->
+                                            <div
+                                                *ngIf="pregunta.FK_TIPO_PREGUNTA == 1 || pregunta.FK_TIPO_PREGUNTA == 2">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio"
+                                                           [name]="['res_'+pregunta.PK_PREGUNTA]"
+                                                           [id]="['res_'+respuesta.PK_RESPUESTA_POSIBLE]"
+                                                           [value]="[respuesta.PK_RESPUESTA_POSIBLE]" required="">
+                                                    <label [for]="['res_'+respuesta.PK_RESPUESTA_POSIBLE]" class="h5">
+                                                        {{respuesta.RESPUESTA}}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <!-- FIN DICOTÓMICA (DOS OPCIONES) -->
 
-                                    <!-- INICIO POLITÓMICA (MULTIPLES OPCIONES) -->
-                                    <div *ngIf="pregunta.FK_TIPO_PREGUNTA == 2">
+                                            <!-- INICIO POLITÓMICA (MULTIPLES OPCIONES) -->
+                                            <!--
+                                            <div *ngIf="pregunta.FK_TIPO_PREGUNTA == 2">
 
-                                    </div>
-                                    <!-- FIN POLITÓMICA (MULTIPLES OPCIONES) -->
+                                            </div>
+                                            -->
+                                            <!-- FIN POLITÓMICA (MULTIPLES OPCIONES) -->
 
-                                    <!-- INICIO MIXTA (MULTIPLES OPCIONES, CON OPCION A ABIERTA) -->
-                                    <div *ngIf="pregunta.FK_TIPO_PREGUNTA == 3">
+                                            <!-- INICIO MIXTA (MULTIPLES OPCIONES, CON OPCION A ABIERTA) -->
+                                            <div *ngIf="pregunta.FK_TIPO_PREGUNTA == 3">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio"
+                                                           [name]="['res_'+pregunta.PK_PREGUNTA]"
+                                                           [id]="['res_'+respuesta.PK_RESPUESTA_POSIBLE]"
+                                                           [value]="[respuesta.PK_RESPUESTA_POSIBLE]" required="">
 
-                                    </div>
-                                    <!-- FIN MIXTA (MULTIPLES OPCIONES, CON OPCION A ABIERTA) -->
+                                                    <label [for]="['res_'+respuesta.PK_RESPUESTA_POSIBLE]" class="h5">
+                                                        {{respuesta.RESPUESTA}}
+                                                    </label>
+                                                    <input *ngIf="respuesta.ES_MIXTA" type="text"
+                                                           [name]="['res_mixta'+pregunta.PK_PREGUNTA]"
+                                                           [id]="['res_mixta'+respuesta.PK_RESPUESTA_POSIBLE]" required=""
+                                                            class="form-control">
+                                                </div>
+                                            </div>
+                                            <!-- FIN MIXTA (MULTIPLES OPCIONES, CON OPCION A ABIERTA) -->
 
-                                    <!-- INICIO ESCALA NUMÉRICA (NUMERO DE INICIO Y DE FIN) -->
-                                    <div *ngIf="pregunta.FK_TIPO_PREGUNTA == 4">
+                                            <!-- INICIO ESCALA NUMÉRICA (NUMERO DE INICIO Y DE FIN) -->
+                                            <div *ngIf="pregunta.FK_TIPO_PREGUNTA == 4">
 
-                                    </div>
-                                    <!-- INICIO ESCALA NUMÉRICA (NUMERO DE INICIO Y DE FIN) -->
+                                            </div>
+                                            <!-- INICIO ESCALA NUMÉRICA (NUMERO DE INICIO Y DE FIN) -->
 
-                                    <!-- INICIO OPCIÓN MÚLTIPLE (CHECKBOX) -->
-                                    <div *ngIf="pregunta.FK_TIPO_PREGUNTA == 5">
+                                            <!-- INICIO OPCIÓN MÚLTIPLE (CHECKBOX) -->
+                                            <div *ngIf="pregunta.FK_TIPO_PREGUNTA == 5">
 
-                                    </div>
-                                    <!-- FIN OPCIÓN MÚLTIPLE (CHECKBOX) -->
+                                            </div>
+                                            <!-- FIN OPCIÓN MÚLTIPLE (CHECKBOX) -->
 
-                                    <!-- INICIO RESPUESTA ABIERTA (TEXTBOX) -->
-                                    <div *ngIf="pregunta.FK_TIPO_PREGUNTA == 5">
+                                            <!-- INICIO RESPUESTA ABIERTA (TEXTBOX) -->
+                                            <div *ngIf="pregunta.FK_TIPO_PREGUNTA == 6">
+                                                <textarea [name]="['res_'+pregunta.PK_PREGUNTA]"
+                                                          [id]="['res_'+respuesta.PK_RESPUESTA_POSIBLE]" cols="40"
+                                                          rows="2" required="" class="form-control"></textarea>
+                                            </div>
+                                            <!-- FIN RESPUESTA ABIERTA (TEXTBOX) -->
 
-                                    </div>
-                                    <!-- FIN RESPUESTA ABIERTA (TEXTBOX) -->
+                                            <!-- ------------------------------- --
+                                             -- FIN ESTILOS DE RESPUESTAS POR TIPO DE PREGUNTA --
+                                             -- -------------------------------- -->
+                                        </div>
+                                    </table>
 
-                                    <!-- ------------------------------- --
-                                     -- FIN ESTILOS DE RESPUESTAS POR TIPO DE PREGUNTA --
-                                     -- -------------------------------- -->
                                 </div>
-                            </li>
+                            </div>
                         </div>
-                    </ol>
+                    </div>
+
+
                 </div>
                 <!-- FIN SI LA ENCUESTA NO ES 1 (DE ORDENAMIENTO) -->
             </div>

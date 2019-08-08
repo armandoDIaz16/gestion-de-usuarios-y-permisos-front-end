@@ -49,4 +49,5 @@ export interface InterfaceRespuestaPosible {
     MINIMO?:              number;
     MAXIMO?:              number;
     ORDEN:                number;
+    ES_MIXTA:             number;
 }

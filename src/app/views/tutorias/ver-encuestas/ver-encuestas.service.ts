@@ -24,7 +24,7 @@ export class VerEncuestasService extends GenericServicesService {
         var body = {
             PK_APLICACION: pk_aplicacion_encuesta,
             RESPUESTAS: array_respuestas
-        }
+        };
 
         return this.http.post(
             GenericServicesService.API_ENDPOINT + 'guarda_respuestas_pasatiempos',

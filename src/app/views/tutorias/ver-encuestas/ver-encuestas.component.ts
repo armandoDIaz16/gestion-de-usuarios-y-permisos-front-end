@@ -42,24 +42,24 @@ export class VerEncuestasComponent implements OnInit {
 
     onSubmit() {
         var array_respuestas = [], array_original = [];
-        for (var _i = 0; _i < 15; _i++){
+        for (var _i = 0; _i < 15; _i++) {
             array_respuestas.push(
-                parseInt((<HTMLInputElement>document.getElementById("res_"+_i)).value)
+                parseInt((<HTMLInputElement>document.getElementById('res_' + _i)).value)
             );
             array_original.push(
-                parseInt((<HTMLInputElement>document.getElementById("res_"+_i)).value)
+                parseInt((<HTMLInputElement>document.getElementById('res_' + _i)).value)
             );
         }
 
         array_respuestas.sort(this.mayor_a_menor);
 
-        if (this.valida_array_respuestas(array_respuestas)){
+        if (this.valida_array_respuestas(array_respuestas)) {
             this.ver_encuestas_service.guarda_respuestas_pasatiempos(this.pk_aplicacion_encuesta.toString(), array_original).subscribe(
                 data => this.handleResponseGuardar(data),
                 error => this.handleError(error)
             );
-        }  else {
-            alert("Los números no deben repetirse");
+        } else {
+            alert('Los números no deben repetirse');
         }
     }
 
