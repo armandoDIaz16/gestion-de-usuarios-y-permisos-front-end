@@ -42,6 +42,9 @@ export interface InterfacePreguntaEncuesta {
 }
 
 export interface InterfaceRespuestaPosible {
+    // VARIABLES PARA LA RESPUESTA
+    SELECCIONADA?:         number;
+
     PK_RESPUESTA_POSIBLE: number;
     FK_PREGUNTA:          number;
     RESPUESTA:            string;
