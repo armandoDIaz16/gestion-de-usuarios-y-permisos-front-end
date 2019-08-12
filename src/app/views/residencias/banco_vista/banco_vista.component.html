@@ -15,7 +15,7 @@
                     <tbody>
                     <tr *ngFor="let antep of anteproyectosLista">
                         <td>{{ antep.NOMBRE }}</td>
-                        <td><a href="{{'http://127.0.0.1:8000/'+antep.PDF}}" target="_blank">{{antep.PDF}}</a></td>
+                        <td><a href="{{ruta+antep.PDF}}" target="_blank">{{antep.PDF}}</a></td>
                         <td>{{ antep.EMPRESA }}</td>
                         <td>{{ antep.COMENTARIO }}</td>
                     </tr>

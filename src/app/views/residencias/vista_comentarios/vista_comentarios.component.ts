@@ -16,6 +16,7 @@ export class VistaComentariosComponent extends GenericServicesService implements
     public mostrarModulo = false;
     public comentarioLista = [];
     public reporteLista = [];
+    ruta = GenericServicesService.ENDPOINT;
     usuario = sessionStorage.getItem('IdUsuario');
     comentario = {};
     comentario2 = {};

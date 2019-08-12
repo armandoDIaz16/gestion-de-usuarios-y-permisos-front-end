@@ -13,7 +13,7 @@
                     <tbody>
                     <tr *ngFor="let antep of informeLista">
                         <td>{{ antep.name }}</td>
-                        <td><a href="{{'http://127.0.0.1:8000/'+antep.INFORME}}" target="_blank">{{antep.INFORME}}</a>
+                        <td><a href="{{ruta+antep.INFORME}}" target="_blank">{{antep.INFORME}}</a>
                         </td>
                     </tr>
                     </tbody>

@@ -60,12 +60,12 @@
                     <tbody>
                     <tr *ngFor="let doc of documentacionLista">
                         <td>{{doc.name}} {{doc.PRIMER_APELLIDO}} {{doc.SEGUNDO_APELLIDO}}</td>
-                        <td><a href="{{'http://127.0.0.1:8000/'+doc.CARTA_ACEPTACION}}"
+                        <td><a href="{{ruta+doc.CARTA_ACEPTACION}}"
                                target="_blank">{{doc.CARTA_ACEPTACION}}</a></td>
-                        <td><a href="{{'http://127.0.0.1:8000/'+doc.SOLICITUD}}" target="_blank">{{doc.SOLICITUD}}</a>
+                        <td><a href="{{ruta+doc.SOLICITUD}}" target="_blank">{{doc.SOLICITUD}}</a>
                         </td>
-                        <td><a href="{{'http://127.0.0.1:8000/'+doc.CARTA}}" target="_blank">{{doc.CARTA}}</a></td>
-                        <td><a href="{{'http://127.0.0.1:8000/'+doc.INFORME}}" target="_blank">{{doc.INFORME}}</a></td>
+                        <td><a href="{{ruta+doc.CARTA}}" target="_blank">{{doc.CARTA}}</a></td>
+                        <td><a href="{{ruta+doc.INFORME}}" target="_blank">{{doc.INFORME}}</a></td>
                     </tr>
                     </tbody>
                 </table>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Anteproyectos} from './anteproyectos';
 import { ValidarModuloService } from '../../../services/validarModulo.service';
+import {GenericServicesService} from '../../../services/generic-services.service';
+import {HttpClient} from '@angular/common/http';
 
 
 
@@ -11,13 +13,15 @@ import { ValidarModuloService } from '../../../services/validarModulo.service';
   providers: [Anteproyectos, ValidarModuloService]
 
 })
-export class Banco_vistaComponent implements OnInit {
+export class Banco_vistaComponent extends GenericServicesService implements OnInit {
 
+    ruta = GenericServicesService.ENDPOINT;
     public anteproyectosLista = [];
     public mostrarModulo = false;
     usuario = sessionStorage.getItem('IdUsuario');
 
-    constructor(private anteproyectosService: Anteproyectos, private validarModuloService: ValidarModuloService) {}
+    constructor(private http: HttpClient, private anteproyectosService: Anteproyectos, private validarModuloService: ValidarModuloService) {
+        super(http); }
 
     ngOnInit() {
         this.mostrarModulo = this.validarModuloService.getMostrarModulo('Banco vista');

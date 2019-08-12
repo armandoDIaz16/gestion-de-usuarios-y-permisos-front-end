@@ -34,7 +34,7 @@
                     <tbody>
                     <tr *ngFor="let com of reporteLista; let e = index">
                         <td>{{com.name}}</td>
-                        <td><a href="{{'http://127.0.0.1:8000/'+com.PDF}}" target="_blank">{{ com.NOMBRE }}</a></td>
+                        <td><a href="{{ruta+com.PDF}}" target="_blank">{{ com.NOMBRE }}</a></td>
                         <td>{{com.NUMERO}}</td>
                     </tr>
                     </tbody>

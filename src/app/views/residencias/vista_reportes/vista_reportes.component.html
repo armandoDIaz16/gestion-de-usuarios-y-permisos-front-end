@@ -34,7 +34,7 @@
                     <tbody>
                     <tr *ngFor="let com of reporteLista; let e = index">
                         <td>{{com.PK_REPORTE_DOCENTE}}</td>
-                        <td>{{com.PDF}}</td>
+                        <td><a href="{{ruta+com.PDF}}" target="_blank">{{com.PDF}}</a></td>
                         <td>{{com.name}}</td>
                     </tr>
                     </tbody>
@@ -76,7 +76,7 @@
                     <tbody>
                     <tr *ngFor="let como of repextLista; let e = index">
                         <td>{{como.PK_REPORTE_EXTERNO}}</td>
-                        <td>{{como.PDF}}</td>
+                        <td><a href="{{ruta+como.PDF}}" target="_blank">{{como.PDF}}</a></td>
                         <td>{{como.name}}</td>
                     </tr>
                     </tbody>

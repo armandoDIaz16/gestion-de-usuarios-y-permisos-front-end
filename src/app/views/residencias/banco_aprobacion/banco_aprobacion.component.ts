@@ -15,6 +15,7 @@ export class BancoAprobacionComponent extends GenericServicesService implements 
     public anteproyectosLista = [];
     public mostrarModulo = false;
     usuario = sessionStorage.getItem('IdUsuario');
+    ruta = GenericServicesService.ENDPOINT;
 
   constructor(private anteproyectosService: AnteproyectosAprobacion, private http: HttpClient,
               private validarModuloService: ValidarModuloService) { super(http); }

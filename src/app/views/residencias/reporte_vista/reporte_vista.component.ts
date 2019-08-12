@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Maestro} from './maestro';
 import {Reportes} from './reporte';
 import { ValidarModuloService } from '../../../services/validarModulo.service';
+import {GenericServicesService} from '../../../services/generic-services.service';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-reporte-vista',
@@ -9,16 +11,17 @@ import { ValidarModuloService } from '../../../services/validarModulo.service';
   styleUrls: ['./reporte_vista.component.scss'],
   providers: [Maestro, Reportes, ValidarModuloService]
 })
-export class ReporteVistaComponent implements OnInit {
+export class ReporteVistaComponent extends GenericServicesService implements OnInit {
 
     public mostrarModulo = false;
     public maestrosLista = [];
     public reporteLista = [];
+    ruta = GenericServicesService.ENDPOINT;
     usuario = sessionStorage.getItem('IdUsuario');
     opcion = {};
     constructor(private reporteService: Reportes, private maestro: Maestro,
-                private validarModuloService: ValidarModuloService) {
-
+                private validarModuloService: ValidarModuloService, private http: HttpClient,) {
+        super(http);
     }
 
   ngOnInit() {
