@@ -50,17 +50,10 @@ export class ResponderEncuestaComponent implements OnInit {
     }
 
     onSubmit() {
-        switch (this.encuesta_completa.PK_ENCUESTA) {
-            case 1: this.encuesta_pasatiempos(); break;// OK
-            case 2: this.encuesta_salud(); break;
-            case 3: this.encuesta_condicion_socioeconomica(); break;
-            case 4: this.encuesta_condicion_academica(); break;
-            case 5: this.encuesta_condicion_familiar(); break;
-            case 6: this.encuesta_habitos_estudio(); break;
-            case 7: this.encuesta_evaluacion_tutoria_sem_1(); break;
-            case 8: this.encuesta_16_factores_personalidad(); break;
-            case 9: this.encuesta_causas_reprobacion(); break;
-            case 10: this.encuesta_evaluacion_tutoria_sem_2(); break;
+        if (this.encuesta_completa.PK_ENCUESTA === 1) {
+            this.encuesta_pasatiempos(); // OK
+        } else {
+            this.procesa_encuesta();
         }
     }
 
@@ -70,7 +63,20 @@ export class ResponderEncuestaComponent implements OnInit {
         }
     }
 
-    public activaRespuesta(index_pregunta, index_respuesta){
+    public actualiza_rango(id_escala: string, id_etiqueta: string, index_pregunta: number, index_respuesta: number) {
+        (<HTMLInputElement>document.getElementById(id_etiqueta)).innerHTML =
+            (<HTMLInputElement>document.getElementById(id_escala)).value;
+
+        this.encuesta_completa.SECCIONES[0].PREGUNTAS[index_pregunta].RESPUESTAS[index_respuesta].SELECCIONADA =
+            parseInt((<HTMLInputElement>document.getElementById(id_escala)).value);
+
+        this.encuesta_completa.SECCIONES[0].PREGUNTAS[index_pregunta].RESPUESTAS[index_respuesta].RANGO =
+            parseInt((<HTMLInputElement>document.getElementById(id_escala)).value);
+
+        // console.log(this.encuesta_completa.SECCIONES[0].PREGUNTAS[index_pregunta].RESPUESTAS[index_respuesta].RANGO);
+    }
+
+    public procesa_respuesta(index_pregunta: number, index_respuesta: number) {
         for (let _i = 0; _i < this.encuesta_completa.SECCIONES[0].PREGUNTAS[index_pregunta].RESPUESTAS.length; _i++) {
             this.encuesta_completa.SECCIONES[0].PREGUNTAS[index_pregunta].RESPUESTAS[_i].SELECCIONADA = 0;
         }
@@ -78,189 +84,79 @@ export class ResponderEncuestaComponent implements OnInit {
         this.encuesta_completa.SECCIONES[0].PREGUNTAS[index_pregunta].RESPUESTAS[index_respuesta].SELECCIONADA = 1;
     }
 
-    /* INICIO PROCESAMIENTO DE ENCUESTA DE SALUD */
-    public encuesta_salud() {
+    /* INICIO PROCESAMIENTO DE ENCUESTA */
+    public procesa_encuesta() {
         if (this.valida_encuesta()) {
-            this.responder_encuestas_service.guarda_respuestas_encuesta(
-                this.pk_aplicacion_encuesta,
-                this.encuesta_completa.PK_ENCUESTA,
-                []
+            this.responder_encuestas_service.guarda_respuestas(
+                this.get_body_encuesta()
             ).subscribe(
                 data => this.handleResponseGuardar(data),
                 error => this.handleError(error)
             );
         } else {
-            alert("Debe responder a todas las preguntas");
+            alert('Debe responder a todas las preguntas');
         }
     }
 
+    private get_body_encuesta() {
+        return [];
+    }
+
     private valida_encuesta() {
-        for (var _i = 0; _i < this.encuesta_completa.SECCIONES[0].PREGUNTAS.length; _i++) {
+        for (let pregunta of this.encuesta_completa.SECCIONES[0].PREGUNTAS) {
             let pregunta_valid = false;
-            for (var _i2 = 0; _i2 < this.encuesta_completa.SECCIONES[0].PREGUNTAS[_i].RESPUESTAS.length; _i2++) {
-                if (this.encuesta_completa.SECCIONES[0].PREGUNTAS[_i].RESPUESTAS[_i2].SELECCIONADA == 1){
-                    pregunta_valid = true;
-                    break;
+            for (let respuesta of pregunta.RESPUESTAS) {
+                if (pregunta.FK_TIPO_PREGUNTA === 1 || pregunta.FK_TIPO_PREGUNTA === 2) {
+                    if (respuesta.SELECCIONADA === 1) {
+                        pregunta_valid = true;
+                        break;
+                    }
+                }
+
+                if (pregunta.FK_TIPO_PREGUNTA === 3) {
+                    if (respuesta.SELECCIONADA === 1) {
+                        if (respuesta.ES_MIXTA === 1) {
+                            let contenido_mixta =
+                                (<HTMLInputElement>document.getElementById('res_mixta_' + respuesta.PK_RESPUESTA_POSIBLE))
+                                    .value
+                                    .trim()
+                                    .length;
+                            if (contenido_mixta > 0) {
+                                pregunta_valid = true;
+                                break;
+                            }
+                        }
+
+                    }
+                }
+
+                if (pregunta.FK_TIPO_PREGUNTA === 6) {
+                    let contenido_abierta =
+                        (<HTMLInputElement>document.getElementById('res_abierta_' + respuesta.PK_RESPUESTA_POSIBLE))
+                            .value
+                            .trim()
+                            .length;
+                    if (contenido_abierta > 0) {
+                        pregunta_valid = true;
+                        break;
+                    }
                 }
             }
 
-            if (pregunta_valid == false)
+            if (pregunta_valid === false) {
                 return false;
+            }
         }
 
         return true;
     }
 
-    /* FIN PROCESAMIENTO DE ENCUESTA DE SALUD */
-
-    /* INICIO PROCESAMIENTO DE ENCUESTA CONDICION SOCIOECONOMICA */
-    public encuesta_condicion_socioeconomica() {
-        if (this.valida_encuesta()) {
-            this.responder_encuestas_service.guarda_respuestas_encuesta(
-                this.pk_aplicacion_encuesta,
-                this.encuesta_completa.PK_ENCUESTA,
-                []
-            ).subscribe(
-                data => this.handleResponseGuardar(data),
-                error => this.handleError(error)
-            );
-        } else {
-            alert("Debe responder a todas las preguntas");
-        }
-    }
-
-    /* FIN PROCESAMIENTO DE ENCUESTA CONDICION SOCIOECONOMICA */
-
-    /* INICIO PROCESAMIENTO DE ENCUESTA CONDICION ACADEMICA */
-    public encuesta_condicion_academica() {
-        if (this.valida_encuesta()) {
-            this.responder_encuestas_service.guarda_respuestas_encuesta(
-                this.pk_aplicacion_encuesta,
-                this.encuesta_completa.PK_ENCUESTA,
-                []
-            ).subscribe(
-                data => this.handleResponseGuardar(data),
-                error => this.handleError(error)
-            );
-        } else {
-            alert("Debe responder a todas las preguntas");
-        }
-    }
-
-    /* FIN PROCESAMIENTO DE ENCUESTA CONDICION ACADEMICA */
-
-    /* INICIO PROCESAMIENTO DE ENCUESTA CONDICION FAMILIAR */
-    public encuesta_condicion_familiar() {
-        if (this.valida_encuesta()) {
-            this.responder_encuestas_service.guarda_respuestas_encuesta(
-                this.pk_aplicacion_encuesta,
-                this.encuesta_completa.PK_ENCUESTA,
-                []
-            ).subscribe(
-                data => this.handleResponseGuardar(data),
-                error => this.handleError(error)
-            );
-        } else {
-            alert("Debe responder a todas las preguntas");
-        }
-    }
-
-    /* FIN PROCESAMIENTO DE ENCUESTA CONDICION FAMILIAR */
-
-    /* INICIO PROCESAMIENTO DE ENCUESTA HABITOS DE ESTUDIO */
-    public encuesta_habitos_estudio() {
-        if (this.valida_encuesta()) {
-            this.responder_encuestas_service.guarda_respuestas_encuesta(
-                this.pk_aplicacion_encuesta,
-                this.encuesta_completa.PK_ENCUESTA,
-                []
-            ).subscribe(
-                data => this.handleResponseGuardar(data),
-                error => this.handleError(error)
-            );
-        } else {
-            alert("Debe responder a todas las preguntas");
-        }
-    }
-
-    /* INICIO PROCESAMIENTO DE ENCUESTA HABITOS DE ESTUDIO */
-
-    /* INICIO PROCESAMIENTO DE ENCUESTA TUTORIAS PRIMER SEMESTRE */
-    public encuesta_evaluacion_tutoria_sem_1() {
-        if (this.valida_encuesta()) {
-            this.responder_encuestas_service.guarda_respuestas_encuesta(
-                this.pk_aplicacion_encuesta,
-                this.encuesta_completa.PK_ENCUESTA,
-                []
-            ).subscribe(
-                data => this.handleResponseGuardar(data),
-                error => this.handleError(error)
-            );
-        } else {
-            alert("Debe responder a todas las preguntas");
-        }
-    }
-
-    /* FIN PROCESAMIENTO DE ENCUESTA TUTORIAS PRIMER SEMESTRE */
-
-    /* INICIO PROCESAMIENTO DE ENCUESTA 16 FACTORES DE PERSONALIDAD */
-    public encuesta_16_factores_personalidad() {
-        if (this.valida_encuesta()) {
-            this.responder_encuestas_service.guarda_respuestas_encuesta(
-                this.pk_aplicacion_encuesta,
-                this.encuesta_completa.PK_ENCUESTA,
-                []
-            ).subscribe(
-                data => this.handleResponseGuardar(data),
-                error => this.handleError(error)
-            );
-        } else {
-            alert("Debe responder a todas las preguntas");
-        }
-    }
-
-    /* FIN PROCESAMIENTO DE ENCUESTA 16 FACTORES DE PERSONALIDAD */
-
-    /* INICIO PROCESAMIENTO DE ENCUESTA CAUSAS DE REPROBACION */
-    public encuesta_causas_reprobacion() {
-        if (this.valida_encuesta()) {
-            this.responder_encuestas_service.guarda_respuestas_encuesta(
-                this.pk_aplicacion_encuesta,
-                this.encuesta_completa.PK_ENCUESTA,
-                []
-            ).subscribe(
-                data => this.handleResponseGuardar(data),
-                error => this.handleError(error)
-            );
-        } else {
-            alert("Debe responder a todas las preguntas");
-        }
-    }
-
-    /* FIN PROCESAMIENTO DE ENCUESTA CAUSAS DE REPROBACION */
-
-    /* INICIO PROCESAMIENTO DE ENCUESTA TUTORIAS SEGUNDO SEMESTRE EN ADELANTE */
-    public encuesta_evaluacion_tutoria_sem_2() {
-        if (this.valida_encuesta()) {
-            this.responder_encuestas_service.guarda_respuestas_encuesta(
-                this.pk_aplicacion_encuesta,
-                this.encuesta_completa.PK_ENCUESTA,
-                []
-            ).subscribe(
-                data => this.handleResponseGuardar(data),
-                error => this.handleError(error)
-            );
-        } else {
-            alert("Debe responder a todas las preguntas");
-        }
-    }
-
-    /* FIN PROCESAMIENTO DE ENCUESTA TUTORIAS SEGUNDO SEMESTRE EN ADELANTE */
+    /* FIN PROCESAMIENTO DE ENCUESTA */
 
     /* INICIO PROCESAMIENTO DE ENCUESTA DE PASATIEMPOS */
     public encuesta_pasatiempos() {
         var array_respuestas = [], array_original = [];
-        for (var _i = 0; _i < 15; _i++) {
+        for (let _i = 0; _i < 15; _i++) {
             array_respuestas.push(
                 parseInt((<HTMLInputElement>document.getElementById('res_' + _i)).value)
             );
@@ -273,7 +169,7 @@ export class ResponderEncuestaComponent implements OnInit {
         array_respuestas.sort(this.helpers.mayor_a_menor);
 
         if (this.helpers.valida_array_respuestas_pasatiempos(array_respuestas)) {
-            this.responder_encuestas_service.guarda_respuestas_encuesta(
+            this.responder_encuestas_service.guarda_respuestas_pasatiempos(
                 this.pk_aplicacion_encuesta,
                 this.encuesta_completa.PK_ENCUESTA,
                 array_original

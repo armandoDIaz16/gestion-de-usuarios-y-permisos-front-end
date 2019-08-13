@@ -19,7 +19,7 @@ export class EncuestasComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.encuestas_service.get_encuestas(this.usuario).subscribe(
+        this.encuestas_service.get_encuestas(parseInt(this.usuario)).subscribe(
             data => this.handleResponse(data),
             error => this.handleError(error)
         );

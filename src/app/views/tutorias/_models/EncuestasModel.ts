@@ -42,9 +42,13 @@ export interface InterfacePreguntaEncuesta {
 }
 
 export interface InterfaceRespuestaPosible {
-    // VARIABLES PARA LA RESPUESTA
+    // VARIABLES DE RESPUESTA DEL USUARIO
     SELECCIONADA?:         number;
+    ABIERTA?:              string;
+    RANGO?:                number;
+    ORDEN_RESPUESTA?:      number;
 
+    // VARIABLES DE RESPUESTA POSIBLE
     PK_RESPUESTA_POSIBLE: number;
     FK_PREGUNTA:          number;
     RESPUESTA:            string;
@@ -54,3 +58,37 @@ export interface InterfaceRespuestaPosible {
     ORDEN:                number;
     ES_MIXTA:             number;
 }
+
+/* INICIO INTERFACES PARA PROCESAR LAS RESPUESTAS */
+export interface InterfaceCuestionarioResuelto {
+    PK_APLICACION: number;
+    PREGUNTAS:     InterfacePreguntasResueltas[];
+}
+
+export interface InterfacePreguntasResueltas {
+    PK_PREGUNTA:   number;
+    TIPO_PREGUNTA: number;
+    RESPUESTAS:    InterfaceRespuestasResueltas[];
+}
+
+export interface InterfaceRespuestasResueltas {
+    PK_RESPUESTA:  number;
+    ES_MIXTA:      number;
+    ABIERTA?:      string;
+    RANGO?:        number;
+}
+/* FIN INTERFACES PARA PROCESAR LAS RESPUESTAS */
+
+
+
+
+
+
+
+
+
+
+
+
+
+

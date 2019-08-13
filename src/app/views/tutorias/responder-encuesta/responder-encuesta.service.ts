@@ -20,12 +20,21 @@ export class ResponderEncuestaService extends GenericServicesService {
         );
     }
 
-    guarda_respuestas_encuesta(pk_aplicacion_encuesta: number, pk_encuesta: number, array_respuestas) {
+    guarda_respuestas_pasatiempos(pk_aplicacion_encuesta: number, pk_encuesta: number, array_respuestas) {
         var body = {
             PK_APLICACION: pk_aplicacion_encuesta,
             PK_ENCUESTA: pk_encuesta,
             RESPUESTAS: array_respuestas
         };
+
+        return this.http.post(
+            GenericServicesService.API_ENDPOINT + 'guarda_respuestas_encuesta',
+            body,
+            GenericServicesService.HEADERS,
+        );
+    }
+
+    guarda_respuestas(body) {
 
         return this.http.post(
             GenericServicesService.API_ENDPOINT + 'guarda_respuestas_encuesta',

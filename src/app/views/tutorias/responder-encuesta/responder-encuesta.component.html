@@ -66,97 +66,99 @@
                                     <hr>
                                     <h4>{{(index_pregunta + 1) + '. ' + pregunta.PLANTEAMIENTO}}</h4>
 
-                                    <table>
-                                        <div *ngFor="let respuesta of pregunta.RESPUESTAS; let index_respuesta = index">
-                                            <!-- ------------------------------- --
-                                             -- INICIO ESTILOS DE RESPUESTAS POR TIPO DE PREGUNTA --
-                                             -- -------------------------------- -->
-                                            <!-- INICIO DICOTÓMICA (DOS OPCIONES) -->
-                                            <div
-                                                *ngIf="pregunta.FK_TIPO_PREGUNTA == 1 || pregunta.FK_TIPO_PREGUNTA == 2">
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio"
-                                                           [name]="['res_'+pregunta.PK_PREGUNTA]"
-                                                           [id]="['res_'+respuesta.PK_RESPUESTA_POSIBLE]"
-                                                           (click)="activaRespuesta(index_pregunta, index_respuesta)"
-                                                           class="custom-control-input">
-                                                    <label [for]="['res_'+respuesta.PK_RESPUESTA_POSIBLE]"
-                                                           class="h5 custom-control-label">
-                                                        {{respuesta.RESPUESTA}}
-                                                    </label>
-                                                </div>
+                                    <div *ngFor="let respuesta of pregunta.RESPUESTAS; let index_respuesta = index">
+                                        <!-- ------------------------------- --
+                                         -- INICIO ESTILOS DE RESPUESTAS POR TIPO DE PREGUNTA --
+                                         -- -------------------------------- -->
+                                        <!-- INICIO DICOTÓMICA (DOS OPCIONES) -->
+                                        <div
+                                            *ngIf="pregunta.FK_TIPO_PREGUNTA == 1 || pregunta.FK_TIPO_PREGUNTA == 2">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio"
+                                                       [name]="['res_'+pregunta.PK_PREGUNTA]"
+                                                       [id]="['res_'+respuesta.PK_RESPUESTA_POSIBLE]"
+                                                       (click)="procesa_respuesta(index_pregunta, index_respuesta)"
+                                                       class="custom-control-input">
+                                                <label [for]="['res_'+respuesta.PK_RESPUESTA_POSIBLE]"
+                                                       class="h5 custom-control-label">
+                                                    {{respuesta.RESPUESTA}}
+                                                </label>
                                             </div>
-                                            <!-- FIN DICOTÓMICA (DOS OPCIONES) -->
-
-                                            <!-- INICIO POLITÓMICA (MULTIPLES OPCIONES) -->
-                                            <!--
-                                            <div *ngIf="pregunta.FK_TIPO_PREGUNTA == 2">
-
-                                            </div>
-                                            -->
-                                            <!-- FIN POLITÓMICA (MULTIPLES OPCIONES) -->
-
-                                            <!-- INICIO MIXTA (MULTIPLES OPCIONES, CON OPCION A ABIERTA) -->
-                                            <div *ngIf="pregunta.FK_TIPO_PREGUNTA == 3">
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio"
-                                                           [name]="['res_'+pregunta.PK_PREGUNTA]"
-                                                           [id]="['res_'+respuesta.PK_RESPUESTA_POSIBLE]"
-                                                           (click)="activaRespuesta(index_pregunta, index_respuesta)"
-                                                           class="custom-control-input">
-
-                                                    <label [for]="['res_'+respuesta.PK_RESPUESTA_POSIBLE]"
-                                                           class="h5 custom-control-label">
-                                                        {{respuesta.RESPUESTA}}
-                                                    </label>
-                                                    <input *ngIf="respuesta.ES_MIXTA" type="text"
-                                                           [name]="['res_mixta'+pregunta.PK_PREGUNTA]"
-                                                           [id]="['res_mixta'+respuesta.PK_RESPUESTA_POSIBLE]"
-                                                           required=""
-                                                           class="form-control">
-                                                </div>
-                                            </div>
-                                            <!-- FIN MIXTA (MULTIPLES OPCIONES, CON OPCION A ABIERTA) -->
-
-                                            <!-- INICIO ESCALA NUMÉRICA (NUMERO DE INICIO Y DE FIN) -->
-                                            <div *ngIf="pregunta.FK_TIPO_PREGUNTA == 4">
-                                                <div class="row">
-                                                    <label [id]="['res_escala'+respuesta.PK_RESPUESTA_POSIBLE]">
-                                                        Seleccione una opción entre {{respuesta.MINIMO}}
-                                                        y {{respuesta.MAXIMO}}
-                                                        <br>
-                                                        Seleccionado: <b #current_escala_{{respuesta.PK_RESPUESTA_POSIBLE}}>0</b>
-                                                    </label>
-                                                    <input type="range" class="custom-range"
-                                                           [max]="[respuesta.MAXIMO]"
-                                                           [min]="[respuesta.MINIMO]"
-                                                           value="0"
-                                                           [name]="['res_escala'+pregunta.PK_PREGUNTA]"
-                                                           #res_escala +respuesta.PK_RESPUESTA_POSIBLE
-                                                            (change)="actualiza_rango()">
-                                                </div>
-                                            </div>
-                                            <!-- INICIO ESCALA NUMÉRICA (NUMERO DE INICIO Y DE FIN) -->
-
-                                            <!-- INICIO OPCIÓN MÚLTIPLE (CHECKBOX) -->
-                                            <div *ngIf="pregunta.FK_TIPO_PREGUNTA == 5">
-
-                                            </div>
-                                            <!-- FIN OPCIÓN MÚLTIPLE (CHECKBOX) -->
-
-                                            <!-- INICIO RESPUESTA ABIERTA (TEXTBOX) -->
-                                            <div *ngIf="pregunta.FK_TIPO_PREGUNTA == 6">
-                                                <textarea [name]="['res_'+pregunta.PK_PREGUNTA]"
-                                                          [id]="['res_'+respuesta.PK_RESPUESTA_POSIBLE]" cols="40"
-                                                          rows="2" required="" class="form-control"></textarea>
-                                            </div>
-                                            <!-- FIN RESPUESTA ABIERTA (TEXTBOX) -->
-
-                                            <!-- ------------------------------- --
-                                             -- FIN ESTILOS DE RESPUESTAS POR TIPO DE PREGUNTA --
-                                             -- -------------------------------- -->
                                         </div>
-                                    </table>
+                                        <!-- FIN DICOTÓMICA (DOS OPCIONES) -->
+
+                                        <!-- INICIO POLITÓMICA (MULTIPLES OPCIONES) -->
+                                        <!--
+                                        <div *ngIf="pregunta.FK_TIPO_PREGUNTA == 2">
+
+                                        </div>
+                                        -->
+                                        <!-- FIN POLITÓMICA (MULTIPLES OPCIONES) -->
+
+                                        <!-- INICIO MIXTA (MULTIPLES OPCIONES, CON OPCION A ABIERTA) -->
+                                        <div *ngIf="pregunta.FK_TIPO_PREGUNTA == 3">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio"
+                                                       [name]="['res_'+pregunta.PK_PREGUNTA]"
+                                                       [id]="['res_'+respuesta.PK_RESPUESTA_POSIBLE]"
+                                                       (click)="procesa_respuesta(index_pregunta, index_respuesta)"
+                                                       class="custom-control-input">
+
+                                                <label [for]="['res_'+respuesta.PK_RESPUESTA_POSIBLE]"
+                                                       class="h5 custom-control-label">
+                                                    {{respuesta.RESPUESTA}}
+                                                </label>
+                                                <input *ngIf="respuesta.ES_MIXTA" type="text"
+                                                       [name]="['res_mixta_'+pregunta.PK_PREGUNTA]"
+                                                       [id]="['res_mixta_'+respuesta.PK_RESPUESTA_POSIBLE]"
+                                                       class="form-control">
+                                            </div>
+                                        </div>
+                                        <!-- FIN MIXTA (MULTIPLES OPCIONES, CON OPCION A ABIERTA) -->
+
+                                        <!-- INICIO ESCALA NUMÉRICA (NUMERO DE INICIO Y DE FIN) -->
+                                        <div *ngIf="pregunta.FK_TIPO_PREGUNTA == 4">
+                                            <div class="row">
+                                                <label [id]="['res_escala'+respuesta.PK_RESPUESTA_POSIBLE]">
+                                                    Seleccione una opción entre {{respuesta.MINIMO}}
+                                                    y {{respuesta.MAXIMO}}
+                                                    <br>
+                                                    Seleccionado:
+                                                    <b [id]="['current_escala_'+respuesta.PK_RESPUESTA_POSIBLE]">0</b>
+                                                </label>
+                                                <input type="range" class="custom-range"
+                                                       [max]="[respuesta.MAXIMO]"
+                                                       [min]="[respuesta.MINIMO]"
+                                                       value="0"
+                                                       [name]="['res_escala_'+respuesta.PK_RESPUESTA_POSIBLE]"
+                                                       [id]="['res_escala_'+respuesta.PK_RESPUESTA_POSIBLE]"
+                                                       (change)="actualiza_rango(
+                                                            'res_escala_'+respuesta.PK_RESPUESTA_POSIBLE,
+                                                            'current_escala_'+respuesta.PK_RESPUESTA_POSIBLE,
+                                                            index_pregunta, index_respuesta)">
+                                            </div>
+                                        </div>
+                                        <!-- INICIO ESCALA NUMÉRICA (NUMERO DE INICIO Y DE FIN) -->
+
+                                        <!-- INICIO OPCIÓN MÚLTIPLE (CHECKBOX) -->
+                                        <div *ngIf="pregunta.FK_TIPO_PREGUNTA == 5">
+
+                                        </div>
+                                        <!-- FIN OPCIÓN MÚLTIPLE (CHECKBOX) -->
+
+                                        <!-- INICIO RESPUESTA ABIERTA (TEXTBOX) -->
+                                        <div *ngIf="pregunta.FK_TIPO_PREGUNTA == 6">
+                                                <textarea [name]="['res_abierta_'+pregunta.PK_PREGUNTA]"
+                                                          [id]="['res_abierta_'+respuesta.PK_RESPUESTA_POSIBLE]"
+                                                          cols="40"
+                                                          rows="2" required="" class="form-control"></textarea>
+                                        </div>
+                                        <!-- FIN RESPUESTA ABIERTA (TEXTBOX) -->
+
+                                        <!-- ------------------------------- --
+                                         -- FIN ESTILOS DE RESPUESTAS POR TIPO DE PREGUNTA --
+                                         -- -------------------------------- -->
+                                    </div>
 
                                 </div>
                             </div>

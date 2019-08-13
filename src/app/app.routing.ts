@@ -22,6 +22,7 @@ import {StudentOldComponent} from './components/student-old/student-old.componen
 import {ActivaCuentaComponent} from './components/activa-cuenta/activa-cuenta.component';
 
 import {ResidenciasRoutingModule} from './views/residencias/residencias-routing.module';
+import {PerfilComponent} from './components/perfil/perfil.component';
 
 
 export const routes: Routes = [
@@ -94,6 +95,14 @@ export const routes: Routes = [
         canActivate: [AfterLoginService],
         data: {
             title: 'Home'
+        }
+    },
+    {
+        path: 'perfil',
+        component: PerfilComponent,
+        canActivate: [AfterLoginService],
+        data: {
+            title: 'Mi perfil'
         }
     },
     {
