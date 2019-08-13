@@ -29,6 +29,7 @@ export class StudentOldComponent implements OnInit {
     private registrado    = false;
     private ocultar_boton_enviar = false;
     private ocultar_boton_cancelar = false;
+    private error = false;
 
     public form = {
         email: null,
@@ -75,11 +76,6 @@ export class StudentOldComponent implements OnInit {
           BORRADO:'0' */
     };
 
-    public error = {
-        curp: null,
-        email: null
-    };
-
     constructor(private Jarwis: JarwisService,
                 private Token: TokenService,
                 private router: Router) {
@@ -109,7 +105,8 @@ export class StudentOldComponent implements OnInit {
 
 
     handleError(error) {
-        this.error = error.error.errors;
+        this.error = error.error.error;
+        this.ocultar_boton_enviar = false;
     }
 
     ngOnInit() {

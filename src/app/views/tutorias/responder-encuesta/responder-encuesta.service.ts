@@ -35,7 +35,6 @@ export class ResponderEncuestaService extends GenericServicesService {
     }
 
     guarda_respuestas(body) {
-
         return this.http.post(
             GenericServicesService.API_ENDPOINT + 'guarda_respuestas_encuesta',
             body,

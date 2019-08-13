@@ -93,59 +93,27 @@ export class ResponderEncuestaComponent implements OnInit {
                 data => this.handleResponseGuardar(data),
                 error => this.handleError(error)
             );
-        } else {
-            alert('Debe responder a todas las preguntas');
         }
     }
 
     private get_body_encuesta() {
-        return [];
+        return {
+            PK_APLICACION: this.pk_aplicacion_encuesta,
+            PK_ENCUESTA: this.encuesta_completa.PK_ENCUESTA,
+            RESPUESTAS: []
+        };
     }
 
     private valida_encuesta() {
+        let index_pregunta = 1;
         for (let pregunta of this.encuesta_completa.SECCIONES[0].PREGUNTAS) {
             let pregunta_valid = false;
             for (let respuesta of pregunta.RESPUESTAS) {
-                if (pregunta.FK_TIPO_PREGUNTA === 1 || pregunta.FK_TIPO_PREGUNTA === 2) {
-                    if (respuesta.SELECCIONADA === 1) {
-                        pregunta_valid = true;
-                        break;
-                    }
-                }
-
-                if (pregunta.FK_TIPO_PREGUNTA === 3) {
-                    if (respuesta.SELECCIONADA === 1) {
-                        if (respuesta.ES_MIXTA === 1) {
-                            let contenido_mixta =
-                                (<HTMLInputElement>document.getElementById('res_mixta_' + respuesta.PK_RESPUESTA_POSIBLE))
-                                    .value
-                                    .trim()
-                                    .length;
-                            if (contenido_mixta > 0) {
-                                pregunta_valid = true;
-                                break;
-                            }
-                        }
-
-                    }
-                }
-
-                if (pregunta.FK_TIPO_PREGUNTA === 6) {
-                    let contenido_abierta =
-                        (<HTMLInputElement>document.getElementById('res_abierta_' + respuesta.PK_RESPUESTA_POSIBLE))
-                            .value
-                            .trim()
-                            .length;
-                    if (contenido_abierta > 0) {
-                        pregunta_valid = true;
-                        break;
-                    }
+                if (this.helpers.valida_pregunta(pregunta, index_pregunta, respuesta) === false) {
+                    return false;
                 }
             }
-
-            if (pregunta_valid === false) {
-                return false;
-            }
+            index_pregunta++;
         }
 
         return true;

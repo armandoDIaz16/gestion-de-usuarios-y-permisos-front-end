@@ -25,11 +25,8 @@
                             <div class="card p-3">
                                 <div class="card-body">
                                     <form #oldForm=ngForm (ngSubmit)="onSubmit()">
-                                        <div class="alert alert-danger" [hidden]="!error.curp">
-                                            {{error.curp}}
-                                        </div>
-                                        <div class="alert alert-danger" [hidden]="!error.email">
-                                            {{error.email}}
+                                        <div class="alert alert-danger" [hidden]="!error">
+                                            {{error}}
                                         </div>
                                         <!--
                                         <div class="alert alert-danger" [hidden]="!error.password">
