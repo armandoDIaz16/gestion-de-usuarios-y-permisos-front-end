@@ -61,21 +61,20 @@ export interface InterfaceRespuestaPosible {
 
 /* INICIO INTERFACES PARA PROCESAR LAS RESPUESTAS */
 export interface InterfaceCuestionarioResuelto {
-    PK_APLICACION: number;
-    PREGUNTAS:     InterfacePreguntasResueltas[];
+    PREGUNTAS:     InterfacePreguntasResueltas[] | null;
 }
 
 export interface InterfacePreguntasResueltas {
-    PK_PREGUNTA:   number;
-    TIPO_PREGUNTA: number;
-    RESPUESTAS:    InterfaceRespuestasResueltas[];
+    PK_PREGUNTA:   number | null;
+    TIPO_PREGUNTA: number | null;
+    RESPUESTAS:    InterfaceRespuestasResueltas[] | null;
 }
 
 export interface InterfaceRespuestasResueltas {
-    PK_RESPUESTA:  number;
-    ES_MIXTA:      number;
-    ABIERTA?:      string;
-    RANGO?:        number;
+    PK_RESPUESTA:  number | null;
+    ES_MIXTA:      number | null;
+    ABIERTA:       string | null;
+    RANGO:         number | null;
 }
 /* FIN INTERFACES PARA PROCESAR LAS RESPUESTAS */
 

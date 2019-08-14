@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
-import {InterfaceEncuestaCompleta} from '../_models/EncuestasModel';
+import {InterfaceEncuestaCompleta, InterfacePreguntaEncuesta} from '../_models/EncuestasModel';
 import {Observable} from 'rxjs';
 import {ResponderEncuestaService} from '../responder-encuesta/responder-encuesta.service';
 
@@ -97,21 +97,40 @@ export class ResponderEncuestaComponent implements OnInit {
     }
 
     private get_body_encuesta() {
+        let preguntas: InterfacePreguntaEncuesta[];
+        preguntas = this.encuesta_completa.SECCIONES[0].PREGUNTAS;
+
         return {
             PK_APLICACION: this.pk_aplicacion_encuesta,
             PK_ENCUESTA: this.encuesta_completa.PK_ENCUESTA,
-            RESPUESTAS: []
+            RESPUESTAS: this.helpers.procesa_respuestas(preguntas)
         };
     }
 
     private valida_encuesta() {
         let index_pregunta = 1;
         for (let pregunta of this.encuesta_completa.SECCIONES[0].PREGUNTAS) {
-            let pregunta_valid = false;
-            for (let respuesta of pregunta.RESPUESTAS) {
-                if (this.helpers.valida_pregunta(pregunta, index_pregunta, respuesta) === false) {
-                    return false;
+            // lenar contenido de las abiertas
+            if (pregunta.FK_TIPO_PREGUNTA == 6) {
+                pregunta.RESPUESTAS[0].ABIERTA =
+                    (<HTMLInputElement>document.getElementById('res_abierta_' + pregunta.RESPUESTAS[0].PK_RESPUESTA_POSIBLE))
+                        .value
+                        .trim();
+            }
+
+            if (pregunta.FK_TIPO_PREGUNTA == 3) {
+                if (pregunta.RESPUESTAS[0].ES_MIXTA) {
+                    pregunta.RESPUESTAS[0].ABIERTA =
+                        (<HTMLInputElement>document.getElementById('res_mixta_' + pregunta.RESPUESTAS[0].PK_RESPUESTA_POSIBLE))
+                            .value
+                            .trim();
+                } else {
+                    pregunta.RESPUESTAS[0].ABIERTA = '-';
                 }
+            }
+
+            if (this.helpers.valida_pregunta(index_pregunta, pregunta, pregunta.RESPUESTAS) == false) {
+                return false;
             }
             index_pregunta++;
         }
@@ -145,8 +164,6 @@ export class ResponderEncuestaComponent implements OnInit {
                 data => this.handleResponseGuardar(data),
                 error => this.handleError(error)
             );
-        } else {
-            alert('Los números no deben repetirse');
         }
     }
 
