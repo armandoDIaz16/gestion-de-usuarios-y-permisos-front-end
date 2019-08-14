@@ -26,10 +26,10 @@ export class StudentOldComponent implements OnInit {
 
     public datos_alumno = this.get_datos_alumno();
 
-    private registrado    = false;
-    private ocultar_boton_enviar = false;
-    private ocultar_boton_cancelar = false;
-    private error = false;
+    public registrado    = false;
+    public ocultar_boton_enviar = false;
+    public ocultar_boton_cancelar = false;
+    public error = false;
 
     public form = {
         email: null,

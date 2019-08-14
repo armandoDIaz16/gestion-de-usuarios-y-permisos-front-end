@@ -25,11 +25,11 @@ export class PerfilComponent implements OnDestroy, OnInit {
     public mostrarModulo = false;
 
     /* INICIO DATOS PARA PERFIL */
-    private error = null;
-    private data = null;
-    private perfil: InterfacePerfil;
-    private array_estado_civil: InterfaceEstadoCivil[];
-    private usuario = sessionStorage.getItem('IdUsuario');
+    public error = null;
+    public data = null;
+    public perfil: InterfacePerfil;
+    public array_estado_civil: InterfaceEstadoCivil[];
+    public usuario = sessionStorage.getItem('IdUsuario');
 
     /* FIN DATOS PARA PERFIL */
 

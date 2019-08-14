@@ -14,11 +14,11 @@ import {Helpers} from './helpers';
 })
 export class ResponderEncuestaComponent implements OnInit {
 
-    private pk_aplicacion_encuesta: number;
-    private hay_encuesta = null;
-    private encuesta_completa: InterfaceEncuestaCompleta;
-    private pregunta_inicial: number;
-    private cantidad_preguntas: number;
+    public pk_aplicacion_encuesta: number;
+    public hay_encuesta = null;
+    public encuesta_completa: InterfaceEncuestaCompleta;
+    public pregunta_inicial: number;
+    public cantidad_preguntas: number;
 
     constructor(private responder_encuestas_service: ResponderEncuestaService,
                 private route: ActivatedRoute,
@@ -116,16 +116,27 @@ export class ResponderEncuestaComponent implements OnInit {
                     (<HTMLInputElement>document.getElementById('res_abierta_' + pregunta.RESPUESTAS[0].PK_RESPUESTA_POSIBLE))
                         .value
                         .trim();
+                console.log("Abierta: " + (<HTMLInputElement>document.getElementById('res_abierta_' + pregunta.RESPUESTAS[0].PK_RESPUESTA_POSIBLE))
+                    .value
+                    .trim());
             }
 
             if (pregunta.FK_TIPO_PREGUNTA == 3) {
-                if (pregunta.RESPUESTAS[0].ES_MIXTA) {
-                    pregunta.RESPUESTAS[0].ABIERTA =
-                        (<HTMLInputElement>document.getElementById('res_mixta_' + pregunta.RESPUESTAS[0].PK_RESPUESTA_POSIBLE))
-                            .value
-                            .trim();
-                } else {
-                    pregunta.RESPUESTAS[0].ABIERTA = '-';
+                let _i = 0;
+                for(let temp_respuesta of pregunta.RESPUESTAS) {
+                    if (temp_respuesta.SELECCIONADA) {
+                        if (temp_respuesta.ES_MIXTA) {
+                            pregunta.RESPUESTAS[_i].ABIERTA =
+                                (<HTMLInputElement>document.getElementById('res_mixta_' + temp_respuesta.PK_RESPUESTA_POSIBLE))
+                                    .value
+                                    .trim();
+                            break;
+                        } else {
+                            pregunta.RESPUESTAS[_i].ABIERTA = '-';
+                            break;
+                        }
+                    }
+                    _i++;
                 }
             }
 

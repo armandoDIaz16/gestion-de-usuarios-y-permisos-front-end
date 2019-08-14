@@ -13,9 +13,9 @@ import {Observable} from 'rxjs';
 })
 export class VerEncuestasComponent implements OnInit {
 
-    private pk_aplicacion_encuesta: number;
-    private hay_encuesta = null;
-    private encuesta_completa: InterfaceEncuestaCompleta;
+    public pk_aplicacion_encuesta: number;
+    public hay_encuesta = null;
+    public encuesta_completa: InterfaceEncuestaCompleta;
 
     constructor(private ver_encuestas_service: VerEncuestasService, private route: ActivatedRoute, private http: HttpClient, private router: Router) {
         this.pk_aplicacion_encuesta = parseInt(this.route.snapshot.queryParamMap.get('pk_aplicacion_encuesta'));

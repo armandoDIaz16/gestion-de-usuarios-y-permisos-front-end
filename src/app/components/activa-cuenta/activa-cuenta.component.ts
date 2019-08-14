@@ -15,17 +15,17 @@ export class ActivaCuentaComponent implements OnInit {
                 private route: ActivatedRoute) {
     }
 
-    private form = {
+    public form = {
         curp: null,
         password1: null,
         password2: null
     };
 
-    private error = null;
-    private data = null;
-    private token = null;
-    private cuenta_activada = false;
-    private ocultar_boton_enviar = false;
+    public error = null;
+    public data = null;
+    public token = null;
+    public cuenta_activada = false;
+    public ocultar_boton_enviar = false;
 
     onSubmit() {
         if (this.form.password1.trim() !== '') {

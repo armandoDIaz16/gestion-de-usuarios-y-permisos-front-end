@@ -10,9 +10,9 @@ import {HttpClient} from '@angular/common/http';
 })
 export class EncuestasComponent implements OnInit {
 
-    private hay_encuestas = null;
-    private lista_encuestas: InterfaceEncuestaPendiente[];
-    private usuario = sessionStorage.getItem('IdUsuario');
+    public hay_encuestas = null;
+    public lista_encuestas: InterfaceEncuestaPendiente[];
+    public usuario = sessionStorage.getItem('IdUsuario');
 
     constructor(private encuestas_service: EncuestasService, private http: HttpClient) {
         this.hay_encuestas = false;
