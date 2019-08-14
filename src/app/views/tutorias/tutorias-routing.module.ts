@@ -1,58 +1,52 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 
-import { UsuariosTutoriasComponent } from './usuarios_tutorias/usuarios_tutorias.component';
+import {UsuariosTutoriasComponent} from './usuarios_tutorias/usuarios_tutorias.component';
+import {EncuestasComponent} from './encuestas/encuestas.component';
+import {VerEncuestasComponent} from './ver-encuestas/ver-encuestas.component';
+import {ResponderEncuestaComponent} from './responder-encuesta/responder-encuesta.component';
 
-var rutas = [];
-
-
-if (sessionStorage.rutas) {
-    let sistemas = JSON.parse(sessionStorage.sistemas);
-    rutas = [];
-    for (var sistema in sistemas[0].SISTEMAS) {
-        if (sistemas[0].SISTEMAS[sistema].PK_SISTEMA == sessionStorage.getItem('sistema')) {
-            var modulos = [];
-            // console.log("--"+sistemas[0].SISTEMAS[sistema].NOMBRE)
-            for(var rol in sistemas[0].SISTEMAS[sistema].ROLES) {
-                // console.log("----"+sistemas[0].SISTEMAS[sistema].ROLES[rol].NOMBRE)
-                for(var modulo in sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS){
-                    // console.log("------"+sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE)
-                    agregarModulos(sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE);
-                }
-            }
-            rutas.push({
-                path: '',
-                data: {
-                    title: 'Tutorias'
-                },
-                children: modulos
-            });
-        }
-    }
-}
-
-function agregarModulos(modulo) {
-    switch (modulo) {
-        // como le ponga al nombre del case, es como debe llamarse en el módulo de base de datos
-        case 'Usuarios Tutorias':
-            modulos.push({
-                path: 'usuarios_tutorias',
+const routes: Routes = [
+    {
+        path: '',
+        data: {
+            title: 'Sistema Integral de Tutorías'
+        },
+        children: [
+            {
+                path: 'usuarios',
                 component: UsuariosTutoriasComponent,
                 data: {
                     title: 'Usuarios'
                 }
-            });
-        break;
-    }
-}
-
-
-const routes: Routes = rutas;
-
-
+            },
+            {
+                path: 'encuestas',
+                component: EncuestasComponent,
+                data: {
+                    title: 'Encuestas'
+                }
+            },
+            {
+                path: 'responder_encuesta',
+                component: ResponderEncuestaComponent,
+                data: {
+                    title: 'Responder encuesta'
+                }
+            },
+            {
+                path: 'mostrar_encuesta',
+                component: VerEncuestasComponent,
+                data: {
+                    title: 'Ver encuesta'
+                }
+            }
+        ]
+    }];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class TutoriasRoutingModule {}
+export class TutoriasRoutingModule {
+}
