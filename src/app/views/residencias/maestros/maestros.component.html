@@ -19,12 +19,12 @@
                         <td>{{ antep.NOMBRE }}</td>
                         <td><select [(ngModel)]="opcion[i]" name="teacher" id="teacher">
                             <option *ngFor="let estadoCivil of maestrosLista"
-                                    value="{{estadoCivil.PK_USUARIO}}"> {{estadoCivil.name}} ({{estadoCivil.CANTIDAD}})
+                                    value="{{estadoCivil.PK_USUARIO}}"> {{estadoCivil.NOMBRE}} ({{estadoCivil.CANTIDAD}})
                             </option>
                         </select></td>
                         <td><select [(ngModel)]="opcion2[i]" name="externo" id="externo">
                             <option *ngFor="let estadoCivil of externoLista"
-                                    value="{{estadoCivil.ID_PADRE}}"> {{estadoCivil.name}} </option>
+                                    value="{{estadoCivil.ID_PADRE}}"> {{estadoCivil.NOMBRE}} </option>
                         </select></td>
                         <td><label class="btn btn-dark">
                             Asignar<input type="submit" value="submit" name="submit" hidden
@@ -58,13 +58,13 @@
                             <td>{{ antep.NOMBRE }}</td>
                             <td><select [(ngModel)]="opcion[i]" name="teacher2" id="teacher2">
                                 <option *ngFor="let estadoCivil of maestrosLista"
-                                        value="{{estadoCivil.PK_USUARIO}}"> {{estadoCivil.name}}
+                                        value="{{estadoCivil.PK_USUARIO}}"> {{estadoCivil.NOMBRE}}
                                     ({{estadoCivil.CANTIDAD}})
                                 </option>
                             </select></td>
                             <td><select [(ngModel)]="opcion2[i]" name="externo2" id="externo2">
                                 <option *ngFor="let estadoCivil of externoLista"
-                                        value="{{estadoCivil.ID_PADRE}}"> {{estadoCivil.name}} </option>
+                                        value="{{estadoCivil.ID_PADRE}}"> {{estadoCivil.NOMBRE}} </option>
                             </select></td>
                             <td><label class="btn btn-dark">
                                 Asignar<input type="submit" value="submit" name="submit" hidden

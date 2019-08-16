@@ -9,7 +9,7 @@
                 <div class="card-body">
                     <select [(ngModel)]="opcion" name="teacher" id="teacher" class="form-control form-control-lg">
                         <option *ngFor="let estadoCivil of maestrosLista"
-                                value="{{estadoCivil.PK_USUARIO}}"> {{estadoCivil.name}} </option>
+                                value="{{estadoCivil.PK_USUARIO}}"> {{estadoCivil.NOMBRE}} </option>
                     </select>
                     <br>
                     <label class="btn btn-dark">
@@ -33,7 +33,7 @@
                     </thead>
                     <tbody>
                     <tr *ngFor="let com of reporteLista; let e = index">
-                        <td>{{com.name}}</td>
+                        <td>{{com.NOMBREALUMNO}}</td>
                         <td><a href="{{ruta+com.PDF}}" target="_blank">{{ com.NOMBRE }}</a></td>
                         <td>{{com.NUMERO}}</td>
                     </tr>

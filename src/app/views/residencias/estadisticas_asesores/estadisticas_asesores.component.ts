@@ -33,7 +33,7 @@ export class Estadisticas_asesoresComponent implements OnInit {
       var marks = [];
 
       for (var i in this.listaMaestros) {
-          var f = this.listaMaestros[i].name + ' ' + this.listaMaestros[i].PRIMER_APELLIDO + ' ' + this.listaMaestros[i].SEGUNDO_APELLIDO;
+          var f = this.listaMaestros[i].NOMBRE + ' ' + this.listaMaestros[i].PRIMER_APELLIDO + ' ' + this.listaMaestros[i].SEGUNDO_APELLIDO;
           name.push(f);
           marks.push(this.listaMaestros[i].CANTIDAD);
       }
