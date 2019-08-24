@@ -1,0 +1,81 @@
+<h2 class="text-center">Grupo 5234</h2>
+<br><br>
+<div class="row">
+    <div class="offset-1 col-md-10">
+        <div class="row">
+            <div class="col-md-12">
+                <a [routerLink]="['/tutorias/grupos']" class="btn btn-primary">
+                    <i class="fa fa-caret-square-o-left"></i>
+                    Regresar a grupos
+                </a>
+            </div>
+        </div>
+        <br>
+        <table class="table table-striped">
+            <thead>
+            <tr class="text-center">
+                <th>No.</th>
+                <th>Número de control</th>
+                <th>Nombre alumno</th>
+                <th>Encuestas</th>
+                <th>Citas</th>
+                <th>Canalizaciones</th>
+                <th>Evaluación del tutor</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="text-center">
+                <td>
+                    1
+                </td>
+                <td>
+                    19240123
+                </td>
+                <td>
+                    <b>
+                        <!-- [queryParams]="{pk_aplicacion_encuesta: encuesta.PK_APLICACION_ENCUESTA}" -->
+                        <a [routerLink]="['/tutorias/datos-alumno']"
+                           class="btn btn-link" tooltip="Ficha de datos personales">
+                            JOSE CARLOS PINEDA GONZALEZ
+                            <br>
+                            (Ver detalles)
+                        </a>
+                    </b>
+                </td>
+                <td>
+                    <b>
+                        <!-- [queryParams]="{pk_aplicacion_encuesta: encuesta.PK_APLICACION_ENCUESTA}" -->
+                        <a [routerLink]="['/tutorias/ver-encuestas']"
+                           class="btn btn-link" tooltip="Ver detalles de encuestas">
+                            3/6
+                            <br>
+                            (Ver detalles)
+                        </a>
+                    </b>
+                </td>
+                <td>
+                    <!-- [queryParams]="{pk_aplicacion_encuesta: encuesta.PK_APLICACION_ENCUESTA}" -->
+                    <a [routerLink]="['/tutorias/citas-alumno']"
+                       class="btn btn-link" tooltip="Ver detalles de citas">
+                        Periodo actual: 1
+                        <br>
+                        (Ver detalles)
+                    </a>
+                </td>
+                <td>
+                    <!-- [queryParams]="{pk_aplicacion_encuesta: encuesta.PK_APLICACION_ENCUESTA}" -->
+                    <a [routerLink]="['/tutorias/canalizaciones-alumno']"
+                       class="btn btn-link" tooltip="Ver detalle de canalizaciones">
+                        4
+                        <br>
+                        (Ver detalles)
+                    </a>
+                </td>
+                <td>
+                    <b>Pendiente/Realizado</b>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

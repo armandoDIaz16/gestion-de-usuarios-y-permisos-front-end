@@ -1,0 +1,49 @@
+<h2 class="text-center">Grupos de tutoría inicial</h2>
+<br><br>
+<div class="row">
+    <div class="offset-1 col-md-10">
+        <table class="table table-striped">
+            <thead>
+            <tr class="text-center">
+                <th>No.</th>
+                <th>Clave grupo</th>
+                <th>Horario</th>
+                <th>Cantidad alumnos</th>
+                <th>Encuestas <br> activas</th>
+                <th>Encuestas <br> contestadas</th>
+                <th>Evalución de grupo</th>
+                <th>Operaciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="text-center">
+                <td>1</td>
+                <td>5234</td>
+                <td>
+                    Lunes 13:00
+                    <br>
+                    Miércoles 13:00
+                </td>
+                <td>30</td>
+                <td>210</td>
+                <td>146</td>
+                <td>No realizada</td>
+                <td>
+                    <!-- [queryParams]="{pk_aplicacion_encuesta: encuesta.PK_APLICACION_ENCUESTA}" -->
+                    <a [routerLink]="['/tutorias/detalle-grupo']"
+                       class="btn btn-primary">
+                        Ver detalles
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+            <ng-template #elseBlock>
+                <tbody>
+                <tr class="text-center">
+                    <td colspan="5">No se encontraron encuestas pendientes</td>
+                </tr>
+                </tbody>
+            </ng-template>
+        </table>
+    </div>
+</div>

@@ -49,5 +49,6 @@ export class ControlComponent implements OnInit {
     }
 
     ngOnInit() {
+        localStorage.removeItem('datos_alumno');
     }
 }

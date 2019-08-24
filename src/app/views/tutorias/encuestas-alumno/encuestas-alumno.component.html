@@ -1,0 +1,80 @@
+<h2 class="text-center">Encuestas de estudiante 19240123</h2>
+<br><br>
+<div class="row">
+    <div class="offset-2 col-md-8">
+        <table class="table table-striped">
+            <thead>
+            <tr class="text-center">
+                <th>Número</th>
+                <th>Nombre</th>
+                <th>Fecha aplicación</th>
+                <th>Fecha respuesta</th>
+                <th>Respuestas</th>
+                <th>Reporte</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="text-center">
+                <td>1</td>
+                <td>Pasatiempos</td>
+                <td>2019-08-12</td>
+                <td>2019-08-14</td>
+                <td>
+                    <!-- [queryParams]="{pk_aplicacion_encuesta: encuesta.PK_APLICACION_ENCUESTA}" -->
+                    <a [routerLink]="['/tutorias/respuesta-encuesta']"
+                       class="btn btn-link" tooltip="Ver respuestas de encuesta">
+                        Ver detalles
+                    </a>
+                </td>
+                <td>
+                    <!-- [queryParams]="{pk_aplicacion_encuesta: encuesta.PK_APLICACION_ENCUESTA}" -->
+                    <a [routerLink]="['/tutorias/reporte-encuesta']"
+                       class="btn btn-link" tooltip="Ver reporte de la encuesta">
+                        Ver detalles
+                    </a>
+                </td>
+            </tr>
+            <tr class="text-center">
+                <td>2</td>
+                <td>Salud</td>
+                <td>2019-08-12</td>
+                <td>2019-08-14</td>
+                <td>
+                    <!-- [queryParams]="{pk_aplicacion_encuesta: encuesta.PK_APLICACION_ENCUESTA}" -->
+                    <a [routerLink]="['/tutorias/respuesta-encuesta']"
+                       class="btn btn-primary">
+                        Ver detalles
+                    </a>
+                </td>
+                <td>
+                    <!-- [queryParams]="{pk_aplicacion_encuesta: encuesta.PK_APLICACION_ENCUESTA}" -->
+                    <a [routerLink]="['/tutorias/reporte-encuesta']"
+                       class="btn btn-primary">
+                        Ver detalles
+                    </a>
+                </td>
+            </tr>
+            <tr class="text-center">
+                <td>3</td>
+                <td>Condición socioeconómica</td>
+                <td>2019-08-12</td>
+                <td>2019-08-14</td>
+                <td>
+                    <!-- [queryParams]="{pk_aplicacion_encuesta: encuesta.PK_APLICACION_ENCUESTA}" -->
+                    <a [routerLink]="['/tutorias/respuesta-encuesta']"
+                       class="btn btn-primary">
+                        Ver detalles
+                    </a>
+                </td>
+                <td>
+                    <!-- [queryParams]="{pk_aplicacion_encuesta: encuesta.PK_APLICACION_ENCUESTA}" -->
+                    <a [routerLink]="['/tutorias/reporte-encuesta']"
+                       class="btn btn-primary">
+                        Ver detalles
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

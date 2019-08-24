@@ -24,8 +24,8 @@
                             <div class="card p-3">
                                 <div class="card-body">
                                     <form #RequestControl=ngForm (ngSubmit)="onSubmit()">
-                                        <h1 class="text-center">Activación de cuenta</h1>
-
+                                        <h1 class="text-center">Cambiar contraseña de la cuenta</h1>
+                                        <br>
                                         <div class="alert alert-danger text-center" [hidden]="!error">
                                             {{error}}
                                             <br><br>
@@ -52,28 +52,34 @@
                                         </div>
 
                                         <div *ngIf="!ocultar_boton_enviar">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text"><i class="icon-user"></i></span>
-                                                </div>
+                                            <div class="form-group">
+                                                <label for="curp">CURP</label>
                                                 <input type="text" name="curp" class="form-control" id="curp"
                                                        [(ngModel)]="this.form.curp" required [disabled]="true">
                                             </div>
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text"><i class="icon-user"></i></span>
-                                                </div>
+                                            <div class="form-group">
+                                                <label for="clave">Clave</label>
+                                                <input type="text" name="clave" class="form-control"
+                                                       placeholder="Clave" id="clave"
+                                                       [(ngModel)]="form.clave"
+                                                       aria-describedby="clavelHelp"
+                                                       required>
+                                                <small id="claveHelp" class="form-text text-muted">Recibida por correo electrónico</small>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="password1">Nueva contraseña</label>
                                                 <input type="password" name="password1" class="form-control"
                                                        placeholder="Contraseña" id="password1"
                                                        [(ngModel)]="form.password1" required>
+                                                <small id="password1Help" class="form-text text-muted">Debe contener al menos 8 caracteres</small>
                                             </div>
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text"><i class="icon-user"></i></span>
-                                                </div>
+                                            <div class="form-group">
+                                                <label for="password2">Confirmar nueva contraseña</label>
                                                 <input type="password" name="password2" class="form-control"
                                                        placeholder="Confirmar contraseña" id="password2"
                                                        [(ngModel)]="form.password2" required>
+                                                <small id="password2Help" class="form-text text-muted">Debe contener al menos 8 caracteres</small>
+                                                <input type="hidden" name="token" id="token" [(ngModel)]="form.token">
                                             </div>
                                         </div>
                                         <div class="row">

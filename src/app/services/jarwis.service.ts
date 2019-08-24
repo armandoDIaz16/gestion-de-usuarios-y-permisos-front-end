@@ -54,6 +54,9 @@ export class JarwisService extends GenericServicesService {
         return this.http.post(`${this.baseUrl}login`, data);
     }
 
+    /*
+    * Llamada a servicio para obtener url y cambiar contraseña
+    * */
     sendPasswordResetLink(data) {
         return this.http.post(`${this.baseUrl}sendPasswordResetLink`, data);
     }

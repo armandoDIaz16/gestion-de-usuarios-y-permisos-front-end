@@ -116,16 +116,13 @@ export class ResponderEncuestaComponent implements OnInit {
                     (<HTMLInputElement>document.getElementById('res_abierta_' + pregunta.RESPUESTAS[0].PK_RESPUESTA_POSIBLE))
                         .value
                         .trim();
-                console.log("Abierta: " + (<HTMLInputElement>document.getElementById('res_abierta_' + pregunta.RESPUESTAS[0].PK_RESPUESTA_POSIBLE))
-                    .value
-                    .trim());
             }
 
             if (pregunta.FK_TIPO_PREGUNTA == 3) {
                 let _i = 0;
                 for(let temp_respuesta of pregunta.RESPUESTAS) {
-                    if (temp_respuesta.SELECCIONADA) {
-                        if (temp_respuesta.ES_MIXTA) {
+                    if (temp_respuesta.SELECCIONADA == 1) {
+                        if (temp_respuesta.ES_MIXTA == 1) {
                             pregunta.RESPUESTAS[_i].ABIERTA =
                                 (<HTMLInputElement>document.getElementById('res_mixta_' + temp_respuesta.PK_RESPUESTA_POSIBLE))
                                     .value
