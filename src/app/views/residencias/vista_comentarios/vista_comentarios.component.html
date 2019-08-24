@@ -16,7 +16,7 @@
                     </thead>
                     <tbody>
                     <tr *ngFor="let antep of reporteLista; let i = index">
-                        <td>{{antep.name}}</td>
+                        <td>{{antep.NOMBREALUMNO}}</td>
                         <td><a href="{{ruta+antep.PDF}}" target="_blank">{{ antep.NOMBRE }}</a></td>
                         <td>{{ antep.NUMERO}}</td>
                         <td><textarea [(ngModel)]="comentario[i]" type="text"></textarea></td>
@@ -47,7 +47,7 @@
                     </thead>
                     <tbody>
                     <tr *ngFor="let com of comentarioLista; let e = index">
-                        <td>{{com.name}}</td>
+                        <td>{{com.NOMBREUSUARIO}}</td>
                         <td>{{com.NOMBRE}}</td>
                         <td>{{com.COMENTARIO}}</td>
                     </tr>

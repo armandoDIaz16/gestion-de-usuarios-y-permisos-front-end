@@ -56,7 +56,7 @@ export class Informacion_residenciasComponent implements OnInit {
               this.listaBase[i].NUMERO_CONTROL,
               this.listaBase[i].PRIMER_APELLIDO,
               this.listaBase[i].SEGUNDO_APELLIDO,
-              this.listaBase[i].name,
+              this.listaBase[i].NOMBREALUMNO,
               this.listaBase[i].CALIFICACION,
               this.listaBase[i].TITULACION,
               this.listaBase[i].EMPRESA,

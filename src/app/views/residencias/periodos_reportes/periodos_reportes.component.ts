@@ -26,6 +26,7 @@ export class Periodos_reportesComponent extends GenericServicesService implement
   }
 
     cargarFechas() {
+        confirm('¿La información es correcta?');
         if (this.fini < this.ffin) {
             this.http.post(GenericServicesService.API_ENDPOINT + 'PeriodoR', {
                 'FK_AREA_ACADEMICA': this.usuario.toString(),

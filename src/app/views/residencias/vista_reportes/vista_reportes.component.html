@@ -9,7 +9,7 @@
                 <div class="card-body">
                     <select [(ngModel)]="opcion" name="teacher" id="teacher" class="form-control form-control-lg">
                         <option *ngFor="let estadoCivil of maestrosLista"
-                                value="{{estadoCivil.PK_USUARIO}}"> {{estadoCivil.name}} </option>
+                                value="{{estadoCivil.PK_USUARIO}}"> {{estadoCivil.NOMBRE}} </option>
                     </select>
                     <br>
                     <label class="btn btn-dark">
@@ -35,7 +35,7 @@
                     <tr *ngFor="let com of reporteLista; let e = index">
                         <td>{{com.PK_REPORTE_DOCENTE}}</td>
                         <td><a href="{{ruta+com.PDF}}" target="_blank">{{com.PDF}}</a></td>
-                        <td>{{com.name}}</td>
+                        <td>{{com.NOMBRE}}</td>
                     </tr>
                     </tbody>
                 </table>
@@ -51,7 +51,7 @@
                 <div class="card-body">
                     <select [(ngModel)]="opcion2" name="externo" id="externo" class="form-control form-control-lg">
                         <option *ngFor="let estado of externoLista"
-                                value="{{estado.PK_USUARIO}}"> {{estado.name}} </option>
+                                value="{{estado.PK_USUARIO}}"> {{estado.NOMBRE}} </option>
                     </select>
                     <br>
                     <label class="btn btn-dark">
@@ -77,7 +77,7 @@
                     <tr *ngFor="let como of repextLista; let e = index">
                         <td>{{como.PK_REPORTE_EXTERNO}}</td>
                         <td><a href="{{ruta+como.PDF}}" target="_blank">{{como.PDF}}</a></td>
-                        <td>{{como.name}}</td>
+                        <td>{{como.NOMBRE}}</td>
                     </tr>
                     </tbody>
                 </table>
