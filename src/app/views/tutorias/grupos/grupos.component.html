@@ -1,5 +1,12 @@
 <h2 class="text-center">Grupos de tutoría inicial</h2>
+<!--
 <br><br>
+<div class="alert alert-danger" [hidden]="!error">
+    {{error}}
+</div>
+-->
+<br><br>
+
 <div class="row">
     <div class="offset-1 col-md-10">
         <table class="table table-striped">
@@ -7,6 +14,7 @@
             <tr class="text-center">
                 <th>No.</th>
                 <th>Clave grupo</th>
+                <th>Aula</th>
                 <th>Horario</th>
                 <th>Cantidad alumnos</th>
                 <th>Encuestas <br> activas</th>
@@ -16,21 +24,31 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="text-center">
-                <td>1</td>
-                <td>5234</td>
+            <tr class="text-center" *ngFor="let grupo of lista_grupos.GRUPOS; let i = index">
+                <td>{{i + 1}}</td>
+                <td>{{grupo.CLAVE}}</td>
+                <td>{{grupo.AULA}}</td>
                 <td>
-                    Lunes 13:00
-                    <br>
-                    Miércoles 13:00
+                    <p *ngFor="let horario of grupo.HORARIO">
+                        {{horario.DIA}}: {{horario.HORA_INICIAL}} - {{horario.HORA_FINAL}}
+                    </p>
                 </td>
-                <td>30</td>
-                <td>210</td>
-                <td>146</td>
-                <td>No realizada</td>
+                <td>{{grupo.CANTIDAD_ALUMNOS}}</td>
+                <td>{{grupo.ENCUESTAS_ACTIVAS}}</td>
+                <td>{{grupo.ENCUESTAS_CONTESTADAS}}</td>
                 <td>
-                    <!-- [queryParams]="{pk_aplicacion_encuesta: encuesta.PK_APLICACION_ENCUESTA}" -->
+                    <p *ngIf="grupo.EVALUACION_GRUPO == 1; else noEvaluado" >
+                        Evaluado
+                    </p>
+                    <ng-template #noEvaluado>
+                        <p>
+                            No evaluado
+                        </p>
+                    </ng-template>
+                </td>
+                <td>
                     <a [routerLink]="['/tutorias/detalle-grupo']"
+                       [queryParams]="{clave_grupo: grupo.PK_GRUPO_TUTORIA}"
                        class="btn btn-primary">
                         Ver detalles
                     </a>

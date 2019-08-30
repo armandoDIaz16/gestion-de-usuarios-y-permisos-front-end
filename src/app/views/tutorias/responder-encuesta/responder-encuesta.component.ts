@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {InterfaceEncuestaCompleta, InterfacePreguntaEncuesta} from '../_models/EncuestasModel';
-import {Observable} from 'rxjs';
 import {ResponderEncuestaService} from '../responder-encuesta/responder-encuesta.service';
 
 import {Helpers} from './helpers';
@@ -16,7 +15,7 @@ export class ResponderEncuestaComponent implements OnInit {
 
     public pk_aplicacion_encuesta: number;
     public hay_encuesta = null;
-    public encuesta_completa: InterfaceEncuestaCompleta;
+    public encuesta_completa = <InterfaceEncuestaCompleta>{};
     public pregunta_inicial: number;
     public cantidad_preguntas: number;
 

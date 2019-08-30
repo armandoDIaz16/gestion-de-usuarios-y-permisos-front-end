@@ -13,68 +13,47 @@
                 <th>Reporte</th>
             </tr>
             </thead>
-            <tbody>
-            <tr class="text-center">
-                <td>1</td>
-                <td>Pasatiempos</td>
-                <td>2019-08-12</td>
-                <td>2019-08-14</td>
-                <td>
-                    <!-- [queryParams]="{pk_aplicacion_encuesta: encuesta.PK_APLICACION_ENCUESTA}" -->
-                    <a [routerLink]="['/tutorias/respuesta-encuesta']"
-                       class="btn btn-link" tooltip="Ver respuestas de encuesta">
-                        Ver detalles
+            <tbody *ngIf="this.hay_encuestas; else elseBlock">
+            <tr *ngFor="let encuesta of this.lista_encuestas; let i = index" class="text-center">
+                <td>{{i + 1}}</td>
+                <td>{{encuesta.NOMBRE}}</td>
+                <td>{{encuesta.FECHA_APLICACION}}</td>
+                <td>{{encuesta.FECHA_RESPUESTA}}</td>
+                <td *ngIf="encuesta.ESTADO_APLICACION == 2; else elseSinResponder">
+                    <a [routerLink]="['/tutorias/respuestas-encuesta']"
+                       [queryParams]="{clave_grupo: encuesta.PK_APLICACION_ENCUESTA}"
+                       tooltip="Ver respuestas de la encuesta"
+                       class="btn btn-link">
+                        Ver respuestas
                     </a>
                 </td>
-                <td>
-                    <!-- [queryParams]="{pk_aplicacion_encuesta: encuesta.PK_APLICACION_ENCUESTA}" -->
+                <ng-template #elseSinResponder>
+                    <td>
+                        No respondida
+                    </td>
+                </ng-template>
+                <td *ngIf="encuesta.ESTADO_APLICACION == 2; else elseSinResponder">
                     <a [routerLink]="['/tutorias/reporte-encuesta']"
-                       class="btn btn-link" tooltip="Ver reporte de la encuesta">
-                        Ver detalles
+                       [queryParams]="{clave_grupo: encuesta.PK_APLICACION_ENCUESTA}"
+                       tooltip="Ver reporte de la encuesta"
+                       class="btn btn-link">
+                        Ver reporte
                     </a>
                 </td>
-            </tr>
-            <tr class="text-center">
-                <td>2</td>
-                <td>Salud</td>
-                <td>2019-08-12</td>
-                <td>2019-08-14</td>
-                <td>
-                    <!-- [queryParams]="{pk_aplicacion_encuesta: encuesta.PK_APLICACION_ENCUESTA}" -->
-                    <a [routerLink]="['/tutorias/respuesta-encuesta']"
-                       class="btn btn-primary">
-                        Ver detalles
-                    </a>
-                </td>
-                <td>
-                    <!-- [queryParams]="{pk_aplicacion_encuesta: encuesta.PK_APLICACION_ENCUESTA}" -->
-                    <a [routerLink]="['/tutorias/reporte-encuesta']"
-                       class="btn btn-primary">
-                        Ver detalles
-                    </a>
-                </td>
-            </tr>
-            <tr class="text-center">
-                <td>3</td>
-                <td>Condición socioeconómica</td>
-                <td>2019-08-12</td>
-                <td>2019-08-14</td>
-                <td>
-                    <!-- [queryParams]="{pk_aplicacion_encuesta: encuesta.PK_APLICACION_ENCUESTA}" -->
-                    <a [routerLink]="['/tutorias/respuesta-encuesta']"
-                       class="btn btn-primary">
-                        Ver detalles
-                    </a>
-                </td>
-                <td>
-                    <!-- [queryParams]="{pk_aplicacion_encuesta: encuesta.PK_APLICACION_ENCUESTA}" -->
-                    <a [routerLink]="['/tutorias/reporte-encuesta']"
-                       class="btn btn-primary">
-                        Ver detalles
-                    </a>
-                </td>
+                <ng-template #elseSinResponder>
+                    <td>
+                        No respondida
+                    </td>
+                </ng-template>
             </tr>
             </tbody>
+            <ng-template #elseBlock>
+                <tbody>
+                <tr class="text-center">
+                    <td colspan="5">No se encontraron encuestas pendientes</td>
+                </tr>
+                </tbody>
+            </ng-template>
         </table>
     </div>
 </div>
