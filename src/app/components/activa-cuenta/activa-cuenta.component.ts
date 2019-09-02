@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {JarwisService} from '../../services/jarwis.service';
 import {Router} from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
     selector: 'app-dashboard',
@@ -18,7 +18,9 @@ export class ActivaCuentaComponent implements OnInit {
     public form = {
         curp: null,
         password1: null,
-        password2: null
+        password2: null,
+        clave: null,
+        token: null
     };
 
     public error = null;
@@ -30,15 +32,19 @@ export class ActivaCuentaComponent implements OnInit {
     onSubmit() {
         if (this.form.password1.trim() !== '') {
             if (this.form.password2.trim() !== '') {
-                if (this.form.password1.trim() === this.form.password2.trim()) {
-                    // la cuenta debe activarse
-                    this.Jarwis.activar_cuenta(this.form).subscribe(
-                        data => this.handleResponse(data),
-                        error => this.handleError(error)
-                    );
+                if (this.form.password1.trim().length >= 8 && this.form.password2.trim().length >= 8) {
+                    if (this.form.password1.trim() === this.form.password2.trim()) {
+                        // la cuenta debe activarse
+                        this.Jarwis.activar_cuenta(this.form).subscribe(
+                            data => this.handleResponse(data),
+                            error => this.handleError(error)
+                        );
+                    } else {
+                        // las contraseñas no coinciden
+                        alert('Verifique que las contraseñas ingresadas coincidan');
+                    }
                 } else {
-                    // las contraseñas no coinciden
-                    alert('Verifique que las contraseñas ingresadas coincidan');
+                    alert('Las contraseñas deben contener al menos 8 caracteres');
                 }
             } else {
                 // contraseña 2 vacía
@@ -59,11 +65,13 @@ export class ActivaCuentaComponent implements OnInit {
 
     handleError(error) {
         this.error = error.error.error;
-        this.ocultar_boton_enviar = true;
+        this.ocultar_boton_enviar = false;
     }
 
     ngOnInit() {
         this.token = this.route.snapshot.queryParamMap.get('token');
+
+        this.form.token = this.token;
 
         this.Jarwis.get_datos_activacion({token: this.token}).subscribe(
             data => this.handleResponseAlumno(data),
