@@ -12,6 +12,10 @@ export class NotificacionesComponent implements OnInit {
  
   error = [];
   asesor = [];
+  correoalm = [];
+  correoase = [];
+  emailalm= null
+  emailase= null
 
   public form = {
     correos : [],
@@ -26,7 +30,37 @@ export class NotificacionesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.Jarwis.getCorreoIndAlumno().subscribe(
+      data => {
+        this.correoalm = [];
+        for (var num in data) {
+          this.correoalm.push(data[num]);
+          //console.log(this.form.correos)
+        }
+      },
+      error => this.handleError(error)
+    );
+    this.Jarwis.obtenerAsesor().subscribe(
+      data => {
+        this.correoase = [];
+        for (var num in data) {
+          this.correoase.push(data[num]);
+          console.log(this.correoase)
+        }
+      },
+      error => this.handleError(error)
+    );
 
+  }
+  corrAlm(){
+    this.form.correos.push(this.emailalm)
+    //console.log(this.form.correos)
+
+  }
+
+  corrAse(){
+    this.form.correos.push(this.emailase)
+    //console.log(this.form.correos)
   }
 
   correoAsesores() {

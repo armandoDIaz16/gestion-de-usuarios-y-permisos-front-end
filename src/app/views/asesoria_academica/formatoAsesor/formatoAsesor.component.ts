@@ -10,6 +10,7 @@ import * as XLSX from 'xlsx';
 })
 export class FormatoAsesorComponent implements OnInit {
   visindividual = false;
+  viscalificacion = false;
   visgrupal = false;
   visatisfaccion = false;
   visfinal = false;
@@ -104,6 +105,10 @@ export class FormatoAsesorComponent implements OnInit {
   };
 
   constructor(private Jarwis: JarwisService) {
+  }
+  califica() {
+    this.viscalificacion = !this.viscalificacion;
+
   }
 
   individual() {

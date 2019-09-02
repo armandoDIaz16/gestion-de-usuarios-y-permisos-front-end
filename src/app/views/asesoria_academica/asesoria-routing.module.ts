@@ -69,36 +69,36 @@ function agregarModulos(modulo) {
         }
       });
       break;
-      case 'Notifiacion almno':
+      case 'Notificación alumno':
       modulos.push({
-        path: 'notifiacion_almno',
+        path: 'notificacion_alumno',
         component: NotificacionesAlmComponent,
         data: {
           title: 'Notificaciones Alumno'
         }
       });
       break;
-      case 'Asignacion ases':
+      case 'Asignación asesores':
       modulos.push({
-        path: 'asignacion_ases',
+        path: 'asignacion_asesores',
         component: AsignacionAseComponent,
         data: {
           title: 'Lista Alumnos'
         }
       });
       break;
-      case 'Notificacion ases':
+      case 'Notificación asesores':
       modulos.push({
-        path: 'notificacion_ases',
+        path: 'notificacion_asesores',
         component: NotificacionesAsesComponent,
         data: {
-          title: 'Notificacion Asesor'
+          title: 'Notificaciones Asesor'
         }
       });
       break;
-      case 'Reportes coord':
+      case 'Reportes coordinador':
       modulos.push({
-        path: 'reportes_coord',
+        path: 'reportes_coordinador',
         component: ReportesCoordComponent,
         data: {
           title: 'Reportes'
@@ -132,18 +132,18 @@ function agregarModulos(modulo) {
         }
       });
       break;
-    case 'Formatos ases':
+    case 'Formatos asesores':
       modulos.push({
-        path: 'formatos_ases',
+        path: 'formatos_asesores',
         component: FormatoAsesorComponent,
         data: {
           title: 'Formato Asesor'
         }
       });
       break;
-    case 'Formatos almno':
+    case 'Formatos alumno':
       modulos.push({
-        path: 'formatos_almno',
+        path: 'formatos_alumno',
         component: FormatoAlmnoComponent,
         data: {
           title: 'Formatos Alumno'
@@ -159,12 +159,12 @@ function agregarModulos(modulo) {
         }
       });
       break;
-    case 'Asignacion':
+    case 'Asignación':
       modulos.push({
         path: 'asignacion',
         component: AsignacionComponent,
         data: {
-          title: 'Asignacion'
+          title: 'Asignación'
         }
       });
       break;
@@ -195,9 +195,9 @@ function agregarModulos(modulo) {
         }
       });
       break;
-    case 'Solicitud almno':
+    case 'Solicitud alumno':
       modulos.push({
-        path: 'solicitud_almno',
+        path: 'solicitud_alumno',
         component: Form_alumnoComponent,
         data: {
           title: 'Solicitud Asesoria'

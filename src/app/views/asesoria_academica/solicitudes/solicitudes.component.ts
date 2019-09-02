@@ -12,6 +12,7 @@ export class SolicitudesComponent implements OnInit {
  // activado = true;
   visasesor = false;
   visalumno = false;
+  promedio = null;
   public estatus = [];
   public carreras = [];
   public asesor1 = [];
@@ -471,15 +472,24 @@ export class SolicitudesComponent implements OnInit {
     this.Jarwis.horaAll(i).subscribe(
       data => {
         this.horarioUser = [];
+        var prueba = [];
         for (var num in data) {
           this.horarioUser.push(data[num]);
         }
+        //console.log(this.horarioUser)
+
       },
       error => this.handleError(error)
     );
   }
 
   segui(i) {
+    this.Jarwis.promedio(i).subscribe(
+      data => {
+        this.promedio = data;
+      },
+      error => this.handleError(error)
+    );
     this.Jarwis.seguimiento(i).subscribe(
       data => {
         this.seguimientoAsesor = [];

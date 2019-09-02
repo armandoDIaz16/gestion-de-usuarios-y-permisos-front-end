@@ -213,6 +213,13 @@ export class JarwisService extends GenericServicesService{
   getAsesorCorreo(a) {
     return this.http.get(`${this.baseUrl}CorreoAsesor?id=`+a)
   }
+  getCorreoIndAlumno() {
+    return this.http.get(`${this.baseUrl}CorreoIndividualAlumno`)
+  }
+  getCorreoIndAsesor() {
+    return this.http.get(`${this.baseUrl}CorreoIndividualAses`)
+  }
+
 
 
 

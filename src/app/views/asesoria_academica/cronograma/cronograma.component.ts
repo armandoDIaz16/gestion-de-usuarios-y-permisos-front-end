@@ -36,6 +36,7 @@ export class CronogramaComponent implements OnInit {
       data => {
         for (var num in data) {
           this.asesor.push(data[num]);
+          console.log(this.asesor)
 
         }
       },

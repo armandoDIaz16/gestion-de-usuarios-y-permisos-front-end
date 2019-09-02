@@ -54,8 +54,17 @@ export class NavbarSistemsComponent implements OnInit {
             for(var modulo in sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS){              
               //console.log("------"+sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE)
               rutasModulos.push({name: sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE,
-                              url: '/'+sistemas[0].SISTEMAS[sistema].NOMBRE.toLowerCase().replace(/\s/g,"_")+'/'+sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE.toLowerCase().replace(/\s/g,"_"), 
+                              url: '/'+sistemas[0].SISTEMAS[sistema].NOMBRE.toLowerCase().replace(/\s/g,"_").replace(new RegExp(/[àáâãäå]/g),"a").replace(new RegExp(/[èéêë]/g),"e")
+                              .replace(new RegExp(/[ìíîï]/g),"i").replace(new RegExp(/[òóôõö]/g),"o").replace(new RegExp(/[ùúûü]/g),"u")+'/'+sistemas[0].SISTEMAS[sistema].
+                              ROLES[rol].MODULOS[modulo].NOMBRE.toLowerCase().replace(/\s/g,"_").replace(new RegExp(/[àáâãäå]/g),"a").replace(new RegExp(/[èéêë]/g),"e")
+                              .replace(new RegExp(/[ìíîï]/g),"i").replace(new RegExp(/[òóôõö]/g),"o").replace(new RegExp(/[ùúûü]/g),"u"), 
                               icon: 'icon-arrow-right'});
+                              /*  r = r.replace(new RegExp(/[àáâãäå]/g),"a");
+            r = r.replace(new RegExp(/[èéêë]/g),"e");
+            r = r.replace(new RegExp(/[ìíîï]/g),"i");
+            r = r.replace(new RegExp(/ñ/g),"n");                
+            r = r.replace(new RegExp(/[òóôõö]/g),"o");
+            r = r.replace(new RegExp(/[ùúûü]/g),"u"); */
             }
             rutasRoles.push({name: sistemas[0].SISTEMAS[sistema].ROLES[rol].NOMBRE, 
                             icon: 'icon-user', 
