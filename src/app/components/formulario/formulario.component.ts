@@ -95,20 +95,20 @@ export class FormularioComponent implements OnInit {
     private aspiranteService: AspiranteService) {
     this.formGroup = this.formBuilder.group({
       incapacidadLista: new FormArray([], minSelectedCheckboxes(0)),    
-      email: ['', [Validators.required]],
-      repeat_email: ''
+      CORREO1: ['', [Validators.required]],
+      repeat_CORREO1: ''
     });
     this.formularioService.getIncapacidad().subscribe(data => {
       this.incapacidadLista = data;
       this.addCheckboxes();
     });
 /*     this.formGroup = this.fb.group({
-      email: ['', [Validators.required]],
-      repeat_email: ''
+      CORREO1: ['', [Validators.required]],
+      repeat_CORREO1: ''
     }); */
     
-    this.formGroup.get('repeat_email').setValidators(
-      CustomValidators.equals(this.formGroup.get('email'))
+    this.formGroup.get('repeat_CORREO1').setValidators(
+      CustomValidators.equals(this.formGroup.get('CORREO1'))
     );
   }
   
@@ -284,7 +284,7 @@ export class FormularioComponent implements OnInit {
         "FK_COLONIA": this.colonia,
         "TELEFONO_CASA": "'" + this.tFijo + "'",
         "TELEFONO_MOVIL": "'" +this.tMovil + "'",
-        "email": "'" + this.formGroup.get('email').value + "'",
+        "CORREO1": "'" + this.formGroup.get('CORREO1').value + "'",
         "PADRE_TUTOR": "'" + this.nombrePadre + "'",
         "MADRE": "'" + this.nombreMadre + "'",
         "FK_BACHILLERATO": this.escuela,

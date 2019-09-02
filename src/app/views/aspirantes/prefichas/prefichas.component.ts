@@ -25,7 +25,7 @@ export class PrefichasComponent implements OnInit {
   public aspirante = [];
   telefonoCasa = null;
   telefonoMovil = null;
-  email = null;
+  CORREO1 = null;
   especialidad1 = null;
   especialidad2 = null;
   CURP = null;
@@ -66,10 +66,12 @@ export class PrefichasComponent implements OnInit {
       return;
     }
     this.periodoService.getPeriodo().subscribe(data => {
+      if (data) {
       //this.pkPeriodo = data[0].PK_PERIODO_PREFICHAS;
       //console.log(this.pkPeriodo);
       this.periodo= data[0].PK_PERIODO_PREFICHAS;     
       this.obtenerAspirantes(data[0].PK_PERIODO_PREFICHAS);
+      }
     });
 
     this.aspiranteService.getEstatus().subscribe(data => this.estatus = data);
@@ -178,7 +180,7 @@ export class PrefichasComponent implements OnInit {
       }
       this.telefonoCasa = this.aspirante[0].TELEFONO_CASA;
       this.telefonoMovil = this.aspirante[0].TELEFONO_MOVIL;
-      this.email = this.aspirante[0].email;
+      this.CORREO1 = this.aspirante[0].CORREO1;
       this.especialidad1 = this.aspirante[0].FK_CARRERA_1;
       this.especialidad2 = this.aspirante[0].FK_CARRERA_2;
       this.CURP = this.aspirante[0].CURP;
@@ -192,7 +194,7 @@ export class PrefichasComponent implements OnInit {
         "CURP": this.CURP,
         "TELEFONO_CASA": this.telefonoCasa,
         "TELEFONO_MOVIL": this.telefonoMovil,
-        "email": this.email,
+        "CORREO1": this.CORREO1,
         "FK_CARRERA_1": this.especialidad1,
         "FK_CARRERA_2": this.especialidad2
       });

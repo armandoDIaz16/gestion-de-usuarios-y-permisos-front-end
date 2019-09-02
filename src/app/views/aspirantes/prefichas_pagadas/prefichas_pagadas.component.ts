@@ -28,7 +28,9 @@ export class PrefichasPagadasComponent implements OnInit {
       return;
     }
     this.periodoService.getPeriodo().subscribe(data => {
+      if (data) {
       this.obtenerAspirantes(data[0].PK_PERIODO_PREFICHAS);
+    }
     });
   }
 

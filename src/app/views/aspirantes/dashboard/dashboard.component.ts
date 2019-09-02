@@ -51,6 +51,7 @@ export class DashboardComponent extends GenericServicesService implements OnInit
       return;
     }
     this.periodoService.getPeriodo().subscribe(data => {
+      if (data) {
       this.fechaInicio = data[0].FECHA_INICIO;
       this.fechaFin = data[0].FECHA_FIN;
       this.fechaInicioCurso = data[0].FECHA_INICIO_CURSO;
@@ -60,8 +61,10 @@ export class DashboardComponent extends GenericServicesService implements OnInit
       this.fechaInicioInscripcionBis = data[0].FECHA_INICIO_INSCRIPCION_BIS;
       this.fechaFinInscripcionBis = data[0].FECHA_FIN_INSCRIPCION_BIS;
       this.fechaActual = data[0].FECHA_ACTUAL;
+      }
     });
     this.aspiranteService.getAspirante().subscribe(data => {
+      if (data) {
       this.aspirante = data;
       //this.aspirante[0].PREFICHA = this.aspirante[0].PREFICHA.replace(/ /g, "")
       //this.aspiranteService.getReferencia(this.aspirante[0].PREFICHA).subscribe(data => this.referencia = data);
@@ -89,6 +92,7 @@ export class DashboardComponent extends GenericServicesService implements OnInit
           }
           break;
       }
+    }
     });
   }
   generarReferencia() {

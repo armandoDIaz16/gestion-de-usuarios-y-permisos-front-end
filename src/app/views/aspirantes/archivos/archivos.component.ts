@@ -46,7 +46,9 @@ export class ArchivosComponent implements OnInit {
     this.fechaFin = "" + año + "-" + mes + "-" + dia + "";
     this.fechaInicio = "" + año + "-" + mes + "-" + dia + "";
     this.periodoService.getPeriodo().subscribe(data => {
+      if (data) {
       this.periodo = data[0].PK_PERIODO_PREFICHAS;
+      }
     });
 
   }
