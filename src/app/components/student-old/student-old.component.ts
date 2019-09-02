@@ -1,37 +1,59 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import {JarwisService} from '../../services/jarwis.service';
 import {TokenService} from '../../services/token.service';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-dashboard',
+    selector: 'app-dashboard',
     templateUrl: './student-old.component.html',
     styleUrls: ['./student-old.component.scss']
 })
 export class StudentOldComponent implements OnInit {
 
-    public get_datos_alumno(){
+    public get_datos_alumno() {
         let json = JSON.parse(localStorage.getItem('datos_alumno'));
         return json;
     }
 
-  	public datos_alumno = this.get_datos_alumno();
+    public get_carrera(clave_carrera: String) {
+        switch (clave_carrera) {
+            case 'ELX': return 'INGENIERÍA ELECTRÓNICA';
+            case 'EMX': return 'INGENIERÍA ELECTROMECÁNICA';
+            case 'GE9': return 'INGENIERÍA EN GESTIÓN EMPRESARIAL';
+            case 'IIX': return 'INGENIERÍA INDUSTRIAL';
+            case 'ISX': return 'INGENIERÍA EN SISTEMAS COMPUTACIONALES';
+            case 'LOX': return 'INGENIERÍA EN LOGÍSTICA';
+            case 'MCX': return 'INGENIERÍA MECATRÓNICA';
+            case 'TIX': return 'INGENIERÍA EN TECNOLOGÍAS DE LA INFORMACIÓN Y COMUNICACIONES';
+            default: return 'DOCENTE';
+        }
+    }
+
+    public datos_alumno = this.get_datos_alumno();
+
+    public registrado    = false;
+    public ocultar_boton_enviar = false;
+    public ocultar_boton_cancelar = false;
+    public error = false;
 
     public form = {
         email: null,
-        //name:null,
-        NUMERO_CONTROL:   this.datos_alumno.numero_control,
-        name:             this.datos_alumno.nombre,
-        PRIMER_APELLIDO:  this.datos_alumno.primer_apellido,
+        // name:null,
+        NUMERO_CONTROL: this.datos_alumno.numero_control,
+        name: this.datos_alumno.nombre,
+        PRIMER_APELLIDO: this.datos_alumno.primer_apellido,
         SEGUNDO_APELLIDO: this.datos_alumno.segundo_apellido,
-        CLAVE_CARRERA : this.datos_alumno.clave_carrera,
-        SEMESTRE: this.datos_alumno.semestre ,
+        CLAVE_CARRERA: this.datos_alumno.clave_carrera,
+        NOMBRE_CARRERA: this.get_carrera(this.datos_alumno.clave_carrera),
+        SEMESTRE: (this.datos_alumno.semestre == 0) ? "N/A" : this.datos_alumno.semestre,
         password: null,
         password_confirmation: null,
         curp: null,
+        TELEFONO_FIJO: null,
         TELEFONO_MOVIL: null,
-        //PRIMER_APELLIDO:'chavez',
-        //SEGUNDO_APELLIDO:'barajas',
+        TIPO_USUARIO: this.datos_alumno.tipo_usuario,
+        // PRIMER_APELLIDO:'chavez',
+        // SEGUNDO_APELLIDO:'barajas',
         /*  FECHA_NACIMIENTO:'2019-01-11',
           CURP: 'cabe960224hgthrd02',
           ESTADO:1,
@@ -60,34 +82,37 @@ export class StudentOldComponent implements OnInit {
           BORRADO:'0' */
     };
 
-    public error = {
-        curp: null,
-        email: null,
-        password: null,
-        password_confirmation: null
-    };
-
-  constructor(private Jarwis: JarwisService,
+    constructor(private Jarwis: JarwisService,
                 private Token: TokenService,
                 private router: Router) {
     }
 
     onSubmit() {
-        this.Jarwis.signup(this.form).subscribe(
-            data => this.handleResponse(data),
-            error => this.handleError(error)
-        );
+        if (this.form.curp.trim().length === 18) {
+            if (confirm('Acepto que he leído y estoy de acuerdo con el aviso de privacidad')) {
+                this.ocultar_boton_enviar = true;
+                this.Jarwis.signup(this.form).subscribe(
+                    data => this.handleResponse(data),
+                    error => this.handleError(error)
+                );
+            }
+        } else {
+            alert('Vefirique su CURP');
+        }
     }
 
     handleResponse(data) {
-        //this.Token.handle(data.access_token);
-        localStorage.clear();
-        this.router.navigateByUrl('/login');
+        if (data) {
+            this.ocultar_boton_enviar = true;
+            this.registrado = true;
+            localStorage.clear();
+        }
     }
 
 
     handleError(error) {
-        this.error = error.error.errors;
+        this.error = error.error.error;
+        this.ocultar_boton_enviar = false;
     }
 
     ngOnInit() {

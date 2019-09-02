@@ -1,15 +1,27 @@
-<div class="card">
-<div style="text-align: left">
-  <h2 class="card-header">Documento a subir:</h2><br>
-</div>
-<div style="text-align: center;">  <!--  <input [(ngModel)]="id" type="text" autofocus maxlength="2" name="id"> -->
-  <select [(ngModel)]="id" name="id" class="form-control form-control-lg" placeholder="Area academica">
-    <option value="0">No seleccionado</option>
-    <option value="1">Solicitud de residencias</option>
-    <option value="2">Carta de aceptación</option>
-  </select><br>
-  <label class="btn btn-dark">
-    Selecciona archivo<input type="file" name="file" hidden multiple (change)="uploadFile($event)">
-  </label>
-</div>
+<app-404 *ngIf=!mostrarModulo></app-404>
+<div class="animated fadeIn" *ngIf=mostrarModulo>
+    <div class="row">
+        <div class="offset-2 col-md-8">
+            <div class="card">
+                <div style="text-align: left">
+                    <h2 class="card-header">Documento a subir:</h2><br>
+                </div>
+                <div class="card-body">
+                    <div style="text-align: center;">
+                        <!--  <input [(ngModel)]="id" type="text" autofocus maxlength="2" name="id"> -->
+                        <select [(ngModel)]="id" name="id" class="form-control form-control-lg"
+                                placeholder="Area academica">
+                            <option value="0">No seleccionado</option>
+                            <option value="1">Solicitud de residencias</option>
+                            <option value="2">Carta de aceptación</option>
+                        </select><br>
+                        <label class="btn btn-dark">
+                            Selecciona archivo<input type="file" name="file" hidden multiple
+                                                     (change)="uploadFile($event)">
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

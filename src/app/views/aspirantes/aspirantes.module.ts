@@ -23,6 +23,7 @@ import { PrefichasComponent } from './prefichas/prefichas.component';
 import { PeriodoComponent } from './periodo/periodo.component';
 import { DatosComponent } from './datos/datos.component';
 import { CrearGruposComponent } from './crear_grupos/crear_grupos.component';
+import { ErrorModule } from '../error/error.module';
 
 // Angular
 
@@ -34,7 +35,8 @@ import { CrearGruposComponent } from './crear_grupos/crear_grupos.component';
     BsDropdownModule.forRoot(),
     FormsModule,
     NgxPaginationModule,
-    ChartsModule
+    ChartsModule,
+    ErrorModule
     //Chart
   ],
   declarations: [
@@ -46,7 +48,7 @@ import { CrearGruposComponent } from './crear_grupos/crear_grupos.component';
     CrearGruposComponent,
     PrefichasComponent,
     PeriodoComponent,
-    DatosComponent
+    DatosComponent,
   ],
   exports: [
     ModalModule

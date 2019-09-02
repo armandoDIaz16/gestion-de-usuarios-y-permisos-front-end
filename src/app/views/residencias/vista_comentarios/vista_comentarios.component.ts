@@ -3,22 +3,27 @@ import {Reportes} from './reporte';
 import {Comentarios} from './comentario';
 import {HttpClient} from '@angular/common/http';
 import {GenericServicesService} from '../../../services/generic-services.service';
+import { ValidarModuloService } from '../../../services/validarModulo.service';
 
 @Component({
   selector: 'app-vista-comentarios',
   templateUrl: './vista_comentarios.component.html',
   styleUrls: ['./vista_comentarios.component.scss'],
-  providers: [Reportes, Comentarios]
+  providers: [Reportes, Comentarios, ValidarModuloService]
 })
 export class VistaComentariosComponent extends GenericServicesService implements OnInit {
+
+    public mostrarModulo = false;
     public comentarioLista = [];
     public reporteLista = [];
+    ruta = GenericServicesService.ENDPOINT;
     usuario = sessionStorage.getItem('IdUsuario');
     comentario = {};
     comentario2 = {};
     reporte = {};
 
-  constructor(private comentarioService: Comentarios, private reporteService: Reportes, private http: HttpClient) {
+  constructor(private comentarioService: Comentarios, private reporteService: Reportes, private http: HttpClient,
+              private validarModuloService: ValidarModuloService) {
       super(http);
       this.reporteService.getAnteproyectos(this.usuario.toString()).subscribe( data => this.reporteLista = data);
       const aux = this.reporteLista.length;
@@ -33,6 +38,10 @@ export class VistaComentariosComponent extends GenericServicesService implements
   }
 
   ngOnInit() {
+      this.mostrarModulo = this.validarModuloService.getMostrarModulo('Vista comentarios');
+      if (!this.mostrarModulo) {
+          return;
+      }
   }
     cargarComentario(numero) {
         this.comentarioService.getComentarios(numero).subscribe(data => this.comentarioLista = data);
@@ -43,7 +52,7 @@ export class VistaComentariosComponent extends GenericServicesService implements
             'Comentario': comentario.toString(),
             'Usuario': this.usuario.toString()}, GenericServicesService.HEADERS
         ).subscribe((response) => {
-            console.log(response);
+            alert(response);
         });
     }
 }

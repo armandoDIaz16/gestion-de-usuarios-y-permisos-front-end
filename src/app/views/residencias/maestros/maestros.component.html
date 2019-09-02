@@ -1,55 +1,81 @@
-<div class="card">
-        <table class="table" >
-            <thead>
-            <tr class="card-header">
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Maestro</th>
-                <th>Externo</th>
-                <th>Asignar</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let antep of anteproyectosLista; let i = index">
-                <td>{{antep.ID_ANTEPROYECTO}}</td>
-                <td>{{ antep.NOMBRE }}</td>
-                <td>  <select [(ngModel)]="opcion[i]" name="teacher" id="teacher">
-                    <option *ngFor="let estadoCivil of maestrosLista" value="{{estadoCivil.PK_USUARIO}}"> {{estadoCivil.name}} </option>
-                </select> </td>
-                <td>  <select [(ngModel)]="opcion2[i]" name="externo" id="externo">
-                    <option *ngFor="let estadoCivil of externoLista" value="{{estadoCivil.ID_PADRE}}"> {{estadoCivil.name}} </option>
-                </select> </td>
-                <td>  <label class="btn btn-dark">
-                    Asignar<input type="submit" value="submit" name="submit" hidden (click)="asignarMaestro(antep.ID_ANTEPROYECTO,opcion[i],opcion2[i])">
-                </label> <!--<button class="btn btn-dark" type="submit" value="Submit">Asignar</button> --> </td>
-            </tr>
-            </tbody>
-        </table>
-</div>
-<br>
-<div class="card">
-    <h2 class="card-header"> Cambiar asesores </h2>
-    <h3>Numero de Control:</h3> <input type="text" [(ngModel)]="alumnos" class="form-control form-control-lg">
-   <div style="text-align: center;">
-    <label class="btn btn-dark">
-        Buscar<input type="submit" value="submit" name="submit" hidden (click)="buscarAlumno()">
-    </label>
-   </div>
-    <table class="table" >
-        <tbody>
-        <tr *ngFor="let antep of alumnoLista; let i = index">
-            <td>{{antep.ID_ANTEPROYECTO}}</td>
-            <td>{{ antep.NOMBRE }}</td>
-            <td>  <select [(ngModel)]="opcion[i]" name="teacher2" id="teacher2">
-                <option *ngFor="let estadoCivil of maestrosLista" value="{{estadoCivil.PK_USUARIO}}"> {{estadoCivil.name}} </option>
-            </select> </td>
-            <td>  <select [(ngModel)]="opcion2[i]" name="externo2" id="externo2">
-                <option *ngFor="let estadoCivil of externoLista" value="{{estadoCivil.ID_PADRE}}"> {{estadoCivil.name}} </option>
-            </select> </td>
-            <td>  <label class="btn btn-dark">
-                Asignar<input type="submit" value="submit" name="submit" hidden (click)="asignarMaestro(antep.ID_ANTEPROYECTO,opcion[i],opcion2[i])">
-            </label> <!--<button class="btn btn-dark" type="submit" value="Submit">Asignar</button> --> </td>
-        </tr>
-        </tbody>
-    </table>
+<app-404 *ngIf=!mostrarModulo></app-404>
+<div class="animated fadeIn" *ngIf=mostrarModulo>
+    <div class="row">
+        <div class="offset-2 col-md-8">
+            <div class="card">
+                <table class="table">
+                    <thead>
+                    <tr class="card-header">
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Maestro</th>
+                        <th>Externo</th>
+                        <th>Asignar</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let antep of anteproyectosLista; let i = index">
+                        <td>{{antep.ID_ANTEPROYECTO}}</td>
+                        <td>{{ antep.NOMBRE }}</td>
+                        <td><select [(ngModel)]="opcion[i]" name="teacher" id="teacher">
+                            <option *ngFor="let estadoCivil of maestrosLista"
+                                    value="{{estadoCivil.PK_USUARIO}}"> {{estadoCivil.NOMBRE}} ({{estadoCivil.CANTIDAD}})
+                            </option>
+                        </select></td>
+                        <td><select [(ngModel)]="opcion2[i]" name="externo" id="externo">
+                            <option *ngFor="let estadoCivil of externoLista"
+                                    value="{{estadoCivil.ID_PADRE}}"> {{estadoCivil.NOMBRE}} </option>
+                        </select></td>
+                        <td><label class="btn btn-dark">
+                            Asignar<input type="submit" value="submit" name="submit" hidden
+                                          (click)="asignarMaestro(antep.ID_ANTEPROYECTO,opcion[i],opcion2[i])">
+                        </label> <!--<button class="btn btn-dark" type="submit" value="Submit">Asignar</button> -->
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="offset-2 col-md-8">
+            <div class="card">
+                <h2 class="card-header"> Cambiar asesores </h2>
+                <div class="card-body">
+                    <h3>Numero de Control:</h3> <input type="text" [(ngModel)]="alumnos"
+                                                       class="form-control form-control-lg">
+                    <div style="text-align: center;">
+                        <br>
+                        <label class="btn btn-dark">
+                            Buscar<input type="submit" value="submit" name="submit" hidden (click)="buscarAlumno()">
+                        </label>
+                    </div>
+                    <table class="table">
+                        <tbody>
+                        <tr *ngFor="let antep of alumnoLista; let i = index">
+                            <td>{{antep.ID_ANTEPROYECTO}}</td>
+                            <td>{{ antep.NOMBRE }}</td>
+                            <td><select [(ngModel)]="opcion[i]" name="teacher2" id="teacher2">
+                                <option *ngFor="let estadoCivil of maestrosLista"
+                                        value="{{estadoCivil.PK_USUARIO}}"> {{estadoCivil.NOMBRE}}
+                                    ({{estadoCivil.CANTIDAD}})
+                                </option>
+                            </select></td>
+                            <td><select [(ngModel)]="opcion2[i]" name="externo2" id="externo2">
+                                <option *ngFor="let estadoCivil of externoLista"
+                                        value="{{estadoCivil.ID_PADRE}}"> {{estadoCivil.NOMBRE}} </option>
+                            </select></td>
+                            <td><label class="btn btn-dark">
+                                Asignar<input type="submit" value="submit" name="submit" hidden
+                                              (click)="asignarMaestro(antep.ID_ANTEPROYECTO,opcion[i],opcion2[i])">
+                            </label> <!--<button class="btn btn-dark" type="submit" value="Submit">Asignar</button> -->
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

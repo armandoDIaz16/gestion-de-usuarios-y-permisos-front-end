@@ -3,7 +3,7 @@ import { Lineamiento } from './interfaces/lineamiento'
 import { CreditosService } from '../../services/creditos.service';
 
 import { ActivatedRoute, Router } from '@angular/router';
-
+//edicion
 
 @Component({
   selector: 'app-lineamientosForm',
@@ -42,7 +42,7 @@ export class LineamientosFormComponent {
       console.log(this.lineamiento);
       this.lineamientosService.put(this.lineamiento).subscribe((data)=>{
         alert("lineamiento actualizado correctamente");
-        this.router.navigate(['./creditos/lineamientos']);
+        this.router.navigate(['./creditos/gestion_de_lineamientos']);
       },(error)=>{
         alert("ocurrio un error " + error);
         console.log(error);

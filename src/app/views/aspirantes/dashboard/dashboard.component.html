@@ -1,4 +1,5 @@
-<div class="animated fadeIn">
+<app-404 *ngIf=!mostrarModulo></app-404>
+<div class="animated fadeIn" *ngIf=mostrarModulo>
     <h2 class="">Bienvenido aspirante</h2>    
     <hr>
       <div id="contentToConvert" class="col-md-12 hidden-xs d-flex justify-content-center">
@@ -44,5 +45,15 @@
     </div>
     <div class="d-flex justify-content-center"  *ngIf="habilitarAceptado">
         <h4>Fuiste aceptado</h4>
+    </div>
+    <div class="d-flex justify-content-center"  *ngIf="habilitarCurso">
+      <div class="w-50">
+        <button type="button" class="btn btn-block btn-primary" (click)="generarReferenciaCurso()">Generar referencia de curso</button>
+      </div>  
+    </div>
+    <div class="d-flex justify-content-center"  *ngIf="habilitarInscripcion">
+      <div class="w-50">
+        <button type="button" class="btn btn-block btn-primary" (click)="generarReferenciaInscripcion()">Generar referencia de Inscripción</button>
+      </div>  
     </div>
 </div>

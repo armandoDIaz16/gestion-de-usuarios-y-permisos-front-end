@@ -2,18 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import {AnteproyectosSeleccion} from './anteproyectos';
 import {HttpClient} from '@angular/common/http';
 import {GenericServicesService} from '../../../services/generic-services.service';
+import { ValidarModuloService } from '../../../services/validarModulo.service';
 
 @Component({
   selector: 'app-banco-edicion',
   templateUrl: './banco_edicion.component.html',
   styleUrls: ['./banco_edicion.component.scss'],
-    providers: [AnteproyectosSeleccion]
+    providers: [AnteproyectosSeleccion, ValidarModuloService]
 })
 export class BancoEdicionComponent extends GenericServicesService implements OnInit {
 
     public anteproyectosLista = [];
+    public mostrarModulo = false;
     id = this.id;
-  constructor(private anteproyectosService: AnteproyectosSeleccion, private http: HttpClient) { super(http); }
+    usuario = sessionStorage.getItem('IdUsuario');
+  constructor(private anteproyectosService: AnteproyectosSeleccion, private http: HttpClient,
+              private validarModuloService: ValidarModuloService) { super(http); }
   Nombre = this.Nombre;
   Alumno = this.Alumno;
   Estatus = this.Estatus;
@@ -23,6 +27,10 @@ export class BancoEdicionComponent extends GenericServicesService implements OnI
   Comentario = this.Comentario;
 
   ngOnInit() {
+      this.mostrarModulo = this.validarModuloService.getMostrarModulo('Banco edicion');
+      if (!this.mostrarModulo) {
+          return;
+      }
   }
   onSubmit() {
       console.log(this.id);
@@ -36,10 +44,11 @@ export class BancoEdicionComponent extends GenericServicesService implements OnI
           'AreaAcademica': event.target.AreaAcademica.value.toString(),
           'Autor': event.target.Autor.value.toString(),
           'Empresa': event.target.Empresa.value.toString(),
-          'Comentario': event.target.Comentario.value.toString()
+          'Comentario': event.target.Comentario.value.toString(),
+          'Usuario': this.usuario
       }, GenericServicesService.HEADERS ).subscribe(
           (response) => {
-              console.log(response);
+              alert(response);
           }
       );
   }

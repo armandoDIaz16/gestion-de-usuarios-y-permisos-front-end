@@ -1,16 +1,24 @@
-<div class="card">
-    <table class="table" >
-        <thead>
-        <tr class="card-header">
-            <th>Alumno</th>
-            <th>Archivo</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let antep of informeLista">
-            <td>{{ antep.name }}</td>
-            <td><a href="{{'http://127.0.0.1:8000/'+antep.INFORME}}" target="_blank">{{antep.INFORME}}</a></td>
-        </tr>
-        </tbody>
-    </table>
+<app-404 *ngIf=!mostrarModulo></app-404>
+<div class="animated fadeIn" *ngIf=mostrarModulo>
+    <div class="row">
+        <div class="offset-2 col-md-8">
+            <div class="card">
+                <table class="table">
+                    <thead>
+                    <tr class="card-header">
+                        <th>Alumno</th>
+                        <th>Archivo</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let antep of informeLista">
+                        <td>{{ antep.NOMBRE }}</td>
+                        <td><a href="{{ruta+antep.INFORME}}" target="_blank">{{antep.INFORME}}</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>

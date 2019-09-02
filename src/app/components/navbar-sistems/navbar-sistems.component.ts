@@ -1,39 +1,52 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { UsuarioRolesService } from '../../services/usuraio-roles.service';
-import { SistemaPermisosService } from '../../services/sistema-permisos.service'
-//import { rutasSistemas } from '../../views/login/login.component';
-//import { navItems } from './../../_nav';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {UsuarioRolesService} from '../../services/usuraio-roles.service';
+import {SistemaPermisosService} from '../../services/sistema-permisos.service';
+import {DashboardComponent} from '../../views/aspirantes/dashboard/dashboard.component';
+import {DatosComponent} from '../../views/aspirantes/datos/datos.component';
+import {PrefichasComponent} from '../../views/aspirantes/prefichas/prefichas.component';
+import {PrefichasPagadasComponent} from '../../views/aspirantes/prefichas_pagadas/prefichas_pagadas.component';
+import {ListaGruposComponent} from '../../views/aspirantes/lista_grupos/lista_grupos.component';
+import {CrearGruposComponent} from '../../views/aspirantes/crear_grupos/crear_grupos.component';
+import {ArchivosComponent} from '../../views/aspirantes/archivos/archivos.component';
+import {GraficasComponent} from '../../views/aspirantes/graficas/graficas.component';
+import {PeriodoComponent} from '../../views/aspirantes/periodo/periodo.component';
+// import { rutasSistemas } from '../../views/login/login.component';
+// import { navItems } from './../../_nav';
 
-//import { recargarRutas } from '../../containers/default-layout/default-layout.component';
+// import { recargarRutas } from '../../containers/default-layout/default-layout.component';
+
+var rutasRoles = [];
 
 @Component({
-  selector: 'app-navbar-sistems',
-  templateUrl: './navbar-sistems.component.html',
-  styleUrls: ['./navbar-sistems.component.scss'],
-  providers: [UsuarioRolesService,
-              SistemaPermisosService]
+    selector: 'app-navbar-sistems',
+    templateUrl: './navbar-sistems.component.html',
+    styleUrls: ['./navbar-sistems.component.scss'],
+    providers: [UsuarioRolesService,
+        SistemaPermisosService]
 })
 
+
 export class NavbarSistemsComponent implements OnInit {
-  public usuarioSistemasLista = [];
+    public usuarioSistemasLista = [];
 
-  constructor(private usuarioRolesService: UsuarioRolesService,
-    private sistemaPermisosService: SistemaPermisosService,
-    private router: Router) { }
+    constructor(private usuarioRolesService: UsuarioRolesService,
+                private sistemaPermisosService: SistemaPermisosService,
+                private router: Router) {
+    }
 
-  ngOnInit() {
-    this.usuarioRolesService.getUsuarioRoles().subscribe(data => {
-      sessionStorage['sistemas'] = JSON.stringify(data);
-    });
-    let sistemas = JSON.parse(sessionStorage.sistemas);  
-    for(var sistema in sistemas[0].SISTEMAS){
-      this.usuarioSistemasLista.push({
-        PK_SISTEMA: sistemas[0].SISTEMAS[sistema].PK_SISTEMA,
-        NOMBRE: sistemas[0].SISTEMAS[sistema].NOMBRE
-      });
-    }        
-  }
+    ngOnInit() {
+        this.usuarioRolesService.getUsuarioRoles().subscribe(data => {
+            sessionStorage['sistemas'] = JSON.stringify(data);
+        });
+        let sistemas = JSON.parse(sessionStorage.sistemas);
+        for (var sistema in sistemas[0].SISTEMAS) {
+            this.usuarioSistemasLista.push({
+                PK_SISTEMA: sistemas[0].SISTEMAS[sistema].PK_SISTEMA,
+                NOMBRE: sistemas[0].SISTEMAS[sistema].NOMBRE
+            });
+        }
+    }
 
   mostrarRoles(sistemaSelect){
     this.router.navigateByUrl('/home');
@@ -70,10 +83,21 @@ export class NavbarSistemsComponent implements OnInit {
                             icon: 'icon-user', 
                             children: rutasModulos});  
           }
+                sessionStorage['rutas'] = JSON.stringify(rutasRoles);
+                switch (nombreSistema) {
+                    case 'Aspirantes':
+                        this.router.navigateByUrl('/aspirantes');
+                    case 'Residencias':
+                        break;
+                        break;
+                        this.router.navigateByUrl('/residencias');
+                        this.router.navigateByUrl('/tutorias');
+                    case 'tutorias':
+                        break;
+                }
+            });
         }
-      }
-      sessionStorage['rutas'] = JSON.stringify(rutasRoles); 
-      location.reload();  
-    });     
-  }  
+    }
 }
+
+export const rutasNav = rutasRoles;

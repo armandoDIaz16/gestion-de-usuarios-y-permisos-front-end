@@ -5,6 +5,8 @@ import {Routes, RouterModule} from '@angular/router';
 import {DefaultLayoutComponent} from './containers';
 
 
+import {P404Component} from './views/error/404.component';
+import {P500Component} from './views/error/500.component';
 import {LoginComponent} from './views/login/login.component';
 import {RegisterComponent} from './views/register/register.component';
 
@@ -17,6 +19,11 @@ import {FormularioComponent} from './components/formulario/formulario.component'
 import {ControlComponent} from './components/control/control.component';
 import {StudentOldComponent} from './components/student-old/student-old.component';
 
+import {ActivaCuentaComponent} from './components/activa-cuenta/activa-cuenta.component';
+
+import {ResidenciasRoutingModule} from './views/residencias/residencias-routing.module';
+import {PerfilComponent} from './components/perfil/perfil.component';
+
 
 export const routes: Routes = [
     {
@@ -28,8 +35,13 @@ export const routes: Routes = [
             title: 'Login Page'
         }
     },
-
-
+    {
+        path: '500',
+        component: P500Component,
+        data: {
+            title: 'Page 500'
+        }
+    },
     {
         path: 'formulario',
         component: FormularioComponent,
@@ -43,6 +55,14 @@ export const routes: Routes = [
         canActivate: [BeforeLoginService],
         data: {
             title: 'Obtener contraseña'
+        }
+    },
+    {
+        path: 'activa-cuenta',
+        component: ActivaCuentaComponent,
+        canActivate: [BeforeLoginService],
+        data: {
+            title: 'Activar cuenta'
         }
     },
     {
@@ -75,6 +95,14 @@ export const routes: Routes = [
         canActivate: [AfterLoginService],
         data: {
             title: 'Home'
+        }
+    },
+    {
+        path: 'perfil',
+        component: PerfilComponent,
+        canActivate: [AfterLoginService],
+        data: {
+            title: 'Mi perfil'
         }
     },
     {
@@ -124,7 +152,7 @@ export const routes: Routes = [
         path: 'response-password-reset',
         component: ResponseResetComponent,
         canActivate: [BeforeLoginService],
-    },
+    }
 
 ];
 

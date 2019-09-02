@@ -21,7 +21,7 @@ import { BancoAprobacionComponent } from './banco_aprobacion/banco_aprobacion.co
 import { MaestrosComponent } from './maestros/maestros.component';
 import { ReporteVistaComponent } from './reporte_vista/reporte_vista.component';
 import { VistaComentariosComponent } from './vista_comentarios/vista_comentarios.component';
-import {CollapseModule} from 'ngx-bootstrap';
+import {CollapseModule, ModalModule} from 'ngx-bootstrap';
 import { Reporte_docenteComponent } from './reporte_docente/reporte_docente.component';
 import { Vista_reportesComponent } from './vista_reportes/vista_reportes.component';
 import {FichaUnicaAsignacionComponent } from './ficha_unica_asignacion/ficha_unica_asignacion.component';
@@ -38,6 +38,9 @@ import { Informe_tecnicoComponent } from './informe_tecnico/informe_tecnico.comp
 import { Generar_conveniosComponent } from './generar_convenios/generar_convenios.component';
 import {Configuracion_actaComponent} from './configuracion_acta/configuracion_acta.component';
 import { Informacion_residenciasComponent } from './informacion_residencias/informacion_residencias.component';
+import { Estadisticas_asesoresComponent } from './estadisticas_asesores/estadisticas_asesores.component';
+import { Vista_de_documentacionComponent } from './vista_de_documentacion/vista_de_documentacion.component';
+import { ErrorModule } from '../error/error.module';
 
 // Angular
 
@@ -48,7 +51,9 @@ import { Informacion_residenciasComponent } from './informacion_residencias/info
         BsDropdownModule.forRoot(),
         FormsModule,
         CollapseModule,
-        ChartsModule
+        ChartsModule,
+        ModalModule,
+        ErrorModule
     ],
   declarations: [
     BancoProyectosComponent,
@@ -77,7 +82,9 @@ import { Informacion_residenciasComponent } from './informacion_residencias/info
     Informe_tecnicoComponent,
     Generar_conveniosComponent,
     Configuracion_actaComponent,
-    Informacion_residenciasComponent
+    Informacion_residenciasComponent,
+    Estadisticas_asesoresComponent,
+    Vista_de_documentacionComponent
   ]
 })
 export class ResidenciasModule { }

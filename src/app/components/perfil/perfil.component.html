@@ -1,0 +1,339 @@
+<app-header
+    [fixed]="true"
+    [navbarBrandFull]="{src: 'assets/itl.ico', width: 60, height: 50, alt: 'TecNM'}"
+    [navbarBrandMinimized]="{src: 'assets/itl.ico', width: 60, height: 50, alt: 'TecNM'}"
+    [sidebarToggler]="'lg'"
+    [asideMenuToggler]="'lg'">
+    <ul class="nav navbar-nav d-md-down-none">
+        <li class="nav-item px-3">
+            <a class="nav-link" href="#">Dashboard</a>
+        </li>
+        <li class="nav-item px-3">
+            <a class="nav-link" href="#">Users</a>
+        </li>
+        <li class="nav-item px-3">
+            <a class="nav-link" href="#">Settings</a>
+        </li>
+    </ul>
+
+    <ul class="nav navbar-nav ml-auto">
+        <!--<li class="nav-item d-md-down-none">
+          <a class="nav-link" href="#"><i class="icon-bell"></i><span class="badge badge-pill badge-danger">5</span></a>
+        </li>
+        <li class="nav-item d-md-down-none">
+          <a class="nav-link" href="#"><i class="icon-list"></i></a>
+        </li>-->
+
+        <li class="nav-item dropdown" dropdown placement="bottom right">
+            <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
+               dropdownToggle (click)="false">
+                <img src="assets/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com"/>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+                <div class="dropdown-header text-center"><strong>Cuenta</strong></div>
+                <a class="dropdown-item" href="#"><i class="fa fa-bell-o"></i> Notificaciones<span
+                    class="badge badge-info">42</span></a>
+                <a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i> Mensajes<span
+                    class="badge badge-success">42</span></a>
+                <a class="dropdown-item" href="#"><i class="fa fa-tasks"></i> Calendario<span
+                    class="badge badge-danger">42</span></a>
+                <!--<a class="dropdown-item" href="#"><i class="fa fa-comments"></i> Comment<span class="badge badge-warning">42</span></a>-->
+                <div class="dropdown-header text-center"><strong>Ajustes</strong></div>
+                <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Perfil</a>
+                <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Configuracion</a>
+                <!--<a class="dropdown-item" href="#"><i class="fa fa-usd"></i> Payments<span class="badge badge-dark">42</span></a>
+                <a class="dropdown-item" href="#"><i class="fa fa-file"></i> Projects<span class="badge badge-primary">42</span></a>
+                <div class="divider"></div>
+                <a class="dropdown-item" href="#"><i class="fa fa-shield"></i> Lock account</a>     *ngIf="loggedIn"-->
+                <a class="dropdown-item" href="#" (click)="logout($event)"><i class="fa fa-lock"></i> Cerrar Sesion</a>
+            </div>
+        </li>
+    </ul>
+</app-header>
+<div class="app-body">
+    <app-sidebar [fixed]="true" [display]="''">
+        <app-sidebar-nav [navItems]="navItems" [perfectScrollbar] [disabled]="sidebarMinimized"></app-sidebar-nav>
+        <app-sidebar-minimizer></app-sidebar-minimizer>
+    </app-sidebar>
+    <!-- Main content -->
+    <main class="main" style="background-color:hsl(0,0%,100%);">
+        <!-- Breadcrumb -->
+        <ol class="breadcrumb">
+            <app-breadcrumb></app-breadcrumb>
+            <!-- Breadcrumb Menu-->
+            <!-- <li class="breadcrumb-menu d-md-down-none">
+               <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                 <a class="btn" href="#"><i class="icon-speech"></i></a>
+                 <a class="btn" [routerLink]="['/dashboard']"><i class="icon-graph"></i> &nbsp;Dashboard</a>
+                 <a class="btn" href="#"><i class="icon-settings"></i> &nbsp;Settings</a>
+               </div>
+             </li>-->
+        </ol>
+        <div class="container-fluid">
+            <router-outlet></router-outlet>
+        </div>
+
+
+        <!-- INICIO CONTENIDO PARA EL PERFIL -->
+        <h2 class="text-center">Completa tu perfil</h2>
+        <div class="row">
+            <div class="offset-md-1 col-md-10">
+                <form (ngSubmit)="onSubmit()">
+                    <hr>
+                    <div class="col-md-12">
+                        <div class="h3">Datos personales</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="NOMBRE">Nombres</label>
+                                <input type="text" class="form-control" id="NOMBRE" name="NOMBRE"
+                                       value="{{this.perfil.NOMBRE}}" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="PRIMER_APELLIDO">Primer apellido</label>
+                                <input type="text" class="form-control" id="PRIMER_APELLIDO" name="PRIMER_APELLIDO"
+                                       value="{{this.perfil.PRIMER_APELLIDO}}" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="SEGUNDO_APELLIDO">Segundo apellido</label>
+                                <input type="text" class="form-control" id="SEGUNDO_APELLIDO" name="SEGUNDO_APELLIDO"
+                                       value="{{this.perfil.SEGUNDO_APELLIDO}}" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="CURP">CURP</label>
+                                <input type="text" class="form-control" id="CURP" name="CURP"
+                                       value="{{this.perfil.CURP}}" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="NUMERO_CONTROL">Número de control</label>
+                                <input type="text" class="form-control" id="NUMERO_CONTROL" name="NUMERO_CONTROL"
+                                       value="{{this.perfil.NUMERO_CONTROL}}" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="CARRERA">Carrera</label>
+                                <input type="text" class="form-control" id="CARRERA" name="CARRERA"
+                                       value="{{this.perfil.CARRERA}}" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="SEMESTRE">Semestre</label>
+                                <input type="text" class="form-control" id="SEMESTRE" name="SEMESTRE"
+                                       value="{{this.perfil.SEMESTRE}}" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="CORREO_INSTITUCIONAL">Correo institucional</label>
+                                <input type="text" class="form-control" id="CORREO_INSTITUCIONAL"
+                                       name="CORREO_INSTITUCIONAL"
+                                       value="{{this.perfil.CORREO_INSTITUCIONAL}}" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="FECHA_NACIMIENTO">Fecha de nacimiento</label>
+                                <input type="text" class="form-control" id="FECHA_NACIMIENTO" name="FECHA_NACIMIENTO"
+                                       value="{{this.perfil.FECHA_NACIMIENTO}}" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="SEXO">Sexo</label>
+                                <input type="text" class="form-control" id="SEXO" name="SEXO"
+                                       value="{{this.perfil.SEXO}}" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ESTADO_CIVIL">Estado civil</label>
+                                <select name="ESTADO_CIVIL" id="ESTADO_CIVIL" class="form-control">
+                                    <option value="">* Seleccione una opción</option>
+                                    <option *ngFor="let estado_civil of this.array_estado_civil" value="{{estado_civil.PK_ESTADO_CIVIL}}">
+                                        {{estado_civil.NOMBRE}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="SITUACION_RESIDENCIA">Situación de la residencia</label>
+                                <input type="text" class="form-control" id="SITUACION_RESIDENCIA"
+                                       name="SITUACION_RESIDENCIA"
+                                       value="{{this.perfil.SITUACION_RESIDENCIA}}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="CORREO1">Correo personal principal</label>
+                                <input type="mail" class="form-control" id="CORREO1" name="CORREO1"
+                                       value="{{this.perfil.CORREO1}}" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="CORREO2">Correo personal optativo</label>
+                                <input type="mail" class="form-control" id="CORREO2" name="CORREO2"
+                                       value="{{this.perfil.CORREO2}}" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="TELEFONO_CASA">Teléfono fijo</label>
+                                <input type="text" class="form-control" id="TELEFONO_CASA" name="TELEFONO_CASA"
+                                       value="{{this.perfil.TELEFONO_CASA}}">
+                                <small id="TELEFONO_CASAHelp" class="form-text text-muted">10 Dígitos</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="TELEFONO_MOVIL">Teléfono móvil</label>
+                                <input type="text" class="form-control" id="TELEFONO_MOVIL" name="TELEFONO_MOVIL"
+                                       value="{{this.perfil.TELEFONO_MOVIL}}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <div class="col-md-12">
+                        <div class="h3">Domicilio</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="CODIGO_POSTAL">Código postal</label>
+                                <input type="text" class="form-control" id="CODIGO_POSTAL" name="CODIGO_POSTAL"
+                                       value="{{this.perfil.CODIGO_POSTAL}}">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ENTIDAD_FEDERATIVA">Entidad federativa</label>
+                                <input type="mail" class="form-control" id="ENTIDAD_FEDERATIVA"
+                                       name="ENTIDAD_FEDERATIVA"
+                                       value="{{this.perfil.ENTIDAD_FEDERATIVA}}" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="CIUDAD">Municipio</label>
+                                <input type="text" class="form-control" id="CIUDAD" name="CIUDAD"
+                                       value="{{this.perfil.CIUDAD}}" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="COLONIA">Colonia</label>
+                                <input type="text" class="form-control" id="COLONIA" name="COLONIA"
+                                       value="{{this.perfil.COLONIA}}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="CALLE">Calle</label>
+                                <input type="text" class="form-control" id="CALLE" name="CALLE"
+                                       value="{{this.perfil.CALLE}}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="NUMERO_EXTERIOR">Número exterior</label>
+                                <input type="mail" class="form-control" id="NUMERO_EXTERIOR" name="NUMERO_EXTERIOR"
+                                       value="{{this.perfil.NUMERO_EXTERIOR}}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="NUMERO_INTERIOR">Número interior</label>
+                                <input type="mail" class="form-control" id="NUMERO_INTERIOR" name="NUMERO_INTERIOR"
+                                       value="{{this.perfil.NUMERO_INTERIOR}}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <div class="col-md-12">
+                        <div class="h3">Información de contacto en caso de emergencia</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="NOMBRE_CONTACTO">Nombre completo</label>
+                                <input type="text" class="form-control" id="NOMBRE_CONTACTO" name="NOMBRE_CONTACTO"
+                                       value="{{this.perfil.NOMBRE_CONTACTO}}">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="PARENTESCO_CONTACTO">Parentesco</label>
+                                <input type="text" class="form-control" id="PARENTESCO_CONTACTO"
+                                       name="PARENTESCO_CONTACTO"
+                                       value="{{this.perfil.PARENTESCO_CONTACTO}}">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="TELEFONO_CONTACTO">Teléfono</label>
+                                <input type="text" class="form-control" id="TELEFONO_CONTACTO" name="TELEFONO_CONTACTO"
+                                       value="{{this.perfil.TELEFONO_CONTACTO}}">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="CORREO_CONTACTO">Correo electrónico</label>
+                                <input type="mail" class="form-control" id="CORREO_CONTACTO" name="CORREO_CONTACTO"
+                                       value="{{this.perfil.CORREO_CONTACTO}}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <button type="submit" class="btn btn-primary px-4">
+                                Actualizar perfil
+                            </button>
+                            <a *ngIf="this.perfil.PERFIL_COMPLETO == 1" class="btn btn-danger px-4" routerLink="/home">Cancelar</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br><br><br>
+
+        <!-- FIN CONTENIDO PARA EL PERFIL -->
+
+
+    </main>
+    <app-aside [fixed]="true" [display]="false">
+        <app-navbar-sistems></app-navbar-sistems>
+    </app-aside>
+
+
+</div>
+<app-footer>
+    <span>Tecnológico Nacional de México en León</span>
+    <span class="ml-auto">Bienvenido</span>
+</app-footer>

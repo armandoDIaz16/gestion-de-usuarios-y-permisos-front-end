@@ -1,0 +1,129 @@
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <table class="table table-striped table-bordered">
+            <thead>
+            <tr>
+                <th colspan="2" class="text-center">
+                    <p class="h2">
+                        Grupo {{detalle_grupo.CLAVE}}
+                    </p>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="text-right">
+                    <b>Aula</b>
+                </td>
+                <td>{{detalle_grupo.AULA}}</td>
+            </tr>
+            <tr>
+                <td class="text-right">
+                    <b>Horario</b>
+                </td>
+                <td>
+                    <p *ngFor="let horario of detalle_grupo.HORARIO">
+                        {{horario.DIA}}: {{horario.HORA_INICIAL}} - {{horario.HORA_FINAL}}
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-right">
+                    <b>Cantidad alumnos</b>
+                </td>
+                <td>
+                    {{detalle_grupo.CANTIDAD_ALUMNOS}}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<br><br>
+
+<div class="row">
+    <div class="offset-1 col-md-10">
+        <div class="row">
+            <div class="col-md-12">
+                <a [routerLink]="['/tutorias/grupos']" class="btn btn-primary">
+                    <i class="fa fa-caret-square-o-left"></i>
+                    Regresar a grupos
+                </a>
+            </div>
+        </div>
+        <br>
+        <div class="col-md-12">
+            <h3 class="text-center">Lista de alumnos registrados</h3>
+        </div>
+        <table class="table table-striped">
+            <thead>
+            <tr class="text-center">
+                <th>No.</th>
+                <th>Número de control</th>
+                <th>Nombre alumno</th>
+                <th>Encuestas</th>
+                <th>Citas</th>
+                <th>Canalizaciones</th>
+                <th>Evaluación del tutor</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="text-center" *ngFor="let alumno of detalle_grupo.LISTA_ALUMNOS; let i = index">
+                <td>
+                    {{i + 1}}
+                </td>
+                <td>
+                    {{alumno.NUMERO_CONTROL}}
+                </td>
+                <td>
+                    <b>
+                        <a [routerLink]="['/tutorias/datos-alumno']"
+                           [queryParams]="{alumno: alumno.PK_USUARIO}"
+                           class="btn btn-link" tooltip="Ficha de datos personales">
+                            {{alumno.NOMBRE}} {{alumno.PRIMER_APELLIDO}} {{alumno.SEGUNDO_APELLIDO}}
+                            <br>
+                            (Ver detalles)
+                        </a>
+                    </b>
+                </td>
+                <td>
+                    <b>
+                        <a [routerLink]="['/tutorias/ver-encuestas']"
+                           [queryParams]="{alumno: alumno.PK_USUARIO}"
+                           class="btn btn-link" tooltip="Ver detalles de encuestas">
+                            3/6
+                            <br>
+                            (Ver detalles)
+                        </a>
+                    </b>
+                </td>
+                <td>
+                    <!-- [routerLink]="['/tutorias/citas-alumno']"
+                       [queryParams]="{alumno: alumno.PK_USUARIO}" -->
+                    <a
+                       class="btn btn-link" tooltip="Ver detalles de citas">
+                        Periodo actual: 0
+                        <br>
+                        (Ver detalles)
+                    </a>
+                </td>
+                <td>
+                    <!--[routerLink]="['/tutorias/canalizaciones-alumno']"
+                       [queryParams]="{alumno: alumno.PK_USUARIO}"-->
+                    <a
+                       class="btn btn-link" tooltip="Ver detalle de canalizaciones">
+                        0
+                        <br>
+                        (Ver detalles)
+                    </a>
+                </td>
+                <td>
+                    <b>Pendiente</b>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>

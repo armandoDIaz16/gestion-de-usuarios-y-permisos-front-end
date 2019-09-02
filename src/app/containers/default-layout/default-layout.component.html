@@ -1,80 +1,97 @@
 <app-header
-  [fixed]="true"
-  [navbarBrandFull]="{src: 'assets/itl.ico', width: 60, height: 50, alt: 'TecNM'}"
-  [navbarBrandMinimized]="{src: 'assets/itl.ico', width: 60, height: 50, alt: 'TecNM'}"
-  [sidebarToggler]="'lg'"
-  [asideMenuToggler]="'lg'">
-  <ul class="nav navbar-nav d-md-down-none">
-    <li class="nav-item px-3">
-      <a class="nav-link" href="#">Dashboard</a>
-    </li>
-    <li class="nav-item px-3">
-      <a class="nav-link" href="#">Users</a>
-    </li>
-    <li class="nav-item px-3">
-      <a class="nav-link" href="#">Settings</a>
-    </li>
-  </ul>
+    [fixed]="true"
+    [navbarBrandFull]="{src: 'assets/itl.ico', width: 60, height: 50, alt: 'TecNM'}"
+    [navbarBrandMinimized]="{src: 'assets/itl.ico', width: 60, height: 50, alt: 'TecNM'}"
+    [sidebarToggler]="'lg'"
+    [asideMenuToggler]="'lg'">
+    <ul class="nav navbar-nav d-md-down-none">
+        <!--
+          <li class="nav-item px-3">
+          <a class="nav-link" href="#">Dashboard</a>
+        </li>
+        <li class="nav-item px-3">
+          <a class="nav-link" href="#">Users</a>
+        </li>
+        <li class="nav-item px-3">
+          <a class="nav-link" href="#">Settings</a>
+        </li>
+        -->
+    </ul>
 
-  <ul class="nav navbar-nav ml-auto">
-    <!--<li class="nav-item d-md-down-none">
-      <a class="nav-link" href="#"><i class="icon-bell"></i><span class="badge badge-pill badge-danger">5</span></a>
-    </li>
-    <li class="nav-item d-md-down-none">
-      <a class="nav-link" href="#"><i class="icon-list"></i></a>
-    </li>-->
+    <ul class="nav navbar-nav ml-auto">
+        <!--<li class="nav-item d-md-down-none">
+          <a class="nav-link" href="#"><i class="icon-bell"></i><span class="badge badge-pill badge-danger">5</span></a>
+        </li>
+        <li class="nav-item d-md-down-none">
+          <a class="nav-link" href="#"><i class="icon-list"></i></a>
+        </li>-->
 
-    <li class="nav-item dropdown" dropdown placement="bottom right">
-      <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">
-        <img src="assets/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com"/>
-      </a>
-      <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
-        <div class="dropdown-header text-center"><strong>Cuenta</strong></div>
-        <a class="dropdown-item" href="#"><i class="fa fa-bell-o"></i> Notificaciones<span class="badge badge-info">42</span></a>
-        <a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i> Mensajes<span class="badge badge-success">42</span></a>
-        <a class="dropdown-item" href="#"><i class="fa fa-tasks"></i> Calendario<span class="badge badge-danger">42</span></a>
-        <!--<a class="dropdown-item" href="#"><i class="fa fa-comments"></i> Comment<span class="badge badge-warning">42</span></a>-->
-        <div class="dropdown-header text-center"><strong>Ajustes</strong></div>
-        <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Perfil</a>
-        <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Configuracion</a>
-        <!--<a class="dropdown-item" href="#"><i class="fa fa-usd"></i> Payments<span class="badge badge-dark">42</span></a>
-        <a class="dropdown-item" href="#"><i class="fa fa-file"></i> Projects<span class="badge badge-primary">42</span></a>
-        <div class="divider"></div>
-        <a class="dropdown-item" href="#"><i class="fa fa-shield"></i> Lock account</a>     *ngIf="loggedIn"-->
-        <a class="dropdown-item" href="#" (click)="logout($event)"><i class="fa fa-lock"></i> Cerrar Sesion</a>
-      </div>
-    </li>
-  </ul>
+        <li class="nav-item dropdown" dropdown placement="bottom right">
+            <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
+               dropdownToggle (click)="false">
+                <img src="assets/img/avatars/user_icon.png" class="img-avatar" alt="admin@bootstrapmaster.com"/>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+                <div class="dropdown-header text-center"><strong>Cuenta</strong></div>
+
+                <!--
+                <a class="dropdown-item" href="#"><i class="fa fa-bell-o"></i> Notificaciones<span
+                    class="badge badge-info">42</span></a>
+                <a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i> Mensajes<span
+                    class="badge badge-success">42</span></a>
+                <a class="dropdown-item" href="#"><i class="fa fa-tasks"></i> Calendario<span
+                    class="badge badge-danger">42</span></a>
+                -->
+
+                <!--<a class="dropdown-item" href="#"><i class="fa fa-comments"></i> Comment<span class="badge badge-warning">42</span></a>-->
+                <div class="dropdown-header text-center"><strong>Ajustes</strong></div>
+
+                <!--
+                <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Perfil</a>
+                <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Configuracion</a>
+                -->
+
+                <!--
+                <a class="dropdown-item" href="#"><i class="fa fa-usd"></i> Payments<span class="badge badge-dark">42</span></a>
+                <a class="dropdown-item" href="#"><i class="fa fa-file"></i> Projects<span class="badge badge-primary">42</span></a>
+                <div class="divider"></div>
+                <a class="dropdown-item" href="#"><i class="fa fa-shield"></i> Lock account</a>     *ngIf="loggedIn"
+                -->
+
+                <a class="dropdown-item" href="#" (click)="logout($event)"><i class="fa fa-lock"></i> Cerrar Sesion</a>
+            </div>
+        </li>
+    </ul>
 </app-header>
 <div class="app-body">
-  <app-sidebar [fixed]="true" [display]="''" >
-    <app-sidebar-nav [navItems]="navItems" [perfectScrollbar] [disabled]="sidebarMinimized"></app-sidebar-nav>
-    <app-sidebar-minimizer></app-sidebar-minimizer>
-  </app-sidebar>
-  <!-- Main content -->
-  <main class="main" style="background-color:hsl(0,0%,100%);">
-    <!-- Breadcrumb -->
-    <ol class="breadcrumb">
-      <app-breadcrumb></app-breadcrumb>
-      <!-- Breadcrumb Menu-->
-      <!-- <li class="breadcrumb-menu d-md-down-none">
-         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-           <a class="btn" href="#"><i class="icon-speech"></i></a>
-           <a class="btn" [routerLink]="['/dashboard']"><i class="icon-graph"></i> &nbsp;Dashboard</a>
-           <a class="btn" href="#"><i class="icon-settings"></i> &nbsp;Settings</a>
-         </div>
-       </li>-->
-    </ol>
-    <div class="container-fluid">
-       <router-outlet></router-outlet>
-    </div>
+    <app-sidebar [fixed]="true" [display]="''">
+        <app-sidebar-nav [navItems]="navItems" [perfectScrollbar] [disabled]="sidebarMinimized"></app-sidebar-nav>
+        <app-sidebar-minimizer></app-sidebar-minimizer>
+    </app-sidebar>
+    <!-- Main content -->
+    <main class="main" style="background-color:hsl(0,0%,100%);">
+        <!-- Breadcrumb -->
+        <ol class="breadcrumb">
+            <app-breadcrumb></app-breadcrumb>
+            <!-- Breadcrumb Menu-->
+            <!-- <li class="breadcrumb-menu d-md-down-none">
+               <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                 <a class="btn" href="#"><i class="icon-speech"></i></a>
+                 <a class="btn" [routerLink]="['/dashboard']"><i class="icon-graph"></i> &nbsp;Dashboard</a>
+                 <a class="btn" href="#"><i class="icon-settings"></i> &nbsp;Settings</a>
+               </div>
+             </li>-->
+        </ol>
+        <div class="container-fluid">
+            <router-outlet></router-outlet>
+        </div>
 
-  </main>
-  <app-aside [fixed]="true" [display]="false">
-     <app-navbar-sistems></app-navbar-sistems>
-  </app-aside>
+    </main>
+    <app-aside [fixed]="true" [display]="false">
+        <app-navbar-sistems></app-navbar-sistems>
+    </app-aside>
 </div>
 <app-footer>
-  <span><a href="https://google.com"></a>TecNM Instituto Tecnológico de León</span>
-  <span class="ml-auto"><a href="https://google.com">Bienvenido</a></span>
+    <span>Tecnológico Nacional de México en León</span>
+    <span class="ml-auto">Bienvenido</span>
 </app-footer>

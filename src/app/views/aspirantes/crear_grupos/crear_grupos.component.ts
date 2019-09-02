@@ -1,17 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { LugarExamenService } from '../../../services/lugar-examen.service';
+import { ValidarModuloService } from '../../../services/validarModulo.service';
 
 
 @Component({
   selector: 'app-crear_grupos',
   templateUrl: './crear_grupos.component.html',
   styleUrls: ['./crear_grupos.component.scss'],
-  providers: [LugarExamenService]
+  providers: [LugarExamenService, ValidarModuloService]
 })
 export class CrearGruposComponent implements OnInit {
 
-  constructor(private lugarExamenService: LugarExamenService) {
+  constructor(private lugarExamenService: LugarExamenService,
+    private validarModuloService: ValidarModuloService) {
   }
+  public mostrarModulo = false;
   public dia = null;
   public hora = null;
   public edificio = null;
@@ -28,6 +31,10 @@ export class CrearGruposComponent implements OnInit {
 
 
   ngOnInit() {
+    this.mostrarModulo = this.validarModuloService.getMostrarModulo("Crear grupos");
+    if (!this.mostrarModulo) {
+      return;
+    }
     this.lugarExamenService.getEdificio().subscribe(data => this.edificioLista = data);
     this.lugarExamenService.getTurno2().subscribe(data => this.turno2Lista = data);
     this.lugarExamenService.getEspacio().subscribe(data => this.espacioLista = data);
@@ -39,7 +46,7 @@ export class CrearGruposComponent implements OnInit {
       "DIA": this.dia,
       "HORA": this.hora
     });
-    setTimeout(()=>{
+    setTimeout(() => {
       this.recargarEspacioTurno()
     }, 1000);
   }
@@ -51,9 +58,9 @@ export class CrearGruposComponent implements OnInit {
       'IDENTIFICADOR': this.identificador,
       'CAPACIDAD': this.capacidad
     });
-    setTimeout(()=>{
+    setTimeout(() => {
       this.recargarEspacioTurno()
-    }, 1000); 
+    }, 1000);
   }
   guardarGrupo() {
     this.lugarExamenService.addGrupoExamen({
@@ -61,8 +68,8 @@ export class CrearGruposComponent implements OnInit {
       'FK_TURNO': this.turno2
     });
   }
-  recargarEspacioTurno(){
+  recargarEspacioTurno() {
     this.lugarExamenService.getTurno2().subscribe(data => this.turno2Lista = data);
     this.lugarExamenService.getEspacio().subscribe(data => this.espacioLista = data);
-  }     
+  }
 }

@@ -1,57 +1,76 @@
-<div class="card">
-    <table class="table">
-        <thead>
-        <tr class="card-header">
-        <th>Area Academica</th>
-        <th>Documentación</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>Sistemas y Computación</td>
-            <td>  <label class="btn btn-dark">
-                Seleccionar<input type="submit" value="submit" name="submit" hidden (click)="selectDocumentacion(1)">
-            </label></td>
-        </tr>
-        <tr>
-            <td>Metal Mecánica</td>
-            <td>  <label class="btn btn-dark">
-                Seleccionar<input type="submit" value="submit" name="submit" hidden (click)="selectDocumentacion(2)">
-            </label></td>
-        </tr>
-        <tr>
-            <td>Ciencias Económico Administrativas</td>
-            <td>  <label class="btn btn-dark">
-                Seleccionar<input type="submit" value="submit" name="submit" hidden (click)="selectDocumentacion(3)">
-            </label></td>
-        </tr>
-        <tr>
-            <td>Ingeniería Industrial</td>
-            <td>  <label class="btn btn-dark">
-                Seleccionar<input type="submit" value="submit" name="submit" hidden (click)="selectDocumentacion(4)">
-            </label></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-<div class="card">
-    <table class="table">
-        <thead>
-        <tr class="card-header">
-            <th>Alumno</th>
-            <th>Carta de aceptacion</th>
-            <th>Solicitud de residencias</th>
-            <th>Carta finalización residencias</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let doc of documentacionLista">
-            <td>{{doc.name}}</td>
-            <td><a href="{{'http://127.0.0.1:8000/'+doc.CARTA_ACEPTACION}}" target="_blank">{{doc.CARTA_ACEPTACION}}</a></td>
-            <td><a href="{{'http://127.0.0.1:8000/'+doc.SOLICITUD}}" target="_blank">{{doc.SOLICITUD}}</a></td>
-            <td><a href="{{'http://127.0.0.1:8000/'+doc.CARTA}}" target="_blank">{{doc.CARTA}}</a></td>
-        </tr>
-        </tbody>
-    </table>
+<app-404 *ngIf=!mostrarModulo></app-404>
+<div class="animated fadeIn" *ngIf=mostrarModulo>
+    <div class="row">
+        <div class="offset-2 col-md-8">
+            <div class="card">
+                <table class="table">
+                    <thead>
+                    <tr class="card-header">
+                        <th>Area Academica</th>
+                        <th>Documentación</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Sistemas y Computación</td>
+                        <td><label class="btn btn-dark">
+                            Seleccionar<input type="submit" value="submit" name="submit" hidden
+                                              (click)="selectDocumentacion(1)">
+                        </label></td>
+                    </tr>
+                    <tr>
+                        <td>Metal Mecánica</td>
+                        <td><label class="btn btn-dark">
+                            Seleccionar<input type="submit" value="submit" name="submit" hidden
+                                              (click)="selectDocumentacion(2)">
+                        </label></td>
+                    </tr>
+                    <tr>
+                        <td>Ciencias Económico Administrativas</td>
+                        <td><label class="btn btn-dark">
+                            Seleccionar<input type="submit" value="submit" name="submit" hidden
+                                              (click)="selectDocumentacion(3)">
+                        </label></td>
+                    </tr>
+                    <tr>
+                        <td>Ingeniería Industrial</td>
+                        <td><label class="btn btn-dark">
+                            Seleccionar<input type="submit" value="submit" name="submit" hidden
+                                              (click)="selectDocumentacion(4)">
+                        </label></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="offset-2 col-md-8">
+            <div class="card">
+                <table class="table">
+                    <thead>
+                    <tr class="card-header">
+                        <th>Alumno</th>
+                        <th>Carta de aceptación</th>
+                        <th>Solicitud de residencias</th>
+                        <th>Carta finalización residencias</th>
+                        <th>Informe Técnico</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let doc of documentacionLista">
+                        <td>{{doc.NOMBRE}} {{doc.PRIMER_APELLIDO}} {{doc.SEGUNDO_APELLIDO}}</td>
+                        <td><a href="{{ruta+doc.CARTA_ACEPTACION}}"
+                               target="_blank">{{doc.CARTA_ACEPTACION}}</a></td>
+                        <td><a href="{{ruta+doc.SOLICITUD}}" target="_blank">{{doc.SOLICITUD}}</a>
+                        </td>
+                        <td><a href="{{ruta+doc.CARTA}}" target="_blank">{{doc.CARTA}}</a></td>
+                        <td><a href="{{ruta+doc.INFORME}}" target="_blank">{{doc.INFORME}}</a></td>
+                    </tr>
+                    </tbody>
+                </table>
 
+            </div>
+        </div>
+    </div>
 </div>
