@@ -27,6 +27,7 @@ export class DatosComponent implements OnInit {
       return;
     }
     this.aspiranteService.getAspirante().subscribe(data => {
+      if (data) {
       this.aspirante = data;
       this.aspirante[0].FECHA_REGISTRO = this.aspirante[0].FECHA_REGISTRO.split('-')[0];
       switch(Number(this.aspirante[0].SEXO)){
@@ -40,7 +41,7 @@ export class DatosComponent implements OnInit {
       var fecha=new Date(fechaTexto[0],(fechaTexto[1]-1),fechaTexto[2]);
       var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
       this.FECHA_NACIMIENTO_TEXTO = fecha.toLocaleDateString("es-ES", options);
-
+    }
     });
     //this.aspiranteService.getAspirante().subscribe(data => this.aspirante = data);
   }

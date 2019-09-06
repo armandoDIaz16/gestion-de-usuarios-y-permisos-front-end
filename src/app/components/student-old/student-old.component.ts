@@ -17,10 +17,15 @@ export class StudentOldComponent implements OnInit {
 
     public get_carrera(clave_carrera: String) {
         switch (clave_carrera) {
-            case 'IIX':
-                return 'Ingeniería Industrial';
-            case 'ISX':
-                return 'Ingeniería en Sistemas Computacionales';
+            case 'ELX': return 'INGENIERÍA ELECTRÓNICA';
+            case 'EMX': return 'INGENIERÍA ELECTROMECÁNICA';
+            case 'GE9': return 'INGENIERÍA EN GESTIÓN EMPRESARIAL';
+            case 'IIX': return 'INGENIERÍA INDUSTRIAL';
+            case 'ISX': return 'INGENIERÍA EN SISTEMAS COMPUTACIONALES';
+            case 'LOX': return 'INGENIERÍA EN LOGÍSTICA';
+            case 'MCX': return 'INGENIERÍA MECATRÓNICA';
+            case 'TIX': return 'INGENIERÍA EN TECNOLOGÍAS DE LA INFORMACIÓN Y COMUNICACIONES';
+            default: return 'DOCENTE';
         }
     }
 
@@ -39,13 +44,14 @@ export class StudentOldComponent implements OnInit {
         PRIMER_APELLIDO: this.datos_alumno.primer_apellido,
         SEGUNDO_APELLIDO: this.datos_alumno.segundo_apellido,
         CLAVE_CARRERA: this.datos_alumno.clave_carrera,
-        NOMBRE_CARRERA: this.get_carrera(this.datos_alumno.clave_carrera.trim()),
-        SEMESTRE: this.datos_alumno.semestre,
+        NOMBRE_CARRERA: this.get_carrera(this.datos_alumno.clave_carrera),
+        SEMESTRE: (this.datos_alumno.semestre == 0) ? "N/A" : this.datos_alumno.semestre,
         password: null,
         password_confirmation: null,
         curp: null,
         TELEFONO_FIJO: null,
         TELEFONO_MOVIL: null,
+        TIPO_USUARIO: this.datos_alumno.tipo_usuario,
         // PRIMER_APELLIDO:'chavez',
         // SEGUNDO_APELLIDO:'barajas',
         /*  FECHA_NACIMIENTO:'2019-01-11',

@@ -108,7 +108,7 @@
                                                        class="h5 custom-control-label">
                                                     {{respuesta.RESPUESTA}}
                                                 </label>
-                                                <input *ngIf="respuesta.ES_MIXTA" type="text"
+                                                <input *ngIf="respuesta.ES_MIXTA == 1" type="text"
                                                        [name]="['res_mixta_'+pregunta.PK_PREGUNTA]"
                                                        [id]="['res_mixta_'+respuesta.PK_RESPUESTA_POSIBLE]"
                                                        class="form-control">
