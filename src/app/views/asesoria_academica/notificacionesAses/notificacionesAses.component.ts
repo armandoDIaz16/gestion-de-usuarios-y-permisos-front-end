@@ -1,14 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { JarwisService } from '../../../services/jarwis.service';
+import { ValidarModuloService } from '../../../services/validarModulo.service';
+
 
 
 
 @Component({
   selector: 'app-notificacionesAses',
   templateUrl: './notificacionesAses.component.html',
-  styleUrls: ['./notificacionesAses.component.scss']
+  styleUrls: ['./notificacionesAses.component.scss'],
+  providers: [ValidarModuloService]
 })
 export class NotificacionesAsesComponent implements OnInit {
+  public mostrarModulo = false;
  
   error = [];
   asesor = [];
@@ -23,10 +27,15 @@ export class NotificacionesAsesComponent implements OnInit {
 
   constructor(
     private Jarwis: JarwisService,
+    private validarModuloService: ValidarModuloService
   ) {
   }
 
   ngOnInit() {
+    this.mostrarModulo = this.validarModuloService.getMostrarModulo("Notificación asesores");
+    if (!this.mostrarModulo) {
+      return;
+    }
 
   }
 

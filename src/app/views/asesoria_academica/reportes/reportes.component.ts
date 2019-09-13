@@ -5,6 +5,8 @@ import { NgZone } from "@angular/core";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+import { ValidarModuloService } from '../../../services/validarModulo.service';
+
 
 am4core.useTheme(am4themes_animated);
 let chart;
@@ -18,12 +20,12 @@ let chart5;
   selector: 'app-reportes',
   templateUrl: './reportes.component.html',
   styleUrls: ['./reportes.component.scss'],
-  providers: [GraficasAsesoriaService]
+  providers: [GraficasAsesoriaService,ValidarModuloService]
 })
 
 export class ReportesComponent implements OnInit {
   //private chart: am4charts.XYChart;
-
+  public mostrarModulo = false;
   materias = [];
   instutucion = [];
   carrera = [];
@@ -35,9 +37,14 @@ export class ReportesComponent implements OnInit {
   evalSolAte = null;
 
   constructor(private graficasAsesoriaService: GraficasAsesoriaService,
-    private zone: NgZone) { }
+    private zone: NgZone,
+    private validarModuloService: ValidarModuloService) { }
 
   ngOnInit() {
+    this.mostrarModulo = this.validarModuloService.getMostrarModulo("Reportes");
+    if (!this.mostrarModulo) {
+      return;
+    }
     this.graficasAsesoriaService.getMateria().subscribe(data => {
       for (var motivos in data) {
         this.materias.push(data[motivos].MATERIA_APOYO1);

@@ -1,4 +1,5 @@
-<div>
+<app-404 *ngIf=!mostrarModulo></app-404>
+<div class="animated fadeIn" *ngIf=mostrarModulo>
     <H2>GRAFICA ENTREVISTA DE MOTIVOS</H2>
     <select class="form-control" type="text" [(ngModel)]="materiaid" (change)="motivospormateria()">
       <option value=null disabled>NOMBRE DE LA MATERIA</option>

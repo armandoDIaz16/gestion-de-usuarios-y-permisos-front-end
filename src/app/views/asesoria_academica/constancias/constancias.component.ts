@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { JarwisService } from '../../../services/jarwis.service';
 import * as XLSX from 'xlsx';
+import { ValidarModuloService } from '../../../services/validarModulo.service';
+
 
 
 
 @Component({
   selector: 'app-constancias',
   templateUrl: './constancias.component.html',
-  styleUrls: ['./constancias.component.scss']
+  styleUrls: ['./constancias.component.scss'],
+  providers: [ValidarModuloService]
 })
 export class ConstanciasComponent implements OnInit {
   error = [];
@@ -18,6 +21,8 @@ export class ConstanciasComponent implements OnInit {
   select2 = null;
   select3 = null;
   select4 = null;
+  public mostrarModulo = false;
+
 
   periodo = '20191'
   public form = {
@@ -56,11 +61,16 @@ export class ConstanciasComponent implements OnInit {
   }
 
   constructor(
-    private Jarwis: JarwisService
+    private Jarwis: JarwisService,
+    private validarModuloService: ValidarModuloService
   ) {
   }
 
   ngOnInit() {
+    this.mostrarModulo = this.validarModuloService.getMostrarModulo("Constancias");
+    if (!this.mostrarModulo) {
+      return;
+    }
     this.Jarwis.asesorFinal().subscribe(
       data => {
         for (var num in data) {

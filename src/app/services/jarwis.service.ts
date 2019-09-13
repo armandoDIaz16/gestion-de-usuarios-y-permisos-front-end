@@ -65,9 +65,9 @@ export class JarwisService extends GenericServicesService {
         return this.http.post(`${this.baseUrl}resetPassword`, data);
     }
 
-  control(data) {
+ /*  control(data) {
     return this.http.post(`${this.baseUrl}control`, data)
-  }
+  } */
   hora(control, dia) {
     return this.http.get(`${this.baseUrl}Hora?control=` + control + `&dia=` + dia)
   }
@@ -252,23 +252,7 @@ export class JarwisService extends GenericServicesService {
   getCorreoIndAsesor() {
     return this.http.get(`${this.baseUrl}CorreoIndividualAses`)
   }
-    hora(control, dia) {
-        return this.http.get(`${this.baseUrl}Hora?control=` + control + `&dia=` + dia);
-    }
-
-    horaAll(control) {
-        return this.http.get(`${this.baseUrl}HoraAll?control=` + control);
-    }
-
-    materia(control) {
-        return this.http.get(`${this.baseUrl}Materia?control=` + control);
-    }
-
-    datos(id) {
-        return this.http.get(`${this.baseUrl}Datos?id=` + id);
-    }
-
-
+    /* 
   solicitud(data) {
     return this.http.post(`${this.baseUrl}SolicitudAsesoria`, data)
   }
@@ -552,7 +536,7 @@ export class JarwisService extends GenericServicesService {
 
     getAsesorCorreo(a) {
         return this.http.get(`${this.baseUrl}CorreoAsesor?id=` + a);
-    }
+    } */
 
 
     solicitud(data) {

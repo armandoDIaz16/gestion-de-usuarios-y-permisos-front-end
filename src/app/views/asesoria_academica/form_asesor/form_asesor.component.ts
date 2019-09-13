@@ -3,14 +3,16 @@ import { JarwisService } from '../../../services/jarwis.service';
 import { TokenService } from '../../../services/token.service';
 import { Router } from '@angular/router';
 import { AperturaService } from '../../../services/apertura.service';
+import { ValidarModuloService } from '../../../services/validarModulo.service';
 //import * as $ from 'jquery';
 @Component({
   selector: 'app-form_asesor',
   templateUrl: './form_asesor.component.html',
   styleUrls: ['./form_asesor.component.scss'],
-  providers: [AperturaService]
+  providers: [AperturaService,ValidarModuloService]
 })
 export class Form_asesorComponent implements OnInit {
+  public mostrarModulo = false;
   activado = false;
   fechaInicio = null;
   fechaFin = null;
@@ -71,6 +73,7 @@ export class Form_asesorComponent implements OnInit {
     private Token: TokenService,
     private router: Router,
     private periodoService: AperturaService,
+    private validarModuloService: ValidarModuloService
   ) { }
 
   habilitarHoras() {
@@ -393,6 +396,10 @@ export class Form_asesorComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.mostrarModulo = this.validarModuloService.getMostrarModulo("Solicitud asesor");
+    if (!this.mostrarModulo) {
+      return;
+    }
     this.periodoService.getPeriodo().subscribe(data => {
       this.fechaInicio = data[0].FECHA_INICIO;
       this.fechaFin = data[0].FECHA_FIN;

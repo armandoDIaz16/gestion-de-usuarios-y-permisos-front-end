@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { JarwisService } from '../../../services/jarwis.service';
 import * as XLSX from 'xlsx';
+import { ValidarModuloService } from '../../../services/validarModulo.service';
+
 
 
 
 @Component({
   selector: 'app-cronograma',
   templateUrl: './cronograma.component.html',
-  styleUrls: ['./cronograma.component.scss']
+  styleUrls: ['./cronograma.component.scss'],
+  providers: [ValidarModuloService]
 })
 export class CronogramaComponent implements OnInit {
   error = [];
@@ -18,6 +21,7 @@ export class CronogramaComponent implements OnInit {
   select2 = null;
   select3 = null;
   select4 = null;
+  public mostrarModulo = false;
 
   periodo = '20191'
   public form = {
@@ -27,11 +31,16 @@ export class CronogramaComponent implements OnInit {
   }
 
   constructor(
-    private Jarwis: JarwisService
+    private Jarwis: JarwisService,
+    private validarModuloService: ValidarModuloService
   ) {
   }
 
   ngOnInit() {
+    this.mostrarModulo = this.validarModuloService.getMostrarModulo("Cronograma");
+    if (!this.mostrarModulo) {
+      return;
+    }
     this.Jarwis.getAsesores().subscribe(
       data => {
         for (var num in data) {

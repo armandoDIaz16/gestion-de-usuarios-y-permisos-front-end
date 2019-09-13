@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { JarwisService } from '../../../services/jarwis.service';
+import { ValidarModuloService } from '../../../services/validarModulo.service';
+
 
 
 
 @Component({
   selector: 'app-notificaciones',
   templateUrl: './notificaciones.component.html',
-  styleUrls: ['./notificaciones.component.scss']
+  styleUrls: ['./notificaciones.component.scss'],
+  providers: [ValidarModuloService]
 })
 export class NotificacionesComponent implements OnInit {
  
+  public mostrarModulo = false;
   error = [];
   asesor = [];
   correoalm = [];
@@ -26,10 +30,15 @@ export class NotificacionesComponent implements OnInit {
 
   constructor(
     private Jarwis: JarwisService,
+    private validarModuloService: ValidarModuloService
   ) {
   }
 
   ngOnInit() {
+    this.mostrarModulo = this.validarModuloService.getMostrarModulo("Notificaciones");
+    if (!this.mostrarModulo) {
+      return;
+    }
     this.Jarwis.getCorreoIndAlumno().subscribe(
       data => {
         this.correoalm = [];

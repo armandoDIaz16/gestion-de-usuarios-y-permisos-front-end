@@ -1,4 +1,5 @@
-<div>
+<app-404 *ngIf=!mostrarModulo></app-404>
+<div class="animated fadeIn" *ngIf=mostrarModulo>
   <nav>
     <!-- <label class="btn btn-primary" style="cursor:pointer;">Leer Excel
       <input type="file" name="file" hidden accept=".csv, .xls, .xlsx" (change)="onFileChange($event)">

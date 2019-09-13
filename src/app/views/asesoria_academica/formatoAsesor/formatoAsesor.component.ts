@@ -1,14 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { JarwisService } from '../../../services/jarwis.service';
 import * as XLSX from 'xlsx';
+import { ValidarModuloService } from '../../../services/validarModulo.service';
+
 
 
 @Component({
   selector: 'app-formatoAsesor',
   templateUrl: './formatoAsesor.component.html',
-  styleUrls: ['./formatoAsesor.component.scss']
+  styleUrls: ['./formatoAsesor.component.scss'],
+  providers: [ValidarModuloService]
 })
 export class FormatoAsesorComponent implements OnInit {
+  public mostrarModulo = false;
   visindividual = false;
   viscalificacion = false;
   visgrupal = false;
@@ -104,7 +108,8 @@ export class FormatoAsesorComponent implements OnInit {
 
   };
 
-  constructor(private Jarwis: JarwisService) {
+  constructor(private Jarwis: JarwisService,
+    private validarModuloService: ValidarModuloService) {
   }
   califica() {
     this.viscalificacion = !this.viscalificacion;
@@ -142,6 +147,10 @@ export class FormatoAsesorComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.mostrarModulo = this.validarModuloService.getMostrarModulo("Formatos asesores");
+    if (!this.mostrarModulo) {
+      return;
+    }
     this.Jarwis.datos(this.form.id).subscribe(
       data => {
         this.form.control = data[0].control
