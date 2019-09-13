@@ -1,13 +1,13 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {GenericServicesService} from './generic-services.service';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { GenericServicesService } from './generic-services.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class JarwisService extends GenericServicesService {
     constructor(private http: HttpClient,
-                private genericServicesService: GenericServicesService) {
+        private genericServicesService: GenericServicesService) {
         super(http);
     }
 
@@ -57,8 +57,8 @@ export class JarwisService extends GenericServicesService {
     /*
     * Llamada a servicio para obtener url y cambiar contraseña
     * */
-    sendPasswordResetLink(data) {
-        return this.http.post(`${this.baseUrl}sendPasswordResetLink`, data);
+    recuperarContrasena(data) {
+        return this.http.post(`${this.baseUrl}recuperar_contrasena`, data);
     }
 
     changePassword(data) {

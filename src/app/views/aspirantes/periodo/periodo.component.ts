@@ -23,9 +23,9 @@ export class PeriodoComponent implements OnInit {
   fechaInicioInscripcion = null;
   fechaFinInscripcion = null;
   montoInscripcion = null;
-  fechaInicioInscripcionBis = null;
-  fechaFinInscripcionBis = null;
-  montoInscripcionBis = null;
+  fechaInicioInscripcionCero = null;
+  fechaFinInscripcionCero = null;
+  montoInscripcionCero = null;
 
 
   constructor(
@@ -51,9 +51,9 @@ export class PeriodoComponent implements OnInit {
         this.fechaInicioInscripcion = data[0].FECHA_INICIO_INSCRIPCION;
         this.fechaFinInscripcion = data[0].FECHA_FIN_INSCRIPCION;
         this.montoInscripcion = data[0].MONTO_INSCRIPCION;
-        this.fechaInicioInscripcionBis = data[0].FECHA_INICIO_INSCRIPCION_BIS;
-        this.fechaFinInscripcionBis = data[0].FECHA_FIN_INSCRIPCION_BIS;
-        this.montoInscripcionBis = data[0].MONTO_INSCRIPCION_BIS;
+        this.fechaInicioInscripcionCero = data[0].FECHA_INICIO_INSCRIPCION_BIS;
+        this.fechaFinInscripcionCero = data[0].FECHA_FIN_INSCRIPCION_BIS;
+        this.montoInscripcionCero = data[0].MONTO_INSCRIPCION_BIS;
         var fechaInicio = this.fechaInicio.split('-');
         var fechaFin = this.fechaFin.split('-');
         var fechaActual = this.fechaActual.split('-');
@@ -69,9 +69,9 @@ export class PeriodoComponent implements OnInit {
           this.fechaInicioInscripcion = null;
           this.fechaFinInscripcion = null;
           this.montoInscripcion = null;
-          this.fechaInicioInscripcionBis = null;
-          this.fechaFinInscripcionBis = null;
-          this.montoInscripcionBis = null;
+          this.fechaInicioInscripcionCero = null;
+          this.fechaFinInscripcionCero = null;
+          this.montoInscripcionCero = null;
         }
       }
     });
@@ -88,6 +88,8 @@ export class PeriodoComponent implements OnInit {
             break;
           case 3: this.fechaFinInscripcion = null;
             break;
+          case 4: this.fechaFinInscripcionCero = null;
+            break;
         }
       }
     } else {
@@ -98,6 +100,8 @@ export class PeriodoComponent implements OnInit {
         case 2: this.fechaFinCurso = null;
           break;
         case 3: this.fechaFinInscripcion = null;
+          break;
+        case 4: this.fechaFinInscripcionCero = null;
           break;
       }
     }
@@ -113,6 +117,8 @@ export class PeriodoComponent implements OnInit {
           case 2: this.fechaFinCurso = null;
             break;
           case 3: this.fechaFinInscripcion = null;
+            break;
+          case 4: this.fechaFinInscripcionCero = null;
             break;
         }
       }
@@ -161,9 +167,9 @@ export class PeriodoComponent implements OnInit {
           this.fechaInicioInscripcion = data[0].FECHA_INICIO_INSCRIPCION;
           this.fechaFinInscripcion = data[0].FECHA_FIN_INSCRIPCION;
           this.montoInscripcion = data[0].MONTO_INSCRIPCION;
-          this.fechaInicioInscripcionBis = data[0].FECHA_INICIO_INSCRIPCION_BIS;
-          this.fechaFinInscripcionBis = data[0].FECHA_FIN_INSCRIPCION_BIS;
-          this.montoInscripcionBis = data[0].MONTO_INSCRIPCION_BIS;
+          this.fechaInicioInscripcionCero = data[0].FECHA_INICIO_INSCRIPCION_BIS;
+          this.fechaFinInscripcionCero = data[0].FECHA_FIN_INSCRIPCION_BIS;
+          this.montoInscripcionCero = data[0].MONTO_INSCRIPCION_BIS;
         });
       }, 4000);
       //console.log("Insertar");       
@@ -188,6 +194,17 @@ export class PeriodoComponent implements OnInit {
           "PK_PERIODO_PREFICHAS": this.idPeriodo,
           "FECHA_INICIO_INSCRIPCION": this.fechaInicioInscripcion,
           "FECHA_FIN_INSCRIPCION": this.fechaFinInscripcion,
+        });
+    }
+  }
+
+  onSubmitFechaInscripcionCero() {
+    if (this.idPeriodo) {
+      this.periodoService.addPeriodoInscripcionCero(
+        {
+          "PK_PERIODO_PREFICHAS": this.idPeriodo,
+          "FECHA_INICIO_INSCRIPCION_BIS": this.fechaInicioInscripcionCero,
+          "FECHA_FIN_INSCRIPCION_BIS": this.fechaFinInscripcionCero,
         });
     }
   }
@@ -218,6 +235,16 @@ export class PeriodoComponent implements OnInit {
         {
           "PK_PERIODO_PREFICHAS": this.idPeriodo,
           "MONTO_INSCRIPCION": this.montoInscripcion
+        });
+    }
+  }
+
+  onSubmitMontoInscripcionCero() {
+    if (this.idPeriodo) {
+      this.periodoService.addMontoInscripcionCero(
+        {
+          "PK_PERIODO_PREFICHAS": this.idPeriodo,
+          "MONTO_INSCRIPCION_BIS": this.montoInscripcionCero
         });
     }
   }
