@@ -45,4 +45,12 @@ export class Habilitar_residentesComponent extends GenericServicesService implem
             }
         );
     }
+
+    Terminar() {
+        this.http.get(GenericServicesService.API_ENDPOINT + 'BajaAlumnoR', GenericServicesService.HEADERS).subscribe(
+            (response) => {
+                alert(response);
+            }
+        );
+    }
 }

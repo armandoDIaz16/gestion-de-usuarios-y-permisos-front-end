@@ -49,6 +49,15 @@ export class PeriodoService extends GenericServicesService{
         );
     }
 
+    addPeriodoInscripcionCero(fechas){
+        return this.http.post(GenericServicesService.API_ENDPOINT + 'PeriodoInscripcionCero', fechas, GenericServicesService.HEADERS
+            ).subscribe(
+                (response) => {
+                    console.log(response);
+            }
+        );
+    }
+
     addMontoPreficha(monto){
         return this.http.post(this.baseUrl + 'MontoPreficha',  monto, this.headers
         ).subscribe(
@@ -69,6 +78,15 @@ export class PeriodoService extends GenericServicesService{
 
     addMontoInscripcion(monto){
         return this.http.post(this.baseUrl + 'MontoInscripcion',  monto, this.headers
+        ).subscribe(
+            (response) => {
+                console.log(response);
+            }
+        );
+    }
+
+    addMontoInscripcionCero(monto){
+        return this.http.post(this.baseUrl + 'MontoInscripcionCero',  monto, this.headers
         ).subscribe(
             (response) => {
                 console.log(response);

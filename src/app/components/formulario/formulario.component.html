@@ -231,7 +231,7 @@
                     <div class="form-group">
                       <label for="correo">Correo Electrónico:</label>
                       <label style="color:#ff0000;" for="asterisco">*</label>
-                      <input type="text" class="form-control" [formControl]="formGroup.controls['email']">
+                      <input type="text" class="form-control" [formControl]="formGroup.controls['CORREO1']">
                     </div>
                   </div>
                 </div>
@@ -242,7 +242,7 @@
                       <label for="correo2">Confirma tu correo electrónico:</label>
                       <label style="color:#ff0000;" for="asterisco">*</label>
 
-                      <input type="text" class="form-control" [formControl]="formGroup.controls['repeat_email']"  oncopy="return false"
+                      <input type="text" class="form-control" [formControl]="formGroup.controls['repeat_CORREO1']"  oncopy="return false"
                       onpaste="return false" required>
                     </div>
                   </div>
@@ -418,7 +418,7 @@
                   <div class="form-group">
                     <label for="especialidad1">Especialidad 1:</label>
                     <label style="color:#ff0000;" for="asterisco">*</label>
-                    <select [(ngModel)]="especialidad1" class="form-control" name="especialidad1" required>
+                    <select [(ngModel)]="especialidad1" (change)="compararCarreras1()" class="form-control" name="especialidad1" required>
                       <option [value]=null>Selecciona</option>
                       <option *ngFor="let carrera of carreraLista" value="{{carrera.PK_CARRERA}}">{{carrera.NOMBRE}}
                       </option>
@@ -430,7 +430,7 @@
                 <div class="col-sm-12">
                   <div class="form-group">
                     <label for="especialidad2">Especialidad 2:</label>
-                    <select [(ngModel)]="especialidad2" class="form-control" name="especialidad2">
+                    <select [(ngModel)]="especialidad2" (change)="compararCarreras2()" class="form-control" name="especialidad2">
                       <option [value]=null>Selecciona</option>
                       <option *ngFor="let carrera of carreraLista" value="{{carrera.PK_CARRERA}}">{{carrera.NOMBRE}}
                       </option>
