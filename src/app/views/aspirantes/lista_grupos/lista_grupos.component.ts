@@ -91,7 +91,7 @@ export class ListaGruposComponent implements OnInit {
         aspirantes.push([
           this.grupos[grupo].ASPIRANTES[aspirante].PREFICHA,
           this.grupos[grupo].ASPIRANTES[aspirante].NOMBRE,
-          0
+          this.grupos[grupo].ASPIRANTES[aspirante].ASISTENCIA
         ]);
       }
 

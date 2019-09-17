@@ -15,7 +15,6 @@ export class GenericServicesService {
 
     // AMBIENTE LOCAL
     //protected static API_ENDPOINT = 'http://127.0.0.1:8000/api/';
-
     //protected static ENDPOINT = 'http://127.0.0.1:8000/';
 
     protected static HEADERS = {
