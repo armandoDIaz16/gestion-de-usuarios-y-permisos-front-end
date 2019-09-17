@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { ITurno, IEspacio, ITipoEspacio, IEdificio, ITurno2 } from './lugar-examen';
+import { ITurno, IEspacio, ITipoEspacio, IEdificio, ITurno2, IGrupo } from './lugar-examen';
 import { GenericServicesService } from './generic-services.service';
 
 @Injectable()
@@ -17,6 +17,9 @@ export class LugarExamenService  extends GenericServicesService {
     }
     getTurno2(): Observable<ITurno2[]> {
         return this.http.get<ITurno2[]>(this.baseUrl+'Turno2', this.headers);
+    }
+    getGrupo(): Observable<IGrupo[]> {
+        return this.http.get<IGrupo[]>(this.baseUrl+'Grupo2', this.headers);
     }
     getEspacio(): Observable<IEspacio[]> {
         return this.http.get<IEspacio[]>(this.baseUrl+'Espacio', this.headers);
@@ -45,6 +48,30 @@ export class LugarExamenService  extends GenericServicesService {
     }
     addGrupoExamen(datos) {
         return this.http.post(this.baseUrl+'AgregarGrupo/', datos, this.headers
+        ).subscribe(
+            (response) => {
+                console.log(response);
+            }
+        );
+    }
+    updateTurnoExamen(datos) {
+        return this.http.post(this.baseUrl+'ModificarTurno', datos, this.headers
+        ).subscribe(
+            (response) => {
+                console.log(response);
+            }
+        );
+    }   
+    updateEspacioExamen(datos) {
+        return this.http.post(this.baseUrl+'ModificarEspacio', datos, this.headers
+        ).subscribe(
+            (response) => {
+                console.log(response);
+            }
+        );
+    }
+    updateGrupoExamen(datos) {
+        return this.http.post(this.baseUrl+'ModificarGrupo', datos, this.headers
         ).subscribe(
             (response) => {
                 console.log(response);
