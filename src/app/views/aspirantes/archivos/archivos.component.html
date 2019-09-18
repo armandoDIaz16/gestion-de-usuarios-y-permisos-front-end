@@ -2,6 +2,19 @@
 <div class="animated fadeIn" *ngIf=mostrarModulo>
   <div class="row">
     <div class="col-lg-4">
+    <div class="card">
+      <div class="card-header">
+        <i class="file-text-o"></i>
+        <strong>Archivo de pagos</strong>
+      </div>
+      <div class="card-body d-flex justify-content-center">
+        <label class="btn btn-primary" style="cursor:pointer;">Leer Archivo
+          <input type="file" name="file" hidden (change)="enviarPagos($event)">
+        </label>
+      </div>
+    </div>
+  </div>
+    <div class="col-lg-4">
       <div class="card">
         <div class="card-header">
           <i class="file-excel-o"></i>
@@ -27,35 +40,22 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-4">
-      <div class="card">
-        <div class="card-header">
-          <i class="file-excel-o"></i>
-          <strong>Archivo asistencias</strong>
-        </div>
-        <div class="card-body d-flex justify-content-center">
-          <label class="btn btn-primary" style="cursor:pointer;">Leer Excel
-            <input type="file" name="file" accept=".csv, .xls, .xlsx" hidden (change)="enviarAsistencia($event)">
-          </label>
-        </div>
-      </div>
-    </div>
   </div>
   <!--/.col-->
   <div class="row">
-    <div class="col-lg-4">
-      <div class="card">
-        <div class="card-header">
-          <i class="file-text-o"></i>
-          <strong>Archivo de pagos</strong>
+      <div class="col-lg-4">
+        <div class="card">
+          <div class="card-header">
+            <i class="file-excel-o"></i>
+            <strong>Archivo asistencias</strong>
+          </div>
+          <div class="card-body d-flex justify-content-center">
+            <label class="btn btn-primary" style="cursor:pointer;">Leer Excel
+              <input type="file" name="file" accept=".csv, .xls, .xlsx" hidden (change)="enviarAsistencia($event)">
+            </label>
+          </div>
         </div>
-        <div class="card-body d-flex justify-content-center">
-          <label class="btn btn-primary" style="cursor:pointer;">Leer Archivo
-            <input type="file" name="file" hidden (change)="enviarPagos($event)">
-          </label>
-        </div>
-      </div>
-    </div>
+      </div>    
     <div class="col-lg-4">
       <div class="card">
         <div class="card-header">
