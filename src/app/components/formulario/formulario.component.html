@@ -593,7 +593,7 @@
                       <!-- <button type="submit" value="Submit" class="btn btn-sm btn-primary">Aceptar</button> -->
 
 
-                      <button type="submit" value="Submit" class="btn btn-sm btn-primary"
+                      <button *ngIf="ocultarSubmit" type="submit" value="Submit" class="btn btn-sm btn-primary"
                         [disabled]="aspiranteForm.invalid || formGroup.invalid">Enviar registro</button>
 
                       <!--                   <button type="button" class="btn btn-block btn-primary col-sm-2">Aceptar</button>

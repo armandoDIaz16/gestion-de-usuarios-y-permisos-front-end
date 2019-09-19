@@ -43,10 +43,10 @@ export const routes: Routes = [
         }
     },
     {
-        path: 'formulario',
+        path: 'registro_aspirante',
         component: FormularioComponent,
         data: {
-            title: 'Formulario'
+            title: 'Registro aspirante'
         }
     },
     {
