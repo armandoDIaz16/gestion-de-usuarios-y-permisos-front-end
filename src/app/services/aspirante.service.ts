@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { IAspirante, IAspirantes, IEstatus, IGraficaEstatus, IGraficaCarreras, IGraficaCampus, IGrupos, IListaGrupos } from './aspirante';
+import { IAspirante, IAspirantes, IEstatus, IGraficaEstatus, IGraficaCarreras, IGraficaCampus, IGrupos, IListaGrupos} from './aspirante';
 import { GenericServicesService } from './generic-services.service';
 
 @Injectable()
@@ -14,32 +14,8 @@ export class AspiranteService extends GenericServicesService{
       private baseUrl = GenericServicesService.API_ENDPOINT;
       private headers = GenericServicesService.HEADERS;
 
-    addAspirante(datos) {
-        return this.http.post(this.baseUrl + 'Aspirante', datos
-        ).subscribe(
-            (response) => {
-                switch (response) {
-                    case 1:
-                        alert("YA ESTA REGISTRADA ESA CURP EN ESTE PERIODO");
-                        break;
-                    case 2:
-                        alert("YA ESTA REGISTRADO ESE CORREO A OTRO USUARIO");
-                        break;
-                    case 3:
-                        alert("SE ACTUALIZO USUARIO Y SE REGISTRO LA PREFICHA");
-                        break;
-                    case 4:
-                        alert("YA ESTA REGISTRADO ESE CORREO A OTRO USUARIO");
-                        break;
-                    case 5:
-                        alert("SE REGISTRO CORRECTAMENTE");
-                        break;
-                }
-                //alert(response);
-                //alert(response[0].RESPUESTA);
-                //console.log(response);
-            }
-        );
+    async addAspirante(datos){
+        return this.http.post(this.baseUrl + 'Aspirante', datos, this.headers).toPromise();
     }
     getAspirante(): Observable<IAspirante[]> {
         return this.http.get<IAspirante[]>(this.baseUrl + 'Aspirante/' + sessionStorage.getItem('IdUsuario'), this.headers

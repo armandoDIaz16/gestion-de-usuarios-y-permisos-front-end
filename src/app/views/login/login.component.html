@@ -34,7 +34,10 @@
                                                 <span class="input-group-text"><i class="icon-user"></i></span>
                                             </div>
                                             <input type="text" name="curp" class="form-control" placeholder="CURP"
-                                                   id="curp" autocomplete="curp" [(ngModel)]="form.curp" required>
+                                                   id="curp" autocomplete="curp" [(ngModel)]="form.curp"
+                                                   maxlength=18
+                                                   onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase().replace(' ','')"
+                                                   required>
                                         </div>
                                         <div class="input-group mb-4">
                                             <div class="input-group-prepend">

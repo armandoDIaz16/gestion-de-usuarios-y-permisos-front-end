@@ -10,7 +10,7 @@ import { PeriodoService } from '../../../services/periodo.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss'],
+  styleUrls: ['./prueba.scss'],
   providers: [AspiranteService, ValidarModuloService, PeriodoService]
 })
 export class DashboardComponent extends GenericServicesService implements OnInit {
@@ -22,7 +22,9 @@ export class DashboardComponent extends GenericServicesService implements OnInit
   paso2 = null;
   paso3 = null;
   paso4 = null;
-  habilitarReferencia = false;
+  paso5 = null;
+  paso6 = null;
+  habilitarReferencia = true;
   habilitarCurso = false;
   habilitarInscripcion = false;
   habilitarInscripcionCero = false;
@@ -42,6 +44,9 @@ export class DashboardComponent extends GenericServicesService implements OnInit
   fechaActual = null;
   puntaje = null;
   matematicas = null;
+  mostrarResultados = null;
+  mensaje = null;
+  mensajeCero = null;
 
   constructor(private http: HttpClient,
     private aspiranteService: AspiranteService,
@@ -65,7 +70,10 @@ export class DashboardComponent extends GenericServicesService implements OnInit
         this.fechaFinInscripcion = data[0].FECHA_FIN_INSCRIPCION;
         this.fechaInicioInscripcionCero = data[0].FECHA_INICIO_INSCRIPCION_BIS;
         this.fechaFinInscripcionCero = data[0].FECHA_FIN_INSCRIPCION_BIS;
+        this.mensaje = data[0].MENSAJE_SEMESTRE;
+        this.mensajeCero = data[0].MENSAJE_SEMESTRE_BIS;
         this.fechaActual = data[0].FECHA_ACTUAL;
+        this.mostrarResultados = data[0].RESULTADOS;
       }
     });
     this.aspiranteService.getAspirante().subscribe(data => {
@@ -82,32 +90,44 @@ export class DashboardComponent extends GenericServicesService implements OnInit
               this.habilitarReferencia = true;
             }
             break;
-          case 2: this.paso2 = 'completed'; this.habilitarReferencia = false;
+          case 2: this.paso2 = 'active'; this.habilitarReferencia = false;
             break;
-          case 3: this.paso2 = 'completed'; this.paso3 = 'completed'; this.habilitarReferencia = false; this.habilitarRegistro = true;
+          case 3: this.paso2 = 'active'; this.paso3 = 'active'; this.habilitarReferencia = false; this.habilitarRegistro = true;
             break;
-          case 4: this.paso2 = 'completed'; this.paso3 = 'completed'; this.paso4 = 'completed'; this.habilitarReferencia = false; this.habilitarFicha = true;
+          case 4: this.paso2 = 'active'; this.paso3 = 'active'; this.paso4 = 'active'; this.habilitarReferencia = false; this.habilitarFicha = true;
+            if (this.aspirante[0].ASISTENCIA == 1) {
+              this.habilitarFicha = false
+              this.paso5 = 'active';
+              if (this.mostrarResultados == 1) {
+                this.paso6 = 'active';
+              }
+            }
             break;
         }
 
-        switch (Number(this.aspirante[0].ACEPTADO)) {
-          case 1:
-            this.habilitarAceptado = true;
-            if (this.compararFechas(this.fechaInicioCurso, this.fechaFinCurso, this.fechaActual)) {
-              this.habilitarCurso = true;
-            }
-            if (this.compararFechas(this.fechaInicioInscripcion, this.fechaFinInscripcion, this.fechaActual)) {
-              this.habilitarInscripcion = true;
-            }
-            break;
-          case 2:
-          this.habilitarAceptadoCero = true;
-            if (this.compararFechas(this.fechaInicioInscripcionCero, this.fechaFinInscripcionCero, this.fechaActual)) {
-              this.habilitarInscripcionCero = true;
-            }
-            break;
+        if (this.mostrarResultados == 1) {
+          switch (Number(this.aspirante[0].ACEPTADO)) {
+            case 1:
+              this.habilitarFicha = false
+              this.habilitarAceptado = true;
+              if (this.compararFechas(this.fechaInicioCurso, this.fechaFinCurso, this.fechaActual)) {
+                this.habilitarCurso = true;
+              }
+              if (this.compararFechas(this.fechaInicioInscripcion, this.fechaFinInscripcion, this.fechaActual)) {
+                this.habilitarInscripcion = true;
+              }
+              break;
+            case 2:
+              this.habilitarFicha = false
+              this.habilitarAceptadoCero = true;
+              if (this.compararFechas(this.fechaInicioInscripcionCero, this.fechaFinInscripcionCero, this.fechaActual)) {
+                this.habilitarInscripcionCero = true;
+              }
+              break;
+          }
         }
-        if (this.aspirante[0].ICNE) {
+
+        if (this.mostrarResultados == 1) {
           this.habilitarFicha = false
           this.habilitarResultados = true;
           this.puntaje = this.aspirante[0].ICNE;

@@ -20,6 +20,7 @@ export class PrefichasComponent implements OnInit {
     private validarModuloService: ValidarModuloService) {
   }
 
+  showSpinner: boolean = true;
   public mostrarModulo = false;
   public carreraLista = [];
   public aspirante = [];

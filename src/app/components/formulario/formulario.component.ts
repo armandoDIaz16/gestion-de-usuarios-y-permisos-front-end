@@ -3,6 +3,7 @@ import { FormularioService } from '../../services/formulario.service';
 import { AspiranteService } from '../../services/aspirante.service';
 import { PeriodoService } from '../../services/periodo.service';
 import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn, AbstractControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 
@@ -24,7 +25,6 @@ export class FormularioComponent implements OnInit {
   habilitarNacionalidadOtro = true;
   habilitarAyuda = true;
   habilitarUniversidad = true;
-  ocultarSubmit = true;
 
   genero = null;
   estadoCivil = null;
@@ -73,6 +73,11 @@ export class FormularioComponent implements OnInit {
   fechaFin = null;
   fechaActual = null;
 
+  mensaje = null;
+  mensaje2 = null;
+  cerrarModal = false;
+  respuesta = null;
+
 
 
   public estadoCivilLista = [];
@@ -93,7 +98,8 @@ export class FormularioComponent implements OnInit {
     //private fb: FormBuilder,
     private periodoService: PeriodoService,
     private formularioService: FormularioService,
-    private aspiranteService: AspiranteService) {
+    private aspiranteService: AspiranteService,
+    private router: Router) {
     this.formGroup = this.formBuilder.group({
       incapacidadLista: new FormArray([], minSelectedCheckboxes(0)),
       CORREO1: ['', [Validators.required]],
@@ -209,12 +215,12 @@ export class FormularioComponent implements OnInit {
   }
   compararCarreras1() {
     if (this.especialidad1 == this.especialidad2) {
-      this.especialidad2=null;
+      this.especialidad2 = null;
     }
   }
   compararCarreras2() {
     if (this.especialidad1 == this.especialidad2) {
-      this.especialidad1=null;
+      this.especialidad1 = null;
     }
   }
 
@@ -247,9 +253,7 @@ export class FormularioComponent implements OnInit {
       this.ciudadLista = null;
     }
   }
-  onSubmit() {
-    this.aspiranteService.addAspirante({"PK_PERIODO":"1","NOMBRE":"'JOSE FABRICIO'","PRIMER_APELLIDO":"'DE LA CRUZ'","SEGUNDO_APELLIDO":"'PONCE'","FECHA_NACIMIENTO":"'1995-09-20'","SEXO":"1","CURP":"'333333333333333333'","FK_ESTADO_CIVIL":"1","CALLE":"'lago erie'","NUMERO_EXTERIOR":"'117'","NUMERO_INTERIOR":"''","CP":"'37288'","FK_COLONIA":"75694","TELEFONO_CASA":"'7118509'","TELEFONO_MOVIL":"'4771722646'","CORREO1":"'fabrixcp@gmail.com'","PADRE_TUTOR":"'Cruz Victor'","MADRE":"'Fabiola'","FK_BACHILLERATO":"4294","ESPECIALIDAD":"'Ingeniería y arquitectura'","PROMEDIO":"'8.9'","NACIONALIDAD":"''","FK_CIUDAD":"269","FK_CARRERA_1":"4","FK_CARRERA_2":"10","FK_PROPAGANDA_TECNOLOGICO":"7","FK_UNIVERSIDAD":"5","FK_CARRERA_UNIVERSIDAD":"6","FK_DEPENDENCIA":"3","TRABAJAS_Y_ESTUDIAS":"1","AYUDA_INCAPACIDAD":"''","DISCAPASIDADES":""});
-    return;
+  async onSubmit() {
     if (this.sApellido == null) {
       this.sApellido = ""
     }
@@ -283,7 +287,7 @@ export class FormularioComponent implements OnInit {
     if (this.carreraUniversidad == null) {
       this.carreraUniversidad = "null"
     }
-    this.aspiranteService.addAspirante(
+    const data = await this.aspiranteService.addAspirante(
       {
         "PK_PERIODO": this.pkPeriodo,
         "NOMBRE": "'" + this.nombre.toUpperCase() + "'",
@@ -318,7 +322,37 @@ export class FormularioComponent implements OnInit {
         "AYUDA_INCAPACIDAD": "'" + this.ayuda + "'",
         "DISCAPASIDADES": this.discapacidades
       });
-    //this.ocultarSubmit=false;
+    switch (data[0].RESPUESTA) {
+      case '1':
+        this.mensaje = "YA ESTA REGISTRADA ESA CURP EN ESTE PERIODO";
+        this.cerrarModal = true;
+        break;
+      case '2':
+        this.mensaje = "YA ESTA REGISTRADO ESE CORREO A OTRO USUARIO";
+        this.cerrarModal = true;
+        break;
+      case '3':
+        this.mensaje = "SE ACTUALIZO USUARIO Y SE REGISTRO LA PREFICHA";
+        this.mensaje2 = "REGISTRO COMPLETO, REVISTA TU BANDEJA DE CORREO";
+        setTimeout(() => {
+
+          this.router.navigateByUrl('/login');
+        }, 5000);
+
+        break;
+      case '4':
+        this.mensaje = "YA ESTA REGISTRADO ESE CORREO A OTRO USUARIO";
+        this.cerrarModal = true;
+        break;
+      case '5':
+        this.mensaje = "SE REGISTRO CORRECTAMENTE";
+        this.mensaje2 = "REGISTRO COMPLETO, REVISTA TU BANDEJA DE CORREO";
+        setTimeout(() => {
+
+          this.router.navigateByUrl('/login');
+        }, 5000);
+        break;
+    }
   }
   private addCheckboxes() {
     this.incapacidadLista.map((o, i) => {
