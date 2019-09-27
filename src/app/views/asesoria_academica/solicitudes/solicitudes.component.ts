@@ -2,16 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { JarwisService } from '../../../services/jarwis.service';
 // @ts-ignore
 import * as XLSX from 'xlsx';
+import { ValidarModuloService } from '../../../services/validarModulo.service';
+
 
 @Component({
   selector: 'app-solicitudes',
   templateUrl: './solicitudes.component.html',
-  styleUrls: ['./solicitudes.component.scss']
+  styleUrls: ['./solicitudes.component.scss'],
+  providers: [ValidarModuloService]
+
 })
 export class SolicitudesComponent implements OnInit {
  // activado = true;
+ public mostrarModulo = false;
   visasesor = false;
   visalumno = false;
+  promedio = null;
   public estatus = [];
   public carreras = [];
   public asesor1 = [];
@@ -83,11 +89,18 @@ export class SolicitudesComponent implements OnInit {
   pageActual1: number = 1;
   public error = [];
   public data = [];
+  
 
-  constructor(private Jarwis: JarwisService) {
+  constructor(private Jarwis: JarwisService,
+    private validarModuloService: ValidarModuloService) {
   }
 
   ngOnInit() {
+
+    this.mostrarModulo = this.validarModuloService.getMostrarModulo("Solicitudes");
+    if (!this.mostrarModulo) {
+      return;
+    }
     this.Jarwis.obtenerAsesor().subscribe(
       data => {
         for (var num in data) {
@@ -471,15 +484,24 @@ export class SolicitudesComponent implements OnInit {
     this.Jarwis.horaAll(i).subscribe(
       data => {
         this.horarioUser = [];
+        var prueba = [];
         for (var num in data) {
           this.horarioUser.push(data[num]);
         }
+        //console.log(this.horarioUser)
+
       },
       error => this.handleError(error)
     );
   }
 
   segui(i) {
+    this.Jarwis.promedio(i).subscribe(
+      data => {
+        this.promedio = data;
+      },
+      error => this.handleError(error)
+    );
     this.Jarwis.seguimiento(i).subscribe(
       data => {
         this.seguimientoAsesor = [];

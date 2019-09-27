@@ -27,6 +27,6 @@ export class AperturaService{
         );
     } */
     getPeriodo():Observable<Periodo>{
-        return this.http.get<Periodo>('http://127.0.0.1:8000/api/PAAE_Periodo');
+        return this.http.get<Periodo>('http://127.0.0.1:8000/api/PAAE_Periodo?token='+sessionStorage.getItem('token'));
     }
 }

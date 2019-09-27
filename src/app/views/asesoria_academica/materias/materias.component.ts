@@ -1,15 +1,19 @@
 import { Component, OnInit, ɵConsole } from '@angular/core';
 import { JarwisService } from '../../../services/jarwis.service';
 import * as XLSX from 'xlsx';
+import { ValidarModuloService } from '../../../services/validarModulo.service';
+
 
 
 
 @Component({
   selector: 'app-materias',
   templateUrl: './materias.component.html',
-  styleUrls: ['./materias.component.scss']
+  styleUrls: ['./materias.component.scss'],
+  providers: [ValidarModuloService]
 })
 export class MateriasComponent implements OnInit {
+  public mostrarModulo = false;
   visindividual = false;
   visgrupal = false;
   visituacion = false;
@@ -87,7 +91,8 @@ export class MateriasComponent implements OnInit {
     idGrupo: null
   };
 
-  constructor(private Jarwis: JarwisService) {
+  constructor(private Jarwis: JarwisService,
+    private validarModuloService: ValidarModuloService) {
   }
 
   individual() {
@@ -104,6 +109,12 @@ export class MateriasComponent implements OnInit {
 
   }
   ngOnInit() {
+
+    this.mostrarModulo = this.validarModuloService.getMostrarModulo("Materias");
+    if (!this.mostrarModulo) {
+      return;
+    }
+    
     this.Jarwis.getAsesoria().subscribe(
       data => {
         for (var num in data) {

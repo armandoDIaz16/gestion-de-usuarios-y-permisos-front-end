@@ -1,3 +1,5 @@
+<app-404 *ngIf=!mostrarModulo></app-404>
+<div class="animated fadeIn" *ngIf=mostrarModulo>
 <div *ngIf="activado" class="container">
   <div class="app-body">
     <main class="main d-flex align-items-center">
@@ -5,10 +7,10 @@
         <div class="row">
           <div class="col-md-6 mx-auto">
             <div align="center">
-              <h2>DEPARTAMENTO DE DESARROLLO ACADEMICO</h2>
+              <h2>DEPARTAMENTO DE DESARROLLO ACADÉMICO</h2>
               <hr size=10 noshade="noshade">
-              <h4>PROGRAMA DE ASESORIA ACADEMICA ENTRE ESTUDIANTES</h4>
-              <h4>REGISTRO SOLICITUD DE ASESORIA</h4>
+              <h4>PROGRAMA DE ASESORÍA ACADÉMICA ENTRE ESTUDIANTES</h4>
+              <h4>REGISTRO SOLICITUD DE ASESORÍA</h4>
             </div>
             <div class="card-group">
               <div class="card p-3">
@@ -68,7 +70,7 @@
                         id="inputCelular" autocomplete="celular" [disabled]="true" [(ngModel)]="form.celular" required>
                     </div>
                     <div class="input-group mb-3">
-                      <h5>Elige los dias de tu asesoria</h5>
+                      <h5>Elige los dïas de tu asesorïa</h5>
                     </div>
                     <div class="input-group mb-3">
                       <div class="form-check form-check-inline">
@@ -84,7 +86,7 @@
                       <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"
                           (change)="habilitarHoras()" name="miercoles" [(ngModel)]="form.miercoles">
-                        <label class="form-check-label" for="inlineCheckbox3">Miercoles</label>
+                        <label class="form-check-label" for="inlineCheckbox3">Miërcoles</label>
                       </div>
                       <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4"
@@ -101,7 +103,7 @@
                       <a class="btn btn-sm btn-pill btn-danger col-12" (click)="borraHora()">Cargar Horario</a>
                     </div> -->
                     <div class="input-group mb-3">
-                      <h5>Elige la hora de tu asesoria</h5>
+                      <h5>Elige la hora de tu asesorïa</h5>
                     </div>
 
                     <div class="input-group mb-3" *ngIf="!habilitarHoraLunes">
@@ -164,7 +166,7 @@
                       </select>
                     </div>
                     <div class="input-group mb-3">
-                      <h5>Elige la materia de tu asesoria</h5>
+                      <h5>Elige la materia de tu asesorïa</h5>
                     </div>
                     <div class="input-group mb-3" *ngIf="!habilitarMaterias">
                       <div class="input-group-prepend">
@@ -205,4 +207,5 @@
       </div>
     </main>
   </div>
+</div>
 </div>

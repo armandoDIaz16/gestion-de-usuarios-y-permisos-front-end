@@ -1,3 +1,5 @@
+<app-404 *ngIf=!mostrarModulo></app-404>
+<div class="animated fadeIn" *ngIf=mostrarModulo>
 <div class="row">
   <div class="col-sm-12 ">
     <div class="card">
@@ -8,13 +10,13 @@
       <div class="card-body">
         <ul class="nav nav-tabs">
           <li class="nav-item">
-            <a class="nav-link active" (click)="individual()" href="#">Asignacion Individual</a>
+            <a class="nav-link active" (click)="individual()" href="#">Asignación Individual</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" (click)="grupal()" href="#">Asignacion Grupal</a>
+            <a class="nav-link active" (click)="grupal()" href="#">Asignación Grupal</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" (click)="academica()" href="#">Asignacion Situacion Academica</a>
+            <a class="nav-link active" (click)="academica()" href="#">Asignación Situación Académica</a>
           </li>
         </ul>
         <br><br>
@@ -25,7 +27,7 @@
                   <div class="row">
                     <div class="col-md-6 mx-auto">
                       <div align="center">
-                        <h2>ASIGNACION INDIVIDUAL</h2>
+                        <h2>ASIGNACIóN INDIVIDUAL</h2>
                       </div>
                       <div class="card-group">
                         <div class="card p-3">
@@ -43,7 +45,7 @@
                                   ASESOR/A
                                   <span class="input-group-text"><i class="icon-hourglass"></i></span>
                                 </div>
-                                <select type="text" name="selectasesor" [(ngModel)]="form.selectasesor" [disabled]="habilitarHoraLunes"
+                                <select class="form-control" type="text" name="selectasesor" [(ngModel)]="form.selectasesor" [disabled]="habilitarHoraLunes"
                                   [hidden]="habilitarHoraLunes">
                                   <option value='0' disabled>ASESOR/A</option>
                                   <option *ngFor="let asesor of asesores" value="{{asesor.PK_USUARIO}}">{{asesor.name+" "+asesor.PRIMER_APELLIDO+" "+asesor.SEGUNDO_APELLIDO}}</option>
@@ -55,7 +57,7 @@
                                   SOLICITANTE
                                   <span class="input-group-text"><i class="icon-hourglass"></i></span>
                                 </div>
-                                <select type="text" name="selectsolicitante" [(ngModel)]="form.selectsolicitante" 
+                                <select class="form-control" type="text" name="selectsolicitante" [(ngModel)]="form.selectsolicitante" 
                                   [disabled]="habilitarHoraMartes" [hidden]="habilitarHoraMartes">
                                   <option value='0' disabled>SOLICITANTE</option>
                                   <option *ngFor="let solicitud of solicitudes" value="{{solicitud.PK_USUARIO}}">{{solicitud.name+" "+solicitud.PRIMER_APELLIDO+" "+solicitud.SEGUNDO_APELLIDO}}</option>
@@ -67,7 +69,7 @@
                                 <div class="input-group-prepend">
                                   <span class="input-group-text"><i class="icon-hourglass"></i></span>
                                 </div>
-                                <select type="text" name="dia" [(ngModel)]="form.dia"
+                                <select class="form-control" type="text" name="dia" [(ngModel)]="form.dia"
                                   [disabled]="habilitarHoraMiercoles" [hidden]="habilitarHoraMiercoles">
                                   <option value='0' disabled>DIA</option>
                                   <option value='LUNES' >LUNES</option>
@@ -84,7 +86,7 @@
                                 <div class="input-group-prepend">
                                   <span class="input-group-text"><i class="icon-hourglass"></i></span>
                                 </div>
-                                <select type="text" name="levelNum3" [(ngModel)]="form.hora"
+                                <select class="form-control" type="text" name="levelNum3" [(ngModel)]="form.hora"
                                   [disabled]="habilitarHoraJueves" [hidden]="habilitarHoraJueves">
                                   <option value='0' disabled>HORA</option>
                                   <option *ngFor="let hora of horario">{{hora}}</option>
@@ -96,7 +98,7 @@
                                 <div class="input-group-prepend">
                                   <span class="input-group-text"><i class="icon-hourglass"></i></span>
                                 </div>
-                                <select style="width:350px" type="text" name="levelNum4" [(ngModel)]="form.selectmateria"
+                                <select class="form-control" style="width:350px" type="text" name="levelNum4" [(ngModel)]="form.selectmateria"
                                   [disabled]="habilitarHoraViernes" [hidden]="habilitarHoraViernes">
                                   <option value='0' disabled>MATERIA</option>
                                   <option *ngFor="let mat of materias">{{mat.Nombre}}</option>
@@ -107,7 +109,7 @@
                                 <div class="input-group-prepend">
                                   <span class="input-group-text"><i class="icon-hourglass"></i></span>
                                 </div>
-                                <select style="width:150px"  type="text" name="materia" [(ngModel)]="form.campus" [disabled]="habilitarMaterias"
+                                <select class="form-control" style="width:150px"  type="text" name="materia" [(ngModel)]="form.campus" [disabled]="habilitarMaterias"
                                   [hidden]="habilitarMaterias">
                                   <option value='0' disabled>CAMPUS</option>
                                   <option value='CAMPUS I' >CAMPUS I</option>
@@ -119,7 +121,7 @@
                                 <div class="input-group-prepend">
                                   <span class="input-group-text"><i class="icon-hourglass"></i></span>
                                 </div>
-                                <select type="text" name="campus" [(ngModel)]="form.espacio" [disabled]="habilitarMaterias"
+                                <select class="form-control" type="text" name="campus" [(ngModel)]="form.espacio" [disabled]="habilitarMaterias"
                                   [hidden]="habilitarMaterias">
                                   <option value='0' disabled>ESPACIO</option>
                                   <option value='ESPACIO I'>ESPACIO I</option>
@@ -150,7 +152,7 @@
                   <div class="row">
                     <div class="col-md-6 mx-auto">
                       <div align="center">
-                        <h2>ASIGNACION GRUPAL</h2>
+                        <h2>ASIGNACIóN GRUPAL</h2>
                       </div>
                       <div class="card-group">
                         <div class="card p-3">
@@ -168,7 +170,7 @@
                                   ASESOR/A
                                   <span class="input-group-text"><i class="icon-hourglass"></i></span>
                                 </div>
-                                <select type="text" name="selectasesor" [(ngModel)]="form.selectasesorgrupo" [disabled]="habilitarHoraLunes"
+                                <select class="form-control" type="text" name="selectasesor" [(ngModel)]="form.selectasesorgrupo" [disabled]="habilitarHoraLunes"
                                   [hidden]="habilitarHoraLunes">
                                   <option value='0' disabled>ASESOR/A</option>
                                   <option *ngFor="let asesor of asesores" value="{{asesor.PK_USUARIO}}">{{asesor.name+" "+asesor.PRIMER_APELLIDO+" "+asesor.SEGUNDO_APELLIDO}}</option>
@@ -180,7 +182,7 @@
                                   GRUPO
                                   <span class="input-group-text"><i class="icon-hourglass"></i></span>
                                 </div>
-                                <select type="text" name="clavegrupo" [(ngModel)]="form.clavegrupo" (ngModelChange)="addclave()"
+                                <select class="form-control" type="text" name="clavegrupo" [(ngModel)]="form.clavegrupo" (ngModelChange)="addclave()"
                                   [disabled]="habilitarHoraMartes" [hidden]="habilitarHoraMartes">
                                   <option value='0' disabled>GRUPO</option>
                                   <option *ngFor="let cla of clave" value="{{cla.clavegrupo}}">{{cla.clavegrupo}}</option>
@@ -192,7 +194,7 @@
                                 <div class="input-group-prepend">
                                   <span class="input-group-text"><i class="icon-hourglass"></i></span>
                                 </div>
-                                <select type="text" name="dia" [(ngModel)]="form.diagru" (ngModelChange)="diagrupo()"
+                                <select class="form-control" type="text" name="dia" [(ngModel)]="form.diagru" (ngModelChange)="diagrupo()"
                                   [disabled]="habilitarHoraMiercoles" [hidden]="habilitarHoraMiercoles">
                                   <option value='0' disabled>DIA</option>
                                   <option *ngFor="let hora of horasgrupo" value="{{hora.Dia}}">{{hora.Dia}}</option>
@@ -205,7 +207,7 @@
                                 <div class="input-group-prepend">
                                   <span class="input-group-text"><i class="icon-hourglass"></i></span>
                                 </div>
-                                <select type="text" name="levelNum3" [(ngModel)]="form.horagrupo" 
+                                <select class="form-control" type="text" name="levelNum3" [(ngModel)]="form.horagrupo" 
                                   [disabled]="habilitarHoraJueves" [hidden]="habilitarHoraJueves">
                                   <option value='0' disabled>HORA</option>
                                   <option *ngFor="let hora of horasgrupo" value="{{hora.HoraInicial+':'+hora.MinutoInicial+'-'+
@@ -219,7 +221,7 @@
                                 <div class="input-group-prepend">
                                   <span class="input-group-text"><i class="icon-hourglass"></i></span>
                                 </div>
-                                <select style="width:350px" type="text" name="levelNum4" [(ngModel)]="form.selectmateriagrupo"
+                                <select class="form-control" style="width:350px" type="text" name="levelNum4" [(ngModel)]="form.selectmateriagrupo"
                                   [disabled]="habilitarHoraViernes" [hidden]="habilitarHoraViernes">
                                   <option value='0' disabled>MATERIA</option>
                                   <option *ngFor="let mat of materias">{{mat.Nombre}}</option>
@@ -230,7 +232,7 @@
                                 <div class="input-group-prepend">
                                   <span class="input-group-text"><i class="icon-hourglass"></i></span>
                                 </div>
-                                <select style="width:150px"  type="text" name="materia" [(ngModel)]="form.campusgrupo" [disabled]="habilitarMaterias"
+                                <select class="form-control" style="width:150px"  type="text" name="materia" [(ngModel)]="form.campusgrupo" [disabled]="habilitarMaterias"
                                   [hidden]="habilitarMaterias">
                                   <option value='0' disabled>CAMPUS</option>
                                   <option value='CAMPUS I' >CAMPUS I</option>
@@ -242,7 +244,7 @@
                                 <div class="input-group-prepend">
                                   <span class="input-group-text"><i class="icon-hourglass"></i></span>
                                 </div>
-                                <select type="text" name="campus" [(ngModel)]="form.espaciogrupo" [disabled]="habilitarMaterias"
+                                <select class="form-control" type="text" name="campus" [(ngModel)]="form.espaciogrupo" [disabled]="habilitarMaterias"
                                   [hidden]="habilitarMaterias">
                                   <option value='0' disabled>ESPACIO</option>
                                   <option value='ESPACIO I'>ESPACIO I</option>
@@ -290,7 +292,7 @@
                                 ESTUDIANTE
                                 <span class="input-group-text"><i class="icon-hourglass"></i></span>
                               </div>
-                              <select type="text" name="selectreprobado" class="form-control" [(ngModel)]="form.selectreprobado" (ngModelChange)="obtenerMaterias()">
+                              <select class="form-control" type="text" name="selectreprobado" class="form-control" [(ngModel)]="form.selectreprobado" (ngModelChange)="obtenerMaterias()">
                                 <option value='0' disabled>ESTUDIANTE</option>
                                 <option *ngFor="let asesor of reprobados" value="{{asesor.NumeroControl}}">{{asesor.Nombre+' '+asesor.ApellidoPaterno+' '+asesor.ApellidoMaterno}}</option>
                               </select>
@@ -300,7 +302,7 @@
                                 MATERIA
                                 <span class="input-group-text"><i class="icon-hourglass"></i></span>
                               </div>
-                              <select type="text" name="clavemateriasituacion" class="form-control" [(ngModel)]="form.clavemateriasituacion" (ngModelChange)="checaHorario()"
+                              <select class="form-control" ype="text" name="clavemateriasituacion" class="form-control" [(ngModel)]="form.clavemateriasituacion" (ngModelChange)="checaHorario()"
                                 [disabled]="habilitarHoraMartes" [hidden]="habilitarHoraMartes">
                                 <option value='0' disabled>MATERIA</option>
                                 <option *ngFor="let solicitud of reprobadas" value="{{solicitud.ClaveMateria}}">{{solicitud.Nombre}}</option>
@@ -311,7 +313,7 @@
                                 ASESOR/A
                                 <span class="input-group-text"><i class="icon-hourglass"></i></span>
                               </div>
-                              <select type="text" class="form-control" name="asesorsituacion" [(ngModel)]="form.asesorsituacion" [disabled]="habilitarHoraLunes"
+                              <select class="form-control" type="text" class="form-control" name="asesorsituacion" [(ngModel)]="form.asesorsituacion" [disabled]="habilitarHoraLunes"
                                 [hidden]="habilitarHoraLunes">
                                 <option value='0' disabled>ASESOR/A</option>
                                 <option *ngFor="let asesor of asesores" value="{{asesor.PK_USUARIO}}">{{asesor.name+" "+asesor.PRIMER_APELLIDO+" "+asesor.SEGUNDO_APELLIDO}}</option>
@@ -323,7 +325,7 @@
                               <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="icon-hourglass"></i></span>
                               </div>
-                              <select type="text" name="diasituacion" [(ngModel)]="form.diasituacion" class="form-control"
+                              <select class="form-control" type="text" name="diasituacion" [(ngModel)]="form.diasituacion" class="form-control"
                                 [disabled]="habilitarHoraMiercoles" [hidden]="habilitarHoraMiercoles">
                                 <option value='0' disabled>DIA</option>
                                 <option value='LUNES' >LUNES</option>
@@ -340,7 +342,7 @@
                               <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="icon-hourglass"></i></span>
                               </div>
-                              <select type="text" name="levelNum3" [(ngModel)]="form.horasituacion" class="form-control"
+                              <select class="form-control" type="text" name="levelNum3" [(ngModel)]="form.horasituacion" class="form-control"
                                 [disabled]="habilitarHoraJueves" [hidden]="habilitarHoraJueves">
                                 <option value='0' disabled>HORA</option>
                                 <option *ngFor="let hora of horario">{{hora}}</option>
@@ -351,7 +353,7 @@
                               <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="icon-hourglass"></i></span>
                               </div>
-                              <select style="width:150px"  type="text" name="campussituacion" [(ngModel)]="form.campussituacion" [disabled]="habilitarMaterias" class="form-control"
+                              <select class="form-control" style="width:150px"  type="text" name="campussituacion" [(ngModel)]="form.campussituacion" [disabled]="habilitarMaterias" class="form-control"
                                 [hidden]="habilitarMaterias">
                                 <option value='0' disabled>CAMPUS</option>
                                 <option value='CAMPUS I' >CAMPUS I</option>
@@ -363,7 +365,7 @@
                               <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="icon-hourglass"></i></span>
                               </div>
-                              <select type="text" name="espaciosituacion" [(ngModel)]="form.espaciosituacion" [disabled]="habilitarMaterias" class="form-control"
+                              <select class="form-control" type="text" name="espaciosituacion" [(ngModel)]="form.espaciosituacion" [disabled]="habilitarMaterias" class="form-control"
                                 [hidden]="habilitarMaterias">
                                 <option value='0' disabled>ESPACIO</option>
                                 <option value='ESPACIO I'>ESPACIO I</option>
@@ -389,4 +391,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

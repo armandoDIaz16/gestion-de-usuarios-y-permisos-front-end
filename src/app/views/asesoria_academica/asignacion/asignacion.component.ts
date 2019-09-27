@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { JarwisService } from '../../../services/jarwis.service';
+import { ValidarModuloService } from '../../../services/validarModulo.service';
 
 
 
 @Component({
   selector: 'app-generalidades',
   templateUrl: './asignacion.component.html',
-  styleUrls: ['./asignacion.component.scss']
+  styleUrls: ['./asignacion.component.scss'],
+  providers: [ValidarModuloService]
 })
 export class AsignacionComponent implements OnInit {
 
+  public mostrarModulo = false;
   visindividual = false;
   visgrupal = false;
   visacademica = false;
@@ -64,7 +67,8 @@ export class AsignacionComponent implements OnInit {
     );
   }
 
-  constructor(private Jarwis: JarwisService) {
+  constructor(private Jarwis: JarwisService,
+    private validarModuloService: ValidarModuloService) {
   }
 
   individual() {
@@ -81,6 +85,10 @@ export class AsignacionComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.mostrarModulo = this.validarModuloService.getMostrarModulo("Asignación");
+    if (!this.mostrarModulo) {
+      return;
+    }
     this.Jarwis.obtenerAsesorAsigna().subscribe(
       data => {
         for (var num in data) {

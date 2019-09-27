@@ -1,0 +1,358 @@
+import { Component, OnInit } from '@angular/core';
+import { Chart } from 'chart.js';
+import { GraficasAsesoriaService } from '../../../services/graficasAsesoria.service';
+import { NgZone } from "@angular/core";
+import * as am4core from "@amcharts/amcharts4/core";
+import * as am4charts from "@amcharts/amcharts4/charts";
+import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+
+am4core.useTheme(am4themes_animated);
+@Component({
+  selector: 'app-reportes',
+  templateUrl: './reportes.component.html',
+  styleUrls: ['./reportes.component.scss'],
+  providers: [GraficasAsesoriaService]
+})
+
+export class ReportesComponent implements OnInit {
+  constructor(private graficasAsesoriaService: GraficasAsesoriaService,
+    private zone: NgZone) {
+  }
+
+  asesoradosHorizontalBar = [];
+  asesoradosNOMBRE = [];
+  asesoradosCANTIDAD = [];
+  noAsesoradosNOMBRE = [];
+  noAsesoradosCANTIDAD = [];
+  materiasPieChart = [];
+  materiasNOMBRE = [];
+  materiasCANTIDAD = [];
+  motivosPieChart = [];
+  motivosNOMBRE = [];
+  motivosCANTIDAD = [];
+  materias = [];
+  instutucion = [];
+  vermotivo = false;
+  institucionid = null;
+  materiaid = null;
+
+  private chart: am4charts.XYChart;
+
+ngAfterViewInit() {
+    this.zone.runOutsideAngular(() => {
+      let chart = am4core.create("chartdiv", am4charts.XYChart);
+
+      chart.paddingRight = 20;
+
+      let data = [];
+      let visits = 10;
+      for (let i = 1; i < 366; i++) {
+        visits += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
+        data.push({ date: new Date(2018, 0, i), name: "name" + i, value: visits });
+      }
+
+      chart.data = data;
+
+      let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+      dateAxis.renderer.grid.template.location = 0;
+
+      let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+      valueAxis.tooltip.disabled = true;
+      valueAxis.renderer.minWidth = 35;
+
+      let series = chart.series.push(new am4charts.LineSeries());
+      series.dataFields.dateX = "date";
+      series.dataFields.valueY = "value";
+
+      series.tooltipText = "{valueY.value}";
+      chart.cursor = new am4charts.XYCursor();
+
+      let scrollbarX = new am4charts.XYChartScrollbar();
+      scrollbarX.series.push(series);
+      chart.scrollbarX = scrollbarX;
+
+      this.chart = chart;
+    });
+  }
+
+  ngOnDestroy() {
+    this.zone.runOutsideAngular(() => {
+      if (this.chart) {
+        this.chart.dispose();
+      }
+    });
+  }
+
+  ngOnInit() {
+    this.graficasAsesoriaService.getGraficaAsesorados().subscribe(data => {
+      for (var asesorados in data) {
+        this.asesoradosNOMBRE.push(data[asesorados].NOMBRE);
+        this.asesoradosCANTIDAD.push(data[asesorados].CANTIDAD);
+      }
+      this.graficasAsesoriaService.getGraficaNoAsesorados().subscribe(data => {
+        for (var asesorados in data) {
+          this.noAsesoradosNOMBRE.push(data[asesorados].NOMBRE);
+          this.noAsesoradosCANTIDAD.push(data[asesorados].CANTIDAD);
+        }
+        this.generarGraficaAsesorados();
+      });
+    });
+    this.graficasAsesoriaService.getGraficaMaterias().subscribe(data => {
+      for (var materias in data) {
+        this.materiasNOMBRE.push(data[materias].NOMBRE);
+        this.materiasCANTIDAD.push(data[materias].CANTIDAD);
+      }
+      this.generarGraficaMaterias();
+    });
+    this.graficasAsesoriaService.getMateria().subscribe(data => {
+      for (var motivos in data) {
+        this.materias.push(data[motivos].MATERIA_APOYO1);
+        // console.log(this.materias)
+      }
+    });
+    this.graficasAsesoriaService.getInstitucion().subscribe(data => {
+      for (var motivos in data) {
+        this.instutucion.push(data[motivos]);
+        console.log(this.instutucion)
+      }
+    });
+  }
+  generarGraficaAsesorados() {
+    this.asesoradosHorizontalBar = [new Chart('asesoradosHorizontalBar', {
+      type: 'bar',
+      data: {
+        labels: this.asesoradosNOMBRE,
+        datasets: [
+          {
+            label: "Aceptadas",
+            backgroundColor: [
+              'rgb(255, 99, 132)',
+              'rgb(255, 159, 64)',
+              'rgb(255, 205, 86)',
+              'rgb(75, 192, 192)',
+              'rgb(54, 162, 235)',
+              'rgb(153, 102, 255)',
+              'rgb(236, 112, 99)',
+              "#3e95cd",
+              "rgb(165, 105, 189)",
+              "#3cba9f"],
+            data: this.asesoradosCANTIDAD
+          }, {
+            label: "Solicitadas",
+            backgroundColor: [
+              'rgb(255, 99, 132)',
+              'rgb(255, 159, 64)',
+              'rgb(255, 205, 86)',
+              'rgb(75, 192, 192)',
+              'rgb(54, 162, 235)',
+              'rgb(153, 102, 255)',
+              'rgb(236, 112, 99)',
+              "#3e95cd",
+              "rgb(165, 105, 189)",
+              "#3cba9f"],
+            data: this.noAsesoradosCANTIDAD
+          }
+        ]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            gridLines: {
+              display: true
+            }
+          }],
+          xAxes: [{
+            gridLines: {
+              display: true
+              //zeroLineColor: "black",
+              //zeroLineWidth: 2
+            },
+            ticks: {
+              min: 0,
+              stepSize: 1
+            },
+            scaleLabel: {
+              display: true,
+              labelString: "Solicitudes"
+            }
+          }]
+        },
+        legend: { display: false },
+        title: {
+          // display: true,
+          // text: 'Predicted world population (millions) in 2050'
+        }
+      }
+    })];
+  }
+  generarGraficaMaterias() {
+    this.materiasPieChart = [new Chart('materiasPieChart', {
+      type: 'pie',
+      data: {
+        labels: this.materiasNOMBRE,
+        datasets: [{
+          //label: "Population (millions)",
+          backgroundColor: [
+            'rgb(255, 159, 64)',
+            'rgb(54, 162, 235)',
+            'rgb(255, 205, 86)',
+            'rgb(75, 192, 192)',
+            'rgb(153, 102, 255)',
+            'rgb(201, 203, 207)'],
+          data: this.materiasCANTIDAD
+        }]
+      },
+      options: {
+        title: {
+          //display: true,
+          //text: 'Aspirantes por estatus'
+        },
+        legend: {
+          position: 'left',
+        }
+      }
+    })];
+
+
+
+  }
+  generarGraficaMotivos() {
+    this.motivosPieChart = [new Chart('motivosPieChart', {
+      type: 'pie',
+      data: {
+        labels: this.motivosNOMBRE,
+        datasets: [{
+          //label: "Population (millions)",
+          backgroundColor: [
+            'rgb(255, 159, 64)',
+            'rgb(54, 162, 235)',
+            'rgb(255, 205, 86)',
+            'rgb(75, 192, 192)',
+            'rgb(153, 102, 255)',
+            'rgb(255, 255, 0)',
+            'rgb(253, 51, 7)',
+            'rgb(252, 0, 0)',
+            'rgb(43, 0, 255)',
+            'rgb(170, 255, 0)',
+          ],
+          data: this.motivosCANTIDAD
+        }]
+      },
+      options: {
+        title: {
+          //display: true,
+          //text: 'Aspirantes por estatus'
+        },
+        legend: {
+          position: 'left',
+        }
+      }
+
+    })];
+  }
+  motivospormateria() {
+    this.motivosPieChart = null;
+    this.motivosNOMBRE = [];
+    this.motivosCANTIDAD = [];
+    this.graficasAsesoriaService.getGraficaMotivos(this.materiaid).subscribe(data => {
+      for (var motivos in data) {
+        this.motivosNOMBRE.push(data[motivos].NOMBRE);
+        this.motivosCANTIDAD.push(data[motivos].CANTIDAD);
+        //console.log(this.motivosNOMBRE + '                ' + this.motivosCANTIDAD)
+      }
+      this.generarGraficaMotivos();
+    });
+  }
+  motivosporinstitucional() {
+    this.motivosPieChart = null;
+    this.motivosNOMBRE = [];
+    this.motivosCANTIDAD = [];
+    console.log(this.institucionid)
+    this.graficasAsesoriaService.getMotivosInstuticion(this.institucionid).subscribe(data => {
+      for (var motivos in data) {
+        this.motivosNOMBRE.push(data[motivos].NOMBRE);
+        this.motivosCANTIDAD.push(data[motivos].CANTIDAD);
+        console.log(this.motivosNOMBRE + '                ' + this.motivosCANTIDAD)
+      }
+      this.generarGraficaMotivos();
+    });
+
+  }
+}
+
+**************************************************************************************************************************************************************************************************************
+
+<div class="animated fadeIn">
+  <!--   <div class="row">
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <i class="icon-pie-chart"></i>
+          <strong>Aspirantes por estatus</strong>
+        </div>
+        <div class="card-body">
+          <canvas id="estatusPieChart"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <i class="icon-pie-chart"></i>
+          <strong>Aspirantes por campus</strong>
+        </div>
+        <div class="card-body">
+          <canvas id="campusPieChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!--/.col-->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="icon-chart"></i>
+          <strong>Asesorados y no asesorados</strong>
+        </div>
+        <div class="card-body">
+          <canvas id="asesoradosHorizontalBar"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="icon-chart"></i>
+          <strong>Materias evaluadas</strong>
+        </div>
+        <div class="card-body">
+          <canvas id="materiasPieChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="icon-chart"></i>
+          <strong>Entrevista de Motivos</strong>
+        </div>
+        <select class="form-control" type="text" [(ngModel)]="materiaid" (change)="motivospormateria()">
+          <option value=null disabled>NOMBRE DE LA MATERIA</option>
+          <option *ngFor="let mat of materias" [ngValue]="mat">{{mat}}</option>
+        </select>
+        <select class="form-control" type="text" [(ngModel)]="institucionid" (change)="motivosporinstitucional()">
+          <option value=null disabled>ELIJA INSTITUCION</option>
+          <option *ngFor="let mat of instutucion" [ngValue]="mat.PK_TECNOLOGICO">{{mat.Nombre}}</option>
+        </select>
+        <div class="card-body">
+          <canvas id="motivosPieChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

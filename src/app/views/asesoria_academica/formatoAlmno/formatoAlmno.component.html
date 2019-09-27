@@ -1,8 +1,10 @@
+<app-404 *ngIf=!mostrarModulo></app-404>
+<div class="animated fadeIn" *ngIf=mostrarModulo>
 <div class="row">
   <div class="col-sm-12 ">
     <div class="card">
       <div class="card-header">
-        <i class="fa fa-align-justify"></i> FORMATOS ASESOR
+        <i class="fa fa-align-justify"></i> FORMATOS ALUMNO/A SOLICITANTE
         <small>PAAE</small>
       </div>
       <div class="card-body">
@@ -22,7 +24,6 @@
         </ul>
         <br><br>
         <div *ngIf="visindividual">
-          <h1>GRUPAL</h1>
           <div class="app-body">
             <main class="main d-flex align-items-center">
               <div class="container">
@@ -322,7 +323,6 @@
           </div>
         </div>
         <div *ngIf="visgrupal">
-          <h1>GRUPAL</h1>
           <div class="app-body">
             <main class="main d-flex align-items-center">
               <div class="container">
@@ -332,7 +332,7 @@
                       <h2>CARTA COMPROMISO</h2>
                     </div>
                     <div class="card-group">
-                      <div class="card p-3">
+                      <div class="card p-9">
                         <div class="card-body">
                           <H5>PROGRAMA DE ASESORÍA ACADÉMICA ENTRE ESTUDIANTES</H5>
 
@@ -346,25 +346,37 @@
                             Derechos:
                             <br>
                             • Estar inscrito (a) en el programa y recibir asesoría académica en la materia acordada
-                            Recibir la asesoría en el horario establecido y acordado
-                            Ser tratado (a) de manera amable y respetuosa
-                            Tomar la asesoría dentro del Tecnológico
-                            Reportar al responsable del programa cualquier falta de respeto o incumplimiento por parte
+                            <br>
+                            • Recibir la asesoría en el horario establecido y acordado
+                            <br>
+                            • Ser tratado (a) de manera amable y respetuosa
+                            <br>
+                            • Tomar la asesoría dentro del Tecnológico
+                            <br>
+                            • Reportar al responsable del programa cualquier falta de respeto o incumplimiento por parte
                             del Alumno (a) Asesor
                             <br>
                             Obligaciones
                             <br>
                             Permanecer en la asesoría un tiempo mínimo de un parcial
+                            <br>
                             Asistir con puntualidad a las asesorías los días y horarios acordados
+                            <br>
                             Cumplir con las tareas y actividades propuestas por el asesor
+                            <br>
                             Mostrar una actitud comprometida y responsable en la asesoría y en las actividades que
                             deriven de ella
+                            <br>
                             Tratar con respeto y amabilidad al alumno (a) asesor
+                            <br>
                             Proporcionar la información requerida por la Coordinación del Programa o por mi compañero
                             (a) Asesor sobre mi trayectoria escolar y datos de identificación.
+                            <br>
                             Informar al Alumno (a) Asesor la calificación obtenida en los exámenes que realice el
                             maestro (a) que imparte la materia.
+                            <br>
                             Avisar al asesor (a) en caso de tener alguna actividad que me impida asistir a la asesoría
+                            <br>
                             Asistir a las clases de la materia, con el profesor (a) que la imparte.</P>
 
                           <div align="center">
@@ -387,14 +399,13 @@
           </div>
         </div>
         <div *ngIf="visatisfaccion">
-          <h1>GRUPAL</h1>
           <div class="app-body">
             <main class="main d-flex align-items-center">
               <div class="container">
                 <div class="row">
                   <div class="col-md-6 mx-auto">
                     <div align="center">
-                      <h2>EVALUACION DE SATISFACCION</h2>
+                      <h2>EVALUACIÓN DE SATISFACCIÓN</h2>
                     </div>
                     <div class="card-group">
                       <div class="card p-3">
@@ -702,7 +713,6 @@
           </div>
         </div>
         <div *ngIf="viscalificacion">
-          <h1>GRUPAL</h1>
           <div class="app-body">
             <main class="main d-flex align-items-center">
               <div class="container">
@@ -974,3 +984,4 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+</div>

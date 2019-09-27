@@ -1,3 +1,5 @@
+<app-404 *ngIf=!mostrarModulo></app-404>
+<div class="animated fadeIn" *ngIf=mostrarModulo>
 <div class="row">
   <div class="col-sm-12 ">
     <div class="card">
@@ -11,7 +13,7 @@
             <a class="nav-link active" (click)="asesor()" href="#">Solicitud Asesor</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" (click)="alumno()" href="#">Solicitud de Asesoria</a>
+            <a class="nav-link active" (click)="alumno()" href="#">Solicitud de Asesoría</a>
           </li>
         </ul>
         <br><br>
@@ -409,23 +411,30 @@
         </button>
       </div>
       <div class="modal-body">
-        <table class="table table-bordered table-striped table-sm">
+        <table class="table table-bordered table-striped table-sm" cellpadding="20">
           <thead>
             <tr>
-              <th>DIA</th>
-              <th>HORA_INICIAL</th>
-              <th>MINUTO_INICIAL</th>
-              <th>HORA_FINAL</th>
-              <th>MINUTO_FINAL</th>
+              <th>Clave Grupo</th>
+              <th>Clave Materia</th>
+              <th>Nombre</th>
+              <th>Lunes</th>
+              <th>Martes</th>
+              <th>Miercoles</th>
+              <th>Jueves</th>
+              <th>Viernes</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let soli of horarioUser">
-              <td>{{soli.Dia}}</td>
-              <td>{{soli.HoraInicial}}</td>
-              <td>{{soli.MinutoInicial}}</td>
-              <td>{{soli.HoraFinal}}</td>
-              <td>{{soli.MinutoFinal}}</td>
+            <tr *ngFor="let soli of horarioUser; let i = index">
+              
+              <td>{{soli.clavegrupo}}</td>
+              <td>{{soli.clavemateria}}</td>
+              <td>{{soli.nombre}}</td>
+              <td>{{soli.Lunes}}</td>
+              <td>{{soli.Martes}}</td>
+              <td>{{soli.Miercoles}}</td>
+              <td>{{soli.Jueves}}</td>
+              <td>{{soli.Viernes}}</td>
             </tr>
           </tbody>
         </table>
@@ -455,6 +464,7 @@
               <th>NOMBRE</th>
               <th>CURSO</th>
               <th>CALIFICACION</th>
+              <th>{{promedio}}</th>
             </tr>
           </thead>
           <tbody>
