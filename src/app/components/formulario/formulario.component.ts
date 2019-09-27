@@ -120,8 +120,6 @@ export class FormularioComponent implements OnInit {
   }
 
 
-
-
   ngOnInit() {
     this.periodoService.getPeriodo().subscribe(data => {
       this.pkPeriodo = data[0].PK_PERIODO_PREFICHAS;

@@ -33,7 +33,7 @@ import { ReportesCoordComponent } from './reportesCoor/reportesCoor.component';
 import { NotificacionesAsesComponent } from './notificacionesAses/notificacionesAses.component';
 import { AsignacionAseComponent } from './asignacionAse/asignacionAse.component';
 import { NotificacionesAlmComponent } from './notificacionesAlm/notificacionesAlm.component';
-import { ErrorModule } from '../error/error.module';
+import { ErrorModule } from '../../components/error/error.module';
 
 
 
@@ -49,7 +49,7 @@ import { ErrorModule } from '../error/error.module';
     BsDropdownModule.forRoot(),
     FormsModule,
     NgxPaginationModule,
-    ErrorModule,
+    ErrorModule
   ],
   declarations: [
     Form_asesorComponent,
