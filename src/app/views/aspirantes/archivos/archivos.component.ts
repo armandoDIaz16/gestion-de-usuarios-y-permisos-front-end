@@ -3,21 +3,19 @@ import { PeriodoService } from '../../../services/periodo.service';
 import { AspiranteService } from '../../../services/aspirante.service';
 import * as XLSX from 'xlsx';
 import { ValidarModuloService } from '../../../services/validarModulo.service';
-import { GenericServicesService } from '../../../services/generic-services.service';
 
 
 @Component({
   selector: 'app-archivos',
   templateUrl: './archivos.component.html',
   styleUrls: ['./archivos.component.scss'],
-  providers: [PeriodoService, AspiranteService, ValidarModuloService, GenericServicesService]
+  providers: [PeriodoService, AspiranteService, ValidarModuloService]
 })
 export class ArchivosComponent implements OnInit {
 
   constructor(private periodoService: PeriodoService,
     private aspiranteService: AspiranteService,
-    private validarModuloService: ValidarModuloService,
-    private genericServicesService: GenericServicesService) {
+    private validarModuloService: ValidarModuloService) {
   }
 
   public sistema = "Aspirantes";

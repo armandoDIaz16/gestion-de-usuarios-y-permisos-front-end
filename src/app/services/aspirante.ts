@@ -69,4 +69,3 @@ export interface IListaGrupos {
   DIA: string;
   HORA: string;
 }
-

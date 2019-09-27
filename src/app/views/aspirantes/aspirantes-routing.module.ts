@@ -10,6 +10,7 @@ import { ListaGruposComponent } from './lista_grupos/lista_grupos.component';
 import { PrefichasComponent } from './prefichas/prefichas.component';
 import { PeriodoComponent } from './periodo/periodo.component';
 import { CrearGruposComponent } from './crear_grupos/crear_grupos.component';
+import { ArchivosPagosComponent } from './archivos_pagos/archivos_pagos.component';
 
 const routes: Routes = [
   {
@@ -68,6 +69,13 @@ const routes: Routes = [
         }
       },
       {
+        path: 'archivos_de_pagos',
+        component: ArchivosPagosComponent,
+        data: {
+          title: 'Archivos de pagos'
+        }
+      },
+      {
         path: 'graficas',
         component: GraficasComponent,
         data: {
@@ -89,4 +97,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 
-export class AspirantesRoutingModule {}
+export class AspirantesRoutingModule { }

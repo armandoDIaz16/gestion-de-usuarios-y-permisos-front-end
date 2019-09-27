@@ -2,7 +2,7 @@
 <div class="animated fadeIn" *ngIf=mostrarModulo>
   <h2 class="">Bienvenido aspirante</h2>
   <hr>
-  <div id="contentToConvert" class="col-md-12 hidden-xs d-flex justify-content-center">
+  <!--   <div id="contentToConvert" class="col-md-12 hidden-xs d-flex justify-content-center">
     <ul class="wizard-steps">
       <li class="wizardbar-i completed">
         <h5>Paso 1</h5>
@@ -11,21 +11,72 @@
       <li class="wizardbar-i {{paso2}}">
         <h5>Paso 2</h5>
         <span>Pago confirmado</span>
-
       </li>
       <li class="wizardbar-i {{paso3}}">
         <h5>Paso 3</h5>
         <span>Registro en Ceneval</span>
-
       </li>
       <li class="wizardbar-i {{paso4}}">
         <h5>Paso 4</h5>
         <span>Descarga Ficha</span>
-
+      </li>
+      <li class="wizardbar-i {{paso5}}">
+        <h5>Paso 5</h5>
+        <span>Asistir al examen</span>
+      </li>
+      <li class="wizardbar-i {{paso6}}">
+        <h5>Paso 6</h5>
+        <span>Resultados</span>
       </li>
     </ul>
-  </div>
+  </div> -->
+
+
+  <form class="wizard-container" method="POST" action="#" id="js-wizard-form">
+    <ul class="tab-list">
+      <li class="tab-list__item active">
+        <a class="tab-list__link" data-toggle="tab">
+          <span class="step">1</span>
+          <span class="desc">Registro de preficha</span>
+        </a>
+      </li>
+      <li class="tab-list__item {{paso2}}">
+        <a class="tab-list__link" data-toggle="tab">
+          <span class="step">2</span>
+          <span class="desc">Pago confirmado</span>
+        </a>
+      </li>
+      <li class="tab-list__item {{paso3}}">
+        <a class="tab-list__link" data-toggle="tab">
+          <span class="step">3</span>
+          <span class="desc">Registro en Ceneval</span>
+        </a>
+      </li>
+      <li class="tab-list__item {{paso4}}">
+        <a class="tab-list__link" data-toggle="tab">
+          <span class="step">4</span>
+          <span class="desc">Descarga Ficha</span>
+        </a>
+      </li>
+      <li class="tab-list__item {{paso5}}">
+        <a class="tab-list__link" data-toggle="tab">
+          <span class="step">5</span>
+          <span class="desc">Asistir al examen</span>
+        </a>
+      </li>
+      <li class="tab-list__item {{paso6}}">
+        <a class="tab-list__link" data-toggle="tab">
+          <span class="step">6</span>
+          <span class="desc">Resultados</span>
+        </a>
+      </li>
+    </ul>
+  </form>
+
   <hr>
+  <div class="w-50">
+    <br>
+  </div>
   <div class="d-flex justify-content-center" *ngIf="habilitarReferencia">
     <div class="w-50">
       <button type="button" class="btn btn-block btn-primary" (click)="generarReferencia()">Generar referencia</button>
@@ -42,12 +93,12 @@
     <div class="w-50">
       <button type="button" class="btn btn-block btn-primary" (click)="generarFicha()">Descargar ficha oficial</button>
     </div>
-  </div>  
+  </div>
   <div class="d-flex justify-content-center" *ngIf="habilitarAceptado">
-    <h4>Fuiste aceptado</h4>
+    <h4>{{mensaje}}</h4>
   </div>
   <div class="d-flex justify-content-center" *ngIf="habilitarAceptadoCero">
-    <h4>Fuiste aceptado para el semestre cero</h4>
+    <h4>{{mensajeCero}}</h4>
   </div>
   <div class="d-flex justify-content-center" *ngIf="habilitarResultados">
     <h2>Resultados</h2>
@@ -63,7 +114,7 @@
     <div class="w-50">
       <button type="button" class="btn btn-block btn-primary" (click)="generarReferenciaCurso()">Generar referencia de
         curso</button>
-        <h2></h2>
+      <h2></h2>
     </div>
   </div>
   <div class="d-flex justify-content-center" *ngIf="habilitarInscripcion">

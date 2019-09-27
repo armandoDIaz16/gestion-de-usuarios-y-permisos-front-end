@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
     }
 
     onSubmit() {
+        this.form.curp = this.form.curp.toUpperCase();
         this.Jarwis.login(this.form).subscribe(
             data => this.handleResponse(data),
             error => this.handleError(error)
