@@ -19,7 +19,7 @@ export class LugarExamenService  extends GenericServicesService {
         return this.http.get<ITurno2[]>(this.baseUrl+'Turno2', this.headers);
     }
     getGrupo(): Observable<IGrupo[]> {
-        return this.http.get<IGrupo[]>(this.baseUrl+'Grupo', this.headers);
+        return this.http.get<IGrupo[]>(this.baseUrl+'Grupo2', this.headers);
     }
     getEspacio(): Observable<IEspacio[]> {
         return this.http.get<IEspacio[]>(this.baseUrl+'Espacio', this.headers);

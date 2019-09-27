@@ -24,6 +24,7 @@ export class FormularioComponent implements OnInit {
   habilitarNacionalidadOtro = true;
   habilitarAyuda = true;
   habilitarUniversidad = true;
+  ocultarSubmit = true;
 
   genero = null;
   estadoCivil = null;
@@ -247,6 +248,8 @@ export class FormularioComponent implements OnInit {
     }
   }
   onSubmit() {
+    this.aspiranteService.addAspirante({"PK_PERIODO":"1","NOMBRE":"'JOSE FABRICIO'","PRIMER_APELLIDO":"'DE LA CRUZ'","SEGUNDO_APELLIDO":"'PONCE'","FECHA_NACIMIENTO":"'1995-09-20'","SEXO":"1","CURP":"'333333333333333333'","FK_ESTADO_CIVIL":"1","CALLE":"'lago erie'","NUMERO_EXTERIOR":"'117'","NUMERO_INTERIOR":"''","CP":"'37288'","FK_COLONIA":"75694","TELEFONO_CASA":"'7118509'","TELEFONO_MOVIL":"'4771722646'","CORREO1":"'fabrixcp@gmail.com'","PADRE_TUTOR":"'Cruz Victor'","MADRE":"'Fabiola'","FK_BACHILLERATO":"4294","ESPECIALIDAD":"'Ingeniería y arquitectura'","PROMEDIO":"'8.9'","NACIONALIDAD":"''","FK_CIUDAD":"269","FK_CARRERA_1":"4","FK_CARRERA_2":"10","FK_PROPAGANDA_TECNOLOGICO":"7","FK_UNIVERSIDAD":"5","FK_CARRERA_UNIVERSIDAD":"6","FK_DEPENDENCIA":"3","TRABAJAS_Y_ESTUDIAS":"1","AYUDA_INCAPACIDAD":"''","DISCAPASIDADES":""});
+    return;
     if (this.sApellido == null) {
       this.sApellido = ""
     }
@@ -315,37 +318,13 @@ export class FormularioComponent implements OnInit {
         "AYUDA_INCAPACIDAD": "'" + this.ayuda + "'",
         "DISCAPASIDADES": this.discapacidades
       });
+    //this.ocultarSubmit=false;
   }
   private addCheckboxes() {
     this.incapacidadLista.map((o, i) => {
       const control = new FormControl(i === null); // if first item set to true, else false
       (this.formGroup.controls.incapacidadLista as FormArray).push(control);
     });
-  }
-  submit() {
-    /*    const selectedOrderIds = this.form.value.incapacidadLista
-         .map((v, i) => v ? this.incapacidadLista[i].PK_INCAPACIDAD : null)
-         .filter(v => v !== null);
-   
-   
-       let arreglo2=[];
-       for(var sistema in selectedOrderIds){
-          arreglo2.push(
-            selectedOrderIds[sistema]
-            );   
-       }   
-       let arreglo1 = [{
-         "PK_PERIODO": ":v",
-         "name": ":v",
-         "PRIMER_APELLIDO": ":v",
-         "DISCAPACIDADES": arreglo2
-     }];
-   
-     this.aspiranteService.addAspirante(
-       {
-         arreglo1
-       });
-       console.log(arreglo1); */
   }
 }
 function minSelectedCheckboxes(min = 1) {
