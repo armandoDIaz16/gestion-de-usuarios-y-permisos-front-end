@@ -94,6 +94,15 @@ export class PeriodoService extends GenericServicesService{
         );
     }
 
+    updatePeriodo(resultados){
+        return this.http.post(this.baseUrl + 'PublicarResultados',  resultados, this.headers
+        ).subscribe(
+            (response) => {
+                console.log(response);
+            }
+        );
+    }
+
     getPeriodo():Observable<Periodo>{
         return this.http.get<Periodo>(GenericServicesService.API_ENDPOINT + 'Periodo');
     }

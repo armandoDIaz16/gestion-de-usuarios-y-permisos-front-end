@@ -593,7 +593,7 @@
                       <!-- <button type="submit" value="Submit" class="btn btn-sm btn-primary">Aceptar</button> -->
 
                       <button class="btn btn-sm btn-primary"
-                        (click)="loaderModal.show()" [disabled]="">Enviar
+                        (click)="loaderModal.show()" [disabled]="aspiranteForm.invalid || formGroup.invalid">Enviar
                         registro</button>
 
                       <!--                   <button type="button" class="btn btn-block btn-primary col-sm-2">Aceptar</button>

@@ -67,7 +67,7 @@
                   <select [(ngModel)]="edificio" class="form-control" name="edificio" required>
                     <option [value]=null>Selecciona</option>
                     <option *ngFor="let edificio of edificioLista" value="{{edificio.PK_EDIFICIO}}">
-                      Campus: {{edificio.CAMPUS}} Edificio: {{edificio.EDIFICIO}} Prefijo: {{edificio.PREFIJO}}
+                      Campus: {{edificio.CAMPUS}} Edificio: {{edificio.PREFIJO}} {{edificio.EDIFICIO}}
                     </option>
                   </select>
                 </div>

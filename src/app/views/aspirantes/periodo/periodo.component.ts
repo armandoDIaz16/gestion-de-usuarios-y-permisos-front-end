@@ -26,6 +26,8 @@ export class PeriodoComponent implements OnInit {
   fechaInicioInscripcionCero = null;
   fechaFinInscripcionCero = null;
   montoInscripcionCero = null;
+  resultados = null;
+  mostrarPublicar = null;
 
 
   constructor(
@@ -54,6 +56,12 @@ export class PeriodoComponent implements OnInit {
         this.fechaInicioInscripcionCero = data[0].FECHA_INICIO_INSCRIPCION_BIS;
         this.fechaFinInscripcionCero = data[0].FECHA_FIN_INSCRIPCION_BIS;
         this.montoInscripcionCero = data[0].MONTO_INSCRIPCION_BIS;
+        this.resultados = data[0].RESULTADOS;
+        if (this.resultados==1){
+          this.mostrarPublicar=true;
+        } else{
+          this.mostrarPublicar=false;
+        }
         var fechaInicio = this.fechaInicio.split('-');
         var fechaFin = this.fechaFin.split('-');
         var fechaActual = this.fechaActual.split('-');
@@ -245,6 +253,16 @@ export class PeriodoComponent implements OnInit {
         {
           "PK_PERIODO_PREFICHAS": this.idPeriodo,
           "MONTO_INSCRIPCION_BIS": this.montoInscripcionCero
+        });
+    }
+  }
+
+  onSubmitResultados(res) {
+    if (this.idPeriodo) {
+      this.periodoService.updatePeriodo(
+        {
+          "PK_PERIODO_PREFICHAS": this.idPeriodo,
+          "RESULTADOS": res
         });
     }
   }
