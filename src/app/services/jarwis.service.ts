@@ -13,6 +13,7 @@ export class JarwisService extends GenericServicesService {
 
     /*  private baseUrl = 'http://127.0.0.1:8000/api';*/
     private baseUrl = GenericServicesService.API_ENDPOINT;
+    private headers = GenericServicesService.HEADERS;
     // private baseUrl = 'http://localhost:8000/api/';
 
     /*
@@ -20,7 +21,7 @@ export class JarwisService extends GenericServicesService {
     * en obtención de contraseña
     * */
     control(data) {
-        return this.http.post(`${this.baseUrl}control`, data);
+        return this.http.post(`${this.baseUrl}control`, data, this.headers);
     }
 
     /*
