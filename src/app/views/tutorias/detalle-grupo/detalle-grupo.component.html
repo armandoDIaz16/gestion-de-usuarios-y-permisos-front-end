@@ -74,7 +74,13 @@
                     {{i + 1}}
                 </td>
                 <td>
-                    {{alumno.NUMERO_CONTROL}}
+                    <b>
+                        <a [routerLink]="['/tutorias/horario-alumno']"
+                           [queryParams]="{alumno: alumno.PK_USUARIO}"
+                           class="btn btn-link" tooltip="Ver horario del estudiante">
+                            {{alumno.NUMERO_CONTROL}}
+                        </a>
+                    </b>
                 </td>
                 <td>
                     <b>
@@ -92,7 +98,7 @@
                         <a [routerLink]="['/tutorias/ver-encuestas']"
                            [queryParams]="{alumno: alumno.PK_USUARIO}"
                            class="btn btn-link" tooltip="Ver detalles de encuestas">
-                            3/6
+                            {{alumno.ENCUESTAS_CONTESTADAS}} de {{alumno.ENCUESTAS_ACTIVAS}} contestadas
                             <br>
                             (Ver detalles)
                         </a>

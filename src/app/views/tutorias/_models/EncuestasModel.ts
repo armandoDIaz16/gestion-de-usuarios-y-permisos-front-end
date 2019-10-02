@@ -17,6 +17,12 @@ export interface InterfaceEncuestaCompleta {
     FUENTE_CITA?:     string;
     ES_ADMINISTRABLE: number;
     SECCIONES:       InterfaceSeccionEncuesta[];
+
+    // DATOS PARA REPORTES
+    CONDICION_SOCIOECONOMICA?: number;
+    CONDICION_FAMILIAR?:      object;
+    HABITOS_ESTUDIO?:         object;
+    PF_16?:                   object;
 }
 
 export interface InterfaceSeccionEncuesta {
