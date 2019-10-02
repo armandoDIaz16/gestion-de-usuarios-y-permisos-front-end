@@ -40,7 +40,7 @@ export class AspiranteService extends GenericServicesService{
         );
     }
     getGrupos(pk_espacio, dia, hora, pk_periodo): Observable<IGrupos[]> {
-        return this.http.get<IGrupos[]>(this.baseUrl + 'Grupo?PK_ESPACIO=' + pk_espacio + '&DIA=' + dia + '&HORA=' + hora + '&FK_PERIODO=' + pk_periodo, this.headers
+        return this.http.get<IGrupos[]>(this.baseUrl + 'ListaGrupo?PK_ESPACIO=' + pk_espacio + '&DIA=' + dia + '&HORA=' + hora + '&FK_PERIODO=' + pk_periodo, this.headers
         );
     }
     getListaGrupos(pk_periodo): Observable<IListaGrupos[]> {

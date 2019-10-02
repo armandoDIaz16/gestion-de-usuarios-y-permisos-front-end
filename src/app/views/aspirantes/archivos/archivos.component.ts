@@ -26,6 +26,7 @@ export class ArchivosComponent implements OnInit {
   public aspirantes = [];
   public excelLeerAceptadosCENVEAL = [];
   public excelGeneradoAceptadosCENVEAL = [];
+  public grupos = [];
 
   ngOnInit() {
     this.mostrarModulo = this.validarModuloService.getMostrarModulo("Archivos");
@@ -268,5 +269,64 @@ export class ArchivosComponent implements OnInit {
       return buf;
     }
     XLSX.writeFile(wb, nombreArchivo + ".xlsx");
+  }
+
+  leerDatosParaExcelGrupos() {
+    this.aspiranteService.getListaGrupos(this.periodo).subscribe(data => {
+      this.grupos = data;
+      if (data) {
+        this.generarExcel2();
+      }
+    });
+  }
+
+  generarExcel2() {
+    
+    var wb = XLSX.utils.book_new();
+    wb.Props = {
+      Title: "Lista grupos",
+      Subject: "Lista examenes",
+      Author: "Tecnologico de leon",
+      CreatedDate: new Date(2017, 12, 19)
+    };
+    //console.log(this.grupos[0].GRUPO);
+    
+    //let nombreHoja = this.grupos[grupo].GRUPO;
+    
+    for (var grupo in this.grupos) {
+      var aspirantes = [
+        [this.grupos[grupo].GRUPO],
+        [
+        'PREFICHA',
+        'NOMBRE',
+        'ASISTENCIA'
+      ]
+    ];
+      
+      //console.log(this.grupos[grupo].GRUPO);
+      for (var aspirante in this.grupos[grupo].ASPIRANTES) {
+        //console.log(this.grupos[grupo].ASPIRANTES[aspirante].NOMBRE);
+        aspirantes.push([
+          this.grupos[grupo].ASPIRANTES[aspirante].PREFICHA,
+          this.grupos[grupo].ASPIRANTES[aspirante].NOMBRE,
+          this.grupos[grupo].ASPIRANTES[aspirante].ASISTENCIA
+        ]);
+      }
+
+    wb.SheetNames.push("Grupo "+this.grupos[grupo].PK_EXAMEN_ADMISION);
+    var ws_data = aspirantes;
+    var ws = XLSX.utils.aoa_to_sheet(ws_data);
+    wb.Sheets["Grupo "+this.grupos[grupo].PK_EXAMEN_ADMISION] = ws;
+    }
+
+    var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
+    function s2ab(s) {
+      var buf = new ArrayBuffer(s.length);
+      var view = new Uint8Array(buf);
+      for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+      return buf;
+    }
+    var nombreArchivo = "Lista grupos.xlsx";
+    XLSX.writeFile(wb, nombreArchivo);
   }
 }    

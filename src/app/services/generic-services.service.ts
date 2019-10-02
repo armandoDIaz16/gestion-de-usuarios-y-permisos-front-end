@@ -10,12 +10,12 @@ export class GenericServicesService {
     // protected static API_ENDPOINT = 'http://10.0.6.120/backend_swiitl/server.php/api/';
 
     // AMBIENTE DE PRUEBAS
-    protected static API_ENDPOINT = 'http://10.0.31.10/backend_swiitl/server.php/api/';
-    protected static ENDPOINT = 'http://10.0.31.10/backend_swiitl/server.php/';
+    //protected static API_ENDPOINT = 'http://10.0.31.10/backend_swiitl/server.php/api/';
+    //protected static ENDPOINT = 'http://10.0.31.10/backend_swiitl/server.php/';
 
     // AMBIENTE LOCAL
-    //protected static API_ENDPOINT = 'http://127.0.0.1:8000/api/';
-    //protected static ENDPOINT = 'http://127.0.0.1:8000/';
+    protected static API_ENDPOINT = 'http://127.0.0.1:8000/api/';
+    protected static ENDPOINT = 'http://127.0.0.1:8000/';
 
     protected static HEADERS = {
         headers: new HttpHeaders({
