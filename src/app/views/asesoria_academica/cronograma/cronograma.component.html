@@ -1,4 +1,5 @@
-<div>
+<app-404 *ngIf=!mostrarModulo></app-404>
+<div class="animated fadeIn" *ngIf=mostrarModulo>
   <nav>
     <!-- <label class="btn btn-primary" style="cursor:pointer;">Leer Excel
       <input type="file" name="file" hidden accept=".csv, .xls, .xlsx" (change)="onFileChange($event)">
@@ -38,10 +39,11 @@
       <tr>
         <th scope="row">#</th>
         <th>NOMBRE</th>
-        <th>NUMERO CONTROL</th>
+        <th>EMAIL</th>
+        <th>NÚMERO CONTROL</th>
         <th>CARRERA</th>
         <th>MATERIA</th>
-        <th>DIA</th>
+        <th>DÍA</th>
         <th>HORA</th>
         <th>CAMPUS</th>
         <th>ESPACIO</th>
@@ -53,6 +55,7 @@
         *ngFor="let asesor of asesor | paginate: {itemsPerPage: registrosPagina, currentPage:pageActual, id: 'first' } let i = index">
         <td>{{i+1}}</td>
         <td>{{asesor.name+' '+asesor.PRIMER_APELLIDO+' '+asesor.SEGUNDO_APELLIDO}}</td>
+        <td>{{asesor.email}}</td>
         <td>{{asesor.NUMERO_CONTROL}}</td>
         <td>{{asesor.CLAVE_CARRERA}}</td>
         <td>{{asesor.MATERIA}}</td>

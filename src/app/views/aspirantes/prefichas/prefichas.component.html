@@ -4,7 +4,7 @@
     <div class="col-lg-12">
       <div class="card">
         <div class="card-header">
-          <i class="fa fa-align-justify"></i> Combined All Table
+          <i class="fa fa-align-justify"></i> Prefichas
         </div>
         <div class="card-body">
           <nav>
@@ -21,7 +21,7 @@
                   (click)="mostrarRegistros('todos')">Mostrar todos</a></li>
             </ul>
           </nav>
-
+          <div class="table-responsive">
           <table class="table table-bordered table-striped table-sm">
             <thead>
               <tr>
@@ -121,6 +121,7 @@
               </tr>
             </tbody>
           </table>
+          </div>
 
           <div class="d-flex justify-content-center">
             <pagination-controls class="myPagination" previousLabel="" nextLabel="" maxSize="10"

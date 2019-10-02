@@ -1,3 +1,5 @@
+<app-404 *ngIf=!mostrarModulo></app-404>
+<div class="animated fadeIn" *ngIf=mostrarModulo>
 <div class="row">
   <div class="col-sm-12 ">
     <div class="card">
@@ -8,13 +10,13 @@
       <div class="card-body">
         <ul class="nav nav-tabs">
           <li class="nav-item">
-            <a class="nav-link active" (click)="individual()" href="#">Asesoria</a>
+            <a class="nav-link active" (click)="individual()" href="#">Asesorïa</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" (click)="grupal()" href="#">Asesoria Primer Semestre</a>
+            <a class="nav-link active" (click)="grupal()" href="#">Asesorïa Primer Semestre</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link active" (click)="situacion()" href="#">Asesoria Situacion Academica</a>
+              <a class="nav-link active" (click)="situacion()" href="#">Asesora Situaciön Acadëmica</a>
             </li>
         </ul>
         <br><br>
@@ -59,7 +61,7 @@
                 <th>ID ASESOR</th>
                 <th>ID ALUMNO</th>
                 <th>MATERIA</th>
-                <th>DIA</th>
+                <th>DÍA</th>
                 <th>HORA</th>
                 <th>ESPACIO</th>
                 <th>VALIDA</th>
@@ -174,7 +176,7 @@
                 <th>ID ASESOR</th>
                 <th>ID GRUPO</th>
                 <th>MATERIA</th>
-                <th>DIA</th>
+                <th>DÍA</th>
                 <th>HORA</th>
                 <th>ESPACIO</th>
                 <th>CAMPUS</th>
@@ -271,9 +273,9 @@
                 <tr>
                   <th scope="row">#</th>
                   <th>NOMBRE ASESOR</th>
-                  <th>NUMERO CONTROL ALUMNO</th>
+                  <th>NÚMERO CONTROL ALUMNO</th>
                   <th>MATERIA</th>
-                  <th>DIA</th>
+                  <th>DÍA</th>
                   <th>HORA</th>
                   <th>CAMPUS</th>
                   <th>ESPACIO</th>
@@ -445,4 +447,5 @@
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 </div><!-- /.modal -->

@@ -1,3 +1,5 @@
+<app-404 *ngIf=!mostrarModulo></app-404>
+<div class="animated fadeIn" *ngIf=mostrarModulo>
 <div *ngIf="visasesor">
   <nav>
     <ul class="pagination pull-right float-sm-right">
@@ -16,10 +18,10 @@
       <tr>
         <th scope="row">#</th>
         <th>NOMBRE</th>
-        <th>NUMERO CONTROL</th>
+        <th>NÚMERO CONTROL</th>
         <th>CARRERA</th>
         <th>MATERIA</th>
-        <th>DIA</th>
+        <th>DÍA</th>
         <th>HORA</th>
         <th>CAMPUS</th>
         <th>ESPACIO</th>
@@ -65,7 +67,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Envia Correo</h4>
+        <h4 class="modal-title">Envía Correo</h4>
         <span aria-hidden="true">&times;</span>
       </div>
       <div class="modal-body">
@@ -96,4 +98,5 @@
     CUANDO SE TE ASIGNE ASESOR EN ESTE APARTADO SE TE NOTIFICARA
   </h1>
   
+</div>
 </div>

@@ -46,7 +46,7 @@ import { ChartsModule } from 'ng2-charts';
 // import { NavbarComponent } from './components/navbar/navbar.component';
 // import { SignupComponent } from './components/signup/signup.component';
 // import { ProfileComponent } from './components/profile/profile.component';
-import { P500Component } from './views/error/500.component';
+import { P500Component } from '../app/components/error/500.component';
 import { RequestResetComponent } from './components/password/request-reset/request-reset.component';
 import { ResponseResetComponent } from './components/password/response-reset/response-reset.component';
 import { FormsModule } from '@angular/forms';
@@ -65,10 +65,15 @@ import { NavbarSistemsComponent } from './components/navbar-sistems/navbar-siste
 import { ReactiveFormsModule } from '@angular/forms';
 import { ActivaCuentaComponent } from './components/activa-cuenta/activa-cuenta.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { LoaderModule } from './components/loader/loader.module';
+import { ModalModule } from "ngx-bootstrap";
+
 
 
 @NgModule({
     imports: [
+        ModalModule.forRoot(),
+        BsDropdownModule.forRoot(),
         BrowserModule,
         BrowserAnimationsModule,
         AppRoutingModule,
@@ -86,7 +91,8 @@ import { PerfilComponent } from './components/perfil/perfil.component';
         MDBBootstrapModule.forRoot(),
         CommonModule,
         ReactiveFormsModule,
-        AppRoutingModule
+        AppRoutingModule,
+        LoaderModule
     ],
     declarations: [
         AppComponent,

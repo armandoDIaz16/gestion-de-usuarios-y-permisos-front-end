@@ -1,4 +1,5 @@
-<div>
+<app-404 *ngIf=!mostrarModulo></app-404>
+<div class="animated fadeIn" *ngIf=mostrarModulo>
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -20,6 +21,14 @@
         </div>
       </div>
       <div class="modal-footer">
+        <select class="form-control" type="text" [(ngModel)]="emailalm" (change)="corrAlm()">
+          <option value=null disabled>ELIJA ALUMNO</option>
+          <option *ngFor="let mat of correoalm" [ngValue]="mat.email">{{mat.name+' '+mat.PRIMER_APELLIDO+' '+mat.SEGUNDO_APELLIDO}}</option>
+        </select>
+        <select class="form-control" type="text" [(ngModel)]="emailase" (change)="corrAse()">
+            <option value=null disabled>ELIJA ASESOR</option>
+            <option *ngFor="let mat of correoase" [ngValue]="mat.email">{{mat.name+' '+mat.PRIMER_APELLIDO+' '+mat.SEGUNDO_APELLIDO}}</option>
+        </select>
         <button type="button" class="btn btn-primary" (click)="correoAsesores()">Asesores</button>
         <button type="button" class="btn btn-primary" (click)="correosAlumnos()">Alumnos</button>
         <button type="button" class="btn btn-primary" (click)="correosTodos()">Todos</button>

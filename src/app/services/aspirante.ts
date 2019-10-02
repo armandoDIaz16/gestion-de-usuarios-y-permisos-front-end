@@ -62,5 +62,10 @@ export interface IGrupos {
   PRIMER_APELLIDO: string;
   SEGUNDO_APELLIDO: string;
 }
-
-
+export interface IListaGrupos {
+  PREFICHA: string;
+  NOMBRE: string;
+  AULA: string;
+  DIA: string;
+  HORA: string;
+}

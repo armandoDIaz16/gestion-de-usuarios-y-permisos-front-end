@@ -1,0 +1,57 @@
+<app-404 *ngIf=!mostrarModulo></app-404>
+<div class="animated fadeIn" *ngIf=mostrarModulo>
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <i class="file-text-o"></i>
+          <strong>Archivo de pagos</strong>
+        </div>
+        <div class="card-body d-flex justify-content-center">
+          <label class="btn btn-primary" style="cursor:pointer;">Leer Archivo
+            <input type="file" name="file" hidden (change)="enviarPagos($event)">
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <i class="file-excel-o"></i>
+          <strong>Archivo Contpaq</strong>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="">Fecha inicio:</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                  </div>
+                  <input type="date" class="form-control" [(ngModel)]="fechaInicio">
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="">Fecha final:</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                  </div>
+                  <input type="date" class="form-control" [(ngModel)]="fechaFin">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row d-flex justify-content-center">
+            <label class="btn btn-primary" style="cursor:pointer;">Imprimir Excel
+              <button type="button" (click)="leerDatosParaExcel()" hidden></button>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

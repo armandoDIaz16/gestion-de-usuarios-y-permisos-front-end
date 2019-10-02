@@ -1,26 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import { AperturaService } from '../../../services/apertura.service';
+import { ValidarModuloService } from '../../../services/validarModulo.service';
 
 
 @Component({
   selector: 'app-apertura',
   templateUrl: './apertura.component.html',
   styleUrls: ['./apertura.component.scss'],
-  providers: [AperturaService]
+  providers: [AperturaService,ValidarModuloService]
 })
 export class AperturaComponent implements OnInit {
   idPeriodo= this.idPeriodo;
   fechaInicio= this.fechaInicio;
   fechaFin= this.fechaFin;
   fechaActual= this.fechaActual;
+  public mostrarModulo = false;
+
 
 
   constructor(
-    private aperturaService: AperturaService
+    private aperturaService: AperturaService,
+    private validarModuloService: ValidarModuloService
   ) {
   }
 
   ngOnInit() {
+    this.mostrarModulo = this.validarModuloService.getMostrarModulo("Apertura");
+    if (!this.mostrarModulo) {
+      return;
+    }
     this.aperturaService.getPeriodo().subscribe(data => {
       if(data){
         this.idPeriodo=data[0].PK_PAAE_PERIODO;

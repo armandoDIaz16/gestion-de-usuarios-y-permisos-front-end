@@ -14,7 +14,6 @@ export class DetalleGrupoService extends GenericServicesService {
     }
 
     get_detalle_grupo(pk_grupo: number): Observable<InterfaceGruposTutoria> {
-        console.log(pk_grupo);
         return this.http.get<InterfaceGruposTutoria>(
             GenericServicesService.API_ENDPOINT + 'detalle_grupo/' + pk_grupo,
             GenericServicesService.HEADERS

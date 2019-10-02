@@ -3,6 +3,7 @@ import { FormularioService } from '../../services/formulario.service';
 import { AspiranteService } from '../../services/aspirante.service';
 import { PeriodoService } from '../../services/periodo.service';
 import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn, AbstractControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 
@@ -18,7 +19,7 @@ import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn, AbstractCo
 export class FormularioComponent implements OnInit {
   formGroup: FormGroup | null = null;
   //form: FormGroup;
-  discapacidades="";
+  discapacidades = "";
 
   habilitarNacionalidad = true;
   habilitarNacionalidadOtro = true;
@@ -72,6 +73,11 @@ export class FormularioComponent implements OnInit {
   fechaFin = null;
   fechaActual = null;
 
+  mensaje = null;
+  mensaje2 = null;
+  cerrarModal = false;
+  respuesta = null;
+
 
 
   public estadoCivilLista = [];
@@ -92,9 +98,10 @@ export class FormularioComponent implements OnInit {
     //private fb: FormBuilder,
     private periodoService: PeriodoService,
     private formularioService: FormularioService,
-    private aspiranteService: AspiranteService) {
+    private aspiranteService: AspiranteService,
+    private router: Router) {
     this.formGroup = this.formBuilder.group({
-      incapacidadLista: new FormArray([], minSelectedCheckboxes(0)),    
+      incapacidadLista: new FormArray([], minSelectedCheckboxes(0)),
       CORREO1: ['', [Validators.required]],
       repeat_CORREO1: ''
     });
@@ -102,17 +109,15 @@ export class FormularioComponent implements OnInit {
       this.incapacidadLista = data;
       this.addCheckboxes();
     });
-/*     this.formGroup = this.fb.group({
-      CORREO1: ['', [Validators.required]],
-      repeat_CORREO1: ''
-    }); */
-    
+    /*     this.formGroup = this.fb.group({
+          CORREO1: ['', [Validators.required]],
+          repeat_CORREO1: ''
+        }); */
+
     this.formGroup.get('repeat_CORREO1').setValidators(
       CustomValidators.equals(this.formGroup.get('CORREO1'))
     );
   }
-  
-
 
 
   ngOnInit() {
@@ -171,40 +176,50 @@ export class FormularioComponent implements OnInit {
     this.formularioService.getBachillerato(this.escuelaMunicio).subscribe(data => this.bachilleratoLista = data);
   }
 
-  validarPromedio(){
-    if(this.promedio>=10){
-      this.promedio=10.0;
-    }else if(this.promedio<=0){
-      this.promedio=0.0;
+  validarPromedio() {
+    if (this.promedio >= 10) {
+      this.promedio = 10.0;
+    } else if (this.promedio <= 0) {
+      this.promedio = 0.0;
     }
   }
 
-  
+
 
   habilitarAyuda2() {
     const selectedOrderIds = this.formGroup.value.incapacidadLista
       .map((v, i) => v ? this.incapacidadLista[i].PK_INCAPACIDAD : null)
       .filter(v => v !== null);
-    this.discapacidades="";
-    for(var sistema in selectedOrderIds){
-/*         this.discapacidades.push(
-          selectedOrderIds[sistema]
-          );   */ 
-          if(this.discapacidades==""){
-            this.discapacidades= selectedOrderIds[sistema];
-          }else{
-            this.discapacidades= this.discapacidades+","+selectedOrderIds[sistema];
-          }
+    this.discapacidades = "";
+    for (var sistema in selectedOrderIds) {
+      /*         this.discapacidades.push(
+                selectedOrderIds[sistema]
+                );   */
+      if (this.discapacidades == "") {
+        this.discapacidades = selectedOrderIds[sistema];
+      } else {
+        this.discapacidades = this.discapacidades + "," + selectedOrderIds[sistema];
+      }
     }
     //console.log(this.discapacidades);
     //console.log(selectedOrderIds);
-    if(selectedOrderIds.length==0){
+    if (selectedOrderIds.length == 0) {
       this.habilitarAyuda = true;
-      this.ayuda=null;
-    }else{
+      this.ayuda = null;
+    } else {
       this.habilitarAyuda = false;
     }
-    
+
+  }
+  compararCarreras1() {
+    if (this.especialidad1 == this.especialidad2) {
+      this.especialidad2 = null;
+    }
+  }
+  compararCarreras2() {
+    if (this.especialidad1 == this.especialidad2) {
+      this.especialidad1 = null;
+    }
   }
 
   habilitarUniversidad2() {
@@ -220,21 +235,23 @@ export class FormularioComponent implements OnInit {
     if (this.nacioPais == 1) {
       this.habilitarNacionalidad = false;
       this.habilitarNacionalidadOtro = true;
-      this.nacionalidad=null;
+      this.nacionalidad = null;
     } else if (this.nacioPais == 2) {
       this.habilitarNacionalidad = true;
       this.habilitarNacionalidadOtro = false;
       this.nacioEntidadFederativa = null;
       this.nacioCiudad = null;
+      this.ciudadLista = null;
     } else {
       this.habilitarNacionalidad = true;
       this.habilitarNacionalidadOtro = true;
       this.nacioEntidadFederativa = null;
       this.nacioCiudad = null;
       this.nacionalidad = null;
+      this.ciudadLista = null;
     }
   }
-  onSubmit() {
+  async onSubmit() {
     if (this.sApellido == null) {
       this.sApellido = ""
     }
@@ -253,7 +270,7 @@ export class FormularioComponent implements OnInit {
     if (this.ayuda == null) {
       this.ayuda = ""
     }
-    if (this.nacioEntidadFederativa== null) {
+    if (this.nacioEntidadFederativa == null) {
       this.nacioEntidadFederativa = "null"
     }
     if (this.nacioCiudad == null) {
@@ -268,10 +285,10 @@ export class FormularioComponent implements OnInit {
     if (this.carreraUniversidad == null) {
       this.carreraUniversidad = "null"
     }
-    this.aspiranteService.addAspirante(
+    const data = await this.aspiranteService.addAspirante(
       {
         "PK_PERIODO": this.pkPeriodo,
-        "name": "'" + this.nombre.toUpperCase() + "'",
+        "NOMBRE": "'" + this.nombre.toUpperCase() + "'",
         "PRIMER_APELLIDO": "'" + this.pApellido.toUpperCase() + "'",
         "SEGUNDO_APELLIDO": "'" + this.sApellido.toUpperCase() + "'",
         "FECHA_NACIMIENTO": "'" + this.fechaNacimiento + "'",
@@ -279,18 +296,19 @@ export class FormularioComponent implements OnInit {
         "CURP": "'" + this.CURP + "'",
         "FK_ESTADO_CIVIL": this.estadoCivil,
         "CALLE": "'" + this.calle + "'",
-        "NUMERO_EXTERIOR":  "'" +this.numExt + "'",
-        "NUMERO_INTERIOR":  "'" +this.numInt + "'",
+        "NUMERO_EXTERIOR": "'" + this.numExt + "'",
+        "NUMERO_INTERIOR": "'" + this.numInt + "'",
+        "CP": "'" + this.cp + "'",
         "FK_COLONIA": this.colonia,
         "TELEFONO_CASA": "'" + this.tFijo + "'",
-        "TELEFONO_MOVIL": "'" +this.tMovil + "'",
+        "TELEFONO_MOVIL": "'" + this.tMovil + "'",
         "CORREO1": "'" + this.formGroup.get('CORREO1').value + "'",
         "PADRE_TUTOR": "'" + this.nombrePadre + "'",
         "MADRE": "'" + this.nombreMadre + "'",
         "FK_BACHILLERATO": this.escuela,
         "ESPECIALIDAD": "'" + this.escuelaEspecialidad + "'",
-        "PROMEDIO": "'" +this.promedio+ "'",
-        "NACIONALIDAD": "'" +this.nacionalidad+ "'",
+        "PROMEDIO": "'" + this.promedio + "'",
+        "NACIONALIDAD": "'" + this.nacionalidad + "'",
         "FK_CIUDAD": this.nacioCiudad,
         "FK_CARRERA_1": this.especialidad1,
         "FK_CARRERA_2": this.especialidad2,
@@ -302,37 +320,41 @@ export class FormularioComponent implements OnInit {
         "AYUDA_INCAPACIDAD": "'" + this.ayuda + "'",
         "DISCAPASIDADES": this.discapacidades
       });
+    switch (data[0].RESPUESTA) {
+      case '1':
+        this.mensaje = "YA ESTA REGISTRADA ESA CURP EN ESTE PERIODO";
+        this.cerrarModal = true;
+        break;
+      case '2':
+        this.mensaje = "YA ESTA REGISTRADO ESE CORREO A OTRO USUARIO";
+        this.cerrarModal = true;
+        break;
+      case '3':
+        this.mensaje = "SE ACTUALIZO USUARIO Y SE REGISTRO LA PREFICHA";
+        this.mensaje2 = "REGISTRO COMPLETO, REVISTA TU BANDEJA DE CORREO";
+        setTimeout(() => {
+          this.router.navigateByUrl('/login');
+        }, 5000);
+
+        break;
+      case '4':
+        this.mensaje = "YA ESTA REGISTRADO ESE CORREO A OTRO USUARIO";
+        this.cerrarModal = true;
+        break;
+      case '5':
+        this.mensaje = "SE REGISTRO CORRECTAMENTE";
+        this.mensaje2 = "REGISTRO COMPLETO, REVISTA TU BANDEJA DE CORREO";
+        setTimeout(() => {
+          this.router.navigateByUrl('/login');
+        }, 5000);
+        break;
+    }
   }
   private addCheckboxes() {
     this.incapacidadLista.map((o, i) => {
       const control = new FormControl(i === null); // if first item set to true, else false
       (this.formGroup.controls.incapacidadLista as FormArray).push(control);
     });
-  }
-  submit() {
- /*    const selectedOrderIds = this.form.value.incapacidadLista
-      .map((v, i) => v ? this.incapacidadLista[i].PK_INCAPACIDAD : null)
-      .filter(v => v !== null);
-
-
-    let arreglo2=[];
-    for(var sistema in selectedOrderIds){
-       arreglo2.push(
-         selectedOrderIds[sistema]
-         );   
-    }   
-    let arreglo1 = [{
-      "PK_PERIODO": ":v",
-      "name": ":v",
-      "PRIMER_APELLIDO": ":v",
-      "DISCAPACIDADES": arreglo2
-  }];
-
-  this.aspiranteService.addAspirante(
-    {
-      arreglo1
-    });
-    console.log(arreglo1); */
   }
 }
 function minSelectedCheckboxes(min = 1) {
@@ -347,7 +369,7 @@ function minSelectedCheckboxes(min = 1) {
 }
 
 function equalsValidator(otherControl: AbstractControl): ValidatorFn {
-  return (control: AbstractControl): {[key: string]: any} => {
+  return (control: AbstractControl): { [key: string]: any } => {
     const value: any = control.value;
     const otherValue: any = otherControl.value;
     return otherValue === value ? null : { 'notEquals': { value, otherValue } };
