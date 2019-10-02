@@ -28,6 +28,8 @@ export class PeriodoComponent implements OnInit {
   montoInscripcionCero = null;
   resultados = null;
   mostrarPublicar = null;
+  mensajeUno = null;
+  mensajeCero = null;
 
 
   constructor(
@@ -57,6 +59,8 @@ export class PeriodoComponent implements OnInit {
         this.fechaFinInscripcionCero = data[0].FECHA_FIN_INSCRIPCION_BIS;
         this.montoInscripcionCero = data[0].MONTO_INSCRIPCION_BIS;
         this.resultados = data[0].RESULTADOS;
+        this.mensajeUno = data[0].MENSAJE_SEMESTRE;
+        this.mensajeCero = data[0].MENSAJE_SEMESTRE_BIS;
         if (this.resultados==1){
           this.mostrarPublicar=true;
         } else{
@@ -259,10 +263,20 @@ export class PeriodoComponent implements OnInit {
 
   onSubmitResultados(res) {
     if (this.idPeriodo) {
-      this.periodoService.updatePeriodo(
+      this.periodoService.publicarResultados(
         {
           "PK_PERIODO_PREFICHAS": this.idPeriodo,
           "RESULTADOS": res
+        });
+    }
+  }
+  onSubmitMensajes() {
+    if (this.idPeriodo) {
+      this.periodoService.updateMenajes(
+        {
+          "PK_PERIODO_PREFICHAS": this.idPeriodo,
+          "MENSAJE_SEMESTRE": this.mensajeUno,
+          "MENSAJE_SEMESTRE_BIS": this.mensajeCero
         });
     }
   }

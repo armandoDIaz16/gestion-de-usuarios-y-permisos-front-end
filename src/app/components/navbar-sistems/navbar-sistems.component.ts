@@ -16,6 +16,7 @@ var rutasRoles = [];
 
 export class NavbarSistemsComponent implements OnInit {
   public usuarioSistemasLista = [];
+  redirigirAspirante: boolean;
 
   constructor(private usuarioRolesService: UsuarioRolesService,
     private sistemaPermisosService: SistemaPermisosService,
@@ -47,7 +48,9 @@ export class NavbarSistemsComponent implements OnInit {
             // console.log("--"+sistemas[0].SISTEMAS[sistema].NOMBRE)
             for (var rol in sistemas[0].SISTEMAS[sistema].ROLES) {
               var rutasModulos = [];
-              // console.log("----"+sistemas[0].SISTEMAS[sistema].ROLES[rol].NOMBRE)
+              if (sistemas[0].SISTEMAS[sistema].ROLES[rol].NOMBRE == 'Aspirante') {
+                this.redirigirAspirante = true;
+              }
               for (var modulo in sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS) {
                 // console.log("------"+sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE)
                 rutasModulos.push({
@@ -75,6 +78,10 @@ export class NavbarSistemsComponent implements OnInit {
         sessionStorage['rutas'] = JSON.stringify(rutasRoles);
         switch (nombreSistema) {
           case 'Aspirantes':
+            if (this.redirigirAspirante) {
+              this.router.navigateByUrl('/aspirantes/dashboard');
+              break;
+            }
             this.router.navigateByUrl('/aspirantes');
             break;
           case 'Residencias':

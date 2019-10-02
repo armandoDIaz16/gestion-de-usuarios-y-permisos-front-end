@@ -333,7 +333,6 @@ export class FormularioComponent implements OnInit {
         this.mensaje = "SE ACTUALIZO USUARIO Y SE REGISTRO LA PREFICHA";
         this.mensaje2 = "REGISTRO COMPLETO, REVISTA TU BANDEJA DE CORREO";
         setTimeout(() => {
-
           this.router.navigateByUrl('/login');
         }, 5000);
 
@@ -346,7 +345,6 @@ export class FormularioComponent implements OnInit {
         this.mensaje = "SE REGISTRO CORRECTAMENTE";
         this.mensaje2 = "REGISTRO COMPLETO, REVISTA TU BANDEJA DE CORREO";
         setTimeout(() => {
-
           this.router.navigateByUrl('/login');
         }, 5000);
         break;
