@@ -20,6 +20,9 @@ import { DatosAlumnoComponent } from './datos-alumno/datos-alumno.component';
 import { CitasAlumnoComponent } from './citas-alumno/citas-alumno.component';
 import { CanalizacionesAlumnoComponent } from './canalizaciones-alumno/canalizaciones-alumno.component';
 import { EncuestasAlumnoComponent } from './encuestas-alumno/encuestas-alumno.component';
+import { HorarioAlumnoComponent } from './horario-alumno/horario-alumno.component';
+import { RespuestasEncuestaComponent } from './respuestas-encuesta/respuestas-encuesta.component';
+import { ReporteEncuestaComponent } from './reporte-encuesta/reporte-encuesta.component';
 
 // Angular
 
@@ -42,7 +45,10 @@ import { EncuestasAlumnoComponent } from './encuestas-alumno/encuestas-alumno.co
         DatosAlumnoComponent,
         CitasAlumnoComponent,
         CanalizacionesAlumnoComponent,
-        EncuestasAlumnoComponent
+        EncuestasAlumnoComponent,
+        HorarioAlumnoComponent,
+        RespuestasEncuestaComponent,
+        ReporteEncuestaComponent
     ]
 })
 export class TutoriasModule { }
