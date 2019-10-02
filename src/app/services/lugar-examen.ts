@@ -25,4 +25,6 @@ export interface ITurno2 {
     DIA: string;
     HORA: string;
 }
+export interface IGrupo {
+}
 

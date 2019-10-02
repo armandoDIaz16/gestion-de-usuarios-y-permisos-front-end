@@ -32,6 +32,7 @@ export class GraficasComponent implements OnInit {
       return;
     }
     this.periodoService.getPeriodo().subscribe(data => {
+      if (data) {
       this.aspiranteService.getGraficaEstatus(data[0].PK_PERIODO_PREFICHAS).subscribe(data => {
         for (var estatus in data) {
           this.estatusNOMBRE.push(data[estatus].NOMBRE);
@@ -53,6 +54,7 @@ export class GraficasComponent implements OnInit {
         }
         this.generarGraficaCarreras();
       });
+    }
     });
 
   }

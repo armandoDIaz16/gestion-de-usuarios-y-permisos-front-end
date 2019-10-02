@@ -5,8 +5,8 @@ import {Routes, RouterModule} from '@angular/router';
 import {DefaultLayoutComponent} from './containers';
 
 
-import {P404Component} from './views/error/404.component';
-import {P500Component} from './views/error/500.component';
+import {P404Component} from './components/error/404.component';
+import {P500Component} from './components/error/500.component';
 import {LoginComponent} from './views/login/login.component';
 import {RegisterComponent} from './views/register/register.component';
 
@@ -43,10 +43,10 @@ export const routes: Routes = [
         }
     },
     {
-        path: 'formulario',
+        path: 'registro_aspirante',
         component: FormularioComponent,
         data: {
-            title: 'Formulario'
+            title: 'Registro aspirante'
         }
     },
     {

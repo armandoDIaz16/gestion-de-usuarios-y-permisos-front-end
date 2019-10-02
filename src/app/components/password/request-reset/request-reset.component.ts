@@ -7,30 +7,28 @@ import { JarwisService } from '../../../services/jarwis.service';
 })
 export class RequestResetComponent implements OnInit {
   public form = {
-    email: null
+    CURP: null
   };
-  error: null;
+  public error = null;
 
-  constructor(
-    private Jarvis: JarwisService
-  ) { }
+  constructor(private Jarvis: JarwisService) { }
 
   onSubmit() {
-    this.Jarvis.sendPasswordResetLink(this.form).subscribe(
+    this.Jarvis.recuperarContrasena(this.form).subscribe(
       data => this.handleResponse(data),
       error => this.handleError(error)
     );
-    localStorage.setItem("email", this.form.email);
+    //localStorage.setItem("CURP", this.form.CURP);
   }
 
-  handleResponse(res) {
+  handleResponse(data) {
     //this.Notfiy.success(res.data,{timeout:0});
-    this.form.email = null;
+    this.form.CURP = null;
   }
 
 
   handleError(error){
-    this.error = error.error.errors;
+    this.error = error.error.error;
   }
 
   ngOnInit() {

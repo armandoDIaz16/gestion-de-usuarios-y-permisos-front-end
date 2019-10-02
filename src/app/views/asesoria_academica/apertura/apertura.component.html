@@ -1,4 +1,5 @@
-<div class="animated fadeIn">
+<app-404 *ngIf=!mostrarModulo></app-404>
+<div class="animated fadeIn" *ngIf=mostrarModulo>
     <form #aperturaForm=ngForm (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="col-sm-12">

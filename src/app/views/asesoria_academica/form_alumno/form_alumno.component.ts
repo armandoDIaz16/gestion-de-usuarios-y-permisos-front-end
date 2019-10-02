@@ -3,6 +3,8 @@ import { JarwisService } from '../../../services/jarwis.service';
 import { TokenService } from '../../../services/token.service';
 import { Router } from '@angular/router';
 import { AperturaService } from '../../../services/apertura.service';
+import { ValidarModuloService } from '../../../services/validarModulo.service';
+
 //import * as $ from 'jquery';
 
 let Horarios;
@@ -17,10 +19,12 @@ let json
   selector: 'app-form_alumno',
   templateUrl: './form_alumno.component.html',
   styleUrls: ['./form_alumno.component.scss'],
-  providers: [AperturaService]
+  providers: [AperturaService,ValidarModuloService]
+
 })
 
 export class Form_alumnoComponent implements OnInit {
+  public mostrarModulo = false;
   activado = false;
   fechaInicio = null;
   fechaFin = null;
@@ -93,6 +97,7 @@ export class Form_alumnoComponent implements OnInit {
     private Token: TokenService,
     private router: Router,
     private periodoService: AperturaService,
+    private validarModuloService: ValidarModuloService
   ) { }
 
   habilitarHoras() {
@@ -228,6 +233,10 @@ export class Form_alumnoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.mostrarModulo = this.validarModuloService.getMostrarModulo("Solicitud alumno");
+    if (!this.mostrarModulo) {
+      return;
+    }
     this.periodoService.getPeriodo().subscribe(data => {
       this.fechaInicio = data[0].FECHA_INICIO;
       this.fechaFin = data[0].FECHA_FIN;

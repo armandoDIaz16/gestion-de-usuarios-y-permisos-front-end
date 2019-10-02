@@ -1,15 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { JarwisService } from '../../../services/jarwis.service';
 import * as XLSX from 'xlsx';
+import { ValidarModuloService } from '../../../services/validarModulo.service';
+
 
 
 
 @Component({
   selector: 'app-asignacionAse',
   templateUrl: './asignacionAse.component.html',
-  styleUrls: ['./asignacionAse.component.scss']
+  styleUrls: ['./asignacionAse.component.scss'],
+  providers: [ValidarModuloService]
 })
 export class AsignacionAseComponent implements OnInit {
+
+  public mostrarModulo = false;
   error = [];
   asesor = [];
   registrosPagina = 2;
@@ -25,11 +30,16 @@ export class AsignacionAseComponent implements OnInit {
   }
 
   constructor(
-    private Jarwis: JarwisService
+    private Jarwis: JarwisService,
+    private validarModuloService: ValidarModuloService
   ) {
   }
 
   ngOnInit() {
+    this.mostrarModulo = this.validarModuloService.getMostrarModulo("Asignación asesores");
+    if (!this.mostrarModulo) {
+      return;
+    }
     this.Jarwis.getListaAlumnos(this.form.id).subscribe(
       data => {
         for (var num in data) {

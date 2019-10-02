@@ -17,13 +17,16 @@ import { AspirantesRoutingModule } from './aspirantes-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { GraficasComponent } from './graficas/graficas.component';
 import { ArchivosComponent } from './archivos/archivos.component';
+import { ArchivosPagosComponent } from './archivos_pagos/archivos_pagos.component';
 import { PrefichasPagadasComponent } from './prefichas_pagadas/prefichas_pagadas.component';
 import { ListaGruposComponent } from './lista_grupos/lista_grupos.component';
 import { PrefichasComponent } from './prefichas/prefichas.component';
 import { PeriodoComponent } from './periodo/periodo.component';
 import { DatosComponent } from './datos/datos.component';
 import { CrearGruposComponent } from './crear_grupos/crear_grupos.component';
-import { ErrorModule } from '../error/error.module';
+import { ErrorModule } from '../../components/error/error.module';
+import { LoaderModule } from '../../components/loader/loader.module';
+
 
 // Angular
 
@@ -36,13 +39,15 @@ import { ErrorModule } from '../error/error.module';
     FormsModule,
     NgxPaginationModule,
     ChartsModule,
-    ErrorModule
+    ErrorModule,
+    LoaderModule
     //Chart
   ],
   declarations: [
     DashboardComponent,
     GraficasComponent,
     ArchivosComponent,
+    ArchivosPagosComponent,
     PrefichasPagadasComponent,
     ListaGruposComponent,
     CrearGruposComponent,

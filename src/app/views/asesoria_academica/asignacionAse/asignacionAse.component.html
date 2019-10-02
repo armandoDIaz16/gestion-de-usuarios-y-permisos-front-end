@@ -1,4 +1,5 @@
-<div>
+<app-404 *ngIf=!mostrarModulo></app-404>
+<div class="animated fadeIn" *ngIf=mostrarModulo>
   <nav>
     <!-- <button type="button" class="btn btn-primary" (click)="leerExcel()">Leer Excel</button> -->
     <ul class="pagination pull-right float-sm-right">

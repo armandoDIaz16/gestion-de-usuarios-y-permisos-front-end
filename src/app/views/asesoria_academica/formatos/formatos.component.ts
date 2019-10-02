@@ -2,13 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { JarwisService } from '../../../services/jarwis.service';
 // @ts-ignore
 import * as XLSX from 'xlsx';
+import { ValidarModuloService } from '../../../services/validarModulo.service';
+
 
 @Component({
   selector: 'app-formatos',
   templateUrl: './formatos.component.html',
-  styleUrls: ['./formatos.component.scss']
+  styleUrls: ['./formatos.component.scss'],
+  providers: [ValidarModuloService]
 })
 export class FormatosComponent implements OnInit {
+  public mostrarModulo = false;
   // activado = true;
   visasesor = false;
   visalumno = false;
@@ -133,10 +137,16 @@ export class FormatosComponent implements OnInit {
   public error = [];
   public data = [];
 
-  constructor(private Jarwis: JarwisService) {
+  constructor(private Jarwis: JarwisService,
+    private validarModuloService: ValidarModuloService) {
   }
 
   ngOnInit() {
+
+    this.mostrarModulo = this.validarModuloService.getMostrarModulo("Formatos");
+    if (!this.mostrarModulo) {
+      return;
+    }
     this.Jarwis.getMotivos().subscribe(
       data => {
         for (var num in data) {

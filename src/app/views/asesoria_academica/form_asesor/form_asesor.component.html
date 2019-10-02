@@ -1,3 +1,5 @@
+<app-404 *ngIf=!mostrarModulo></app-404>
+<div class="animated fadeIn" *ngIf=mostrarModulo>
 <div *ngIf="activado" class="container">
   <div class="app-body">
     <main class="main d-flex align-items-center">
@@ -257,4 +259,5 @@
       </div>
     </main>
   </div>
+</div>
 </div>
