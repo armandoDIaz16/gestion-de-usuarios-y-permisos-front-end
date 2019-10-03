@@ -75,24 +75,55 @@ export class NavbarSistemsComponent implements OnInit {
             }
           }
         }
-        sessionStorage['rutas'] = JSON.stringify(rutasRoles);
-        switch (nombreSistema) {
-          case 'Aspirantes':
-            if (this.redirigirAspirante) {
-              this.router.navigateByUrl('/aspirantes/dashboard');
-              break;
-            }
-            this.router.navigateByUrl('/aspirantes');
-            break;
-          case 'Residencias':
-            this.router.navigateByUrl('/residencias');
-            break;
-          case 'tutorias':
-            this.router.navigateByUrl('/tutorias');
-            break;
-          case 'asesoría académica':
-            this.router.navigateByUrl('/asesoria_academica');
-            break;
+    }
+
+
+    mostrarRoles(sistemaSelect, nombreSistema) {
+        if (!sessionStorage.rutas) {
+            this.router.navigateByUrl('/home');
+            sessionStorage.setItem('sistema', sistemaSelect);
+            this.usuarioRolesService.getUsuarioRoles().subscribe(data => {
+                let sistemas = JSON.parse(sessionStorage.sistemas);
+                for (var sistema in sistemas[0].SISTEMAS) {
+                    if (sistemas[0].SISTEMAS[sistema].PK_SISTEMA === sessionStorage.getItem('sistema')) {
+                        // console.log("--"+sistemas[0].SISTEMAS[sistema].NOMBRE)
+                        for (var rol in sistemas[0].SISTEMAS[sistema].ROLES) {
+                            var rutasModulos = [];
+                            // console.log("----"+sistemas[0].SISTEMAS[sistema].ROLES[rol].NOMBRE)
+                            for (var modulo in sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS) {
+                                // console.log("------"+sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE)
+                                rutasModulos.push({
+                                    name: sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE,
+                                    url: '/' + sistemas[0].SISTEMAS[sistema].NOMBRE.toLowerCase().replace(/\s/g, '_') +
+                                        '/' + sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE.toLowerCase().replace(/\s/g, '_'),
+                                    icon: 'icon-arrow-right'
+                                });
+                                // modulos.push(sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE);
+                            }
+                            rutasRoles.push({
+                                name: sistemas[0].SISTEMAS[sistema].ROLES[rol].NOMBRE,
+                                icon: 'icon-user',
+                                children: rutasModulos
+                            });
+                        }
+                    }
+                }
+                sessionStorage['rutas'] = JSON.stringify(rutasRoles);
+                switch (nombreSistema) {
+                    case 'Aspirantes':
+                        this.router.navigateByUrl('/aspirantes');
+                        break;
+                    case 'Residencias':
+                        this.router.navigateByUrl('/residencias');
+                        break;
+                    case 'tutorias':
+                        this.router.navigateByUrl('/tutorias');
+                        break;
+                    case 'servicio_social':
+                        this.router.navigateByUrl('/servicio_social');
+                        break;
+                }
+            });
         }
       });
     }

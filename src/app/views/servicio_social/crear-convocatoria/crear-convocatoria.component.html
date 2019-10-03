@@ -1,0 +1,174 @@
+<!--<app-404 *ngIf=!mostrarModulo></app-404>-->
+<h1>Crear Convocatoria</h1>
+<div class="container">
+  <!--  Agregar una nuieva convocatoria-->
+  <div class="row">
+    <div class="col">
+      
+      <form  class="form-horizontal ng-untouched ng-pristine ng-valid" enctype="multipart/form-data"
+         #heroForm="ngForm" *ngFor="let item of convo; index as i">
+
+        <!-- Repetir codigo al precionar btn-->
+        <div class="addTime">
+
+                  <!-- Select N. Control-->
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="control">N. Comtrol</label>
+            <div class="col-md-9">
+              <select [(ngModel)]="item.noControl" class="form-control" name="selectNContorl"  required>
+                <option *ngFor="let numero of nControl" [value]="numero">{{numero}}</option>
+              </select>
+            </div>
+          </div>
+          <!-- Select Campus -->
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="campus">Campus</label>
+            <div class="col-md-9">
+              <select [(ngModel)]="item.campus" class="form-control" name="selectCampus"  required>
+                <option *ngFor="let camp of campus" [value]="camp">{{camp}}</option>
+              </select>
+            </div>
+          </div>
+          
+          <!-- Select Lugar-->
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="lugar">Lugar</label>
+            <div class="col-md-9">
+              <select [(ngModel)]="item.lugar" class="form-control" name="lugar" required>
+                <option *ngFor="let place of lugar" [value]="place">{{place}}</option>
+              </select>
+            </div>
+          </div>
+          <!-- Select Turno-->
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="turno">Turno</label>
+            <div class="col-md-9">
+              <select [(ngModel)]="item.turno" class="form-control" name="turno" required>
+                <option *ngFor="let turn of turno" [value]="turn">{{turn}}</option>
+              </select>
+            </div>
+          </div>
+          <!-- Select Periodo-->
+          <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="periodo">Periodo</label>
+              <div class="col-md-9">
+                <select [(ngModel)]="item.periodo" class="form-control" name="periodo" required>
+                  <option *ngFor="let per of periodo" [value]="per">{{per}}</option>
+                </select>
+              </div>
+            </div>
+          <!-- Fecha de Inicio-->
+          <div class="form-group row"><label class="col-md-3 col-form-label" for="date-input">Fecha</label>
+            <div class="col-md-9">
+              <input [(ngModel)]="item.fecha" class="form-control" name="date-input" type="date" required>
+            </div>
+          </div>
+          <!-- Horario de Inicio-->
+          <div class="form-group row"><label class="col-md-3 col-form-label" for="time-input">Hora Inicio</label>
+            <div class="col-md-9">
+              <input [(ngModel)]="item.horario1" class="form-control" min="07:00:00" max="19:00:00" name="time-input" type="time" required>
+            </div>
+          </div>
+          <!-- Horario de Inicio-->
+          <div class="form-group row"><label class="col-md-3 col-form-label" for="time-final">Hora Final</label>
+            <div class="col-md-9">
+              <input [(ngModel)]="item.horario2" class="form-control" min="09:00:00" max="21:00:00" name="time-fibal" type="time" required>
+            </div>
+          </div>
+                    
+        </div>
+        <button  class="btn btn-primary" (click)="addSemiConvo();" [disabled]="!heroForm.form.valid" >Agregar convocatoria</button>
+      </form>
+    
+    </div>
+  </div>
+  <br>
+  <!--  Contenedor agregadas Recientes-->
+  <div class="row">
+    <div class="col"><br>
+
+      <table class="table" *ngIf="saveVacia()">
+          <thead>
+            <tr>
+              
+              <td scope="col">Fecha</td>
+              <td scope="col">Lugar</td>
+              <td scope="col">Horario</td>
+              <td scope="col">Periodo</td>
+              <td scope="col">Actions</td>
+
+            </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let sC of saveConvo; index as i" >
+                  <td *ngIf="lastOne(i)">{{ sC.fecha }}</td>
+                  <td *ngIf="lastOne(i)">{{ sC.lugar }}</td>
+                  <td *ngIf="lastOne(i)">{{ sC.horario1 }} - {{sC.horario2}}</td>
+                  <td *ngIf="lastOne(i)">{{ sC.periodo }}</td>
+                  <td *ngIf="lastOne(i)">
+                    <button  class="btn btn-danger" (click)="dropLast(i);">x</button>
+                  </td>
+              </tr>
+          </tbody>
+        </table>
+        <button  class="btn btn-primary" (click)="crearConvo();" *ngIf="hideBtn(i)">Crear convocatoria</button>
+
+    </div>
+  </div>
+
+  <!-- Buscador -->
+  <div class="row">
+      <div class="col"><br>
+        <div>
+          <h2>Busqueda</h2>
+        </div>
+          <div class="col">
+
+            <form action="">
+              <!-- Buscar por fecha-->
+              <div class="form-group row"><label class="col-md-3 col-form-label" for="date-input">Fecha</label>
+                <div class="col-md-9">
+                  <input [(ngModel)]="buscaFecha" class="form-control" name="date-input" type="date" >
+                </div>
+              </div>          
+            <!-- Buscar Periodo-->
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="periodob">Periodo</label>
+                <div class="col-md-9">
+                  <select [(ngModel)]="buscaPeriodo" class="form-control" name="periodoB">
+                    <option *ngFor="let perb of periodo" [value]="perb">{{perb}}</option>
+                  </select>
+                </div>
+              </div>
+
+                <button  class="btn btn-primary" (click)="buscaConvobtn();">Buscar</button>
+            </form>
+            <br>
+
+          </div>
+  
+        <table class="table" >
+            <thead>
+              <tr>
+                <td scope="col">Fecha</td>
+                <td scope="col">Lugar</td>
+                <td scope="col">Periodo</td>
+                <td scope="col">***</td>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let bC of buscaConvo; index as i">
+                    <td *ngIf="lastOne(i)">{{ bC.fecha }}</td>
+                    <td *ngIf="lastOne(i)">{{ bC.lugar }}</td>
+                    <td *ngIf="lastOne(i)">{{ bC.periodo }}</td>
+                    <td *ngIf="lastOne(i)">
+                      <button  class="btn btn-primary" (click)="crearConvo();" >Ver</button>
+                    </td>
+                </tr>
+            </tbody>
+          </table>
+  
+      </div>
+    </div>
+
+</div>
