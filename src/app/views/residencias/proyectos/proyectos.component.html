@@ -7,7 +7,7 @@
                 <th>Id</th>
                 <th>Nombre</th>
                 <th>Empresa</th>
-                <th>Especialidad</th>
+                <th>Comentarios</th>
                 <th>Abandonar</th>
             </tr>
             </thead>
@@ -16,7 +16,7 @@
                 <td>{{antep.ID_ANTEPROYECTO}}</td>
                 <td>{{ antep.NOMBRE }}</td>
                 <td>{{ antep.EMPRESA }}</td>
-                <td>{{ antep.TIPO_ESPECIALIDAD }}</td>
+                <td>{{ antep.COMENTARIO }}</td>
                 <td><label class="btn btn-danger">
                     Dejar proyecto<input type="submit" value="submit" name="submit" hidden
                                          (click)="updateProyect(antep.ID_ANTEPROYECTO)">
