@@ -197,7 +197,7 @@ export class PrefichasComponent implements OnInit {
         "TELEFONO_MOVIL": this.telefonoMovil,
         "CORREO1": this.CORREO1,
         "FK_CARRERA_1": this.especialidad1,
-        "FK_CARRERA_2": this.especialidad2
+        "FK_CARRERA_2": ''//this.especialidad2
       });
       
       this.obtenerAspirantes(this.periodo);

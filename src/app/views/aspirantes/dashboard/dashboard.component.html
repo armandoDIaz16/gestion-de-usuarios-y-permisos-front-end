@@ -76,7 +76,28 @@
   <hr>
   <div class="w-50">
     <br>
+  </div> 
+
+  <div class="d-flex justify-content-center">
+    <div class="w-50">
+      <button type="button" class="btn btn-block btn-primary" (click)="descargarGuiaAspirantes()">Descargar guia de los pasos</button>
+    </div>    
   </div>
+
+  <div class="w-50">
+      <br>
+      </div>
+
+  <div class="d-flex justify-content-center" *ngIf="!habilitarResultados">
+    <div class="w-50">
+      <button type="button" class="btn btn-block btn-primary" (click)="descargarGuiaExamen()">Descargar guia CENEVAL</button>
+    </div>
+  </div>
+
+  <div class="w-50" *ngIf="!habilitarResultados">
+      <br>
+      </div>
+
   <div class="d-flex justify-content-center" *ngIf="habilitarReferencia">
     <div class="w-50">
       <button type="button" class="btn btn-block btn-primary" (click)="generarReferencia()">Generar referencia</button>
@@ -116,6 +137,9 @@
         curso</button>
       <h2></h2>
     </div>
+  </div>
+  <div class="w-50">
+    <br>
   </div>
   <div class="d-flex justify-content-center" *ngIf="habilitarInscripcion">
     <div class="w-50">

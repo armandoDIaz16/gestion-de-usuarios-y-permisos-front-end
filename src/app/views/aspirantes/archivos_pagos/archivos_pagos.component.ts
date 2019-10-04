@@ -27,7 +27,7 @@ export class ArchivosPagosComponent implements OnInit {
   public aspirantes = [];
 
   ngOnInit() {
-    this.mostrarModulo = this.validarModuloService.getMostrarModulo("Archivos");
+    this.mostrarModulo = this.validarModuloService.getMostrarModulo("Archivos de pagos");
     if (!this.mostrarModulo) {
       return;
     }
