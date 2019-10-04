@@ -102,9 +102,18 @@ export class PeriodoService extends GenericServicesService{
             }
         );
     }
-
+    
     updateMenajes(mensajes){
         return this.http.post(this.baseUrl + 'MensajesAceptacion',  mensajes, this.headers
+        ).subscribe(
+            (response) => {
+                console.log(response);
+            }
+        );
+    }
+
+    modificarTipoExamen(tipo){
+        return this.http.post(this.baseUrl + 'ModificarTipoExamen',  tipo, this.headers
         ).subscribe(
             (response) => {
                 console.log(response);

@@ -27,7 +27,9 @@ export class PeriodoComponent implements OnInit {
   fechaFinInscripcionCero = null;
   montoInscripcionCero = null;
   resultados = null;
+  tipoExamen = null;
   mostrarPublicar = null;
+  mostrarTipoExamen = null;
   mensajeUno = null;
   mensajeCero = null;
 
@@ -61,10 +63,16 @@ export class PeriodoComponent implements OnInit {
         this.resultados = data[0].RESULTADOS;
         this.mensajeUno = data[0].MENSAJE_SEMESTRE;
         this.mensajeCero = data[0].MENSAJE_SEMESTRE_BIS;
-        if (this.resultados==1){
-          this.mostrarPublicar=true;
-        } else{
-          this.mostrarPublicar=false;
+        this.tipoExamen = data[0].TIPO_APLICACION;
+        if (this.resultados == 1) {
+          this.mostrarPublicar = true;
+        } else {
+          this.mostrarPublicar = false;
+        }
+        if (this.tipoExamen == 1) {
+          this.mostrarTipoExamen = true;
+        } else {
+          this.mostrarTipoExamen = false;
         }
         var fechaInicio = this.fechaInicio.split('-');
         var fechaFin = this.fechaFin.split('-');
@@ -260,13 +268,21 @@ export class PeriodoComponent implements OnInit {
         });
     }
   }
-
   onSubmitResultados(res) {
     if (this.idPeriodo) {
       this.periodoService.publicarResultados(
         {
           "PK_PERIODO_PREFICHAS": this.idPeriodo,
           "RESULTADOS": res
+        });
+    }
+  }
+  onSubmitTipoExamen(res) {
+    if (this.idPeriodo) {
+      this.periodoService.modificarTipoExamen(
+        {
+          "PK_PERIODO_PREFICHAS": this.idPeriodo,
+          "TIPO_APLICACION": res
         });
     }
   }
