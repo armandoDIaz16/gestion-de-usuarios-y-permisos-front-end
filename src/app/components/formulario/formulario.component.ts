@@ -73,7 +73,8 @@ export class FormularioComponent implements OnInit {
   fechaFin = null;
   fechaActual = null;
 
-  mensaje = null;
+  mensaje0 = null;
+  mensaje1 = null;
   mensaje2 = null;
   cerrarModal = false;
   respuesta = null;
@@ -322,31 +323,33 @@ export class FormularioComponent implements OnInit {
       });
     switch (data[0].RESPUESTA) {
       case '1':
-        this.mensaje = "YA ESTA REGISTRADA ESA CURP EN ESTE PERIODO";
+        this.mensaje1 = "YA ESTA REGISTRADA ESA CURP EN ESTE PERIODO";
         this.cerrarModal = true;
         break;
       case '2':
-        this.mensaje = "YA ESTA REGISTRADO ESE CORREO A OTRO USUARIO";
+        this.mensaje1 = "YA ESTA REGISTRADO ESE CORREO A OTRO USUARIO";
         this.cerrarModal = true;
         break;
       case '3':
-        this.mensaje = "SE ACTUALIZO USUARIO Y SE REGISTRO LA PREFICHA";
+        this.mensaje0 = "SE ACTUALIZO USUARIO Y SE REGISTRO LA PREFICHA";
         this.mensaje2 = "REGISTRO COMPLETO, REVISTA TU BANDEJA DE CORREO";
         setTimeout(() => {
           this.router.navigateByUrl('/login');
-        }, 5000);
+        }, 30000);
 
         break;
       case '4':
-        this.mensaje = "YA ESTA REGISTRADO ESE CORREO A OTRO USUARIO";
+        this.mensaje1 = "YA ESTA REGISTRADO ESE CORREO A OTRO USUARIO";
         this.cerrarModal = true;
         break;
       case '5':
-        this.mensaje = "SE REGISTRO CORRECTAMENTE";
-        this.mensaje2 = "REGISTRO COMPLETO, REVISTA TU BANDEJA DE CORREO";
+        this.mensaje0 = "Te has registrado correctamente, "
+          + "hemos enviado un correo electrónico para que realices la activación de tu cuenta.";
+        this.mensaje1 = "Recuerda revisar tu bandeja de correo no deseado";
+        this.mensaje2 = "(Esta ventana se cerrará automáticamente en 30 segundos)";
         setTimeout(() => {
           this.router.navigateByUrl('/login');
-        }, 5000);
+        }, 30000);
         break;
     }
   }

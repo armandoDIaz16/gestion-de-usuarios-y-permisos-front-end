@@ -93,7 +93,7 @@ export class DashboardComponent extends GenericServicesService implements OnInit
             break;
           case 2: this.paso2 = 'active'; this.habilitarReferencia = false;
             break;
-          case 3: this.paso2 = 'active'; this.paso3 = 'active'; this.habilitarReferencia = false; this.habilitarRegistro = true;
+          case 3: this.paso2 = 'active'; this.habilitarReferencia = false; this.habilitarRegistro = true;
             break;
           case 4: this.paso2 = 'active'; this.paso3 = 'active'; this.paso4 = 'active'; this.habilitarReferencia = false; this.habilitarFicha = true;
             if (this.aspirante[0].ASISTENCIA == 1) {
