@@ -189,7 +189,7 @@
             </tr>
             <tr>
               <td>Nombre</td>
-              <td>{{aspirantes.name}}</td>
+              <td>{{aspirantes.NOMBRE}}</td>
             </tr>
             <tr>
               <td>Primer apellido</td>
@@ -213,7 +213,10 @@
             </tr>
             <tr>
               <td>CURP</td>
-              <td>{{aspirantes.CURP}}</td>
+              <td>
+                <input [(ngModel)]="CURP" type="text" class="form-control" maxlength=18 id="curp" 
+                onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase().replace(' ','')">
+              </td>
             </tr>
             <tr>
               <td>Estado civil</td>
