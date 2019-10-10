@@ -148,11 +148,11 @@
               <tr
                 *ngFor="let asesor of asesor1 | paginate: {itemsPerPage: registrosPagina, currentPage:pageActual, id: 'first' } let i = index">
                 <td>{{i+1}}</td>
-                <td>{{asesor.FK_USUARIO}}</td>
-                <td>{{asesor.name}}</td>
+                <td>{{asesor.PK_ASESOR_ASESORIA_HORARIO}}</td>
+                <td>{{asesor.NOMBRE}}</td>
                 <td>{{asesor.PRIMER_APELLIDO}}</td>
                 <td>{{asesor.SEGUNDO_APELLIDO}}</td>
-                <td>{{asesor.email}}</td>
+                <td>{{asesor.CORREO1}}</td>
                 <td>{{asesor.TELEFONO_MOVIL}}</td>
                 <td>{{asesor.MATERIA}}</td>
                 <td>{{asesor.MATERIA1}}</td>
@@ -348,11 +348,11 @@
               <tr
                 *ngFor="let soli of solicitud | paginate: {itemsPerPage: registrosPagina1, currentPage:pageActual1, id: 'second'} let i = index">
                 <td>{{i+1}}</td>
-                <td>{{soli.FK_USUARIO}}</td>
-                <td>{{soli.name}}</td>
+                <td>{{soli.PK_USER_ASESORIA_HORARIO}}</td>
+                <td>{{soli.NOMBRE}}</td>
                 <td>{{soli.PRIMER_APELLIDO}}</td>
                 <td>{{soli.SEGUNDO_APELLIDO}}</td>
-                <td>{{soli.email}}</td>
+                <td>{{soli.CORREO1}}</td>
                 <td>{{soli.TELEFONO_MOVIL}}</td>
                 <td>{{soli.MATERIA}}</td>
                 <td>{{soli.DIA}}</td>

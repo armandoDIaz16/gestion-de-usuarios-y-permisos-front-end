@@ -21,9 +21,9 @@
           <li class="nav-item">
             <a class="nav-link active" (click)="final()" href="#">REPORTE FINAL</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link active" (click)="califica()" href="#">Respuestas Calificaciön</a>
-          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link active" (click)="califica()" href="#">RESPUESTAS CALIFICACIÓN</a>
+          </li> -->
         </ul>
         <br><br>
         <div *ngIf="visindividual">
@@ -760,7 +760,7 @@
                               <tbody *ngFor="let sesion of alumnos let i = index">
                                 <tr>
                                   <td>{{i+1}}</td>
-                                  <td>{{sesion.CLAVE_CARRERA}}</td>
+                                  <td>{{sesion.CARRERA}}</td>
                                   <td>{{sesion.NUMERO_CONTROL}}</td>
                                   <td>{{sesion.name}} {{sesion.PRIMER_APELLIDO}} {{sesion.SEGUNDO_APELLIDO}}</td>
                                 </tr>

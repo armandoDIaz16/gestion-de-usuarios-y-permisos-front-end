@@ -121,14 +121,14 @@ export class AsignacionComponent implements OnInit {
       },
       error => this.handleError(error)
     );
-    this.Jarwis.getReprobados().subscribe(
+    /* this.Jarwis.getReprobados().subscribe(
       data => {
         for (var num in data) {
           this.reprobados.push(data[num]);
         }
       },
       error => this.handleError(error)
-    );
+    ); */
   }
 
   addclave() {
@@ -208,7 +208,7 @@ export class AsignacionComponent implements OnInit {
     );
   }
 
-  registroSituacion(){
+/*   registroSituacion(){
     this.Jarwis.asignaSituacion(this.form).subscribe(
       data => {
         alert('Asesoria registrada')
@@ -218,7 +218,7 @@ export class AsignacionComponent implements OnInit {
         }
       );
 
-  }
+  } */
 
   validaIndividual(a){
     this.form.validaIndividual = a
