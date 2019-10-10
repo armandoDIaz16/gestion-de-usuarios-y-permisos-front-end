@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PeriodoService } from '../../../services/periodo.service';
 import { AspiranteService } from '../../../services/aspirante.service';
 import { FormularioService } from '../../../services/formulario.service';
@@ -14,6 +14,7 @@ import { ValidarModuloService } from '../../../services/validarModulo.service';
   providers: [PeriodoService, FormularioService, AspiranteService, ValidarModuloService]
 })
 export class PrefichasComponent implements OnInit {
+  @ViewChild('loaderModal') loaderModal;
   constructor(private periodoService: PeriodoService,
     private formularioService: FormularioService,
     private aspiranteService: AspiranteService,
@@ -52,6 +53,7 @@ export class PrefichasComponent implements OnInit {
   filtroCARRERA1 = "todas";
   filtroCARRERA2 = "todas";
   filtroESTATUS = "todos";
+  public pkUsuario = null;
 
   select1 = 'active';
   select2 = null;
@@ -68,18 +70,19 @@ export class PrefichasComponent implements OnInit {
     }
     this.periodoService.getPeriodo().subscribe(data => {
       if (data) {
-      //this.pkPeriodo = data[0].PK_PERIODO_PREFICHAS;
-      //console.log(this.pkPeriodo);
-      this.periodo= data[0].PK_PERIODO_PREFICHAS;     
-      this.obtenerAspirantes(data[0].PK_PERIODO_PREFICHAS);
+        //this.pkPeriodo = data[0].PK_PERIODO_PREFICHAS;
+        //console.log(this.pkPeriodo);
+        this.periodo = data[0].PK_PERIODO_PREFICHAS;
+        this.obtenerAspirantes(data[0].PK_PERIODO_PREFICHAS);
+        this.formularioService.getCarrera(this.periodo).subscribe(data => {
+          this.carreras = data;
+          this.carreraLista = data;
+        });
       }
     });
 
     this.aspiranteService.getEstatus().subscribe(data => this.estatus = data);
-    this.formularioService.getCarrera().subscribe(data => {
-      this.carreras = data;
-      this.carreraLista = data;
-    });
+    
   }
 
   obtenerAspirantes(pk_periodo) {
@@ -169,15 +172,15 @@ export class PrefichasComponent implements OnInit {
     }
   }
 
-  cargarAspirante(pk_usuario){
+  cargarAspirante(pk_usuario) {
     this.aspiranteService.getEditAspirante(pk_usuario).subscribe(data => {
       this.aspirante = data;
       this.aspirante[0].FECHA_REGISTRO = this.aspirante[0].FECHA_REGISTRO.split('-')[0];
-      switch(Number(this.aspirante[0].SEXO)){
-        case 1: this.aspirante[0].SEXO="Masculino";
-        break;
-        case 2: this.aspirante[0].SEXO="Femenino";
-        break;
+      switch (Number(this.aspirante[0].SEXO)) {
+        case 1: this.aspirante[0].SEXO = "Masculino";
+          break;
+        case 2: this.aspirante[0].SEXO = "Femenino";
+          break;
       }
       this.telefonoCasa = this.aspirante[0].TELEFONO_CASA;
       this.telefonoMovil = this.aspirante[0].TELEFONO_MOVIL;
@@ -185,32 +188,42 @@ export class PrefichasComponent implements OnInit {
       this.especialidad1 = this.aspirante[0].FK_CARRERA_1;
       this.especialidad2 = this.aspirante[0].FK_CARRERA_2;
       this.CURP = this.aspirante[0].CURP;
+      this.pkUsuario = pk_usuario;
 
-    });    
+    });
   }
 
-  modificarAspirante(){
-    this.aspiranteService.updateAspirante(
+  async modificarAspirante() {
+    //this.loaderModal.show();
+    const data = await this.aspiranteService.updateAspirante(
       {
-        "CURP": this.CURP,
+        "PK_USUARIO": this.pkUsuario,
+        "CURP": this.CURP.toUpperCase(),
         "TELEFONO_CASA": this.telefonoCasa,
         "TELEFONO_MOVIL": this.telefonoMovil,
         "CORREO1": this.CORREO1,
         "FK_CARRERA_1": this.especialidad1,
-        "FK_CARRERA_2": this.especialidad2
+        "FK_CARRERA_2": ''//this.especialidad2
       });
-      
-      this.obtenerAspirantes(this.periodo);
+
+    this.obtenerAspirantes(this.periodo);
+
+    this.formularioService.getCarrera(this.periodo).subscribe(data => {
+      this.carreras = data;
+      this.carreraLista = data;
+    });
+    //this.loaderModal.hide();
+    alert(data);
   }
 
-  enviarCorreo(){
-/*     var correos = "";
-    for (var i=0; this.aspirantes.length>i; i++){
-      correos = correos+this.aspirantes[i].CORREO+","
-    }
-    correos = correos.slice(0,-1); */
+  enviarCorreo() {
+    /*     var correos = "";
+        for (var i=0; this.aspirantes.length>i; i++){
+          correos = correos+this.aspirantes[i].CORREO+","
+        }
+        correos = correos.slice(0,-1); */
     var correos = [];
-    for (var i=0; this.aspirantes.length>i; i++){
+    for (var i = 0; this.aspirantes.length > i; i++) {
       correos.push(this.aspirantes[i].CORREO);
     }
 
@@ -220,8 +233,8 @@ export class PrefichasComponent implements OnInit {
       'MENSAJE': this.mensaje
     });
 
-  this.asunto = "";
-  this.mensaje = "";
+    this.asunto = "";
+    this.mensaje = "";
   }
 
 
@@ -242,49 +255,49 @@ export class PrefichasComponent implements OnInit {
 
 
 
-  leerExcel(evt: any){     
+  leerExcel(evt: any) {
     const target: DataTransfer = <DataTransfer>(evt.target);
     if (target.files.length !== 1) throw new Error('Cannot use multiple files');
     const reader: FileReader = new FileReader();
     reader.onload = (e: any) => {
-      
+
       const bstr: string = e.target.result;
-      const wb: XLSX.WorkBook = XLSX.read(bstr, {type: 'binary'});
+      const wb: XLSX.WorkBook = XLSX.read(bstr, { type: 'binary' });
 
       const wsname: string = wb.SheetNames[0];
       const ws: XLSX.WorkSheet = wb.Sheets[wsname];
-      console.log((XLSX.utils.sheet_to_json(ws, {header: 1})));
+      console.log((XLSX.utils.sheet_to_json(ws, { header: 1 })));
     };
-    reader.readAsBinaryString(target.files[0]);  
-  } 
-  
-   processFiles(evt: any) {
-         var archivo = evt.target.files[0];
+    reader.readAsBinaryString(target.files[0]);
+  }
+
+  processFiles(evt: any) {
+    var archivo = evt.target.files[0];
     if (!archivo) {
       return;
     }
     var lector = new FileReader();
-    lector.onload = function(e: any) {
+    lector.onload = function (e: any) {
       var datos = e.target.result.split("\n");
       var registros = [];
-      for(var i = 0; i < datos.length; i++){
-        if (!isNaN(datos[i].substr(0,7)) && datos[i].substr(0,7) != "") {
-          if(datos[i].substr(98,4)>0){
-            registros.push([datos[i].substr(0,7),datos[i].substr(37,20),datos[i].substr(42,4),datos[i].substr(98,4),"CRED","Fecha pago"+datos[i].substr(130,10),"Fecha limite"+datos[i].substr(140,10)]);
-          //console.log([datos[i].substr(0,7),datos[i].substr(37,20),datos[i].substr(42,4),datos[i].substr(98,4),"CRED","Fecha pago"+datos[i].substr(130,10),"Fecha limite"+datos[i].substr(140,10)]);
-          }else{
+      for (var i = 0; i < datos.length; i++) {
+        if (!isNaN(datos[i].substr(0, 7)) && datos[i].substr(0, 7) != "") {
+          if (datos[i].substr(98, 4) > 0) {
+            registros.push([datos[i].substr(0, 7), datos[i].substr(37, 20), datos[i].substr(42, 4), datos[i].substr(98, 4), "CRED", "Fecha pago" + datos[i].substr(130, 10), "Fecha limite" + datos[i].substr(140, 10)]);
+            //console.log([datos[i].substr(0,7),datos[i].substr(37,20),datos[i].substr(42,4),datos[i].substr(98,4),"CRED","Fecha pago"+datos[i].substr(130,10),"Fecha limite"+datos[i].substr(140,10)]);
+          } else {
             //console.log([datos[i].substr(0,7),datos[i].substr(37,20),datos[i].substr(42,4),datos[i].substr(82,4),"EFE","Fecha pago"+datos[i].substr(130,10),"Fecha limite"+datos[i].substr(140,10)]);
-            registros.push([datos[i].substr(0,7),datos[i].substr(37,20),datos[i].substr(42,4),datos[i].substr(82,4),"EFE","Fecha pago"+datos[i].substr(130,10),"Fecha limite"+datos[i].substr(140,10)]);
+            registros.push([datos[i].substr(0, 7), datos[i].substr(37, 20), datos[i].substr(42, 4), datos[i].substr(82, 4), "EFE", "Fecha pago" + datos[i].substr(130, 10), "Fecha limite" + datos[i].substr(140, 10)]);
           }
-      } else {
-        console.log("No es un registro");
-      } 
+        } else {
+          console.log("No es un registro");
+        }
       }
       //this.aspiranteService.addAspirante();
 
       //console.log(JSON.parse(JSON.stringify(registros)));
-    };    lector.readAsText(archivo);
+    }; lector.readAsText(archivo);
 
-    
-}
+
   }
+}

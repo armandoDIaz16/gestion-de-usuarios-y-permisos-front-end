@@ -4,10 +4,10 @@
     <div class="offset-md-1 col-md-10">
         <div class="row">
             <div class="col-md-12">
-                <a [routerLink]="['/tutorias/grupos']" class="btn btn-primary">
+                <button class="btn btn-primary" (click)="volver()">
                     <i class="fa fa-caret-square-o-left"></i>
-                    Regresar a detalle de grupo
-                </a>
+                    Regresar
+                </button>
             </div>
         </div>
         <br>
@@ -19,28 +19,28 @@
                 <div class="form-group">
                     <label for="NOMBRE">Nombres</label>
                     <input type="text" class="form-control" id="NOMBRE" name="NOMBRE"
-                           value="NOMBRE" readonly>
+                           value="{{this.perfil.NOMBRE}}" readonly>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="PRIMER_APELLIDO">Primer apellido</label>
                     <input type="text" class="form-control" id="PRIMER_APELLIDO" name="PRIMER_APELLIDO"
-                           value="PRIMER_APELLIDO" readonly>
+                           value="{{this.perfil.PRIMER_APELLIDO}}" readonly>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="SEGUNDO_APELLIDO">Segundo apellido</label>
                     <input type="text" class="form-control" id="SEGUNDO_APELLIDO" name="SEGUNDO_APELLIDO"
-                           value="SEGUNDO_APELLIDO" readonly>
+                           value="{{this.perfil.SEGUNDO_APELLIDO}}" readonly>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="CURP">CURP</label>
                     <input type="text" class="form-control" id="CURP" name="CURP"
-                           value="CURP" readonly>
+                           value="{{this.perfil.CURP}}" readonly>
                 </div>
             </div>
         </div>
@@ -50,21 +50,21 @@
                 <div class="form-group">
                     <label for="NUMERO_CONTROL">Número de control</label>
                     <input type="text" class="form-control" id="NUMERO_CONTROL" name="NUMERO_CONTROL"
-                           value="NUMERO_CONTROL" readonly>
+                           value="{{this.perfil.NUMERO_CONTROL}}" readonly>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="CARRERA">Carrera</label>
                     <input type="text" class="form-control" id="CARRERA" name="CARRERA"
-                           value="CARRERA" readonly>
+                           value="{{this.perfil.FK_CARRERA}}" readonly>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="SEMESTRE">Semestre</label>
                     <input type="text" class="form-control" id="SEMESTRE" name="SEMESTRE"
-                           value="SEMESTRE" readonly>
+                           value="{{this.perfil.SEMESTRE}}" readonly>
                 </div>
             </div>
             <div class="col-md-3">
@@ -72,7 +72,7 @@
                     <label for="CORREO_INSTITUCIONAL">Correo institucional</label>
                     <input type="text" class="form-control" id="CORREO_INSTITUCIONAL"
                            name="CORREO_INSTITUCIONAL"
-                           value="CORREO_INSTITUCIONAL" readonly>
+                           value="{{this.perfil.CORREO_INSTITUCIONAL}}" readonly>
                 </div>
             </div>
         </div>
@@ -81,22 +81,22 @@
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="FECHA_NACIMIENTO">Fecha de nacimiento</label>
-                    <input type="text" class="form-control" id="FECHA_NACIMIENTO" name="FECHA_NACIMIENTO"
-                           value="FECHA_NACIMIENTO" readonly>
+                    <input type="date" class="form-control" id="FECHA_NACIMIENTO" name="FECHA_NACIMIENTO"
+                           value="{{this.perfil.FECHA_NACIMIENTO}}" readonly>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="SEXO">Sexo</label>
                     <input type="text" class="form-control" id="SEXO" name="SEXO"
-                           value="SEXO" readonly>
+                           value="{{this.perfil.SEXO}}" readonly>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="ESTADO_CIVIL">Estado civil</label>
                     <input type="text" class="form-control" id="ESTADO_CIVIL" name="ESTADO_CIVIL"
-                           value="ESTADO_CIVIL" readonly>
+                           value="{{this.perfil.FK_ESTADO_CIVIL}}" readonly>
                 </div>
             </div>
             <div class="col-md-3">
@@ -114,21 +114,21 @@
                 <div class="form-group">
                     <label for="CORREO1">Correo personal principal</label>
                     <input type="mail" class="form-control" id="CORREO1" name="CORREO1"
-                           value="CORREO1" readonly>
+                           value="{{this.perfil.CORREO1}}" readonly>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="CORREO2">Correo personal optativo</label>
                     <input type="mail" class="form-control" id="CORREO2" name="CORREO2"
-                           value="CORREO2" readonly>
+                           value="{{this.perfil.CORREO2}}" readonly>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="TELEFONO_CASA">Teléfono fijo</label>
                     <input type="text" class="form-control" id="TELEFONO_CASA" name="TELEFONO_CASA"
-                           value="TELEFONO_CASA" readonly>
+                           value="{{this.perfil.TELEFONO_CASA}}" readonly>
                     <small id="TELEFONO_CASAHelp" class="form-text text-muted">10 Dígitos</small>
                 </div>
             </div>
@@ -136,7 +136,7 @@
                 <div class="form-group">
                     <label for="TELEFONO_MOVIL">Teléfono móvil</label>
                     <input type="text" class="form-control" id="TELEFONO_MOVIL" name="TELEFONO_MOVIL"
-                           value="TELEFONO_MOVIL" readonly>
+                           value="{{this.perfil.TELEFONO_MOVIL}}" readonly>
                 </div>
             </div>
         </div>
@@ -172,7 +172,7 @@
                 <div class="form-group">
                     <label for="COLONIA">Colonia</label>
                     <input type="text" class="form-control" id="COLONIA" name="COLONIA"
-                           value="COLONIA" readonly>
+                           value="{{this.perfil.FK_COLONIA}}" readonly>
                 </div>
             </div>
         </div>
@@ -182,21 +182,21 @@
                 <div class="form-group">
                     <label for="CALLE">Calle</label>
                     <input type="text" class="form-control" id="CALLE" name="CALLE"
-                           value="CALLE" readonly>
+                           value="{{this.perfil.CALLE}}" readonly>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="NUMERO_EXTERIOR">Número exterior</label>
                     <input type="mail" class="form-control" id="NUMERO_EXTERIOR" name="NUMERO_EXTERIOR"
-                           value="NUMERO_EXTERIOR" readonly>
+                           value="{{this.perfil.NUMERO_EXTERIOR}}" readonly>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="NUMERO_INTERIOR">Número interior</label>
                     <input type="mail" class="form-control" id="NUMERO_INTERIOR" name="NUMERO_INTERIOR"
-                           value="NUMERO_INTERIOR" readonly>
+                           value="{{this.perfil.NUMERO_INTERIOR}}" readonly>
                 </div>
             </div>
         </div>
@@ -210,7 +210,7 @@
                 <div class="form-group">
                     <label for="NOMBRE_CONTACTO">Nombre completo</label>
                     <input type="text" class="form-control" id="NOMBRE_CONTACTO" name="NOMBRE_CONTACTO"
-                           value="NOMBRE_CONTACTO" readonly>
+                           value="{{this.perfil.NOMBRE_CONTACTO}}" readonly>
                 </div>
             </div>
             <div class="col-md-3">
@@ -218,21 +218,21 @@
                     <label for="PARENTESCO_CONTACTO">Parentesco</label>
                     <input type="text" class="form-control" id="PARENTESCO_CONTACTO"
                            name="PARENTESCO_CONTACTO"
-                           value="PARENTESCO_CONTACTO" readonly>
+                           value="{{this.perfil.PARENTESCO_CONTACTO}}" readonly>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="TELEFONO_CONTACTO">Teléfono</label>
                     <input type="text" class="form-control" id="TELEFONO_CONTACTO" name="TELEFONO_CONTACTO"
-                           value="TELEFONO_CONTACTO" readonly>
+                           value="{{this.perfil.TELEFONO_CONTACTO}}" readonly>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="CORREO_CONTACTO">Correo electrónico</label>
                     <input type="mail" class="form-control" id="CORREO_CONTACTO" name="CORREO_CONTACTO"
-                           value="CORREO_CONTACTO" readonly>
+                           value="{{this.perfil.CORREO_CONTACTO}}" readonly>
                 </div>
             </div>
         </div>

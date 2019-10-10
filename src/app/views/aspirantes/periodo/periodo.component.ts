@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PeriodoService } from '../../../services/periodo.service';
 import { ValidarModuloService } from '../../../services/validarModulo.service';
 
@@ -11,6 +11,7 @@ import { ValidarModuloService } from '../../../services/validarModulo.service';
 })
 
 export class PeriodoComponent implements OnInit {
+  @ViewChild('loaderModal') loaderModal;
   public mostrarModulo = false;
   idPeriodo = null;
   fechaInicio = null;
@@ -26,6 +27,12 @@ export class PeriodoComponent implements OnInit {
   fechaInicioInscripcionCero = null;
   fechaFinInscripcionCero = null;
   montoInscripcionCero = null;
+  resultados = null;
+  tipoExamen = null;
+  mostrarPublicar = null;
+  mostrarTipoExamen = null;
+  mensajeUno = null;
+  mensajeCero = null;
 
 
   constructor(
@@ -54,6 +61,20 @@ export class PeriodoComponent implements OnInit {
         this.fechaInicioInscripcionCero = data[0].FECHA_INICIO_INSCRIPCION_BIS;
         this.fechaFinInscripcionCero = data[0].FECHA_FIN_INSCRIPCION_BIS;
         this.montoInscripcionCero = data[0].MONTO_INSCRIPCION_BIS;
+        this.resultados = data[0].RESULTADOS;
+        this.mensajeUno = data[0].MENSAJE_SEMESTRE;
+        this.mensajeCero = data[0].MENSAJE_SEMESTRE_BIS;
+        this.tipoExamen = data[0].TIPO_APLICACION;
+        if (this.resultados == 1) {
+          this.mostrarPublicar = true;
+        } else {
+          this.mostrarPublicar = false;
+        }
+        if (this.tipoExamen == 1) {
+          this.mostrarTipoExamen = true;
+        } else {
+          this.mostrarTipoExamen = false;
+        }
         var fechaInicio = this.fechaInicio.split('-');
         var fechaFin = this.fechaFin.split('-');
         var fechaActual = this.fechaActual.split('-');
@@ -137,115 +158,220 @@ export class PeriodoComponent implements OnInit {
     }
   }
 
-  onSubmitFechaFichas() {
+  async onSubmitFechaFichas() {
     if (this.idPeriodo) {
-      this.periodoService.addPeriodo(
+      this.loaderModal.show();
+      const data = await this.periodoService.addPeriodo(
         {
           "PK_PERIODO_PREFICHAS": this.idPeriodo,
           "FECHA_INICIO": this.fechaInicio,
           "FECHA_FIN": this.fechaFin,
 
         });
-      //console.log("Modificacion");
+      if (data) {
+        this.loaderModal.hide();
+        //alert(data);
+      }
     } else {
-      this.periodoService.addPeriodo({
+      this.loaderModal.show();
+      const data = await this.periodoService.addPeriodo({
         "FECHA_INICIO": this.fechaInicio,
         "FECHA_FIN": this.fechaFin,
         "FK_USUARIO_REGISTRO": sessionStorage.getItem('IdUsuario')
       });
-      //Corregir con promise
-      setTimeout(() => {
-        this.periodoService.getPeriodo().subscribe(data => {
-          this.idPeriodo = data[0].PK_PERIODO_PREFICHAS;
-          this.fechaInicio = data[0].FECHA_INICIO;
-          this.fechaFin = data[0].FECHA_FIN;
-          this.fechaActual = data[0].FECHA_ACTUAL;
-          this.montoPreficha = data[0].MONTO_PREFICHA;
-          this.fechaInicioCurso = data[0].FECHA_INICIO_CURSO;
-          this.fechaFinCurso = data[0].FECHA_FIN_CURSO;
-          this.montoCurso = data[0].MONTO_CURSO;
-          this.fechaInicioInscripcion = data[0].FECHA_INICIO_INSCRIPCION;
-          this.fechaFinInscripcion = data[0].FECHA_FIN_INSCRIPCION;
-          this.montoInscripcion = data[0].MONTO_INSCRIPCION;
-          this.fechaInicioInscripcionCero = data[0].FECHA_INICIO_INSCRIPCION_BIS;
-          this.fechaFinInscripcionCero = data[0].FECHA_FIN_INSCRIPCION_BIS;
-          this.montoInscripcionCero = data[0].MONTO_INSCRIPCION_BIS;
-        });
-      }, 4000);
-      //console.log("Insertar");       
+      if (data) {
+        this.loaderModal.hide();
+        this.recargarPeriodo();
+        alert(data);
+      }
     }
   }
 
-  onSubmitFechaCurso() {
+  async onSubmitFechaCurso() {
     if (this.idPeriodo) {
-      this.periodoService.addPeriodoCurso(
+      this.loaderModal.show();
+      const data = await this.periodoService.addPeriodoCurso(
         {
           "PK_PERIODO_PREFICHAS": this.idPeriodo,
           "FECHA_INICIO_CURSO": this.fechaInicioCurso,
           "FECHA_FIN_CURSO": this.fechaFinCurso,
         });
+      if (data) {
+        this.loaderModal.hide();
+        //alert(data);
+      }
     }
   }
 
-  onSubmitFechaInscripcion() {
+  async onSubmitFechaInscripcion() {
     if (this.idPeriodo) {
-      this.periodoService.addPeriodoInscripcion(
+      this.loaderModal.show();
+      const data = await this.periodoService.addPeriodoInscripcion(
         {
           "PK_PERIODO_PREFICHAS": this.idPeriodo,
           "FECHA_INICIO_INSCRIPCION": this.fechaInicioInscripcion,
           "FECHA_FIN_INSCRIPCION": this.fechaFinInscripcion,
         });
+      if (data) {
+        this.loaderModal.hide();
+        //alert(data);
+      }
     }
   }
 
-  onSubmitFechaInscripcionCero() {
+  async onSubmitFechaInscripcionCero() {
     if (this.idPeriodo) {
-      this.periodoService.addPeriodoInscripcionCero(
+      this.loaderModal.show();
+      const data = await this.periodoService.addPeriodoInscripcionCero(
         {
           "PK_PERIODO_PREFICHAS": this.idPeriodo,
           "FECHA_INICIO_INSCRIPCION_BIS": this.fechaInicioInscripcionCero,
           "FECHA_FIN_INSCRIPCION_BIS": this.fechaFinInscripcionCero,
         });
+      if (data) {
+        this.loaderModal.hide();
+        //alert(data);
+      }
     }
   }
 
-  onSubmitMontoPreficha() {
+  async onSubmitMontoPreficha() {
     if (this.idPeriodo) {
-      this.periodoService.addMontoPreficha(
+      this.loaderModal.show();
+      const data = await this.periodoService.addMontoPreficha(
         {
           "PK_PERIODO_PREFICHAS": this.idPeriodo,
           "MONTO_PREFICHA": this.montoPreficha
         });
+      if (data) {
+        this.loaderModal.hide();
+        //alert(data);
+      }
     }
   }
 
-  onSubmitMontoCurso() {
+  async onSubmitMontoCurso() {
     if (this.idPeriodo) {
-      this.periodoService.addMontoCurso(
+      this.loaderModal.show();
+      const data = await this.periodoService.addMontoCurso(
         {
           "PK_PERIODO_PREFICHAS": this.idPeriodo,
           "MONTO_CURSO": this.montoCurso
         });
+      if (data) {
+        this.loaderModal.hide();
+        //alert(data);
+      }
     }
   }
 
-  onSubmitMontoInscripcion() {
+  async onSubmitMontoInscripcion() {
     if (this.idPeriodo) {
-      this.periodoService.addMontoInscripcion(
+      this.loaderModal.show();
+      const data = await this.periodoService.addMontoInscripcion(
         {
           "PK_PERIODO_PREFICHAS": this.idPeriodo,
           "MONTO_INSCRIPCION": this.montoInscripcion
         });
+      if (data) {
+        this.loaderModal.hide();
+        //alert(data);
+      }
     }
   }
 
-  onSubmitMontoInscripcionCero() {
+  async onSubmitMontoInscripcionCero() {
     if (this.idPeriodo) {
-      this.periodoService.addMontoInscripcionCero(
+      this.loaderModal.show();
+      const data = await this.periodoService.addMontoInscripcionCero(
         {
           "PK_PERIODO_PREFICHAS": this.idPeriodo,
           "MONTO_INSCRIPCION_BIS": this.montoInscripcionCero
         });
+      if (data) {
+        this.loaderModal.hide();
+        //alert(data);
+      }
     }
+  }
+
+  async onSubmitResultados(res) {
+    if (this.idPeriodo) {
+      this.loaderModal.show();
+      const data = await this.periodoService.publicarResultados(
+        {
+          "PK_PERIODO_PREFICHAS": this.idPeriodo,
+          "RESULTADOS": res
+        });
+      if (data) {
+        this.loaderModal.hide();
+        this.recargarPeriodo();
+        //alert(data);
+      }
+    }
+  }
+
+  async onSubmitTipoExamen(res) {
+    if (this.idPeriodo) {
+      this.loaderModal.show();
+      const data = await this.periodoService.modificarTipoExamen(
+        {
+          "PK_PERIODO_PREFICHAS": this.idPeriodo,
+          "TIPO_APLICACION": res
+        });
+      if (data) {
+        this.loaderModal.hide();
+        this.recargarPeriodo();
+        //alert(data);
+      }
+    }
+  }
+
+  async onSubmitMensajes() {
+    if (this.idPeriodo) {
+      this.loaderModal.show();
+      const data = await this.periodoService.updateMenajes(
+        {
+          "PK_PERIODO_PREFICHAS": this.idPeriodo,
+          "MENSAJE_SEMESTRE": this.mensajeUno,
+          "MENSAJE_SEMESTRE_BIS": this.mensajeCero
+        });
+      if (data) {
+        this.loaderModal.hide();
+        //alert(data);
+      }
+    }
+  }
+  recargarPeriodo() {
+    this.periodoService.getPeriodo().subscribe(data => {
+      this.idPeriodo = data[0].PK_PERIODO_PREFICHAS;
+      this.fechaInicio = data[0].FECHA_INICIO;
+      this.fechaFin = data[0].FECHA_FIN;
+      this.fechaActual = data[0].FECHA_ACTUAL;
+      this.montoPreficha = data[0].MONTO_PREFICHA;
+      this.fechaInicioCurso = data[0].FECHA_INICIO_CURSO;
+      this.fechaFinCurso = data[0].FECHA_FIN_CURSO;
+      this.montoCurso = data[0].MONTO_CURSO;
+      this.fechaInicioInscripcion = data[0].FECHA_INICIO_INSCRIPCION;
+      this.fechaFinInscripcion = data[0].FECHA_FIN_INSCRIPCION;
+      this.montoInscripcion = data[0].MONTO_INSCRIPCION;
+      this.fechaInicioInscripcionCero = data[0].FECHA_INICIO_INSCRIPCION_BIS;
+      this.fechaFinInscripcionCero = data[0].FECHA_FIN_INSCRIPCION_BIS;
+      this.montoInscripcionCero = data[0].MONTO_INSCRIPCION_BIS;
+      this.resultados = data[0].RESULTADOS;
+      this.mensajeUno = data[0].MENSAJE_SEMESTRE;
+      this.mensajeCero = data[0].MENSAJE_SEMESTRE_BIS;
+      this.tipoExamen = data[0].TIPO_APLICACION;
+      if (this.resultados == 1) {
+        this.mostrarPublicar = true;
+      } else {
+        this.mostrarPublicar = false;
+      }
+      if (this.tipoExamen == 1) {
+        this.mostrarTipoExamen = true;
+      } else {
+        this.mostrarTipoExamen = false;
+      }
+    });
   }
 }

@@ -27,7 +27,7 @@ export class GraficasComponent implements OnInit {
   carrerasCANTIDAD = [];
 
   ngOnInit() {
-    this.mostrarModulo = this.validarModuloService.getMostrarModulo("Graficas");
+    this.mostrarModulo = this.validarModuloService.getMostrarModulo("Gráficas");
     if (!this.mostrarModulo) {
       return;
     }

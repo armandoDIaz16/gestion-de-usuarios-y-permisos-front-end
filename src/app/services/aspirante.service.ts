@@ -40,7 +40,7 @@ export class AspiranteService extends GenericServicesService{
         );
     }
     getGrupos(pk_espacio, dia, hora, pk_periodo): Observable<IGrupos[]> {
-        return this.http.get<IGrupos[]>(this.baseUrl + 'Grupo?PK_ESPACIO=' + pk_espacio + '&DIA=' + dia + '&HORA=' + hora + '&FK_PERIODO=' + pk_periodo, this.headers
+        return this.http.get<IGrupos[]>(this.baseUrl + 'ListaGrupo?PK_ESPACIO=' + pk_espacio + '&DIA=' + dia + '&HORA=' + hora + '&FK_PERIODO=' + pk_periodo, this.headers
         );
     }
     getListaGrupos(pk_periodo): Observable<IListaGrupos[]> {
@@ -63,61 +63,26 @@ export class AspiranteService extends GenericServicesService{
         return this.http.get<IGraficaCampus[]>(this.baseUrl + 'GraficaCampus/' + pk_periodo, this.headers
         );
     }
-    addPagos(datos, pk_periodo) {
-        return this.http.post(this.baseUrl + 'CargarArchivoBanco/' + pk_periodo, datos, this.headers
-        ).subscribe(
-            (response) => {
-                console.log(response);
-            }
-        );
+    async addPagos(datos, pk_periodo) {
+        return this.http.post(this.baseUrl + 'CargarArchivoBanco/' + pk_periodo, datos, this.headers).toPromise();
     }
-    addPreRegistrados(datos, pk_periodo) {
-        return this.http.post(this.baseUrl + 'CargarArchivoPreRegistroCENEVAL/' + pk_periodo, datos, this.headers
-        ).subscribe(
-            (response) => {
-                console.log(response);
-            }
-        );
+    async addPreRegistrados(datos, pk_periodo) {
+        return this.http.post(this.baseUrl + 'CargarArchivoPreRegistroCENEVAL/' + pk_periodo, datos, this.headers).toPromise();
     }
-    addRegistrados(datos, pk_periodo) {
-        return this.http.post(this.baseUrl + 'CargarArchivoRegistroCENEVAL/' + pk_periodo, datos, this.headers
-        ).subscribe(
-            (response) => {
-                console.log(response);
-            }
-        );
+    async addRegistrados(datos, pk_periodo) {
+        return this.http.post(this.baseUrl + 'CargarArchivoRegistroCENEVAL/' + pk_periodo, datos, this.headers).toPromise();
     }
-    addResultados(datos, pk_periodo) {
-        return this.http.post(this.baseUrl + 'CargarArchivoResultados/' + pk_periodo, datos, this.headers
-        ).subscribe(
-            (response) => {
-                console.log(response);
-            }
-        );
+    async addResultados(datos, pk_periodo) {
+        return this.http.post(this.baseUrl + 'CargarArchivoResultados/' + pk_periodo, datos, this.headers).toPromise();
     }
-    addAceptados(datos, pk_periodo) {
-        return this.http.post(this.baseUrl + 'CargarArchivoAceptados/' + pk_periodo, datos, this.headers
-        ).subscribe(
-            (response) => {
-                console.log(response);
-            }
-        );
+    async addAceptados(datos, pk_periodo) {
+        return this.http.post(this.baseUrl + 'CargarArchivoAceptados/' + pk_periodo, datos, this.headers).toPromise();
     }    
-    addAsistencia(datos, pk_periodo) {
-        return this.http.post(this.baseUrl + 'CargarArchivoAcistencia/' + pk_periodo, datos, this.headers
-        ).subscribe(
-            (response) => {
-                console.log(response);
-            }
-        );
+    async addAsistencia(datos, pk_periodo) {
+        return this.http.post(this.baseUrl + 'CargarArchivoAcistencia/' + pk_periodo, datos, this.headers).toPromise();
     }
-    updateAspirante(datos) {
-        return this.http.post(this.baseUrl + 'Aspirante2/', datos, this.headers
-        ).subscribe(
-            (response) => {
-                console.log(response);
-            }
-        );
+    async updateAspirante(datos) {
+        return this.http.post(this.baseUrl + 'Aspirante2/', datos, this.headers).toPromise();
     }
     enviarCorreo(datos) {
         return this.http.post(this.baseUrl + 'EnviarCorreos/', datos, this.headers

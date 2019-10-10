@@ -19,8 +19,8 @@ export class FormularioService extends GenericServicesService{
     getCarreraUniversidad():Observable<ICarreraUniversidad[]>{
         return this.http.get<ICarreraUniversidad[]>(this.baseUrl+'Carrera_Universidad');
       }
-      getCarrera():Observable<ICarrera[]>{
-        return this.http.get<ICarrera[]>(this.baseUrl+'Carrera');
+      getCarrera(pkPeriodo):Observable<ICarrera[]>{
+        return this.http.get<ICarrera[]>(this.baseUrl+'Carrera/'+pkPeriodo);
       }
       getCiudad(entidadFederativa):Observable<ICiudad[]>{
         return this.http.get<ICiudad[]>(this.baseUrl+'Ciudad/'+entidadFederativa);

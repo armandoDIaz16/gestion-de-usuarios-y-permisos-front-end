@@ -73,7 +73,8 @@ export class FormularioComponent implements OnInit {
   fechaFin = null;
   fechaActual = null;
 
-  mensaje = null;
+  mensaje0 = null;
+  mensaje1 = null;
   mensaje2 = null;
   cerrarModal = false;
   respuesta = null;
@@ -126,18 +127,17 @@ export class FormularioComponent implements OnInit {
       this.fechaInicio = data[0].FECHA_INICIO;
       this.fechaFin = data[0].FECHA_FIN;
       this.fechaActual = data[0].FECHA_ACTUAL;
-      this.compararFechas();
+      if(this.compararFechas()){
+        return;
+      }
+      this.formularioService.getCarrera(this.pkPeriodo).subscribe(data => this.carreraLista = data);
+      this.formularioService.getEstadoCivil().subscribe(data => this.estadoCivilLista = data);
+      this.formularioService.getDependencia().subscribe(data => this.dependenciaLista = data);
+      this.formularioService.getPropagandaTecnologico().subscribe(data => this.propagandaTecnologicoLista = data);
+      this.formularioService.getEntidadFederativa().subscribe(data => this.entidadFederativaLista = data);
+      this.formularioService.getUniversidad().subscribe(data => this.universidadLista = data);
+      this.formularioService.getCarreraUniversidad().subscribe(data => this.carreraUniversidadLista = data);
     });
-
-    this.formularioService.getEstadoCivil().subscribe(data => this.estadoCivilLista = data);
-    this.formularioService.getDependencia().subscribe(data => this.dependenciaLista = data);
-    this.formularioService.getPropagandaTecnologico().subscribe(data => this.propagandaTecnologicoLista = data);
-    //this.formularioService.getIncapacidad().subscribe(data => this.incapacidadLista = data);
-    this.formularioService.getCarrera().subscribe(data => this.carreraLista = data);
-    this.formularioService.getEntidadFederativa().subscribe(data => this.entidadFederativaLista = data);
-    this.formularioService.getUniversidad().subscribe(data => this.universidadLista = data);
-    this.formularioService.getCarreraUniversidad().subscribe(data => this.carreraUniversidadLista = data);
-
   }
 
   compararFechas() {
@@ -151,6 +151,7 @@ export class FormularioComponent implements OnInit {
       //console.log('La fecha esta en el rango');
       this.activado = true;
     } else {
+      return true;
       //console.log('La fecha no esta en el rango');
     }
   }
@@ -302,7 +303,7 @@ export class FormularioComponent implements OnInit {
         "FK_COLONIA": this.colonia,
         "TELEFONO_CASA": "'" + this.tFijo + "'",
         "TELEFONO_MOVIL": "'" + this.tMovil + "'",
-        "CORREO1": "'" + this.formGroup.get('CORREO1').value + "'",
+        "CORREO1": "'" + this.formGroup.get('CORREO1').value.replace(' ','') + "'",
         "PADRE_TUTOR": "'" + this.nombrePadre + "'",
         "MADRE": "'" + this.nombreMadre + "'",
         "FK_BACHILLERATO": this.escuela,
@@ -322,33 +323,33 @@ export class FormularioComponent implements OnInit {
       });
     switch (data[0].RESPUESTA) {
       case '1':
-        this.mensaje = "YA ESTA REGISTRADA ESA CURP EN ESTE PERIODO";
+        this.mensaje1 = "YA ESTA REGISTRADA ESA CURP EN ESTE PERIODO";
         this.cerrarModal = true;
         break;
       case '2':
-        this.mensaje = "YA ESTA REGISTRADO ESE CORREO A OTRO USUARIO";
+        this.mensaje1 = "YA ESTA REGISTRADO ESE CORREO A OTRO USUARIO";
         this.cerrarModal = true;
         break;
       case '3':
-        this.mensaje = "SE ACTUALIZO USUARIO Y SE REGISTRO LA PREFICHA";
+        this.mensaje0 = "SE ACTUALIZO USUARIO Y SE REGISTRO LA PREFICHA";
         this.mensaje2 = "REGISTRO COMPLETO, REVISTA TU BANDEJA DE CORREO";
         setTimeout(() => {
-
           this.router.navigateByUrl('/login');
-        }, 5000);
+        }, 30000);
 
         break;
       case '4':
-        this.mensaje = "YA ESTA REGISTRADO ESE CORREO A OTRO USUARIO";
+        this.mensaje1 = "YA ESTA REGISTRADO ESE CORREO A OTRO USUARIO";
         this.cerrarModal = true;
         break;
       case '5':
-        this.mensaje = "SE REGISTRO CORRECTAMENTE";
-        this.mensaje2 = "REGISTRO COMPLETO, REVISTA TU BANDEJA DE CORREO";
+        this.mensaje0 = "Te has registrado correctamente, "
+          + "hemos enviado un correo electrónico para que realices la activación de tu cuenta.";
+        this.mensaje1 = "Recuerda revisar tu bandeja de correo no deseado";
+        this.mensaje2 = "(Esta ventana se cerrará automáticamente en 30 segundos)";
         setTimeout(() => {
-
           this.router.navigateByUrl('/login');
-        }, 5000);
+        }, 30000);
         break;
     }
   }
