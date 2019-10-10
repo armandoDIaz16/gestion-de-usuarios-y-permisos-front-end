@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {InterfaceGruposTutoria, InterfaceGrupoTutoria} from '../_models/GrupoModel';
 import {GruposService} from './grupos.service';
+import {GenericServicesService} from '../../../services/generic-services.service';
 
 @Component({
     selector: 'app-grupos',
@@ -36,6 +37,14 @@ export class GruposComponent implements OnInit {
 
     handleError(error) {
         this.error = error.error.error;
+    }
+
+    reporte_perfil_grupal(pk_grupo: number) {
+        open(
+            this.grupos_service.get_url_back('get_pdf_perfil_grupal_ingreso?grupo=' + pk_grupo),
+            '_blank',
+            ''
+        )
     }
 
 }
