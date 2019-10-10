@@ -180,7 +180,8 @@
                       <div class="form-group">
                         <label for="correo">Correo electrónico:</label>
                         <label style="color:#ff0000;" for="asterisco">*</label>
-                        <input type="text" class="form-control" [formControl]="formGroup.controls['CORREO1']">
+                        <input type="text" class="form-control" [formControl]="formGroup.controls['CORREO1']" id="correo1"
+                        onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.replace(' ','')">
                       </div>
                     </div>
                     <div class="col-sm-6">
@@ -189,7 +190,8 @@
                         <label style="color:#ff0000;" for="asterisco">*</label>
 
                         <input type="text" class="form-control" [formControl]="formGroup.controls['repeat_CORREO1']"
-                          oncopy="return false" onpaste="return false" required>
+                          oncopy="return false" onpaste="return false" required id="correo2"
+                          onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.replace(' ','')">
                       </div>
                     </div>
                   </div>
