@@ -34,6 +34,7 @@ export class DashboardComponent extends GenericServicesService implements OnInit
   habilitarResultados = false;
   habilitarAceptado = false;
   habilitarAceptadoCero = false;
+  habilitarGuia = true;
   fechaInicio = null;
   fechaFin = null;
   fechaInicioCurso = null;
@@ -111,6 +112,7 @@ export class DashboardComponent extends GenericServicesService implements OnInit
             case 1:
               this.habilitarFicha = false
               this.habilitarAceptado = true;
+              this.habilitarGuia = false;
               if (this.compararFechas(this.fechaInicioCurso, this.fechaFinCurso, this.fechaActual, 0)) {
                 this.habilitarCurso = true;
               }
@@ -121,6 +123,7 @@ export class DashboardComponent extends GenericServicesService implements OnInit
             case 2:
               this.habilitarFicha = false
               this.habilitarAceptadoCero = true;
+              this.habilitarGuia = false;
               if (this.compararFechas(this.fechaInicioInscripcionCero, this.fechaFinInscripcionCero, this.fechaActual,0)) {
                 this.habilitarInscripcionCero = true;
               }
@@ -141,19 +144,19 @@ export class DashboardComponent extends GenericServicesService implements OnInit
     });
   }
   generarReferencia() {
-    window.open(this.baseUrl + "Referencia/" + sessionStorage.getItem('IdUsuario'));
+    window.open(this.baseUrl + "Referencia/" + sessionStorage.getItem('IdEncriptada'));
   }
   generarReferenciaCurso() {
-    window.open(this.baseUrl + "ReferenciaCurso/" + sessionStorage.getItem('IdUsuario'));
+    window.open(this.baseUrl + "ReferenciaCurso/" + sessionStorage.getItem('IdEncriptada'));
   }
   generarReferenciaInscripcion() {
-    window.open(this.baseUrl + "ReferenciaInscripcion/" + sessionStorage.getItem('IdUsuario'));
+    window.open(this.baseUrl + "ReferenciaInscripcion/" + sessionStorage.getItem('IdEncriptada'));
   }
   generarReferenciaInscripcionCero() {
-    window.open(this.baseUrl + "ReferenciaInscripcionCero/" + sessionStorage.getItem('IdUsuario'));
+    window.open(this.baseUrl + "ReferenciaInscripcionCero/" + sessionStorage.getItem('IdEncriptada'));
   }
   generarFicha() {
-    window.open(this.baseUrl + "Ficha/" + sessionStorage.getItem('IdUsuario'));
+    window.open(this.baseUrl + "Ficha/" + sessionStorage.getItem('IdEncriptada'));
   }
   descargarGuiaExamen() {
     window.open(this.baseUrlFile + "GuiaExamen.pdf" );

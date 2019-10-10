@@ -127,18 +127,17 @@ export class FormularioComponent implements OnInit {
       this.fechaInicio = data[0].FECHA_INICIO;
       this.fechaFin = data[0].FECHA_FIN;
       this.fechaActual = data[0].FECHA_ACTUAL;
-      this.compararFechas();
+      if(this.compararFechas()){
+        return;
+      }
+      this.formularioService.getCarrera(this.pkPeriodo).subscribe(data => this.carreraLista = data);
+      this.formularioService.getEstadoCivil().subscribe(data => this.estadoCivilLista = data);
+      this.formularioService.getDependencia().subscribe(data => this.dependenciaLista = data);
+      this.formularioService.getPropagandaTecnologico().subscribe(data => this.propagandaTecnologicoLista = data);
+      this.formularioService.getEntidadFederativa().subscribe(data => this.entidadFederativaLista = data);
+      this.formularioService.getUniversidad().subscribe(data => this.universidadLista = data);
+      this.formularioService.getCarreraUniversidad().subscribe(data => this.carreraUniversidadLista = data);
     });
-
-    this.formularioService.getEstadoCivil().subscribe(data => this.estadoCivilLista = data);
-    this.formularioService.getDependencia().subscribe(data => this.dependenciaLista = data);
-    this.formularioService.getPropagandaTecnologico().subscribe(data => this.propagandaTecnologicoLista = data);
-    //this.formularioService.getIncapacidad().subscribe(data => this.incapacidadLista = data);
-    this.formularioService.getCarrera().subscribe(data => this.carreraLista = data);
-    this.formularioService.getEntidadFederativa().subscribe(data => this.entidadFederativaLista = data);
-    this.formularioService.getUniversidad().subscribe(data => this.universidadLista = data);
-    this.formularioService.getCarreraUniversidad().subscribe(data => this.carreraUniversidadLista = data);
-
   }
 
   compararFechas() {
@@ -152,6 +151,7 @@ export class FormularioComponent implements OnInit {
       //console.log('La fecha esta en el rango');
       this.activado = true;
     } else {
+      return true;
       //console.log('La fecha no esta en el rango');
     }
   }
@@ -303,7 +303,7 @@ export class FormularioComponent implements OnInit {
         "FK_COLONIA": this.colonia,
         "TELEFONO_CASA": "'" + this.tFijo + "'",
         "TELEFONO_MOVIL": "'" + this.tMovil + "'",
-        "CORREO1": "'" + this.formGroup.get('CORREO1').value + "'",
+        "CORREO1": "'" + this.formGroup.get('CORREO1').value.replace(' ','') + "'",
         "PADRE_TUTOR": "'" + this.nombrePadre + "'",
         "MADRE": "'" + this.nombreMadre + "'",
         "FK_BACHILLERATO": this.escuela,

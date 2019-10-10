@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PeriodoService } from '../../../services/periodo.service';
 import { AspiranteService } from '../../../services/aspirante.service';
 import { FormularioService } from '../../../services/formulario.service';
@@ -14,6 +14,7 @@ import { ValidarModuloService } from '../../../services/validarModulo.service';
   providers: [PeriodoService, FormularioService, AspiranteService, ValidarModuloService]
 })
 export class PrefichasComponent implements OnInit {
+  @ViewChild('loaderModal') loaderModal;
   constructor(private periodoService: PeriodoService,
     private formularioService: FormularioService,
     private aspiranteService: AspiranteService,
@@ -73,14 +74,15 @@ export class PrefichasComponent implements OnInit {
         //console.log(this.pkPeriodo);
         this.periodo = data[0].PK_PERIODO_PREFICHAS;
         this.obtenerAspirantes(data[0].PK_PERIODO_PREFICHAS);
+        this.formularioService.getCarrera(this.periodo).subscribe(data => {
+          this.carreras = data;
+          this.carreraLista = data;
+        });
       }
     });
 
     this.aspiranteService.getEstatus().subscribe(data => this.estatus = data);
-    this.formularioService.getCarrera().subscribe(data => {
-      this.carreras = data;
-      this.carreraLista = data;
-    });
+    
   }
 
   obtenerAspirantes(pk_periodo) {
@@ -191,8 +193,9 @@ export class PrefichasComponent implements OnInit {
     });
   }
 
-  modificarAspirante() {
-    this.aspiranteService.updateAspirante(
+  async modificarAspirante() {
+    //this.loaderModal.show();
+    const data = await this.aspiranteService.updateAspirante(
       {
         "PK_USUARIO": this.pkUsuario,
         "CURP": this.CURP.toUpperCase(),
@@ -204,6 +207,13 @@ export class PrefichasComponent implements OnInit {
       });
 
     this.obtenerAspirantes(this.periodo);
+
+    this.formularioService.getCarrera(this.periodo).subscribe(data => {
+      this.carreras = data;
+      this.carreraLista = data;
+    });
+    //this.loaderModal.hide();
+    alert(data);
   }
 
   enviarCorreo() {
