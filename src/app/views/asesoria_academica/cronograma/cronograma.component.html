@@ -54,10 +54,10 @@
       <tr
         *ngFor="let asesor of asesor | paginate: {itemsPerPage: registrosPagina, currentPage:pageActual, id: 'first' } let i = index">
         <td>{{i+1}}</td>
-        <td>{{asesor.name+' '+asesor.PRIMER_APELLIDO+' '+asesor.SEGUNDO_APELLIDO}}</td>
-        <td>{{asesor.email}}</td>
+        <td>{{asesor.NOMBRE+' '+asesor.PRIMER_APELLIDO+' '+asesor.SEGUNDO_APELLIDO}}</td>
+        <td>{{asesor.CORREO1}}</td>
         <td>{{asesor.NUMERO_CONTROL}}</td>
-        <td>{{asesor.CLAVE_CARRERA}}</td>
+        <td>{{asesor.CARRERA}}</td>
         <td>{{asesor.MATERIA}}</td>
         <td>{{asesor.DIA}}</td>
         <td>{{asesor.HORA}}</td>

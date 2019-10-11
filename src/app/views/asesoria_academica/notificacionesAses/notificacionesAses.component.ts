@@ -44,7 +44,7 @@ export class NotificacionesAsesComponent implements OnInit {
       data => {
         this.form.correos = [];
         for (var num in data) {
-          this.form.correos.push(data[num].email);
+          this.form.correos.push(data[num].CORREO1);
           console.log(this.form.correos)
         }
       },

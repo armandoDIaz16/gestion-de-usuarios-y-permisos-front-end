@@ -711,6 +711,7 @@ export class FormatoAlmnoComponent implements OnInit {
   cartaUser() {
     this.Jarwis.compromisoUser(this.form).subscribe(
       data => {
+        alert('REGISTRO CORRECTO')
 
       },
       error => this.handleError(error)

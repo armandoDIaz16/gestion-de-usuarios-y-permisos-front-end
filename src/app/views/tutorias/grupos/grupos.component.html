@@ -20,6 +20,7 @@
                 <th>Encuestas <br> activas</th>
                 <th>Encuestas <br> contestadas</th>
                 <th>Evalución de grupo</th>
+                <!--<th>Reportes</th>-->
                 <th>Operaciones</th>
             </tr>
             </thead>
@@ -46,6 +47,13 @@
                         </p>
                     </ng-template>
                 </td>
+                <!--
+                <td>
+                    <button class="btn btn-danger" (click)="reporte_perfil_grupal(grupo.PK_GRUPO_TUTORIA)">
+                        Perfil grupal de ingreso
+                    </button>
+                </td>
+                -->
                 <td>
                     <a [routerLink]="['/tutorias/detalle-grupo']"
                        [queryParams]="{clave_grupo: grupo.PK_GRUPO_TUTORIA}"

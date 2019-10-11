@@ -26,6 +26,15 @@ export class AperturaService extends GenericServicesService {
         //     }
         // );
     }
+
+    // addPeriodo2(fechas){
+    //     return this.http.post(GenericServicesService.API_ENDPOINT + 'Periodo', fechas, GenericServicesService.HEADERS
+    //         ).subscribe(
+    //             (response) => {
+    //                 console.log(response);
+    //         }
+    //     );
+    // }
     /*     updatePeriodo(fechas,idPeriodo){
             return this.http.patch('http://127.0.0.1:8000/api/Periodo/'+idPeriodo, fechas
                 ).subscribe(
@@ -35,6 +44,6 @@ export class AperturaService extends GenericServicesService {
             );
         } */
     getPeriodo(): Observable<Periodo> {
-        return this.http.get<Periodo>(GenericServicesService.API_ENDPOINT + 'PAAE_Periodo');
+        return this.http.get<Periodo>(GenericServicesService.API_ENDPOINT + 'PAAE_Periodo', this.headers);
     }
 }

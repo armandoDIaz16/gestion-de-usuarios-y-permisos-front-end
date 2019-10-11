@@ -408,7 +408,7 @@ export class Form_asesorComponent implements OnInit {
     });
     this.Jarwis.datos(this.form.id).subscribe(
       data => {
-        this.form.control = data[0].control
+        //this.form.control = data[0].control
         this.form.apep = data[0].apep
         this.form.apem = data[0].apem
         this.form.name = data[0].name
@@ -419,6 +419,7 @@ export class Form_asesorComponent implements OnInit {
       },
       error => this.handleError(error)
     );
+    
     this.Jarwis.promedio(this.form.control).subscribe(
       data => {
         this.form.promedio = data;
