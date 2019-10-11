@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { IBachillerato, ICarreraUniversidad, ICarrera, ICiudad, IColonia, IDependencia, IEntidadFederativa, IEstadoCivil, IIncapacidad, IPropagndaTecnologico, IUniversidad } from './serviciosListas';
+import { IBachillerato, ICarreraUniversidad, ICarrera, ICarrera2, ICiudad, IColonia, IDependencia, IEntidadFederativa, IEstadoCivil, IIncapacidad, IPropagndaTecnologico, IUniversidad } from './serviciosListas';
 import { GenericServicesService } from './generic-services.service';
 
 @Injectable()
@@ -19,8 +19,11 @@ export class FormularioService extends GenericServicesService{
     getCarreraUniversidad():Observable<ICarreraUniversidad[]>{
         return this.http.get<ICarreraUniversidad[]>(this.baseUrl+'Carrera_Universidad');
       }
-      getCarrera(pkPeriodo):Observable<ICarrera[]>{
-        return this.http.get<ICarrera[]>(this.baseUrl+'Carrera/'+pkPeriodo);
+      getCarrera():Observable<ICarrera[]>{
+        return this.http.get<ICarrera[]>(this.baseUrl+'Carrera');
+      }
+      getCarrera2(pkPeriodo):Observable<ICarrera2[]>{
+        return this.http.get<ICarrera2[]>(this.baseUrl+'Carrera/'+pkPeriodo);
       }
       getCiudad(entidadFederativa):Observable<ICiudad[]>{
         return this.http.get<ICiudad[]>(this.baseUrl+'Ciudad/'+entidadFederativa);

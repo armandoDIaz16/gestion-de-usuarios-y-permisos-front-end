@@ -36,14 +36,14 @@ export class ListaGruposComponent implements OnInit {
     if (!this.mostrarModulo) {
       return;
     }
-    this.lugarExamenService.getEspacio().subscribe(data => this.espacioLista = data);
-    this.lugarExamenService.getTurno().subscribe(data => {
-      this.diaLista = data[0].DIAS;
-      this.horaLista = data[0].HORAS;
-    });
     this.periodoService.getPeriodo().subscribe(data => {
       if (data) {
         this.periodo = data[0].PK_PERIODO_PREFICHAS;
+        this.lugarExamenService.getEspacio(this.periodo).subscribe(data => this.espacioLista = data);
+        this.lugarExamenService.getTurno(this.periodo).subscribe(data => {
+          this.diaLista = data[0].DIAS;
+          this.horaLista = data[0].HORAS;
+        });
       }
     });
   }

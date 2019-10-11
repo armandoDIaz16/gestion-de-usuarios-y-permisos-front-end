@@ -10,7 +10,6 @@
           <nav>
             <button type="button" class="btn btn-primary" [disabled]="habilitarCorreo"
               (click)="largeModal2.show()">Enviar correo</button>
-            <!-- <button type="button" class="btn btn-primary" (click)="leerExcel()">Leer Excel</button> -->
             <ul class="pagination pull-right float-sm-right">
               <li class="page-item {{select1}}"><a class="page-link" style="cursor: pointer"
                   (click)="mostrarRegistros('2')">2</a></li>
@@ -35,9 +34,9 @@
                   <th>Correo</th>
                   <th>Fijo</th>
                   <th>Celular</th>
-                  <th>Carrera 1</th>
+                  <th>Carrera</th>
                   <!-- <th>Carrera 2</th> -->
-                  <th>Status</th>
+                  <th>Estatus</th>
                   <th>Acciones</th>
                 </tr>
               </thead>
@@ -142,6 +141,9 @@
               <li class="page-item"><a class="page-link" href="#">Next</a></li>
             </ul>
           </nav>   -->
+          <label class="btn btn-primary" style="cursor:pointer;">Descargar Excel
+              <button type="button" (click)="generarExcel()" hidden></button>
+            </label>
         </div>
       </div>
     </div>

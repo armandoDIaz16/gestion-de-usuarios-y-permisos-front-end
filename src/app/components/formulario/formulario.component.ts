@@ -130,7 +130,7 @@ export class FormularioComponent implements OnInit {
       if(this.compararFechas()){
         return;
       }
-      this.formularioService.getCarrera(this.pkPeriodo).subscribe(data => this.carreraLista = data);
+      this.formularioService.getCarrera2(this.pkPeriodo).subscribe(data => this.carreraLista = data);
       this.formularioService.getEstadoCivil().subscribe(data => this.estadoCivilLista = data);
       this.formularioService.getDependencia().subscribe(data => this.dependenciaLista = data);
       this.formularioService.getPropagandaTecnologico().subscribe(data => this.propagandaTecnologicoLista = data);
