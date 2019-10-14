@@ -22,7 +22,7 @@ import {StudentOldComponent} from './components/student-old/student-old.componen
 import {ActivaCuentaComponent} from './components/activa-cuenta/activa-cuenta.component';
 
 import {ResidenciasRoutingModule} from './views/residencias/residencias-routing.module';
-import {PerfilComponent} from './components/perfil/perfil.component';
+import {PerfilComponent} from './views/usuarios/perfil/perfil.component';
 
 
 export const routes: Routes = [
@@ -98,14 +98,6 @@ export const routes: Routes = [
         }
     },
     {
-        path: 'perfil',
-        component: PerfilComponent,
-        canActivate: [AfterLoginService],
-        data: {
-            title: 'Mi perfil'
-        }
-    },
-    {
         path: '',
         component: DefaultLayoutComponent,
         canActivate: [AfterLoginService],
@@ -140,6 +132,10 @@ export const routes: Routes = [
             {
                 path: 'creditos',
                 loadChildren: './views/creditos/creditos.module#CreditosModule'
+            },
+            {
+                path: 'usuarios',
+                loadChildren: './views/usuarios/usuarios.module#UsuariosModule'
             }
         ]
     },
