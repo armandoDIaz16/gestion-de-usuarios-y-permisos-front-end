@@ -57,6 +57,15 @@ export class CrearGruposComponent implements OnInit {
   public turnoEscrito = null;
   public edificioEscrito = null;
 
+  public grupoEscritoLista = [];
+  public grupoEscrito = null;
+  public carrera2 = null;
+  public diaEscrito2 = null;
+  public horaEscrito2 = null;
+  public turnoEscrito2 = null;
+  public edificioEscrito2 = null;
+  public turnoEscrito3 = null;
+
   ngOnInit() {
     this.mostrarModulo = this.validarModuloService.getMostrarModulo("Crear grupos");
     if (!this.mostrarModulo) {
@@ -78,6 +87,7 @@ export class CrearGruposComponent implements OnInit {
           this.lugarExamenService.getEdificio().subscribe(data => this.edificioLista = data);
           this.formularioService.getCarrera().subscribe(data => this.carreraLista = data);
           this.lugarExamenService.getTurno2(this.pkPeriodo).subscribe(data => this.turno2Lista = data);
+          this.lugarExamenService.getGrupoEscrito(this.pkPeriodo).subscribe(data => this.grupoEscritoLista = data);
         }
       }
     });
@@ -129,7 +139,7 @@ export class CrearGruposComponent implements OnInit {
   }
 
 
-  
+
 
   recargarTurno() {
     this.lugarExamenService.getTurno2(this.pkPeriodo).subscribe(data => this.turno2Lista = data);
@@ -142,7 +152,7 @@ export class CrearGruposComponent implements OnInit {
   recargarGrupo() {
     this.lugarExamenService.getGrupo(this.pkPeriodo).subscribe(data => this.grupoLista = data);
   }
-
+  
   cargarTurno(PK) {
     //console.log(this.turno2Lista);
     for (var turno in this.turno2Lista) {
@@ -172,12 +182,13 @@ export class CrearGruposComponent implements OnInit {
     //console.log(this.grupoLista);
     for (var grupo in this.grupoLista) {
       if (this.grupoLista[grupo].PK_EXAMEN_ADMISION == PK) {
-        console.log(this.grupoLista[grupo]);
+        //console.log(this.grupoLista[grupo]);
         this.espacio2 = this.grupoLista[grupo].FK_ESPACIO;
         this.turno4 = this.grupoLista[grupo].FK_TURNO;
       }
     }
   }
+
 
   async modificarTurno(PK) {
     this.loaderModal.show();
@@ -193,6 +204,7 @@ export class CrearGruposComponent implements OnInit {
       alert(data);
     }
   }
+
   async modificarEspacio(PK) {
     this.loaderModal.show();
     const data = await this.lugarExamenService.updateEspacioExamen({
@@ -210,6 +222,7 @@ export class CrearGruposComponent implements OnInit {
       alert(data);
     }
   }
+
   async modificarGrupo(PK) {
     this.loaderModal.show();
     const data = await this.lugarExamenService.updateGrupoExamen({
@@ -242,7 +255,7 @@ export class CrearGruposComponent implements OnInit {
       alert(data);
     }
   }
-  
+
   async guardarGrupoEscrito() {
     this.loaderModal.show();
     const data = await this.lugarExamenService.addGrupoExamenEscrito({
@@ -258,7 +271,60 @@ export class CrearGruposComponent implements OnInit {
     }
   }
 
+  async modificarTurnoEscrito(PK) {
+    this.loaderModal.show();
+    const data = await this.lugarExamenService.updateTurnoExamen({
+      'PK_TURNO': PK,
+      'DIA': this.diaEscrito2,
+      'HORA': this.horaEscrito2,
+      "FK_PERIODO": this.pkPeriodo
+    });
+    if (data) {
+      this.loaderModal.hide();
+      this.recargarTurno();
+      alert(data);
+    }
+  }
 
+  async modificarGrupoEscrito(PK) {
+    this.loaderModal.show();
+    const data = await this.lugarExamenService.updateGrupoExamenEscrito({
+      'PK_EXAMEN_ADMISION_ESCRITO': PK,
+      'FK_CARRERA': this.carrera2,
+      'FK_EDIFICIO': this.edificioEscrito2,
+      'FK_TURNO': this.turnoEscrito3,
+      "FK_PERIODO": this.pkPeriodo
+    });
+    if (data) {
+      this.loaderModal.hide();
+      this.recargarGrupoEscrito();
+      alert(data);
+    }
+  }
 
+  cargarTurnoEscrito(PK) {
+    //console.log(this.turno2Lista);
+    for (var turno in this.turno2Lista) {
+      if (this.turno2Lista[turno].PK_TURNO == PK) {
+        //console.log("--" + this.turno2Lista[turno].PK_TURNO)
+        this.diaEscrito2 = this.turno2Lista[turno].DIA;
+        this.horaEscrito2 = this.turno2Lista[turno].HORA;
+      }
+    }
+  }
 
+  cargarGrupoEscrito(PK) {
+    //console.log(this.grupoLista);
+    for (var grupo in this.grupoEscritoLista) {
+      if (this.grupoEscritoLista[grupo].PK_EXAMEN_ADMISION_ESCRITO == PK) {
+        //console.log(this.grupoEscritoLista[grupo]);
+        this.carrera2 = this.grupoEscritoLista[grupo].FK_CARRERA;
+        this.edificioEscrito2 = this.grupoEscritoLista[grupo].FK_EDIFICIO;
+        this.turnoEscrito3 = this.grupoEscritoLista[grupo].FK_TURNO;
+      }
+    }
+  }
+  recargarGrupoEscrito() {
+    this.lugarExamenService.getGrupoEscrito(this.pkPeriodo).subscribe(data => this.grupoEscritoLista = data);
+  }
 }

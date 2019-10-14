@@ -22,6 +22,9 @@ export class LugarExamenService  extends GenericServicesService {
     getGrupo(pkPeriodo): Observable<IGrupo[]> {
         return this.http.get<IGrupo[]>(this.baseUrl+'Grupo/'+pkPeriodo, this.headers);
     }
+    getGrupoEscrito(pkPeriodo): Observable<IGrupo[]> {
+        return this.http.get<IGrupo[]>(this.baseUrl+'GrupoEscrito/'+pkPeriodo, this.headers);
+    }
     getEspacio(pkPeriodo): Observable<IEspacio[]> {
         return this.http.get<IEspacio[]>(this.baseUrl+'Espacio2/'+pkPeriodo, this.headers);
     }
@@ -51,5 +54,8 @@ export class LugarExamenService  extends GenericServicesService {
     }
     updateGrupoExamen(datos) {
         return this.http.post(this.baseUrl+'ModificarGrupo', datos, this.headers).toPromise();
+    }
+    updateGrupoExamenEscrito(datos) {
+        return this.http.post(this.baseUrl+'ModificarGrupoEscrito', datos, this.headers).toPromise();
     }
 }
