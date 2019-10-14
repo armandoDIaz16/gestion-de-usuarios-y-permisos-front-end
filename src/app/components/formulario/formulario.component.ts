@@ -253,6 +253,9 @@ export class FormularioComponent implements OnInit {
     }
   }
   async onSubmit() {
+    if (this.colonia == 0) {
+      this.colonia = "null";
+    }
     if (this.sApellido == null) {
       this.sApellido = ""
     }
