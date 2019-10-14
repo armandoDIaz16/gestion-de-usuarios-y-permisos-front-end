@@ -125,7 +125,7 @@
                       <label style="color:#ff0000;" for="asterisco">*</label>
                       <select [(ngModel)]="colonia" class="form-control" name="colonia" required>
                         <option [value]=null>Selecciona</option>
-                        <option [value]=1>Otra</option>
+                        <option [value]=0>Otra</option>
                         <option *ngFor="let colonia of coloniaLista" value="{{colonia.PK_COLONIA}}">{{colonia.NOMBRE}}
                         </option>
                       </select>

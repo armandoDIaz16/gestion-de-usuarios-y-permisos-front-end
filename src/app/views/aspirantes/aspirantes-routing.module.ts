@@ -11,6 +11,7 @@ import { PrefichasComponent } from './prefichas/prefichas.component';
 import { PeriodoComponent } from './periodo/periodo.component';
 import { CrearGruposComponent } from './crear_grupos/crear_grupos.component';
 import { ArchivosPagosComponent } from './archivos_pagos/archivos_pagos.component';
+import { PlantillaSIIAComponent } from './plantilla_siia/plantilla_siia.component';
 
 const routes: Routes = [
   {
@@ -87,6 +88,13 @@ const routes: Routes = [
         component: PeriodoComponent,
         data: {
           title: 'Periodo'
+        }
+      },
+      {
+        path: 'plantilla_siia',
+        component: PlantillaSIIAComponent,
+        data: {
+          title: 'Plantilla SIIA'
         }
       }
     ]
