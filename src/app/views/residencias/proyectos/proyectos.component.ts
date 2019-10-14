@@ -14,6 +14,7 @@ export class ProyectosComponent extends GenericServicesService implements OnInit
 
     public anteproyectosLista = [];
     public mostrarModulo = false;
+    public sistema = 'Residencias';
     usuario = sessionStorage.getItem('IdUsuario');
     ID = this.ID;
 
@@ -35,7 +36,21 @@ export class ProyectosComponent extends GenericServicesService implements OnInit
         });
     }
     uploadFile(event) {
-    let elem = event.target;
+        let archivo: File = event.target.files[0];
+        if (!archivo) {
+            return;
+        }
+        let myReader: FileReader = new FileReader();
+        myReader.onloadend = (e) => {
+            this.subirArchivo({'Sistema': this.sistema,
+                'Nombre': archivo.name.split('.').shift(),
+                'Extencion': archivo.name.split('.').pop(),
+                'Archivo': myReader.result,
+                'ID': this.ID,
+                'id': this.usuario});
+        };
+        myReader.readAsDataURL(archivo);
+/*    let elem = event.target;
         if (elem.files.length > 0) {
             let formData = new FormData();
             formData.append('myfile', elem.files[0]);
@@ -46,12 +61,32 @@ export class ProyectosComponent extends GenericServicesService implements OnInit
                     alert(response);
                 });
         }
-        elem.value = ''; // line 9
+        elem.value = ''; // line 9*/
 
     }
 
+    subirArchivo(datos) {
+        this.http.post(GenericServicesService.API_ENDPOINT + 'Reporte', datos, GenericServicesService.HEADERS).subscribe(
+            (response) => {
+                alert(response);
+            });
+    }
+
     uploadFile2(event) {
-        let elem = event.target;
+        let archivo: File = event.target.files[0];
+        if (!archivo) {
+            return;
+        }
+        let myReader: FileReader = new FileReader();
+        myReader.onloadend = (e) => {
+            this.subirArchivo2({'Sistema': this.sistema,
+                'Nombre': archivo.name.split('.').shift(),
+                'Extencion': archivo.name.split('.').pop(),
+                'Archivo': myReader.result,
+                'id': this.usuario});
+        };
+        myReader.readAsDataURL(archivo);
+/*        let elem = event.target;
         if (elem.files.length > 0) {
             let formData = new FormData();
             formData.append('myfile', elem.files[0]);
@@ -61,12 +96,32 @@ export class ProyectosComponent extends GenericServicesService implements OnInit
                     alert(response);
                 });
         }
-        elem.value = ''; // line 9
+        elem.value = ''; // line 9*/
 
     }
 
+    subirArchivo2(datos) {
+      this.http.post(GenericServicesService.API_ENDPOINT + 'anteproyecto2', datos, GenericServicesService.HEADERS).subscribe(
+        (response) => {
+            alert(response);
+        });
+    }
+
     uploadFile3(event) {
-        let elem = event.target;
+        let archivo: File = event.target.files[0];
+        if (!archivo) {
+            return;
+        }
+        let myReader: FileReader = new FileReader();
+        myReader.onloadend = (e) => {
+            this.subirArchivo3({'Sistema': this.sistema,
+                'Nombre': archivo.name.split('.').shift(),
+                'Extencion': archivo.name.split('.').pop(),
+                'Archivo': myReader.result,
+                'FK_ALUMNO': this.usuario});
+        };
+        myReader.readAsDataURL(archivo);
+/*        let elem = event.target;
         if (elem.files.length > 0) {
             let formData = new FormData();
             formData.append('myfile', elem.files[0]);
@@ -76,12 +131,32 @@ export class ProyectosComponent extends GenericServicesService implements OnInit
                     alert(response);
                 });
         }
-        elem.value = ''; // line 9
+        elem.value = ''; // line 9*/
 
     }
 
+    subirArchivo3(datos) {
+      this.http.post(GenericServicesService.API_ENDPOINT + 'Informe', datos, GenericServicesService.HEADERS).subscribe(
+        (response) => {
+            alert(response);
+        });
+    }
+
     uploadFile4(event) {
-        let elem = event.target;
+        let archivo: File = event.target.files[0];
+        if (!archivo) {
+            return;
+        }
+        let myReader: FileReader = new FileReader();
+        myReader.onloadend = (e) => {
+            this.subirArchivo4({'Sistema': this.sistema,
+                'Nombre': archivo.name.split('.').shift(),
+                'Extencion': archivo.name.split('.').pop(),
+                'Archivo': myReader.result,
+                'FK_ALUMNO': this.usuario});
+        };
+        myReader.readAsDataURL(archivo);
+/*        let elem = event.target;
         if (elem.files.length > 0) {
             let formData = new FormData();
             formData.append('myfile', elem.files[0]);
@@ -91,7 +166,14 @@ export class ProyectosComponent extends GenericServicesService implements OnInit
                     alert(response);
                 });
         }
-        elem.value = ''; // line 9
+        elem.value = ''; // line 9*/
 
+    }
+
+    subirArchivo4(datos) {
+        this.http.post(GenericServicesService.API_ENDPOINT + 'CartaFinalR', datos, GenericServicesService.HEADERS).subscribe(
+            (response) => {
+                alert(response);
+            });
     }
 }

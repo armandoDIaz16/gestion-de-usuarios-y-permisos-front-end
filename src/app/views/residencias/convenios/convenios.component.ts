@@ -31,6 +31,7 @@ export class ConveniosComponent extends GenericServicesService implements OnInit
     DirEmpresa = this.DirEmpresa;
     NombreTestigo = this.NombreTestigo;
     public mostrarModulo = false;
+    public sistema = 'Residencias';
   constructor(private http: HttpClient, private validarModuloService: ValidarModuloService) { super(http); }
 
   ngOnInit() {
@@ -41,7 +42,38 @@ export class ConveniosComponent extends GenericServicesService implements OnInit
   }
 
   uploadFile(event) {
-        let elem = event.target;
+      let archivo: File = event.target.file[0];
+      if (!archivo) {
+          return;
+      }
+      let myReader: FileReader = new FileReader();
+      myReader.onloadend = (e) => {
+          this.subirArchivo({'Sistema': this.sistema,
+                                    'Nombre': archivo.name.split('.').shift(),
+                                    'Extencion': archivo.name.split('.').pop(),
+                                    'Archivo': myReader.result,
+                                    'NombreEmpresa': this.NombreEmpresa,
+                                    'NombreRepresentante': this.NombreRepresentante,
+                                    'NoActaConstitutiva': this.NoActaConstitutiva,
+                                    'FechaFirma': this.FechaFirma,
+                                    'NombreNotario': this.NombreNotario,
+                                    'NoNotaria': this.NoNotaria,
+                                    'EntidadFederativa': this.EntidadFederativa,
+                                    'FechaRegistro': this.FechaRegistro,
+                                    'FolioMercantil': this.FolioMercantil,
+                                    'NoVolumen': this.NoVolumen,
+                                    'ObjetoSocial': this.ObjetoSocial,
+                                    'NoEscritura': this.NoEscritura,
+                                    'FechaNotario': this.FechaNotario,
+                                    'NombreNotarioNotario': this.NombreNotarioNotario,
+                                    'NoNotariaNotario': this.NoNotariaNotario,
+                                    'EntidadFederativaNotario': this.EntidadFederativaNotario,
+                                    'NoRFC': this.NoRFC,
+                                    'DirEmpresa': this.DirEmpresa,
+                                    'NombreTestigo': this.NombreTestigo});
+      };
+      myReader.readAsDataURL(archivo);
+/*        let elem = event.target;
         if (elem.files.length > 0) {
             let formData = new FormData();
             formData.append('myfile', elem.files[0]);
@@ -69,7 +101,14 @@ export class ConveniosComponent extends GenericServicesService implements OnInit
                     alert(response);
                 });
         }
-        elem.value = ''; // line 9
+        elem.value = ''; // line 9*/
 
+    }
+
+    subirArchivo(datos) {
+        this.http.post(GenericServicesService.API_ENDPOINT + 'Convenio', datos, GenericServicesService.HEADERS).subscribe(
+            (response) => {
+                alert(response);
+            });
     }
 }
