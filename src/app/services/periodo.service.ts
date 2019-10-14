@@ -18,98 +18,48 @@ export class PeriodoService extends GenericServicesService{
       private baseUrl = GenericServicesService.API_ENDPOINT;
       private headers = GenericServicesService.HEADERS;
         
-    addPeriodo(fechas){
-        this.genericServicesService.post('Periodo',fechas);
+    async addPeriodo(fechas){
+        return this.http.post(this.baseUrl + 'Periodo', fechas, this.headers).toPromise();
     }
 
-    addPeriodo2(fechas){
-        return this.http.post(GenericServicesService.API_ENDPOINT + 'Periodo', fechas, GenericServicesService.HEADERS
-            ).subscribe(
-                (response) => {
-                    console.log(response);
-            }
-        );
+    async addPeriodoCurso(fechas){
+        return this.http.post(GenericServicesService.API_ENDPOINT + 'PeriodoCurso', fechas, GenericServicesService.HEADERS).toPromise();
     }
 
-    addPeriodoCurso(fechas){
-        return this.http.post(GenericServicesService.API_ENDPOINT + 'PeriodoCurso', fechas, GenericServicesService.HEADERS
-            ).subscribe(
-                (response) => {
-                    console.log(response);
-            }
-        );
+    async addPeriodoInscripcion(fechas){
+        return this.http.post(GenericServicesService.API_ENDPOINT + 'PeriodoInscripcion', fechas, GenericServicesService.HEADERS).toPromise();
     }
 
-    addPeriodoInscripcion(fechas){
-        return this.http.post(GenericServicesService.API_ENDPOINT + 'PeriodoInscripcion', fechas, GenericServicesService.HEADERS
-            ).subscribe(
-                (response) => {
-                    console.log(response);
-            }
-        );
+    async addPeriodoInscripcionCero(fechas){
+        return this.http.post(GenericServicesService.API_ENDPOINT + 'PeriodoInscripcionCero', fechas, GenericServicesService.HEADERS).toPromise();
     }
 
-    addPeriodoInscripcionCero(fechas){
-        return this.http.post(GenericServicesService.API_ENDPOINT + 'PeriodoInscripcionCero', fechas, GenericServicesService.HEADERS
-            ).subscribe(
-                (response) => {
-                    console.log(response);
-            }
-        );
+    async addMontoPreficha(monto){
+        return this.http.post(this.baseUrl + 'MontoPreficha',  monto, this.headers).toPromise();
     }
 
-    addMontoPreficha(monto){
-        return this.http.post(this.baseUrl + 'MontoPreficha',  monto, this.headers
-        ).subscribe(
-            (response) => {
-                console.log(response);
-            }
-        );
+    async addMontoCurso(monto){
+        return this.http.post(this.baseUrl + 'MontoCurso',  monto, this.headers).toPromise();
     }
 
-    addMontoCurso(monto){
-        return this.http.post(this.baseUrl + 'MontoCurso',  monto, this.headers
-        ).subscribe(
-            (response) => {
-                console.log(response);
-            }
-        );
+    async addMontoInscripcion(monto){
+        return this.http.post(this.baseUrl + 'MontoInscripcion',  monto, this.headers).toPromise();
     }
 
-    addMontoInscripcion(monto){
-        return this.http.post(this.baseUrl + 'MontoInscripcion',  monto, this.headers
-        ).subscribe(
-            (response) => {
-                console.log(response);
-            }
-        );
+    async addMontoInscripcionCero(monto){
+        return this.http.post(this.baseUrl + 'MontoInscripcionCero',  monto, this.headers).toPromise();
     }
 
-    addMontoInscripcionCero(monto){
-        return this.http.post(this.baseUrl + 'MontoInscripcionCero',  monto, this.headers
-        ).subscribe(
-            (response) => {
-                console.log(response);
-            }
-        );
+    async publicarResultados(resultados){
+        return this.http.post(this.baseUrl + 'PublicarResultados',  resultados, this.headers).toPromise();
+    }
+    
+    async updateMenajes(mensajes){
+        return this.http.post(this.baseUrl + 'MensajesAceptacion',  mensajes, this.headers).toPromise();
     }
 
-    publicarResultados(resultados){
-        return this.http.post(this.baseUrl + 'PublicarResultados',  resultados, this.headers
-        ).subscribe(
-            (response) => {
-                console.log(response);
-            }
-        );
-    }
-
-    updateMenajes(mensajes){
-        return this.http.post(this.baseUrl + 'MensajesAceptacion',  mensajes, this.headers
-        ).subscribe(
-            (response) => {
-                console.log(response);
-            }
-        );
+    async modificarTipoExamen(tipo){
+        return this.http.post(this.baseUrl + 'ModificarTipoExamen',  tipo, this.headers).toPromise();
     }
 
     getPeriodo():Observable<Periodo>{

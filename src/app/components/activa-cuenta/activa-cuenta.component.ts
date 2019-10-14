@@ -65,7 +65,7 @@ export class ActivaCuentaComponent implements OnInit {
 
     handleError(error) {
         this.error = error.error.error;
-        this.ocultar_boton_enviar = false;
+        this.ocultar_boton_enviar = true;
     }
 
     ngOnInit() {

@@ -460,7 +460,7 @@
                                 [disabled]="habilitarHoraMartes" [hidden]="habilitarHoraMartes">
                                 <option value='0' disabled>NOMBRE ASESOR(RA)</option>
                                 <option *ngFor="let ase of asesores" value={{ase.PK_USUARIO}}>
-                                  {{ase.name+' '+ase.PRIMER_APELLIDO+' '+ase.SEGUNDO_APELLIDO}}</option>
+                                  {{ase.NOMBRE+' '+ase.PRIMER_APELLIDO+' '+ase.SEGUNDO_APELLIDO}}</option>
                               </select>
                             </div>
                             <div class="input-group mb-3" *ngIf="!habilitarMaterias">
@@ -762,7 +762,7 @@
                                 [disabled]="habilitarHoraMartes" [hidden]="habilitarHoraMartes">
                                 <option value='0' disabled>NOMBRE ASESOR(RA)</option>
                                 <option *ngFor="let ase of asesores" value={{ase.PK_USUARIO}}>
-                                  {{ase.name+' '+ase.PRIMER_APELLIDO+' '+ase.SEGUNDO_APELLIDO}}</option>
+                                  {{ase.NOMBRE+' '+ase.PRIMER_APELLIDO+' '+ase.SEGUNDO_APELLIDO}}</option>
                               </select>
                             </div>
                             <div class="input-group mb-3" *ngIf="!habilitarMaterias">

@@ -79,7 +79,7 @@ const routes: Routes = [
         path: 'graficas',
         component: GraficasComponent,
         data: {
-          title: 'Graficas'
+          title: 'Gráficas'
         }
       },
       {

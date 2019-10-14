@@ -27,7 +27,7 @@
                   <div class="row">
                     <div class="col-md-6 mx-auto">
                       <div align="center">
-                        <h2>ASIGNACIóN INDIVIDUAL</h2>
+                        <h2>ASIGNACIÓN INDIVIDUAL</h2>
                       </div>
                       <div class="card-group">
                         <div class="card p-3">
@@ -48,7 +48,7 @@
                                 <select class="form-control" type="text" name="selectasesor" [(ngModel)]="form.selectasesor" [disabled]="habilitarHoraLunes"
                                   [hidden]="habilitarHoraLunes">
                                   <option value='0' disabled>ASESOR/A</option>
-                                  <option *ngFor="let asesor of asesores" value="{{asesor.PK_USUARIO}}">{{asesor.name+" "+asesor.PRIMER_APELLIDO+" "+asesor.SEGUNDO_APELLIDO}}</option>
+                                  <option *ngFor="let asesor of asesores" value="{{asesor.PK_USUARIO}}">{{asesor.NOMBRE+" "+asesor.PRIMER_APELLIDO+" "+asesor.SEGUNDO_APELLIDO}}</option>
                                 </select>
                               </div>
           
@@ -60,7 +60,7 @@
                                 <select class="form-control" type="text" name="selectsolicitante" [(ngModel)]="form.selectsolicitante" 
                                   [disabled]="habilitarHoraMartes" [hidden]="habilitarHoraMartes">
                                   <option value='0' disabled>SOLICITANTE</option>
-                                  <option *ngFor="let solicitud of solicitudes" value="{{solicitud.PK_USUARIO}}">{{solicitud.name+" "+solicitud.PRIMER_APELLIDO+" "+solicitud.SEGUNDO_APELLIDO}}</option>
+                                  <option *ngFor="let solicitud of solicitudes" value="{{solicitud.PK_USUARIO}}">{{solicitud.NOMBRE+" "+solicitud.PRIMER_APELLIDO+" "+solicitud.SEGUNDO_APELLIDO}}</option>
                                 </select>
                               </div>
           
@@ -152,7 +152,7 @@
                   <div class="row">
                     <div class="col-md-6 mx-auto">
                       <div align="center">
-                        <h2>ASIGNACIóN GRUPAL</h2>
+                        <h2>ASIGNACIÓN GRUPAL</h2>
                       </div>
                       <div class="card-group">
                         <div class="card p-3">
@@ -173,7 +173,7 @@
                                 <select class="form-control" type="text" name="selectasesor" [(ngModel)]="form.selectasesorgrupo" [disabled]="habilitarHoraLunes"
                                   [hidden]="habilitarHoraLunes">
                                   <option value='0' disabled>ASESOR/A</option>
-                                  <option *ngFor="let asesor of asesores" value="{{asesor.PK_USUARIO}}">{{asesor.name+" "+asesor.PRIMER_APELLIDO+" "+asesor.SEGUNDO_APELLIDO}}</option>
+                                  <option *ngFor="let asesor of asesores" value="{{asesor.PK_USUARIO}}">{{asesor.NOMBRE+" "+asesor.PRIMER_APELLIDO+" "+asesor.SEGUNDO_APELLIDO}}</option>
                                 </select>
                               </div>
           

@@ -8,6 +8,8 @@ export interface IIncapacidad {
 }
 export interface ICarrera {
 }
+export interface ICarrera2 {
+}
 export interface IEntidadFederativa {
 }
 export interface ICiudad {

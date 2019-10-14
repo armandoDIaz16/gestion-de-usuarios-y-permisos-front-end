@@ -77,7 +77,7 @@ export class NotificacionesComponent implements OnInit {
       data => {
         this.form.correos = [];
         for (var num in data) {
-          this.form.correos.push(data[num].email);
+          this.form.correos.push(data[num].CORREO1);
           console.log(this.form.correos)
         }
       },
@@ -90,7 +90,7 @@ export class NotificacionesComponent implements OnInit {
       data => {
         this.form.correos = [];
         for (var num in data) {
-          this.form.correos.push(data[num].email);
+          this.form.correos.push(data[num].CORREO1);
           console.log(this.form.correos)
         }
       },
@@ -102,7 +102,7 @@ export class NotificacionesComponent implements OnInit {
     this.Jarwis.obtenerAsesor().subscribe(
       data => {
         for (var num in data) {
-          this.form.correos.push(data[num].email);
+          this.form.correos.push(data[num].CORREO1);
           console.log(this.form.correos)
         }
       },
@@ -111,7 +111,7 @@ export class NotificacionesComponent implements OnInit {
     this.Jarwis.obtenerSolicitud().subscribe(
       data => {
         for (var num in data) {
-          this.form.correos.push(data[num].email);
+          this.form.correos.push(data[num].CORREO1);
           console.log(this.form.correos)
         }
       },

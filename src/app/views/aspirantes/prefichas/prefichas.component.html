@@ -8,8 +8,8 @@
         </div>
         <div class="card-body">
           <nav>
-            <button type="button" class="btn btn-primary" [disabled]="habilitarCorreo" (click)="largeModal2.show()">Enviar correo</button>
-            <!-- <button type="button" class="btn btn-primary" (click)="leerExcel()">Leer Excel</button> -->
+            <button type="button" class="btn btn-primary" [disabled]="habilitarCorreo"
+              (click)="largeModal2.show()">Enviar correo</button>
             <ul class="pagination pull-right float-sm-right">
               <li class="page-item {{select1}}"><a class="page-link" style="cursor: pointer"
                   (click)="mostrarRegistros('2')">2</a></li>
@@ -22,79 +22,81 @@
             </ul>
           </nav>
           <div class="table-responsive">
-          <table class="table table-bordered table-striped table-sm">
-            <thead>
-              <tr>
-                <th scope="row">#</th>
-                <th>Preficha</th>
-                <th>CURP</th>
-                <th>Nombre</th>
-                <th>Primer apellido</th>
-                <th>Segundo apellido</th>
-                <th>Correo</th>
-                <th>Fijo</th>
-                <th>Celular</th>
-                <th>Carrera 1</th>
-                <th>Carrera 2</th>
-                <th>Status</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td></td>
-                <td><input [(ngModel)]="filtroPREFICHA" type="text" class="form-control" (keyup)="buscar()"></td>
-                <td><input [(ngModel)]="filtroCURP" type="text" class="form-control" (keyup)="buscar()"></td>
-                <td><input [(ngModel)]="filtroNOMBRE" type="text" class="form-control" (keyup)="buscar()"></td>
-                <td><input [(ngModel)]="filtroPRIMER_APELLIDO" type="text" class="form-control" (keyup)="buscar()"></td>
-                <td><input [(ngModel)]="filtroSEGUNDO_APELLIDO" type="text" class="form-control" (keyup)="buscar()">
-                </td>
-                <td><input [(ngModel)]="filtroCORREO" type="text" class="form-control" (keyup)="buscar()"></td>
-                <td><input [(ngModel)]="filtroTELEFONO_CASA" type="text" class="form-control" (keyup)="buscar()"></td>
-                <td><input [(ngModel)]="filtroTELEFONO_MOVIL" type="text" class="form-control" (keyup)="buscar()"></td>
-                <td>
-                  <select [(ngModel)]="filtroCARRERA1" class="form-control" name="carrera1" (change)="buscar()">
-                    <option value="todas">Todas</option>
-                    <option *ngFor="let carrera of carreras" value="{{carrera.NOMBRE}}">{{carrera.NOMBRE}}
-                  </select>
-                </td>
-                <td>
+            <table class="table table-bordered table-striped table-sm">
+              <thead>
+                <tr>
+                  <th scope="row">#</th>
+                  <th>Preficha</th>
+                  <th>CURP</th>
+                  <th>Nombre</th>
+                  <th>Primer apellido</th>
+                  <th>Segundo apellido</th>
+                  <th>Correo</th>
+                  <th>Fijo</th>
+                  <th>Celular</th>
+                  <th>Carrera</th>
+                  <!-- <th>Carrera 2</th> -->
+                  <th>Estatus</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td></td>
+                  <td><input [(ngModel)]="filtroPREFICHA" type="text" class="form-control" (keyup)="buscar()"></td>
+                  <td><input [(ngModel)]="filtroCURP" type="text" class="form-control" (keyup)="buscar()"></td>
+                  <td><input [(ngModel)]="filtroNOMBRE" type="text" class="form-control" (keyup)="buscar()"></td>
+                  <td><input [(ngModel)]="filtroPRIMER_APELLIDO" type="text" class="form-control" (keyup)="buscar()">
+                  </td>
+                  <td><input [(ngModel)]="filtroSEGUNDO_APELLIDO" type="text" class="form-control" (keyup)="buscar()">
+                  </td>
+                  <td><input [(ngModel)]="filtroCORREO" type="text" class="form-control" (keyup)="buscar()"></td>
+                  <td><input [(ngModel)]="filtroTELEFONO_CASA" type="text" class="form-control" (keyup)="buscar()"></td>
+                  <td><input [(ngModel)]="filtroTELEFONO_MOVIL" type="text" class="form-control" (keyup)="buscar()">
+                  </td>
+                  <td>
+                    <select [(ngModel)]="filtroCARRERA1" class="form-control" name="carrera1" (change)="buscar()">
+                      <option value="todas">Todas</option>
+                      <option *ngFor="let carrera of carreras" value="{{carrera.NOMBRE}}">{{carrera.NOMBRE}}
+                    </select>
+                  </td>
+                  <!-- <td>
                   <select [(ngModel)]="filtroCARRERA2" class="form-control" name="carrera2" (change)="buscar()">
                     <option value="todas">Todas</option>
                     <option *ngFor="let carrera of carreras" value="{{carrera.NOMBRE}}">{{carrera.NOMBRE}}
                   </select>
-                </td>
-                <td>
-                  <select [(ngModel)]="filtroESTATUS" class="form-control" name="estatus" (change)="buscar()">
-                    <option value="todos">Todos</option>
-                    <option *ngFor="let estatus2 of estatus" value="{{estatus2.NOMBRE}}">{{estatus2.NOMBRE}}
-                  </select>
-                </td>
-                <td></td>
-              </tr>
-              <tr
-                *ngFor="let aspirante of aspirantes | paginate: {itemsPerPage: registrosPagina, currentPage:pageActual} let i = index">
-                <td>{{i+1}}</td>
-                <td>{{aspirante.PREFICHA}}</td>
-                <td>{{aspirante.CURP}}</td>
-                <td>{{aspirante.NOMBRE}}</td>
-                <td>{{aspirante.PRIMER_APELLIDO}}</td>
-                <td>{{aspirante.SEGUNDO_APELLIDO}}</td>
-                <td>{{aspirante.CORREO}}</td>
-                <td>{{aspirante.TELEFONO_CASA}}</td>
-                <td>{{aspirante.TELEFONO_MOVIL}}</td>
-                <td>{{aspirante.CARRERA1}}</td>
-                <td>{{aspirante.CARRERA2}}</td>
-                <td><span class="badge badge-success">{{aspirante.ESTATUS}}</span></td>
-                <td>
+                </td> -->
+                  <td>
+                    <select [(ngModel)]="filtroESTATUS" class="form-control" name="estatus" (change)="buscar()">
+                      <option value="todos">Todos</option>
+                      <option *ngFor="let estatus2 of estatus" value="{{estatus2.NOMBRE}}">{{estatus2.NOMBRE}}
+                    </select>
+                  </td>
+                  <td></td>
+                </tr>
+                <tr
+                  *ngFor="let aspirante of aspirantes | paginate: {itemsPerPage: registrosPagina, currentPage:pageActual} let i = index">
+                  <td>{{i+1}}</td>
+                  <td>{{aspirante.PREFICHA}}</td>
+                  <td>{{aspirante.CURP}}</td>
+                  <td>{{aspirante.NOMBRE}}</td>
+                  <td>{{aspirante.PRIMER_APELLIDO}}</td>
+                  <td>{{aspirante.SEGUNDO_APELLIDO}}</td>
+                  <td>{{aspirante.CORREO}}</td>
+                  <td>{{aspirante.TELEFONO_CASA}}</td>
+                  <td>{{aspirante.TELEFONO_MOVIL}}</td>
+                  <td>{{aspirante.CARRERA1}}</td>
+                  <!-- <td>{{aspirante.CARRERA2}}</td> -->
+                  <td><span class="badge badge-success">{{aspirante.ESTATUS}}</span></td>
+                  <td>
 
-                  <div class="row d-flex justify-content-center">
-                    <button class="btn btn-primary btn-sm" type="button" (click)="largeModal.show()"
-                      style="margin-bottom: 4px" (click)="cargarAspirante(aspirante.PK_USUARIO)">
-                      <i class="fa fa-edit"></i>
-                    </button>
+                    <div class="row d-flex justify-content-center">
+                      <button class="btn btn-primary btn-sm" type="button" (click)="largeModal.show()"
+                        style="margin-bottom: 4px" (click)="cargarAspirante(aspirante.PK_USUARIO)">
+                        <i class="fa fa-edit"></i>
+                      </button>
 
-                    <!--                     <td>{{aspirantes.PREFICHA}}</td>
+                      <!--                     <td>{{aspirantes.PREFICHA}}</td>
                     <td>{{aspirantes.FECHA_REGISTRO}}</td>
                     <td>{{aspirantes.NUMERO_PREFICHA}}</td>
                     <td>{{aspirantes.NOMBRE_ESTATUS}}</td>
@@ -116,11 +118,11 @@
                     <td>{{aspirantes.PROMEDIO}}</td>
                     <td>{{aspirantes.ESPECIALIDAD}}</td> -->
 
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <div class="d-flex justify-content-center">
@@ -139,6 +141,9 @@
               <li class="page-item"><a class="page-link" href="#">Next</a></li>
             </ul>
           </nav>   -->
+          <label class="btn btn-primary" style="cursor:pointer;">Descargar Excel
+              <button type="button" (click)="generarExcel()" hidden></button>
+            </label>
         </div>
       </div>
     </div>
@@ -157,107 +162,110 @@
       </div>
       <div class="modal-body">
         <table class="table table-bordered table-striped table-sm">
-            <thead>
-                <tr>
-                  <th class="w-25">Dato</th>
-                  <th class="w-75">Informacion</th>
-                </tr>
-              </thead>
-              <tbody *ngFor="let aspirantes of aspirante">
-                <tr>
-                  <td>Preficha</td>
-                  <td>{{aspirantes.PREFICHA}}</td>
-                </tr>
-                <tr>
-                  <td>Año</td>
-                  <td>{{aspirantes.FECHA_REGISTRO}}</td>
-                </tr>
-                <tr>
-                  <td>Número de preficha</td>
-                  <td>{{aspirantes.NUMERO_PREFICHA}}</td>
-                </tr>
-                <tr>
-                  <td>Estatus</td>
-                  <td>{{aspirantes.NOMBRE_ESTATUS}}</td>
-                </tr>
-                <tr>
-                  <td>Folio ceneval</td>
-                  <td>{{aspirantes.FOLIO_CENEVAL}}</td>
-                </tr>
-                <tr>
-                  <td>Nombre</td>
-                  <td>{{aspirantes.name}}</td>
-                </tr>
-                <tr>
-                  <td>Primer apellido</td>
-                  <td>{{aspirantes.PRIMER_APELLIDO}}</td>
-                </tr>
-                <tr>
-                  <td>Segundo apellido</td>
-                  <td>{{aspirantes.SEGUNDO_APELLIDO}}</td>
-                </tr>
-                <tr>
-                  <td>Fecha de nacimiento</td>
-                  <td>{{aspirantes.FECHA_NACIMIENTO}}</td>
-                </tr>
-                <tr>
-                  <td>Fecha de nacimiento</td>
-                  <td>{{FECHA_NACIMIENTO_TEXTO}}</td>
-                </tr>
-                <tr>
-                  <td>Sexo</td>
-                  <td>{{aspirantes.SEXO}}</td>
-                </tr>
-                <tr>
-                  <td>CURP</td>
-                  <td>{{aspirantes.CURP}}</td>
-                </tr>
-                <tr>
-                  <td>Estado civil</td>
-                  <td>{{aspirantes.NOMBRE_ESTADO_CIVIL}}</td>
-                </tr>
-                <tr>
-                  <td>Dirección</td>
-                  <td>{{aspirantes.CALLE}}</td>
-                </tr>
-                <tr>
-                  <td>Codigo postal</td>
-                  <td>{{aspirantes.FK_NUMERO_CODIGO_POSTAL}}</td>
-                </tr>
-                <tr>
-                  <td>Teléfono</td>
-                  <td><input [(ngModel)]="telefonoCasa" type="text" class="form-control"></td>
-                </tr>
-                <tr>
-                  <td>Celular</td>
-                  <td><input [(ngModel)]="telefonoMovil" type="text" class="form-control"></td>
-                </tr>
-                <tr>
-                  <td>Correo electrónico</td>
-                  <td><input [(ngModel)]="CORREO1" type="text" class="form-control"></td>
-                </tr>
-                <tr>
-                  <td>Municipio</td>
-                  <td>{{aspirantes.NOMBRE_CIUDAD}}</td>
-                </tr>
-                <tr>
-                  <td>Promedio bachillerato</td>
-                  <td>{{aspirantes.PROMEDIO}}</td>
-                </tr>
-                <tr>
-                  <td>Especialidad</td>
-                  <td>{{aspirantes.ESPECIALIDAD}}</td>
-                </tr>
-                <tr>
-                  <td>Carrera 1</td>
-                  <td>
-                      <select [(ngModel)]="especialidad1" class="form-control" name="especialidad1">
-                          <option *ngFor="let carrera of carreraLista" value="{{carrera.PK_CARRERA}}">{{carrera.NOMBRE}}
-                          </option>
-                        </select>
-                  </td>
-                </tr>
-                <tr>
+          <thead>
+            <tr>
+              <th class="w-25">Dato</th>
+              <th class="w-75">Informacion</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let aspirantes of aspirante">
+            <tr>
+              <td>Preficha</td>
+              <td>{{aspirantes.PREFICHA}}</td>
+            </tr>
+            <tr>
+              <td>Año</td>
+              <td>{{aspirantes.FECHA_REGISTRO}}</td>
+            </tr>
+            <tr>
+              <td>Número de preficha</td>
+              <td>{{aspirantes.NUMERO_PREFICHA}}</td>
+            </tr>
+            <tr>
+              <td>Estatus</td>
+              <td>{{aspirantes.NOMBRE_ESTATUS}}</td>
+            </tr>
+            <tr>
+              <td>Folio ceneval</td>
+              <td>{{aspirantes.FOLIO_CENEVAL}}</td>
+            </tr>
+            <tr>
+              <td>Nombre</td>
+              <td>{{aspirantes.NOMBRE}}</td>
+            </tr>
+            <tr>
+              <td>Primer apellido</td>
+              <td>{{aspirantes.PRIMER_APELLIDO}}</td>
+            </tr>
+            <tr>
+              <td>Segundo apellido</td>
+              <td>{{aspirantes.SEGUNDO_APELLIDO}}</td>
+            </tr>
+            <tr>
+              <td>Fecha de nacimiento</td>
+              <td>{{aspirantes.FECHA_NACIMIENTO}}</td>
+            </tr>
+            <tr>
+              <td>Fecha de nacimiento</td>
+              <td>{{FECHA_NACIMIENTO_TEXTO}}</td>
+            </tr>
+            <tr>
+              <td>Sexo</td>
+              <td>{{aspirantes.SEXO}}</td>
+            </tr>
+            <tr>
+              <td>CURP</td>
+              <td>
+                <input [(ngModel)]="CURP" type="text" class="form-control" maxlength=18 id="curp" 
+                onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase().replace(' ','')">
+              </td>
+            </tr>
+            <tr>
+              <td>Estado civil</td>
+              <td>{{aspirantes.NOMBRE_ESTADO_CIVIL}}</td>
+            </tr>
+            <tr>
+              <td>Dirección</td>
+              <td>{{aspirantes.CALLE}}</td>
+            </tr>
+            <tr>
+              <td>Codigo postal</td>
+              <td>{{aspirantes.FK_NUMERO_CODIGO_POSTAL}}</td>
+            </tr>
+            <tr>
+              <td>Teléfono</td>
+              <td><input [(ngModel)]="telefonoCasa" type="text" class="form-control"></td>
+            </tr>
+            <tr>
+              <td>Celular</td>
+              <td><input [(ngModel)]="telefonoMovil" type="text" class="form-control"></td>
+            </tr>
+            <tr>
+              <td>Correo electrónico</td>
+              <td><input [(ngModel)]="CORREO1" type="text" class="form-control"></td>
+            </tr>
+            <tr>
+              <td>Municipio</td>
+              <td>{{aspirantes.NOMBRE_CIUDAD}}</td>
+            </tr>
+            <tr>
+              <td>Promedio bachillerato</td>
+              <td>{{aspirantes.PROMEDIO}}</td>
+            </tr>
+            <tr>
+              <td>Especialidad</td>
+              <td>{{aspirantes.ESPECIALIDAD}}</td>
+            </tr>
+            <tr>
+              <td>Carrera 1</td>
+              <td>
+                <select [(ngModel)]="especialidad1" class="form-control" name="especialidad1">
+                  <option *ngFor="let carrera of carreraLista" value="{{carrera.PK_CARRERA}}">{{carrera.NOMBRE}}
+                  </option>
+                </select>
+              </td>
+            </tr>
+            <!--  <tr>
                   <td>Carrera 2</td>
                   <td>
                     <select [(ngModel)]="especialidad2" class="form-control" name="especialidad2">
@@ -265,13 +273,14 @@
                       </option>
                     </select>
                   </td>
-                </tr>
-              </tbody>
+                </tr> -->
+          </tbody>
         </table>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" (click)="largeModal.hide()">Cerrar</button>
-        <button type="button" class="btn btn-primary" (click)="modificarAspirante()" (click)="largeModal.hide()">Guardar</button>
+        <button type="button" class="btn btn-primary" (click)="modificarAspirante()"
+          (click)="largeModal.hide()">Guardar</button>
       </div>
     </div>
   </div>
@@ -302,8 +311,18 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" (click)="largeModal2.hide()">Cerrar</button>
-        <button type="button" class="btn btn-primary" (click)="enviarCorreo()" (click)="largeModal2.hide()">Enviar</button>
+        <button type="button" class="btn btn-primary" (click)="enviarCorreo()"
+          (click)="largeModal2.hide()">Enviar</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<div bsModal #loaderModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true" [config]="{backdrop: 'static',keyboard: false}">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" style="background-color: rgba(255, 255, 255, 0); background-clip: padding-box; border: 1px solid rgba(0, 0, 0, 0);">
+      <app-loader></app-loader>
     </div>
   </div>
 </div>
