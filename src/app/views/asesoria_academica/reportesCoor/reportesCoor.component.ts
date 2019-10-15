@@ -41,7 +41,7 @@ export class ReportesCoordComponent implements OnInit {
     private validarModuloService: ValidarModuloService) { }
 
   ngOnInit() {
-    this.mostrarModulo = this.validarModuloService.getMostrarModulo("Reportes");
+    this.mostrarModulo = this.validarModuloService.getMostrarModulo("Reportes Coordinador");
     if (!this.mostrarModulo) {
       return;
     }
