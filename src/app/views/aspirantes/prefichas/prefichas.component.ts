@@ -74,7 +74,7 @@ export class PrefichasComponent implements OnInit {
         //console.log(this.pkPeriodo);
         this.periodo = data[0].PK_PERIODO_PREFICHAS;
         this.obtenerAspirantes(data[0].PK_PERIODO_PREFICHAS);
-        this.formularioService.getCarrera(this.periodo).subscribe(data => {
+        this.formularioService.getCarrera().subscribe(data => {
           this.carreras = data;
           this.carreraLista = data;
         });
@@ -82,7 +82,7 @@ export class PrefichasComponent implements OnInit {
     });
 
     this.aspiranteService.getEstatus().subscribe(data => this.estatus = data);
-    
+
   }
 
   obtenerAspirantes(pk_periodo) {
@@ -194,13 +194,16 @@ export class PrefichasComponent implements OnInit {
   }
 
   async modificarAspirante() {
-    //this.loaderModal.show();
+    //this.loaderModal.show();    
+    if (this.telefonoMovil == null) {
+      this.telefonoMovil = "";
+    }
     const data = await this.aspiranteService.updateAspirante(
       {
         "PK_USUARIO": this.pkUsuario,
         "CURP": this.CURP.toUpperCase(),
         "TELEFONO_CASA": this.telefonoCasa,
-        "TELEFONO_MOVIL": this.telefonoMovil,
+        "TELEFONO_MOVIL": "" + this.telefonoMovil + "",
         "CORREO1": this.CORREO1,
         "FK_CARRERA_1": this.especialidad1,
         "FK_CARRERA_2": ''//this.especialidad2
@@ -208,7 +211,7 @@ export class PrefichasComponent implements OnInit {
 
     this.obtenerAspirantes(this.periodo);
 
-    this.formularioService.getCarrera(this.periodo).subscribe(data => {
+    this.formularioService.getCarrera().subscribe(data => {
       this.carreras = data;
       this.carreraLista = data;
     });
@@ -237,67 +240,61 @@ export class PrefichasComponent implements OnInit {
     this.mensaje = "";
   }
 
+  generarExcel() {
+    var n = new Date();
+    var y = n.getFullYear();
+    var m = n.getMonth() + 1;
+    var d = n.getDate();
+
+    var rows = [[
+      'Preficha',
+      'CURP',
+      'Nombre',
+      'Primer apellido',
+      'Segundo apellido',
+      'Correo',
+      'Fijo',
+      'Celular',
+      'Carrera',
+      'Estatus'
+    ]];
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  leerExcel(evt: any) {
-    const target: DataTransfer = <DataTransfer>(evt.target);
-    if (target.files.length !== 1) throw new Error('Cannot use multiple files');
-    const reader: FileReader = new FileReader();
-    reader.onload = (e: any) => {
-
-      const bstr: string = e.target.result;
-      const wb: XLSX.WorkBook = XLSX.read(bstr, { type: 'binary' });
-
-      const wsname: string = wb.SheetNames[0];
-      const ws: XLSX.WorkSheet = wb.Sheets[wsname];
-      console.log((XLSX.utils.sheet_to_json(ws, { header: 1 })));
-    };
-    reader.readAsBinaryString(target.files[0]);
-  }
-
-  processFiles(evt: any) {
-    var archivo = evt.target.files[0];
-    if (!archivo) {
-      return;
+    for (var i = 0; i < this.aspirantes.length; i++) {
+      rows.push([
+        this.aspirantes[i].PREFICHA,
+        this.aspirantes[i].CURP,
+        this.aspirantes[i].NOMBRE,
+        this.aspirantes[i].PRIMER_APELLIDO,
+        this.aspirantes[i].SEGUNDO_APELLIDO,
+        this.aspirantes[i].CORREO,
+        this.aspirantes[i].TELEFONO_CASA,
+        this.aspirantes[i].TELEFONO_MOVIL,
+        this.aspirantes[i].CARRERA1,
+        this.aspirantes[i].ESTATUS
+      ]);
     }
-    var lector = new FileReader();
-    lector.onload = function (e: any) {
-      var datos = e.target.result.split("\n");
-      var registros = [];
-      for (var i = 0; i < datos.length; i++) {
-        if (!isNaN(datos[i].substr(0, 7)) && datos[i].substr(0, 7) != "") {
-          if (datos[i].substr(98, 4) > 0) {
-            registros.push([datos[i].substr(0, 7), datos[i].substr(37, 20), datos[i].substr(42, 4), datos[i].substr(98, 4), "CRED", "Fecha pago" + datos[i].substr(130, 10), "Fecha limite" + datos[i].substr(140, 10)]);
-            //console.log([datos[i].substr(0,7),datos[i].substr(37,20),datos[i].substr(42,4),datos[i].substr(98,4),"CRED","Fecha pago"+datos[i].substr(130,10),"Fecha limite"+datos[i].substr(140,10)]);
-          } else {
-            //console.log([datos[i].substr(0,7),datos[i].substr(37,20),datos[i].substr(42,4),datos[i].substr(82,4),"EFE","Fecha pago"+datos[i].substr(130,10),"Fecha limite"+datos[i].substr(140,10)]);
-            registros.push([datos[i].substr(0, 7), datos[i].substr(37, 20), datos[i].substr(42, 4), datos[i].substr(82, 4), "EFE", "Fecha pago" + datos[i].substr(130, 10), "Fecha limite" + datos[i].substr(140, 10)]);
-          }
-        } else {
-          console.log("No es un registro");
-        }
-      }
-      //this.aspiranteService.addAspirante();
 
-      //console.log(JSON.parse(JSON.stringify(registros)));
-    }; lector.readAsText(archivo);
+    var wb = XLSX.utils.book_new();
+    wb.Props = {
+      Title: "Prefichas " + y + "-" + m + "-" + d,
+      Subject: "Prefichas pagadas",
+      Author: "Tecnologico de leon",
+      CreatedDate: new Date(2017, 12, 19)
+    };
 
-
+    wb.SheetNames.push("Prefichas " + y + "-" + m + "-" + d);
+    var ws_data = rows;
+    var ws = XLSX.utils.aoa_to_sheet(ws_data);
+    wb.Sheets["Prefichas " + y + "-" + m + "-" + d] = ws;
+    var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
+    function s2ab(s) {
+      var buf = new ArrayBuffer(s.length);
+      var view = new Uint8Array(buf);
+      for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+      return buf;
+    }
+    XLSX.writeFile(wb, "Prefichas " + y + "-" + m + "-" + d + ".xlsx");
   }
+
 }

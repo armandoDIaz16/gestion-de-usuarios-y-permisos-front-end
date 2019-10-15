@@ -1,13 +1,8 @@
-import {Component, OnDestroy, Inject, OnInit} from '@angular/core';
-import {DOCUMENT} from '@angular/common';
-import {navItems} from './../../_nav';
-import {AuthService} from '../../services/auth.service';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {TokenService} from '../../services/token.service';
 
 import {PerfilService} from './perfil.service';
 import {InterfaceEstadoCivil, InterfacePerfil} from './_models/PerfilModel';
-import {EncuestasService} from '../../views/tutorias/encuestas/encuestas.service';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
@@ -15,14 +10,7 @@ import {HttpClient} from '@angular/common/http';
     templateUrl: './perfil.component.html',
     styleUrls: ['./perfil.component.scss']
 })
-export class PerfilComponent implements OnDestroy, OnInit {
-
-    public loggedIn: boolean;
-    public sidebarMinimized = true;
-    private changes: MutationObserver;
-    public element: HTMLElement;
-    public navItems = navItems;
-    public mostrarModulo = false;
+export class PerfilComponent implements OnInit {
 
     /* INICIO DATOS PARA PERFIL */
     public error = null;
@@ -34,21 +22,11 @@ export class PerfilComponent implements OnDestroy, OnInit {
     /* FIN DATOS PARA PERFIL */
 
     constructor(
-        private Auth: AuthService,
         private router: Router,
-        private Token: TokenService,
         private perfil_services: PerfilService,
-        private http: HttpClient,
-        @Inject(DOCUMENT) _document?: any
+        private http: HttpClient
     ) {
-        this.changes = new MutationObserver((mutations) => {
-            this.sidebarMinimized = _document.body.classList.contains('sidebar-minimized');
-        });
-        this.element = _document.body;
-        this.changes.observe(<Element>this.element, {
-            attributes: true,
-            attributeFilter: ['class']
-        });
+
     }
 
     /* INICIO FUNCIONES PARA PERFIL */
@@ -86,18 +64,5 @@ export class PerfilComponent implements OnDestroy, OnInit {
     }
 
     handleError(error) { }
-
-    /* FIN FUNCIONES PARA PERFIL */
-
-    logout(event: MouseEvent) {
-        event.preventDefault();
-        this.Token.remove();
-        this.Auth.changeAuthStatus(false);
-        this.router.navigateByUrl('/login');
-    }
-
-    ngOnDestroy(): void {
-        this.changes.disconnect();
-    }
 
 }

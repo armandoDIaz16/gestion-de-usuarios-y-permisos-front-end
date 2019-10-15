@@ -17,6 +17,7 @@ export class Reporte_docenteComponent extends GenericServicesService implements 
     usuario = sessionStorage.getItem('IdUsuario');
     opcion = this.opcion;
     public mostrarModulo = false;
+    public sistema = 'Residencias';
   constructor(private alumnosService: Alumnos, private http: HttpClient,
               private validarModuloService: ValidarModuloService) { super(http); }
 
@@ -28,7 +29,22 @@ export class Reporte_docenteComponent extends GenericServicesService implements 
       this.alumnosService.getAnteproyectos(this.usuario).subscribe( data => this.alumnosLista = data);
   }
     uploadFile(event) {
-        let elem = event.target;
+        const archivo: File = event.target.files[0];
+        if (!archivo) {
+            return;
+        }
+        const myReader: FileReader = new FileReader();
+        myReader.onloadend = (e) => {
+            this.subirArchivo({'Sistema': this.sistema,
+                'Nombre': archivo.name.split('.').shift(),
+                'Extencion': archivo.name.split('.').pop(),
+                'Archivo': myReader.result,
+                'ID': this.ID,
+                'id': this.usuario,
+                'alumno': this.opcion});
+        };
+        myReader.readAsDataURL(archivo);
+/*        let elem = event.target;
         if (elem.files.length > 0) {
             let formData = new FormData();
             formData.append('myfile', elem.files[0]);
@@ -40,7 +56,14 @@ export class Reporte_docenteComponent extends GenericServicesService implements 
                     alert(response);
                 });
         }
-        elem.value = ''; // line 9
+        elem.value = ''; // line 9*/
 
+    }
+
+    subirArchivo(datos) {
+        this.http.post(GenericServicesService.API_ENDPOINT + 'Repdocente', datos, GenericServicesService.HEADERS).subscribe(
+            (response) => {
+                alert(response);
+            });
     }
 }

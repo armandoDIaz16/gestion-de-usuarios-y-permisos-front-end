@@ -64,7 +64,6 @@ import { StudentOldComponent } from './components/student-old/student-old.compon
 import { NavbarSistemsComponent } from './components/navbar-sistems/navbar-sistems.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ActivaCuentaComponent } from './components/activa-cuenta/activa-cuenta.component';
-import { PerfilComponent } from './components/perfil/perfil.component';
 import { LoaderModule } from './components/loader/loader.module';
 import { ModalModule } from "ngx-bootstrap";
 
@@ -107,8 +106,7 @@ import { ModalModule } from "ngx-bootstrap";
         ControlComponent,
         StudentOldComponent,
         NavbarSistemsComponent,
-        ActivaCuentaComponent,
-        PerfilComponent
+        ActivaCuentaComponent
     ],
     providers:
         [

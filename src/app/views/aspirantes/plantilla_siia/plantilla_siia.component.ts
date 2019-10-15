@@ -7,12 +7,12 @@ import { ValidarModuloService } from '../../../services/validarModulo.service';
 
 
 @Component({
-  selector: 'app-prefichas_pagadas',
-  templateUrl: './prefichas_pagadas.component.html',
-  styleUrls: ['./prefichas_pagadas.component.scss'],
+  selector: 'app-plantilla_siia',
+  templateUrl: './plantilla_siia.component.html',
+  styleUrls: ['./plantilla_siia.component.scss'],
   providers: [PeriodoService, AspiranteService, ValidarModuloService]
 })
-export class PrefichasPagadasComponent implements OnInit {
+export class PlantillaSIIAComponent implements OnInit {
 
   constructor(private periodoService: PeriodoService,
     private aspiranteService: AspiranteService,
@@ -23,7 +23,7 @@ export class PrefichasPagadasComponent implements OnInit {
   public aspirantes = [];
 
   ngOnInit() {
-    this.mostrarModulo = this.validarModuloService.getMostrarModulo("Prefichas pagadas");
+    this.mostrarModulo = this.validarModuloService.getMostrarModulo("Plantilla SIIA");
     if (!this.mostrarModulo) {
       return;
     }
