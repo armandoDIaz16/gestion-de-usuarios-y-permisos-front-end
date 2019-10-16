@@ -27,6 +27,7 @@ import { CrearGruposComponent } from './crear_grupos/crear_grupos.component';
 import { PlantillaSIIAComponent } from './plantilla_siia/plantilla_siia.component';
 import { ErrorModule } from '../../components/error/error.module';
 import { LoaderModule } from '../../components/loader/loader.module';
+import { ExamenUbicacionComponent } from './examen_ubicacion/examen_ubicacion.component';
 
 
 // Angular
@@ -56,6 +57,7 @@ import { LoaderModule } from '../../components/loader/loader.module';
     PeriodoComponent,
     DatosComponent,
     PlantillaSIIAComponent,
+    ExamenUbicacionComponent
   ],
   exports: [
     ModalModule

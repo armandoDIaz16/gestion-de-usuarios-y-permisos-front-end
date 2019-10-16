@@ -34,6 +34,7 @@ export class DashboardComponent extends GenericServicesService implements OnInit
   habilitarResultados = false;
   habilitarAceptado = false;
   habilitarAceptadoCero = false;
+  habilitarRechazado = false;
   habilitarGuia = true;
   fechaInicio = null;
   fechaFin = null;
@@ -49,6 +50,7 @@ export class DashboardComponent extends GenericServicesService implements OnInit
   mostrarResultados = null;
   mensaje = null;
   mensajeCero = null;
+  mensajeRechazado = null;
 
   constructor(private http: HttpClient,
     private aspiranteService: AspiranteService,
@@ -74,6 +76,7 @@ export class DashboardComponent extends GenericServicesService implements OnInit
         this.fechaFinInscripcionCero = data[0].FECHA_FIN_INSCRIPCION_BIS;
         this.mensaje = data[0].MENSAJE_SEMESTRE;
         this.mensajeCero = data[0].MENSAJE_SEMESTRE_BIS;
+        this.mensajeRechazado = data[0].MENSAJE_RECHAZADO;
         this.fechaActual = data[0].FECHA_ACTUAL;
         this.mostrarResultados = data[0].RESULTADOS;
       }
@@ -97,22 +100,22 @@ export class DashboardComponent extends GenericServicesService implements OnInit
           case 3: this.paso2 = 'active'; this.habilitarReferencia = false; this.habilitarRegistro = true;
             break;
           case 4: this.paso2 = 'active'; this.paso3 = 'active'; this.paso4 = 'active'; this.habilitarReferencia = false; this.habilitarFicha = true;
-            if (this.aspirante[0].ASISTENCIA == 1) {
-              this.habilitarFicha = false
-              this.paso5 = 'active';
-              if (this.mostrarResultados == 1) {
-                this.paso6 = 'active';
-              }
-            }
+            break;
+          case 5: this.paso2 = 'active'; this.paso3 = 'active'; this.paso4 = 'active'; this.paso5 = 'active';
             break;
         }
 
         if (this.mostrarResultados == 1) {
+          this.paso6 = 'active';
+          this.habilitarRegistro = false;
+          this.habilitarGuia = false;
+          this.habilitarFicha = false;
           switch (Number(this.aspirante[0].ACEPTADO)) {
+            case 0:
+              this.habilitarRechazado = true;
+              break;
             case 1:
-              this.habilitarFicha = false
               this.habilitarAceptado = true;
-              this.habilitarGuia = false;
               if (this.compararFechas(this.fechaInicioCurso, this.fechaFinCurso, this.fechaActual, 0)) {
                 this.habilitarCurso = true;
               }
@@ -121,10 +124,8 @@ export class DashboardComponent extends GenericServicesService implements OnInit
               }
               break;
             case 2:
-              this.habilitarFicha = false
               this.habilitarAceptadoCero = true;
-              this.habilitarGuia = false;
-              if (this.compararFechas(this.fechaInicioInscripcionCero, this.fechaFinInscripcionCero, this.fechaActual,0)) {
+              if (this.compararFechas(this.fechaInicioInscripcionCero, this.fechaFinInscripcionCero, this.fechaActual, 0)) {
                 this.habilitarInscripcionCero = true;
               }
               break;
@@ -159,7 +160,7 @@ export class DashboardComponent extends GenericServicesService implements OnInit
     window.open(this.baseUrl + "Ficha/" + sessionStorage.getItem('IdEncriptada'));
   }
   descargarGuiaExamen() {
-    window.open(this.baseUrlFile + "GuiaExamen.pdf" );
+    window.open(this.baseUrlFile + "GuiaExamen.pdf");
   }
   descargarGuiaAspirantes() {
     window.open(this.baseUrlFile + "GuiaAspirante.pdf");

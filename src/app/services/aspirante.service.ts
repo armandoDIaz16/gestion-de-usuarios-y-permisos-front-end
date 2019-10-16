@@ -63,6 +63,10 @@ export class AspiranteService extends GenericServicesService{
         return this.http.get<IGraficaCampus[]>(this.baseUrl + 'GraficaCampus/' + pk_periodo, this.headers
         );
     }
+    getPlantillaSIIA(periodo){
+        return this.http.get(this.baseUrl + "PlantillaSIIA/" + periodo, this.headers
+        );
+    }
     async addPagos(datos, pk_periodo) {
         return this.http.post(this.baseUrl + 'CargarArchivoBanco/' + pk_periodo, datos, this.headers).toPromise();
     }
