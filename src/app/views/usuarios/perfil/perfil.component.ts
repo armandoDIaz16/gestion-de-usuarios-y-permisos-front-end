@@ -1,43 +1,38 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-
-import {PerfilService} from './perfil.service';
-import {InterfaceEstadoCivil, InterfacePerfil} from './_models/PerfilModel';
+import {InterfacePerfil} from '../_models/PerfilModel';
+import {InterfaceEstadoCivil} from '../../_models/GeneralModels';
+import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
+import {PerfilService} from './perfil.service';
 
 @Component({
-    selector: 'app-dashboard',
+    selector: 'app-perfil',
     templateUrl: './perfil.component.html',
     styleUrls: ['./perfil.component.scss']
 })
 export class PerfilComponent implements OnInit {
 
-    /* INICIO DATOS PARA PERFIL */
     public error = null;
     public data = null;
     public perfil: InterfacePerfil;
-    public array_estado_civil: InterfaceEstadoCivil[];
-    public usuario = sessionStorage.getItem('IdUsuario');
-
-    /* FIN DATOS PARA PERFIL */
+    private estados_civiles: InterfaceEstadoCivil[];
+    public pk_usuario = sessionStorage.getItem('IdEncriptada');
 
     constructor(
+        private route: ActivatedRoute,
+        private http: HttpClient,
         private router: Router,
-        private perfil_services: PerfilService,
-        private http: HttpClient
-    ) {
+        private perfil_service: PerfilService,
+    ) { }
 
-    }
-
-    /* INICIO FUNCIONES PARA PERFIL */
     ngOnInit() {
-        this.perfil_services.get_perfil(parseInt(this.usuario)).subscribe(
+        this.perfil_service.get_perfil(parseInt(this.pk_usuario)).subscribe(
             data => this.handleResponseInit(data),
             error => this.handleError(error)
         );
 
-        this.perfil_services.get_estado_civiles().subscribe(
-            data => this.array_estado_civil = data,
+        this.perfil_service.get_estados_civiles().subscribe(
+            data => this.estados_civiles = data,
             error => this.handleError(error)
         );
     }
@@ -50,7 +45,7 @@ export class PerfilComponent implements OnInit {
     }
 
     onSubmit() {
-        this.perfil_services.guardar_perfil(this.perfil).subscribe(
+        this.perfil_service.guardar_perfil(this.perfil).subscribe(
             data => this.handleResponse(data),
             error => this.handleError(error)
         );
@@ -63,6 +58,11 @@ export class PerfilComponent implements OnInit {
         }
     }
 
-    handleError(error) { }
+    handleError(error) {
+    }
+
+    volver() {
+        history.back();
+    }
 
 }

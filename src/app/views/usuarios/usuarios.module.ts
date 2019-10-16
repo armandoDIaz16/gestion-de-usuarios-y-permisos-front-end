@@ -23,7 +23,7 @@ import {PerfilComponent} from './perfil/perfil.component';
         TooltipModule.forRoot()
     ],
     declarations: [
-        PerfilComponent,
+        PerfilComponent
     ]
 })
 export class UsuariosModule { }

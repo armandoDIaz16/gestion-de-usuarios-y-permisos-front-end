@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-
-import {InterfaceEstadoCivil, InterfacePerfil} from './_models/PerfilModel';
 import {GenericServicesService} from '../../../services/generic-services.service';
+import {InterfaceEstadoCivil} from '../../_models/GeneralModels';
+import {InterfacePerfil} from '../_models/PerfilModel';
 
 @Injectable({
     providedIn: 'root'
@@ -29,7 +29,7 @@ export class PerfilService extends GenericServicesService {
         );
     }
 
-    public get_estado_civiles(): Observable<InterfaceEstadoCivil[]> {
+    public get_estados_civiles(): Observable<InterfaceEstadoCivil[]> {
         return this.http.get<InterfaceEstadoCivil[]>(
             GenericServicesService.API_ENDPOINT + 'Estado_Civil',
             GenericServicesService.HEADERS

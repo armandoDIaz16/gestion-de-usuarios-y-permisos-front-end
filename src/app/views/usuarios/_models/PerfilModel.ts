@@ -1,16 +1,20 @@
 export interface InterfacePerfil {
     PK_USAURIO:            string;
+    FK_CARRERA:            number;
+    FK_ESTADO_CIVIL:       number;
+
+    ESTADO_CIVIL?:         string;
+    CARRERA:               string;
+
     PERFIL_COMPLETO:       number;
     NOMBRE:                string;
     PRIMER_APELLIDO:       string;
     SEGUNDO_APELLIDO?:     string;
     CURP:                  string;
     NUMERO_CONTROL:        string;
-    CARRERA:               string;
     SEMESTRE:              string;
     FECHA_NACIMIENTO?:     string;
     SEXO?:                 number;
-    ESTADO_CIVIL?:         string;
     CORREO1:               string;
     CORREO2?:              string;
     CORREO_INSTITUCIONAL?: string;
@@ -28,10 +32,4 @@ export interface InterfacePerfil {
     PARENTESCO_CONTACTO?:  string;
     TELEFONO_CONTACTO?:    string;
     CORREO_CONTACTO?:      string;
-}
-
-export interface InterfaceEstadoCivil {
-    PK_ESTADO_CIVIL: number;
-    NOMBRE:          string;
-    ABREVIATURA:     string;
 }
