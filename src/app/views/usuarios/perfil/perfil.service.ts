@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
 import {InterfaceEstadoCivil, InterfacePerfil} from './_models/PerfilModel';
-import {GenericServicesService} from '../../services/generic-services.service';
+import {GenericServicesService} from '../../../services/generic-services.service';
 
 @Injectable({
     providedIn: 'root'

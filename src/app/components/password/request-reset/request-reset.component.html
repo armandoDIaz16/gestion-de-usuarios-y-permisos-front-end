@@ -27,6 +27,23 @@
                                         <div class="alert alert-danger" [hidden]="!error">
                                             {{error}}
                                         </div>
+
+                                        <div *ngIf="this.envio_correcto">
+                                            <div class="alert alert-success" role="alert">
+                                                <h4 class="alert-heading text-center">¡Solicitud de cambio de contraseña correcto!</h4>
+                                                <p class="text-center">
+                                                    Te hemos enviado un correo electrónico para que realices
+                                                    el cambio de contraseña de tu cuenta.
+                                                    <br><br>
+                                                    Recuerda revisar tu bandeja de <b>correo no deseado</b>
+                                                    <br><br>
+                                                    <a class="btn btn-success px-4" href="/">
+                                                        Aceptar
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+
                                         <h1 class="text-center">Restablecer contraseña</h1>
 
                                         <div class="input-group mb-3">
@@ -38,11 +55,16 @@
                                                    required>
                                         </div>
                                         <div class="row">
-                                            <div class="col-12 text-center">
+                                            <div class="col-12 text-center" *ngIf="this.mostrar_botones">
                                                 <button type="submit" class="btn btn-primary px-4"
                                                         [disabled]="!RequestResetForm.valid">Restablecer contraseña
                                                 </button>
                                                 <a class="btn btn-danger px-4" routerLink="/">Cancelar</a>
+                                            </div>
+                                            <div class="col-12 text-center" *ngIf="this.mostrar_botones == false">
+                                                <button type="button" class="btn btn-primary px-4"
+                                                        [disabled]="true">Enviando
+                                                </button>
                                             </div>
                                         </div>
                                     </form>

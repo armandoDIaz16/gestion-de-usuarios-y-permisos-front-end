@@ -43,19 +43,21 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
     }
 
     ngOnInit() {
-        if(sessionStorage.getItem('primer_login') == '1'){
-        this.mostrarVideo= true;
+        if (sessionStorage.getItem('primer_login') == '1') {
+            this.mostrarVideo = true;
         }
         var URLhash = window.location.hash;
-        if(URLhash=='#/home'){
-            this.mostrarAyuda= true;
+        if (URLhash == '#/home') {
+            this.mostrarAyuda = true;
         }
         // this.Auth.authStatus.subscribe(value => this.loggedIn = value);
         // console.log(rutasRoles);
         // navItems;
 
         // vefiricar que haya completado perfil, sino mandar a modificar perfil
-        /*if (sessionStorage.getItem('perfil_completo') == '0') {
+        /*if (sessionStorage.getItem('perfil_completo') == '0'
+            && sessionStorage.getItem('tipo_usuario') == '1'
+            && sessionStorage.getItem('primer_login') == '1') {
             this.router.navigateByUrl('/perfil');
         }*/
     }
