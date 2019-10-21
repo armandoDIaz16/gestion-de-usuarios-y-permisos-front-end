@@ -1,731 +1,777 @@
 <div style="background-color:white;" *ngIf="activado">
-  <!-- INICIO HEADER -->
-  <div class="row justify-content-center">
-    <div class="col-12 col-sm-12 col-md-12 col-lg-11 col-xl10">
-      <img style="min-width: 100%; max-width: 100%" src="assets/banner.jpg">
-    </div>
-    <h1 class="text-center">
-      <br>
-      SOLICITUD DE FICHA PARA ADMISIÓN
-      <br>
-    </h1>
-  </div>
-  <!-- FIN HEADER -->
-  <div class="animated fadeIn">
-    <form #aspiranteForm=ngForm (ngSubmit)="onSubmit()">
-      <div class="container">
-        <div class="card">
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="card-body">
-                <p class="h2 text-center">Datos Personales</p>
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-sm-12">
-                    <div class="form-group">
-                      <label for="curp">CURP:</label>
-                      <label style="color:#ff0000;" for="asterisco">*</label>
-                      <input [(ngModel)]="CURP" type="text" class="form-control" name="curp" id="curp" size=18
-                        minlength=18 maxlength=18
-                        onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase().replace(' ','')"
-                        required>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <a href="https://www.gob.mx/curp/" target="_blank"><button type="button"
-                          class="btn btn-primary">Consulta de CURP</button></a>
-                    </div>
-                  </div>
-                </div>
-                <!--/.row-->
-                <div class="row">
-                  <div class="col-sm-12">
-                    <div class="form-group">
-                      <label for="nombre">Nombre:</label>
-                      <label style="color:#ff0000;" for="asterisco">*</label>
-                      <input [(ngModel)]="nombre" type="text" class="form-control" name="nombre" id="nombre"
-                        onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"
-                        required>
-                    </div>
-                  </div>
-                </div>
-                <!--/.row-->
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="pApellido">Primer apellido:</label>
-                      <label style="color:#ff0000;" for="asterisco">*</label>
-                      <input [(ngModel)]="pApellido" type="text" class="form-control" name="pApellido" id="pApellido"
-                        onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"
-                        required>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="sApellido">Segundo apellido:</label>
-                      <input [(ngModel)]="sApellido" type="text" class="form-control" name="sApellido" id="sApellido"
-                        onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()">
-                    </div>
-                  </div>
-                </div>
-                <!--/.row-->
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="fechaNacimiento">Fecha de nacimiento:</label>
-                      <label style="color:#ff0000;" for="asterisco">*</label>
-                      <input [(ngModel)]="fechaNacimiento" type="date" class="form-control" name="fechaNacimiento"
-                        required>
-                      <!-- <p>Ejemplo: 1994-12-03</p> -->
-                    </div>
-                  </div>
-                  <div class="form-group col-sm-3">
-                    <label for="genero">Género:</label>
-                    <label style="color:#ff0000;" for="asterisco">*</label>
-                    <select [(ngModel)]="genero" class="form-control" name="genero" required>
-                      <option [value]=null>Selecciona</option>
-                      <option [value]=1>Masculino</option>
-                      <option [value]=2>Femenino</option>
-                    </select>
-                  </div>
-                  <div class="form-group col-sm-3">
-                    <label for="estadoCivil">Estado civil:</label>
-                    <label style="color:#ff0000;" for="asterisco">*</label>
-                    <select [(ngModel)]="estadoCivil" class="form-control" name="estadoCivil" required>
-                      <option [value]=null>Selecciona</option>
-                      <option *ngFor="let estadoCivil of estadoCivilLista" value="{{estadoCivil.PK_ESTADO_CIVIL}}">
-                        {{estadoCivil.NOMBRE}}</option>
-                    </select>
-                  </div>
-                </div>
-                <!--/.row-->
-              </div>
-              <!--Datos personales-->
-
-              <div class="card-body">
-                <p class="h2 text-center">Datos de Contacto</p>
-              </div>
-              <div class="card-body">
-
-
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="cp">Código postal:</label>
-                      <label style="color:#ff0000;" for="asterisco">*</label>
-                      <input [(ngModel)]="cp" (keyup)="cargarColonias()" type="text" class="form-control" name="cp"
-                        required>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="colonia">Colonia:</label>
-                      <label style="color:#ff0000;" for="asterisco">*</label>
-                      <select [(ngModel)]="colonia" class="form-control" name="colonia" required>
-                        <option [value]=null>Selecciona</option>
-                        <option [value]=0>Otra</option>
-                        <option *ngFor="let colonia of coloniaLista" value="{{colonia.PK_COLONIA}}">{{colonia.NOMBRE}}
-                        </option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <!--/.row-->
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="calle">Calle:</label>
-                      <label style="color:#ff0000;" for="asterisco">*</label>
-                      <input [(ngModel)]="calle" type="text" class="form-control" name="calle" required>
-                    </div>
-                  </div>
-                  <div class="col-sm-3">
-                    <div class="form-group">
-                      <label for="numExt">Número exterior:</label>
-                      <label style="color:#ff0000;" for="asterisco">*</label>
-                      <input [(ngModel)]="numExt" type="text" class="form-control" name="numExt" required>
-                    </div>
-                  </div>
-                  <div class="col-sm-3">
-                    <div class="form-group">
-                      <label for="numInt">Número interior:</label>
-                      <input [(ngModel)]="numInt" type="text" class="form-control" name="numInt">
-                    </div>
-                  </div>
-                </div>
-                <!--/.row-->
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="tFijo">Teléfono fijo:</label>
-                      <label style="color:#ff0000;" for="asterisco">*</label>
-                      <input [(ngModel)]="tFijo" type="text" class="form-control" name="tFijo" required>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="tMovil">Teléfono celular:</label>
-                      <input [(ngModel)]="tMovil" type="text" class="form-control" name="tMovil">
-                    </div>
-                  </div>
-                </div>
-                <!--/.row-->
-
-                <form [formGroup]="formGroup">
-
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <div class="form-group">
-                        <label for="correo">Correo electrónico:</label>
-                        <label style="color:#ff0000;" for="asterisco">*</label>
-                        <input type="text" class="form-control" [formControl]="formGroup.controls['CORREO1']" id="correo1"
-                        onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.replace(' ','')">
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="form-group">
-                        <label for="correo2">Confirma tu correo electrónico:</label>
-                        <label style="color:#ff0000;" for="asterisco">*</label>
-
-                        <input type="text" class="form-control" [formControl]="formGroup.controls['repeat_CORREO1']"
-                          oncopy="return false" onpaste="return false" required id="correo2"
-                          onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.replace(' ','')">
-                      </div>
-                    </div>
-                  </div>
-                  <!--/.row-->
-                </form>
-
-              </div>
-
-              <!--Datos de contato-->
-
-              <div class="card-body">
-                <p class="h2 text-center">Datos de padre(s) o tutor(es)</p>
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="nombrePadre">Nombre de padre/tutor:</label>
-                      <label style="color:#ff0000;" for="asterisco">*</label>
-                      <input [(ngModel)]="nombrePadre" type="text" class="form-control" name="nombrePadre" required>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="nombreMadre">Nombre de madre:</label>
-                      <input [(ngModel)]="nombreMadre" type="text" class="form-control" name="nombreMadre">
-                    </div>
-                  </div>
-                </div>
-                <!--/.row-->
-              </div>
-
-              <!--Datos de Padre(s) o Tutor(es):-->
-
-              <div class="card-body">
-                <p class="h2 text-center">Actualmente, ¿tienes alguna discapacidad? </p>
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-sm-12">
-                    <div class="form-group">
-                      <label for="incapacidad">Discapacidades:</label>
-
-
-
-
-                      <form [formGroup]="formGroup">
-                        <div formArrayName="incapacidadLista"
-                          *ngFor="let incapacidad of formGroup.controls.incapacidadLista.controls; let i = index">
-                          <input type="checkbox" (change)="habilitarAyuda2()" [formControlName]="i" id="{{'_'+i}}">
-                          <label for="{{'_'+i}}">{{incapacidadLista[i].NOMBRE}}</label>
-                        </div>
-                      </form>
-
-                      <!--      <div *ngIf="!form.valid">At least one order must be selected</div>
-                      <br>
-                      <button [disabled]="!form.valid">submit</button> -->
-                      <label for="ayuda">¿Qué tipo de ayuda necesitas?</label>
-                      <input [(ngModel)]="ayuda" [disabled]="habilitarAyuda" type="text" class="form-control"
-                        name="ayuda" required>
-
-                      <!--                     <form [formGroup]="form" (ngSubmit)="submit()">
-                        <label formArrayName="incapacidadLista" *ngFor="let incapacidad of form.controls.incapacidadLista.controls; let i = index">
-                          <input type="checkbox" [formControlName]="i">
-                          {{incapacidadLista[i].NOMBRE}}
-                        </label>
-                      
-                        <div *ngIf="!form.valid">At least one order must be selected</div>
-                        <br>
-                        <button [disabled]="!form.valid">submit</button>
-                      </form> -->
-
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!--Actualmente, ¿tienes alguna discapacidad? :-->
-
-              <div class="card-body">
-                <p class="h2 text-center">Nacionalidad</p>
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-sm-4">
-                    <div class="form-group">
-                      <label for="nacioPais">País:</label>
-                      <label style="color:#ff0000;" for="asterisco">*</label>
-                      <select [(ngModel)]="nacioPais" (change)="habilitarNacionalidad2()" class="form-control"
-                        name="nacioPais" required>
-                        <option [value]=null>Selecciona</option>
-                        <option [value]=1>México​</option>
-                        <option [value]=2>Otro</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="form-group">
-                      <label for="nacioEntidadFederativa">Estado:</label>
-                      <label style="color:#ff0000;" for="asterisco">*</label>
-                      <select [(ngModel)]="nacioEntidadFederativa" [disabled]="habilitarNacionalidad"
-                        (change)="cargarCiudades()" class="form-control" name="nacioEntidadFederativa" required>
-                        <option [value]=null>Selecciona</option>
-                        <option *ngFor="let entidadFederativa of entidadFederativaLista"
-                          value="{{entidadFederativa.PK_ENTIDAD_FEDERATIVA}}">{{entidadFederativa.NOMBRE}}</option>
-                      </select>
-                      <!-- <p [hidden]="nacioEntidadFederativa == '0'">Haz seleccionado la opción # {{ nacioEntidadFederativa }}</p> -->
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="form-group">
-                      <label for="nacioCiudad">Ciudad:</label>
-                      <label style="color:#ff0000;" for="asterisco">*</label>
-                      <select [(ngModel)]="nacioCiudad" [disabled]="habilitarNacionalidad" class="form-control"
-                        name="nacioCiudad" required>
-                        <option [value]=null>Selecciona</option>
-                        <option *ngFor="let ciudad of ciudadLista" value="{{ciudad.PK_CIUDAD}}">{{ciudad.NOMBRE}}
-                        </option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-12">
-                    <div class="form-group">
-                      <label for="nacionalidad">Nacionalidad:</label>
-                      <label style="color:#ff0000;" for="asterisco">*</label>
-                      <input [(ngModel)]="nacionalidad" [disabled]="habilitarNacionalidadOtro" type="text"
-                        class="form-control" name="nacionalidad" required>
-                    </div>
-                  </div>
-                </div>
-                <!--/.row-->
-              </div>
-
-              <!--Nacionalidad-->
-
-              <div class="card-body">
-                <p class="h2 text-center">Carreras</p>
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="especialidad1">Elige la carrera a la que te gustaría ingresar:</label>
-                      <label style="color:#ff0000;" for="asterisco">*</label>
-                      <select [(ngModel)]="especialidad1" (change)="compararCarreras1()" class="form-control"
-                        name="especialidad1" required>
-                        <option [value]=null>Selecciona</option>
-                        <option *ngFor="let carrera of carreraLista" value="{{carrera.PK_CARRERA}}">{{carrera.NOMBRE}}
-                        </option>
-                      </select>
-                    </div>
-                  </div>
-                  <!-- <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="especialidad2">Especialidad 2:</label>
-                      <select [(ngModel)]="especialidad2" (change)="compararCarreras2()" class="form-control"
-                        name="especialidad2" required>
-                        <option [value]=null>Selecciona</option>
-                        <option *ngFor="let carrera of carreraLista" value="{{carrera.PK_CARRERA}}">{{carrera.NOMBRE}}
-                        </option>
-                      </select>
-                    </div>
-                  </div> -->
-                </div>
-              </div>
-
-              <!--Carreras-->
-
-              <div class="card-body">
-                <p class="h2 text-center">Lugar donde realizó estudios</p>
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="escuelaEstado">Estado:</label>
-                      <label style="color:#ff0000;" for="asterisco">*</label>
-                      <select [(ngModel)]="escuelaEstado" (change)="cargarCiudades2()" class="form-control"
-                        name="escuelaEstado" required>
-                        <option [value]=null>Selecciona</option>
-                        <option *ngFor="let entidadFederativa of entidadFederativaLista"
-                          value="{{entidadFederativa.PK_ENTIDAD_FEDERATIVA}}">{{entidadFederativa.NOMBRE}}</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="escuelaMunicio">Ciudad:</label>
-                      <label style="color:#ff0000;" for="asterisco">*</label>
-                      <select [(ngModel)]="escuelaMunicio" (change)="cargarEscuelas()" class="form-control"
-                        name="escuelaMunicio" required>
-                        <option [value]=null>Selecciona</option>
-                        <option *ngFor="let ciudad of ciudadLista2" value="{{ciudad.PK_CIUDAD}}">{{ciudad.NOMBRE}}
-                        </option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-12">
-                    <div class="form-group">
-                      <label for="escuela">Escuela procendencia:</label>
-                      <label style="color:#ff0000;" for="asterisco">*</label>
-                      <select [(ngModel)]="escuela" class="form-control" name="escuela" required>
-                        <option [value]=null>Selecciona</option>
-                        <option *ngFor="let bachillerato of bachilleratoLista" value="{{bachillerato.PK_BACHILLERATO}}">
-                          {{bachillerato.NOMBRE}}</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="escuelaEspecialidad">Especialidad:</label>
-                      <label style="color:#ff0000;" for="asterisco">*</label>
-                      <input [(ngModel)]="escuelaEspecialidad" type="text" class="form-control"
-                        name="escuelaEspecialidad" required>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="promedio">Promedio:</label>
-                      <label style="color:#ff0000;" for="asterisco">*</label>
-                      <input [(ngModel)]="promedio" (change)="validarPromedio()" type="text" class="form-control"
-                        name="promedio" required>
-                      <p>En escala de 0 a 10 Ejemplo: 8.6</p>
-                    </div>
-                  </div>
-                </div>
-                <!--/.row-->
-              </div>
-
-              <!--Lugar donde realizó estudios-->
-
-              <div class="card-body">
-                <p class="h2 text-center">¿Piensas solicitar ficha en otra institución?</p>
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="institucion">¿En que institución?:</label>
-                      <label style="color:#ff0000;" for="asterisco">*</label>
-                      <select [(ngModel)]="institucion" (change)="habilitarUniversidad2()" class="form-control"
-                        name="institucion" required>
-                        <option [value]=null>Selecciona</option>
-                        <option value="ninguna">Ninguna</option>
-                        <option *ngFor="let universidad of universidadLista" value="{{universidad.PK_UNIVERSIDAD}}">
-                          {{universidad.NOMBRE}}</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="carreraUniversidad">Carrera:</label>
-                      <label style="color:#ff0000;" for="asterisco">*</label>
-                      <select [(ngModel)]="carreraUniversidad" [disabled]="habilitarUniversidad" class="form-control"
-                        name="carreraUniversidad" required>
-                        <option [value]=null>Selecciona</option>
-                        <option *ngFor="let carreraUniversidad of carreraUniversidadLista"
-                          value="{{carreraUniversidad.PK_CARRERA_UNIVERSIDAD}}">{{carreraUniversidad.NOMBRE}}</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!--Piensas solicitar ficha en otra institución?-->
-
-              <div class="card-body">
-                <p class="h2 text-center">Datos extra</p>
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-sm-4">
-                    <div class="form-group">
-                      <label for="dependencia">¿De quién dependes económicamente?</label>
-                      <label style="color:#ff0000;" for="asterisco">*</label>
-                      <select [(ngModel)]="dependencia" class="form-control" name="dependencia" required>
-                        <option [value]=null>Selecciona</option>
-                        <option *ngFor="let dependencia of dependenciaLista" value="{{dependencia.PK_DEPENDENCIA}}">
-                          {{dependencia.NOMBRE}}</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-sm-3">
-                    <div class="form-group">
-                      <label for="trabajas">¿Trabajas además de estudiar?</label>
-                      <label style="color:#ff0000;" for="asterisco">*</label>
-                      <select [(ngModel)]="trabajas" class="form-control" name="trabajas" required>
-                        <option [value]=null>Selecciona</option>
-                        <option [value]=1>Si</option>
-                        <option [value]=2>No</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-sm-5">
-                    <div class="form-group">
-                      <label for="propaganda">¿Cómo te enteraste del Instituto Tecnológico de León?</label>
-                      <label style="color:#ff0000;" for="asterisco">*</label>
-                      <select [(ngModel)]="propaganda" class="form-control" name="propaganda" required>
-                        <option [value]=null>Selecciona</option>
-                        <option *ngFor="let propagandaTecnologico of propagandaTecnologicoLista"
-                          value="{{propagandaTecnologico.PK_PROPAGANDA_TECNOLOGICO}}">{{propagandaTecnologico.NOMBRE}}
-                        </option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!--Datos extra-->
-
-              <div class="card-body">
-                <p class="h2 text-center">Aviso de privacidad</p>
-              </div>
-
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-1">
-                    <input class="form-check-input form-control" type="checkbox" [(ngModel)]="aviso" [value]=""
-                      name="aviso" id="aviso" required>
-                  </div>
-                  <div class="col-md-11">
-                    <label class="form-check-label h4" for="aviso">
-                      Estoy de acuerdo que la información proporcionada en el formulario de registro en todos
-                      sus
-                      campos son datos válidos y sirvan para poder utilizar los servicios de acuerdo a ley.
-                    </label>
-                    <a href="https://www.itleon.edu.mx/index.php?option=com_content&view=article&id=126:aviso-de-privacidad&catid=2&Itemid=101"
-                      target="_blank">
-                      Consulta el Aviso de Privacidad dando clic aquí
-                    </a>
-                  </div>
-                </div>
-
-                <div class="clearfix"></div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group d-flex justify-content-center text-center">
-                          <!-- <button type="submit" value="Submit" class="btn btn-sm btn-primary">Aceptar</button> -->
-      
-                          <button class="btn btn-lg btn-primary" (click)="loaderModal.show()"
-                            [disabled]="aspiranteForm.invalid || formGroup.invalid">Enviar
-                            registro</button>
-      
-                          <!-- -->
-                        </div>
-                      </div>
-                </div>
-              </div>
-              <!--Aviso de privacidad-->
-            </div>
-          </div>
-        </div>
-      </div>
-    </form>
-  </div>
-  <!-- INICIO FOOTER -->
-  <div class="container-fluid d-print-none">
+    <!-- INICIO HEADER -->
     <div class="row justify-content-center">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-11 col-xl-10">
-        <div class="container-fluid padded">
-          <div class="row justify-content-md-center align-items-center">
-            <div class="col-3 text-left">
-              <img style="min-width: 100%; max-width: 100%" src="assets/barras_grises.jpg">
-            </div>
-            <div class="col-4 text-center">
-              <img style="min-width: 100%; max-width: 100%" src="assets/SEP_HOTIZONTAL_FB.png">
-            </div>
-            <div class="col-3 text-right">
-              <img style="min-width: 100%; max-width: 100%" src="assets/barras_grises.jpg">
-            </div>
-          </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-11 col-xl10">
+            <img style="min-width: 100%; max-width: 100%" src="assets/banner.jpg">
         </div>
-        <div class="container-fluid">
-          <div class="col text-center font-weight-bold">
-            <div>
-              INSTITUTO TECNOLÓGICO DE LEÓN
-            </div>
-            <div>
-              Algunos derechos reservados © 2019
-            </div>
-          </div>
-        </div>
-        <div class="container-fluid padded">
-          <div class="row">
-            <div class="col-12 col-sm-6 text-center">
-              <div class="font-weight-bold" style="color: #007a33;">CAMPUS I</div>
-              <div>Av. Tecnológico S/N - Fracc. Industrial Julián de Obregón</div>
-              <div>León Guanajuato - C.P. 37290</div>
-              <div>Teléfono (477) 710 5200 - Fax (477) 711 2072</div>
-              <div>e-mail: tecleon@itleon.edu.mx</div>
-            </div>
-            <div class="col-12 col-sm-6 text-center">
-              <div class="font-weight-bold" style="color: #007a33;">CAMPUS II</div>
-              <div>Juan Alonso de Torres No. 3542 - Col. San José de Piletas</div>
-              <div>León Guanajuato - C.P. 37330</div>
-              <div>Teléfono (477) 710 5202 - Fax (477) 711 2072</div>
-              <div>e-mail: tecleon@itleon.edu.mx</div>
-            </div>
-          </div>
-        </div>
-      </div>
+        <h1 class="text-center">
+            <br>
+            SOLICITUD DE FICHA PARA ADMISIÓN
+            <br>
+        </h1>
     </div>
-  </div>
-  <!-- FIN FOOTER -->
+    <!-- FIN HEADER -->
+    <div class="animated fadeIn">
+        <form #aspiranteForm=ngForm (ngSubmit)="onSubmit()">
+            <div class="container">
+                <div class="card">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card-body">
+                                <p class="h2 text-center">Datos Personales</p>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="curp">CURP:</label>
+                                            <label style="color:#ff0000;" for="asterisco">*</label>
+                                            <input [(ngModel)]="CURP" type="text" class="form-control" name="curp"
+                                                   id="curp" size=18
+                                                   minlength=18 maxlength=18
+                                                   onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase().replace(' ','')"
+                                                   required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <a href="https://www.gob.mx/curp/" target="_blank">
+                                                <button type="button"
+                                                        class="btn btn-primary">Consulta de CURP
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/.row-->
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="nombre">Nombre:</label>
+                                            <label style="color:#ff0000;" for="asterisco">*</label>
+                                            <input [(ngModel)]="nombre" type="text" class="form-control" name="nombre"
+                                                   id="nombre"
+                                                   onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"
+                                                   required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/.row-->
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="pApellido">Primer apellido:</label>
+                                            <label style="color:#ff0000;" for="asterisco">*</label>
+                                            <input [(ngModel)]="pApellido" type="text" class="form-control"
+                                                   name="pApellido" id="pApellido"
+                                                   onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"
+                                                   required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="sApellido">Segundo apellido:</label>
+                                            <input [(ngModel)]="sApellido" type="text" class="form-control"
+                                                   name="sApellido" id="sApellido"
+                                                   onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/.row-->
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="fechaNacimiento">Fecha de nacimiento:</label>
+                                            <label style="color:#ff0000;" for="asterisco">*</label>
+                                            <input [(ngModel)]="fechaNacimiento" type="date" class="form-control"
+                                                   name="fechaNacimiento"
+                                                   required>
+                                            <!-- <p>Ejemplo: 1994-12-03</p> -->
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-3">
+                                        <label for="genero">Género:</label>
+                                        <label style="color:#ff0000;" for="asterisco">*</label>
+                                        <select [(ngModel)]="genero" class="form-control" name="genero" required>
+                                            <option [value]=null>Selecciona</option>
+                                            <option [value]=1>Masculino</option>
+                                            <option [value]=2>Femenino</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-3">
+                                        <label for="estadoCivil">Estado civil:</label>
+                                        <label style="color:#ff0000;" for="asterisco">*</label>
+                                        <select [(ngModel)]="estadoCivil" class="form-control" name="estadoCivil"
+                                                required>
+                                            <option [value]=null>Selecciona</option>
+                                            <option *ngFor="let estadoCivil of estadoCivilLista"
+                                                    value="{{estadoCivil.PK_ESTADO_CIVIL}}">
+                                                {{estadoCivil.NOMBRE}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!--/.row-->
+                            </div>
+                            <!--Datos personales-->
+
+                            <div class="card-body">
+                                <p class="h2 text-center">Datos de Contacto</p>
+                            </div>
+                            <div class="card-body">
+
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="cp">Código postal:</label>
+                                            <label style="color:#ff0000;" for="asterisco">*</label>
+                                            <input [(ngModel)]="cp" (keyup)="cargarColonias()" type="text"
+                                                   class="form-control" name="cp"
+                                                   required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="colonia">Colonia:</label>
+                                            <label style="color:#ff0000;" for="asterisco">*</label>
+                                            <select [(ngModel)]="colonia" class="form-control" name="colonia" required>
+                                                <option [value]=null>Selecciona</option>
+                                                <option [value]=0>Otra</option>
+                                                <option *ngFor="let colonia of coloniaLista"
+                                                        value="{{colonia.PK_COLONIA}}">{{colonia.NOMBRE}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/.row-->
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="calle">Calle:</label>
+                                            <label style="color:#ff0000;" for="asterisco">*</label>
+                                            <input [(ngModel)]="calle" type="text" class="form-control" name="calle"
+                                                   required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label for="numExt">Número exterior:</label>
+                                            <label style="color:#ff0000;" for="asterisco">*</label>
+                                            <input [(ngModel)]="numExt" type="text" class="form-control" name="numExt"
+                                                   required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label for="numInt">Número interior:</label>
+                                            <input [(ngModel)]="numInt" type="text" class="form-control" name="numInt">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/.row-->
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="tFijo">Teléfono fijo:</label>
+                                            <label style="color:#ff0000;" for="asterisco">*</label>
+                                            <input [(ngModel)]="tFijo" type="text" class="form-control" name="tFijo"
+                                                   required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="tMovil">Teléfono celular:</label>
+                                            <input [(ngModel)]="tMovil" type="text" class="form-control" name="tMovil">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/.row-->
+
+                                <form [formGroup]="formGroup">
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="correo">Correo electrónico:</label>
+                                                <label style="color:#ff0000;" for="asterisco">*</label>
+                                                <input type="text" class="form-control"
+                                                       [formControl]="formGroup.controls['CORREO1']" id="correo1"
+                                                       onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.replace(' ','')">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="correo2">Confirma tu correo electrónico:</label>
+                                                <label style="color:#ff0000;" for="asterisco">*</label>
+
+                                                <input type="text" class="form-control"
+                                                       [formControl]="formGroup.controls['repeat_CORREO1']"
+                                                       oncopy="return false" onpaste="return false" required
+                                                       id="correo2"
+                                                       onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.replace(' ','')">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/.row-->
+                                </form>
+
+                            </div>
+
+                            <!--Datos de contato-->
+
+                            <div class="card-body">
+                                <p class="h2 text-center">Datos de padre(s) o tutor(es)</p>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="nombrePadre">Nombre de padre/tutor:</label>
+                                            <label style="color:#ff0000;" for="asterisco">*</label>
+                                            <input [(ngModel)]="nombrePadre" type="text" class="form-control"
+                                                   name="nombrePadre" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="nombreMadre">Nombre de madre:</label>
+                                            <input [(ngModel)]="nombreMadre" type="text" class="form-control"
+                                                   name="nombreMadre">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/.row-->
+                            </div>
+
+                            <!--Datos de Padre(s) o Tutor(es):-->
+
+                            <div class="card-body">
+                                <p class="h2 text-center">Actualmente, ¿tienes alguna discapacidad? </p>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="incapacidad">Discapacidades:</label>
+
+
+                                            <form [formGroup]="formGroup">
+                                                <div formArrayName="incapacidadLista"
+                                                     *ngFor="let incapacidad of formGroup.controls.incapacidadLista.controls; let i = index">
+                                                    <input type="checkbox" (change)="habilitarAyuda2()"
+                                                           [formControlName]="i" id="{{'_'+i}}">
+                                                    <label for="{{'_'+i}}">{{incapacidadLista[i].NOMBRE}}</label>
+                                                </div>
+                                            </form>
+
+                                            <!--      <div *ngIf="!form.valid">At least one order must be selected</div>
+                                            <br>
+                                            <button [disabled]="!form.valid">submit</button> -->
+                                            <label for="ayuda">¿Qué tipo de ayuda necesitas?</label>
+                                            <input [(ngModel)]="ayuda" [disabled]="habilitarAyuda" type="text"
+                                                   class="form-control"
+                                                   name="ayuda" required>
+
+                                            <!--                     <form [formGroup]="form" (ngSubmit)="submit()">
+                                              <label formArrayName="incapacidadLista" *ngFor="let incapacidad of form.controls.incapacidadLista.controls; let i = index">
+                                                <input type="checkbox" [formControlName]="i">
+                                                {{incapacidadLista[i].NOMBRE}}
+                                              </label>
+
+                                              <div *ngIf="!form.valid">At least one order must be selected</div>
+                                              <br>
+                                              <button [disabled]="!form.valid">submit</button>
+                                            </form> -->
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Actualmente, ¿tienes alguna discapacidad? :-->
+
+                            <div class="card-body">
+                                <p class="h2 text-center">Nacionalidad</p>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="nacioPais">País:</label>
+                                            <label style="color:#ff0000;" for="asterisco">*</label>
+                                            <select [(ngModel)]="nacioPais" (change)="habilitarNacionalidad2()"
+                                                    class="form-control"
+                                                    name="nacioPais" required>
+                                                <option [value]=null>Selecciona</option>
+                                                <option [value]=1>México​</option>
+                                                <option [value]=2>Otro</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="nacioEntidadFederativa">Estado:</label>
+                                            <label style="color:#ff0000;" for="asterisco">*</label>
+                                            <select [(ngModel)]="nacioEntidadFederativa"
+                                                    [disabled]="habilitarNacionalidad"
+                                                    (change)="cargarCiudades()" class="form-control"
+                                                    name="nacioEntidadFederativa" required>
+                                                <option [value]=null>Selecciona</option>
+                                                <option *ngFor="let entidadFederativa of entidadFederativaLista"
+                                                        value="{{entidadFederativa.PK_ENTIDAD_FEDERATIVA}}">{{entidadFederativa.NOMBRE}}</option>
+                                            </select>
+                                            <!-- <p [hidden]="nacioEntidadFederativa == '0'">Haz seleccionado la opción # {{ nacioEntidadFederativa }}</p> -->
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="nacioCiudad">Ciudad:</label>
+                                            <label style="color:#ff0000;" for="asterisco">*</label>
+                                            <select [(ngModel)]="nacioCiudad" [disabled]="habilitarNacionalidad"
+                                                    class="form-control"
+                                                    name="nacioCiudad" required>
+                                                <option [value]=null>Selecciona</option>
+                                                <option *ngFor="let ciudad of ciudadLista"
+                                                        value="{{ciudad.PK_CIUDAD}}">{{ciudad.NOMBRE}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="nacionalidad">Nacionalidad:</label>
+                                            <label style="color:#ff0000;" for="asterisco">*</label>
+                                            <input [(ngModel)]="nacionalidad" [disabled]="habilitarNacionalidadOtro"
+                                                   type="text"
+                                                   class="form-control" name="nacionalidad" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/.row-->
+                            </div>
+
+                            <!--Nacionalidad-->
+
+                            <div class="card-body">
+                                <p class="h2 text-center">Carreras</p>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="especialidad1">Elige la carrera a la que te gustaría
+                                                ingresar:</label>
+                                            <label style="color:#ff0000;" for="asterisco">*</label>
+                                            <select [(ngModel)]="especialidad1" (change)="compararCarreras1()"
+                                                    class="form-control"
+                                                    name="especialidad1" required>
+                                                <option [value]=null>Selecciona</option>
+                                                <option *ngFor="let carrera of carreraLista"
+                                                        value="{{carrera.PK_CARRERA}}">{{carrera.NOMBRE}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-sm-6">
+                                      <div class="form-group">
+                                        <label for="especialidad2">Especialidad 2:</label>
+                                        <select [(ngModel)]="especialidad2" (change)="compararCarreras2()" class="form-control"
+                                          name="especialidad2" required>
+                                          <option [value]=null>Selecciona</option>
+                                          <option *ngFor="let carrera of carreraLista" value="{{carrera.PK_CARRERA}}">{{carrera.NOMBRE}}
+                                          </option>
+                                        </select>
+                                      </div>
+                                    </div> -->
+                                </div>
+                            </div>
+
+                            <!--Carreras-->
+
+                            <div class="card-body">
+                                <p class="h2 text-center">Lugar donde realizó estudios</p>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="escuelaEstado">Estado:</label>
+                                            <label style="color:#ff0000;" for="asterisco">*</label>
+                                            <select [(ngModel)]="escuelaEstado" (change)="cargarCiudades2()"
+                                                    class="form-control"
+                                                    name="escuelaEstado" required>
+                                                <option [value]=null>Selecciona</option>
+                                                <option *ngFor="let entidadFederativa of entidadFederativaLista"
+                                                        value="{{entidadFederativa.PK_ENTIDAD_FEDERATIVA}}">{{entidadFederativa.NOMBRE}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="escuelaMunicio">Ciudad:</label>
+                                            <label style="color:#ff0000;" for="asterisco">*</label>
+                                            <select [(ngModel)]="escuelaMunicio" (change)="cargarEscuelas()"
+                                                    class="form-control"
+                                                    name="escuelaMunicio" required>
+                                                <option [value]=null>Selecciona</option>
+                                                <option *ngFor="let ciudad of ciudadLista2"
+                                                        value="{{ciudad.PK_CIUDAD}}">{{ciudad.NOMBRE}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="escuela">Escuela procendencia:</label>
+                                            <label style="color:#ff0000;" for="asterisco">*</label>
+                                            <select [(ngModel)]="escuela" class="form-control" name="escuela" required>
+                                                <option [value]=null>Selecciona</option>
+                                                <option *ngFor="let bachillerato of bachilleratoLista"
+                                                        value="{{bachillerato.PK_BACHILLERATO}}">
+                                                    {{bachillerato.NOMBRE}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="escuelaEspecialidad">Especialidad:</label>
+                                            <label style="color:#ff0000;" for="asterisco">*</label>
+                                            <input [(ngModel)]="escuelaEspecialidad" type="text" class="form-control"
+                                                   name="escuelaEspecialidad" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="promedio">Promedio:</label>
+                                            <label style="color:#ff0000;" for="asterisco">*</label>
+                                            <input [(ngModel)]="promedio" (change)="validarPromedio()" type="text"
+                                                   class="form-control"
+                                                   name="promedio" required>
+                                            <p>En escala de 0 a 10 Ejemplo: 8.6</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/.row-->
+                            </div>
+
+                            <!--Lugar donde realizó estudios-->
+
+                            <div class="card-body">
+                                <p class="h2 text-center">¿Piensas solicitar ficha en otra institución?</p>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="institucion">¿En que institución?:</label>
+                                            <label style="color:#ff0000;" for="asterisco">*</label>
+                                            <select [(ngModel)]="institucion" (change)="habilitarUniversidad2()"
+                                                    class="form-control"
+                                                    name="institucion" required>
+                                                <option [value]=null>Selecciona</option>
+                                                <option value="ninguna">Ninguna</option>
+                                                <option *ngFor="let universidad of universidadLista"
+                                                        value="{{universidad.PK_UNIVERSIDAD}}">
+                                                    {{universidad.NOMBRE}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="carreraUniversidad">Carrera:</label>
+                                            <label style="color:#ff0000;" for="asterisco">*</label>
+                                            <select [(ngModel)]="carreraUniversidad" [disabled]="habilitarUniversidad"
+                                                    class="form-control"
+                                                    name="carreraUniversidad" required>
+                                                <option [value]=null>Selecciona</option>
+                                                <option *ngFor="let carreraUniversidad of carreraUniversidadLista"
+                                                        value="{{carreraUniversidad.PK_CARRERA_UNIVERSIDAD}}">{{carreraUniversidad.NOMBRE}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Piensas solicitar ficha en otra institución?-->
+
+                            <div class="card-body">
+                                <p class="h2 text-center">Datos extra</p>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="dependencia">¿De quién dependes económicamente?</label>
+                                            <label style="color:#ff0000;" for="asterisco">*</label>
+                                            <select [(ngModel)]="dependencia" class="form-control" name="dependencia"
+                                                    required>
+                                                <option [value]=null>Selecciona</option>
+                                                <option *ngFor="let dependencia of dependenciaLista"
+                                                        value="{{dependencia.PK_DEPENDENCIA}}">
+                                                    {{dependencia.NOMBRE}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label for="trabajas">¿Trabajas además de estudiar?</label>
+                                            <label style="color:#ff0000;" for="asterisco">*</label>
+                                            <select [(ngModel)]="trabajas" class="form-control" name="trabajas"
+                                                    required>
+                                                <option [value]=null>Selecciona</option>
+                                                <option [value]=1>Si</option>
+                                                <option [value]=2>No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <div class="form-group">
+                                            <label for="propaganda">¿Cómo te enteraste del Instituto Tecnológico de
+                                                León?</label>
+                                            <label style="color:#ff0000;" for="asterisco">*</label>
+                                            <select [(ngModel)]="propaganda" class="form-control" name="propaganda"
+                                                    required>
+                                                <option [value]=null>Selecciona</option>
+                                                <option *ngFor="let propagandaTecnologico of propagandaTecnologicoLista"
+                                                        value="{{propagandaTecnologico.PK_PROPAGANDA_TECNOLOGICO}}">{{propagandaTecnologico.NOMBRE}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Datos extra-->
+
+                            <div class="card-body">
+                                <p class="h2 text-center">Aviso de privacidad</p>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        <input class="form-check-input form-control" type="checkbox" [(ngModel)]="aviso"
+                                               [value]=""
+                                               name="aviso" id="aviso" required>
+                                    </div>
+                                    <div class="col-md-11">
+                                        <label class="form-check-label h4" for="aviso">
+                                            Estoy de acuerdo que la información proporcionada en el formulario de
+                                            registro en todos
+                                            sus
+                                            campos son datos válidos y sirvan para poder utilizar los servicios de
+                                            acuerdo a ley.
+                                        </label>
+                                        <a href="https://www.itleon.edu.mx/index.php?option=com_content&view=article&id=126:aviso-de-privacidad&catid=2&Itemid=101"
+                                           target="_blank">
+                                            Consulta el Aviso de Privacidad dando clic aquí
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="clearfix"></div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group d-flex justify-content-center text-center">
+                                            <!-- <button type="submit" value="Submit" class="btn btn-sm btn-primary">Aceptar</button> -->
+
+                                            <button class="btn btn-lg btn-primary" (click)="loaderModal.show()"
+                                                    [disabled]="aspiranteForm.invalid || formGroup.invalid">Enviar
+                                                registro
+                                            </button>
+
+                                            <!-- -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Aviso de privacidad-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- INICIO FOOTER -->
+    <div class="container-fluid d-print-none">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-11 col-xl-10">
+                <div class="container-fluid padded">
+                    <div class="row justify-content-md-center align-items-center">
+                        <div class="col-3 text-left">
+                            <img style="min-width: 100%; max-width: 100%" src="assets/barras_grises.jpg">
+                        </div>
+                        <div class="col-4 text-center">
+                            <img style="min-width: 100%; max-width: 100%" src="assets/SEP_HOTIZONTAL_FB.png">
+                        </div>
+                        <div class="col-3 text-right">
+                            <img style="min-width: 100%; max-width: 100%" src="assets/barras_grises.jpg">
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="col text-center font-weight-bold">
+                        <div>
+                            INSTITUTO TECNOLÓGICO DE LEÓN
+                        </div>
+                        <div>
+                            Algunos derechos reservados © 2019
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid padded">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 text-center">
+                            <div class="font-weight-bold" style="color: #007a33;">CAMPUS I</div>
+                            <div>Av. Tecnológico S/N - Fracc. Industrial Julián de Obregón</div>
+                            <div>León Guanajuato - C.P. 37290</div>
+                            <div>Teléfono (477) 710 5200 - Fax (477) 711 2072</div>
+                            <div>e-mail: tecleon@itleon.edu.mx</div>
+                        </div>
+                        <div class="col-12 col-sm-6 text-center">
+                            <div class="font-weight-bold" style="color: #007a33;">CAMPUS II</div>
+                            <div>Juan Alonso de Torres No. 3542 - Col. San José de Piletas</div>
+                            <div>León Guanajuato - C.P. 37330</div>
+                            <div>Teléfono (477) 710 5202 - Fax (477) 711 2072</div>
+                            <div>e-mail: tecleon@itleon.edu.mx</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FIN FOOTER -->
 </div>
 
 <div class="col-sm-12" *ngIf="!activado">
-  <div style="background-color:white;">
-    <!-- INICIO HEADER -->
-    <div class="row justify-content-center">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-11 col-xl10">
-        <img style="min-width: 100%; max-width: 100%" src="assets/banner.jpg">
-      </div>
-      <h1 class="text-center">
-        <br>
-        Bienvenido a la plataforma
-        <br>
-        <b>TecVirtual del Tecnológico Nacional de México en León</b>
-        <br>
-        <br>
-      </h1>
-    </div>
-    <!-- FIN HEADER -->
+    <div style="background-color:white;">
+        <!-- INICIO HEADER -->
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-11 col-xl10">
+                <img style="min-width: 100%; max-width: 100%" src="assets/banner.jpg">
+            </div>
+            <h1 class="text-center">
+                <br>
+                Bienvenido a la plataforma
+                <br>
+                <b>TecVirtual del Tecnológico Nacional de México en León</b>
+                <br>
+                <br>
+            </h1>
+        </div>
+        <!-- FIN HEADER -->
 
-    <div class="app-body">
-      <main class="main d-flex align-items-center">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-8 mx-auto">
-              <div class="card-group">
-                <div class="card p-3">
-                  <div class="card-body">
-                    <h1 class="text-center">
-                      El periodo para solicitud de fichas no se encuentra vigente
-                    </h1>
-                  </div>
+        <div class="app-body">
+            <main class="main d-flex align-items-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 mx-auto">
+                            <div class="card-group">
+                                <div class="card p-3">
+                                    <div class="card-body">
+                                        <h1 class="text-center">
+                                            El periodo para solicitud de fichas no se encuentra vigente
+                                        </h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
+            </main>
         </div>
-      </main>
-    </div>
 
-    <!-- INICIO FOOTER -->
-    <div class="container-fluid d-print-none">
-      <div class="row justify-content-center">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-11 col-xl-10">
-          <div class="container-fluid padded">
-            <div class="row justify-content-md-center align-items-center">
-              <div class="col-3 text-left">
-                <img style="min-width: 100%; max-width: 100%" src="assets/barras_grises.jpg">
-              </div>
-              <div class="col-4 text-center">
-                <img style="min-width: 100%; max-width: 100%" src="assets/SEP_HOTIZONTAL_FB.png">
-              </div>
-              <div class="col-3 text-right">
-                <img style="min-width: 100%; max-width: 100%" src="assets/barras_grises.jpg">
-              </div>
+        <!-- INICIO FOOTER -->
+        <div class="container-fluid d-print-none">
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-11 col-xl-10">
+                    <div class="container-fluid padded">
+                        <div class="row justify-content-md-center align-items-center">
+                            <div class="col-3 text-left">
+                                <img style="min-width: 100%; max-width: 100%" src="assets/barras_grises.jpg">
+                            </div>
+                            <div class="col-4 text-center">
+                                <img style="min-width: 100%; max-width: 100%" src="assets/SEP_HOTIZONTAL_FB.png">
+                            </div>
+                            <div class="col-3 text-right">
+                                <img style="min-width: 100%; max-width: 100%" src="assets/barras_grises.jpg">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid">
+                        <div class="col text-center font-weight-bold">
+                            <div>
+                                INSTITUTO TECNOLÓGICO DE LEÓN
+                            </div>
+                            <div>
+                                Algunos derechos reservados © 2019
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid padded">
+                        <div class="row">
+                            <div class="col-12 col-sm-6 text-center">
+                                <div class="font-weight-bold" style="color: #007a33;">CAMPUS I</div>
+                                <div>Av. Tecnológico S/N - Fracc. Industrial Julián de Obregón</div>
+                                <div>León Guanajuato - C.P. 37290</div>
+                                <div>Teléfono (477) 710 5200 - Fax (477) 711 2072</div>
+                                <div>e-mail: tecleon@itleon.edu.mx</div>
+                            </div>
+                            <div class="col-12 col-sm-6 text-center">
+                                <div class="font-weight-bold" style="color: #007a33;">CAMPUS II</div>
+                                <div>Juan Alonso de Torres No. 3542 - Col. San José de Piletas</div>
+                                <div>León Guanajuato - C.P. 37330</div>
+                                <div>Teléfono (477) 710 5202 - Fax (477) 711 2072</div>
+                                <div>e-mail: tecleon@itleon.edu.mx</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="container-fluid">
-            <div class="col text-center font-weight-bold">
-              <div>
-                INSTITUTO TECNOLÓGICO DE LEÓN
-              </div>
-              <div>
-                Algunos derechos reservados © 2019
-              </div>
-            </div>
-          </div>
-          <div class="container-fluid padded">
-            <div class="row">
-              <div class="col-12 col-sm-6 text-center">
-                <div class="font-weight-bold" style="color: #007a33;">CAMPUS I</div>
-                <div>Av. Tecnológico S/N - Fracc. Industrial Julián de Obregón</div>
-                <div>León Guanajuato - C.P. 37290</div>
-                <div>Teléfono (477) 710 5200 - Fax (477) 711 2072</div>
-                <div>e-mail: tecleon@itleon.edu.mx</div>
-              </div>
-              <div class="col-12 col-sm-6 text-center">
-                <div class="font-weight-bold" style="color: #007a33;">CAMPUS II</div>
-                <div>Juan Alonso de Torres No. 3542 - Col. San José de Piletas</div>
-                <div>León Guanajuato - C.P. 37330</div>
-                <div>Teléfono (477) 710 5202 - Fax (477) 711 2072</div>
-                <div>e-mail: tecleon@itleon.edu.mx</div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
+        <!-- FIN FOOTER -->
     </div>
-    <!-- FIN FOOTER -->
-  </div>
 
 </div>
 
 <div bsModal #loaderModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true" [config]="{backdrop: 'static',keyboard: false}">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <app-loader></app-loader>
-      <div class="container-fluid">
-        <div class="col text-center font-weight-bold">
-          <div>
-            <p class="h4">
-              {{mensaje0}}
-            </p>
-          </div>
-          <br><br>
-          <div>
-            <p class="h4">
-              {{mensaje1}}
-            </p>
-          </div>
-          <br><br>
-          <div>
-            <p class="h4">
-              {{mensaje2}}
-            </p>
-          </div>
-          <br><br>
+     aria-hidden="true" [config]="{backdrop: 'static',keyboard: false}">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <app-loader></app-loader>
+            <div class="container-fluid">
+                <div class="col text-center font-weight-bold">
+                    <div>
+                        <p class="h4">
+                            {{mensaje0}}
+                        </p>
+                    </div>
+                    <br><br>
+                    <div>
+                        <p class="h4">
+                            {{mensaje1}}
+                        </p>
+                    </div>
+                    <br><br>
+                    <div>
+                        <p class="h4">
+                            {{mensaje2}}
+                        </p>
+                    </div>
+                    <br><br>
+                </div>
+            </div>
+            <div class="modal-footer" *ngIf="cerrarModal">
+                <button type="button" class="btn btn-primary" (click)="loaderModal.hide()">Aceptar</button>
+            </div>
         </div>
-      </div>
-      <div class="modal-footer" *ngIf="cerrarModal">
-        <button type="button" class="btn btn-primary" (click)="loaderModal.hide()">Aceptar</button>
-      </div>
     </div>
-  </div>
 </div>

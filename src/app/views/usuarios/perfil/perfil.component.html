@@ -11,237 +11,275 @@
             </div>
         </div>
         <br>
-        <div class="col-md-12">
-            <div class="h3">Datos personales</div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="NOMBRE">Nombres</label>
-                    <input type="text" class="form-control" id="NOMBRE" name="NOMBRE"
-                           value="{{this.perfil.NOMBRE}}" readonly>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="PRIMER_APELLIDO">Primer apellido</label>
-                    <input type="text" class="form-control" id="PRIMER_APELLIDO" name="PRIMER_APELLIDO"
-                           value="{{this.perfil.PRIMER_APELLIDO}}" readonly>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="SEGUNDO_APELLIDO">Segundo apellido</label>
-                    <input type="text" class="form-control" id="SEGUNDO_APELLIDO" name="SEGUNDO_APELLIDO"
-                           value="{{this.perfil.SEGUNDO_APELLIDO}}" readonly>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="CURP">CURP</label>
-                    <input type="text" class="form-control" id="CURP" name="CURP"
-                           value="{{this.perfil.CURP}}" readonly>
-                </div>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="NUMERO_CONTROL">Número de control</label>
-                    <input type="text" class="form-control" id="NUMERO_CONTROL" name="NUMERO_CONTROL"
-                           value="{{this.perfil.NUMERO_CONTROL}}" readonly>
+        <form #perfil_form=ngForm (ngSubmit)="onSubmit()">
+            <div class="col-md-12">
+                <div class="h3">Datos personales</div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="NOMBRE">Nombres</label>
+                        <input type="text" class="form-control" id="NOMBRE" name="NOMBRE"
+                               value="{{this.perfil.NOMBRE}}" readonly>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="PRIMER_APELLIDO">Primer apellido</label>
+                        <input type="text" class="form-control" id="PRIMER_APELLIDO" name="PRIMER_APELLIDO"
+                               value="{{this.perfil.PRIMER_APELLIDO}}" readonly>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="SEGUNDO_APELLIDO">Segundo apellido</label>
+                        <input type="text" class="form-control" id="SEGUNDO_APELLIDO" name="SEGUNDO_APELLIDO"
+                               value="{{this.perfil.SEGUNDO_APELLIDO}}" readonly>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="CURP">CURP</label>
+                        <input type="text" class="form-control" id="CURP" name="CURP"
+                               value="{{this.perfil.CURP}}" readonly>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="CARRERA">Carrera</label>
-                    <input type="text" class="form-control" id="CARRERA" name="CARRERA"
-                           value="{{this.perfil.CARRERA}}" readonly>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="SEMESTRE">Semestre</label>
-                    <input type="text" class="form-control" id="SEMESTRE" name="SEMESTRE"
-                           value="{{this.perfil.SEMESTRE}}" readonly>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="CORREO_INSTITUCIONAL">Correo institucional</label>
-                    <input type="text" class="form-control" id="CORREO_INSTITUCIONAL"
-                           name="CORREO_INSTITUCIONAL"
-                           value="{{this.perfil.NUMERO_CONTROL}}@itleon.edu.mx" readonly>
-                </div>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="FECHA_NACIMIENTO">Fecha de nacimiento</label>
-                    <input type="date" class="form-control" id="FECHA_NACIMIENTO" name="FECHA_NACIMIENTO"
-                           value="{{this.perfil.FECHA_NACIMIENTO}}">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="NUMERO_CONTROL">Número de control</label>
+                        <input type="text" class="form-control" id="NUMERO_CONTROL" name="NUMERO_CONTROL"
+                               value="{{this.perfil.NUMERO_CONTROL}}" readonly>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="CARRERA">Carrera</label>
+                        <input type="text" class="form-control" id="CARRERA" name="CARRERA"
+                               value="{{this.perfil.CARRERA}}" readonly>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="SEMESTRE">Semestre</label>
+                        <input type="text" class="form-control" id="SEMESTRE" name="SEMESTRE"
+                               value="{{this.perfil.SEMESTRE}}" readonly>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="CORREO_INSTITUCIONAL">Correo institucional</label>
+                        <input type="text" class="form-control" id="CORREO_INSTITUCIONAL"
+                               name="CORREO_INSTITUCIONAL"
+                               value="{{this.perfil.NUMERO_CONTROL}}@itleon.edu.mx" readonly>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="SEXO">Sexo</label>
-                    <select name="SEXO" id="SEXO" class="form-control">
-                        <option value="">* Seleccione una opción</option>
-                        <option value="1">MASCULINO</option>
-                        <option value="2">FEMENINO</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="ESTADO_CIVIL">Estado civil</label>
-                    <select name="ESTADO_CIVIL" id="ESTADO_CIVIL" class="form-control">
-                        <option value="">* Seleccione una opción</option>
-                        <option *ngFor="let estado_civil of this.estados_civiles" value="{{estado_civil.PK_ESTADO_CIVIL}}">
-                            {{estado_civil.NOMBRE}}
-                        </option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="SITUACION_RESIDENCIA">Situación de la residencia</label>
-                    <input type="text" class="form-control" id="SITUACION_RESIDENCIA"
-                           name="SITUACION_RESIDENCIA"
-                           value="SITUACION_RESIDENCIA" readonly>
-                </div>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="CORREO1">Correo personal principal</label>
-                    <input type="mail" class="form-control" id="CORREO1" name="CORREO1"
-                           value="{{this.perfil.CORREO1}}" readonly>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="FECHA_NACIMIENTO">Fecha de nacimiento</label>
+                        <input type="date" class="form-control" id="FECHA_NACIMIENTO" name="FECHA_NACIMIENTO"
+                               [(ngModel)]="FECHA_NACIMIENTO"
+                               value="{{this.perfil.FECHA_NACIMIENTO}}">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="SEXO">Sexo</label>
+                        <select name="SEXO" id="SEXO" class="form-control" #SEXO>
+                            <option value="">* Seleccione una opción</option>
+                            <option value="1">MASCULINO</option>
+                            <option value="2">FEMENINO</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="ESTADO_CIVIL">Estado civil</label>
+                        <select name="ESTADO_CIVIL" id="ESTADO_CIVIL" class="form-control" #ESTADO_CIVIL>
+                            <option value="">* Seleccione una opción</option>
+                            <option *ngFor="let estado_civil of this.estados_civiles"
+                                    value="{{estado_civil.PK_ESTADO_CIVIL}}">
+                                {{estado_civil.NOMBRE}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="SITUACION_RESIDENCIA">Situación de la residencia</label>
+                        <select name="SITUACION_RESIDENCIA" id="SITUACION_RESIDENCIA" class="form-control"
+                                #SITUACION_RESIDENCIA>
+                            <option value="">* Seleccione una opción</option>
+                            <option *ngFor="let situacion_residencia of this.situaciones_residencia"
+                                    value="{{situacion_residencia.PK_SITUACION_RESIDENCIA}}">
+                                {{situacion_residencia.NOMBRE}}
+                            </option>
+                        </select>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="CORREO2">Correo personal optativo</label>
-                    <input type="mail" class="form-control" id="CORREO2" name="CORREO2"
-                           value="{{this.perfil.CORREO2}}" readonly>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="TELEFONO_CASA">Teléfono fijo</label>
-                    <input type="text" class="form-control" id="TELEFONO_CASA" name="TELEFONO_CASA"
-                           value="{{this.perfil.TELEFONO_CASA}}" readonly>
-                    <small id="TELEFONO_CASAHelp" class="form-text text-muted">10 Dígitos</small>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="TELEFONO_MOVIL">Teléfono móvil</label>
-                    <input type="text" class="form-control" id="TELEFONO_MOVIL" name="TELEFONO_MOVIL"
-                           value="{{this.perfil.TELEFONO_MOVIL}}" readonly>
-                </div>
-            </div>
-        </div>
 
-        <hr>
-        <div class="col-md-12">
-            <div class="h3">Domicilio</div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="CODIGO_POSTAL">Código postal</label>
-                    <input type="text" class="form-control" id="CODIGO_POSTAL" name="CODIGO_POSTAL"
-                           value="CODIGO_POSTAL" readonly>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="CORREO1">Correo personal principal</label>
+                        <input type="mail" class="form-control" id="CORREO1" name="CORREO1" #CORREO1
+                               value="{{this.perfil.CORREO1}}">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="CORREO2">Correo personal optativo</label>
+                        <input type="mail" class="form-control" id="CORREO2" name="CORREO2" #CORREO2
+                               value="{{this.perfil.CORREO2}}">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="TELEFONO_CASA">Teléfono fijo</label>
+                        <input type="text" class="form-control" id="TELEFONO_CASA" name="TELEFONO_CASA" #TELEFONO_CASA
+                               value="{{this.perfil.TELEFONO_CASA}}">
+                        <small id="TELEFONO_CASAHelp" class="form-text text-muted">10 Dígitos</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="TELEFONO_MOVIL">Teléfono móvil</label>
+                        <input type="text" class="form-control" id="TELEFONO_MOVIL" name="TELEFONO_MOVIL"
+                               #TELEFONO_MOVIL
+                               value="{{this.perfil.TELEFONO_MOVIL}}">
+                    </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="ENTIDAD_FEDERATIVA">Entidad federativa</label>
-                    <input type="mail" class="form-control" id="ENTIDAD_FEDERATIVA"
-                           name="ENTIDAD_FEDERATIVA"
-                           value="ENTIDAD_FEDERATIVA" readonly>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="CIUDAD">Municipio</label>
-                    <input type="text" class="form-control" id="CIUDAD" name="CIUDAD"
-                           value="CIUDAD" readonly>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="COLONIA">Colonia</label>
-                    <input type="text" class="form-control" id="COLONIA" name="COLONIA"
-                           value="{{this.perfil.FK_COLONIA}}" readonly>
-                </div>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label for="CALLE">Calle</label>
-                    <input type="text" class="form-control" id="CALLE" name="CALLE"
-                           value="{{this.perfil.CALLE}}" readonly>
+            <hr>
+            <div class="col-md-12">
+                <div class="h3">Domicilio</div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="CODIGO_POSTAL">Código postal</label>
+                        <input type="text" class="form-control" id="CODIGO_POSTAL" name="CODIGO_POSTAL" [(ngModel)]="this.CODIGO_POSTAL"
+                               value="{{this.perfil.CODIGO_POSTAL}}" (keyup)="valida_codigo_postal()" (focusout)="procesa_codigo_postal()">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="ENTIDAD_FEDERATIVA">Entidad federativa</label>
+                        <input type="mail" class="form-control" id="ENTIDAD_FEDERATIVA"
+                               name="ENTIDAD_FEDERATIVA"
+                               value="{{this.entidad_federativa}}"
+                               readonly>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="CIUDAD">Municipio</label>
+                        <input type="text" class="form-control" id="CIUDAD" name="CIUDAD"
+                               value="{{this.municipio}}" readonly>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="COLONIA">Colonia</label>
+                        <select name="COLONIA" id="COLONIA" class="form-control">
+                            <option value="">* Seleccione una opción</option>
+                            <!--<option *ngFor="let colonia of this.coloniaLista" value="{{colonia.PK_SITUACION_RESIDENCIA}}">
+                                {{colonia.NOMBRE}}
+                            </option>-->
+                            <option *ngFor="let colonia of coloniaLista" value="{{colonia.PK_COLONIA}}">
+                                {{colonia.NOMBRE}}
+                            </option>
+                        </select>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label for="NUMERO_EXTERIOR">Número exterior</label>
-                    <input type="mail" class="form-control" id="NUMERO_EXTERIOR" name="NUMERO_EXTERIOR"
-                           value="{{this.perfil.NUMERO_EXTERIOR}}" readonly>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label for="NUMERO_INTERIOR">Número interior</label>
-                    <input type="mail" class="form-control" id="NUMERO_INTERIOR" name="NUMERO_INTERIOR"
-                           value="{{this.perfil.NUMERO_INTERIOR}}" readonly>
-                </div>
-            </div>
-        </div>
 
-        <hr>
-        <div class="col-md-12">
-            <div class="h3">Información de contacto en caso de emergencia</div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="NOMBRE_CONTACTO">Nombre completo</label>
-                    <input type="text" class="form-control" id="NOMBRE_CONTACTO" name="NOMBRE_CONTACTO"
-                           value="{{this.perfil.NOMBRE_CONTACTO}}" readonly>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="CALLE">Calle</label>
+                        <input type="text" class="form-control" id="CALLE" name="CALLE"
+                               value="{{this.perfil.CALLE}}">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="NUMERO_EXTERIOR">Número exterior</label>
+                        <input type="mail" class="form-control" id="NUMERO_EXTERIOR" name="NUMERO_EXTERIOR"
+                               value="{{this.perfil.NUMERO_EXTERIOR}}">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="NUMERO_INTERIOR">Número interior</label>
+                        <input type="mail" class="form-control" id="NUMERO_INTERIOR" name="NUMERO_INTERIOR"
+                               value="{{this.perfil.NUMERO_INTERIOR}}">
+                    </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="PARENTESCO_CONTACTO">Parentesco</label>
-                    <input type="text" class="form-control" id="PARENTESCO_CONTACTO"
-                           name="PARENTESCO_CONTACTO"
-                           value="{{this.perfil.PARENTESCO_CONTACTO}}" readonly>
+
+            <hr>
+            <div class="col-md-12">
+                <div class="h3">Información de contacto en caso de emergencia</div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label for="NOMBRE_CONTACTO">Nombre completo</label>
+                        <input type="text" class="form-control" id="NOMBRE_CONTACTO" name="NOMBRE_CONTACTO"
+                               value="{{this.perfil.NOMBRE_CONTACTO}}">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="PARENTESCO_CONTACTO">Parentesco</label>
+                        <input type="text" class="form-control" id="PARENTESCO_CONTACTO"
+                               name="PARENTESCO_CONTACTO"
+                               value="{{this.perfil.PARENTESCO_CONTACTO}}">
+                    </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="TELEFONO_CONTACTO">Teléfono</label>
-                    <input type="text" class="form-control" id="TELEFONO_CONTACTO" name="TELEFONO_CONTACTO"
-                           value="{{this.perfil.TELEFONO_CONTACTO}}" readonly>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="TELEFONO_CONTACTO">Teléfono</label>
+                        <input type="text" class="form-control" id="TELEFONO_CONTACTO" name="TELEFONO_CONTACTO"
+                               value="{{this.perfil.TELEFONO_CONTACTO}}">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="CORREO_CONTACTO">Correo electrónico</label>
+                        <input type="mail" class="form-control" id="CORREO_CONTACTO" name="CORREO_CONTACTO"
+                               value="{{this.perfil.CORREO_CONTACTO}}">
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="col-md-12">
+                <div class="text-center">
+                    <button class="btn btn-block btn-primary col-md-2 offset-md-5" type="submit">
+                        <p class="h4">Actualizar perfil</p>
+                    </button>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="CORREO_CONTACTO">Correo electrónico</label>
-                    <input type="mail" class="form-control" id="CORREO_CONTACTO" name="CORREO_CONTACTO"
-                           value="{{this.perfil.CORREO_CONTACTO}}" readonly>
-                </div>
-            </div>
+        </form>
+    </div>
+</div>
+
+<div bsModal #loaderModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true" [config]="{backdrop: false, keyboard: false}">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="background-color: rgba(255, 255, 255, 0); background-clip: padding-box; border: 1px solid rgba(0, 0, 0, 0);">
+            <app-loader></app-loader>
         </div>
     </div>
 </div>

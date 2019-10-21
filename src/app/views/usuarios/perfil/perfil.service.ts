@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {GenericServicesService} from '../../../services/generic-services.service';
-import {InterfaceEstadoCivil} from '../../_models/GeneralModels';
+import {InterfaceDatosCodigoPostal, InterfaceEstadoCivil, InterfaceSituacionResidencia} from '../../_models/GeneralModels';
 import {InterfacePerfil} from '../_models/PerfilModel';
 
 @Injectable({
@@ -14,11 +14,11 @@ export class PerfilService extends GenericServicesService {
         super(http);
     }
 
-    public get_perfil(id_usuario: number): Observable<InterfacePerfil> {
-        return this.http.get<InterfacePerfil>(
+    async get_perfil(id_usuario: number) {
+        return this.http.get(
             GenericServicesService.API_ENDPOINT + 'perfil/' + id_usuario,
             GenericServicesService.HEADERS
-        );
+        ).toPromise();
     }
 
     public guardar_perfil(perfil: InterfacePerfil) {
@@ -29,9 +29,26 @@ export class PerfilService extends GenericServicesService {
         );
     }
 
-    public get_estados_civiles(): Observable<InterfaceEstadoCivil[]> {
-        return this.http.get<InterfaceEstadoCivil[]>(
+    async get_estados_civiles(){
+        return this.http.get(
             GenericServicesService.API_ENDPOINT + 'Estado_Civil',
+            GenericServicesService.HEADERS
+        );
+    }
+
+    async get_situaciones_residencia() {
+        return this.http.get(
+            GenericServicesService.API_ENDPOINT + 'situacion_residencia',
+            GenericServicesService.HEADERS
+        );
+    }
+
+    async procesa_codigo_postal(codigo_postal: string){
+        return this.http.post(
+            GenericServicesService.API_ENDPOINT + 'procesa_codigo_postal',
+            {
+                codigo_postal: codigo_postal
+            },
             GenericServicesService.HEADERS
         );
     }
