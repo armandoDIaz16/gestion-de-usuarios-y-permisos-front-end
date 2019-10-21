@@ -60,6 +60,9 @@ export class PeriodoService extends GenericServicesService{
 
     async modificarTipoExamen(tipo){
         return this.http.post(this.baseUrl + 'ModificarTipoExamen',  tipo, this.headers).toPromise();
+    }    
+    async modificarReferencias(tipo){
+        return this.http.post(this.baseUrl + 'ModificarReferencias',  tipo, this.headers).toPromise();
     }
 
     getPeriodo():Observable<Periodo>{

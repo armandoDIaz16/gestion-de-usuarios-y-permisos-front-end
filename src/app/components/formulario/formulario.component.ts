@@ -78,7 +78,7 @@ export class FormularioComponent implements OnInit {
   mensaje2 = null;
   cerrarModal = false;
   respuesta = null;
-
+  lenguaIndigena = null;
 
 
   public estadoCivilLista = [];
@@ -289,6 +289,9 @@ export class FormularioComponent implements OnInit {
     if (this.carreraUniversidad == null) {
       this.carreraUniversidad = "null"
     }
+    if (this.lenguaIndigena == null) {
+      this.lenguaIndigena = ""
+    }
     const data = await this.aspiranteService.addAspirante(
       {
         "PK_PERIODO": this.pkPeriodo,
@@ -322,7 +325,8 @@ export class FormularioComponent implements OnInit {
         "FK_DEPENDENCIA": this.dependencia,
         "TRABAJAS_Y_ESTUDIAS": this.trabajas,
         "AYUDA_INCAPACIDAD": "'" + this.ayuda + "'",
-        "DISCAPASIDADES": this.discapacidades
+        "DISCAPASIDADES": this.discapacidades,
+        "LENGUA_INDIGENA": "'" + this.lenguaIndigena + "'"
       });
     switch (data[0].RESPUESTA) {
       case '1':

@@ -28,6 +28,7 @@ export class PlantillaSIIAComponent extends GenericServicesService implements On
   public mostrarModulo = false;
   public aspirantes = [];
   public periodo = null;
+  habilitarPlantilla = false;
 
   ngOnInit() {
     this.mostrarModulo = this.validarModuloService.getMostrarModulo("Plantilla SIIA");
@@ -37,6 +38,10 @@ export class PlantillaSIIAComponent extends GenericServicesService implements On
     this.periodoService.getPeriodo().subscribe(data => {
       if (data) {
         this.periodo = data[0].PK_PERIODO_PREFICHAS;
+        if (data[0].RESULTADOS==1) {
+          this.habilitarPlantilla = true;
+
+        }
       }
     });
   }

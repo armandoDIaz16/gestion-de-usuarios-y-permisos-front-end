@@ -13,6 +13,9 @@ import { CrearGruposComponent } from './crear_grupos/crear_grupos.component';
 import { ArchivosPagosComponent } from './archivos_pagos/archivos_pagos.component';
 import { PlantillaSIIAComponent } from './plantilla_siia/plantilla_siia.component';
 import { ExamenUbicacionComponent } from './examen_ubicacion/examen_ubicacion.component';
+import { ReferenciasPagadasComponent } from './referencias_pagadas/referencias_pagadas.component';
+import { ReferenciasComponent } from './referencias/referencias.component';
+import { DocumentosComponent } from './documentos/documentos.component';
 
 const routes: Routes = [
   {
@@ -103,6 +106,27 @@ const routes: Routes = [
         component: ExamenUbicacionComponent,
         data: {
           title: 'Examen ubicación'
+        }
+      },
+      {
+        path: 'referencias_pagadas',
+        component: ReferenciasPagadasComponent,
+        data: {
+          title: 'Referencias pagadas'
+        }
+      },
+      {
+        path: 'referencias',
+        component: ReferenciasComponent,
+        data: {
+          title: 'Referencias'
+        }
+      },
+      {
+        path: 'documentos',
+        component: DocumentosComponent,
+        data: {
+          title: 'Documentos'
         }
       }
     ]

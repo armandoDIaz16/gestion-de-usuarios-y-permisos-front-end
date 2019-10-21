@@ -1,0 +1,105 @@
+<app-404 *ngIf=!mostrarModulo></app-404>
+<div class="animated fadeIn" *ngIf=mostrarModulo>
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-header">
+          <i class="file-excel-o"></i>
+          <strong>Identificacion</strong>
+        </div>
+        <div class="card-body d-flex justify-content-center">
+          <label class="btn btn-primary" style="cursor:pointer;">Subir identificacion
+            <input type="file" name="file" accept="image/*,application/pdf" hidden
+              (change)="enviarIdentificacion($event)">
+          </label>
+        </div>
+      </div>
+    </div>
+      <div class="col-lg-4" *ngIf="habilidarDocumentos">
+        <div class="card">
+          <div class="card-header">
+            <i class="file-excel-o"></i>
+            <strong>CURP</strong>
+          </div>
+          <div class="card-body d-flex justify-content-center">
+            <label class="btn btn-primary" style="cursor:pointer;">Subir CURP
+              <input type="file" name="file" accept="image/*,application/pdf" hidden (change)="enviarCURP($event)">
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4" *ngIf="habilidarDocumentos">
+        <div class="card">
+          <div class="card-header">
+            <i class="file-excel-o"></i>
+            <strong>Acta de nacimiento</strong>
+          </div>
+          <div class="card-body d-flex justify-content-center">
+            <label class="btn btn-primary" style="cursor:pointer;">Subir acta de nacimiento
+              <input type="file" name="file" accept="image/*,application/pdf" hidden (change)="enviarActa($event)">
+            </label>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div *ngIf="habilidarDocumentos">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card">
+          <div class="card-header">
+            <i class="file-excel-o"></i>
+            <strong>Certificado de preratoria</strong>
+          </div>
+          <div class="col-lg-12">
+            <p>
+              Certificado de preparatoria y/o constancia que avale el termino de tu preparatoria
+            </p>
+          </div>
+          <div class="card-body d-flex justify-content-center">
+            <label class="btn btn-primary" style="cursor:pointer;">Subir certificado
+              <input type="file" name="file" accept="image/*,application/pdf" hidden
+                (change)="enviarCertificadoPrepa($event)">
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card">
+          <div class="card-header">
+            <i class="file-excel-o"></i>
+            <strong>Certificado medico</strong>
+          </div>
+          <div class="card-body d-flex justify-content-center">
+            <label class="btn btn-primary" style="cursor:pointer;">Subir certificado
+              <input type="file" name="file" accept="image/*,application/pdf" hidden
+                (change)="enviarCertificadoMedico($event)">
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card">
+          <div class="card-header">
+            <i class="file-excel-o"></i>
+            <strong>Foto personal</strong>
+          </div>
+          <div class="card-body d-flex justify-content-center">
+            <label class="btn btn-primary" style="cursor:pointer;">Subir foto
+              <input type="file" name="file" accept="image/*,application/pdf" hidden (change)="enviarFoto($event)">
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div bsModal #loaderModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true" [config]="{backdrop: 'static',keyboard: false}">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content"
+      style="background-color: rgba(255, 255, 255, 0); background-clip: padding-box; border: 1px solid rgba(0, 0, 0, 0);">
+      <app-loader></app-loader>
+    </div>
+  </div>
+</div>

@@ -180,8 +180,9 @@
                       <div class="form-group">
                         <label for="correo">Correo electrónico:</label>
                         <label style="color:#ff0000;" for="asterisco">*</label>
-                        <input type="text" class="form-control" [formControl]="formGroup.controls['CORREO1']" id="correo1"
-                        onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.replace(' ','')">
+                        <input type="text" class="form-control" [formControl]="formGroup.controls['CORREO1']"
+                          id="correo1"
+                          onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.replace(' ','')">
                       </div>
                     </div>
                     <div class="col-sm-6">
@@ -241,7 +242,8 @@
                       <form [formGroup]="formGroup">
                         <div formArrayName="incapacidadLista"
                           *ngFor="let incapacidad of formGroup.controls.incapacidadLista.controls; let i = index">
-                          <input type="checkbox" (change)="habilitarAyuda2()" [formControlName]="i" id="{{'_'+i}}">
+                          <input class="form-check-input" type="checkbox" (change)="habilitarAyuda2()"
+                            [formControlName]="i" id="{{'_'+i}}">
                           <label for="{{'_'+i}}">{{incapacidadLista[i].NOMBRE}}</label>
                         </div>
                       </form>
@@ -331,11 +333,11 @@
               <!--Nacionalidad-->
 
               <div class="card-body">
-                <p class="h2 text-center">Carreras</p>
+                <p class="h2 text-center">Carrera</p>
               </div>
               <div class="card-body">
                 <div class="row">
-                  <div class="col-sm-6">
+                  <div class="col-sm-12">
                     <div class="form-group">
                       <label for="especialidad1">Elige la carrera a la que te gustaría ingresar:</label>
                       <label style="color:#ff0000;" for="asterisco">*</label>
@@ -470,7 +472,7 @@
               </div>
               <div class="card-body">
                 <div class="row">
-                  <div class="col-sm-4">
+                  <div class="col-sm-6">
                     <div class="form-group">
                       <label for="dependencia">¿De quién dependes económicamente?</label>
                       <label style="color:#ff0000;" for="asterisco">*</label>
@@ -481,7 +483,7 @@
                       </select>
                     </div>
                   </div>
-                  <div class="col-sm-3">
+                  <div class="col-sm-6">
                     <div class="form-group">
                       <label for="trabajas">¿Trabajas además de estudiar?</label>
                       <label style="color:#ff0000;" for="asterisco">*</label>
@@ -492,7 +494,9 @@
                       </select>
                     </div>
                   </div>
-                  <div class="col-sm-5">
+                </div>
+                <div class="row">
+                  <div class="col-sm-6">
                     <div class="form-group">
                       <label for="propaganda">¿Cómo te enteraste del Instituto Tecnológico de León?</label>
                       <label style="color:#ff0000;" for="asterisco">*</label>
@@ -503,6 +507,13 @@
                         </option>
                       </select>
                     </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="lenguaIndigenaCheck" name="lenguaIndigenaCheck"
+                      id="lenguaIndigena">
+                    <label for="lenguaIndigena">¿Hablas alguna legngua indígena?¿Cuál?</label>
+                    <input [(ngModel)]="lenguaIndigena" [disabled]="!lenguaIndigenaCheck" type="text"
+                      class="form-control" name="lenguaIndigena" required>
                   </div>
                 </div>
               </div>
@@ -534,17 +545,17 @@
 
                 <div class="clearfix"></div>
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group d-flex justify-content-center text-center">
-                          <!-- <button type="submit" value="Submit" class="btn btn-sm btn-primary">Aceptar</button> -->
-      
-                          <button class="btn btn-lg btn-primary" (click)="loaderModal.show()"
-                            [disabled]="aspiranteForm.invalid || formGroup.invalid">Enviar
-                            registro</button>
-      
-                          <!-- -->
-                        </div>
-                      </div>
+                  <div class="col-md-12">
+                    <div class="form-group d-flex justify-content-center text-center">
+                      <!-- <button type="submit" value="Submit" class="btn btn-sm btn-primary">Aceptar</button> -->
+
+                      <button class="btn btn-lg btn-primary" (click)="loaderModal.show()"
+                        [disabled]="aspiranteForm.invalid || formGroup.invalid">Enviar
+                        registro</button>
+
+                      <!-- -->
+                    </div>
+                  </div>
                 </div>
               </div>
               <!--Aviso de privacidad-->
