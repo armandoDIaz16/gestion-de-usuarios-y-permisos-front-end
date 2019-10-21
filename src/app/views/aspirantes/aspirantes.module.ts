@@ -28,6 +28,9 @@ import { PlantillaSIIAComponent } from './plantilla_siia/plantilla_siia.componen
 import { ErrorModule } from '../../components/error/error.module';
 import { LoaderModule } from '../../components/loader/loader.module';
 import { ExamenUbicacionComponent } from './examen_ubicacion/examen_ubicacion.component';
+import { ReferenciasPagadasComponent } from './referencias_pagadas/referencias_pagadas.component';
+import { ReferenciasComponent } from './referencias/referencias.component';
+import { DocumentosComponent } from './documentos/documentos.component';
 
 
 // Angular
@@ -57,7 +60,10 @@ import { ExamenUbicacionComponent } from './examen_ubicacion/examen_ubicacion.co
     PeriodoComponent,
     DatosComponent,
     PlantillaSIIAComponent,
-    ExamenUbicacionComponent
+    ExamenUbicacionComponent,
+    ReferenciasPagadasComponent,
+    ReferenciasComponent,
+    DocumentosComponent
   ],
   exports: [
     ModalModule

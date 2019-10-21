@@ -1,7 +1,7 @@
 <app-404 *ngIf=!mostrarModulo></app-404>
 <div class="animated fadeIn" *ngIf=mostrarModulo>
   <form>
-    <div class="row">
+    <div class="row" *ngIf="habilitarPlantilla">
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header">

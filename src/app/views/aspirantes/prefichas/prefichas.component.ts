@@ -4,6 +4,8 @@ import { AspiranteService } from '../../../services/aspirante.service';
 import { FormularioService } from '../../../services/formulario.service';
 import * as XLSX from 'xlsx';
 import { ValidarModuloService } from '../../../services/validarModulo.service';
+import { HttpClient } from '@angular/common/http';
+import { GenericServicesService } from '../../../services/generic-services.service';
 
 
 
@@ -13,14 +15,20 @@ import { ValidarModuloService } from '../../../services/validarModulo.service';
   styleUrls: ['./prefichas.component.scss'],
   providers: [PeriodoService, FormularioService, AspiranteService, ValidarModuloService]
 })
-export class PrefichasComponent implements OnInit {
+export class PrefichasComponent extends GenericServicesService implements OnInit {
   @ViewChild('loaderModal') loaderModal;
   constructor(private periodoService: PeriodoService,
     private formularioService: FormularioService,
     private aspiranteService: AspiranteService,
-    private validarModuloService: ValidarModuloService) {
+    private validarModuloService: ValidarModuloService,
+    private http: HttpClient) {
+      super(http);
   }
 
+
+  private baseUrl = GenericServicesService.API_ENDPOINT;
+  private baseUrlFile = GenericServicesService.ENDPOINT;
+  private headers = GenericServicesService.HEADERS;
   showSpinner: boolean = true;
   public mostrarModulo = false;
   public carreraLista = [];
@@ -297,4 +305,10 @@ export class PrefichasComponent implements OnInit {
     XLSX.writeFile(wb, "Prefichas " + y + "-" + m + "-" + d + ".xlsx");
   }
 
+  cargarIdentificacion(pk_usuario) {
+    this.aspiranteService.getDocumento(pk_usuario,1).subscribe(data => {
+      if(data){
+        window.open(this.baseUrlFile + data);}
+    });
+  }
 }
