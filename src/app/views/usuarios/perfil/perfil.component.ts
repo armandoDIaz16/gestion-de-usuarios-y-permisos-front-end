@@ -77,7 +77,7 @@ export class PerfilComponent implements OnInit {
 
         const data_perfil = await this.perfil_service.get_perfil(parseInt(this.pk_usuario));
         if (data_perfil) {
-            this.perfil = data_perfil.data;
+            this.perfil = <InterfacePerfil>data_perfil;
         }
 
         const data_estados_civiles = await this.perfil_service.get_estados_civiles();
@@ -119,7 +119,7 @@ export class PerfilComponent implements OnInit {
             alert('Indica el sexo');
             return false;
         }
-        if (this.form.ESTADO_CIVIL == '0'){
+        if (this.form.ESTADO_CIVIL == 0){
             alert('Indica el estado civil');
             return false;
         }
@@ -139,7 +139,7 @@ export class PerfilComponent implements OnInit {
             alert('Indica el teléfono móvil');
             return false;
         }
-        if (this.form.COLONIA == '0'){
+        if (this.form.COLONIA == 0){
             alert('Indica la colonia');
             return false;
         }
@@ -207,7 +207,7 @@ export class PerfilComponent implements OnInit {
         if (this.valida_codigo_postal()) {
             const data_codigo_postal = await this.perfil_service.procesa_codigo_postal(this.form.CODIGO_POSTAL.toString().trim());
 
-            this.datos_codigo_postal = data_codigo_postal.data;
+            this.datos_codigo_postal = <InterfaceDatosCodigoPostal>data_codigo_postal;
         }
     }
 
