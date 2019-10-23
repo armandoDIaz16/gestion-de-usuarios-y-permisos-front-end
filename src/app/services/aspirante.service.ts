@@ -43,8 +43,8 @@ export class AspiranteService extends GenericServicesService {
         return this.http.get<IAspirantes[]>(this.baseUrl + 'ReferenciasPagadas/' + pk_periodo, this.headers
         );
     }
-    getGrupos(pk_espacio, dia, hora, pk_periodo): Observable<IGrupos[]> {
-        return this.http.get<IGrupos[]>(this.baseUrl + 'ListaGrupo?PK_ESPACIO=' + pk_espacio + '&DIA=' + dia + '&HORA=' + hora + '&FK_PERIODO=' + pk_periodo, this.headers
+    getGrupos(pk_periodo, grupo, tipoAplicacion): Observable<IGrupos[]> {
+        return this.http.get<IGrupos[]>(this.baseUrl + 'ListaGrupo?FK_PERIODO=' + pk_periodo + '&FK_GRUPO=' + grupo + '&TIPO_APLICACION=' + tipoAplicacion, this.headers
         );
     }
     getListaGrupos(pk_periodo): Observable<IListaGrupos[]> {
@@ -102,9 +102,9 @@ export class AspiranteService extends GenericServicesService {
     }
     async addDocumento(datos, pk_periodo) {
         return this.http.post(this.baseUrl + 'GuardarDocumento/' + pk_periodo, datos, this.headers).toPromise();
-    }    
-    getDocumento(pk_usuario,nombre) {
-        return this.http.get(this.baseUrl + "ObtenerDocumento?PK_USUARIO=" + pk_usuario + '&ARCHIVO=' + nombre , this.headers
+    }
+    getDocumento(pk_usuario, nombre) {
+        return this.http.get(this.baseUrl + "ObtenerDocumento?PK_USUARIO=" + pk_usuario + '&ARCHIVO=' + nombre, this.headers
         );
     }
 }
