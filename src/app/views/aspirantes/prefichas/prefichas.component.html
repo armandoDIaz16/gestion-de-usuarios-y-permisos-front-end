@@ -95,14 +95,14 @@
                         style="margin-bottom: 4px" (click)="cargarAspirante(aspirante.PK_USUARIO)">
                         <i class="fa fa-edit"></i>
                       </button>
-                     <!--  <button class="btn btn-danger btn-sm" type="button" (click)="loaderModalIdenticicacion.show()"
+                      <!--  <button class="btn btn-danger btn-sm" type="button" (click)="loaderModalIdenticicacion.show()"
                         style="margin-bottom: 4px" (click)="cargarIdentificacion(aspirante.PK_USUARIO)">
                         <i class="fa fa-id-card"></i>
                       </button> -->
-                      <button class="btn btn-danger btn-sm" type="button"
-                      style="margin-bottom: 4px" (click)="cargarIdentificacion(aspirante.PK_USUARIO)">
-                      <i class="fa fa-id-card"></i>
-                    </button>
+                      <button class="btn btn-danger btn-sm" type="button" style="margin-bottom: 4px"
+                        (click)="cargarIdentificacion(aspirante.PK_USUARIO)">
+                        <i class="fa fa-id-card"></i>
+                      </button>
 
                       <!--                     <td>{{aspirantes.PREFICHA}}</td>
                     <td>{{aspirantes.FECHA_REGISTRO}}</td>
@@ -268,7 +268,7 @@
               <td>Carrera 1</td>
               <td>
                 <select [(ngModel)]="especialidad1" class="form-control" name="especialidad1">
-                  <option *ngFor="let carrera of carreraLista" value="{{carrera.PK_CARRERA}}">{{carrera.NOMBRE}}
+                  <option *ngFor="let carrera of carreras" value="{{carrera.PK_CARRERA}}">{{carrera.NOMBRE}}
                   </option>
                 </select>
               </td>
@@ -336,14 +336,14 @@
   </div>
 </div>
 
-<div bsModal #loaderModalIdenticicacion="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
+<div bsModal #loaderModalIdenticicacion="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <app-loader></app-loader>
       <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" (click)="loaderModalIdenticicacion.hide()">Cerrar</button>
-        </div>
+        <button type="button" class="btn btn-secondary" (click)="loaderModalIdenticicacion.hide()">Cerrar</button>
+      </div>
     </div>
   </div>
 </div>
