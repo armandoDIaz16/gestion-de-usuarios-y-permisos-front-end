@@ -1,7 +1,8 @@
 export interface InterfacePerfil {
-    PK_USAURIO:            string;
+    PK_USUARIO:            string;
     FK_CARRERA:            number;
     FK_ESTADO_CIVIL:       number;
+    FK_COLONIA:            number;
 
     ESTADO_CIVIL?:         string;
     CARRERA:               string;
