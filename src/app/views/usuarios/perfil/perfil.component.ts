@@ -4,7 +4,6 @@ import {InterfaceDatosCodigoPostal, InterfaceEstadoCivil, InterfaceSituacionResi
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {PerfilService} from './perfil.service';
-import {FormularioService} from '../../../services/formulario.service';
 
 @Component({
     selector: 'app-perfil',
@@ -17,51 +16,159 @@ export class PerfilComponent implements OnInit {
     public data = null;
     public perfil: InterfacePerfil = null;
     public estados_civiles: InterfaceEstadoCivil[] = [];
-    public datos_codigo_postal: InterfaceDatosCodigoPostal;
+    public datos_codigo_postal: InterfaceDatosCodigoPostal = null;
     public situaciones_residencia: InterfaceSituacionResidencia[] = [];
-    public colonias: InterfaceSituacionResidencia[] = [];
     public pk_usuario = sessionStorage.getItem('IdEncriptada');
-    public entidad_federativa;
-    public municipio;
-    public FECHA_NACIMIENTO = this.FECHA_NACIMIENTO;
-    public CODIGO_POSTAL = this.CODIGO_POSTAL;
-    public coloniaLista = [];
+
+    // Datos de formulario
+    public form = {
+        FECHA_NACIMIENTO: "",
+        CODIGO_POSTAL: "",
+        SEXO: 0,
+        ESTADO_CIVIL: 0,
+        SITUACION_RESIDENCIA: 0,
+        CORREO1: "",
+        CORREO2: "",
+        TELEFONO_CASA: "",
+        TELEFONO_MOVIL: "",
+        COLONIA: 0,
+        CALLE: "",
+        NUMERO_EXTERIOR: "",
+        NUMERO_INTERIOR: "",
+        NOMBRE_CONTACTO: "",
+        PARENTESCO_CONTACTO: "",
+        TELEFONO_CONTACTO: "",
+        CORREO_CONTACTO: ""
+    };
+
     @ViewChild('loaderModal') loaderModal;
 
     constructor(
         private route: ActivatedRoute,
         private http: HttpClient,
         private router: Router,
-        private perfil_service: PerfilService,
-        private formularioService: FormularioService,
-    ) { }
+        private perfil_service: PerfilService
+    ) {
+        this.form.SEXO = (this.perfil.SEXO) ? this.perfil.SEXO : 0;
+        this.form.ESTADO_CIVIL = (this.perfil.FK_ESTADO_CIVIL) ? this.perfil.FK_ESTADO_CIVIL : 0;
+        this.form.SITUACION_RESIDENCIA = (this.perfil.SITUACION_RESIDENCIA) ? this.perfil.SITUACION_RESIDENCIA : 0;
+        this.form.COLONIA = (this.perfil.FK_COLONIA) ? this.perfil.FK_COLONIA : 0;
+
+        this.form.FECHA_NACIMIENTO = (this.perfil.FECHA_NACIMIENTO) ? this.perfil.FECHA_NACIMIENTO : '';
+        this.form.CODIGO_POSTAL = this.perfil.CODIGO_POSTAL;
+        this.form.CORREO1 = this.perfil.CORREO1;
+        this.form.CORREO2 = this.perfil.CORREO2;
+        this.form.TELEFONO_CASA = this.perfil.TELEFONO_CASA;
+        this.form.TELEFONO_MOVIL = this.perfil.TELEFONO_MOVIL;
+        this.form.CALLE = this.perfil.CALLE;
+        this.form.NUMERO_EXTERIOR = this.perfil.NUMERO_EXTERIOR;
+        this.form.NUMERO_INTERIOR = this.perfil.NUMERO_INTERIOR;
+        this.form.NOMBRE_CONTACTO = this.perfil.NOMBRE_CONTACTO;
+        this.form.PARENTESCO_CONTACTO = this.perfil.PARENTESCO_CONTACTO;
+        this.form.TELEFONO_CONTACTO = this.perfil.TELEFONO_CONTACTO;
+        this.form.CORREO_CONTACTO = this.perfil.CORREO_CONTACTO;
+
+        this.datos_codigo_postal = <InterfaceDatosCodigoPostal>{};
+        this.datos_codigo_postal.COLONIAS = [];
+    }
 
     async ngOnInit() {
-        // this.loaderModal.show();
+        // this.loaderModal.show(); .
 
-        /*const data_perfil = await this.perfil_service.get_perfil(parseInt(this.pk_usuario));
+        const data_perfil = await this.perfil_service.get_perfil(parseInt(this.pk_usuario));
         if (data_perfil) {
             this.perfil = data_perfil.data;
         }
 
         const data_estados_civiles = await this.perfil_service.get_estados_civiles();
         if (data_estados_civiles) {
-            this.estados_civiles = data_estados_civiles.data;
+            this.estados_civiles = <InterfaceEstadoCivil[]>data_estados_civiles;
         }
 
         const data_situaciones_residencia = await this.perfil_service.get_situaciones_residencia();
         if (data_situaciones_residencia) {
-            this.situaciones_residencia = data_situaciones_residencia.data;
-        }*/
+            this.situaciones_residencia = <InterfaceSituacionResidencia[]>data_situaciones_residencia;
+        }
+
+        this.form.CORREO1       = this.perfil.CORREO1;
+        this.form.TELEFONO_CASA = this.perfil.TELEFONO_CASA;
+        this.form.TELEFONO_MOVIL = this.perfil.TELEFONO_MOVIL;
 
         // this.loaderModal.hide();
     }
 
     onSubmit() {
-        this.perfil_service.guardar_perfil(this.perfil).subscribe(
-            data => this.handleResponse(data),
-            error => this.handleError(error)
-        );
+        if (this.valida_perfil()) {
+            let body = {
+                PK_USUARIO: this.perfil.PK_USUARIO,
+                FECHA_NACIMIENTO: this.form.FECHA_NACIMIENTO,
+            };
+            this.perfil_service.guardar_perfil(body).subscribe(
+                data => this.handleResponse(data),
+                error => this.handleError(error)
+            );
+        }
+    }
+
+    valida_perfil() {
+        if (this.form.FECHA_NACIMIENTO == '0'){
+            alert('Indica la fecha de nacimiento');
+            return false;
+        }
+        if (this.form.SEXO == 0){
+            alert('Indica el sexo');
+            return false;
+        }
+        if (this.form.ESTADO_CIVIL == '0'){
+            alert('Indica el estado civil');
+            return false;
+        }
+        if (this.form.SITUACION_RESIDENCIA == 0){
+            alert('Indica la situación de residencia');
+            return false;
+        }
+        if (this.form.CORREO1.trim() == ''){
+            alert('Indica el correo principal');
+            return false;
+        }
+        if (this.form.TELEFONO_CASA.trim() == ''){
+            alert('Indica el teléfono de casa');
+            return false;
+        }
+        if (this.form.TELEFONO_MOVIL.trim() == ''){
+            alert('Indica el teléfono móvil');
+            return false;
+        }
+        if (this.form.COLONIA == '0'){
+            alert('Indica la colonia');
+            return false;
+        }
+        if (this.form.CALLE.trim() == ''){
+            alert('Indica la calle');
+            return false;
+        }
+        if (this.form.NUMERO_EXTERIOR.trim() == ''){
+            alert('Indica el número exterior');
+            return false;
+        }
+        if (this.form.NOMBRE_CONTACTO.trim() == ''){
+            alert('Indica el nombre del contacto en caso de emergencia');
+            return false;
+        }
+        if (this.form.PARENTESCO_CONTACTO.trim() == ''){
+            alert('Indica el parentesco del contacto en caso de emergencia');
+            return false;
+        }
+        if (this.form.TELEFONO_CONTACTO.trim() == ''){
+            alert('Indica el número de teléfono de contacto en caso de emergencia');
+            return false;
+        }
+        if (this.form.CORREO_CONTACTO.trim() == ''){
+            alert('Indica el correo electrónico de contacto en caso de emergencia');
+            return false;
+        }
+
+        return true;
     }
 
     handleResponse(data) {
@@ -79,30 +186,28 @@ export class PerfilComponent implements OnInit {
     }
 
     valida_codigo_postal() {
-        console.log(this.CODIGO_POSTAL);
-
-        if (this.CODIGO_POSTAL.length > 0) {
-            let codigo_postal = this.CODIGO_POSTAL.toString().trim();
+        if (this.form.CODIGO_POSTAL.toString().length > 0) {
+            let codigo_postal = this.form.CODIGO_POSTAL.toString().trim();
 
             if (codigo_postal.length > 3) {
                 if (codigo_postal.length > 5) {
-                    this.CODIGO_POSTAL = codigo_postal.substr(0, 5);
+                    this.form.CODIGO_POSTAL = codigo_postal.substr(0, 5);
                 }
-            }
 
-            return true;
+                return true;
+            }
+            this.datos_codigo_postal = <InterfaceDatosCodigoPostal>{};
+            return false;
+        } else {
+            this.datos_codigo_postal = <InterfaceDatosCodigoPostal>{};
         }
     }
 
-    procesa_codigo_postal() {
+    async procesa_codigo_postal() {
         if (this.valida_codigo_postal()) {
-            this.formularioService.getColonia(this.CODIGO_POSTAL.toString().trim()).subscribe(data => this.coloniaLista = data);
-            /*const data_codigo_postal = this.perfil_service.procesa_codigo_postal(this.CODIGO_POSTAL.toString().trim());
-            if (data_codigo_postal) {
-                this.datos_codigo_postal = data_codigo_postal.data;
+            const data_codigo_postal = await this.perfil_service.procesa_codigo_postal(this.form.CODIGO_POSTAL.toString().trim());
 
-                console.log(data_codigo_postal.data);
-            }*/
+            this.datos_codigo_postal = data_codigo_postal.data;
         }
     }
 

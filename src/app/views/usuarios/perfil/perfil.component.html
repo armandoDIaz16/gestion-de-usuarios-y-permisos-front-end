@@ -91,8 +91,7 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="SEXO">Sexo</label>
-                        <select name="SEXO" id="SEXO" class="form-control" #SEXO>
-                            <option value="">* Seleccione una opción</option>
+                        <select name="SEXO" id="SEXO" class="form-control" [(ngModel)]="this.SEXO">
                             <option value="1">MASCULINO</option>
                             <option value="2">FEMENINO</option>
                         </select>
@@ -101,8 +100,8 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="ESTADO_CIVIL">Estado civil</label>
-                        <select name="ESTADO_CIVIL" id="ESTADO_CIVIL" class="form-control" #ESTADO_CIVIL>
-                            <option value="">* Seleccione una opción</option>
+                        <select name="ESTADO_CIVIL" id="ESTADO_CIVIL" class="form-control"
+                                [(ngModel)]="this.ESTADO_CIVIL">
                             <option *ngFor="let estado_civil of this.estados_civiles"
                                     value="{{estado_civil.PK_ESTADO_CIVIL}}">
                                 {{estado_civil.NOMBRE}}
@@ -114,8 +113,7 @@
                     <div class="form-group">
                         <label for="SITUACION_RESIDENCIA">Situación de la residencia</label>
                         <select name="SITUACION_RESIDENCIA" id="SITUACION_RESIDENCIA" class="form-control"
-                                #SITUACION_RESIDENCIA>
-                            <option value="">* Seleccione una opción</option>
+                                [(ngModel)]="this.SITUACION_RESIDENCIA">
                             <option *ngFor="let situacion_residencia of this.situaciones_residencia"
                                     value="{{situacion_residencia.PK_SITUACION_RESIDENCIA}}">
                                 {{situacion_residencia.NOMBRE}}
@@ -129,21 +127,22 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="CORREO1">Correo personal principal</label>
-                        <input type="mail" class="form-control" id="CORREO1" name="CORREO1" #CORREO1
+                        <input type="mail" class="form-control" id="CORREO1" name="CORREO1" [(ngModel)]="this.CORREO1"
                                value="{{this.perfil.CORREO1}}">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="CORREO2">Correo personal optativo</label>
-                        <input type="mail" class="form-control" id="CORREO2" name="CORREO2" #CORREO2
+                        <input type="mail" class="form-control" id="CORREO2" name="CORREO2" [(ngModel)]="this.CORREO2"
                                value="{{this.perfil.CORREO2}}">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="TELEFONO_CASA">Teléfono fijo</label>
-                        <input type="text" class="form-control" id="TELEFONO_CASA" name="TELEFONO_CASA" #TELEFONO_CASA
+                        <input type="text" class="form-control" id="TELEFONO_CASA" name="TELEFONO_CASA"
+                               [(ngModel)]="this.TELEFONO_CASA"
                                value="{{this.perfil.TELEFONO_CASA}}">
                         <small id="TELEFONO_CASAHelp" class="form-text text-muted">10 Dígitos</small>
                     </div>
@@ -152,7 +151,7 @@
                     <div class="form-group">
                         <label for="TELEFONO_MOVIL">Teléfono móvil</label>
                         <input type="text" class="form-control" id="TELEFONO_MOVIL" name="TELEFONO_MOVIL"
-                               #TELEFONO_MOVIL
+                               [(ngModel)]="this.TELEFONO_MOVIL"
                                value="{{this.perfil.TELEFONO_MOVIL}}">
                     </div>
                 </div>
@@ -166,8 +165,9 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="CODIGO_POSTAL">Código postal</label>
-                        <input type="text" class="form-control" id="CODIGO_POSTAL" name="CODIGO_POSTAL" [(ngModel)]="this.CODIGO_POSTAL"
-                               value="{{this.perfil.CODIGO_POSTAL}}" (keyup)="valida_codigo_postal()" (focusout)="procesa_codigo_postal()">
+                        <input type="text" class="form-control" id="CODIGO_POSTAL" name="CODIGO_POSTAL"
+                               [(ngModel)]="this.CODIGO_POSTAL"
+                               value="{{this.perfil.CODIGO_POSTAL}}" (keyup)="procesa_codigo_postal()">
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -175,7 +175,7 @@
                         <label for="ENTIDAD_FEDERATIVA">Entidad federativa</label>
                         <input type="mail" class="form-control" id="ENTIDAD_FEDERATIVA"
                                name="ENTIDAD_FEDERATIVA"
-                               value="{{this.entidad_federativa}}"
+                               value="{{this.datos_codigo_postal.NOMBRE_ENTIDAD_FEDERATIVA}}"
                                readonly>
                     </div>
                 </div>
@@ -183,18 +183,15 @@
                     <div class="form-group">
                         <label for="CIUDAD">Municipio</label>
                         <input type="text" class="form-control" id="CIUDAD" name="CIUDAD"
-                               value="{{this.municipio}}" readonly>
+                               value="{{this.datos_codigo_postal.NOMBRE_CIUDAD}}" readonly>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="COLONIA">Colonia</label>
-                        <select name="COLONIA" id="COLONIA" class="form-control">
-                            <option value="">* Seleccione una opción</option>
-                            <!--<option *ngFor="let colonia of this.coloniaLista" value="{{colonia.PK_SITUACION_RESIDENCIA}}">
-                                {{colonia.NOMBRE}}
-                            </option>-->
-                            <option *ngFor="let colonia of coloniaLista" value="{{colonia.PK_COLONIA}}">
+                        <select name="COLONIA" id="COLONIA" class="form-control" [(ngModel)]="this.COLONIA">
+                            <option *ngFor="let colonia of this.datos_codigo_postal.COLONIAS"
+                                    value="{{colonia.PK_COLONIA}}">
                                 {{colonia.NOMBRE}}
                             </option>
                         </select>
@@ -206,7 +203,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="CALLE">Calle</label>
-                        <input type="text" class="form-control" id="CALLE" name="CALLE"
+                        <input type="text" class="form-control" id="CALLE" name="CALLE" [(ngModel)]="this.CALLE"
                                value="{{this.perfil.CALLE}}">
                     </div>
                 </div>
@@ -214,14 +211,14 @@
                     <div class="form-group">
                         <label for="NUMERO_EXTERIOR">Número exterior</label>
                         <input type="mail" class="form-control" id="NUMERO_EXTERIOR" name="NUMERO_EXTERIOR"
-                               value="{{this.perfil.NUMERO_EXTERIOR}}">
+                               [(ngModel)]="this.NUMERO_EXTERIOR" value="{{this.perfil.NUMERO_EXTERIOR}}">
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="NUMERO_INTERIOR">Número interior</label>
                         <input type="mail" class="form-control" id="NUMERO_INTERIOR" name="NUMERO_INTERIOR"
-                               value="{{this.perfil.NUMERO_INTERIOR}}">
+                               [(ngModel)]="this.NUMERO_INTERIOR" value="{{this.perfil.NUMERO_INTERIOR}}">
                     </div>
                 </div>
             </div>
@@ -235,6 +232,7 @@
                     <div class="form-group">
                         <label for="NOMBRE_CONTACTO">Nombre completo</label>
                         <input type="text" class="form-control" id="NOMBRE_CONTACTO" name="NOMBRE_CONTACTO"
+                               [(ngModel)]="this.NOMBRE_CONTACTO"
                                value="{{this.perfil.NOMBRE_CONTACTO}}">
                     </div>
                 </div>
@@ -242,6 +240,7 @@
                     <div class="form-group">
                         <label for="PARENTESCO_CONTACTO">Parentesco</label>
                         <input type="text" class="form-control" id="PARENTESCO_CONTACTO"
+                               [(ngModel)]="this.PARENTESCO_CONTACTO"
                                name="PARENTESCO_CONTACTO"
                                value="{{this.perfil.PARENTESCO_CONTACTO}}">
                     </div>
@@ -252,6 +251,7 @@
                     <div class="form-group">
                         <label for="TELEFONO_CONTACTO">Teléfono</label>
                         <input type="text" class="form-control" id="TELEFONO_CONTACTO" name="TELEFONO_CONTACTO"
+                               [(ngModel)]="this.TELEFONO_CONTACTO"
                                value="{{this.perfil.TELEFONO_CONTACTO}}">
                     </div>
                 </div>
@@ -259,6 +259,7 @@
                     <div class="form-group">
                         <label for="CORREO_CONTACTO">Correo electrónico</label>
                         <input type="mail" class="form-control" id="CORREO_CONTACTO" name="CORREO_CONTACTO"
+                               [(ngModel)]="this.CORREO_CONTACTO"
                                value="{{this.perfil.CORREO_CONTACTO}}">
                     </div>
                 </div>
@@ -278,7 +279,8 @@
 <div bsModal #loaderModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true" [config]="{backdrop: false, keyboard: false}">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content" style="background-color: rgba(255, 255, 255, 0); background-clip: padding-box; border: 1px solid rgba(0, 0, 0, 0);">
+        <div class="modal-content"
+             style="background-color: rgba(255, 255, 255, 0); background-clip: padding-box; border: 1px solid rgba(0, 0, 0, 0);">
             <app-loader></app-loader>
         </div>
     </div>

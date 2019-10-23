@@ -18,7 +18,7 @@ export interface InterfaceDatosCodigoPostal {
     NOMBRE_CIUDAD:             number;
     PK_CODIGO_POSTAL:          number;
     CODIGO_POSTAL:             number;
-    COLONIAS:                  InterfaceColonias[];
+    COLONIAS?:                  InterfaceColonias[];
 }
 
 export interface InterfaceColonias {
