@@ -8,50 +8,47 @@
             <strong>Listas de grupos:</strong>
           </div>
           <div class="card-body">
-            <div class="row">
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <label for="espacio">Espacio:</label>
-                  <label style="color:#ff0000;" for="asterisco">*</label>
-                  <select [(ngModel)]="espacio" class="form-control" name="espacio">
+            <div class="row" *ngIf=mostrarGrupo>
+              <div class="form-group col-sm-12">
+                <label for="grupo">Grupo:</label>
+                <label style="color:#ff0000;" for="asterisco">*</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-edit"></i></span>
+                  </div>
+                  <select [(ngModel)]="grupo" class="form-control" (change)="cargarGrupo(grupo)" name="grupo" required>
                     <option [value]=null>Selecciona</option>
-                    <option *ngFor="let espacio of espacioLista" value="{{espacio.PK_ESPACIO}}">
-                      {{espacio.NOMBRE}}</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <label for="dia">Dia:</label>
-                  <label style="color:#ff0000;" for="asterisco">*</label>
-                  <select [(ngModel)]="dia" class="form-control" name="dia">
-                    <option [value]=null>Selecciona</option>
-                    <option *ngFor="let dia of diaLista" value="{{dia.DIA}}">
-                      {{dia.DIA}}</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <label for="hora">Hora:</label>
-                  <label style="color:#ff0000;" for="asterisco">*</label>
-                  <select [(ngModel)]="hora" class="form-control" name="hora">
-                    <option [value]=null>Selecciona</option>
-                    <option *ngFor="let hora of horaLista" value="{{hora.HORA}}">
-                      {{hora.HORA}}</option>
+                    <option *ngFor="let grupo of gruposLista" value="{{grupo.PK_EXAMEN_ADMISION}}">
+                      Grupo {{grupo.GRUPO}}: Lugar: {{grupo.NOMBRE}}-{{grupo.IDENTIFICADOR}} Fecha: {{grupo.DIA}}
+                      {{grupo.HORA}}
+                    </option>
                   </select>
                 </div>
               </div>
             </div>
-            <div class="row d-flex justify-content-center">
-              <label class="btn btn-primary" style="cursor:pointer;">Generar lista
-                <button type="button" (click)="generarLista()" hidden></button>
-              </label>
+            <div class="row" *ngIf=!mostrarGrupo>
+              <div class="form-group col-sm-12">
+                <label for="grupoEscrito">Grupo:</label>
+                <label style="color:#ff0000;" for="asterisco">*</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-edit"></i></span>
+                  </div>
+                  <select [(ngModel)]="grupoEscrito" class="form-control" (change)="cargarGrupoEscrito(grupoEscrito)"
+                    name="grupoEscrito" required>
+                    <option [value]=null>Selecciona</option>
+                    <option *ngFor="let grupoEscrito of gruposLista"
+                      value="{{grupoEscrito.PK_EXAMEN_ADMISION_ESCRITO}}">
+                      Grupo {{grupoEscrito.GRUPO}} Carrera {{grupoEscrito.CARRERA}}
+                    </option>
+                  </select>
+                </div>
+              </div>
             </div>
             <table class="table table-bordered table-striped table-sm">
               <thead>
-                <tr>     
-                  <th scope="row">#</th>   
+                <tr>
+                  <th scope="row">#</th>
                   <th>NOMBRE</th>
                   <th>PREFICHA</th>
                   <th>CARRERA</th>
@@ -70,7 +67,7 @@
             </table>
           </div>
         </div>
-      </div>      
+      </div>
     </div>
   </form>
 </div>

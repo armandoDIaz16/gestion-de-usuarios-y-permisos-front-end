@@ -22,7 +22,7 @@ export class PrefichasComponent extends GenericServicesService implements OnInit
     private aspiranteService: AspiranteService,
     private validarModuloService: ValidarModuloService,
     private http: HttpClient) {
-      super(http);
+    super(http);
   }
 
 
@@ -82,8 +82,10 @@ export class PrefichasComponent extends GenericServicesService implements OnInit
         //console.log(this.pkPeriodo);
         this.periodo = data[0].PK_PERIODO_PREFICHAS;
         this.obtenerAspirantes(data[0].PK_PERIODO_PREFICHAS);
-        this.formularioService.getCarrera().subscribe(data => {
+        this.formularioService.getCarrera3(this.periodo).subscribe(data => {
           this.carreras = data;
+        });
+        this.formularioService.getCarrera2(this.periodo).subscribe(data => {
           this.carreraLista = data;
         });
       }
@@ -219,8 +221,7 @@ export class PrefichasComponent extends GenericServicesService implements OnInit
 
     this.obtenerAspirantes(this.periodo);
 
-    this.formularioService.getCarrera().subscribe(data => {
-      this.carreras = data;
+    this.formularioService.getCarrera2(this.periodo).subscribe(data => {
       this.carreraLista = data;
     });
     //this.loaderModal.hide();
@@ -306,9 +307,10 @@ export class PrefichasComponent extends GenericServicesService implements OnInit
   }
 
   cargarIdentificacion(pk_usuario) {
-    this.aspiranteService.getDocumento(pk_usuario,1).subscribe(data => {
-      if(data){
-        window.open(this.baseUrlFile + data);}
+    this.aspiranteService.getDocumento(pk_usuario, 1).subscribe(data => {
+      if (data) {
+        window.open(this.baseUrlFile + data);
+      }
     });
   }
 }
