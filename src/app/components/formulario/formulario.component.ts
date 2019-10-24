@@ -80,6 +80,9 @@ export class FormularioComponent implements OnInit {
   respuesta = null;
   lenguaIndigena = null;
 
+  anio = null;
+  mes = null;
+  dia = null;
 
   public estadoCivilLista = [];
   public dependenciaLista = [];
@@ -127,7 +130,7 @@ export class FormularioComponent implements OnInit {
       this.fechaInicio = data[0].FECHA_INICIO;
       this.fechaFin = data[0].FECHA_FIN;
       this.fechaActual = data[0].FECHA_ACTUAL;
-      if(this.compararFechas()){
+      if (this.compararFechas()) {
         return;
       }
       this.formularioService.getCarrera2(this.pkPeriodo).subscribe(data => this.carreraLista = data);
@@ -298,7 +301,7 @@ export class FormularioComponent implements OnInit {
         "NOMBRE": "'" + this.nombre.toUpperCase() + "'",
         "PRIMER_APELLIDO": "'" + this.pApellido.toUpperCase() + "'",
         "SEGUNDO_APELLIDO": "'" + this.sApellido.toUpperCase() + "'",
-        "FECHA_NACIMIENTO": "'" + this.fechaNacimiento + "'",
+        "FECHA_NACIMIENTO": "'" + this.anio + "-" + this.mes + "-" + this.dia + "'",
         "SEXO": this.genero,
         "CURP": "'" + this.CURP + "'",
         "FK_ESTADO_CIVIL": this.estadoCivil,
@@ -309,7 +312,7 @@ export class FormularioComponent implements OnInit {
         "FK_COLONIA": this.colonia,
         "TELEFONO_CASA": "'" + this.tFijo + "'",
         "TELEFONO_MOVIL": "'" + this.tMovil + "'",
-        "CORREO1": "'" + this.formGroup.get('CORREO1').value.replace(' ','') + "'",
+        "CORREO1": "'" + this.formGroup.get('CORREO1').value.replace(' ', '') + "'",
         "PADRE_TUTOR": "'" + this.nombrePadre + "'",
         "MADRE": "'" + this.nombreMadre + "'",
         "FK_BACHILLERATO": this.escuela,
