@@ -190,6 +190,7 @@
                     <div class="form-group">
                         <label for="COLONIA">Colonia</label>
                         <select name="COLONIA" id="COLONIA" class="form-control" [(ngModel)]="this.form.COLONIA">
+                            <option value=""> * Selecciona una opción</option>
                             <option *ngFor="let colonia of this.datos_codigo_postal.COLONIAS"
                                     value="{{colonia.PK_COLONIA}}">
                                 {{colonia.NOMBRE}}
