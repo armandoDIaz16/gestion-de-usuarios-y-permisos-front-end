@@ -65,7 +65,6 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
     }
 
     logout(event: MouseEvent) {
-        sessionStorage.clear();
         event.preventDefault();
         this.Token.remove();
         this.Auth.changeAuthStatus(false);
