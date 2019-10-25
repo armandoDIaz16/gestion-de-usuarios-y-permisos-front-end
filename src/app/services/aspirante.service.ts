@@ -9,7 +9,7 @@ export class AspiranteService extends GenericServicesService{
 
     
     constructor(private http: HttpClient,
-      private genericServicesService: GenericServicesService ){ super(http); }
+      private genericServicesService: GenericServicesService ){ super(http);}
 
       private baseUrl = GenericServicesService.API_ENDPOINT;
       private headers = GenericServicesService.HEADERS;

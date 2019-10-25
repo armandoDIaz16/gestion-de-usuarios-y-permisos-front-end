@@ -11,6 +11,7 @@ import { ServicioRoutingModule  } from './servicio-routing.module';
 //Component
 import {CollapseModule, TooltipModule} from 'ngx-bootstrap';
 import { CrearConvocatoriaComponent } from './crear-convocatoria/crear-convocatoria.component';
+import { ErrorModule } from '../../components/error/error.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CrearConvocatoriaComponent } from './crear-convocatoria/crear-convocato
     BsDropdownModule.forRoot(),
     FormsModule,
     CollapseModule,
-    TooltipModule.forRoot()
+    TooltipModule.forRoot(),
+    ErrorModule
   ]
 })
 export class ServicioSocialModule { }
