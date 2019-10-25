@@ -113,6 +113,10 @@ export class FormatoAsesorComponent implements OnInit {
   }
   califica() {
     this.viscalificacion = !this.viscalificacion;
+    this.visfinal = false;
+    this.visindividual = false;
+    this.visgrupal = false;
+    this.visatisfaccion = false;
 
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PeriodoService } from '../../../services/periodo.service';
 import { AspiranteService } from '../../../services/aspirante.service';
 import * as XLSX from 'xlsx';
@@ -18,6 +18,7 @@ export class ArchivosComponent implements OnInit {
     private validarModuloService: ValidarModuloService) {
   }
 
+  @ViewChild('loaderModal') loaderModal;
   public sistema = "Aspirantes";
   public mostrarModulo = false;
   public fechaFin = null;
@@ -55,27 +56,19 @@ export class ArchivosComponent implements OnInit {
 
   }
 
-  enviarPagos(evt: any) {
-    var archivo: File = evt.target.files[0];
-    if (!archivo) {
-      return;
-    };
-    var myReader: FileReader = new FileReader();
-    myReader.onloadend = (e) => {
-      this.aspiranteService.addPagos({ "Sistema": this.sistema, "Nombre": archivo.name.split('.').shift(), "Extencion": archivo.name.split('.').pop(), "Archivo": myReader.result }, this.periodo);
-    }
-    myReader.readAsDataURL(archivo); 
-  }
-
-
   enviarPreRegistrados(evt: any) {
     var archivo: File = evt.target.files[0];
     if (!archivo) {
       return;
     };
+    this.loaderModal.show();
     var myReader: FileReader = new FileReader();
-    myReader.onloadend = (e) => {
-      this.aspiranteService.addPreRegistrados({ "Sistema": this.sistema, "Nombre": archivo.name.split('.').shift(), "Extencion": archivo.name.split('.').pop(), "Archivo": myReader.result }, this.periodo);
+    myReader.onloadend = async (e) => {
+      const data = await this.aspiranteService.addPreRegistrados({ "Sistema": this.sistema, "Nombre": archivo.name.split('.').shift(), "Extencion": archivo.name.split('.').pop(), "Archivo": myReader.result }, this.periodo);
+      if (data) {
+        this.loaderModal.hide();
+        alert(data);
+      }
     }
     myReader.readAsDataURL(archivo);
   }
@@ -85,9 +78,14 @@ export class ArchivosComponent implements OnInit {
     if (!archivo) {
       return;
     };
+    this.loaderModal.show();
     var myReader: FileReader = new FileReader();
-    myReader.onloadend = (e) => {
-      this.aspiranteService.addRegistrados({ "Sistema": this.sistema, "Nombre": archivo.name.split('.').shift(), "Extencion": archivo.name.split('.').pop(), "Archivo": myReader.result }, this.periodo);
+    myReader.onloadend = async (e) => {
+      const data = await this.aspiranteService.addRegistrados({ "Sistema": this.sistema, "Nombre": archivo.name.split('.').shift(), "Extencion": archivo.name.split('.').pop(), "Archivo": myReader.result }, this.periodo);
+      if (data) {
+        this.loaderModal.hide();
+        alert(data);
+      }
     }
     myReader.readAsDataURL(archivo);
   }
@@ -97,9 +95,14 @@ export class ArchivosComponent implements OnInit {
     if (!archivo) {
       return;
     };
+    this.loaderModal.show();
     var myReader: FileReader = new FileReader();
-    myReader.onloadend = (e) => {
-      this.aspiranteService.addAceptados({ "Sistema": this.sistema, "Nombre": archivo.name.split('.').shift(), "Extencion": archivo.name.split('.').pop(), "Archivo": myReader.result }, this.periodo);
+    myReader.onloadend = async (e) => {
+      const data = await this.aspiranteService.addAceptados({ "Sistema": this.sistema, "Nombre": archivo.name.split('.').shift(), "Extencion": archivo.name.split('.').pop(), "Archivo": myReader.result }, this.periodo);
+      if (data) {
+        this.loaderModal.hide();
+        alert(data);
+      }
     }
     myReader.readAsDataURL(archivo);
   }
@@ -109,9 +112,14 @@ export class ArchivosComponent implements OnInit {
     if (!archivo) {
       return;
     };
+    this.loaderModal.show();
     var myReader: FileReader = new FileReader();
-    myReader.onloadend = (e) => {
-      this.aspiranteService.addAsistencia({ "Sistema": this.sistema, "Nombre": archivo.name.split('.').shift(), "Extencion": archivo.name.split('.').pop(), "Archivo": myReader.result }, this.periodo);
+    myReader.onloadend = async (e) => {
+      const data = await this.aspiranteService.addAsistencia({ "Sistema": this.sistema, "Nombre": archivo.name.split('.').shift(), "Extencion": archivo.name.split('.').pop(), "Archivo": myReader.result }, this.periodo);
+      if (data) {
+        this.loaderModal.hide();
+        alert(data);
+      }
     }
     myReader.readAsDataURL(archivo);
   }
@@ -200,16 +208,20 @@ export class ArchivosComponent implements OnInit {
 
   enviarResultados(evt: any) {
     //Enviar archivo resultados al back
-
     var archivo: File = evt.target.files[0];
     if (!archivo) {
       return;
     };
+    this.loaderModal.show();
     var myReader: FileReader = new FileReader();
-    myReader.onloadend = (e) => {
-      this.aspiranteService.addResultados({ "Sistema": this.sistema, "Nombre": archivo.name.split('.').shift(), "Extencion": archivo.name.split('.').pop(), "Archivo": myReader.result }, this.periodo);
+    myReader.onloadend = async (e) => {
+      const data = await this.aspiranteService.addResultados({ "Sistema": this.sistema, "Nombre": archivo.name.split('.').shift(), "Extencion": archivo.name.split('.').pop(), "Archivo": myReader.result }, this.periodo);
+      if (data) {
+        this.loaderModal.hide();
+        alert(data);
+      }
     }
-    myReader.readAsDataURL(archivo); 
+    myReader.readAsDataURL(archivo);
 
     //Leer archivo resultados
     const target: DataTransfer = <DataTransfer>(evt.target);
@@ -271,17 +283,19 @@ export class ArchivosComponent implements OnInit {
     XLSX.writeFile(wb, nombreArchivo + ".xlsx");
   }
 
-  leerDatosParaExcelGrupos() {
+  async leerDatosParaExcelGrupos() {
+    this.loaderModal.show();
     this.aspiranteService.getListaGrupos(this.periodo).subscribe(data => {
       this.grupos = data;
       if (data) {
         this.generarExcel2();
       }
+      this.loaderModal.hide();
     });
   }
 
   generarExcel2() {
-    
+
     var wb = XLSX.utils.book_new();
     wb.Props = {
       Title: "Lista grupos",
@@ -290,19 +304,19 @@ export class ArchivosComponent implements OnInit {
       CreatedDate: new Date(2017, 12, 19)
     };
     //console.log(this.grupos[0].GRUPO);
-    
+
     //let nombreHoja = this.grupos[grupo].GRUPO;
-    
+
     for (var grupo in this.grupos) {
       var aspirantes = [
         [this.grupos[grupo].GRUPO],
         [
-        'PREFICHA',
-        'NOMBRE',
-        'ASISTENCIA'
-      ]
-    ];
-      
+          'PREFICHA',
+          'NOMBRE',
+          'ASISTENCIA'
+        ]
+      ];
+
       //console.log(this.grupos[grupo].GRUPO);
       for (var aspirante in this.grupos[grupo].ASPIRANTES) {
         //console.log(this.grupos[grupo].ASPIRANTES[aspirante].NOMBRE);
@@ -313,10 +327,10 @@ export class ArchivosComponent implements OnInit {
         ]);
       }
 
-    wb.SheetNames.push("Grupo "+this.grupos[grupo].PK_EXAMEN_ADMISION);
-    var ws_data = aspirantes;
-    var ws = XLSX.utils.aoa_to_sheet(ws_data);
-    wb.Sheets["Grupo "+this.grupos[grupo].PK_EXAMEN_ADMISION] = ws;
+      wb.SheetNames.push("Grupo " + this.grupos[grupo].PK_EXAMEN_ADMISION);
+      var ws_data = aspirantes;
+      var ws = XLSX.utils.aoa_to_sheet(ws_data);
+      wb.Sheets["Grupo " + this.grupos[grupo].PK_EXAMEN_ADMISION] = ws;
     }
 
     var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });

@@ -24,8 +24,13 @@ import { PrefichasComponent } from './prefichas/prefichas.component';
 import { PeriodoComponent } from './periodo/periodo.component';
 import { DatosComponent } from './datos/datos.component';
 import { CrearGruposComponent } from './crear_grupos/crear_grupos.component';
+import { PlantillaSIIAComponent } from './plantilla_siia/plantilla_siia.component';
 import { ErrorModule } from '../../components/error/error.module';
 import { LoaderModule } from '../../components/loader/loader.module';
+import { ExamenUbicacionComponent } from './examen_ubicacion/examen_ubicacion.component';
+import { ReferenciasPagadasComponent } from './referencias_pagadas/referencias_pagadas.component';
+import { ReferenciasComponent } from './referencias/referencias.component';
+import { DocumentosComponent } from './documentos/documentos.component';
 
 
 // Angular
@@ -54,6 +59,11 @@ import { LoaderModule } from '../../components/loader/loader.module';
     PrefichasComponent,
     PeriodoComponent,
     DatosComponent,
+    PlantillaSIIAComponent,
+    ExamenUbicacionComponent,
+    ReferenciasPagadasComponent,
+    ReferenciasComponent,
+    DocumentosComponent
   ],
   exports: [
     ModalModule

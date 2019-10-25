@@ -17,6 +17,8 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
     public element: HTMLElement;
     public navItems = navItems;
     public mostrarModulo = false;
+    public mostrarVideo = false;
+    public mostrarAyuda = false;
 
 
     constructor(
@@ -41,17 +43,28 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
     }
 
     ngOnInit() {
+        if (sessionStorage.getItem('primer_login') == '1') {
+            this.mostrarVideo = true;
+        }
+
+        // vefiricar que haya completado perfil, sino mandar a modificar perfil
+        /*if (parseInt(sessionStorage.getItem('perfil_completo')) == 0
+            && parseInt(sessionStorage.getItem('tipo_usuario')) == 1
+            && parseInt(sessionStorage.getItem('primer_login')) == 1) {
+            this.router.navigateByUrl('/usuarios/perfil');
+        }*/
+
+        var URLhash = window.location.hash;
+        if (URLhash == '#/home') {
+            this.mostrarAyuda = true;
+        }
         // this.Auth.authStatus.subscribe(value => this.loggedIn = value);
         // console.log(rutasRoles);
         // navItems;
-
-        // vefiricar que haya completado perfil, sino mandar a modificar perfil
-        /*if (sessionStorage.getItem('perfil_completo') == '0') {
-            this.router.navigateByUrl('/perfil');
-        }*/
     }
 
     logout(event: MouseEvent) {
+        sessionStorage.clear();
         event.preventDefault();
         this.Token.remove();
         this.Auth.changeAuthStatus(false);

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PeriodoService } from '../../../services/periodo.service';
 import { AspiranteService } from '../../../services/aspirante.service';
 import * as XLSX from 'xlsx';
@@ -10,15 +10,15 @@ import { ValidarModuloService } from '../../../services/validarModulo.service';
   selector: 'app-archivos_pagos',
   templateUrl: './archivos_pagos.component.html',
   styleUrls: ['./archivos_pagos.component.scss'],
-  providers: [PeriodoService,AspiranteService, ValidarModuloService]
+  providers: [PeriodoService, AspiranteService, ValidarModuloService]
 })
 export class ArchivosPagosComponent implements OnInit {
-
   constructor(private periodoService: PeriodoService,
     private aspiranteService: AspiranteService,
     private validarModuloService: ValidarModuloService) {
   }
 
+  @ViewChild('loaderModal') loaderModal;
   public sistema = "Aspirantes";
   public mostrarModulo = false;
   public fechaFin = null;
@@ -27,7 +27,7 @@ export class ArchivosPagosComponent implements OnInit {
   public aspirantes = [];
 
   ngOnInit() {
-    this.mostrarModulo = this.validarModuloService.getMostrarModulo("Archivos");
+    this.mostrarModulo = this.validarModuloService.getMostrarModulo("Archivos de pagos");
     if (!this.mostrarModulo) {
       return;
     }
@@ -55,19 +55,26 @@ export class ArchivosPagosComponent implements OnInit {
     if (!archivo) {
       return;
     };
+    this.loaderModal.show();
     var myReader: FileReader = new FileReader();
-    myReader.onloadend = (e) => {
-      this.aspiranteService.addPagos({ "Sistema": this.sistema, "Nombre": archivo.name.split('.').shift(), "Extencion": archivo.name.split('.').pop(), "Archivo": myReader.result }, this.periodo);
+    myReader.onloadend = async (e) => {
+      const data = await this.aspiranteService.addPagos({ "Sistema": this.sistema, "Nombre": archivo.name.split('.').shift(), "Extencion": archivo.name.split('.').pop(), "Archivo": myReader.result }, this.periodo);
+      if (data) {
+        this.loaderModal.hide();
+        alert(data);
+      }
     }
-    myReader.readAsDataURL(archivo); 
-  }   
-  
-  leerDatosParaExcel() {
+    myReader.readAsDataURL(archivo);
+  }
+
+  async leerDatosParaExcel() {
+    this.loaderModal.show();
     this.aspiranteService.getAspirantes2(this.periodo, this.fechaInicio, this.fechaFin).subscribe(data => {
       this.aspirantes = data;
       if (data) {
         this.generarExcel();
       }
+      this.loaderModal.hide();
     });
   }
 
@@ -106,7 +113,7 @@ export class ArchivosPagosComponent implements OnInit {
         this.aspirantes[i].TIPO_PAGO,
         fechaTexto[0] + "/" + (fechaTexto[1]) + "/" + fechaTexto[2].substr(0, 2),
         "R004",
-        "Ficha para examen de admisión",
+        this.aspirantes[i].CONCEPTO,
         1,
         "A008",
         "",

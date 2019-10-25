@@ -1,428 +1,733 @@
 <app-404 *ngIf=!mostrarModulo></app-404>
 <div class="animated fadeIn" *ngIf=mostrarModulo>
-  <div class="row">
-    <div class="col-lg-3">
-      <div class="card">
-        <div class="card-header">
-          <i class="fa fa-calendar-plus-o fa-lg"></i>
-          <strong>Agregar turno</strong>
+  <div *ngIf=mostrarTipoExamen>
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="card">
+          <div class="card-header">
+            <i class="fa fa-calendar-plus-o fa-lg"></i>
+            <strong>Agregar turno</strong>
+          </div>
+          <div class="card-body">
+            <form #turnoForm=ngForm (ngSubmit)="guardarTurno()">
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <label for="dia">Dia:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                    </div>
+                    <input type="date" class="form-control" name='dia' [(ngModel)]="dia" required>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <label for="hora">Hora:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-clock-o"></i></span>
+                    </div>
+                    <select [(ngModel)]="hora" class="form-control" name="hora" required>
+                      <option [value]=null>Selecciona</option>
+                      <option value="07:00">07:00</option>
+                      <option value="12:00">12:00</option>
+                      <option value="17:00">17:00</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <button type="submit" value="Submit" class="btn btn-primary"
+                    [disabled]="turnoForm.invalid">Guardar</button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
-        <div class="card-body">
-          <form #turnoForm=ngForm (ngSubmit)="guardarTurno()">
-            <div class="row">
-              <div class="form-group col-sm-12">
-                <label for="dia">Dia:</label>
-                <label style="color:#ff0000;" for="asterisco">*</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+      </div>
+      <div class="col-lg-5">
+        <div class="card">
+          <div class="card-header">
+            <i class="fa fa-map-marker fa-lg"></i>
+            <strong>Agregar espacio</strong>
+          </div>
+          <div class="card-body">
+            <form #espacioForm=ngForm (ngSubmit)="guardarEspacio()">
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <label for="edificio">Edificio:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-building-o"></i></span>
+                    </div>
+                    <select [(ngModel)]="edificio" class="form-control" name="edificio" required>
+                      <option [value]=null>Selecciona</option>
+                      <option *ngFor="let edificio of edificioLista" value="{{edificio.PK_EDIFICIO}}">
+                        Campus: {{edificio.CAMPUS}} Edificio: {{edificio.PREFIJO}} {{edificio.EDIFICIO}}
+                      </option>
+                    </select>
                   </div>
-                  <input type="date" class="form-control" name='dia' [(ngModel)]="dia" required>
                 </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-sm-12">
-                <label for="hora">Hora:</label>
-                <label style="color:#ff0000;" for="asterisco">*</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-clock-o"></i></span>
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <label for="tipoEspacio">Tipo de espacio:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-building-o"></i></span>
+                    </div>
+                    <select [(ngModel)]="tipoEspacio" class="form-control" name="tipoEspacio" required>
+                      <option [value]=null>Selecciona</option>
+                      <option *ngFor="let tipoEspacio of tipoEspacioLista" value="{{tipoEspacio.PK_TIPO_ESPACIO}}">
+                        {{tipoEspacio.NOMBRE}}
+                      </option>
+                    </select>
                   </div>
-                  <select [(ngModel)]="hora" class="form-control" name="hora" required>
-                    <option [value]=null>Selecciona</option>
-                    <option value="07:00">07:00</option>
-                    <option value="12:00">12:00</option>
-                    <option value="17:00">17:00</option>
-                  </select>
                 </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-sm-12">
-                <button type="submit" value="Submit" class="btn btn-primary"
-                  [disabled]="turnoForm.invalid">Guardar</button>
+              <div class="row">
+                <div class="form-group col-sm-4">
+                  <label for="nombre">Nombre:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-building-o"></i></span>
+                    </div>
+                    <input [(ngModel)]="nombre" type="text" class="form-control" name="nombre" required>
+                  </div>
+                </div>
+                <div class="form-group col-sm-4">
+                  <label for="identificador">Identificador:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-building-o"></i></span>
+                    </div>
+                    <input [(ngModel)]="identificador" type="text" class="form-control" name="identificador" required>
+                  </div>
+                </div>
+                <div class="form-group col-sm-4">
+                  <label for="capacidad">Capacidad:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-building-o"></i></span>
+                    </div>
+                    <input [(ngModel)]="capacidad" type="number" class="form-control" name="capacidad" required>
+                  </div>
+                </div>
               </div>
-            </div>
-          </form>
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <button type="submit" value="Submit" class="btn btn-primary"
+                    [disabled]="espacioForm.invalid">Guardar</button>
+                </div>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card">
+          <div class="card-header">
+            <i class="fa fa-group fa-lg"></i>
+            <strong>Agregar grupo</strong>
+          </div>
+          <div class="card-body">
+            <form #grupoForm=ngForm (ngSubmit)="guardarGrupo()">
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <label for="espacio">Espacio:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-map-marker"></i></span>
+                    </div>
+                    <select [(ngModel)]="espacio" class="form-control" name="espacio" required>
+                      <option [value]=null>Selecciona</option>
+                      <option *ngFor="let espacio of espacioLista" value="{{espacio.PK_ESPACIO}}">
+                        {{espacio.NOMBRE}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <label for="turno2">Turno:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-calendar-plus-o"></i></span>
+                    </div>
+                    <select [(ngModel)]="turno2" class="form-control" name="turno2" required>
+                      <option [value]=null>Selecciona</option>
+                      <option *ngFor="let turno2 of turno2Lista" value="{{turno2.PK_TURNO_ESCRITO}}">
+                        {{turno2.DIA}} {{turno2.HORA}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <button type="submit" value="Submit" class="btn btn-primary"
+                    [disabled]="grupoForm.invalid">Guardar</button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-lg-6">
-      <div class="card">
-        <div class="card-header">
-          <i class="fa fa-map-marker fa-lg"></i>
-          <strong>Agregar espacio</strong>
-        </div>
-        <div class="card-body">
-          <form #espacioForm=ngForm (ngSubmit)="guardarEspacio()">
-            <div class="row">
-              <div class="form-group col-sm-12">
-                <label for="edificio">Edificio:</label>
-                <label style="color:#ff0000;" for="asterisco">*</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-building-o"></i></span>
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="card">
+          <div class="card-header">
+            <i class="fa fa-calendar-plus-o fa-lg"></i>
+            <strong>Modificar turno</strong>
+          </div>
+          <div class="card-body">
+            <form #turno2Form=ngForm (ngSubmit)="modificarTurno(turno3)">
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <label for="turno2">Turno:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-calendar-plus-o"></i></span>
+                    </div>
+                    <select [(ngModel)]="turno3" class="form-control" (change)="cargarTurno(turno3)" name="turno3"
+                      required>
+                      <option [value]=null>Selecciona</option>
+                      <option *ngFor="let turno2 of turno2Lista" value="{{turno2.PK_TURNO}}">
+                        Turno {{turno2.TURNO}}: {{turno2.DIA}} {{turno2.HORA}}
+                      </option>
+                    </select>
                   </div>
-                  <select [(ngModel)]="edificio" class="form-control" name="edificio" required>
-                    <option [value]=null>Selecciona</option>
-                    <option *ngFor="let edificio of edificioLista" value="{{edificio.PK_EDIFICIO}}">
-                      Campus: {{edificio.CAMPUS}} Edificio: {{edificio.PREFIJO}} {{edificio.EDIFICIO}}
-                    </option>
-                  </select>
                 </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-sm-12">
-                <label for="tipoEspacio">Tipo de espacio:</label>
-                <label style="color:#ff0000;" for="asterisco">*</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-building-o"></i></span>
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <label for="dia">Dia:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                    </div>
+                    <input type="date" class="form-control" name='dia2' [(ngModel)]="dia2" required>
                   </div>
-                  <select [(ngModel)]="tipoEspacio" class="form-control" name="tipoEspacio" required>
-                    <option [value]=null>Selecciona</option>
-                    <option *ngFor="let tipoEspacio of tipoEspacioLista" value="{{tipoEspacio.PK_TIPO_ESPACIO}}">
-                      {{tipoEspacio.NOMBRE}}
-                    </option>
-                  </select>
                 </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-sm-4">
-                <label for="nombre">Nombre:</label>
-                <label style="color:#ff0000;" for="asterisco">*</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-building-o"></i></span>
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <label for="hora">Hora:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-clock-o"></i></span>
+                    </div>
+                    <select [(ngModel)]="hora2" class="form-control" name="hora2" required>
+                      <option [value]=null>Selecciona</option>
+                      <option value="07:00">07:00</option>
+                      <option value="12:00">12:00</option>
+                      <option value="17:00">17:00</option>
+                    </select>
                   </div>
-                  <input [(ngModel)]="nombre" type="text" class="form-control" name="nombre" required>
                 </div>
               </div>
-              <div class="form-group col-sm-4">
-                <label for="identificador">Identificador:</label>
-                <label style="color:#ff0000;" for="asterisco">*</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-building-o"></i></span>
-                  </div>
-                  <input [(ngModel)]="identificador" type="text" class="form-control" name="identificador" required>
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <button type="submit" value="Submit" class="btn btn-primary"
+                    [disabled]="turno2Form.invalid">Guardar</button>
                 </div>
               </div>
-              <div class="form-group col-sm-4">
-                <label for="capacidad">Capacidad:</label>
-                <label style="color:#ff0000;" for="asterisco">*</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-building-o"></i></span>
-                  </div>
-                  <input [(ngModel)]="capacidad" type="number" class="form-control" name="capacidad" required>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-sm-12">
-                <button type="submit" value="Submit" class="btn btn-primary"
-                  [disabled]="espacioForm.invalid">Guardar</button>
-              </div>
-            </div>
-          </form>
-
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+      <div class="col-lg-5">
+        <div class="card">
+          <div class="card-header">
+            <i class="fa fa-map-marker fa-lg"></i>
+            <strong>Modificar espacio</strong>
+          </div>
+          <div class="card-body">
+            <form #espacio2Form=ngForm (ngSubmit)="modificarEspacio(espacio3)">
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <label for="espacio3">Espacio:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-edit"></i></span>
+                    </div>
+                    <select [(ngModel)]="espacio3" class="form-control" (change)="cargarEspacio(espacio3)"
+                      name="espacio3" required>
+                      <option [value]=null>Selecciona</option>
+                      <option *ngFor="let espacio3 of espacioLista" value="{{espacio3.PK_ESPACIO}}">
+                        Espacio {{espacio3.ESPACIO}}: {{espacio3.NOMBRE}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <label for="edificio2">Edificio:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-building-o"></i></span>
+                    </div>
+                    <select [(ngModel)]="edificio2" class="form-control" name="edificio2" required>
+                      <option [value]=null>Selecciona</option>
+                      <option *ngFor="let edificio2 of edificioLista" value="{{edificio2.PK_EDIFICIO}}">
+                        Campus: {{edificio2.CAMPUS}} Edificio: {{edificio2.EDIFICIO}} Prefijo: {{edificio2.PREFIJO}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <label for="tipoEspacio2">Tipo de espacio:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-building-o"></i></span>
+                    </div>
+                    <select [(ngModel)]="tipoEspacio2" class="form-control" name="tipoEspacio2" required>
+                      <option [value]=null>Selecciona</option>
+                      <option *ngFor="let tipoEspacio2 of tipoEspacioLista" value="{{tipoEspacio2.PK_TIPO_ESPACIO}}">
+                        {{tipoEspacio2.NOMBRE}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-sm-4">
+                  <label for="nombre2">Nombre:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-building-o"></i></span>
+                    </div>
+                    <input [(ngModel)]="nombre2" type="text" class="form-control" name="nombre2" required>
+                  </div>
+                </div>
+                <div class="form-group col-sm-4">
+                  <label for="identificador2">Identificador:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-building-o"></i></span>
+                    </div>
+                    <input [(ngModel)]="identificador2" type="text" class="form-control" name="identificador2" required>
+                  </div>
+                </div>
+                <div class="form-group col-sm-4">
+                  <label for="capacidad2">Capacidad:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-building-o"></i></span>
+                    </div>
+                    <input [(ngModel)]="capacidad2" type="number" class="form-control" name="capacidad2" required>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <button type="submit" value="Submit" class="btn btn-primary"
+                    [disabled]="espacio2Form.invalid">Guardar</button>
+                </div>
+              </div>
+            </form>
 
-    <div class="col-lg-3">
-      <div class="card">
-        <div class="card-header">
-          <i class="fa fa-group fa-lg"></i>
-          <strong>Agregar grupo</strong>
+          </div>
         </div>
-        <div class="card-body">
-          <form #grupoForm=ngForm (ngSubmit)="guardarGrupo()">
-            <div class="row">
-              <div class="form-group col-sm-12">
-                <label for="espacio">Espacio:</label>
-                <label style="color:#ff0000;" for="asterisco">*</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-map-marker"></i></span>
+      </div>
+      <div class="col-lg-4">
+        <div class="card">
+          <div class="card-header">
+            <i class="fa fa-group fa-lg"></i>
+            <strong>Modificar grupo</strong>
+          </div>
+          <div class="card-body">
+            <form #grupo2Form=ngForm (ngSubmit)="modificarGrupo(grupo2)">
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <label for="grupo2">Grupo:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-edit"></i></span>
+                    </div>
+                    <select [(ngModel)]="grupo2" class="form-control" (change)="cargarGrupo(grupo2)" name="grupo2"
+                      required>
+                      <option [value]=null>Selecciona</option>
+                      <option *ngFor="let grupo2 of grupoLista" value="{{grupo2.PK_EXAMEN_ADMISION}}">
+                        Grupo {{grupo2.GRUPO}}: Lugar: {{grupo2.NOMBRE}}-{{grupo2.IDENTIFICADOR}} Fecha: {{grupo2.DIA}} {{grupo2.HORA}}
+                      </option>
+                    </select>
                   </div>
-                  <select [(ngModel)]="espacio" class="form-control" name="espacio" required>
-                    <option [value]=null>Selecciona</option>
-                    <option *ngFor="let espacio of espacioLista" value="{{espacio.PK_ESPACIO}}">
-                      {{espacio.NOMBRE}}
-                    </option>
-                  </select>
                 </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-sm-12">
-                <label for="turno2">Turno:</label>
-                <label style="color:#ff0000;" for="asterisco">*</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-calendar-plus-o"></i></span>
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <label for="espacio2">Espacio:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-map-marker"></i></span>
+                    </div>
+                    <select [(ngModel)]="espacio2" class="form-control" name="espacio2" required>
+                      <option [value]=null>Selecciona</option>
+                      <option *ngFor="let espacio of espacioLista" value="{{espacio.PK_ESPACIO}}">
+                        {{espacio.NOMBRE}}
+                      </option>
+                    </select>
                   </div>
-                  <select [(ngModel)]="turno2" class="form-control" name="turno2" required>
-                    <option [value]=null>Selecciona</option>
-                    <option *ngFor="let turno2 of turno2Lista" value="{{turno2.PK_TURNO}}">
-                      {{turno2.DIA}} {{turno2.HORA}}
-                    </option>
-                  </select>
                 </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-sm-12">
-                <button type="submit" value="Submit" class="btn btn-primary"
-                  [disabled]="grupoForm.invalid">Guardar</button>
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <label for="turno4">Turno:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-calendar-plus-o"></i></span>
+                    </div>
+                    <select [(ngModel)]="turno4" class="form-control" name="turno4" required>
+                      <option [value]=null>Selecciona</option>
+                      <option *ngFor="let turno of turno2Lista" value="{{turno.PK_TURNO}}">
+                        {{turno.DIA}} {{turno.HORA}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
               </div>
-            </div>
-          </form>
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <button type="submit" value="Submit" class="btn btn-primary"
+                    [disabled]="grupo2Form.invalid">Guardar</button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
-  <div class="row">
-    <div class="col-lg-3">
-      <div class="card">
-        <div class="card-header">
-          <i class="fa fa-calendar-plus-o fa-lg"></i>
-          <strong>Agregar turno</strong>
+  <div *ngIf=!mostrarTipoExamen>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-header">
+            <i class="fa fa-calendar-plus-o fa-lg"></i>
+            <strong>Agregar turno</strong>
+          </div>
+          <div class="card-body">
+            <form #turnoEscritoForm=ngForm (ngSubmit)="guardarTurnoEscrito()">
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <label for="diaEscrito">Dia:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                    </div>
+                    <input type="date" class="form-control" name='diaEscrito' [(ngModel)]="diaEscrito" required>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <label for="horaEscrito">Hora:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-clock-o"></i></span>
+                    </div>
+                    <select [(ngModel)]="horaEscrito" class="form-control" name="horaEscrito" required>
+                      <option [value]=null>Selecciona</option>
+                      <option value="07:00">07:00</option>
+                      <option value="08:00">08:00</option>
+                      <option value="09:00">09:00</option>
+                      <option value="10:00">10:00</option>
+                      <option value="11:00">11:00</option>
+                      <option value="12:00">12:00</option>
+                      <option value="13:00">13:00</option>
+                      <option value="14:00">14:00</option>
+                      <option value="15:00">15:00</option>
+                      <option value="16:00">16:00</option>
+                      <option value="17:00">17:00</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <button type="submit" value="Submit" class="btn btn-primary"
+                    [disabled]="turnoEscritoForm.invalid">Guardar</button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
-        <div class="card-body">
-          <form #turno2Form=ngForm (ngSubmit)="modificarTurno(turno3)">
-            <div class="row">
-              <div class="form-group col-sm-12">
-                <label for="turno2">Turno:</label>
-                <label style="color:#ff0000;" for="asterisco">*</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-calendar-plus-o"></i></span>
+      </div>
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-header">
+            <i class="fa fa-group fa-lg"></i>
+            <strong>Agregar grupo</strong>
+          </div>
+          <div class="card-body">
+            <form #grupoEscritoForm=ngForm (ngSubmit)="guardarGrupoEscrito()">
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <label for="carrera">Carrera:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-building-o"></i></span>
+                    </div>
+                    <select [(ngModel)]="carrera" class="form-control" name="carrera" required>
+                      <option [value]=null>Selecciona</option>
+                      <option *ngFor="let carrera of carreraLista" value="{{carrera.PK_CARRERA}}">
+                        {{carrera.NOMBRE}}
+                      </option>
+                    </select>
                   </div>
-                  <select [(ngModel)]="turno3" class="form-control" (change)="cargarTurno(turno3)" name="turno3" required>
-                    <option [value]=null>Selecciona</option>
-                    <option *ngFor="let turno2 of turno2Lista" value="{{turno2.PK_TURNO}}">
-                      Turno {{turno2.TURNO}}: {{turno2.DIA}} {{turno2.HORA}}
-                    </option>
-                  </select>
                 </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-sm-12">
-                <label for="dia">Dia:</label>
-                <label style="color:#ff0000;" for="asterisco">*</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <label for="edificioEscrito">Edificio:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-building-o"></i></span>
+                    </div>
+                    <select [(ngModel)]="edificioEscrito" class="form-control" name="edificioEscrito" required>
+                      <option [value]=null>Selecciona</option>
+                      <option *ngFor="let edificioEscrito of edificioLista" value="{{edificioEscrito.PK_EDIFICIO}}">
+                        Campus: {{edificioEscrito.CAMPUS}} Edificio: {{edificioEscrito.PREFIJO}}
+                        {{edificioEscrito.EDIFICIO}}
+                      </option>
+                    </select>
                   </div>
-                  <input type="date" class="form-control" name='dia2' [(ngModel)]="dia2" required>
                 </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-sm-12">
-                <label for="hora">Hora:</label>
-                <label style="color:#ff0000;" for="asterisco">*</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-clock-o"></i></span>
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <label for="turnoEscrito">Turno:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-calendar-plus-o"></i></span>
+                    </div>
+                    <select [(ngModel)]="turnoEscrito" class="form-control" name="turnoEscrito" required>
+                      <option [value]=null>Selecciona</option>
+                      <option *ngFor="let turnoEscrito of turno2Lista" value="{{turnoEscrito.PK_TURNO_ESCRITO}}">
+                        {{turnoEscrito.DIA}} {{turnoEscrito.HORA}}
+                      </option>
+                    </select>
                   </div>
-                  <select [(ngModel)]="hora2" class="form-control" name="hora2" required>
-                    <option [value]=null>Selecciona</option>
-                    <option value="07:00">07:00</option>
-                    <option value="12:00">12:00</option>
-                    <option value="17:00">17:00</option>
-                  </select>
                 </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-sm-12">
-                <button type="submit" value="Submit" class="btn btn-primary"
-                  [disabled]="turno2Form.invalid">Guardar</button>
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <button type="submit" value="Submit" class="btn btn-primary"
+                    [disabled]="grupoEscritoForm.invalid">Guardar</button>
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-lg-6">
-      <div class="card">
-        <div class="card-header">
-          <i class="fa fa-map-marker fa-lg"></i>
-          <strong>Agregar espacio</strong>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-header">
+            <i class="fa fa-calendar-plus-o fa-lg"></i>
+            <strong>Modificar turno</strong>
+          </div>
+          <div class="card-body">
+            <form #turnoEscrito2Form=ngForm (ngSubmit)="modificarTurnoEscrito(turnoEscrito2)">
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <label for="turnoEscrito2">Turno:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-calendar-plus-o"></i></span>
+                    </div>
+                    <select [(ngModel)]="turnoEscrito2" class="form-control"
+                      (change)="cargarTurnoEscrito(turnoEscrito2)" name="turnoEscrito2" required>
+                      <option [value]=null>Selecciona</option>
+                      <option *ngFor="let turnoEscrito2 of turno2Lista" value="{{turnoEscrito2.PK_TURNO_ESCRITO}}">
+                        Turno {{turnoEscrito2.TURNO}}: {{turnoEscrito2.DIA}} {{turnoEscrito2.HORA}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <label for="diaEscrito2">Dia:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                    </div>
+                    <input type="date" class="form-control" name='diaEscrito2' [(ngModel)]="diaEscrito2" required>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <label for="horaEscrito2">Hora:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-clock-o"></i></span>
+                    </div>
+                    <select [(ngModel)]="horaEscrito2" class="form-control" name="horaEscrito2" required>
+                      <option [value]=null>Selecciona</option>
+                      <option value="07:00">07:00</option>
+                      <option value="08:00">08:00</option>
+                      <option value="09:00">09:00</option>
+                      <option value="10:00">10:00</option>
+                      <option value="11:00">11:00</option>
+                      <option value="12:00">12:00</option>
+                      <option value="13:00">13:00</option>
+                      <option value="14:00">14:00</option>
+                      <option value="15:00">15:00</option>
+                      <option value="16:00">16:00</option>
+                      <option value="17:00">17:00</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <button type="submit" value="Submit" class="btn btn-primary"
+                    [disabled]="turnoEscrito2Form.invalid">Guardar</button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
-        <div class="card-body">
-          <form #espacio2Form=ngForm (ngSubmit)="modificarEspacio(espacio3)">
-            <div class="row">
-              <div class="form-group col-sm-12">
-                <label for="espacio3">Espacio:</label>
-                <label style="color:#ff0000;" for="asterisco">*</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-edit"></i></span>
+      </div>
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-header">
+            <i class="fa fa-group fa-lg"></i>
+            <strong>Modificar grupo</strong>
+          </div>
+          <div class="card-body">
+            <form #grupoEscrito2Form=ngForm (ngSubmit)="modificarGrupoEscrito(grupoEscrito)">
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <label for="grupoEscrito">Grupo:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-edit"></i></span>
+                    </div>
+                    <select [(ngModel)]="grupoEscrito" class="form-control" (change)="cargarGrupoEscrito(grupoEscrito)" name="grupoEscrito"
+                      required>
+                      <option [value]=null>Selecciona</option>
+                      <option *ngFor="let grupoEscrito of grupoEscritoLista" value="{{grupoEscrito.PK_EXAMEN_ADMISION_ESCRITO}}">
+                        Grupo {{grupoEscrito.GRUPO}} Carrera {{grupoEscrito.CARRERA}}
+                      </option>
+                    </select>
                   </div>
-                  <select [(ngModel)]="espacio3" class="form-control" (change)="cargarEspacio(espacio3)" name="espacio3" required>
-                    <option [value]=null>Selecciona</option>
-                    <option *ngFor="let espacio3 of espacioLista" value="{{espacio3.PK_ESPACIO}}">
-                      Espacio {{espacio3.ESPACIO}}: {{espacio3.NOMBRE}}
-                    </option>
-                  </select>
                 </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-sm-12">
-                <label for="edificio2">Edificio:</label>
-                <label style="color:#ff0000;" for="asterisco">*</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-building-o"></i></span>
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <label for="carrera2">Carrera:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-building-o"></i></span>
+                    </div>
+                    <select [(ngModel)]="carrera2" class="form-control" name="carrera2" required>
+                      <option [value]=null>Selecciona</option>
+                      <option *ngFor="let carrera2 of carreraLista" value="{{carrera2.PK_CARRERA}}">
+                        {{carrera2.NOMBRE}}
+                      </option>
+                    </select>
                   </div>
-                  <select [(ngModel)]="edificio2" class="form-control" name="edificio2" required>
-                    <option [value]=null>Selecciona</option>
-                    <option *ngFor="let edificio2 of edificioLista" value="{{edificio2.PK_EDIFICIO}}">
-                      Campus: {{edificio2.CAMPUS}} Edificio: {{edificio2.EDIFICIO}} Prefijo: {{edificio2.PREFIJO}}
-                    </option>
-                  </select>
                 </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-sm-12">
-                <label for="tipoEspacio2">Tipo de espacio:</label>
-                <label style="color:#ff0000;" for="asterisco">*</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-building-o"></i></span>
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <label for="edificioEscrito2">Edificio:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-building-o"></i></span>
+                    </div>
+                    <select [(ngModel)]="edificioEscrito2" class="form-control" name="edificioEscrito2" required>
+                      <option [value]=null>Selecciona</option>
+                      <option *ngFor="let edificioEscrito2 of edificioLista" value="{{edificioEscrito2.PK_EDIFICIO}}">
+                        Campus: {{edificioEscrito2.CAMPUS}} Edificio: {{edificioEscrito2.PREFIJO}}
+                        {{edificioEscrito2.EDIFICIO}}
+                      </option>
+                    </select>
                   </div>
-                  <select [(ngModel)]="tipoEspacio2" class="form-control" name="tipoEspacio2" required>
-                    <option [value]=null>Selecciona</option>
-                    <option *ngFor="let tipoEspacio2 of tipoEspacioLista" value="{{tipoEspacio2.PK_TIPO_ESPACIO}}">
-                      {{tipoEspacio2.NOMBRE}}
-                    </option>
-                  </select>
                 </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-sm-4">
-                <label for="nombre2">Nombre:</label>
-                <label style="color:#ff0000;" for="asterisco">*</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-building-o"></i></span>
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <label for="turnoEscrito3">Turno:</label>
+                  <label style="color:#ff0000;" for="asterisco">*</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-calendar-plus-o"></i></span>
+                    </div>
+                    <select [(ngModel)]="turnoEscrito3" class="form-control" name="turnoEscrito3" required>
+                      <option [value]=null>Selecciona</option>
+                      <option *ngFor="let turnoEscrito3 of turno2Lista" value="{{turnoEscrito3.PK_TURNO_ESCRITO}}">
+                        {{turnoEscrito3.DIA}} {{turnoEscrito3.HORA}}
+                      </option>
+                    </select>
                   </div>
-                  <input [(ngModel)]="nombre2" type="text" class="form-control" name="nombre2" required>
                 </div>
               </div>
-              <div class="form-group col-sm-4">
-                <label for="identificador2">Identificador:</label>
-                <label style="color:#ff0000;" for="asterisco">*</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-building-o"></i></span>
-                  </div>
-                  <input [(ngModel)]="identificador2" type="text" class="form-control" name="identificador2" required>
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <button type="submit" value="Submit" class="btn btn-primary"
+                    [disabled]="grupoEscrito2Form.invalid">Guardar</button>
                 </div>
               </div>
-              <div class="form-group col-sm-4">
-                <label for="capacidad2">Capacidad:</label>
-                <label style="color:#ff0000;" for="asterisco">*</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-building-o"></i></span>
-                  </div>
-                  <input [(ngModel)]="capacidad2" type="number" class="form-control" name="capacidad2" required>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-sm-12">
-                <button type="submit" value="Submit" class="btn btn-primary"
-                  [disabled]="espacio2Form.invalid">Guardar</button>
-              </div>
-            </div>
-          </form>
-
+            </form>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-lg-3">
-      <div class="card">
-        <div class="card-header">
-          <i class="fa fa-group fa-lg"></i>
-          <strong>Agregar grupo</strong>
-        </div>
-        <div class="card-body">
-          <form #grupo2Form=ngForm (ngSubmit)="modificarGrupo(grupo2)">
-            <div class="row">
-              <div class="form-group col-sm-12">
-                <label for="grupo2">Grupo:</label>
-                <label style="color:#ff0000;" for="asterisco">*</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-edit"></i></span>
-                  </div>
-                  <select [(ngModel)]="grupo2" class="form-control" (change)="cargarGrupo(grupo2)"  name="grupo2" required>
-                    <option [value]=null>Selecciona</option>
-                    <option *ngFor="let grupo2 of grupoLista" value="{{grupo2.PK_EXAMEN_ADMISION}}">
-                      Grupo {{grupo2.GRUPO}}
-                    </option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-sm-12">
-                <label for="espacio2">Espacio:</label>
-                <label style="color:#ff0000;" for="asterisco">*</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-map-marker"></i></span>
-                  </div>
-                  <select [(ngModel)]="espacio2" class="form-control" name="espacio2" required>
-                    <option [value]=null>Selecciona</option>
-                    <option *ngFor="let espacio of espacioLista" value="{{espacio.PK_ESPACIO}}">
-                      {{espacio.NOMBRE}}
-                    </option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-sm-12">
-                <label for="turno4">Turno:</label>
-                <label style="color:#ff0000;" for="asterisco">*</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-calendar-plus-o"></i></span>
-                  </div>
-                  <select [(ngModel)]="turno4" class="form-control" name="turno4" required>
-                    <option [value]=null>Selecciona</option>
-                    <option *ngFor="let turno of turno2Lista" value="{{turno.PK_TURNO}}">
-                      {{turno.DIA}} {{turno.HORA}}
-                    </option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-sm-12">
-                <button type="submit" value="Submit" class="btn btn-primary"
-                  [disabled]="grupo2Form.invalid">Guardar</button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
+  </div>
+</div>
+
+<div bsModal #loaderModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true" [config]="{backdrop: 'static',keyboard: false}">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content"
+      style="background-color: rgba(255, 255, 255, 0); background-clip: padding-box; border: 1px solid rgba(0, 0, 0, 0);">
+      <app-loader></app-loader>
     </div>
   </div>
 </div>

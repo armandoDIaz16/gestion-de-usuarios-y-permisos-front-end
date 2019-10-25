@@ -14,6 +14,7 @@ export class Reporte_asesor_externoComponent extends GenericServicesService impl
 
     alumnosLista = [];
     public mostrarModulo = false;
+    public sistema = 'Residencias';
     ID = this.ID;
     usuario = sessionStorage.getItem('IdUsuario');
     opcion = this.opcion;
@@ -29,7 +30,22 @@ export class Reporte_asesor_externoComponent extends GenericServicesService impl
   }
 
     uploadFile(event) {
-        let elem = event.target;
+      const archivo: File = event.target.files[0];
+      if (!archivo) {
+          return;
+      }
+      const myReader: FileReader = new FileReader();
+      myReader.onloadend = (e) => {
+          this.subirArchivo({'Sistema': this.sistema,
+                                    'Nombre': archivo.name.split('.').shift(),
+                                    'Extencion': archivo.name.split('.').pop(),
+                                    'Archivo': myReader.result,
+                                    'ID': this.ID,
+                                    'id': this.usuario,
+                                    'alumno': this.opcion});
+      };
+      myReader.readAsDataURL(archivo);
+      /*        let elem = event.target;
         if (elem.files.length > 0) {
             let formData = new FormData();
             formData.append('myfile', elem.files[0]);
@@ -41,7 +57,14 @@ export class Reporte_asesor_externoComponent extends GenericServicesService impl
                     alert(response);
                 });
         }
-        elem.value = ''; // line 9
+        elem.value = ''; // line 9*/
 
+    }
+
+    subirArchivo(datos) {
+        this.http.post(GenericServicesService.API_ENDPOINT + 'Repexterno', datos, GenericServicesService.HEADERS).subscribe(
+            (response) => {
+                alert(response);
+            });
     }
 }

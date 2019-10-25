@@ -1,0 +1,21 @@
+<app-404 *ngIf=!mostrarModulo></app-404>
+<div class="animated fadeIn" *ngIf=mostrarModulo>
+  <form>
+    <div class="row" *ngIf="habilitarPlantilla">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            <strong>Listas de aspirantes:</strong>
+          </div>
+          <div class="card-body">
+            <div class="row d-flex justify-content-center">
+              <label class="btn btn-primary" style="cursor:pointer;">Generar lista
+                <button type="button" (click)="generarLista()" hidden></button>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>      
+    </div>
+  </form>
+</div>

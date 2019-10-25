@@ -27,7 +27,7 @@
                   <div class="row">
                     <div class="col-md-6 mx-auto">
                       <div align="center">
-                        <h2>ASIGNACIóN INDIVIDUAL</h2>
+                        <h2>ASIGNACIÓN INDIVIDUAL</h2>
                       </div>
                       <div class="card-group">
                         <div class="card p-3">
@@ -48,7 +48,7 @@
                                 <select class="form-control" type="text" name="selectasesor" [(ngModel)]="form.selectasesor" [disabled]="habilitarHoraLunes"
                                   [hidden]="habilitarHoraLunes">
                                   <option value='0' disabled>ASESOR/A</option>
-                                  <option *ngFor="let asesor of asesores" value="{{asesor.PK_USUARIO}}">{{asesor.name+" "+asesor.PRIMER_APELLIDO+" "+asesor.SEGUNDO_APELLIDO}}</option>
+                                  <option *ngFor="let asesor of asesores" value="{{asesor.PK_USUARIO}}">{{asesor.NOMBRE+" "+asesor.PRIMER_APELLIDO+" "+asesor.SEGUNDO_APELLIDO}}</option>
                                 </select>
                               </div>
           
@@ -60,7 +60,7 @@
                                 <select class="form-control" type="text" name="selectsolicitante" [(ngModel)]="form.selectsolicitante" 
                                   [disabled]="habilitarHoraMartes" [hidden]="habilitarHoraMartes">
                                   <option value='0' disabled>SOLICITANTE</option>
-                                  <option *ngFor="let solicitud of solicitudes" value="{{solicitud.PK_USUARIO}}">{{solicitud.name+" "+solicitud.PRIMER_APELLIDO+" "+solicitud.SEGUNDO_APELLIDO}}</option>
+                                  <option *ngFor="let solicitud of solicitudes" value="{{solicitud.PK_USUARIO}}">{{solicitud.NOMBRE+" "+solicitud.PRIMER_APELLIDO+" "+solicitud.SEGUNDO_APELLIDO}}</option>
                                 </select>
                               </div>
           
@@ -145,14 +145,13 @@
             </div>
         </div>
         <div *ngIf="visgrupal">
-          <h1>GRUPAL</h1>
           <div class="app-body">
               <main class="main d-flex align-items-center">
                 <div class="container">
                   <div class="row">
                     <div class="col-md-6 mx-auto">
                       <div align="center">
-                        <h2>ASIGNACIóN GRUPAL</h2>
+                        <h2>ASIGNACIÓN GRUPAL</h2>
                       </div>
                       <div class="card-group">
                         <div class="card p-3">
@@ -173,7 +172,7 @@
                                 <select class="form-control" type="text" name="selectasesor" [(ngModel)]="form.selectasesorgrupo" [disabled]="habilitarHoraLunes"
                                   [hidden]="habilitarHoraLunes">
                                   <option value='0' disabled>ASESOR/A</option>
-                                  <option *ngFor="let asesor of asesores" value="{{asesor.PK_USUARIO}}">{{asesor.name+" "+asesor.PRIMER_APELLIDO+" "+asesor.SEGUNDO_APELLIDO}}</option>
+                                  <option *ngFor="let asesor of asesores" value="{{asesor.PK_USUARIO}}">{{asesor.NOMBRE+" "+asesor.PRIMER_APELLIDO+" "+asesor.SEGUNDO_APELLIDO}}</option>
                                 </select>
                               </div>
           
@@ -268,7 +267,6 @@
             </div>
         </div>
         <div *ngIf="visacademica">
-          <h1>ACADEMICA</h1>
           <div class="app-body">
             <main class="main d-flex align-items-center">
               <div class="container">
@@ -277,7 +275,45 @@
                     <div align="center">
                       <h2>ASIGNACION ACADEMICA</h2>
                     </div>
-                    <div class="card-group">
+                    <div>
+                        <nav>
+                          <ul class="pagination pull-right float-sm-right">
+                            <li class="page-item {{select1}}"><a class="page-link" style="cursor: pointer"
+                                (click)="mostrarRegistros('2')">2</a></li>
+                            <li class="page-item {{select2}}"><a class="page-link" style="cursor: pointer"
+                                (click)="mostrarRegistros('5')">5</a></li>
+                            <li class="page-item {{select3}}"><a class="page-link" style="cursor: pointer"
+                                (click)="mostrarRegistros('10')">10</a></li>
+                            <li class="page-item {{select4}}"><a class="page-link" style="cursor: pointer"
+                                (click)="mostrarRegistros('todos')">Mostrar todos</a></li>
+                          </ul>
+                        </nav>
+                        <table class="table table-bordered table-striped table-sm">
+                          <thead>
+                            <tr>
+                              <th scope="row">#</th>
+                              <th>NOMBRE</th>
+                              <th>NÚMERO CONTROL</th>
+                              <th>CARRERA</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr
+                              *ngFor="let asesor of reprobados | paginate: {itemsPerPage: registrosPagina, currentPage:pageActual, id: 'first' } let i = index">
+                              <td>{{i+1}}</td>
+                              <td>{{asesor.Nombre+' '+asesor.ApellidoPaterno+' '+asesor.ApellidoMaterno}}</td>
+                              <td>{{asesor.NumeroControl}}</td>
+                              <td>{{asesor.ClaveCarrera}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div class="d-flex justify-content-center">
+                          <pagination-controls id="first" class="myPagination" previousLabel="" nextLabel="" maxSize="10"
+                            (pageChange)="pageActual = $event">
+                          </pagination-controls>
+                        </div>
+                      </div>
+                    <!-- <div class="card-group">
                       <div class="card p-3">
                         <div class="card-body">
                           <form #individualForm=ngForm>                            
@@ -333,7 +369,7 @@
                                 <option value='MIERCOLES' >MIERCOLES</option>
                                 <option value='JUEVES' >JUEVES</option>
                                 <option value='VIERNES' >VIERNES</option>
-                              <!--   <option *ngFor="let level of horariosMiercoles">{{level}}</option> -->
+                                <option *ngFor="let level of horariosMiercoles">{{level}}</option>
                               </select>
                             </div>
         
@@ -381,7 +417,7 @@
                           </form>
                         </div>
                       </div>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>

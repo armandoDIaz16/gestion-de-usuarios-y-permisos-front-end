@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {InterfacePerfil} from '../../../components/perfil/_models/PerfilModel';
 import {InterfaceAlumno} from '../_models/AlumnoModel';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';

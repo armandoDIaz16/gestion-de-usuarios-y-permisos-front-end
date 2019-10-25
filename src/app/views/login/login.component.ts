@@ -50,6 +50,9 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('IdUsuario', data.IdUsuario);
         sessionStorage.setItem('control', data.control);
         sessionStorage.setItem('perfil_completo', data.perfil_completo);
+        sessionStorage.setItem('primer_login', data.primer_login);
+        sessionStorage.setItem('IdEncriptada', data.IdEncriptada);
+        sessionStorage.setItem('tipo_usuario', data.tipo_usuario);
         // NO MODIFICAR
         this.usuarioRolesService.getUsuarioRoles().subscribe(data => {
             sessionStorage['sistemas'] = JSON.stringify(data);

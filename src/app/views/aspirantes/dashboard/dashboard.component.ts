@@ -15,6 +15,7 @@ import { PeriodoService } from '../../../services/periodo.service';
 })
 export class DashboardComponent extends GenericServicesService implements OnInit {
   private baseUrl = GenericServicesService.API_ENDPOINT;
+  private baseUrlFile = GenericServicesService.ENDPOINT;
   private headers = GenericServicesService.HEADERS;
   public mostrarModulo = false;
   public aspirante = [];
@@ -24,7 +25,7 @@ export class DashboardComponent extends GenericServicesService implements OnInit
   paso4 = null;
   paso5 = null;
   paso6 = null;
-  habilitarReferencia = true;
+  habilitarReferencia = false;
   habilitarCurso = false;
   habilitarInscripcion = false;
   habilitarInscripcionCero = false;
@@ -33,6 +34,8 @@ export class DashboardComponent extends GenericServicesService implements OnInit
   habilitarResultados = false;
   habilitarAceptado = false;
   habilitarAceptadoCero = false;
+  habilitarRechazado = false;
+  habilitarGuia = true;
   fechaInicio = null;
   fechaFin = null;
   fechaInicioCurso = null;
@@ -47,6 +50,7 @@ export class DashboardComponent extends GenericServicesService implements OnInit
   mostrarResultados = null;
   mensaje = null;
   mensajeCero = null;
+  mensajeRechazado = null;
 
   constructor(private http: HttpClient,
     private aspiranteService: AspiranteService,
@@ -72,6 +76,7 @@ export class DashboardComponent extends GenericServicesService implements OnInit
         this.fechaFinInscripcionCero = data[0].FECHA_FIN_INSCRIPCION_BIS;
         this.mensaje = data[0].MENSAJE_SEMESTRE;
         this.mensajeCero = data[0].MENSAJE_SEMESTRE_BIS;
+        this.mensajeRechazado = data[0].MENSAJE_RECHAZADO;
         this.fechaActual = data[0].FECHA_ACTUAL;
         this.mostrarResultados = data[0].RESULTADOS;
       }
@@ -86,41 +91,41 @@ export class DashboardComponent extends GenericServicesService implements OnInit
         }
         switch (Number(this.aspirante[0].FK_ESTATUS)) {
           case 1:
-            if (this.compararFechas(this.fechaInicio, this.fechaFin, this.fechaActual)) {
+            if (this.compararFechas(this.fechaInicio, this.fechaFin, this.fechaActual, 2)) {
               this.habilitarReferencia = true;
             }
             break;
           case 2: this.paso2 = 'active'; this.habilitarReferencia = false;
             break;
-          case 3: this.paso2 = 'active'; this.paso3 = 'active'; this.habilitarReferencia = false; this.habilitarRegistro = true;
+          case 3: this.paso2 = 'active'; this.habilitarReferencia = false; this.habilitarRegistro = true;
             break;
           case 4: this.paso2 = 'active'; this.paso3 = 'active'; this.paso4 = 'active'; this.habilitarReferencia = false; this.habilitarFicha = true;
-            if (this.aspirante[0].ASISTENCIA == 1) {
-              this.habilitarFicha = false
-              this.paso5 = 'active';
-              if (this.mostrarResultados == 1) {
-                this.paso6 = 'active';
-              }
-            }
+            break;
+          case 5: this.paso2 = 'active'; this.paso3 = 'active'; this.paso4 = 'active'; this.paso5 = 'active';
             break;
         }
 
         if (this.mostrarResultados == 1) {
+          this.paso6 = 'active';
+          this.habilitarRegistro = false;
+          this.habilitarGuia = false;
+          this.habilitarFicha = false;
           switch (Number(this.aspirante[0].ACEPTADO)) {
+            case 0:
+              this.habilitarRechazado = true;
+              break;
             case 1:
-              this.habilitarFicha = false
               this.habilitarAceptado = true;
-              if (this.compararFechas(this.fechaInicioCurso, this.fechaFinCurso, this.fechaActual)) {
+              if (this.compararFechas(this.fechaInicioCurso, this.fechaFinCurso, this.fechaActual, 0)) {
                 this.habilitarCurso = true;
               }
-              if (this.compararFechas(this.fechaInicioInscripcion, this.fechaFinInscripcion, this.fechaActual)) {
+              if (this.compararFechas(this.fechaInicioInscripcion, this.fechaFinInscripcion, this.fechaActual, 0)) {
                 this.habilitarInscripcion = true;
               }
               break;
             case 2:
-              this.habilitarFicha = false
               this.habilitarAceptadoCero = true;
-              if (this.compararFechas(this.fechaInicioInscripcionCero, this.fechaFinInscripcionCero, this.fechaActual)) {
+              if (this.compararFechas(this.fechaInicioInscripcionCero, this.fechaFinInscripcionCero, this.fechaActual, 0)) {
                 this.habilitarInscripcionCero = true;
               }
               break;
@@ -140,29 +145,37 @@ export class DashboardComponent extends GenericServicesService implements OnInit
     });
   }
   generarReferencia() {
-    window.open(this.baseUrl + "Referencia/" + sessionStorage.getItem('IdUsuario'));
+    window.open(this.baseUrl + "Referencia/" + sessionStorage.getItem('IdEncriptada'));
   }
   generarReferenciaCurso() {
-    window.open(this.baseUrl + "ReferenciaCurso/" + sessionStorage.getItem('IdUsuario'));
+    window.open(this.baseUrl + "ReferenciaCurso/" + sessionStorage.getItem('IdEncriptada'));
   }
   generarReferenciaInscripcion() {
-    window.open(this.baseUrl + "ReferenciaInscripcion/" + sessionStorage.getItem('IdUsuario'));
+    window.open(this.baseUrl + "ReferenciaInscripcion/" + sessionStorage.getItem('IdEncriptada'));
   }
   generarReferenciaInscripcionCero() {
-    window.open(this.baseUrl + "ReferenciaInscripcionCero/" + sessionStorage.getItem('IdUsuario'));
+    window.open(this.baseUrl + "ReferenciaInscripcionCero/" + sessionStorage.getItem('IdEncriptada'));
   }
   generarFicha() {
-    window.open(this.baseUrl + "Ficha/" + sessionStorage.getItem('IdUsuario'));
+    window.open(this.baseUrl + "Ficha/" + sessionStorage.getItem('IdEncriptada'));
   }
-  compararFechas(fInicio, fFin, fActual) {
+  descargarGuiaExamen() {
+    window.open(this.baseUrlFile + "GuiaExamen.pdf");
+  }
+  descargarGuiaAspirantes() {
+    window.open(this.baseUrlFile + "GuiaAspirante.pdf");
+  }
+  compararFechas(fInicio, fFin, fActual, sumar) {
     var fechaInicio = fInicio.split('-');
     var fechaFin = fFin.split('-');
     var fechaActual = fActual.split('-');
     var fechaInicio2 = new Date(fechaInicio[0], (fechaInicio[1] - 1), fechaInicio[2]);
     var fechaFin2 = new Date(fechaFin[0], (fechaFin[1] - 1), fechaFin[2]);
     var fechaActual2 = new Date(fechaActual[0], (fechaActual[1] - 1), fechaActual[2]);
+    fechaFin2.setDate(fechaFin2.getDate() + sumar);
     if (fechaActual2 >= fechaInicio2 && fechaActual2 <= fechaFin2) {
       return true;
     }
+    return false;
   }
 }

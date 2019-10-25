@@ -2,6 +2,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
+// ventanas modales
+import { ModalModule } from "ngx-bootstrap";
+
 // Dropdowns Component
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 

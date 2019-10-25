@@ -21,34 +21,40 @@ export class ListaGruposComponent implements OnInit {
   }
 
   public mostrarModulo = false;
-  public espacioLista = [];
-  public diaLista = [];
-  public horaLista = [];
+  public mostrarGrupo = false;
+  public gruposLista = [];
   public aspirantes = [];
-  public espacio = null;
-  public dia = null;
-  public hora = null;
   public periodo = null;
-  public grupos = [];
+  public tipoAplicacion = null;
+  public grupoEscrito = null;
+  public grupo = null;
 
   ngOnInit() {
     this.mostrarModulo = this.validarModuloService.getMostrarModulo("Lista grupos");
     if (!this.mostrarModulo) {
       return;
     }
-    this.lugarExamenService.getEspacio().subscribe(data => this.espacioLista = data);
-    this.lugarExamenService.getTurno().subscribe(data => {
-      this.diaLista = data[0].DIAS;
-      this.horaLista = data[0].HORAS;
-    });
     this.periodoService.getPeriodo().subscribe(data => {
       if (data) {
         this.periodo = data[0].PK_PERIODO_PREFICHAS;
+        this.tipoAplicacion = data[0].TIPO_APLICACION;
+        if (data[0].TIPO_APLICACION == 1) {
+          this.lugarExamenService.getGrupo(this.periodo).subscribe(data => this.gruposLista = data);
+          this.mostrarGrupo = true;
+        }
+        else {
+          this.lugarExamenService.getGrupoEscrito(this.periodo).subscribe(data => this.gruposLista = data);
+          this.mostrarGrupo = false;
+        }
       }
     });
   }
 
-  generarLista() {
-    this.aspiranteService.getGrupos(this.espacio, this.dia, this.hora, this.periodo).subscribe(data => this.aspirantes = data);
+  cargarGrupo(grupo) {
+    this.aspiranteService.getGrupos(this.periodo, grupo, this.tipoAplicacion).subscribe(data => this.aspirantes = data);
+
+  }
+  cargarGrupoEscrito(grupoEscrito) {
+    this.aspiranteService.getGrupos(this.periodo, grupoEscrito, this.tipoAplicacion).subscribe(data => this.aspirantes = data);
   }
 }

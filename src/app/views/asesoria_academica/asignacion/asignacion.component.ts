@@ -12,6 +12,15 @@ import { ValidarModuloService } from '../../../services/validarModulo.service';
 })
 export class AsignacionComponent implements OnInit {
 
+  //tabla
+  registrosPagina = 10;
+  pageActual: number = 1;
+  select1 = 'active';
+  select2 = null;
+  select3 = null;
+  select4 = null;
+
+
   public mostrarModulo = false;
   visindividual = false;
   visgrupal = false;
@@ -208,7 +217,7 @@ export class AsignacionComponent implements OnInit {
     );
   }
 
-  registroSituacion(){
+/*   registroSituacion(){
     this.Jarwis.asignaSituacion(this.form).subscribe(
       data => {
         alert('Asesoria registrada')
@@ -218,6 +227,23 @@ export class AsignacionComponent implements OnInit {
         }
       );
 
+  } */
+
+  mostrarRegistros(numRegistros) {
+    switch (numRegistros) {
+      case "2":
+        this.registrosPagina = 2; this.select1 = 'active'; this.select2 = ''; this.select3 = ''; this.select4 = '';
+        break;
+      case "5":
+        this.registrosPagina = 5; this.select1 = ''; this.select2 = 'active'; this.select3 = ''; this.select4 = '';
+        break;
+      case "10":
+        this.registrosPagina = 10; this.select1 = ''; this.select2 = ''; this.select3 = 'active'; this.select4 = '';
+        break;
+      case "todos":
+        this.registrosPagina = this.reprobados.length; this.select1 = ''; this.select2 = ''; this.select3 = ''; this.select4 = 'active';
+        break;
+    }
   }
 
   validaIndividual(a){
