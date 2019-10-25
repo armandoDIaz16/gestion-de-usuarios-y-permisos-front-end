@@ -77,15 +77,10 @@ export class PerfilComponent implements OnInit {
             this.situaciones_residencia = <InterfaceSituacionResidencia[]>data_situaciones_residencia;
         }
 
-        console.log(this.perfil.PERFIL_COMPLETO);
-        if (this.perfil.PERFIL_COMPLETO == 1) {
-            this.router.navigateByUrl('/home');
-        }
-
         this.form.PK_USUARIO           = this.perfil.PK_USUARIO;
         this.form.SEXO                 = (this.perfil.SEXO) ? this.perfil.SEXO : 0;
         this.form.ESTADO_CIVIL         = (this.perfil.FK_ESTADO_CIVIL) ? this.perfil.FK_ESTADO_CIVIL : 0;
-        this.form.SITUACION_RESIDENCIA = (this.perfil.SITUACION_RESIDENCIA) ? this.perfil.SITUACION_RESIDENCIA : 0;
+        this.form.SITUACION_RESIDENCIA = (this.perfil.FK_SITUACION_RESIDENCIA) ? this.perfil.FK_SITUACION_RESIDENCIA : 0;
         this.form.COLONIA              = (this.perfil.FK_COLONIA) ? this.perfil.FK_COLONIA : 0;
 
         this.form.FECHA_NACIMIENTO    = (this.perfil.FECHA_NACIMIENTO)
@@ -114,6 +109,9 @@ export class PerfilComponent implements OnInit {
             ? this.perfil.TELEFONO_CONTACTO : '';
         this.form.CORREO_CONTACTO     = (this.perfil.CORREO_CONTACTO)
             ? this.perfil.CORREO_CONTACTO : '';
+
+        // CARGAR COLONIA
+        this.procesa_codigo_postal();
         // this.loaderModal.hide();
     }
 
@@ -195,6 +193,7 @@ export class PerfilComponent implements OnInit {
         // localStorage.setItem('datos_alumno', JSON.stringify(this.data));
         if (data == true) {
             sessionStorage.setItem('perfil_completo', '1');
+            alert('Se han actualizado los datos con éxito');
             this.router.navigateByUrl('/home');
         }
     }

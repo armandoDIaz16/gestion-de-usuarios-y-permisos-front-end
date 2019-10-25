@@ -2,17 +2,7 @@
 <h2 class="text-center">Actualizar datos de perfil</h2>
 <div class="row">
     <div class="offset-md-1 col-md-10">
-        <div class="row">
-            <div class="col-md-12">
-                <button class="btn btn-primary" (click)="volver()">
-                    <i class="fa fa-caret-square-o-left"></i>
-                    Regresar
-                </button>
-            </div>
-        </div>
-        <br>
-
-        <form #perfil_form=ngForm (ngSubmit)="onSubmit()">
+        <form (ngSubmit)="onSubmit()">
             <div class="col-md-12">
                 <div class="h3">Datos personales</div>
             </div>

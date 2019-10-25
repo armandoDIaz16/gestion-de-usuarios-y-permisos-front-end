@@ -20,6 +20,7 @@ export class GruposComponent implements OnInit {
         private http: HttpClient,
         private router: Router,
     ) {
+        this.lista_grupos = <InterfaceGruposTutoria>{};
     }
 
     ngOnInit() {

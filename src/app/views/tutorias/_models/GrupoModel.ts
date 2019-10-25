@@ -28,6 +28,7 @@ export interface InterfaceDiaHorario {
 
 export interface InterfaceGrupoTutoriaDetalle {
     PK_USUARIO:            number;
+    PK_ENCRIPTADA:         string;
     NUMERO_CONTROL:        string;
     NOMBRE:                string;
     PRIMER_APELLIDO:       string;

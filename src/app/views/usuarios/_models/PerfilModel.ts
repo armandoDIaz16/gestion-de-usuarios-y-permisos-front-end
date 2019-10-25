@@ -3,8 +3,12 @@ export interface InterfacePerfil {
     FK_CARRERA:            number;
     FK_ESTADO_CIVIL:       number;
     FK_COLONIA:            number;
+    FK_SITUACION_RESIDENCIA?: number;
+    SEXO?:                 number;
 
+    TEXTO_SEXO?:           string;
     ESTADO_CIVIL?:         string;
+    SITUACION_RESIDENCIA?: string;
     CARRERA:               string;
 
     PERFIL_COMPLETO:       number;
@@ -15,7 +19,6 @@ export interface InterfacePerfil {
     NUMERO_CONTROL:        string;
     SEMESTRE:              string;
     FECHA_NACIMIENTO?:     string;
-    SEXO?:                 number;
     CORREO1:               string;
     CORREO2?:              string;
     CORREO_INSTITUCIONAL?: string;
@@ -24,7 +27,6 @@ export interface InterfacePerfil {
     CODIGO_POSTAL?:        string;
     COLONIA?:              string;
     CALLE?:                string;
-    SITUACION_RESIDENCIA?: number;
     NUMERO_EXTERIOR?:      string;
     NUMERO_INTERIOR?:      string;
     ENTIDAD_FEDERATIVA?:   string;

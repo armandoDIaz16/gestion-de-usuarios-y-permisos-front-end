@@ -20,6 +20,8 @@ export class DetalleGrupoComponent implements OnInit {
                 private http: HttpClient,
                 private router: Router
     ) {
+        this.detalle_grupo = <InterfaceGrupoTutoria>{};
+        this.detalle_grupo.HORARIO = [];
     }
 
     ngOnInit() {
@@ -38,6 +40,14 @@ export class DetalleGrupoComponent implements OnInit {
 
     handleError(error) {
         this.error = error.error.error;
+    }
+
+    reporte_perfil_individual(pk_encriptada: string) {
+        open(
+            this.detalle_grupo_service.get_url_back('get_pdf_perfil_personal_ingreso?pk_encriptada=' + pk_encriptada),
+            '_blank',
+            ''
+        )
     }
 
 }
