@@ -134,6 +134,10 @@ export const routes: Routes = [
                 loadChildren: './views/creditos/creditos.module#CreditosModule'
             },
             {
+                path: 'servicio_social',
+                loadChildren: './views/servicio_social/servicio-social.module#ServicioSocialModule'
+            },
+            {
                 path: 'usuarios',
                 loadChildren: './views/usuarios/usuarios.module#UsuariosModule'
             }
@@ -148,7 +152,7 @@ export const routes: Routes = [
         path: 'response-password-reset',
         component: ResponseResetComponent,
         canActivate: [BeforeLoginService],
-    }
+    },
 
 ];
 

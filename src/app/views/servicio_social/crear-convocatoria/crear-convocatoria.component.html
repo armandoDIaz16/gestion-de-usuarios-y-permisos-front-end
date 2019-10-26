@@ -1,0 +1,192 @@
+<app-404 *ngIf=!mostrarModulo></app-404>
+<h1>Crear Convocatoria</h1>
+<div class="container" *ngIf=mostrarModulo>
+  <!--  Agregar una nuieva convocatoria-->
+  <div class="row">
+    <div class="col">
+      
+      <form  class="form-horizontal ng-untouched ng-pristine ng-valid" enctype="multipart/form-data"
+         #heroForm="ngForm" >
+
+        <div class="addTime">
+
+                  <!-- Select N. Control-->
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="control">N. Comtrol</label>
+            <div class="col-md-9">
+              <select [(ngModel)]="NO_CONTROL_CONV" class="form-control" name="selectNContorl"  required>
+                <option *ngFor="let numero of nControl" [value]="numero">{{numero}}</option>
+              </select>
+            </div>
+          </div>
+          
+           <!--Select Campus -->
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="campus">Campus</label>
+            <div class="col-md-9">
+              <select [(ngModel)]="campusSelect" (change)="campusChange()" class="form-control" name="campusSelect"  required>
+                <option *ngFor="let camp of campus" [value]="camp.PK_CAMPUS">{{camp.NOMBRE}}</option>
+              </select>
+            </div>
+          </div>
+           <!--Select Edificio--> 
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="edificio">Edificio</label>
+            <div class="col-md-9">
+              <select [(ngModel)]="edificioSelect" (change)="edificioChange()" class="form-control" [disabled]="!campusSelect" name="selectEdificio"  required>
+                <option *ngFor="let camp of edificio" [value]="camp.PK_EDIFICIO">{{camp.PREFIJO}}</option>
+              </select>
+            </div>
+          </div>
+
+          <!--convo ngFor-->
+          <div >
+
+          <!--Select tipo Salon -->
+          <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="lugarAndKey">Salon/Aula</label>
+              <div class="col-md-9">
+                <select [(ngModel)]="FK_ESPACIO_CONVOCATORIA" class="form-control" [disabled]="!edificioSelect" name="lugarAndKey"  required>
+                  <option *ngFor="let camp of espacio" [value]="camp.PK_ESPACIO">{{camp.NOMBRE}}</option>
+                </select>
+              </div>
+            </div>
+  
+            <!-- Select Turno-->
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="turno">Turno</label>
+              <div class="col-md-9">
+                <select [(ngModel)]="TURNO" class="form-control" name="turno" required>
+                  <option *ngFor="let turn of turno" [value]="turn">{{turn}}</option>
+                </select>
+              </div>
+            </div>
+            <!-- Select Periodo-->
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="periodo">Periodo</label>
+                <div class="col-md-9">
+                  <select [(ngModel)]="PERIODO" class="form-control" name="periodo" required>
+                    <option *ngFor="let per of periodo" [value]="per">{{per}}</option>
+                  </select>
+                </div>
+              </div>
+            <!-- Fecha de Inicio-->
+            <div class="form-group row"><label class="col-md-3 col-form-label" for="date-input">Fecha</label>
+              <div class="col-md-9">
+                <input [(ngModel)]="FECHA_CONVOCATORIA" class="form-control" name="date-input" type="date" required>
+              </div>
+            </div>
+
+          </div>
+          <!--convo ngFor end-->
+
+          <!-- Horario de Inicio-->
+          <div class="form-group row"><label class="col-md-3 col-form-label" for="time-input">Hora Inicio</label>
+            <div class="col-md-9">
+              <input [(ngModel)]="horaInicio" class="form-control" min="07:00:00" max="19:00:00" name="time-input" type="time" required>
+            </div>
+          </div>
+          <!-- Horario de Inicio-->
+          <div class="form-group row"><label class="col-md-3 col-form-label" for="time-final">Hora Final</label>
+            <div class="col-md-9">
+              <input [(ngModel)]="horaFin" class="form-control" min="09:00:00" max="21:00:00" name="time-fibal" type="time" required>
+            </div>
+          </div>
+                    
+        </div>
+        <button  class="btn btn-primary" (click)="addSemiConvo();" [disabled]="!heroForm.form.valid" >Agregar convocatoria</button>
+      </form>
+    
+    </div>
+  </div>
+  <br>
+  <!--  Contenedor agregadas Recientes-->
+  <div class="row">
+    <div class="col"><br>
+
+      <table class="table" *ngIf="saveVacia()">
+          <thead>
+            <tr>
+              
+              <td scope="col">Fecha</td>
+              <td scope="col">Lugar</td>
+              <td scope="col">Horario</td>
+              <td scope="col">Periodo</td>
+              <td scope="col">Actions</td>
+
+            </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let sC of saveConvo.DATOS; index as i" >
+                  <td *ngIf="lastOne(i)">{{ sC.FECHA_CONVOCATORIA }}</td>
+                  <td *ngIf="lastOne(i)">{{ sC.FK_ESPACIO_CONVOCATORIA }}</td>
+
+                  <td *ngIf="lastOne(i)">{{ sC.HORARIO_CONVOCATORIA}}</td>
+                  <td *ngIf="lastOne(i)">{{ sC.PERIODO }}</td>
+                  <td *ngIf="lastOne(i)">
+                    <button  class="btn btn-danger" (click)="dropLast(i);">x</button>
+                  </td>
+              </tr>
+          </tbody>
+        </table>
+        <button  class="btn btn-primary" (click)="crearConvo();" *ngIf="hideBtn(i)">Crear convocatoria</button>
+
+    </div>
+  </div>
+
+  <!-- Buscador -->
+  <div class="row">
+      <div class="col"><br>
+        <div>
+          <h2>Busqueda</h2>
+        </div>
+          <div class="col">
+
+            <form action="">
+              <!-- Buscar por fecha-->
+              <div class="form-group row"><label class="col-md-3 col-form-label" for="date-input">Año</label>
+                <div class="col-md-9">
+                  <input [(ngModel)]="buscaFecha" class="form-control" name="date-input" type="number" min="2019" max="2099" >
+                </div>
+              </div>          
+            <!-- Buscar Periodo-->
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="periodob">Periodo</label>
+                <div class="col-md-9">
+                  <select [(ngModel)]="buscaPeriodo" class="form-control" name="periodoB">
+                    <option *ngFor="let perb of periodo" [value]="perb">{{perb}}</option>
+                  </select>
+                </div>
+              </div>
+
+                <button  class="btn btn-primary" (click)="buscaConvobtn();">Buscar</button>
+            </form>
+            <br>
+
+          </div>
+  
+        <table class="table" >
+            <thead>
+              <tr>
+                <td scope="col">Fecha</td>
+                <td scope="col">Lugar</td>
+                <td scope="col">Periodo</td>
+                <td scope="col">***</td>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let bC of buscaConvo; index as i">
+                    <td *ngIf="last(i)">{{ bC.FECHA_CONVOCATORIA }}</td>
+                    <td *ngIf="last(i)">{{ bC.NOMBRE }}</td>
+                    <td *ngIf="last(i)">{{ bC.PERIODO }}</td>
+
+                    <td *ngIf="last(i)">
+                      <button class="btn btn-primary" (click)="showConvocatoria(bC.PK_CONVOCATORIA);" >Ver</button>
+                    </td>
+                </tr>
+            </tbody>
+          </table>
+      </div>
+    </div>
+
+</div>

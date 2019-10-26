@@ -15,7 +15,7 @@ export class DatosAlumnoService extends GenericServicesService {
 
     get_perfil(pk_usuario: number): Observable<InterfaceAlumno> {
         return this.http.get<InterfaceAlumno>(
-            GenericServicesService.API_ENDPOINT + 'get_horario_alumno/' + pk_usuario,
+            GenericServicesService.API_ENDPOINT + 'perfil/' + pk_usuario,
             GenericServicesService.HEADERS
         );
     }

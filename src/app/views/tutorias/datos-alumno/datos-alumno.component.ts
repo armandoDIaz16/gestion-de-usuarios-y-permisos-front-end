@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {InterfaceAlumno} from '../_models/AlumnoModel';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
-import {DatosAlumnoService} from './datos-alumno.service';
+import {InterfacePerfil} from '../../usuarios/_models/PerfilModel';
+import {PerfilService} from '../../usuarios/perfil/perfil.service';
 
 @Component({
     selector: 'app-datos-alumno',
@@ -12,21 +12,21 @@ import {DatosAlumnoService} from './datos-alumno.service';
 export class DatosAlumnoComponent implements OnInit {
 
     public error = null;
-    public perfil: InterfaceAlumno;
+    public perfil: InterfacePerfil = null;
 
-    constructor(private datos_alumno_service: DatosAlumnoService,
+    constructor(private perfil_service: PerfilService,
                 private route: ActivatedRoute,
                 private http: HttpClient,
                 private router: Router,
     ) {
+        this.perfil = <InterfacePerfil>{};
     }
 
-    ngOnInit() {
-        this.datos_alumno_service.get_perfil(
-            parseInt(this.route.snapshot.queryParamMap.get('alumno'))).subscribe(
-            data => this.handleResponse(data),
-            error => this.handleError(error)
-        );
+    async ngOnInit() {
+        const data_perfil = await this.perfil_service.get_perfil(parseInt(this.route.snapshot.queryParamMap.get('alumno')));
+        if (data_perfil) {
+            this.perfil = <InterfacePerfil>data_perfil;
+        }
     }
 
     handleResponse(data) {

@@ -57,7 +57,7 @@
                 <div class="form-group">
                     <label for="CARRERA">Carrera</label>
                     <input type="text" class="form-control" id="CARRERA" name="CARRERA"
-                           value="{{this.perfil.FK_CARRERA}}" readonly>
+                           value="{{this.perfil.CARRERA}}" readonly>
                 </div>
             </div>
             <div class="col-md-3">
@@ -72,7 +72,7 @@
                     <label for="CORREO_INSTITUCIONAL">Correo institucional</label>
                     <input type="text" class="form-control" id="CORREO_INSTITUCIONAL"
                            name="CORREO_INSTITUCIONAL"
-                           value="{{this.perfil.CORREO_INSTITUCIONAL}}" readonly>
+                           value="{{this.perfil.NUMERO_CONTROL}}@itleon.edu.mx" readonly>
                 </div>
             </div>
         </div>
@@ -89,14 +89,14 @@
                 <div class="form-group">
                     <label for="SEXO">Sexo</label>
                     <input type="text" class="form-control" id="SEXO" name="SEXO"
-                           value="{{this.perfil.SEXO}}" readonly>
+                           value="{{this.perfil.TEXTO_SEXO}}" readonly>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="ESTADO_CIVIL">Estado civil</label>
                     <input type="text" class="form-control" id="ESTADO_CIVIL" name="ESTADO_CIVIL"
-                           value="{{this.perfil.FK_ESTADO_CIVIL}}" readonly>
+                           value="{{this.perfil.ESTADO_CIVIL}}" readonly>
                 </div>
             </div>
             <div class="col-md-3">
@@ -104,7 +104,7 @@
                     <label for="SITUACION_RESIDENCIA">Situación de la residencia</label>
                     <input type="text" class="form-control" id="SITUACION_RESIDENCIA"
                            name="SITUACION_RESIDENCIA"
-                           value="SITUACION_RESIDENCIA" readonly>
+                           value="{{this.perfil.SITUACION_RESIDENCIA}}" readonly>
                 </div>
             </div>
         </div>
@@ -150,7 +150,7 @@
                 <div class="form-group">
                     <label for="CODIGO_POSTAL">Código postal</label>
                     <input type="text" class="form-control" id="CODIGO_POSTAL" name="CODIGO_POSTAL"
-                           value="CODIGO_POSTAL" readonly>
+                           value="{{this.perfil.CODIGO_POSTAL}}" readonly>
                 </div>
             </div>
             <div class="col-md-3">
@@ -158,21 +158,21 @@
                     <label for="ENTIDAD_FEDERATIVA">Entidad federativa</label>
                     <input type="mail" class="form-control" id="ENTIDAD_FEDERATIVA"
                            name="ENTIDAD_FEDERATIVA"
-                           value="ENTIDAD_FEDERATIVA" readonly>
+                           value="{{this.perfil.ENTIDAD_FEDERATIVA}}" readonly>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="CIUDAD">Municipio</label>
                     <input type="text" class="form-control" id="CIUDAD" name="CIUDAD"
-                           value="CIUDAD" readonly>
+                           value="{{this.perfil.CIUDAD}}" readonly>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="COLONIA">Colonia</label>
                     <input type="text" class="form-control" id="COLONIA" name="COLONIA"
-                           value="{{this.perfil.FK_COLONIA}}" readonly>
+                           value="{{this.perfil.COLONIA}}" readonly>
                 </div>
             </div>
         </div>

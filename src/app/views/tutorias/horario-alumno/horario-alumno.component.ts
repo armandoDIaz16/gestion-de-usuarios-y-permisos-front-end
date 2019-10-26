@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {HorarioAlumnoService} from './horario-alumno.service';
-import {InterfaceAlumno} from '../_models/AlumnoModel';
+import {InterfaceAlumno, InterfaceMateriaHorario} from '../_models/AlumnoModel';
 
 @Component({
     selector: 'app-horario-alumno',
@@ -19,6 +19,23 @@ export class HorarioAlumnoComponent implements OnInit {
                 private http: HttpClient,
                 private router: Router,
     ) {
+        this.alumno = <InterfaceAlumno>{};
+        this.alumno.HORARIO = [
+            {
+                PERIODO: 0,
+                ClaveMateria: '',
+                Nombre: '',
+                Docente: 0,
+                Aula: '',
+                DIAS: {
+                    LUNES: '',
+                    MARTES: '',
+                    MIERCOLES: '',
+                    JUEVES: '',
+                    VIERNES: '',
+                },
+            }
+        ];
     }
 
     ngOnInit() {

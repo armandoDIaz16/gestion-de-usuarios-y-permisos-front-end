@@ -23,7 +23,7 @@ export class PerfilService extends GenericServicesService {
 
     public guardar_perfil(body) {
         return this.http.post(
-            GenericServicesService.API_ENDPOINT + 'perfil',
+            GenericServicesService.API_ENDPOINT + 'actualiza_perfil',
             body,
             GenericServicesService.HEADERS
         );
