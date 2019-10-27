@@ -1,0 +1,42 @@
+<app-404 *ngIf=!mostrarModulo></app-404>
+<div class="animated fadeIn" *ngIf=mostrarModulo>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-align-justify"></i> Referencias pagadas
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped table-sm table-fixed">
+              <thead>
+                <tr>
+                  <th scope="row">#</th>
+                  <th>REFERENCIA_BANCO</th>
+                  <th>IDCONTROL</th>
+                  <th>NOMBRE</th>
+                  <th>CORREO1</th>
+                  <th>MONTO</th>
+                  <th>FECHA_PAGO</th>
+                  <th>CONCEPTO</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let aspirante of aspirantes let i = index">
+                  <td>{{i+1}}</td>
+                  <td>{{aspirante.REFERENCIA_BANCO}}</td>
+                  <td>{{aspirante.IDCONTROL}}</td>
+                  <td>{{aspirante.NOMBRE}}</td>
+                  <td>{{aspirante.CORREO1}}</td>
+                  <td>{{aspirante.MONTO}}</td>
+                  <td>{{aspirante.FECHA_PAGO}}</td>
+                  <td>{{aspirante.CONCEPTO}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -19,6 +19,7 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
     public mostrarModulo = false;
     public mostrarVideo = false;
     public mostrarAyuda = false;
+    public tipo_usuario = sessionStorage.getItem('tipo_usuario');
 
 
     constructor(
@@ -46,6 +47,14 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
         if (sessionStorage.getItem('primer_login') == '1') {
             this.mostrarVideo = true;
         }
+
+        // vefiricar que haya completado perfil, sino mandar a modificar perfil
+        if (parseInt(sessionStorage.getItem('perfil_completo')) == 0
+            && parseInt(sessionStorage.getItem('tipo_usuario')) == 1
+            && parseInt(sessionStorage.getItem('primer_login')) == 1) {
+            this.router.navigateByUrl('/usuarios/perfil');
+        }
+
         var URLhash = window.location.hash;
         if (URLhash == '#/home') {
             this.mostrarAyuda = true;
@@ -53,13 +62,6 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
         // this.Auth.authStatus.subscribe(value => this.loggedIn = value);
         // console.log(rutasRoles);
         // navItems;
-
-        // vefiricar que haya completado perfil, sino mandar a modificar perfil
-        /*if (sessionStorage.getItem('perfil_completo') == '0'
-            && sessionStorage.getItem('tipo_usuario') == '1'
-            && sessionStorage.getItem('primer_login') == '1') {
-            this.router.navigateByUrl('/perfil');
-        }*/
     }
 
     logout(event: MouseEvent) {

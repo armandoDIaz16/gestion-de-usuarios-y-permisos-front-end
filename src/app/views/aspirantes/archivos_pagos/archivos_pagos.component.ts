@@ -113,7 +113,7 @@ export class ArchivosPagosComponent implements OnInit {
         this.aspirantes[i].TIPO_PAGO,
         fechaTexto[0] + "/" + (fechaTexto[1]) + "/" + fechaTexto[2].substr(0, 2),
         "R004",
-        "Ficha para examen de admisión",
+        this.aspirantes[i].CONCEPTO,
         1,
         "A008",
         "",

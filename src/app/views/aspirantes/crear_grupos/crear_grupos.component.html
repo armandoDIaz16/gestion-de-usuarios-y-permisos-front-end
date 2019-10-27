@@ -49,7 +49,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-6">
+      <div class="col-lg-5">
         <div class="card">
           <div class="card-header">
             <i class="fa fa-map-marker fa-lg"></i>
@@ -134,8 +134,7 @@
           </div>
         </div>
       </div>
-
-      <div class="col-lg-3">
+      <div class="col-lg-4">
         <div class="card">
           <div class="card-header">
             <i class="fa fa-group fa-lg"></i>
@@ -170,7 +169,7 @@
                     </div>
                     <select [(ngModel)]="turno2" class="form-control" name="turno2" required>
                       <option [value]=null>Selecciona</option>
-                      <option *ngFor="let turno2 of turno2Lista" value="{{turno2.PK_TURNO}}">
+                      <option *ngFor="let turno2 of turno2Lista" value="{{turno2.PK_TURNO_ESCRITO}}">
                         {{turno2.DIA}} {{turno2.HORA}}
                       </option>
                     </select>
@@ -254,7 +253,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-6">
+      <div class="col-lg-5">
         <div class="card">
           <div class="card-header">
             <i class="fa fa-map-marker fa-lg"></i>
@@ -357,7 +356,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-3">
+      <div class="col-lg-4">
         <div class="card">
           <div class="card-header">
             <i class="fa fa-group fa-lg"></i>
@@ -377,7 +376,7 @@
                       required>
                       <option [value]=null>Selecciona</option>
                       <option *ngFor="let grupo2 of grupoLista" value="{{grupo2.PK_EXAMEN_ADMISION}}">
-                        Grupo {{grupo2.GRUPO}}
+                        Grupo {{grupo2.GRUPO}}: Lugar: {{grupo2.NOMBRE}}-{{grupo2.IDENTIFICADOR}} Fecha: {{grupo2.DIA}} {{grupo2.HORA}}
                       </option>
                     </select>
                   </div>
@@ -539,7 +538,7 @@
                     </div>
                     <select [(ngModel)]="turnoEscrito" class="form-control" name="turnoEscrito" required>
                       <option [value]=null>Selecciona</option>
-                      <option *ngFor="let turnoEscrito of turno2Lista" value="{{turnoEscrito.PK_TURNO}}">
+                      <option *ngFor="let turnoEscrito of turno2Lista" value="{{turnoEscrito.PK_TURNO_ESCRITO}}">
                         {{turnoEscrito.DIA}} {{turnoEscrito.HORA}}
                       </option>
                     </select>
@@ -577,7 +576,7 @@
                     <select [(ngModel)]="turnoEscrito2" class="form-control"
                       (change)="cargarTurnoEscrito(turnoEscrito2)" name="turnoEscrito2" required>
                       <option [value]=null>Selecciona</option>
-                      <option *ngFor="let turnoEscrito2 of turno2Lista" value="{{turnoEscrito2.PK_TURNO}}">
+                      <option *ngFor="let turnoEscrito2 of turno2Lista" value="{{turnoEscrito2.PK_TURNO_ESCRITO}}">
                         Turno {{turnoEscrito2.TURNO}}: {{turnoEscrito2.DIA}} {{turnoEscrito2.HORA}}
                       </option>
                     </select>
@@ -651,7 +650,7 @@
                       required>
                       <option [value]=null>Selecciona</option>
                       <option *ngFor="let grupoEscrito of grupoEscritoLista" value="{{grupoEscrito.PK_EXAMEN_ADMISION_ESCRITO}}">
-                        Grupo {{grupoEscrito.GRUPO}}
+                        Grupo {{grupoEscrito.GRUPO}} Carrera {{grupoEscrito.CARRERA}}
                       </option>
                     </select>
                   </div>
@@ -702,7 +701,7 @@
                     </div>
                     <select [(ngModel)]="turnoEscrito3" class="form-control" name="turnoEscrito3" required>
                       <option [value]=null>Selecciona</option>
-                      <option *ngFor="let turnoEscrito3 of turno2Lista" value="{{turnoEscrito3.PK_TURNO}}">
+                      <option *ngFor="let turnoEscrito3 of turno2Lista" value="{{turnoEscrito3.PK_TURNO_ESCRITO}}">
                         {{turnoEscrito3.DIA}} {{turnoEscrito3.HORA}}
                       </option>
                     </select>
