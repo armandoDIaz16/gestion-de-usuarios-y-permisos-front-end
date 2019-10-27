@@ -106,10 +106,10 @@ export class CreditosPorValidarComponent{
 
     validarCreditos(PK_ALUMNO_CREDITO){
         this.crPorValidar.validarCreditos(PK_ALUMNO_CREDITO).subscribe((data)=>{
-            this.crPorValidar.generarConstancia(PK_ALUMNO_CREDITO).subscribe((data)=>{
+            //this.crPorValidar.generarConstancia(PK_ALUMNO_CREDITO).subscribe((data)=>{
                 alert("Credito validado correctamente");
                 this.getCreditosPorValidar();
-            });
+            //});
         },(error)=>{
                 alert("Ocurrio un error");
             });

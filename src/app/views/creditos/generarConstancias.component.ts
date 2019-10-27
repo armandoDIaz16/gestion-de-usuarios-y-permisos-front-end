@@ -23,12 +23,12 @@ export class GenerarConstanciasComponent {
     }
 
     getConstanciasPorCrear(){
-        this.creditosService.getAlumnosByCarrera('ISC').subscribe((data: CreditoSE[])=>{
+        this.creditosService.getAlumnosByCarrera('ISX').subscribe((data: CreditoSE[])=>{
             this. creditos = data;
         },(error)=>{alert('Ocurrió un error');})
     }
 
-    openDialog(){
+    openDialog(pk_alumno_credito){
         const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = false;
@@ -38,7 +38,14 @@ export class GenerarConstanciasComponent {
 
      dialogRef.afterClosed().subscribe(
       data => {
-                console.log(data);
+                data.pk_alumno_credito = pk_alumno_credito;
+                this.creditosService.generarConstancia(data).subscribe((d)=>{
+                    alert("Constancia generada correctamente");
+                    this.getConstanciasPorCrear();
+                }, (error)=>{
+                    alert("ocurrio un error " + error);
+                });
+                console.log(data);                
       }, error =>  alert("Ocurrio un error"));//this.logService.print(error, LogService.ERROR_MSG));
   }
 /*

@@ -11,7 +11,8 @@ export class popupGenerarConstanciasComponent {
     datos = {
         memorandum: null,
         suscribe: null,
-        nombre: null
+        nombre: null,
+        pk_alumno_credito: null
     };
     
     constructor( private dialogRef: MatDialogRef<popupGenerarConstanciasComponent>){}

@@ -179,8 +179,8 @@ getCreditosValidados(){
   return this.httpclient.get(this.API_ENDPOINT + 'creditos-validados');
 }
 
-generarConstancia(PK_ALUMNO_CREDITO){
-  return this.httpclient.get(this.API_ENDPOINT + 'generar-constancia/' + PK_ALUMNO_CREDITO);
+generarConstancia(data){
+  return this.httpclient.post(this.API_ENDPOINT + 'generar-constancia/', data, this.headers);
 
 }
 /* 
