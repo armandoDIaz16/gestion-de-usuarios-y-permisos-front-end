@@ -172,7 +172,7 @@ export class ArchivosComponent implements OnInit {
       Title: "Ref " + y + "-" + m + "-" + d,
       Subject: "Pagos",
       Author: "Tecnologico de leon",
-      CreatedDate: new Date(2017, 12, 19)
+      CreatedDate: new Date()
     };
 
     wb.SheetNames.push("Ref " + y + "-" + m + "-" + d);
@@ -266,7 +266,7 @@ export class ArchivosComponent implements OnInit {
       Title: "Resultados",
       Subject: "Resultados",
       Author: "Resultados",
-      CreatedDate: new Date(2017, 12, 19)
+      CreatedDate: new Date()
     };
 
     wb.SheetNames.push("Resultados");
@@ -301,7 +301,7 @@ export class ArchivosComponent implements OnInit {
       Title: "Lista grupos",
       Subject: "Lista examenes",
       Author: "Tecnologico de leon",
-      CreatedDate: new Date(2017, 12, 19)
+      CreatedDate: new Date()
     };
     //console.log(this.grupos[0].GRUPO);
 
@@ -327,10 +327,10 @@ export class ArchivosComponent implements OnInit {
         ]);
       }
 
-      wb.SheetNames.push("Grupo " + this.grupos[grupo].PK_EXAMEN_ADMISION);
+      wb.SheetNames.push("Grupo " + this.grupos[grupo].NUMERO_GRUPO);
       var ws_data = aspirantes;
       var ws = XLSX.utils.aoa_to_sheet(ws_data);
-      wb.Sheets["Grupo " + this.grupos[grupo].PK_EXAMEN_ADMISION] = ws;
+      wb.Sheets["Grupo " + this.grupos[grupo].NUMERO_GRUPO] = ws;
     }
 
     var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
