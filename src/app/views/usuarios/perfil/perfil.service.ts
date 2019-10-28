@@ -14,7 +14,7 @@ export class PerfilService extends GenericServicesService {
         super(http);
     }
 
-    async get_perfil(id_usuario: number) {
+    async get_perfil(id_usuario: any) {
         return this.http.get(
             GenericServicesService.API_ENDPOINT + 'perfil/' + id_usuario,
             GenericServicesService.HEADERS

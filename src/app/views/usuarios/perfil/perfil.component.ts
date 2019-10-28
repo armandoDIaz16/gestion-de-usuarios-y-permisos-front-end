@@ -62,7 +62,7 @@ export class PerfilComponent implements OnInit {
     async ngOnInit() {
         // this.loaderModal.show(); .
 
-        const data_perfil = await this.perfil_service.get_perfil(parseInt(this.pk_usuario));
+        const data_perfil = await this.perfil_service.get_perfil(this.pk_usuario);
         if (data_perfil) {
             this.perfil = <InterfacePerfil>data_perfil;
         }
