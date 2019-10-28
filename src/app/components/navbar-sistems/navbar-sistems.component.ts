@@ -48,17 +48,26 @@ export class NavbarSistemsComponent implements OnInit {
                         // console.log("--"+sistemas[0].SISTEMAS[sistema].NOMBRE)
                         for (var rol in sistemas[0].SISTEMAS[sistema].ROLES) {
                             var rutasModulos = [];
-                            // console.log("----"+sistemas[0].SISTEMAS[sistema].ROLES[rol].NOMBRE)
+                            if (sistemas[0].SISTEMAS[sistema].ROLES[rol].NOMBRE == 'Aspirante') {
+                                this.redirigirAspirante = true;
+                            }
                             for (var modulo in sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS) {
                                 // console.log("------"+sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE)
                                 rutasModulos.push({
-                                    name: sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE,
+                                    /* name: sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE,
                                     url: '/' + sistemas[0].SISTEMAS[sistema].NOMBRE.toLowerCase().replace(/\s/g, '_') +
                                         '/' + sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE.toLowerCase().replace(/\s/g, '_'),
+                                    icon: 'icon-arrow-right' */
+                                    name: sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE,
+                                    url: '/' + sistemas[0].SISTEMAS[sistema].NOMBRE.toLowerCase().replace(/\s/g, '_').replace(new RegExp(/[àáâãäå]/g), 'a').replace(new RegExp(/[èéêë]/g), 'e')
+                                        .replace(new RegExp(/[ìíîï]/g), 'i').replace(new RegExp(/[òóôõö]/g), 'o').replace(new RegExp(/[ùúûü]/g), 'u') + '/' + sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE.toLowerCase().replace(/\s/g, '_').replace(new RegExp(/[àáâãäå]/g), 'a').replace(new RegExp(/[èéêë]/g), 'e')
+                                        .replace(new RegExp(/[ìíîï]/g), 'i').replace(new RegExp(/[òóôõö]/g), 'o').replace(new RegExp(/[ùúûü]/g), 'u'),
                                     icon: 'icon-arrow-right'
                                 });
+
                                 // modulos.push(sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE);
                             }
+
                             rutasRoles.push({
                                 name: sistemas[0].SISTEMAS[sistema].ROLES[rol].NOMBRE,
                                 icon: 'icon-user',
@@ -81,6 +90,9 @@ export class NavbarSistemsComponent implements OnInit {
                         break;
                     case 'servicio_social':
                         this.router.navigateByUrl('/servicio_social');
+                        break;
+                    case 'Creditos':
+                        this.router.navigateByUrl('/creditos');
                         break;
                 }
             });
