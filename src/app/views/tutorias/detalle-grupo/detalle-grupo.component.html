@@ -66,10 +66,10 @@
                 <th>Citas</th>
                 <th>Canalizaciones</th>
                 <th>Evaluación del tutor</th>
-                <th>Perfil de ingreso</th>
+                <!--<th>Perfil de ingreso</th>-->
             </tr>
             </thead>
-            <tbody>
+            <tbody>proporcinados
             <tr class="text-center" *ngFor="let alumno of detalle_grupo.LISTA_ALUMNOS; let i = index">
                 <td>
                     {{i + 1}}
@@ -128,11 +128,11 @@
                 <td>
                     <b>Pendiente</b>
                 </td>
-                <td>
+                <!--<td>
                     <button class="btn btn-danger" (click)="reporte_perfil_individual(alumno.PK_ENCRIPTADA)">
                         Perfil individual
                     </button>
-                </td>
+                </td>-->
             </tr>
 
             </tbody>
