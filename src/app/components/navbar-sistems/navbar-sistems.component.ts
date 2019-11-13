@@ -36,7 +36,6 @@ export class NavbarSistemsComponent implements OnInit {
         }
     }
 
-
     mostrarRoles(sistemaSelect, nombreSistema) {
         if (!sessionStorage.rutas) {
             this.router.navigateByUrl('/home');
@@ -64,10 +63,8 @@ export class NavbarSistemsComponent implements OnInit {
                                         .replace(new RegExp(/[ìíîï]/g), 'i').replace(new RegExp(/[òóôõö]/g), 'o').replace(new RegExp(/[ùúûü]/g), 'u'),
                                     icon: 'icon-arrow-right'
                                 });
-
                                 // modulos.push(sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE);
                             }
-
                             rutasRoles.push({
                                 name: sistemas[0].SISTEMAS[sistema].ROLES[rol].NOMBRE,
                                 icon: 'icon-user',
@@ -76,10 +73,13 @@ export class NavbarSistemsComponent implements OnInit {
                         }
                     }
                 }
-
                 sessionStorage['rutas'] = JSON.stringify(rutasRoles);
                 switch (nombreSistema) {
                     case 'Aspirantes':
+                        if (this.redirigirAspirante) {
+                            this.router.navigateByUrl('/aspirantes/dashboard');
+                            break;
+                        }
                         this.router.navigateByUrl('/aspirantes');
                         break;
                     case 'Residencias':
@@ -87,6 +87,9 @@ export class NavbarSistemsComponent implements OnInit {
                         break;
                     case 'tutorias':
                         this.router.navigateByUrl('/tutorias');
+                        break;
+                    case 'asesoría académica':
+                        this.router.navigateByUrl('/asesoria_academica');
                         break;
                     case 'servicio_social':
                         this.router.navigateByUrl('/servicio_social');

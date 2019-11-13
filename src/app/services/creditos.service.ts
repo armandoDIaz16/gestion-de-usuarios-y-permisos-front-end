@@ -236,6 +236,12 @@ AgregarUsuarioJC(usuario){
   return this.httpClient.get(this.API_ENDPOINT + 'creditos-carrera/' + carrera );
 }
 
+/*---------------------OBTENER CLAVE DE CARRERA ----------------------*/
+getClaveCarrera(PK_USUARIO){
+  console.log("data que llega: " + PK_USUARIO);
+  return this.httpClient.get(this.API_ENDPOINT + 'get-clave-carrera/' + PK_USUARIO);
+}
+
 
 
 }
