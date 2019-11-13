@@ -23,6 +23,7 @@ import {ActivaCuentaComponent} from './components/activa-cuenta/activa-cuenta.co
 
 import {ResidenciasRoutingModule} from './views/residencias/residencias-routing.module';
 import {PerfilComponent} from './views/usuarios/perfil/perfil.component';
+import { RepositorioTesisComponent } from './components/repositorio_tesis/repositorio_tesis.component';
 
 
 export const routes: Routes = [
@@ -152,6 +153,13 @@ export const routes: Routes = [
         path: 'response-password-reset',
         component: ResponseResetComponent,
         canActivate: [BeforeLoginService],
+    },
+    {
+        path: 'repositorio_tesis',
+        component: RepositorioTesisComponent,
+        data: {
+            title: 'Repositorio tesis'
+        }
     },
 
 ];
