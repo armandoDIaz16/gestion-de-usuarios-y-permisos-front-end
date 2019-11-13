@@ -67,6 +67,8 @@ import {ActivaCuentaComponent} from './components/activa-cuenta/activa-cuenta.co
 import {LoaderModule} from './components/loader/loader.module';
 import {ModalModule} from 'ngx-bootstrap';
 import {PerfilComponent} from './views/usuarios/perfil/perfil.component';
+import { RepositorioTesisComponent } from './components/repositorio_tesis/repositorio_tesis.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -91,7 +93,8 @@ import {PerfilComponent} from './views/usuarios/perfil/perfil.component';
         CommonModule,
         ReactiveFormsModule,
         AppRoutingModule,
-        LoaderModule
+        LoaderModule,
+        NgxPaginationModule,
     ],
     declarations: [
         AppComponent,
@@ -106,7 +109,8 @@ import {PerfilComponent} from './views/usuarios/perfil/perfil.component';
         ControlComponent,
         StudentOldComponent,
         NavbarSistemsComponent,
-        ActivaCuentaComponent
+        ActivaCuentaComponent,
+        RepositorioTesisComponent
     ],
     providers:
         [

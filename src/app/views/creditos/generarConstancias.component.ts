@@ -16,6 +16,8 @@ import {popupGenerarConstanciasComponent} from './popup-generarConstancias.compo
 export class GenerarConstanciasComponent {
     creditos: CreditoSE[];
     pageActual: number = 1;
+    idUsuario: any;
+
 
  
     constructor(private creditosService: CreditosService,  private dialog: MatDialog){
@@ -23,9 +25,12 @@ export class GenerarConstanciasComponent {
     }
 
     getConstanciasPorCrear(){
-        this.creditosService.getAlumnosByCarrera('ISX').subscribe((data: CreditoSE[])=>{
-            this. creditos = data;
-        },(error)=>{alert('Ocurrió un error');})
+        this.idUsuario = sessionStorage.getItem('IdUsuario');
+        this.creditosService.getClaveCarrera(this.idUsuario).subscribe((data)=>{
+            this.creditosService.getAlumnosByCarrera(data[0].FK_CARRERA).subscribe((data: CreditoSE[])=>{
+                this. creditos = data;
+            },(error)=>{alert('Ocurrió un error');});
+        },(error)=>{alert("Ocurrio un error")});        
     }
 
     openDialog(pk_alumno_credito){
