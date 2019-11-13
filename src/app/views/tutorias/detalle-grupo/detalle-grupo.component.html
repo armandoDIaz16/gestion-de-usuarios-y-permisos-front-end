@@ -66,7 +66,7 @@
                 <th>Citas</th>
                 <th>Canalizaciones</th>
                 <th>Evaluación del tutor</th>
-                <th>Perfil de ingreso</th>
+                <th>Perfil personal</th>
             </tr>
             </thead>
             <tbody>
@@ -129,9 +129,12 @@
                     <b>Pendiente</b>
                 </td>
                 <td>
-                    <button class="btn btn-danger" (click)="reporte_perfil_individual(alumno.PK_ENCRIPTADA)">
-                        Perfil individual
+                    <button class="btn btn-sm btn-success" (click)="reporte_perfil_individual(alumno.PK_ENCRIPTADA)">
+                        Ver
                     </button>
+                    <p *ngIf="alumno.PERFIL_COMPLETO == 0">
+                        Datos personales no completados
+                    </p>
                 </td>
             </tr>
 
