@@ -37,4 +37,5 @@ export interface InterfaceGrupoTutoriaDetalle {
     CARRERA:               string;
     ENCUESTAS_ACTIVAS:     number;
     ENCUESTAS_CONTESTADAS: number;
+    PERFIL_COMPLETO:       number;
 }
