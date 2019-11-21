@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
-import {InterfaceGruposTutoria, InterfaceGrupoTutoria} from '../_models/GrupoModel';
+import {InterfacecCarreraGruposTutoria} from '../_models/GrupoModel';
 import {GruposService} from './grupos.service';
-import {GenericServicesService} from '../../../services/generic-services.service';
 
 @Component({
     selector: 'app-grupos',
@@ -13,14 +12,10 @@ import {GenericServicesService} from '../../../services/generic-services.service
 export class GruposComponent implements OnInit {
 
     public error = null;
-    public lista_grupos: InterfaceGruposTutoria;
+    public lista_grupos: InterfacecCarreraGruposTutoria;
 
-    constructor(private grupos_service: GruposService,
-        private route: ActivatedRoute,
-        private http: HttpClient,
-        private router: Router,
-    ) {
-        this.lista_grupos = <InterfaceGruposTutoria>{};
+    constructor(private grupos_service: GruposService) {
+        this.lista_grupos = <InterfacecCarreraGruposTutoria>{};
     }
 
     ngOnInit() {

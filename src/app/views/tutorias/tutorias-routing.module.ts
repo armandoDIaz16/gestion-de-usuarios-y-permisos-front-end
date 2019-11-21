@@ -14,6 +14,8 @@ import {EncuestasAlumnoComponent} from './encuestas-alumno/encuestas-alumno.comp
 import {HorarioAlumnoComponent} from './horario-alumno/horario-alumno.component';
 import {RespuestasEncuestaComponent} from './respuestas-encuesta/respuestas-encuesta.component';
 import {ReporteEncuestaComponent} from './reporte-encuesta/reporte-encuesta.component';
+import {CoordinadoresInstitucionalesComponent} from './coordinadores-institucionales/coordinadores-institucionales.component';
+import {CoordinadoresDepartamentalesComponent} from './coordinadores-departamentales/coordinadores-departamentales.component';
 
 const routes: Routes = [
     {
@@ -104,6 +106,20 @@ const routes: Routes = [
                 component: ReporteEncuestaComponent,
                 data: {
                     title: 'Respuesta de encuesta'
+                }
+            },
+            {
+                path: 'coordinadores_institucionales',
+                component: CoordinadoresInstitucionalesComponent,
+                data: {
+                    title: 'Coordinadores institucionales'
+                }
+            },
+            {
+                path: 'coordinadores_departamentales',
+                component: CoordinadoresDepartamentalesComponent,
+                data: {
+                    title: 'Coordinadores departamentales'
                 }
             }
         ]

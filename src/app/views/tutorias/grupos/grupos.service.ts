@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {GenericServicesService} from '../../../services/generic-services.service';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {InterfaceGruposTutoria} from '../_models/GrupoModel';
+import {InterfacecCarreraGruposTutoria} from '../_models/GrupoModel';
 
 @Injectable({
     providedIn: 'root'
@@ -13,8 +13,8 @@ export class GruposService extends GenericServicesService {
         super(http);
     }
 
-    get_grupos(pk_tutor: number): Observable<InterfaceGruposTutoria> {
-        return this.http.get<InterfaceGruposTutoria>(
+    get_grupos(pk_tutor: number): Observable<InterfacecCarreraGruposTutoria> {
+        return this.http.get<InterfacecCarreraGruposTutoria>(
             GenericServicesService.API_ENDPOINT + 'grupos_tutoria/' + pk_tutor,
             GenericServicesService.HEADERS
         );

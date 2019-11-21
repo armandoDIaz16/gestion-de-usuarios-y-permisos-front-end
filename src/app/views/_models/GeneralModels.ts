@@ -24,7 +24,22 @@ export interface InterfaceDatosCodigoPostal {
 export interface InterfaceColonias {
     PK_COLONIA:            number;
     FK_TIPO_ASENTAMIENTO?: number;
-    NOMBRE:                number;
-    ALIAS?:                number;
-    ABREVIATURA?:          number;
+    NOMBRE:                string;
+    ALIAS?:                string;
+    ABREVIATURA?:          string;
+}
+
+export interface InterfaceAreaAcademica {
+    PK_AREA_ACADEMICA: number;
+    PK_ENCRIPTADA:     string;
+    NOMBRE:            string;
+}
+
+export interface InterfacePersona {
+    PK_USUARIO:       number;
+    PK_ENCRIPTADA:    string;
+    NOMBRE:           string;
+    PRIMER_APELLIDO:  string;
+    SEGUNDO_APELLIDO: string;
+    NUMERO_CONTROL:   string;
 }

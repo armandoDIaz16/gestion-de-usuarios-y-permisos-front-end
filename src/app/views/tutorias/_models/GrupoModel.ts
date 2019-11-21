@@ -1,4 +1,10 @@
+export interface InterfacecCarreraGruposTutoria {
+    CARRERAS: InterfaceGruposTutoria[];
+}
+
 export interface InterfaceGruposTutoria {
+    PK_CARRERA: number;
+    CARRERA: string;
     GRUPOS?: InterfaceGrupoTutoria[];
 }
 
