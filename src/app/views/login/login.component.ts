@@ -60,6 +60,12 @@ export class LoginComponent implements OnInit {
             // agregar el json de sistemas para empezar a comparar
         });
 
+        // NO MODIFICAR (PERMISOS SOBRE TUTORIAS)
+        this.usuarioRolesService.get_permisos_tutorias().subscribe(data => {
+            sessionStorage['tutorias'] = JSON.stringify(data);
+            this.router.navigateByUrl('/home');
+        });
+
     }
 
     handleError(error) {

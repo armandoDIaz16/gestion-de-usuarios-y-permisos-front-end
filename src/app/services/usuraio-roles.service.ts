@@ -26,4 +26,10 @@ export class UsuarioRolesService extends GenericServicesService {
     getUsuarioRoles(): Observable<IRoles[]> {
         return this.http.get<IRoles[]>(GenericServicesService.API_ENDPOINT + 'Usuario_Rol/' + sessionStorage.getItem('IdUsuario'));
     }
+
+    get_permisos_tutorias() {
+        return this.http.get(
+            GenericServicesService.API_ENDPOINT + 'roles_tutorias/' + sessionStorage.getItem('IdUsuario')
+        );
+    }
 }
