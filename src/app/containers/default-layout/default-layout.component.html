@@ -26,6 +26,7 @@
         <li class="nav-item dropdown" dropdown placement="bottom right">
             <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
                 dropdownToggle (click)="false">
+                {{this.nombre_usuario}} ({{this.numero_control}})
                 <img src="assets/img/avatars/user_icon.png" class="img-avatar" alt="admin@bootstrapmaster.com" />
             </a>
             <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
@@ -33,6 +34,7 @@
 
 
                 <a *ngIf="this.tipo_usuario == 1" class="dropdown-item" href="/#/usuarios/perfil"><i class="fa fa-user"></i> Perfil</a>
+                <a *ngIf="this.tipo_usuario == 2" class="dropdown-item" href="/#/usuarios/perfil_docente"><i class="fa fa-user"></i> Perfil</a>
                 <!--
                 <a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i> Mensajes<span
                     class="badge badge-success">42</span></a>

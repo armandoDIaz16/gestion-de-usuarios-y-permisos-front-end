@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {InterfacePerfil} from '../../usuarios/_models/PerfilModel';
-import {PerfilService} from '../../usuarios/perfil/perfil.service';
+import {PerfilService} from '../../../services/perfil.service';
 
 @Component({
     selector: 'app-datos-alumno',

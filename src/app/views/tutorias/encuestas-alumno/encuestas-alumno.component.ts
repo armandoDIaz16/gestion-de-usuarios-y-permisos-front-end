@@ -5,7 +5,7 @@ import {EncuestasService} from '../encuestas/encuestas.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {InterfaceAlumno} from '../_models/AlumnoModel';
 import {DatosAlumnoService} from '../datos-alumno/datos-alumno.service';
-import {PerfilService} from '../../usuarios/perfil/perfil.service';
+import {PerfilService} from '../../../services/perfil.service';
 import {InterfacePerfil} from '../../usuarios/_models/PerfilModel';
 
 @Component({

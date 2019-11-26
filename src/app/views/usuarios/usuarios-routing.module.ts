@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {PerfilComponent} from './perfil/perfil.component';
+import {PerfilDocenteComponent} from './perfil-docente/perfil-docente.component';
 
 const routes: Routes = [
     {
@@ -12,6 +13,13 @@ const routes: Routes = [
             {
                 path: 'perfil',
                 component: PerfilComponent,
+                data: {
+                    title: 'Usuarios'
+                }
+            },
+            {
+                path: 'perfil_docente',
+                component: PerfilDocenteComponent,
                 data: {
                     title: 'Usuarios'
                 }

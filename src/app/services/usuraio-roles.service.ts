@@ -28,8 +28,11 @@ export class UsuarioRolesService extends GenericServicesService {
     }
 
     get_permisos_tutorias() {
-        return this.http.get(
-            GenericServicesService.API_ENDPOINT + 'roles_tutorias/' + sessionStorage.getItem('IdUsuario')
+        return this.http.post(
+            GenericServicesService.API_ENDPOINT + 'roles_usuario',
+            {
+                'pk_usuario': sessionStorage.getItem('IdUsuario')
+            }
         );
     }
 }

@@ -5,6 +5,8 @@ export interface InterfacePerfil {
     FK_COLONIA:            number;
     FK_SITUACION_RESIDENCIA?: number;
     SEXO?:                 number;
+    FK_AREA_ACADEMICA:     number;
+    AREA_ACADEMICA:        string;
 
     TEXTO_SEXO?:           string;
     ESTADO_CIVIL?:         string;

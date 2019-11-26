@@ -86,7 +86,7 @@
                 <td>
                     <b>
                         <a [routerLink]="['/tutorias/datos-alumno']"
-                           [queryParams]="{alumno: alumno.PK_USUARIO}"
+                           [queryParams]="{alumno: alumno.PK_ENCRIPTADA}"
                            class="btn btn-link" tooltip="Ficha de datos personales">
                             {{alumno.NOMBRE}} {{alumno.PRIMER_APELLIDO}} {{alumno.SEGUNDO_APELLIDO}}
                             <br>

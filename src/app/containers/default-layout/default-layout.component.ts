@@ -4,6 +4,7 @@ import {navItems} from './../../_nav';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
 import {TokenService} from '../../services/token.service';
+import {string} from '@amcharts/amcharts4/core';
 
 @Component({
     selector: 'app-dashboard',
@@ -19,7 +20,10 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
     public mostrarModulo = false;
     public mostrarVideo = false;
     public mostrarAyuda = false;
+
     public tipo_usuario = sessionStorage.getItem('tipo_usuario');
+    public nombre_usuario: string;
+    public numero_control: string = '';
 
 
     constructor(
@@ -47,6 +51,9 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
         if (sessionStorage.getItem('primer_login') == '1') {
             this.mostrarVideo = true;
         }
+
+        this.nombre_usuario = JSON.parse(sessionStorage.getItem('permisos')).nombre_usuario;
+        this.numero_control = JSON.parse(sessionStorage.getItem('permisos')).numero_control;
 
         // vefiricar que haya completado perfil, sino mandar a modificar perfil
         if (parseInt(sessionStorage.getItem('perfil_completo')) == 0

@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
 import {InterfacecCarreraGruposTutoria} from '../_models/GrupoModel';
-import {GruposService} from './grupos.service';
+import {GruposService} from '../../../services/grupos.service';
 
 @Component({
     selector: 'app-grupos',
@@ -19,7 +17,7 @@ export class GruposComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.grupos_service.get_grupos(parseInt(sessionStorage.getItem('IdUsuario'))).subscribe(
+        this.grupos_service.get_grupos().subscribe(
             data => this.handleResponse(data),
             error => this.handleError(error)
         );

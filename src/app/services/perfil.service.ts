@@ -1,9 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {GenericServicesService} from '../../../services/generic-services.service';
-import {InterfaceDatosCodigoPostal, InterfaceEstadoCivil, InterfaceSituacionResidencia} from '../../_models/GeneralModels';
-import {InterfacePerfil} from '../_models/PerfilModel';
+import {GenericServicesService} from './generic-services.service';
 
 @Injectable({
     providedIn: 'root'
@@ -14,9 +11,14 @@ export class PerfilService extends GenericServicesService {
         super(http);
     }
 
-    async get_perfil(id_usuario: any) {
-        return this.http.get(
-            GenericServicesService.API_ENDPOINT + 'perfil/' + id_usuario,
+    async get_perfil(pk_usuario: any) {
+        let body = {
+            'pk_encriptada': pk_usuario
+        };
+
+        return this.http.post(
+            GenericServicesService.API_ENDPOINT + 'perfil',
+            body,
             GenericServicesService.HEADERS
         ).toPromise();
     }
