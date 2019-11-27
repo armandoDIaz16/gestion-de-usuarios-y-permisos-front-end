@@ -2,7 +2,6 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {InterfacePerfil} from '../_models/PerfilModel';
 import {InterfaceAreaAcademica, InterfaceDatosCodigoPostal, InterfaceEstadoCivil} from '../../_models/GeneralModels';
 import {ActivatedRoute, Router} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
 import {PerfilService} from '../../../services/perfil.service';
 import {AreaAcademicaServiceService} from '../../../services/area-academica-service.service';
 
@@ -51,7 +50,6 @@ export class PerfilDocenteComponent implements OnInit {
 
     constructor(
         private route: ActivatedRoute,
-        private http: HttpClient,
         private router: Router,
         private perfil_service: PerfilService,
         private area_academica_service: AreaAcademicaServiceService

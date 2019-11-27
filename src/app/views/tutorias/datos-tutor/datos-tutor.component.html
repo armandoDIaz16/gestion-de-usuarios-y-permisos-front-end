@@ -1,0 +1,57 @@
+<h2 class="text-center">Datos de contacto del tutor</h2>
+
+<div class="row">
+    <div class="offset-md-1 col-md-10">
+        <div class="col-md-12">
+            <div class="h3">Datos personales</div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="NOMBRE">Nombres</label>
+                    <input type="text" class="form-control" id="NOMBRE" name="NOMBRE"
+                           value="{{this.perfil.NOMBRE}}" readonly>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="PRIMER_APELLIDO">Primer apellido</label>
+                    <input type="text" class="form-control" id="PRIMER_APELLIDO" name="PRIMER_APELLIDO"
+                           value="{{this.perfil.PRIMER_APELLIDO}}" readonly>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="SEGUNDO_APELLIDO">Segundo apellido</label>
+                    <input type="text" class="form-control" id="SEGUNDO_APELLIDO" name="SEGUNDO_APELLIDO"
+                           value="{{this.perfil.SEGUNDO_APELLIDO}}" readonly>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="AREA_ACADEMICA">Área académica</label>
+                    <input type="text" class="form-control" id="AREA_ACADEMICA" name="AREA_ACADEMICA"
+                           value="{{this.perfil.AREA_ACADEMICA}}" readonly>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="CORREO_INSTITUCIONAL">Correo institucional</label>
+                    <input type="text" class="form-control" id="CORREO_INSTITUCIONAL"
+                           name="CORREO_INSTITUCIONAL"
+                           value="{{this.perfil.CORREO_INSTITUCIONAL}}" readonly>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="CORREO1">Correo personal</label>
+                    <input type="mail" class="form-control" id="CORREO1" name="CORREO1"
+                           value="{{this.perfil.CORREO1}}" readonly>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

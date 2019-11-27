@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {GenericServicesService} from './generic-services.service';
+import {InterfacePerfil} from '../views/usuarios/_models/PerfilModel';
+import {Observable} from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -53,5 +55,16 @@ export class PerfilService extends GenericServicesService {
             },
             GenericServicesService.HEADERS
         ).toPromise();
+    }
+
+    get_perfil_tutor(pk_encriptada: string): Observable<InterfacePerfil> {
+        let body = {
+            pk_encriptada: pk_encriptada
+        };
+        return this.http.post<InterfacePerfil>(
+            GenericServicesService.API_ENDPOINT + 'get_datos_tutor',
+            body,
+            GenericServicesService.HEADERS
+        );
     }
 }

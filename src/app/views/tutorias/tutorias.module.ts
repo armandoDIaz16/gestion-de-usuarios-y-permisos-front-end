@@ -30,6 +30,9 @@ import {CoordinadoresInstitucionalesComponent} from './coordinadores-institucion
 import {CoordinadoresDepartamentalesComponent} from './coordinadores-departamentales/coordinadores-departamentales.component';
 
 import {LoaderModule} from '../../components/loader/loader.module';
+import { DatosTutorComponent } from './datos-tutor/datos-tutor.component';
+import { HorarioComponent } from './horario/horario.component';
+import { SeguimientoComponent } from './seguimiento/seguimiento.component';
 
 // Angular
 
@@ -59,7 +62,10 @@ import {LoaderModule} from '../../components/loader/loader.module';
         RespuestasEncuestaComponent,
         ReporteEncuestaComponent,
         CoordinadoresInstitucionalesComponent,
-        CoordinadoresDepartamentalesComponent
+        CoordinadoresDepartamentalesComponent,
+        DatosTutorComponent,
+        HorarioComponent,
+        SeguimientoComponent
     ],
     exports: [
         ModalModule

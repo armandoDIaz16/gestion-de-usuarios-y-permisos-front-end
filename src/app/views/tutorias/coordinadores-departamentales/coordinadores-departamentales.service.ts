@@ -45,6 +45,14 @@ export class CoordinadoresDepartamentalesService extends GenericServicesService 
         );
     }
 
+    quita_rol_coordinador(pk_area_academica: number) {
+        return this.http.post(
+            GenericServicesService.API_ENDPOINT + 'elimina_rol_coordinador',
+            {pk_area_academica: pk_area_academica},
+            GenericServicesService.HEADERS
+        );
+    }
+
     get_url_back(url: string) {
         return GenericServicesService.API_ENDPOINT + url;
     }

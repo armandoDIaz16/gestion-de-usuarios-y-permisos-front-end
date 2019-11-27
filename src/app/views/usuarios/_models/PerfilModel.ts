@@ -1,5 +1,6 @@
 export interface InterfacePerfil {
     PK_USUARIO:            number;
+    PK_ENCRIPTADA:         string;
     FK_CARRERA:            number;
     FK_ESTADO_CIVIL:       number;
     FK_COLONIA:            number;

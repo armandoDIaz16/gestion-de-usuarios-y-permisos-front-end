@@ -16,6 +16,9 @@ import {RespuestasEncuestaComponent} from './respuestas-encuesta/respuestas-encu
 import {ReporteEncuestaComponent} from './reporte-encuesta/reporte-encuesta.component';
 import {CoordinadoresInstitucionalesComponent} from './coordinadores-institucionales/coordinadores-institucionales.component';
 import {CoordinadoresDepartamentalesComponent} from './coordinadores-departamentales/coordinadores-departamentales.component';
+import {DatosTutorComponent} from './datos-tutor/datos-tutor.component';
+import {HorarioComponent} from './horario/horario.component';
+import {SeguimientoComponent} from './seguimiento/seguimiento.component';
 
 const routes: Routes = [
     {
@@ -120,6 +123,27 @@ const routes: Routes = [
                 component: CoordinadoresDepartamentalesComponent,
                 data: {
                     title: 'Coordinadores departamentales'
+                }
+            },
+            {
+                path: 'datos_tutor',
+                component: DatosTutorComponent,
+                data: {
+                    title: 'Datos de tutor'
+                }
+            },
+            {
+                path: 'horario',
+                component: HorarioComponent,
+                data: {
+                    title: 'Mi horario'
+                }
+            },
+            {
+                path: 'seguimiento_academico',
+                component: SeguimientoComponent,
+                data: {
+                    title: 'Seguimiento académico'
                 }
             }
         ]

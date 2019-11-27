@@ -20,6 +20,7 @@
                 <th>Nombre</th>
                 <th>Correo</th>
                 <th>Área que coordina</th>
+                <th>Operaciones</th>
             </tr>
             </thead>
             <tbody *ngIf="this.lista_coordinadores.length > 0; else elseBlock">
@@ -35,6 +36,12 @@
                 <td>
                     {{coordinador.AREA_ACADEMICA}}
                 </td>
+                <td>
+                    <button class="btn btn-sm btn-danger" tooltip="Eliminar el rol de coordinador departamental"
+                    (click)="eliminar_coordinador(coordinador.PK_AREA_ACADEMICA)">
+                        Eliminar
+                    </button>
+                </td>
             </tr>
             </tbody>
             <ng-template #elseBlock>
@@ -45,7 +52,7 @@
                 </tbody>
             </ng-template>
         </table>
-        <!-- Fin grupos por carrera -->
+        <!-- Inicio de tabla de coordiandores -->
     </div>
 </div>
 
@@ -56,7 +63,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title text-center">Modificar coordinador depatamental</h4>
-                <button type="button" class="close" (click)="loaderModal.hide()" aria-label="Close">
+                <button type="button" class="close" (click)="ocultar_modal_coordinadores()" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -136,7 +143,7 @@
             <div class="modal-footer">
                 <div class="col-md-12 text-center">
                     <button type="button" class="btn btn-primary" (click)="guardar_coordinador()">Guardar</button>
-                    <button type="button" class="btn btn-danger" (click)="loaderModal.hide()">Cancelar</button>
+                    <button type="button" class="btn btn-danger" (click)="ocultar_modal_coordinadores()">Cancelar</button>
                 </div>
             </div>
         </div>

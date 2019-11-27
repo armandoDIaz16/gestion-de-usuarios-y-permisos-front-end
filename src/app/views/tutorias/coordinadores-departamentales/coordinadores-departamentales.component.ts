@@ -14,9 +14,9 @@ export class CoordinadoresDepartamentalesComponent implements OnInit {
     public error = null;
     public lista_coordinadores: InterfaceCoordinadoresDepartamentales[] = [];
     public areas_academicas:    InterfaceAreaAcademica[] = [];
-    public lista_usuarios:      InterfacePersona[] = [];
-    public nuevo_coordinador:   string = '';
-    public select_area_academica:  number = 0;
+    public lista_usuarios:      InterfacePersona[];
+    public nuevo_coordinador:   string;
+    public select_area_academica:  number;
     public coordinador_actual: string;
     public coordinador_seleccionado = 0;
     @ViewChild('loaderModal') loaderModal;
@@ -24,7 +24,9 @@ export class CoordinadoresDepartamentalesComponent implements OnInit {
     constructor(
         private coordinadores_service: CoordinadoresDepartamentalesService,
         private area_academica_service: AreaAcademicaServiceService
-    ) { }
+    ) {
+        this._init();
+    }
 
     ngOnInit() {
         this.coordinadores_service.get_coordinadores().subscribe(
@@ -102,10 +104,7 @@ export class CoordinadoresDepartamentalesComponent implements OnInit {
 
     handleResponseGuardaCoordinador(data) {
         if (data.data){
-            this.select_area_academica = 0;
-            this.coordinador_actual = '';
-            this.nuevo_coordinador = '';
-            this.lista_usuarios = [];
+            this._init();
             this.loaderModal.hide();
 
             alert('El coordinador ha sido asignado');
@@ -137,6 +136,35 @@ export class CoordinadoresDepartamentalesComponent implements OnInit {
         } else {
             this.coordinador_actual = 'SIN COORDINADOR ASIGNADO';
         }
+    }
+
+    eliminar_coordinador(pk_area_academica: number) {
+        if (confirm('¿Realmente desea quitar el rol de coordinador departamental al usuario?')) {
+            this.coordinadores_service.quita_rol_coordinador(pk_area_academica).subscribe(
+                data => {
+                    if (data) {
+                        this.coordinadores_service.get_coordinadores().subscribe(
+                            data => this.handleResponse(data),
+                            error => this.handleError(error)
+                        );
+                        alert('El rol ha sido eliminado');
+                    }
+                },
+                error => this.handleError(error)
+            );
+        }
+    }
+
+    ocultar_modal_coordinadores() {
+        this._init();
+        this.loaderModal.hide();
+    }
+
+    _init() {
+        this.select_area_academica = 0;
+        this.coordinador_actual = '';
+        this.nuevo_coordinador = '';
+        this.lista_usuarios = [];
     }
 
 }
