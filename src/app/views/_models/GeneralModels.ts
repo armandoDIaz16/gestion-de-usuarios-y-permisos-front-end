@@ -43,3 +43,15 @@ export interface InterfacePersona {
     SEGUNDO_APELLIDO: string;
     NUMERO_CONTROL:   string;
 }
+
+export interface InterfaceSeguimiento {
+    CLAVE_MATERIA:  string;
+    NOMBRE_MATERIA: string;
+    TIPO_CURSO:     string;
+    CALIFICACION:   number;
+    FECHA_PRIMERA:  string;
+    FECHA_SEGUNDA:  string;
+    FECHA_TERCERA:  string;
+    PERIODO:        string;
+    PERIODO_TEXTO:  string;
+}

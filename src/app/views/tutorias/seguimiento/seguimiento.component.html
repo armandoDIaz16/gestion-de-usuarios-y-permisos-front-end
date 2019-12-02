@@ -1,3 +1,65 @@
-<p>
-  seguimiento works!
-</p>
+<div class="row">
+    <div class="offset-1 col-md-10">
+        <br>
+        <div class="col-md-12">
+            <h3 class="text-center">Seguimiento académico</h3>
+        </div>
+        <br><br>
+        <table class="table table-striped">
+            <thead>
+            <tr class="text-center">
+                <th>No.</th>
+                <th>Clave materia</th>
+                <th>Materia</th>
+                <th>Tipo de curso</th>
+                <th>Calificación</th>
+                <th>Fecha</th>
+                <th>Periodo</th>
+            </tr>
+            </thead>
+            <tbody *ngIf="seguimiento.length > 0; else elseNoData">
+            <tr class="text-center" *ngFor="let materia of seguimiento; let i = index"
+                [ngClass]="{ 'bg-warning': (materia.CALIFICACION < 70) && (materia.CLAVE_MATERIA.trim() != 'ACA') }">
+                <td>
+                    {{i + 1}}
+                </td>
+                <td>
+                    {{materia.CLAVE_MATERIA}}
+                </td>
+                <td>
+                    {{materia.NOMBRE_MATERIA}}
+                </td>
+                <td>
+                    {{materia.TIPO_CURSO}}
+                </td>
+                <td>
+                    {{materia.CALIFICACION}}
+                </td>
+                <td>
+                    <p *ngIf="materia.FECHA_PRIMERA">
+                        {{materia.FECHA_PRIMERA}}
+                    </p>
+                    <p *ngIf="materia.FECHA_SEGUNDA">
+                        {{materia.FECHA_SEGUNDA}}
+                    </p>
+                    <p *ngIf="materia.FECHA_TERCERA">
+                        {{materia.FECHA_TERCERA}}
+                    </p>
+                </td>
+                <td>
+                    {{materia.PERIODO_TEXTO}}
+                </td>
+            </tr>
+            </tbody>
+            <ng-template #elseNoData>
+                <tbody>
+                <tr class="text-center">
+                    <td colspan="7">
+                        A partir de segundo semestre podrás consultar esta información sobre tu desempeño académico
+                    </td>
+                </tr>
+                </tbody>
+            </ng-template>
+        </table>
+    </div>
+</div>
