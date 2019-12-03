@@ -3,19 +3,21 @@ import { LugarExamenService } from '../../../services/lugar-examen.service';
 import { ValidarModuloService } from '../../../services/validarModulo.service';
 import { PeriodoService } from '../../../services/periodo.service';
 import { FormularioService } from '../../../services/formulario.service';
+import { AspiranteService } from '../../../services/aspirante.service';
+import * as XLSX from 'xlsx';
 
 
 @Component({
   selector: 'app-examen_ubicacion',
   templateUrl: './examen_ubicacion.component.html',
   styleUrls: ['./examen_ubicacion.component.scss'],
-  providers: [LugarExamenService, ValidarModuloService, PeriodoService, FormularioService]
+  providers: [LugarExamenService, ValidarModuloService, PeriodoService, FormularioService,AspiranteService]
 })
 export class ExamenUbicacionComponent implements OnInit {
   constructor(private lugarExamenService: LugarExamenService,
     private periodoService: PeriodoService,
     private validarModuloService: ValidarModuloService,
-    private formularioService: FormularioService) {
+    private aspiranteService: AspiranteService) {
   }
   @ViewChild('loaderModal') loaderModal;
   public mostrarModulo = false;
@@ -66,6 +68,9 @@ export class ExamenUbicacionComponent implements OnInit {
   public edificioEscrito2 = null;
   public turnoEscrito3 = null;
 
+  public periodo = null;
+  public grupos = [];
+
   ngOnInit() {
     this.mostrarModulo = this.validarModuloService.getMostrarModulo("Examen ubicación");
     if (!this.mostrarModulo) {
@@ -80,6 +85,11 @@ export class ExamenUbicacionComponent implements OnInit {
         this.lugarExamenService.getEspacioIngles(this.pkPeriodo).subscribe(data => this.espacioLista = data);
         this.lugarExamenService.getTipoEspacio().subscribe(data => this.tipoEspacioLista = data);
         this.lugarExamenService.getEdificio().subscribe(data => this.edificioLista = data);        
+      }
+    });
+    this.periodoService.getPeriodo().subscribe(data => {
+      if (data) {
+        this.periodo = data[0].PK_PERIODO_PREFICHAS;
       }
     });
   }
@@ -228,4 +238,64 @@ export class ExamenUbicacionComponent implements OnInit {
       alert(data);
     }
   } 
+
+  async leerDatosParaExcelGrupos() {
+    this.loaderModal.show();
+    this.aspiranteService.getListaGruposIngles(this.periodo).subscribe(data => {
+      this.grupos = data;
+      if (data) {
+        this.generarExcel();
+      }
+      this.loaderModal.hide();
+    });
+  }
+  generarExcel() {
+
+    var wb = XLSX.utils.book_new();
+    wb.Props = {
+      Title: "Lista grupos",
+      Subject: "Lista examenes",
+      Author: "Tecnologico de leon",
+      CreatedDate: new Date()
+    };
+    //console.log(this.grupos[0].GRUPO);
+
+    //let nombreHoja = this.grupos[grupo].GRUPO;
+
+    for (var grupo in this.grupos) {
+      var aspirantes = [
+        [this.grupos[grupo].GRUPO],
+        [
+          'PREFICHA',
+          'NOMBRE',
+          'ASISTENCIA'
+        ]
+      ];
+
+      //console.log(this.grupos[grupo].GRUPO);
+      for (var aspirante in this.grupos[grupo].ASPIRANTES) {
+        //console.log(this.grupos[grupo].ASPIRANTES[aspirante].NOMBRE);
+        aspirantes.push([
+          this.grupos[grupo].ASPIRANTES[aspirante].PREFICHA,
+          this.grupos[grupo].ASPIRANTES[aspirante].NOMBRE,
+          0
+        ]);
+      }
+
+      wb.SheetNames.push("Grupo " + this.grupos[grupo].NUMERO_GRUPO);
+      var ws_data = aspirantes;
+      var ws = XLSX.utils.aoa_to_sheet(ws_data);
+      wb.Sheets["Grupo " + this.grupos[grupo].NUMERO_GRUPO] = ws;
+    }
+
+    var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
+    function s2ab(s) {
+      var buf = new ArrayBuffer(s.length);
+      var view = new Uint8Array(buf);
+      for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+      return buf;
+    }
+    var nombreArchivo = "Lista grupos.xlsx";
+    XLSX.writeFile(wb, nombreArchivo);
+  }
 }

@@ -51,6 +51,10 @@ export class AspiranteService extends GenericServicesService {
         return this.http.get<IListaGrupos[]>(this.baseUrl + 'ListasGrupos/' + pk_periodo, this.headers
         );
     }
+    getListaGruposIngles(pk_periodo): Observable<IListaGrupos[]> {
+        return this.http.get<IListaGrupos[]>(this.baseUrl + 'ListasGruposIngles/' + pk_periodo, this.headers
+        );
+    }
     getEstatus(): Observable<IEstatus[]> {
         return this.http.get<IEstatus[]>(this.baseUrl + 'EstatusAspirante/', this.headers
         );
