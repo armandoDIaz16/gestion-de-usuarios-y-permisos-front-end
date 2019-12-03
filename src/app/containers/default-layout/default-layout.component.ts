@@ -52,8 +52,12 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
             this.mostrarVideo = true;
         }
 
-        this.nombre_usuario = JSON.parse(sessionStorage.getItem('permisos')).nombre_usuario;
-        this.numero_control = JSON.parse(sessionStorage.getItem('permisos')).numero_control;
+        if (sessionStorage.getItem('permisos')) {
+            this.nombre_usuario = JSON.parse(sessionStorage.getItem('permisos')).nombre_usuario;
+        }
+        if (sessionStorage.getItem('permisos')) {
+            this.numero_control = JSON.parse(sessionStorage.getItem('permisos')).numero_control;
+        }
 
         // vefiricar que haya completado perfil, sino mandar a modificar perfil
         if (parseInt(sessionStorage.getItem('perfil_completo')) == 0

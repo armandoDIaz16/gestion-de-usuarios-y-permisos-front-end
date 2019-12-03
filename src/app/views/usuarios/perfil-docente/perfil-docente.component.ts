@@ -64,9 +64,7 @@ export class PerfilDocenteComponent implements OnInit {
     async ngOnInit() {
         // this.loaderModal.show(); .
 
-        const data_perfil = await this.perfil_service.get_perfil(
-            JSON.parse(sessionStorage['permisos']).pk_encriptada
-        );
+        const data_perfil = await this.perfil_service.get_perfil(this.pk_usuario);
         if (data_perfil) {
             this.perfil = <InterfacePerfil>data_perfil;
         }
