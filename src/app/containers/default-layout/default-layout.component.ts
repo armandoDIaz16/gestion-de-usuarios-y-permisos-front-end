@@ -4,6 +4,7 @@ import {navItems} from './../../_nav';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
 import {TokenService} from '../../services/token.service';
+import {string} from '@amcharts/amcharts4/core';
 
 @Component({
     selector: 'app-dashboard',
@@ -19,7 +20,10 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
     public mostrarModulo = false;
     public mostrarVideo = false;
     public mostrarAyuda = false;
+
     public tipo_usuario = sessionStorage.getItem('tipo_usuario');
+    public nombre_usuario: string;
+    public numero_control: string = '';
 
 
     constructor(
@@ -48,11 +52,24 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
             this.mostrarVideo = true;
         }
 
+        if (sessionStorage.getItem('permisos')) {
+            this.nombre_usuario = JSON.parse(sessionStorage.getItem('permisos')).nombre_usuario;
+        }
+        if (sessionStorage.getItem('permisos')) {
+            this.numero_control = JSON.parse(sessionStorage.getItem('permisos')).numero_control;
+        }
+
         // vefiricar que haya completado perfil, sino mandar a modificar perfil
         if (parseInt(sessionStorage.getItem('perfil_completo')) == 0
-            && parseInt(sessionStorage.getItem('tipo_usuario')) == 1
-            && parseInt(sessionStorage.getItem('primer_login')) == 1) {
-            this.router.navigateByUrl('/usuarios/perfil');
+            && (
+                parseInt(sessionStorage.getItem('tipo_usuario')) == 1
+                || parseInt(sessionStorage.getItem('tipo_usuario')) == 2
+            ) && parseInt(sessionStorage.getItem('primer_login')) == 1) {
+            if (parseInt(sessionStorage.getItem('tipo_usuario')) == 1) {
+                this.router.navigateByUrl('/usuarios/perfil');
+            } else if (parseInt(sessionStorage.getItem('tipo_usuario')) == 2) {
+                this.router.navigateByUrl('/usuarios/perfil_docente');
+            }
         }
 
         var URLhash = window.location.hash;

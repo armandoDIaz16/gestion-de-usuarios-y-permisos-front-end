@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
+import {ActivatedRoute} from '@angular/router';
 import {HorarioAlumnoService} from './horario-alumno.service';
-import {InterfaceAlumno, InterfaceMateriaHorario} from '../_models/AlumnoModel';
+import {InterfaceAlumno} from '../_models/AlumnoModel';
 
 @Component({
     selector: 'app-horario-alumno',
@@ -16,8 +15,6 @@ export class HorarioAlumnoComponent implements OnInit {
 
     constructor(private horario_service: HorarioAlumnoService,
                 private route: ActivatedRoute,
-                private http: HttpClient,
-                private router: Router,
     ) {
         this.alumno = <InterfaceAlumno>{};
         this.alumno.HORARIO = [
@@ -53,7 +50,7 @@ export class HorarioAlumnoComponent implements OnInit {
     }
 
     handleError(error) {
-        this.error = error.error.error;
+
     }
 
     volver() {

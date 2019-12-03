@@ -66,7 +66,7 @@
                 <th>Citas</th>
                 <th>Canalizaciones</th>
                 <th>Evaluación del tutor</th>
-                <th>Perfil de ingreso</th>
+                <th>Perfil personal</th>
             </tr>
             </thead>
             <tbody>
@@ -86,7 +86,7 @@
                 <td>
                     <b>
                         <a [routerLink]="['/tutorias/datos-alumno']"
-                           [queryParams]="{alumno: alumno.PK_USUARIO}"
+                           [queryParams]="{alumno: alumno.PK_ENCRIPTADA}"
                            class="btn btn-link" tooltip="Ficha de datos personales">
                             {{alumno.NOMBRE}} {{alumno.PRIMER_APELLIDO}} {{alumno.SEGUNDO_APELLIDO}}
                             <br>
@@ -129,9 +129,12 @@
                     <b>Pendiente</b>
                 </td>
                 <td>
-                    <button class="btn btn-danger" (click)="reporte_perfil_individual(alumno.PK_ENCRIPTADA)">
-                        Perfil individual
+                    <button class="btn btn-sm btn-success" (click)="reporte_perfil_individual(alumno.PK_ENCRIPTADA)">
+                        Ver
                     </button>
+                    <p *ngIf="alumno.PERFIL_COMPLETO == 0">
+                        Datos personales no completados
+                    </p>
                 </td>
             </tr>
 

@@ -3,7 +3,7 @@ import {InterfacePerfil} from '../_models/PerfilModel';
 import {InterfaceDatosCodigoPostal, InterfaceEstadoCivil, InterfaceSituacionResidencia} from '../../_models/GeneralModels';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
-import {PerfilService} from './perfil.service';
+import {PerfilService} from '../../../services/perfil.service';
 
 @Component({
     selector: 'app-perfil',
@@ -62,7 +62,9 @@ export class PerfilComponent implements OnInit {
     async ngOnInit() {
         // this.loaderModal.show(); .
 
-        const data_perfil = await this.perfil_service.get_perfil(this.pk_usuario);
+        const data_perfil = await this.perfil_service.get_perfil(
+            JSON.parse(sessionStorage['permisos']).pk_encriptada
+        );
         if (data_perfil) {
             this.perfil = <InterfacePerfil>data_perfil;
         }

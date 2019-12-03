@@ -16,6 +16,7 @@ import {CollapseModule, TooltipModule} from 'ngx-bootstrap';
 import {PerfilComponent} from './perfil/perfil.component';
 import {ErrorModule} from '../../components/error/error.module';
 import {LoaderModule} from '../../components/loader/loader.module';
+import { PerfilDocenteComponent } from './perfil-docente/perfil-docente.component';
 // Angular
 
 @NgModule({
@@ -33,7 +34,8 @@ import {LoaderModule} from '../../components/loader/loader.module';
         LoaderModule
     ],
     declarations: [
-        PerfilComponent
+        PerfilComponent,
+        PerfilDocenteComponent
     ],
     exports: [
         // exports para ventanas modales

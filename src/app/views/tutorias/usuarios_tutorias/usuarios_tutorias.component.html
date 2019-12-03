@@ -1,3 +1,177 @@
-<p>
-  usuarios works!
-</p>
+<h2 class="text-center">Administración de usuarios</h2>
+
+<div class="row">
+    <div class="offset-1 col-md-10">
+
+        <br>
+        <div class="col-dm-12 text-center">
+            <button class="btn btn-success" (click)="loaderModal.show()">
+                Buscar usuario
+            </button>
+        </div>
+        <br>
+
+        <!-- Inicio de tabla de coordiandores -->
+        <p class="text-center h4">Se mostrarán máximo 50 usuarios por búsqueda</p>
+        <table class="table table-striped">
+            <thead>
+            <tr class="text-center">
+                <th>No.</th>
+                <th>Número de control/SIIA</th>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Operaciones</th>
+            </tr>
+            </thead>
+            <tbody *ngIf="this.lista_usuarios.length > 0; else elseBlock">
+            <tr class="text-center" *ngFor="let usuario of this.lista_usuarios; let i = index">
+                <td>{{i + 1}}</td>
+                <td>{{usuario.NUMERO_CONTROL}}</td>
+                <td>{{usuario.NOMBRE}} {{usuario.PRIMER_APELLIDO}} {{usuario.SEGUNDO_APELLIDO}}</td>
+                <td>
+                    {{usuario.CORREO1}}
+                    <br>
+                    {{usuario.CORREO_INSTITUCIONAL}}
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-warning" (click)="carga_usuario(usuario.PK_USUARIO)"
+                            tooltip="Editar correo electrónico de usuario">
+                        Editar
+                    </button>
+                    <button class="btn btn-sm btn-primary" (click)="cambio_contrasenia(usuario.CURP)"
+                            tooltip="Enviar correo para cambio de contraseña">
+                        Enviar correo
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+            <ng-template #elseBlock>
+                <tbody>
+                <tr class="text-center">
+                    <td colspan="5">No se encontraron usuarios</td>
+                </tr>
+                </tbody>
+            </ng-template>
+        </table>
+        <!-- Inicio de tabla de coordiandores -->
+
+    </div>
+</div>
+
+<!-- Inicio ventana modal para búsqueda de usuarios -->
+<div bsModal #loaderModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center">Buscar usuario</h4>
+                <button type="button" class="close" (click)="ocultar_modal_busqueda()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label text-right" for="tipo_usuario">Tipo de usuario</label>
+                    <div class="col-md-6">
+                        <select class="form-control" id="tipo_usuario" name="tipo_usuario"
+                                [(ngModel)]="this.tipo_usuario">
+                            <option value="0">Todos</option>
+                            <option value="1">Alumno</option>
+                            <option value="2">Tutor (docente)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label text-right" for="numero_control">
+                        Número de control/SIIA
+                    </label>
+                    <div class="col-md-6">
+                        <input class="form-control" id="numero_control" name="numero_control"
+                               [(ngModel)]="this.numero_control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label text-right" for="nombre">Nombre</label>
+                    <div class="col-md-6">
+                        <input class="form-control" placeholder="NOMBRE(S) Y/O APELLIDO(S)" id="nombre"
+                               name="nombre" [(ngModel)]="this.nombre">
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="modal-footer">
+                <div class="col-md-12 text-center">
+                    <button class="btn btn-secondary" (click)="buscar_usuarios()">Buscar</button>
+                    <button type="button" class="btn btn-danger" (click)="ocultar_modal_busqueda()">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin ventana modal para búsqueda de usuarios -->
+
+<!-- Fin ventana modal para modificar correo -->
+<div bsModal #loaderModalModificar="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center">Modificar correo de usuario</h4>
+                <button type="button" class="close" (click)="ocultar_modal_modificar()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" *ngIf="this.usuario_modificacion">
+                <div class="form-group row" >
+                    <div class="alert alert-danger" [hidden]="!error_actualizar">
+                        {{error_actualizar}}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label text-right">
+                        CURP
+                    </label>
+                    <div class="col-md-6">
+                        <input class="form-control" value="{{usuario_modificacion.CURP}}" readonly>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label text-right">
+                        Número de control/SIIA
+                    </label>
+                    <div class="col-md-6">
+                        <input class="form-control" value="{{usuario_modificacion.NUMERO_CONTROL}}" readonly>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label text-right">Nombre</label>
+                    <div class="col-md-6">
+                        <input class="form-control"
+                               value="{{usuario_modificacion.NOMBRE}} {{usuario_modificacion.PRIMER_APELLIDO}} {{usuario_modificacion.SEGUNDO_APELLIDO}}"
+                               readonly>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label text-right">Correo institucional</label>
+                    <div class="col-md-6">
+                        <input class="form-control" value="{{usuario_modificacion.CORREO_INSTITUCIONAL}}" readonly>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label text-right">Correo personal</label>
+                    <div class="col-md-6">
+                        <input class="form-control" value="{{usuario_modificacion.CORREO1}}" [(ngModel)]="this.correo_personal">
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="modal-footer">
+                <div class="col-md-12 text-center">
+                    <button class="btn btn-secondary" (click)="actualizar_correo()">Guardar</button>
+                    <button type="button" class="btn btn-danger" (click)="ocultar_modal_modificar()">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin ventana modal para modificar correo -->

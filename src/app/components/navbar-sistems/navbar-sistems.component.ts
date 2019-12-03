@@ -27,7 +27,7 @@ export class NavbarSistemsComponent implements OnInit {
         this.usuarioRolesService.getUsuarioRoles().subscribe(data => {
             sessionStorage['sistemas'] = JSON.stringify(data);
         });
-        let sistemas = JSON.parse(sessionStorage.sistemas);
+        let sistemas = JSON.parse(sessionStorage['sistemas']);
         for (var sistema in sistemas[0].SISTEMAS) {
             this.usuarioSistemasLista.push({
                 PK_SISTEMA: sistemas[0].SISTEMAS[sistema].PK_SISTEMA,

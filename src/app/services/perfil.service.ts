@@ -1,9 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {GenericServicesService} from './generic-services.service';
+import {InterfacePerfil} from '../views/usuarios/_models/PerfilModel';
 import {Observable} from 'rxjs';
-import {GenericServicesService} from '../../../services/generic-services.service';
-import {InterfaceDatosCodigoPostal, InterfaceEstadoCivil, InterfaceSituacionResidencia} from '../../_models/GeneralModels';
-import {InterfacePerfil} from '../_models/PerfilModel';
 
 @Injectable({
     providedIn: 'root'
@@ -14,9 +13,14 @@ export class PerfilService extends GenericServicesService {
         super(http);
     }
 
-    async get_perfil(id_usuario: any) {
-        return this.http.get(
-            GenericServicesService.API_ENDPOINT + 'perfil/' + id_usuario,
+    async get_perfil(pk_usuario: any) {
+        let body = {
+            'pk_encriptada': pk_usuario
+        };
+
+        return this.http.post(
+            GenericServicesService.API_ENDPOINT + 'perfil',
+            body,
             GenericServicesService.HEADERS
         ).toPromise();
     }
@@ -51,5 +55,16 @@ export class PerfilService extends GenericServicesService {
             },
             GenericServicesService.HEADERS
         ).toPromise();
+    }
+
+    get_perfil_tutor(pk_encriptada: string): Observable<InterfacePerfil> {
+        let body = {
+            pk_encriptada: pk_encriptada
+        };
+        return this.http.post<InterfacePerfil>(
+            GenericServicesService.API_ENDPOINT + 'get_datos_tutor',
+            body,
+            GenericServicesService.HEADERS
+        );
     }
 }
