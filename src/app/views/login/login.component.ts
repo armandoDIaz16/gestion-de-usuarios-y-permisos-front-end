@@ -1,5 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {JarwisService} from '../../services/jarwis.service';
 import {TokenService} from '../../services/token.service';
 import {Router} from '@angular/router';
@@ -23,24 +22,28 @@ export class LoginComponent implements OnInit {
     };
 
     public error = null;
-    public usuarioRolesLista = [];
     public data = null;
+    public display = 'block';
 
+    @ViewChild('loaderModal') loaderModal;
 
     constructor(private Jarwis: JarwisService,
                 private Token: TokenService,
                 private router: Router,
                 private Auth: AuthService,
                 private usuarioRolesService: UsuarioRolesService
-    ) {
-    }
+    ) {}
 
     onSubmit() {
+        this.loaderModal.show();
+
         this.form.curp = this.form.curp.toUpperCase();
         this.Jarwis.login(this.form).subscribe(
             data => this.handleResponse(data),
             error => this.handleError(error)
         );
+
+        this.loaderModal.hide();
     }
 
     handleResponse(data) {
@@ -79,5 +82,7 @@ export class LoginComponent implements OnInit {
             console.clear();
             location.reload();
         }
+
+        this.display = 'none';
     }
 }

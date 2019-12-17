@@ -65,36 +65,38 @@ import {NavbarSistemsComponent} from './components/navbar-sistems/navbar-sistems
 import {ReactiveFormsModule} from '@angular/forms';
 import {ActivaCuentaComponent} from './components/activa-cuenta/activa-cuenta.component';
 import {LoaderModule} from './components/loader/loader.module';
+import {RepositorioTesisComponent} from './components/repositorio_tesis/repositorio_tesis.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+
+// ventanas modales
 import {ModalModule} from 'ngx-bootstrap';
-import {PerfilComponent} from './views/usuarios/perfil/perfil.component';
-import { RepositorioTesisComponent } from './components/repositorio_tesis/repositorio_tesis.component';
-import { NgxPaginationModule } from 'ngx-pagination';
+import {CollapseModule, TooltipModule} from 'ngx-bootstrap';
 
 
 @NgModule({
     imports: [
+        CommonModule,
         ModalModule.forRoot(),
         BsDropdownModule.forRoot(),
         BrowserModule,
         BrowserAnimationsModule,
-        AppRoutingModule,
         AppAsideModule,
         AppBreadcrumbModule.forRoot(),
         AppFooterModule,
         AppHeaderModule,
         AppSidebarModule,
         PerfectScrollbarModule,
-        BsDropdownModule.forRoot(),
         TabsModule.forRoot(),
         ChartsModule,
         FormsModule,
         HttpClientModule,
         MDBBootstrapModule.forRoot(),
-        CommonModule,
         ReactiveFormsModule,
         AppRoutingModule,
-        LoaderModule,
         NgxPaginationModule,
+        CollapseModule,
+        TooltipModule.forRoot(),
+        LoaderModule,
     ],
     declarations: [
         AppComponent,
@@ -112,20 +114,23 @@ import { NgxPaginationModule } from 'ngx-pagination';
         ActivaCuentaComponent,
         RepositorioTesisComponent
     ],
-    providers:
-        [
-            {
-                provide: LocationStrategy,
-                useClass: HashLocationStrategy
-            },
-            JarwisService,
-            TokenService,
-            AuthService,
-            AfterLoginService,
-            BeforeLoginService
-        ],
-    exports: [],
-    bootstrap: [AppComponent]
+    exports: [
+        ModalModule
+    ],
+    providers: [
+        {
+            provide: LocationStrategy,
+            useClass: HashLocationStrategy
+        },
+        JarwisService,
+        TokenService,
+        AuthService,
+        AfterLoginService,
+        BeforeLoginService
+    ],
+    bootstrap: [
+        AppComponent
+    ],
 })
 export class AppModule {
 }

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {GenericServicesService} from './generic-services.service';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {InterfacePerfil} from '../views/usuarios/_models/PerfilModel';
+import {InterfacePerfil} from '../models/usuarios/PerfilModel';
 
 @Injectable({
     providedIn: 'root'
