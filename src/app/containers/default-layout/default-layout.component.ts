@@ -58,14 +58,12 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
             this.mostrarVideo = true;
         }
 
-        if (sessionStorage.getItem('permisos')) {
+        if (sessionStorage.getItem('permisos') != null) {
             this.nombre_usuario = JSON.parse(sessionStorage.getItem('permisos')).nombre_usuario;
-        }
-        if (sessionStorage.getItem('permisos')) {
             this.numero_control = JSON.parse(sessionStorage.getItem('permisos')).numero_control;
         }
 
-        var URLhash = window.location.hash;
+        const URLhash = window.location.hash;
         if (URLhash == '#/home') {
             this.mostrarAyuda = true;
         }
@@ -83,6 +81,10 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
         this.router.navigateByUrl('/login');
 
         this.loaderModal.hide();
+    }
+
+    recargar() {
+        location.reload();
     }
 }
 
