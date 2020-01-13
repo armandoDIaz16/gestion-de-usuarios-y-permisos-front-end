@@ -1,0 +1,75 @@
+<div class="row">
+    <div class="offset-1 col-md-10">
+        <br>
+        <div class="col-md-12">
+            <h3 class="text-center">Horario escolar</h3>
+        </div>
+        <br><br>
+        <table class="table table-striped">
+            <thead>
+            <tr class="text-center">
+                <th>No.</th>
+                <th>Clave materia</th>
+                <th>Materia</th>
+                <th>Docente</th>
+                <th>Aula</th>
+                <th>Horario</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="text-center" *ngFor="let materia of alumno.HORARIO; let i = index">
+                <td>
+                    {{i + 1}}
+                </td>
+                <td>
+                    {{materia.ClaveMateria}}
+                </td>
+                <td>
+                    {{materia.Nombre}}
+                </td>
+                <td>
+                    {{materia.Docente}}
+                </td>
+                <td>
+                    {{materia.Aula}}
+                </td>
+                <td>
+                    <p *ngIf="materia.DIAS.LUNES">
+                        {{materia.DIAS.LUNES}}
+                        <br>
+                    </p>
+                    <p *ngIf="materia.DIAS.MARTES">
+                        {{materia.DIAS.MARTES}}
+                        <br>
+                    </p>
+                    <p *ngIf="materia.DIAS.MIERCOLES">
+                        {{materia.DIAS.MIERCOLES}}
+                        <br>
+                    </p>
+                    <p *ngIf="materia.DIAS.JUEVES">
+                        {{materia.DIAS.JUEVES}}
+                        <br>
+                    </p>
+                    <p *ngIf="materia.DIAS.VIERNES">
+                        {{materia.DIAS.VIERNES}}
+                    </p>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- INICIO VENTANA MODAL DE CARGA -->
+<div bsModal #loaderModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-hidden="false"
+     [config]="{backdrop: 'static',keyboard: false}" [style.display]="this.display">
+    <!--[config]="{backdrop: 'static',keyboard: false}">-->
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content"
+             style="background-color: rgba(51, 51, 51, 0.8); background-clip: padding-box; border: 1px solid rgba(0, 0, 0, 0);">
+            <app-loader></app-loader>
+        </div>
+    </div>
+</div>
+<!-- FIN VENTANA MODAL DE CARGA -->

@@ -133,3 +133,16 @@
     </div>
     <!-- FIN FOOTER -->
 </div>
+
+<!-- INICIO VENTANA MODAL DE CARGA -->
+<div bsModal #loaderModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-hidden="false"
+     [config]="{backdrop: 'static',keyboard: false}" [style.display]="this.display">
+    <!--[config]="{backdrop: 'static',keyboard: false}">-->
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content"
+             style="background-color: rgba(51, 51, 51, 0.8); background-clip: padding-box; border: 1px solid rgba(0, 0, 0, 0);">
+            <app-loader></app-loader>
+        </div>
+    </div>
+</div>
+<!-- FIN VENTANA MODAL DE CARGA -->

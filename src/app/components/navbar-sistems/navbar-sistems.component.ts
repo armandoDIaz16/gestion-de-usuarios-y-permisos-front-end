@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {UsuarioRolesService} from '../../services/usuraio-roles.service';
 import {SistemaPermisosService} from '../../services/sistema-permisos.service';
@@ -18,6 +18,8 @@ export class NavbarSistemsComponent implements OnInit {
     public usuarioSistemasLista = [];
     redirigirAspirante: boolean;
 
+    @ViewChild('loaderModal') loaderModal;
+
     constructor(private usuarioRolesService: UsuarioRolesService,
                 private sistemaPermisosService: SistemaPermisosService,
                 private router: Router) {
@@ -27,7 +29,7 @@ export class NavbarSistemsComponent implements OnInit {
         this.usuarioRolesService.getUsuarioRoles().subscribe(data => {
             sessionStorage['sistemas'] = JSON.stringify(data);
         });
-        let sistemas = JSON.parse(sessionStorage['sistemas']);
+        let sistemas = JSON.parse(sessionStorage.sistemas);
         for (var sistema in sistemas[0].SISTEMAS) {
             this.usuarioSistemasLista.push({
                 PK_SISTEMA: sistemas[0].SISTEMAS[sistema].PK_SISTEMA,
@@ -36,7 +38,10 @@ export class NavbarSistemsComponent implements OnInit {
         }
     }
 
+
     mostrarRoles(sistemaSelect, nombreSistema) {
+        this.loaderModal.show();
+
         if (!sessionStorage.rutas) {
             this.router.navigateByUrl('/home');
             sessionStorage.setItem('sistema', sistemaSelect);
@@ -55,16 +60,29 @@ export class NavbarSistemsComponent implements OnInit {
                                 rutasModulos.push({
                                     /* name: sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE,
                                     url: '/' + sistemas[0].SISTEMAS[sistema].NOMBRE.toLowerCase().replace(/\s/g, '_') +
-                                        '/' + sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE.toLowerCase().replace(/\s/g, '_'),
+                                        '/' + sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE.toLowerCase()
+                                        .replace(/\s/g, '_'),
                                     icon: 'icon-arrow-right' */
                                     name: sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE,
-                                    url: '/' + sistemas[0].SISTEMAS[sistema].NOMBRE.toLowerCase().replace(/\s/g, '_').replace(new RegExp(/[àáâãäå]/g), 'a').replace(new RegExp(/[èéêë]/g), 'e')
-                                        .replace(new RegExp(/[ìíîï]/g), 'i').replace(new RegExp(/[òóôõö]/g), 'o').replace(new RegExp(/[ùúûü]/g), 'u') + '/' + sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE.toLowerCase().replace(/\s/g, '_').replace(new RegExp(/[àáâãäå]/g), 'a').replace(new RegExp(/[èéêë]/g), 'e')
-                                        .replace(new RegExp(/[ìíîï]/g), 'i').replace(new RegExp(/[òóôõö]/g), 'o').replace(new RegExp(/[ùúûü]/g), 'u'),
+                                    url: '/' + sistemas[0].SISTEMAS[sistema].NOMBRE.toLowerCase()
+                                            .replace(/\s/g, '_')
+                                            .replace(new RegExp(/[àáâãäå]/g), 'a')
+                                            .replace(new RegExp(/[èéêë]/g), 'e')
+                                            .replace(new RegExp(/[ìíîï]/g), 'i')
+                                            .replace(new RegExp(/[òóôõö]/g), 'o')
+                                            .replace(new RegExp(/[ùúûü]/g), 'u')
+                                            + '/' + sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE.toLowerCase()
+                                            .replace(/\s/g, '_')
+                                            .replace(new RegExp(/[àáâãäå]/g), 'a')
+                                            .replace(new RegExp(/[èéêë]/g), 'e')
+                                            .replace(new RegExp(/[ìíîï]/g), 'i')
+                                            .replace(new RegExp(/[òóôõö]/g), 'o')
+                                            .replace(new RegExp(/[ùúûü]/g), 'u'),
                                     icon: 'icon-arrow-right'
                                 });
                                 // modulos.push(sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE);
                             }
+
                             rutasRoles.push({
                                 name: sistemas[0].SISTEMAS[sistema].ROLES[rol].NOMBRE,
                                 icon: 'icon-user',
@@ -73,6 +91,7 @@ export class NavbarSistemsComponent implements OnInit {
                         }
                     }
                 }
+
                 sessionStorage['rutas'] = JSON.stringify(rutasRoles);
                 switch (nombreSistema) {
                     case 'Aspirantes':
@@ -85,8 +104,8 @@ export class NavbarSistemsComponent implements OnInit {
                     case 'Residencias':
                         this.router.navigateByUrl('/residencias');
                         break;
-                    case 'tutorias':
-                        this.router.navigateByUrl('/tutorias');
+                    case 'Tutorías':
+                        this.router.navigateByUrl('/tutorias/dashboard');
                         break;
                     case 'asesoría académica':
                         this.router.navigateByUrl('/asesoria_academica');
@@ -98,8 +117,12 @@ export class NavbarSistemsComponent implements OnInit {
                         this.router.navigateByUrl('/creditos');
                         break;
                 }
+
+
             });
         }
+
+        this.loaderModal.hide();
     }
 }
 

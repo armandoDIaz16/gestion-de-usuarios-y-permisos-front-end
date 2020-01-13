@@ -21,8 +21,6 @@ import {StudentOldComponent} from './components/student-old/student-old.componen
 
 import {ActivaCuentaComponent} from './components/activa-cuenta/activa-cuenta.component';
 
-import {ResidenciasRoutingModule} from './views/residencias/residencias-routing.module';
-import {PerfilComponent} from './views/usuarios/perfil/perfil.component';
 import { RepositorioTesisComponent } from './components/repositorio_tesis/repositorio_tesis.component';
 
 
@@ -120,7 +118,7 @@ export const routes: Routes = [
             },
             {
                 path: 'tutorias',
-                loadChildren: './views/tutorias/tutorias.module#TutoriasModule'
+                loadChildren: './modules/tutorias.module#TutoriasModule'
             },
             {
                 path: 'capacitacion_docente',
@@ -140,7 +138,7 @@ export const routes: Routes = [
             },
             {
                 path: 'usuarios',
-                loadChildren: './views/usuarios/usuarios.module#UsuariosModule'
+                loadChildren: './modules/usuarios.module#UsuariosModule'
             }
         ]
     },

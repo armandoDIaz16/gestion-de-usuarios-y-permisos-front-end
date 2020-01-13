@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {GenericServicesService} from './generic-services.service';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {InterfacecCarreraGruposTutoria} from '../views/tutorias/_models/GrupoModel';
+import {InterfacecCarreraGruposTutoria} from '../models/tutorias/GrupoModel';
 
 @Injectable({
     providedIn: 'root'
@@ -23,9 +23,5 @@ export class GruposService extends GenericServicesService {
             body,
             GenericServicesService.HEADERS
         );
-    }
-
-    get_url_back(url: string) {
-        return GenericServicesService.API_ENDPOINT + url;
     }
 }

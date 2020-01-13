@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {GenericServicesService} from './generic-services.service';
-import {InterfacePerfil} from '../views/usuarios/_models/PerfilModel';
+import {InterfacePerfil} from '../models/usuarios/PerfilModel';
 import {Observable} from 'rxjs';
 
 @Injectable({
@@ -63,6 +63,14 @@ export class PerfilService extends GenericServicesService {
         };
         return this.http.post<InterfacePerfil>(
             GenericServicesService.API_ENDPOINT + 'get_datos_tutor',
+            body,
+            GenericServicesService.HEADERS
+        );
+    }
+
+    cambia_foto(body: object) {
+        return this.http.post(
+            GenericServicesService.API_ENDPOINT + 'actualiza_foto_perfil',
             body,
             GenericServicesService.HEADERS
         );

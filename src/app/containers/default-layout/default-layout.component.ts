@@ -1,4 +1,4 @@
-import {Component, OnDestroy, Inject, OnInit} from '@angular/core';
+import {Component, OnDestroy, Inject, OnInit, ViewChild} from '@angular/core';
 import {DOCUMENT} from '@angular/common';
 import {navItems} from './../../_nav';
 import {AuthService} from '../../services/auth.service';
@@ -25,6 +25,10 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
     public nombre_usuario: string;
     public numero_control: string = '';
 
+    // modal
+    @ViewChild('loaderModal') loaderModal;
+    public display: string;
+
 
     constructor(
         private Auth: AuthService,
@@ -41,6 +45,8 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
             attributes: true,
             attributeFilter: ['class']
         });
+
+        this.display = 'none';
     }
 
     ngOnDestroy(): void {
@@ -52,27 +58,12 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
             this.mostrarVideo = true;
         }
 
-        if (sessionStorage.getItem('permisos')) {
+        if (sessionStorage.getItem('permisos') != null) {
             this.nombre_usuario = JSON.parse(sessionStorage.getItem('permisos')).nombre_usuario;
-        }
-        if (sessionStorage.getItem('permisos')) {
             this.numero_control = JSON.parse(sessionStorage.getItem('permisos')).numero_control;
         }
 
-        // vefiricar que haya completado perfil, sino mandar a modificar perfil
-        if (parseInt(sessionStorage.getItem('perfil_completo')) == 0
-            && (
-                parseInt(sessionStorage.getItem('tipo_usuario')) == 1
-                || parseInt(sessionStorage.getItem('tipo_usuario')) == 2
-            ) && parseInt(sessionStorage.getItem('primer_login')) == 1) {
-            if (parseInt(sessionStorage.getItem('tipo_usuario')) == 1) {
-                this.router.navigateByUrl('/usuarios/perfil');
-            } else if (parseInt(sessionStorage.getItem('tipo_usuario')) == 2) {
-                this.router.navigateByUrl('/usuarios/perfil_docente');
-            }
-        }
-
-        var URLhash = window.location.hash;
+        const URLhash = window.location.hash;
         if (URLhash == '#/home') {
             this.mostrarAyuda = true;
         }
@@ -82,10 +73,18 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
     }
 
     logout(event: MouseEvent) {
+        this.loaderModal.show();
+
         event.preventDefault();
         this.Token.remove();
         this.Auth.changeAuthStatus(false);
         this.router.navigateByUrl('/login');
+
+        this.loaderModal.hide();
+    }
+
+    recargar() {
+        location.reload();
     }
 }
 
