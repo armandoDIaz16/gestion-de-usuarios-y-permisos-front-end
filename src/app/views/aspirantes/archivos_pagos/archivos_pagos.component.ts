@@ -108,7 +108,7 @@ export class ArchivosPagosComponent implements OnInit {
         this.aspirantes[i].PREFICHA,
         this.aspirantes[i].NOMBRE + " " + this.aspirantes[i].PRIMER_APELLIDO + " " + this.aspirantes[i].SEGUNDO_APELLIDO,
         this.aspirantes[i].CORREO,
-        1600,
+        this.aspirantes[i].MONTO,
         this.aspirantes[i].FECHA_PAGO,
         this.aspirantes[i].TIPO_PAGO,
         fechaTexto[0] + "/" + (fechaTexto[1]) + "/" + fechaTexto[2].substr(0, 2),
