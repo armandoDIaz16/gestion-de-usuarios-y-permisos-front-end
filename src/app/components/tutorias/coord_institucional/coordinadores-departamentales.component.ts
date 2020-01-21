@@ -1,13 +1,13 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {InterfaceCoordinadoresDepartamentales} from '../../models/tutorias/CoordinadoresModel';
-import {CoordinadoresDepartamentalesService} from '../../services/tutorias/coordinadores-departamentales.service';
-import {InterfaceAreaAcademica, InterfacePersona} from '../../views/_models/GeneralModels';
-import {AreaAcademicaServiceService} from '../../services/area-academica-service.service';
+import {InterfaceCoordinadoresDepartamentales} from '../../../models/tutorias/CoordinadoresModel';
+import {CoordinadoresDepartamentalesService} from '../../../services/tutorias/coord_institucional/coordinadores-departamentales.service';
+import {InterfaceAreaAcademica, InterfacePersona} from '../../../views/_models/GeneralModels';
+import {AreaAcademicaServiceService} from '../../../services/area-academica-service.service';
 
 @Component({
     selector: 'app-coordinadores-departamentales',
-    templateUrl: '../../views/tutorias/coordinadores-departamentales.component.html',
-    styleUrls: ['../../views/tutorias/coordinadores-departamentales.component.scss']
+    templateUrl: '../../../views/tutorias/coord_institucional/coordinadores-departamentales.component.html',
+    styleUrls: ['../../../views/tutorias/coord_institucional/coordinadores-departamentales.component.scss']
 })
 export class CoordinadoresDepartamentalesComponent implements OnInit {
 
@@ -136,7 +136,7 @@ export class CoordinadoresDepartamentalesComponent implements OnInit {
     }
 
     handleResponseCoordinador(data) {
-        if (data.data){
+        if (data.data) {
             this.coordinador_actual =
                 data.data.NOMBRE  + ' '
                 + data.data.PRIMER_APELLIDO

@@ -28,23 +28,23 @@ export class PerfilComponent implements OnInit {
     // Datos de formulario
     public form = {
         PK_USUARIO: 0,
-        FECHA_NACIMIENTO: "",
-        CODIGO_POSTAL: "",
+        FECHA_NACIMIENTO: '',
+        CODIGO_POSTAL: '',
         SEXO: 0,
         ESTADO_CIVIL: 0,
         SITUACION_RESIDENCIA: 0,
-        CORREO1: "",
-        CORREO2: "",
-        TELEFONO_CASA: "",
-        TELEFONO_MOVIL: "",
+        CORREO1: '',
+        CORREO2: '',
+        TELEFONO_CASA: '',
+        TELEFONO_MOVIL: '',
         COLONIA: 0,
-        CALLE: "",
-        NUMERO_EXTERIOR: "",
-        NUMERO_INTERIOR: "",
-        NOMBRE_CONTACTO: "",
-        PARENTESCO_CONTACTO: "",
-        TELEFONO_CONTACTO: "",
-        CORREO_CONTACTO: ""
+        CALLE: '',
+        NUMERO_EXTERIOR: '',
+        NUMERO_INTERIOR: '',
+        NOMBRE_CONTACTO: '',
+        PARENTESCO_CONTACTO: '',
+        TELEFONO_CONTACTO: '',
+        CORREO_CONTACTO: ''
     };
 
     constructor(
@@ -122,30 +122,34 @@ export class PerfilComponent implements OnInit {
 
     actualiza_foto(evt: any) {
         if (confirm('¿Está seguro que desea actualizar la foto la perfil?')) {
-            var archivo: File = evt.target.files[0];
+            this.display = 'block';
+
+            const archivo: File = evt.target.files[0];
             if (!archivo) {
+                alert('Seleccione la foto de perfil');
                 return;
             }
 
             this.loaderModal.show();
-            var myReader: FileReader = new FileReader();
+            const myReader: FileReader = new FileReader();
             myReader.onloadend = async (e) => {
-
-                let body  = {
-                    'PK_ENCRIPTADA':  sessionStorage.getItem('idEncriptada'),
+                const body  = {
+                    'PK_ENCRIPTADA':  sessionStorage.getItem('IdEncriptada'),
                     'NOMBRE_ARCHIVO': archivo.name.split('.').shift(),
                     'EXTENSION':      archivo.name.split('.').pop(),
                     'CONTENIDO':      myReader.result
                 };
 
-                const data = await this.perfil_service.cambia_foto(body);
-                if (data) {
-                    this.perfil.FOTO_PERFIL = data.toArray.toString();
-                }
+                this.perfil_service.cambia_foto(body).subscribe(
+                    data => {
+                        this.perfil.FOTO_PERFIL = data + '';
+                    },
+                    error => { }
+                );
             };
             myReader.readAsDataURL(archivo);
 
-            this.loaderModal.hide();
+            this.display = 'none';
         }
     }
 
@@ -163,63 +167,63 @@ export class PerfilComponent implements OnInit {
     }
 
     valida_perfil() {
-        if (this.form.FECHA_NACIMIENTO.toString() == ''){
+        if (this.form.FECHA_NACIMIENTO.toString() == '') {
             alert('Indica la fecha de nacimiento');
             return false;
         }
-        if (this.form.SEXO == 0){
+        if (this.form.SEXO == 0) {
             alert('Indica el sexo');
             return false;
         }
-        if (this.form.ESTADO_CIVIL == 0){
+        if (this.form.ESTADO_CIVIL == 0) {
             alert('Indica el estado civil');
             return false;
         }
-        if (this.form.SITUACION_RESIDENCIA == 0){
+        if (this.form.SITUACION_RESIDENCIA == 0) {
             alert('Indica la situación de residencia');
             return false;
         }
-        if (this.form.CORREO1.trim() == ''){
+        if (this.form.CORREO1.trim() == '') {
             alert('Indica el correo principal');
             return false;
         }
-        if (this.form.TELEFONO_CASA.trim() == ''){
+        if (this.form.TELEFONO_CASA.trim() == '') {
             alert('Indica el teléfono de casa');
             return false;
         }
-        if (this.form.TELEFONO_MOVIL.trim() == ''){
+        if (this.form.TELEFONO_MOVIL.trim() == '') {
             alert('Indica el teléfono móvil');
             return false;
         }
-        if (this.form.CODIGO_POSTAL.trim() == ''){
+        if (this.form.CODIGO_POSTAL.trim() == '') {
             alert('Indica el código postal');
             return false;
         }
-        if (this.form.COLONIA == 0){
+        if (this.form.COLONIA == 0) {
             alert('Indica la colonia');
             return false;
         }
-        if (this.form.CALLE.trim() == ''){
+        if (this.form.CALLE.trim() == '') {
             alert('Indica la calle');
             return false;
         }
-        if (this.form.NUMERO_EXTERIOR.trim() == ''){
+        if (this.form.NUMERO_EXTERIOR.trim() == '') {
             alert('Indica el número exterior');
             return false;
         }
-        if (this.form.NOMBRE_CONTACTO.trim() == ''){
+        if (this.form.NOMBRE_CONTACTO.trim() == '') {
             alert('Indica el nombre del contacto en caso de emergencia');
             return false;
         }
-        if (this.form.PARENTESCO_CONTACTO.trim() == ''){
+        if (this.form.PARENTESCO_CONTACTO.trim() == '') {
             alert('Indica el parentesco del contacto en caso de emergencia');
             return false;
         }
-        if (this.form.TELEFONO_CONTACTO.trim() == ''){
+        if (this.form.TELEFONO_CONTACTO.trim() == '') {
             alert('Indica el número de teléfono de contacto en caso de emergencia');
             return false;
         }
-        if (this.form.CORREO_CONTACTO.trim() == ''){
+        if (this.form.CORREO_CONTACTO.trim() == '') {
             alert('Indica el correo electrónico de contacto en caso de emergencia');
             return false;
         }
@@ -246,7 +250,7 @@ export class PerfilComponent implements OnInit {
 
     valida_codigo_postal() {
         if (this.form.CODIGO_POSTAL.toString().length > 0) {
-            let codigo_postal = this.form.CODIGO_POSTAL.toString().trim();
+            const codigo_postal = this.form.CODIGO_POSTAL.toString().trim();
 
             if (codigo_postal.length > 3) {
                 if (codigo_postal.length > 5) {

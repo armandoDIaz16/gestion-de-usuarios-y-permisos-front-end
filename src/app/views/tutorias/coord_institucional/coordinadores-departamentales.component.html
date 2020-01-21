@@ -15,31 +15,67 @@
         <table class="table table-striped">
             <thead>
             <tr class="text-center">
-                <th>No.</th>
                 <th>Número de SIIA</th>
-                <th>Nombre</th>
+                <th>Nombre completo</th>
+                <th>CURP</th>
                 <th>Correo</th>
+                <th>Teléfono fijo y celular</th>
                 <th>Área que coordina</th>
-                <th>Operaciones</th>
+                <th>Contacto de emergencia</th>
+                <th>Opciones</th>
             </tr>
             </thead>
             <tbody *ngIf="this.lista_coordinadores.length > 0; else elseBlock">
             <tr class="text-center" *ngFor="let coordinador of this.lista_coordinadores; let i = index">
-                <td>{{i + 1}}</td>
-                <td>{{coordinador.NUMERO_CONTROL}}</td>
-                <td>{{coordinador.NOMBRE}} {{coordinador.PRIMER_APELLIDO}} {{coordinador.SEGUNDO_APELLIDO}}</td>
+                <td>
+                    <img *ngIf="this.coordinador.FOTO_PERFIL == null"
+                         src="assets/img/avatars/default.svg"
+                         style="width:40px">
+                    <img *ngIf="this.coordinador.FOTO_PERFIL != null"
+                         src="{{this.coordinadores_service.get_endpoint(this.coordinador.FOTO_PERFIL)}}"
+                         style="width:40px">
+                    {{coordinador.NUMERO_CONTROL}}
+                </td>
+                <td>
+                    {{coordinador.NOMBRE}} {{coordinador.PRIMER_APELLIDO}} {{coordinador.SEGUNDO_APELLIDO}}
+                </td>
+                <td>
+                    {{coordinador.CURP}}
+                </td>
                 <td>
                     {{coordinador.CORREO1}}
                     <br>
                     {{coordinador.CORREO_INSTITUCIONAL}}
                 </td>
                 <td>
+                    {{coordinador.TELEFONO_CASA}}
+                    <br>
+                    {{coordinador.TELEFONO_MOVIL}}
+                </td>
+                <td>
                     {{coordinador.AREA_ACADEMICA}}
                 </td>
                 <td>
+                    {{coordinador.NOMBRE_CONTACTO}}
+                    <br>
+                    {{coordinador.TELEFONO_CONTACTO}}
+                </td>
+                <td>
+                    <button class="btn btn-link" tooltip="Ver grupos de tutoria de inicio">
+                        Tutoría de inicio
+                    </button>
+                    <br>
+                    <button class="btn btn-link" tooltip="Ver grupos de tutoría de seguimiento">
+                        Tutoría de seguimiento
+                    </button>
+                    <br>
+                    <button class="btn btn-link" tooltip="Ver grupos de tutoría de término">
+                        Tutoría de término
+                    </button>
+                    <br><br>
                     <button class="btn btn-sm btn-danger" tooltip="Eliminar el rol de coordinador departamental"
-                    (click)="eliminar_coordinador(coordinador.PK_AREA_ACADEMICA)">
-                        Eliminar
+                            (click)="eliminar_coordinador(coordinador.PK_AREA_ACADEMICA)">
+                        Quitar rol
                     </button>
                 </td>
             </tr>
@@ -47,7 +83,7 @@
             <ng-template #elseBlock>
                 <tbody>
                 <tr class="text-center">
-                    <td colspan="6">No se encontraron encuestas pendientes</td>
+                    <td colspan="10">No se encontraron datos</td>
                 </tr>
                 </tbody>
             </ng-template>

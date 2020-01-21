@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {GenericServicesService} from '../generic-services.service';
+import {GenericServicesService} from '../../generic-services.service';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {InterfaceCoordinadoresDepartamentales} from '../../models/tutorias/CoordinadoresModel';
-import {InterfacePersona} from '../../views/_models/GeneralModels';
+import {InterfaceCoordinadoresDepartamentales} from '../../../models/tutorias/CoordinadoresModel';
+import {InterfacePersona} from '../../../views/_models/GeneralModels';
 
 @Injectable({
     providedIn: 'root'

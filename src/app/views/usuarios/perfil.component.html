@@ -13,15 +13,16 @@
                 <div class="col-md-4">
                     <div class="form-group text-center">
                         <div class="img">
-                            <img src="assets/img/avatars/default.svg" alt="" class="img img-thumbnail">
+                            <img *ngIf="this.perfil.FOTO_PERFIL == null" src="assets/img/avatars/default.svg" alt="" class="img img-thumbnail">
+                            <img *ngIf="this.perfil.FOTO_PERFIL != null" src="{{this.perfil_service.get_endpoint(this.perfil.FOTO_PERFIL)}}" alt="" class="img img-thumbnail">
                         </div>
                         <br>
-                        <!--<label class="btn btn-primary" style="cursor:pointer;">Cambiar foto de perfil
+                        <label class="btn btn-primary" style="cursor:pointer;">Cambiar foto de perfil
                             <input type="file" id="FOTO" name="FOTO"
                                    accept=".png, .jpeg, .jpg"
                                    (change)="actualiza_foto($event)"
                                    hidden>
-                        </label>-->
+                        </label>
                     </div>
                 </div>
 
@@ -29,22 +30,22 @@
                     <div class="form-group">
                         <label for="CURP">CURP</label>
                         <input type="text" class="form-control" id="CURP" name="CURP"
-                               value="{{this.perfil.CURP}}" readonly>
+                               value="{{this.perfil.CURP}}" disabled>
                     </div>
                     <div class="form-group">
-                        <label for="NOMBRE">NOMBRE(S)</label>
+                        <label for="NOMBRE">Nombre(s)</label>
                         <input type="text" class="form-control" id="NOMBRE" name="NOMBRE"
-                               value="{{this.perfil.NOMBRE}}" readonly>
+                               value="{{this.perfil.NOMBRE}}" disabled>
                     </div>
                     <div class="form-group">
                         <label for="PRIMER_APELLIDO">Primer apellido</label>
                         <input type="text" class="form-control" id="PRIMER_APELLIDO" name="PRIMER_APELLIDO"
-                               value="{{this.perfil.PRIMER_APELLIDO}}" readonly>
+                               value="{{this.perfil.PRIMER_APELLIDO}}" disabled>
                     </div>
                     <div class="form-group">
                         <label for="SEGUNDO_APELLIDO">Segundo apellido</label>
                         <input type="text" class="form-control" id="SEGUNDO_APELLIDO" name="SEGUNDO_APELLIDO"
-                               value="{{this.perfil.SEGUNDO_APELLIDO}}" readonly>
+                               value="{{this.perfil.SEGUNDO_APELLIDO}}" disabled>
                     </div>
                 </div>
 
@@ -52,23 +53,23 @@
                     <div class="form-group">
                         <label for="NUMERO_CONTROL">Número de control</label>
                         <input type="text" class="form-control" id="NUMERO_CONTROL" name="NUMERO_CONTROL"
-                               value="{{this.perfil.NUMERO_CONTROL}}" readonly>
+                               value="{{this.perfil.NUMERO_CONTROL}}" disabled>
                     </div>
                     <div class="form-group">
                         <label for="CARRERA">Carrera</label>
                         <input type="text" class="form-control" id="CARRERA" name="CARRERA"
-                               value="{{this.perfil.CARRERA}}" readonly>
+                               value="{{this.perfil.CARRERA}}" disabled>
                     </div>
                     <div class="form-group">
                         <label for="SEMESTRE">Semestre</label>
                         <input type="text" class="form-control" id="SEMESTRE" name="SEMESTRE"
-                               value="{{this.perfil.SEMESTRE}}" readonly>
+                               value="{{this.perfil.SEMESTRE}}" disabled>
                     </div>
                     <div class="form-group">
                         <label for="CORREO_INSTITUCIONAL">Correo institucional</label>
                         <input type="text" class="form-control" id="CORREO_INSTITUCIONAL"
                                name="CORREO_INSTITUCIONAL"
-                               value="{{this.perfil.NUMERO_CONTROL}}@itleon.edu.mx" readonly>
+                               value="{{this.perfil.NUMERO_CONTROL}}@itleon.edu.mx" disabled>
                     </div>
                 </div>
             </div>
@@ -88,6 +89,7 @@
                     <div class="form-group">
                         <label for="SEXO">Sexo</label>
                         <select name="SEXO" id="SEXO" class="form-control" [(ngModel)]="this.form.SEXO">
+                            <option value="0">* Seleccione una opción</option>
                             <option value="1">MASCULINO</option>
                             <option value="2">FEMENINO</option>
                         </select>
@@ -98,6 +100,7 @@
                         <label for="ESTADO_CIVIL">Estado civil</label>
                         <select name="ESTADO_CIVIL" id="ESTADO_CIVIL" class="form-control"
                                 [(ngModel)]="this.form.ESTADO_CIVIL">
+                            <option value="0"> * Seleccione una opción</option>
                             <option *ngFor="let estado_civil of this.estados_civiles"
                                     value="{{estado_civil.PK_ESTADO_CIVIL}}">
                                 {{estado_civil.NOMBRE}}
@@ -110,6 +113,7 @@
                         <label for="SITUACION_RESIDENCIA">Situación de la residencia</label>
                         <select name="SITUACION_RESIDENCIA" id="SITUACION_RESIDENCIA" class="form-control"
                                 [(ngModel)]="this.form.SITUACION_RESIDENCIA">
+                            <option value="0">* Seleccione una opción</option>
                             <option *ngFor="let situacion_residencia of this.situaciones_residencia"
                                     value="{{situacion_residencia.PK_SITUACION_RESIDENCIA}}">
                                 {{situacion_residencia.NOMBRE}}
@@ -155,7 +159,7 @@
 
             <hr>
             <div class="col-md-12">
-                <div class="h3">Domicilio</div>
+                <div class="h3 text-center">Domicilio</div>
             </div>
             <div class="row">
                 <div class="col-md-3">
@@ -172,21 +176,21 @@
                         <input type="mail" class="form-control" id="ENTIDAD_FEDERATIVA"
                                name="ENTIDAD_FEDERATIVA"
                                value="{{this.datos_codigo_postal.NOMBRE_ENTIDAD_FEDERATIVA}}"
-                               readonly>
+                               disabled>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="CIUDAD">Municipio</label>
                         <input type="text" class="form-control" id="CIUDAD" name="CIUDAD"
-                               value="{{this.datos_codigo_postal.NOMBRE_CIUDAD}}" readonly>
+                               value="{{this.datos_codigo_postal.NOMBRE_CIUDAD}}" disabled>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="COLONIA">Colonia</label>
                         <select name="COLONIA" id="COLONIA" class="form-control" [(ngModel)]="this.form.COLONIA">
-                            <option value=""> * Selecciona una opción</option>
+                            <option value="0"> * Selecciona una opción</option>
                             <option *ngFor="let colonia of this.datos_codigo_postal.COLONIAS"
                                     value="{{colonia.PK_COLONIA}}">
                                 {{colonia.NOMBRE}}
@@ -265,7 +269,7 @@
             <div class="col-md-12">
                 <div class="text-center">
                     <button class="btn btn-block btn-primary col-md-2 offset-md-5" type="submit">
-                        <p class="h4">Actualizar perfil</p>
+                        Actualizar perfil
                     </button>
                 </div>
             </div>

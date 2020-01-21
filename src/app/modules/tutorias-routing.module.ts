@@ -14,7 +14,7 @@ import {HorarioAlumnoComponent} from '../components/tutorias/horario-alumno.comp
 import {RespuestasEncuestaComponent} from '../components/tutorias/respuestas-encuesta.component';
 import {ReporteEncuestaComponent} from '../components/tutorias/reporte-encuesta.component';
 import {CoordinadoresInstitucionalesComponent} from '../components/tutorias/coordinadores-institucionales.component';
-import {CoordinadoresDepartamentalesComponent} from '../components/tutorias/coordinadores-departamentales.component';
+import {CoordinadoresDepartamentalesComponent} from '../components/tutorias/coord_institucional/coordinadores-departamentales.component';
 import {DatosTutorComponent} from '../components/tutorias/datos-tutor.component';
 import {HorarioComponent} from '../components/tutorias/horario.component';
 import {SeguimientoComponent} from '../components/tutorias/seguimiento.component';

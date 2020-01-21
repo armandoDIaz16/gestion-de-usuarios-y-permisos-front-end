@@ -39,17 +39,23 @@ export class NavbarSistemsComponent implements OnInit {
     }
 
 
-    mostrarRoles(sistemaSelect, nombreSistema) {
+    async mostrarRoles(sistemaSelect, nombreSistema) {
         this.loaderModal.show();
+        this.router.navigateByUrl('/home');
 
-        if (!sessionStorage.rutas) {
-            this.router.navigateByUrl('/home');
+        /*if (sessionStorage.rutas) {*/
             sessionStorage.setItem('sistema', sistemaSelect);
-            this.usuarioRolesService.getUsuarioRoles().subscribe(data => {
+            const data = await this.usuarioRolesService.getUsuarioRoles().subscribe(data => {
+
+                /*console.log(data);*/
+
                 let sistemas = JSON.parse(sessionStorage.sistemas);
                 for (var sistema in sistemas[0].SISTEMAS) {
                     if (sistemas[0].SISTEMAS[sistema].PK_SISTEMA === sessionStorage.getItem('sistema')) {
                         // console.log("--"+sistemas[0].SISTEMAS[sistema].NOMBRE)
+
+                        while (rutasRoles.pop()) {}
+
                         for (var rol in sistemas[0].SISTEMAS[sistema].ROLES) {
                             var rutasModulos = [];
                             if (sistemas[0].SISTEMAS[sistema].ROLES[rol].NOMBRE == 'Aspirante') {
@@ -117,10 +123,8 @@ export class NavbarSistemsComponent implements OnInit {
                         this.router.navigateByUrl('/creditos');
                         break;
                 }
-
-
             });
-        }
+        /*}*/
 
         this.loaderModal.hide();
     }
