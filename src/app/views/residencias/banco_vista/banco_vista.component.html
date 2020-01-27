@@ -7,6 +7,7 @@
                     <thead>
                     <tr class="card-header">
                         <th>Nombre</th>
+                        <th>Estatus</th>
                         <th>Archivo</th>
                         <th>Empresa</th>
                         <th>Comentarios</th>
@@ -15,6 +16,7 @@
                     <tbody>
                     <tr *ngFor="let antep of anteproyectosLista">
                         <td>{{ antep.NOMBRE }}</td>
+                        <td>{{antep.ESTATUS_LETRAS}}</td>
                         <td><a href="{{ruta+antep.PDF}}" target="_blank">{{antep.PDF}}</a></td>
                         <td>{{ antep.EMPRESA }}</td>
                         <td>{{ antep.COMENTARIO }}</td>
