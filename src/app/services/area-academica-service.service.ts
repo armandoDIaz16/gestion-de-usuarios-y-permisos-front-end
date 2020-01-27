@@ -19,8 +19,4 @@ export class AreaAcademicaServiceService extends GenericServicesService {
             GenericServicesService.HEADERS
         );
     }
-
-    get_url_back(url: string) {
-        return GenericServicesService.API_ENDPOINT + url;
-    }
 }
