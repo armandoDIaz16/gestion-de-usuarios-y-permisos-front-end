@@ -9,67 +9,76 @@
 
 <div class="row">
     <div class="offset-1 col-md-10">
-        <table class="table table-striped">
-            <thead>
-            <tr class="text-center">
-                <th>No.</th>
-                <th>Clave grupo</th>
-                <th>Aula</th>
-                <th>Horario</th>
-                <th>Cantidad alumnos</th>
-                <th>Encuestas <br> activas</th>
-                <th>Encuestas <br> contestadas</th>
-                <th>Evalución de grupo</th>
-                <!--<th>Reportes</th>-->
-                <th>Operaciones</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr class="text-center" *ngFor="let grupo of lista_grupos.GRUPOS; let i = index">
-                <td>{{i + 1}}</td>
-                <td>{{grupo.CLAVE}}</td>
-                <td>{{grupo.AULA}}</td>
-                <td>
-                    <p *ngFor="let horario of grupo.HORARIO">
-                        {{horario.DIA}}: {{horario.HORA_INICIAL}} - {{horario.HORA_FINAL}}
-                    </p>
-                </td>
-                <td>{{grupo.CANTIDAD_ALUMNOS}}</td>
-                <td>{{grupo.ENCUESTAS_ACTIVAS}}</td>
-                <td>{{grupo.ENCUESTAS_CONTESTADAS}}</td>
-                <td>
-                    <p *ngIf="grupo.EVALUACION_GRUPO == 1; else noEvaluado" >
-                        Evaluado
-                    </p>
-                    <ng-template #noEvaluado>
-                        <p>
-                            No evaluado
-                        </p>
-                    </ng-template>
-                </td>
-                <!--
-                <td>
-                    <button class="btn btn-danger" (click)="reporte_perfil_grupal(grupo.PK_GRUPO_TUTORIA)">
-                        Perfil grupal de ingreso
-                    </button>
-                </td>
-                -->
-                <td>
-                    <a [routerLink]="['/tutorias/detalle-grupo']"
-                       [queryParams]="{clave_grupo: grupo.PK_GRUPO_TUTORIA}"
-                       class="btn btn-primary">
-                        Ver detalles
-                    </a>
-                </td>
-            </tr>
-            </tbody>
-            <ng-template #elseBlock>
-                <tbody>
+        <!-- Incio lista de carreras -->
+        <div *ngFor="let carrera of lista_grupos.CARRERAS">
+            <p class="h3 text-center">
+                {{carrera.CARRERA}}
+            </p>
+
+            <!-- Inicio de grupos por carrera -->
+            <table class="table table-striped">
+                <thead>
                 <tr class="text-center">
-                    <td colspan="5">No se encontraron encuestas pendientes</td>
+                    <th>No.</th>
+                    <th>Clave grupo</th>
+                    <th>Aula</th>
+                    <th>Horario</th>
+                    <th>Cantidad alumnos</th>
+                    <th>Encuestas <br> activas</th>
+                    <th>Encuestas <br> contestadas</th>
+                    <th>Evalución de grupo</th>
+                    <th>Perfil grupal</th>
+                    <th>Operaciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="text-center" *ngFor="let grupo of carrera.GRUPOS; let i = index">
+                    <td>{{i + 1}}</td>
+                    <td>{{grupo.CLAVE}}</td>
+                    <td>{{grupo.AULA}}</td>
+                    <td>
+                        <p *ngFor="let horario of grupo.HORARIO">
+                            {{horario.DIA}}: {{horario.HORA_INICIAL}} - {{horario.HORA_FINAL}}
+                        </p>
+                    </td>
+                    <td>{{grupo.CANTIDAD_ALUMNOS}}</td>
+                    <td>{{grupo.ENCUESTAS_ACTIVAS}}</td>
+                    <td>{{grupo.ENCUESTAS_CONTESTADAS}}</td>
+                    <td>
+                        <p *ngIf="grupo.EVALUACION_GRUPO == 1; else noEvaluado" >
+                            Evaluado
+                        </p>
+                        <ng-template #noEvaluado>
+                            <p>
+                                No evaluado
+                            </p>
+                        </ng-template>
+                    </td>
+                    <td>
+                        <button class="btn btn-success btn-sm" (click)="reporte_perfil_grupal(grupo.PK_GRUPO_TUTORIA)">
+                            Ver reporte
+                        </button>
+                    </td>
+                    <td>
+                        <a [routerLink]="['/tutorias/detalle-grupo']"
+                           [queryParams]="{clave_grupo: grupo.PK_GRUPO_TUTORIA}"
+                           class="btn btn-primary btn-sm">
+                            Ver detalles
+                        </a>
+                    </td>
                 </tr>
                 </tbody>
-            </ng-template>
-        </table>
+                <ng-template #elseBlock>
+                    <tbody>
+                    <tr class="text-center">
+                        <td colspan="5">No se encontraron encuestas pendientes</td>
+                    </tr>
+                    </tbody>
+                </ng-template>
+            </table>
+            <!-- Fin grupos por carrera -->
+
+        </div>
+        <!-- Fin lista de carreras -->
     </div>
 </div>

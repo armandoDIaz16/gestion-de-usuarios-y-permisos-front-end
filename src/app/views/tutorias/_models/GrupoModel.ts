@@ -1,4 +1,10 @@
+export interface InterfacecCarreraGruposTutoria {
+    CARRERAS: InterfaceGruposTutoria[];
+}
+
 export interface InterfaceGruposTutoria {
+    PK_CARRERA: number;
+    CARRERA: string;
     GRUPOS?: InterfaceGrupoTutoria[];
 }
 
@@ -28,6 +34,7 @@ export interface InterfaceDiaHorario {
 
 export interface InterfaceGrupoTutoriaDetalle {
     PK_USUARIO:            number;
+    PK_ENCRIPTADA:         string;
     NUMERO_CONTROL:        string;
     NOMBRE:                string;
     PRIMER_APELLIDO:       string;
@@ -36,4 +43,5 @@ export interface InterfaceGrupoTutoriaDetalle {
     CARRERA:               string;
     ENCUESTAS_ACTIVAS:     number;
     ENCUESTAS_CONTESTADAS: number;
+    PERFIL_COMPLETO:       number;
 }

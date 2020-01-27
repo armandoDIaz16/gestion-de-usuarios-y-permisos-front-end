@@ -24,11 +24,11 @@ export interface NavData {
 } */
 //export {recargarRutas};
 var rutasRoles = [];
-if(sessionStorage.rutas){
-  rutasRoles = JSON.parse(sessionStorage.rutas);
+if(sessionStorage.getItem('rutas')){
+  rutasRoles = JSON.parse(sessionStorage.getItem('rutas'));
 }else{
   rutasRoles = rutasNav;
-} 
+}
 export const navItems: NavData[] = rutasRoles;
 
 
@@ -44,17 +44,17 @@ for(var sistema in sistemas[0].SISTEMAS){
     for(var modulo in sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS){
       //console.log("------"+sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE)
       rutasModulos.push({name: sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE,
-                      url: '/'+sistemas[0].SISTEMAS[sistema].NOMBRE.toLowerCase()+'/'+sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE.toLowerCase(), 
+                      url: '/'+sistemas[0].SISTEMAS[sistema].NOMBRE.toLowerCase()+'/'+sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE.toLowerCase(),
                       icon: 'icon-cursor'});
     }
-    rutasRoles.push({name: sistemas[0].SISTEMAS[sistema].ROLES[rol].NOMBRE, 
-                    icon: 'icon-screen-desktop', 
-                    children: rutasModulos});  
+    rutasRoles.push({name: sistemas[0].SISTEMAS[sistema].ROLES[rol].NOMBRE,
+                    icon: 'icon-screen-desktop',
+                    children: rutasModulos});
   }
-  rutasSistemas.push({name: sistemas[0].SISTEMAS[sistema].NOMBRE, 
-                      url: '/'+sistemas[0].SISTEMAS[sistema].NOMBRE.toLowerCase(), 
-                      icon: 'icon-star', 
+  rutasSistemas.push({name: sistemas[0].SISTEMAS[sistema].NOMBRE,
+                      url: '/'+sistemas[0].SISTEMAS[sistema].NOMBRE.toLowerCase(),
+                      icon: 'icon-star',
                       children: rutasRoles});
 } */
 
-//console.log(rutasSistemas); 
+//console.log(rutasSistemas);

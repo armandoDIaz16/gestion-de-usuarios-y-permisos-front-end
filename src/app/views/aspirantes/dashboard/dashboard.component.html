@@ -147,11 +147,13 @@
       <p class="text-justify">
         Para continuar con el proceso de admisión, debes imprimir tu ficha oficial para el Examen,
         en la ficha aparece el lugar, fecha y hora en la que deberás presentarte al examen.
+        Te sugerimos subir a alguna identificación en la parte de "Documentos" en dado caso de que no la tengas el dia del examen.
       </p>
       <br>
       <p class="text-center">
         Descarga tu ficha oficial desde el siguiente botón.
       </p>
+      <br>
       <div class="text-center">
         <button type="button" class="btn btn-lg btn-primary" (click)="generarFicha()">Descargar ficha oficial</button>
       </div>
@@ -160,49 +162,52 @@
     <hr>
   </div>
 
-  <div class="col-md-12" *ngIf="habilitarAceptado">
-    <div class="h4">
-      <p class="text-center">
-        {{mensaje}}
-      </p>
-      <br>
-      <p class="text-center" *ngIf="habilitarResultados">
-        Resultados
-        <br>
-        Puntaje: {{puntaje}}
-        <br>
-        Matematicas: {{matematicas}}
-      </p>
-      <br>
-      <div *ngIf="habilitarInscripcion">
+  <div *ngIf="habilitarResultados">
+    <div class="col-md-12" *ngIf="habilitarAceptado">
+      <div class="h4">
         <p class="text-center">
-          Descarga tu refenrencia para primer semestre desde el siguiente botón.
+          {{mensaje}}
         </p>
-        <div class="text-center">
-          <button type="button" class="btn btn-lg btn-primary" (click)="generarReferenciaInscripcion()">Generar referencia de Inscripción</button>
-        </div>
         <br>
-        <div *ngIf="habilitarCurso">
+        <p class="text-center">
+          Resultados
+          <br>
+          Puntaje: {{puntaje}}
+          <br>
+          Matematicas: {{matematicas}}
+        </p>
+        <br>
+        <div *ngIf="habilitarInscripcion">
           <p class="text-center">
-            Descarga tu refenrencia para el curso de nivelacion desde el siguiente botón.
+            Descarga tu refenrencia para primer semestre desde el siguiente botón.
           </p>
           <div class="text-center">
-            <button type="button" class="btn btn-lg btn-primary" (click)="generarReferenciaCurso()">Generar referencia de curso</button>
+            <button type="button" class="btn btn-lg btn-primary" (click)="generarReferenciaInscripcion()">Generar
+              referencia de Inscripción</button>
+          </div>
+          <br>
+          <div *ngIf="habilitarCurso">
+            <p class="text-center">
+              Descarga tu refenrencia para el curso de nivelacion desde el siguiente botón.
+            </p>
+            <div class="text-center">
+              <button type="button" class="btn btn-lg btn-primary" (click)="generarReferenciaCurso()">Generar referencia
+                de curso</button>
+            </div>
           </div>
         </div>
       </div>
+      <br>
+      <hr>
     </div>
-    <br>
-    <hr>
-  </div>
 
-  <div class="col-md-12" *ngIf="habilitarAceptadoCero">
+    <div class="col-md-12" *ngIf="habilitarAceptadoCero">
       <div class="h4">
         <p class="text-center">
           {{mensajeCero}}
         </p>
         <br>
-        <p class="text-center" *ngIf="habilitarResultados">
+        <p class="text-center">
           Resultados
           <br>
           Puntaje: {{puntaje}}
@@ -215,7 +220,8 @@
             Descarga tu refenrencia para semestre cero desde el siguiente botón.
           </p>
           <div class="text-center">
-            <button type="button" class="btn btn-lg btn-primary" (click)="generarReferenciaInscripcionCero()">Generar referencia de Inscripción semestre cero</button>
+            <button type="button" class="btn btn-lg btn-primary" (click)="generarReferenciaInscripcionCero()">Generar
+              referencia de Inscripción semestre cero</button>
           </div>
           <br>
         </div>
@@ -223,6 +229,25 @@
       <br>
       <hr>
     </div>
+
+    <div class="col-md-12" *ngIf="habilitarRechazado">
+      <div class="h4">
+        <p class="text-center">
+          {{mensajeRechazado}}
+        </p>
+        <br>
+        <p class="text-center">
+          Resultados
+          <br>
+          Puntaje: {{puntaje}}
+          <br>
+          Matematicas: {{matematicas}}
+        </p>
+      </div>
+      <br>
+      <hr>
+    </div>
+  </div>
 
   <!-- BOTONES COMUNES -->
   <br>

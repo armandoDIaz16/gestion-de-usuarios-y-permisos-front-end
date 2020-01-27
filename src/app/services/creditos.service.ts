@@ -179,8 +179,8 @@ getCreditosValidados(){
   return this.httpclient.get(this.API_ENDPOINT + 'creditos-validados');
 }
 
-generarConstancia(PK_ALUMNO_CREDITO){
-  return this.httpclient.get(this.API_ENDPOINT + 'generar-constancia/' + PK_ALUMNO_CREDITO);
+generarConstancia(data){
+  return this.httpclient.post(this.API_ENDPOINT + 'generar-constancia/', data, this.headers);
 
 }
 /* 
@@ -234,6 +234,12 @@ AgregarUsuarioJC(usuario){
  /*--------------------generar constancias ---------------------*/
  getAlumnosByCarrera(carrera){
   return this.httpClient.get(this.API_ENDPOINT + 'creditos-carrera/' + carrera );
+}
+
+/*---------------------OBTENER CLAVE DE CARRERA ----------------------*/
+getClaveCarrera(PK_USUARIO){
+  console.log("data que llega: " + PK_USUARIO);
+  return this.httpClient.get(this.API_ENDPOINT + 'get-clave-carrera/' + PK_USUARIO);
 }
 
 

@@ -86,7 +86,7 @@ export class CrearGruposComponent implements OnInit {
           this.mostrarTipoExamen = false;
           this.lugarExamenService.getEdificio().subscribe(data => this.edificioLista = data);
           this.formularioService.getCarrera().subscribe(data => this.carreraLista = data);
-          this.lugarExamenService.getTurno2(this.pkPeriodo).subscribe(data => this.turno2Lista = data);
+          this.lugarExamenService.getTurnoEscrito(this.pkPeriodo).subscribe(data => this.turno2Lista = data);
           this.lugarExamenService.getGrupoEscrito(this.pkPeriodo).subscribe(data => this.grupoEscritoLista = data);
         }
       }
@@ -151,7 +151,7 @@ export class CrearGruposComponent implements OnInit {
 
   recargarGrupo() {
     this.lugarExamenService.getGrupo(this.pkPeriodo).subscribe(data => this.grupoLista = data);
-  }
+  } 
   
   cargarTurno(PK) {
     //console.log(this.turno2Lista);
@@ -238,50 +238,32 @@ export class CrearGruposComponent implements OnInit {
     }
   }
 
-
-
-
-
-  async guardarTurnoEscrito() {
-    this.loaderModal.show();
-    const data = await this.lugarExamenService.addTurnoExamen({
-      "DIA": this.diaEscrito,
-      "HORA": this.horaEscrito,
-      "FK_PERIODO": this.pkPeriodo
-    });
-    if (data) {
-      this.loaderModal.hide();
-      this.recargarTurno();
-      alert(data);
-    }
-  }
-
   async guardarGrupoEscrito() {
     this.loaderModal.show();
     const data = await this.lugarExamenService.addGrupoExamenEscrito({
       'FK_CARRERA': this.carrera,
       'FK_EDIFICIO': this.edificioEscrito,
-      'FK_TURNO': this.turnoEscrito,
+      'FK_TURNO_ESCRITO': this.turnoEscrito,
       "FK_PERIODO": this.pkPeriodo
     });
     if (data) {
       this.loaderModal.hide();
-      this.recargarGrupo();
+      this.recargarGrupoEscrito();
       alert(data);
     }
   }
 
   async modificarTurnoEscrito(PK) {
     this.loaderModal.show();
-    const data = await this.lugarExamenService.updateTurnoExamen({
-      'PK_TURNO': PK,
+    const data = await this.lugarExamenService.updateTurnoExamenEscrito({
+      'PK_TURNO_ESCRITO': PK,
       'DIA': this.diaEscrito2,
       'HORA': this.horaEscrito2,
       "FK_PERIODO": this.pkPeriodo
     });
     if (data) {
       this.loaderModal.hide();
-      this.recargarTurno();
+      this.recargarTurnoEscrito();
       alert(data);
     }
   }
@@ -292,7 +274,7 @@ export class CrearGruposComponent implements OnInit {
       'PK_EXAMEN_ADMISION_ESCRITO': PK,
       'FK_CARRERA': this.carrera2,
       'FK_EDIFICIO': this.edificioEscrito2,
-      'FK_TURNO': this.turnoEscrito3,
+      'FK_TURNO_ESCRITO': this.turnoEscrito3,
       "FK_PERIODO": this.pkPeriodo
     });
     if (data) {
@@ -305,7 +287,7 @@ export class CrearGruposComponent implements OnInit {
   cargarTurnoEscrito(PK) {
     //console.log(this.turno2Lista);
     for (var turno in this.turno2Lista) {
-      if (this.turno2Lista[turno].PK_TURNO == PK) {
+      if (this.turno2Lista[turno].PK_TURNO_ESCRITO == PK) {
         //console.log("--" + this.turno2Lista[turno].PK_TURNO)
         this.diaEscrito2 = this.turno2Lista[turno].DIA;
         this.horaEscrito2 = this.turno2Lista[turno].HORA;
@@ -320,11 +302,27 @@ export class CrearGruposComponent implements OnInit {
         //console.log(this.grupoEscritoLista[grupo]);
         this.carrera2 = this.grupoEscritoLista[grupo].FK_CARRERA;
         this.edificioEscrito2 = this.grupoEscritoLista[grupo].FK_EDIFICIO;
-        this.turnoEscrito3 = this.grupoEscritoLista[grupo].FK_TURNO;
+        this.turnoEscrito3 = this.grupoEscritoLista[grupo].FK_TURNO_ESCRITO;
       }
+    }
+  }
+  async guardarTurnoEscrito() {
+    this.loaderModal.show();
+    const data = await this.lugarExamenService.addTurnoExamenEscrito({
+      "DIA": this.diaEscrito,
+      "HORA": this.horaEscrito,
+      "FK_PERIODO": this.pkPeriodo
+    });
+    if (data) {
+      this.loaderModal.hide();
+      this.recargarTurnoEscrito();
+      alert(data);
     }
   }
   recargarGrupoEscrito() {
     this.lugarExamenService.getGrupoEscrito(this.pkPeriodo).subscribe(data => this.grupoEscritoLista = data);
+  }  
+  recargarTurnoEscrito() {
+    this.lugarExamenService.getTurnoEscrito(this.pkPeriodo).subscribe(data => this.turno2Lista = data);
   }
 }

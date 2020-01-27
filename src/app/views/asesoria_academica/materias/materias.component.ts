@@ -133,15 +133,15 @@ export class MateriasComponent implements OnInit {
       },
       error => this.handleError(error)
     );
-    this.Jarwis.getAsignacion().subscribe(
+ /*    this.Jarwis.getAsignacion().subscribe(
       data => {
         for (var num in data) {
           this.asignacion.push(data[num]);
         }
       },
       error => this.handleError(error)
-    );
-  }
+    );*/
+  } 
 
   mostrarRegistros(numRegistros) {
     switch (numRegistros) {

@@ -1,0 +1,176 @@
+<!--
+
+<div class="col-sm-12">
+    <div style="background-color:white;">
+        &lt;!&ndash; INICIO HEADER &ndash;&gt;
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-11 col-xl10">
+                <img style="min-width: 100%; max-width: 100%" src="assets/banner.jpg">
+            </div>
+            <h1 class="text-center">
+                <br>
+                <b>TecVirtual del Tecnológico Nacional de México en León</b>
+                <br>
+                <br>
+                Repositorio de tesis maestria
+                <br>
+            </h1>
+        </div>
+        &lt;!&ndash; FIN HEADER &ndash;&gt;
+
+        <div class="app-body">
+            <main class="main d-flex align-items-center">
+                <div class="container">
+                    <table class="table table-bordered table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th scope="row">#</th>
+                                <th>Nombre de la tesis</th>
+                                <th>Autor</th>
+                                <th>Derechos de la tesis</th>
+                                <th>Resumen</th>
+                                <th>Solicitar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td><input [(ngModel)]="filtroPREFICHA" type="text" class="form-control"
+                                        (keyup)="buscar()">
+                                </td>
+                                <td><input [(ngModel)]="filtroCURP" type="text" class="form-control" (keyup)="buscar()">
+                                </td>
+                                <td><input [(ngModel)]="filtroNOMBRE" type="text" class="form-control"
+                                        (keyup)="buscar()"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr
+                                *ngFor="let tesis of tesisLista | paginate: {itemsPerPage: 10, currentPage:pageActual} let i = index">
+                                <td>{{i+1}}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <div class="row d-flex justify-content-center">
+                                        <button class="btn btn-primary btn-sm" type="button" (click)="largeModal.show()"
+                                            style="margin-bottom: 4px" (click)="cargarAspirante(tesis.PK_USUARIO)">
+                                            <i class="fa fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row d-flex justify-content-center">
+                                        <button class="btn btn-primary btn-sm" type="button"
+                                            (click)="largeModal2.show()" style="margin-bottom: 4px">
+                                            <i class="fa fa-edit"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="d-flex justify-content-center">
+                        <pagination-controls class="myPagination" previousLabel="" nextLabel="" maxSize="10"
+                            (pageChange)="pageActual = $event">
+                        </pagination-controls>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        &lt;!&ndash; INICIO FOOTER &ndash;&gt;
+        <div class="container-fluid d-print-none">
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-11 col-xl-10">
+                    <div class="container-fluid padded">
+                        <div class="row justify-content-md-center align-items-center">
+                            <div class="col-3 text-left">
+                                <img style="min-width: 100%; max-width: 100%" src="assets/barras_grises.jpg">
+                            </div>
+                            <div class="col-4 text-center">
+                                <img style="min-width: 100%; max-width: 100%" src="assets/SEP_HOTIZONTAL_FB.png">
+                            </div>
+                            <div class="col-3 text-right">
+                                <img style="min-width: 100%; max-width: 100%" src="assets/barras_grises.jpg">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid">
+                        <div class="col text-center font-weight-bold">
+                            <div>
+                                INSTITUTO TECNOLÓGICO DE LEÓN
+                            </div>
+                            <div>
+                                Algunos derechos reservados © 2019
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid padded">
+                        <div class="row">
+                            <div class="col-12 col-sm-6 text-center">
+                                <div class="font-weight-bold" style="color: #007a33;">CAMPUS I</div>
+                                <div>Av. Tecnológico S/N - Fracc. Industrial Julián de Obregón</div>
+                                <div>León Guanajuato - C.P. 37290</div>
+                                <div>Teléfono (477) 710 5200 - Fax (477) 711 2072</div>
+                                <div>e-mail: tecleon@itleon.edu.mx</div>
+                            </div>
+                            <div class="col-12 col-sm-6 text-center">
+                                <div class="font-weight-bold" style="color: #007a33;">CAMPUS II</div>
+                                <div>Juan Alonso de Torres No. 3542 - Col. San José de Piletas</div>
+                                <div>León Guanajuato - C.P. 37330</div>
+                                <div>Teléfono (477) 710 5202 - Fax (477) 711 2072</div>
+                                <div>e-mail: tecleon@itleon.edu.mx</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        &lt;!&ndash; FIN FOOTER &ndash;&gt;
+    </div>
+
+</div>
+
+<div bsModal #largeModal2="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Solicitud</h4>
+                <button type="button" class="close" (click)="largeModal2.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="text-input">Nombre solicitante</label>
+                    <div class="col-md-9">
+                        <input type="text" [(ngModel)]="nombreSolicitante" class="form-control" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="text-input">Correo solicitante</label>
+                    <div class="col-md-9">
+                        <input type="text" [(ngModel)]="correoSolicitante" class="form-control" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="textarea-input">Motivo de la solicitud</label>
+                    <div class="col-md-9">
+                        <textarea [(ngModel)]="motivo" rows="9" class="form-control"
+                            placeholder="Motivos..."></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="largeModal2.hide()">Cerrar</button>
+                <button type="button" class="btn btn-primary" (click)="enviarCorreo()"
+                    (click)="largeModal2.hide()">Enviar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+-->

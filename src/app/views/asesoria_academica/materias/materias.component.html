@@ -15,9 +15,9 @@
           <li class="nav-item">
             <a class="nav-link active" (click)="grupal()" href="#">Asesorïa Primer Semestre</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
               <a class="nav-link active" (click)="situacion()" href="#">Asesora Situaciön Acadëmica</a>
-            </li>
+            </li> -->
         </ul>
         <br><br>
         <div *ngIf="visindividual">
@@ -58,8 +58,8 @@
             <thead>
               <tr>
                 <th scope="row">#</th>
-                <th>ID ASESOR</th>
-                <th>ID ALUMNO</th>
+                <th>ASESOR</th>
+                <th>ALUMNO</th>
                 <th>MATERIA</th>
                 <th>DÍA</th>
                 <th>HORA</th>
@@ -92,8 +92,8 @@
               <tr
                 *ngFor="let ase of asesoria | paginate: {itemsPerPage: registrosPagina, currentPage:pageActual, id: 'first'} let i = index">
                 <td>{{i+1}}</td>
-                <td>{{ase.FK_ASESOR}}</td>
-                <td>{{ase.FK_ALUMNO}}</td>
+                <td>{{ase.NOMBRE+' '+ase.PRIMER_APELLIDO+' '+ase.SEGUNDO_APELLIDO}}</td>
+                <td>{{ase.n+' '+ase.ap+' '+ase.am}}</td>
                 <td>{{ase.MATERIA}}</td>
                 <td>{{ase.DIA}}</td>
                 <td>{{ase.HORA}}</td>
@@ -173,7 +173,7 @@
             <thead>
               <tr>
                 <th scope="row">#</th>
-                <th>ID ASESOR</th>
+                <th>ASESOR</th>
                 <th>ID GRUPO</th>
                 <th>MATERIA</th>
                 <th>DÍA</th>
@@ -207,6 +207,7 @@
               <tr
                 *ngFor="let ase of grupo | paginate: {itemsPerPage: registrosPagina1, currentPage:pageActual1, id: 'second'} let i = index">
                 <td>{{i+1}}</td>
+                <td>{{ase.NOMBRE+' '+ase.PRIMER_APELLIDO+' '+ase.SEGUNDO_APELLIDO}}</td>
                 <td>{{ase.FK_ASESOR}}</td>
                 <td>{{ase.CLAVE_GRUPO}}</td>
                 <td>{{ase.MATERIA}}</td>

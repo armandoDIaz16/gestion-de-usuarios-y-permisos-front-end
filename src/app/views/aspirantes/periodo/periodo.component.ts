@@ -33,7 +33,7 @@ export class PeriodoComponent implements OnInit {
   mostrarTipoExamen = null;
   mensajeUno = null;
   mensajeCero = null;
-
+  mensajeRechazado = null;
 
   constructor(
     private periodoService: PeriodoService,
@@ -64,6 +64,7 @@ export class PeriodoComponent implements OnInit {
         this.resultados = data[0].RESULTADOS;
         this.mensajeUno = data[0].MENSAJE_SEMESTRE;
         this.mensajeCero = data[0].MENSAJE_SEMESTRE_BIS;
+        this.mensajeRechazado = data[0].MENSAJE_RECHAZADO;
         this.tipoExamen = data[0].TIPO_APLICACION;
         if (this.resultados == 1) {
           this.mostrarPublicar = true;
@@ -334,7 +335,8 @@ export class PeriodoComponent implements OnInit {
         {
           "PK_PERIODO_PREFICHAS": this.idPeriodo,
           "MENSAJE_SEMESTRE": this.mensajeUno,
-          "MENSAJE_SEMESTRE_BIS": this.mensajeCero
+          "MENSAJE_SEMESTRE_BIS": this.mensajeCero,
+          "MENSAJE_RECHAZADO": this.mensajeRechazado
         });
       if (data) {
         this.loaderModal.hide();
