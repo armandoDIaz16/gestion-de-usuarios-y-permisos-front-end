@@ -22,9 +22,9 @@ export class DashboardComponent implements OnInit {
                     || parseInt(sessionStorage.getItem('tipo_usuario')) === 2
                 ) && parseInt(sessionStorage.getItem('primer_login')) === 1) {
                 if (parseInt(sessionStorage.getItem('tipo_usuario')) === 1) {
-                    this.router.navigateByUrl('/usuarios/perfil');
+                    this.router.navigateByUrl('/usuarios/1265530aa9b88c9ede2fd25bacf1001e');
                 } else if (parseInt(sessionStorage.getItem('tipo_usuario')) === 2) {
-                    this.router.navigateByUrl('/usuarios/perfil_docente');
+                    this.router.navigateByUrl('/usuarios/c67214e3855338c12a68dfa2c87eb47f');
                 }
             }
         }

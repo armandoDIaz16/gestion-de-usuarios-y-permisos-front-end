@@ -20,14 +20,14 @@
                 <td>{{encuesta.FECHA_RESPUESTA}}</td>
                 <td>
                     <a *ngIf="encuesta.ESTADO_APLICACION == 1; else elseBlockRespuesta"
-                       [routerLink]="['/tutorias/responder_encuesta']"
+                       [routerLink]="['/tutorias/745651e29c6bb18baf4a1118fa8a0fc5']"
                        [queryParams]="{pk_aplicacion_encuesta: encuesta.PK_APLICACION_ENCUESTA}"
                        class="btn btn-primary">
                         Responder
                     </a>
                     <ng-template #elseBlockRespuesta>
                         <a *ngIf=" encuesta.PK_ENCUESTA == 6; else elseReporte" class="btn btn-sm btn-success"
-                           [routerLink]="['/tutorias/reporte-encuesta']"
+                           [routerLink]="['/tutorias/d41ac8705ff2bfef62c749c4928edb98']"
                            [queryParams]="{aplicacion: encuesta.PK_APLICACION_ENCUESTA}">
                             Ver reporte
                         </a>

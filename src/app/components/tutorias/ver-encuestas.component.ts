@@ -65,7 +65,7 @@ export class VerEncuestasComponent implements OnInit {
 
     handleResponseGuardar(data) {
         if (data.data) {
-            this.router.navigateByUrl('/tutorias/encuestas');
+            this.router.navigateByUrl('/tutorias/6da5b4309f3cc102b3a2b7ac7e52a62c');
         }
     }
 

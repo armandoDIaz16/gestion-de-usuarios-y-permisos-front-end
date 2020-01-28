@@ -55,7 +55,7 @@ export class PerfilDocenteComponent implements OnInit {
         private perfil_service: PerfilService,
         private area_academica_service: AreaAcademicaServiceService
     ) {
-        this.perfil = <InterfacePerfil>{};
+        this.perfil = <InterfacePerfil> {};
         this.estados_civiles = [];
         this.areas_academicas = [];
         this.datos_codigo_postal = <InterfaceDatosCodigoPostal>{};

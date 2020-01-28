@@ -14,7 +14,7 @@
                     <div class="form-group text-center">
                         <div class="img">
                             <img *ngIf="this.perfil.FOTO_PERFIL == null" src="assets/img/avatars/default.svg" alt="" class="img img-thumbnail">
-                            <img *ngIf="this.perfil.FOTO_PERFIL != null" src="{{this.perfil_service.get_endpoint(this.perfil.FOTO_PERFIL)}}" alt="" class="img img-thumbnail">
+                            <img *ngIf="this.perfil.FOTO_PERFIL != null" src="{{this.perfil_service.get_url_back(this.perfil.FOTO_PERFIL)}}" alt="" class="img img-thumbnail">
                         </div>
                         <br>
                         <label class="btn btn-primary" style="cursor:pointer;">Cambiar foto de perfil

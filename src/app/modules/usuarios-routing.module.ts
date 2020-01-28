@@ -11,14 +11,14 @@ const routes: Routes = [
         },
         children: [
             {
-                path: 'perfil',
+                path: '1265530aa9b88c9ede2fd25bacf1001e', // perfil_alumno
                 component: PerfilComponent,
                 data: {
                     title: 'Usuarios'
                 }
             },
             {
-                path: 'perfil_docente',
+                path: 'c67214e3855338c12a68dfa2c87eb47f', // perfil_empleado
                 component: PerfilDocenteComponent,
                 data: {
                     title: 'Usuarios'

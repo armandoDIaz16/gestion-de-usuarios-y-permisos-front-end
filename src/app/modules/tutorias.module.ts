@@ -14,7 +14,7 @@ import {TutoriasRoutingModule} from './tutorias-routing.module';
 // Component
 import {CollapseModule, TooltipModule} from 'ngx-bootstrap';
 import {UsuariosTutoriasComponent} from '../components/tutorias/usuarios_tutorias.component';
-import {EncuestasComponent} from '../components/tutorias/encuestas.component';
+import {EncuestasComponent} from '../components/tutorias/estudiante/encuestas.component';
 import {VerEncuestasComponent} from '../components/tutorias/ver-encuestas.component';
 import {ResponderEncuestaComponent} from '../components/tutorias/responder-encuesta.component';
 import {GruposComponent} from '../components/tutorias/grupos.component';

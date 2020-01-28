@@ -46,7 +46,7 @@
     <div class="offset-1 col-md-10">
         <div class="row">
             <div class="col-md-12">
-                <a [routerLink]="['/tutorias/grupos']" class="btn btn-primary">
+                <a [routerLink]="['/tutorias/a20e50d69f0242136be5a392524da972']" class="btn btn-primary">
                     <i class="fa fa-caret-square-o-left"></i>
                     Regresar a grupos
                 </a>
@@ -76,8 +76,8 @@
                 </td>
                 <td>
                     <b>
-                        <a [routerLink]="['/tutorias/horario-alumno']"
-                           [queryParams]="{alumno: alumno.PK_USUARIO}"
+                        <a [routerLink]="['/tutorias/8f15ac9b679bca1571f27fb7ec20ecce']"
+                           [queryParams]="{alumno: alumno.PK_ENCRIPTADA}"
                            class="btn btn-link" tooltip="Ver horario del estudiante">
                             {{alumno.NUMERO_CONTROL}}
                         </a>
@@ -85,7 +85,7 @@
                 </td>
                 <td>
                     <b>
-                        <a [routerLink]="['/tutorias/datos-alumno']"
+                        <a [routerLink]="['/tutorias/ae5e8aad886494179a1caaca506c192a']"
                            [queryParams]="{alumno: alumno.PK_ENCRIPTADA}"
                            class="btn btn-link" tooltip="Ficha de datos personales">
                             {{alumno.NOMBRE}} {{alumno.PRIMER_APELLIDO}} {{alumno.SEGUNDO_APELLIDO}}
@@ -94,8 +94,8 @@
                 </td>
                 <td>
                     <b>
-                        <a [routerLink]="['/tutorias/ver-encuestas']"
-                           [queryParams]="{alumno: alumno.PK_USUARIO}"
+                        <a [routerLink]="['/tutorias/7cb70e1b1cc26baefc65581481ff2c05']"
+                           [queryParams]="{alumno: alumno.PK_ENCRIPTADA}"
                            class="btn btn-link" tooltip="Ver detalles de encuestas">
                             {{alumno.ENCUESTAS_CONTESTADAS}} de {{alumno.ENCUESTAS_ACTIVAS}} contestadas
                         </a>

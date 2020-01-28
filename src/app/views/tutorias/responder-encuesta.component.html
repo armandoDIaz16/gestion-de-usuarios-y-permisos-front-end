@@ -2,12 +2,22 @@
     Responder encuesta
     <br><br>
 
-    <b>"{{this.encuesta_completa.NOMBRE}}"</b>
+    <div *ngIf="this.error == null">
+        <b>"{{this.encuesta_completa.NOMBRE}}"</b>
+    </div>
+
+    <div class="alert alert-danger text-center" [hidden]="!error">
+        La encuesta ya ha sido respondida
+        <br><br>
+        <a class="btn btn-danger px-4" routerLink="/tutorias/6da5b4309f3cc102b3a2b7ac7e52a62c">
+            Aceptar
+        </a>
+    </div>
 
 </h2>
 <br><br>
 
-<div class="row">
+<div class="row"  *ngIf="this.error == null">
     <div class="offset-md-2 col-md-8 offset-sm-1 col-sm-10 offset-xs-1 col-xs-10">
         <h3 *ngIf="this.encuesta_completa.OBJETIVO" class="text-center">
             Objetivo: {{this.encuesta_completa.OBJETIVO}}
@@ -175,7 +185,7 @@
                     <button type="submit" class="btn btn-primary px-4">
                         Guardar respuestas
                     </button>
-                    <a class="btn btn-danger px-4" routerLink="/tutorias/encuestas">Cancelar</a>
+                    <a class="btn btn-danger px-4" routerLink="/tutorias/6da5b4309f3cc102b3a2b7ac7e52a62c">Cancelar</a>
                 </div>
             </div>
         </form>

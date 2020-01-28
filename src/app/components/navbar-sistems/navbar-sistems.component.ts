@@ -77,13 +77,14 @@ export class NavbarSistemsComponent implements OnInit {
                                             .replace(new RegExp(/[ìíîï]/g), 'i')
                                             .replace(new RegExp(/[òóôõö]/g), 'o')
                                             .replace(new RegExp(/[ùúûü]/g), 'u')
-                                            + '/' + sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE.toLowerCase()
+                                            + '/' + sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].RUTA_MD5.trim(),
+                                            /*+ '/' + sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE.toLowerCase()
                                             .replace(/\s/g, '_')
                                             .replace(new RegExp(/[àáâãäå]/g), 'a')
                                             .replace(new RegExp(/[èéêë]/g), 'e')
                                             .replace(new RegExp(/[ìíîï]/g), 'i')
                                             .replace(new RegExp(/[òóôõö]/g), 'o')
-                                            .replace(new RegExp(/[ùúûü]/g), 'u'),
+                                            .replace(new RegExp(/[ùúûü]/g), 'u'),*/
                                     icon: 'icon-arrow-right'
                                 });
                                 // modulos.push(sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE);
@@ -111,7 +112,7 @@ export class NavbarSistemsComponent implements OnInit {
                         this.router.navigateByUrl('/residencias');
                         break;
                     case 'Tutorías':
-                        this.router.navigateByUrl('/tutorias/dashboard');
+                        this.router.navigateByUrl('/tutorias/dc7161be3dbf2250c8954e560cc35060'); // dashboard
                         break;
                     case 'asesoría académica':
                         this.router.navigateByUrl('/asesoria_academica');

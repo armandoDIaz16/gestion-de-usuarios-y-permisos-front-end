@@ -143,6 +143,7 @@ export class PerfilComponent implements OnInit {
                 this.perfil_service.cambia_foto(body).subscribe(
                     data => {
                         this.perfil.FOTO_PERFIL = data + '';
+                        this.display = 'none';
                     },
                     error => { }
                 );

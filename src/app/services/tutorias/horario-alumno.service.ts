@@ -13,7 +13,7 @@ export class HorarioAlumnoService extends GenericServicesService {
         super(http);
     }
 
-    get_horario(alumno: number): Observable<InterfaceAlumno> {
+    get_horario(alumno: any): Observable<InterfaceAlumno> {
         return this.http.get<InterfaceAlumno>(
             GenericServicesService.API_ENDPOINT + 'get_horario_alumno/' + alumno,
             GenericServicesService.HEADERS

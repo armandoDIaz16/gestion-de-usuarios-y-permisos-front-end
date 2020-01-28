@@ -1,18 +1,17 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {InterfaceEncuestaPendiente} from '../../models/tutorias/EncuestasModel';
-import {EncuestasService} from '../../services/tutorias/encuestas.service';
+import {InterfaceEncuestaPendiente} from '../../../models/tutorias/EncuestasModel';
+import {EncuestasService} from '../../../services/tutorias/encuestas.service';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
     selector: 'app-encuestas',
-    templateUrl: '../../views/tutorias/encuestas.component.html',
-    styleUrls: ['../../views/tutorias/encuestas.component.scss']
+    templateUrl: '../../../views/tutorias/estudiante/encuestas.component.html',
+    styleUrls: ['../../../views/tutorias/estudiante/encuestas.component.scss']
 })
 export class EncuestasComponent implements OnInit {
 
     public hay_encuestas = null;
     public lista_encuestas: InterfaceEncuestaPendiente[];
-    public usuario = sessionStorage.getItem('IdUsuario');
 
     @ViewChild('loaderModal') loaderModal;
     public display: string;
@@ -25,7 +24,7 @@ export class EncuestasComponent implements OnInit {
     ngOnInit() {
         this.display = 'block';
 
-        this.encuestas_service.get_encuestas(parseInt(this.usuario)).subscribe(
+        this.encuestas_service.get_encuestas(sessionStorage.getItem('IdEncriptada')).subscribe(
             data => this.handleResponse(data),
             error => this.handleError(error)
         );

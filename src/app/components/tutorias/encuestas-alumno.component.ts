@@ -30,7 +30,7 @@ export class EncuestasAlumnoComponent implements OnInit {
                 private router: Router,
                 private route: ActivatedRoute) {
         this.hay_encuestas = false;
-        this.usuario = parseInt(this.route.snapshot.queryParamMap.get('alumno'));
+        this.usuario = this.route.snapshot.queryParamMap.get('alumno');
         this.alumno = <InterfacePerfil>{};
 
         this.display = 'none';
@@ -39,7 +39,7 @@ export class EncuestasAlumnoComponent implements OnInit {
     async ngOnInit() {
         this.display = 'block';
 
-        this.encuestas_service.get_encuestas(parseInt(this.usuario)).subscribe(
+        this.encuestas_service.get_encuestas(this.usuario).subscribe(
             data => this.handleResponse(data),
             error => this.handleError(error)
         );
