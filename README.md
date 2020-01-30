@@ -6,14 +6,14 @@ El desarrollo del sistema es la suma de los esfuerzos de estudiantes e ingeniero
 
 ## Índice
 
-* [Instalación](#instalacin)
+* [Instalación](#instalación)
     * [Para Instalar Angular](#para-instalar-angular)
     * [Para Clonar el Proyecto](#para-clonar-el-proyecto)
     * [Crear el Archivo generic-services.ts](#crear-el-archivo-generic-servicests)
 * [Uso](#uso)
-* [Qué Incluye](#qu-incluye)
+* [¿Qué Incluye?](#qué-incluye)
 * [Versiones](#versiones)
-* [Documentación](#documentacin)
+* [Documentación](#documentación)
 * [Licencia y Derechos de Autor](#licencia-y-derechos-de-autor)
 * [Soporte](#soporte)
 
@@ -71,7 +71,7 @@ Para construir el proyecto para lanzar a producción con minificación, se pone 
 $ ng build
 ```
 
-## Qué Incluye
+## ¿Qué Incluye?
 
 Con la descarga del proyecto se obtienen las siguientes carpetas y archivos.
 
