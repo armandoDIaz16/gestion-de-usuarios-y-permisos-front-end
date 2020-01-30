@@ -7,13 +7,13 @@ El desarrollo del sistema es la suma de los esfuerzos de estudiantes e ingeniero
 ## Índice
 
 * [Instalación](#instalacin)
+    * [Para Instalar Angular](#para-instalar-angular)
     * [Para Clonar el Proyecto](#para-clonar-el-proyecto)
-    * [Para Crear el Archivo generic-services.ts](#para-crear-el-archivo-generic-servicests)
+    * [Crear el Archivo generic-services.ts](#crear-el-archivo-generic-servicests)
 * [Uso](#uso)
-* [Qué incluye](#qu-incluye)
+* [Qué Incluye](#qu-incluye)
 * [Versiones](#versiones)
 * [Documentación](#documentacin)
-* [Versionamiento](#versiones)
 * [Licencia y Derechos de Autor](#licencia-y-derechos-de-autor)
 * [Soporte](#soporte)
 
@@ -22,13 +22,13 @@ El desarrollo del sistema es la suma de los esfuerzos de estudiantes e ingeniero
 Se necesitan los siguientes programas antes de hacer la instalación del proyecto:
 * [NodeJS](https://nodejs.org/es/download/releases/) 8.11.3
 
-### Para instalar Angular
+### Para Instalar Angular
 * Angular 7.0.1 con el siguiente comando  en la terminal:
 ``` bash
 npm install @angular/cli@7.0.1
 ```
 
-### Para clonar el proyecto
+### Para Clonar el Proyecto
 ``` bash
 $ git clone http://10.0.6.86/mangel_mx/gestion-de-usuarios-y-permisos-front-end.git
 
@@ -40,7 +40,7 @@ $ npm install
 ```
 
 
-### Crear el archivo generic-services.ts
+### Crear el Archivo generic-services.ts
 En la ruta *../src/app/services/* se crea o modifica el archivo **generic-services.ts** 
 en base al archivo **generic-services.ts.example**.  
 Se deben descomentar dos de las siguientes líneas, dependiendo del ambiente en el que se quiera probar el sistema. 
@@ -71,7 +71,7 @@ Para construir el proyecto para lanzar a producción con minificación, se pone 
 $ ng build
 ```
 
-## Qué incluye
+## Qué Incluye
 
 Con la descarga del proyecto se obtienen las siguientes carpetas y archivos.
 
