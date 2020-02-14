@@ -24,4 +24,8 @@ export class GruposService extends GenericServicesService {
             GenericServicesService.HEADERS
         );
     }
+
+    get_url_back(ruta: string): string {
+        return GenericServicesService.ENDPOINT + ruta;
+    }
 }
