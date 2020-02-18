@@ -45,3 +45,17 @@ export interface InterfaceGrupoTutoriaDetalle {
     ENCUESTAS_CONTESTADAS: number;
     PERFIL_COMPLETO:       number;
 }
+
+export interface InterfaceHistoricoGrupoTutoria {
+    PK_GRUPO_TUTORIA:       number;
+    FK_USUARIO:             number;
+    CLAVE:                  string;
+    TIPO_GRUPO:             number;
+    PERIODO:                number;
+    TEXTO_PERIODO:          number;
+    CARRERA:                string;
+    CANTIDAD_ALUMNOS:       string;
+    ENCUESTAS_ACTIVAS?:     number;
+    ENCUESTAS_CONTESTADAS?: number;
+    EVALUACION_GRUPO:       number;
+}

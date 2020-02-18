@@ -1,11 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {HorarioAlumnoService} from '../../services/tutorias/horario-alumno.service';
-import {InterfaceAlumno} from '../../models/tutorias/AlumnoModel';
+import {HorarioAlumnoService} from '../../../services/tutorias/horario-alumno.service';
+import {InterfaceAlumno} from '../../../models/tutorias/AlumnoModel';
 
 @Component({
     selector: 'app-horario',
-    templateUrl: '../../views/tutorias/horario.component.html',
-    styleUrls: ['../../views/tutorias/horario.component.scss']
+    templateUrl: '../../../views/tutorias/estudiante/horario.component.html',
+    styleUrls: ['../../../views/tutorias/estudiante/horario.component.scss']
 })
 export class HorarioComponent implements OnInit {
 
@@ -40,10 +40,11 @@ export class HorarioComponent implements OnInit {
     ngOnInit() {
         this.display = 'block';
 
-        this.horario_service.get_horario(parseInt(sessionStorage['IdUsuario'])).subscribe(
+        this.horario_service.get_horario(sessionStorage['IdEncriptada']).subscribe(
             data => this.resultHorario(data),
             error => {
                 this.error = error.error.error;
+                this.display = 'none';
             }
         );
     }

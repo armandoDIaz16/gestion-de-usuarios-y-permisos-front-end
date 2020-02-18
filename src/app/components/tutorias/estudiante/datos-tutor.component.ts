@@ -1,11 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {InterfacePerfil} from '../../models/usuarios/PerfilModel';
-import {PerfilService} from '../../services/perfil.service';
+import {InterfacePerfil} from '../../../models/usuarios/PerfilModel';
+import {PerfilService} from '../../../services/perfil.service';
 
 @Component({
     selector: 'app-datos-tutor',
-    templateUrl: '../../views/tutorias/datos-tutor.component.html',
-    styleUrls: ['../../views/tutorias/datos-tutor.component.scss']
+    templateUrl: '../../../views/tutorias/estudiante/datos-tutor.component.html',
+    styleUrls: ['../../../views/tutorias/estudiante/datos-tutor.component.scss']
 })
 export class DatosTutorComponent implements OnInit {
 
