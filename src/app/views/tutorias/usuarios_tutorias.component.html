@@ -11,28 +11,36 @@
         </div>
         <br>
 
-        <!-- Inicio de tabla de coordiandores -->
+        <!-- Inicio de tabla de coordinadores -->
         <p class="text-center h4">Se mostrarán máximo 50 usuarios por búsqueda</p>
         <table class="table table-striped">
             <thead>
             <tr class="text-center">
                 <th>No.</th>
+                <th>Foto</th>
                 <th>Número de control/SIIA</th>
                 <th>Nombre</th>
+                <th>CURP</th>
                 <th>Correo</th>
+                <th>Área académica</th>
                 <th>Operaciones</th>
             </tr>
             </thead>
             <tbody *ngIf="this.lista_usuarios.length > 0; else elseBlock">
             <tr class="text-center" *ngFor="let usuario of this.lista_usuarios; let i = index">
                 <td>{{i + 1}}</td>
+                <td>
+                    <img *ngIf="this.usuario.FOTO_PERFIL != null" src="{{this.usuarios_service.get_url_back(this.usuario.FOTO_PERFIL)}}" alt="" class="img" width="60">
+                </td>
                 <td>{{usuario.NUMERO_CONTROL}}</td>
                 <td>{{usuario.NOMBRE}} {{usuario.PRIMER_APELLIDO}} {{usuario.SEGUNDO_APELLIDO}}</td>
+                <td>{{usuario.CURP}}</td>
                 <td>
                     {{usuario.CORREO1}}
                     <br>
                     {{usuario.CORREO_INSTITUCIONAL}}
                 </td>
+                <td>{{usuario.AREA_ACADEMICA}}</td>
                 <td>
                     <button class="btn btn-sm btn-warning" (click)="carga_usuario(usuario.PK_USUARIO)"
                             tooltip="Editar correo electrónico de usuario">
@@ -48,7 +56,7 @@
             <ng-template #elseBlock>
                 <tbody>
                 <tr class="text-center">
-                    <td colspan="5">No se encontraron usuarios</td>
+                    <td colspan="8">No se encontraron usuarios</td>
                 </tr>
                 </tbody>
             </ng-template>
