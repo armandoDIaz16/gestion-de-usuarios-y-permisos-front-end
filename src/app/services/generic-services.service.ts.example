@@ -64,6 +64,10 @@ export class GenericServicesService {
         );
     }
 
+    get_url_back(ruta: string): string {
+            return GenericServicesService.ENDPOINT + ruta;
+        }
+
 
     /* Ejemplo_Enviar_Archivo(evt: any) {
         var archivo: File = evt.target.files[0];
