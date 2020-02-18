@@ -65,8 +65,8 @@ export class GenericServicesService {
     }
 
     get_url_back(ruta: string): string {
-            return GenericServicesService.ENDPOINT + ruta;
-        }
+        return GenericServicesService.ENDPOINT + ruta;
+    }
 
 
     /* Ejemplo_Enviar_Archivo(evt: any) {

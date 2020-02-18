@@ -1,0 +1,65 @@
+<h2 class="text-center">Administración de jornadas/conferencias</h2>
+<!--
+<br><br>
+<div class="alert alert-danger" [hidden]="!error">
+    {{error}}
+</div>
+-->
+<br><br>
+
+<div class="row">
+    <div class="offset-1 col-md-10">
+        <!-- Inicio de grupos -->
+        <table class="table table-striped">
+            <thead>
+            <tr class="text-center">
+                <th>No.</th>
+                <th>Nombre expositor</th>
+                <th>Tema</th>
+                <th>Fecha</th>
+                <th>Lugar</th>
+                <th>Descripción</th>
+                <th>Currículum</th>
+                <th>Estado</th>
+                <th>Operaciones</th>
+            </tr>
+            </thead>
+            <tbody *ngIf="this.lista_conferencias.length > 0; else elseBlock">
+            <tr class="text-center" *ngFor="let conferencia of this.lista_conferencias; let i = index">
+                <td>{{i + 1}}</td>
+                <td>{{conferencia.NOMBRE_EXPOSITOR}}</td>
+                <td>{{conferencia.TEMA}}</td>
+                <td>{{conferencia.FECHA}}</td>
+                <td>{{conferencia.LUGAR}}</td>
+                <td>{{conferencia.DESCRIPCION}}</td>
+                <td>{{conferencia.CURRICULUM_EXPOSITOR}}</td>
+                <td>{{conferencia.ESTADO}}</td>
+                <td>
+                    <button class="btn btn-sm btn-primary">Ver</button>
+                </td>
+            </tr>
+            </tbody>
+            <ng-template #elseBlock>
+                <tbody>
+                <tr class="text-center">
+                    <td colspan="9">No se encontraron datos</td>
+                </tr>
+                </tbody>
+            </ng-template>
+        </table>
+        <!-- Fin grupos -->
+    </div>
+</div>
+
+<!-- INICIO VENTANA MODAL DE CARGA -->
+<div bsModal #loaderModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-hidden="false"
+     [config]="{backdrop: 'static',keyboard: false}" [style.display]="this.display">
+    <!--[config]="{backdrop: 'static',keyboard: false}">-->
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content"
+             style="background-color: rgba(51, 51, 51, 0.8); background-clip: padding-box; border: 1px solid rgba(0, 0, 0, 0);">
+            <app-loader></app-loader>
+        </div>
+    </div>
+</div>
+<!-- FIN VENTANA MODAL DE CARGA -->

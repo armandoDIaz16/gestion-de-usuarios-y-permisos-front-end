@@ -1,11 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {SeguimientoServiceService} from '../../services/seguimiento-service.service';
-import {InterfaceSeguimiento} from '../../views/_models/GeneralModels';
+import {SeguimientoServiceService} from '../../../services/seguimiento-service.service';
+import {InterfaceSeguimiento} from '../../../views/_models/GeneralModels';
 
 @Component({
     selector: 'app-seguimiento',
-    templateUrl: '../../views/tutorias/seguimiento.component.html',
-    styleUrls: ['../../views/tutorias/seguimiento.component.scss']
+    templateUrl: '../../../views/tutorias/estudiante/seguimiento.component.html',
+    styleUrls: ['../../../views/tutorias/estudiante/seguimiento.component.scss']
 })
 export class SeguimientoComponent implements OnInit {
 

@@ -1,11 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {InterfacecCarreraGruposTutoria} from '../../models/tutorias/GrupoModel';
-import {GruposService} from '../../services/grupos.service';
+import {InterfacecCarreraGruposTutoria} from '../../../models/tutorias/GrupoModel';
+import {GruposService} from '../../../services/grupos.service';
 
 @Component({
     selector: 'app-grupos',
-    templateUrl: '../../views/tutorias/grupos.component.html',
-    styleUrls: ['../../views/tutorias/grupos.component.scss']
+    templateUrl: '../../../views/tutorias/tutor/grupos.component.html',
+    styleUrls: ['../../../views/tutorias/tutor/grupos.component.scss']
 })
 export class GruposComponent implements OnInit {
 
@@ -46,7 +46,7 @@ export class GruposComponent implements OnInit {
             this.grupos_service.get_url_back('get_pdf_perfil_grupal_ingreso?grupo=' + pk_grupo),
             '_blank',
             ''
-        )
+        );
     }
 
 }
