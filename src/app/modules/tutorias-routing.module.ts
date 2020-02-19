@@ -4,7 +4,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {UsuariosTutoriasComponent} from '../components/tutorias/usuarios_tutorias.component';
 import {EncuestasComponent} from '../components/tutorias/estudiante/encuestas.component';
 import {ResponderEncuestaComponent} from '../components/tutorias/responder-encuesta.component';
-import {GruposComponent} from '../components/tutorias/grupos.component';
+import {GruposComponent} from '../components/tutorias/tutor/grupos.component';
 import {DetalleGrupoComponent} from '../components/tutorias/detalle-grupo.component';
 import {DatosAlumnoComponent} from '../components/tutorias/datos-alumno.component';
 import {CitasAlumnoComponent} from '../components/tutorias/citas-alumno.component';
@@ -15,10 +15,12 @@ import {RespuestasEncuestaComponent} from '../components/tutorias/respuestas-enc
 import {ReporteEncuestaComponent} from '../components/tutorias/reporte-encuesta.component';
 import {CoordinadoresInstitucionalesComponent} from '../components/tutorias/coordinadores-institucionales.component';
 import {CoordinadoresDepartamentalesComponent} from '../components/tutorias/coord_institucional/coordinadores-departamentales.component';
-import {DatosTutorComponent} from '../components/tutorias/datos-tutor.component';
-import {HorarioComponent} from '../components/tutorias/horario.component';
-import {SeguimientoComponent} from '../components/tutorias/seguimiento.component';
+import {DatosTutorComponent} from '../components/tutorias/estudiante/datos-tutor.component';
+import {HorarioComponent} from '../components/tutorias/estudiante/horario.component';
+import {SeguimientoComponent} from '../components/tutorias/estudiante/seguimiento.component';
 import {DashboardComponent} from '../components/tutorias/dashboard.component';
+import {HistoricoGruposComponent} from '../components/tutorias/tutor/historico-grupos.component';
+import {ConferenciasComponent} from '../components/tutorias/coord_institucional/conferencias.component';
 
 const routes: Routes = [
     {
@@ -117,6 +119,13 @@ const routes: Routes = [
                     title: 'Resporte de encuesta'
                 }
             },
+            {
+                path: 'e150022cbe6813b2d7efe161c9641e93', // historico_grupos_tutor
+                component: HistoricoGruposComponent,
+                data: {
+                    title: 'Ver histórico de grupos'
+                }
+            },
             /* *********************************************************** *
              * ********** RUTAS DE COORDINADORES DEPARTAMENTALES ********* *
              * *********************************************************** */
@@ -124,6 +133,13 @@ const routes: Routes = [
             /* ***************************************************************** *
              * ********** RUTAS DE COORD INSTITUCIONALES/ADMINISTRADOR ********* *
              * ***************************************************************** */
+            {
+                path: '2a107d6270125877f8ff8c3a223501c2', // conferencias_administrador
+                component: ConferenciasComponent,
+                data: {
+                    title: 'Administración de jornadas/conferencias'
+                }
+            },
 
             /* **************************************************** *
              * ********** RUTAS DE COORD INVEST EDUCATIVA ********* *
