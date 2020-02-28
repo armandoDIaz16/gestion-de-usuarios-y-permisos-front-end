@@ -21,6 +21,8 @@ export class PeriodosComponent implements OnInit {
     // Modales
   @ViewChild('loaderModal') loaderModal;
   @ViewChild('loaderModalEdit')loaderModalEdit;
+    @ViewChild('loaderModal2') loaderModal2;
+    public display: string;
 
   // iconos
     edit = faEdit;
@@ -49,19 +51,23 @@ export class PeriodosComponent implements OnInit {
 
   ngOnInit() {
     this.lista_periodos = null;
-
+    this.display = 'block';
     // llamada servicio consulta
     this.periodo_service.consulta_periodos().subscribe(
       data => {
         this.lista_periodos = data;
         // let {} = this.lista_periodos;
         // tslint:disable-next-line: forin
+          console.log(this.lista_periodos);
         for ( const i in this.lista_periodos) {
           const fecha = new Date(this.lista_periodos[i].FECHA_FIN);
           this.lista_periodos[i].FECHA_FIN = fecha;
         }
+          this.display = 'none';
       },
       error => {
+          this.display = 'none';
+
           Swal.fire({
               icon: 'error',
               title: '¡Lo sentimos ha ocurrido un error, intentalo más tarde!',
@@ -242,47 +248,6 @@ export class PeriodosComponent implements OnInit {
                 // this.ngOnInit();
             }
         });
-      /*if (confirm('¿Está seguro que desea registrar el nuevo periodo?')) {
-        // definiendo body
-        let body = {
-          nombre_periodo: this.periodo.nombre_periodo,
-          fecha_inicio:   this.periodo.fecha_inicio,
-          fecha_fin:      this.periodo.fecha_fin
-          // tipo_periodo:   this.periodo.estado_periodo
-        };
-
-        // registrar mediante WS
-        this.periodo_service.registra_periodo(body).subscribe(
-          data => {  // cuando sale bien todo
-            if (data) {
-              this._init_components();
-              this.loaderModal.hide();
-                Swal.fire({
-                    icon: 'success',
-                    title: '¡Se ha registrado el nuevo periodo correctamente!',
-                    showConfirmButton: true,
-                    confirmButtonText: 'OK',
-                    // timer: 2000
-                });
-              // alert('Se ha registrado el periodo');
-              //  volver a consultar los periodos
-              this.ngOnInit();
-            }
-          },
-          error => { // cuando ocurre un error
-            // alert('Ha ocurrido un error');
-              Swal.fire({
-                  icon: 'error',
-                  title: '¡Lo sentimos ha ocurrido un error, intentalo más tarde!',
-                  showConfirmButton: true,
-                  confirmButtonText: 'OK',
-                  // timer: 2000
-              });
-          }
-      );
-
-      // this.ngOnInit();
-      }*/
     }
   }
 
@@ -395,47 +360,6 @@ export class PeriodosComponent implements OnInit {
                 // this.ngOnInit();
             }
         });
-  // if (confirm('¿Está seguro que desea modificar el  periodo?')
-  // ) {
-  //   // definiendo body
-  //   let body = {
-  //     pk_periodo_cado: this.periodo.pk_periodo_cado,
-  //     nombre_periodo: this.periodo.nombre_periodo,
-  //     fecha_inicio:   this.periodo.fecha_inicio,
-  //     fecha_fin:      this.periodo.fecha_fin
-  //     // tipo_periodo:   this.periodo.estado_periodo
-  //   };
-  //
-  //   // registrar mediante WS
-  //   this.periodo_service.modificar_periodo(body).subscribe(
-  //     data => {  // cuando sale bien todo
-  //       if (data) {
-  //         this._init_components();
-  //         this.loaderModalEdit.hide();
-  //           Swal.fire({
-  //               icon: 'success',
-  //               title: '¡Se ha modificado el periodo correctamente!',
-  //               showConfirmButton: true,
-  //               confirmButtonText: 'OK',
-  //               // timer: 2000
-  //           });
-  //         //  volver a consultar los periodos
-  //         this.ngOnInit();
-  //       }
-  //     },
-  //     error => { // cuando ocurre un error
-  //         Swal.fire({
-  //             icon: 'error',
-  //             title: '¡Lo sentimos ha ocurrido un error, intentalo más tarde!',
-  //             showConfirmButton: true,
-  //             confirmButtonText: 'OK',
-  //             // timer: 2000
-  //         });
-  //     }
-  // );
-  //
-  // // this.ngOnInit();
-  // }
     }
   }
 

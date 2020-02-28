@@ -6,6 +6,8 @@ import { PeriodosComponent } from '../components/capacitacion_docente/periodos.c
 import { CursosComponent } from '../components/capacitacion_docente/cursos.component';
 import { BienvenidoComponent } from '../components/capacitacion_docente/bienvenido.component';
 import { CapturaCursoComponent } from '../components/capacitacion_docente/captura-curso.component';
+import { InstructorCvComponent } from '../components/capacitacion_docente/instructor-cv.component';
+import {VerCursoComponent} from '../components/capacitacion_docente/ver-curso.component';
 
 const routes: Routes = [
   {
@@ -40,6 +42,20 @@ const routes: Routes = [
               component: CapturaCursoComponent,
               data: {
                   title: 'Captura cursos'
+              }
+          },
+          {
+              path: 'de3ec0aa2234aa1e3ee275bbc715c6c9/:id', // cv
+              component: InstructorCvComponent,
+              data: {
+                  title: 'CV'
+              }
+          },
+          {
+              path: '719d6190109101a74bec7860e0d41d99/:idcurso', // ver_curso
+              component: VerCursoComponent,
+              data: {
+                  title: 'Curso'
               }
           },
       ]

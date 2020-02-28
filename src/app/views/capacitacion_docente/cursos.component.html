@@ -29,181 +29,24 @@
 <!--            <input class="form-control  input-group-lg  d-inline" type="search" placeholder="Buscar un curso" aria-label="Search">-->
         </div>
     </div>
-    <div class="row">
+    <div *ngFor="let curso of this.lista_periodos_cursos" class="row">
         <div class="col-12">
         <p-accordion>
-            <p-accordionTab selected="true" class="text-center" header="PERIODO INTERSEMESTRAL DICIEMBRE-ENERO 2020">
-                <div class="container container-fluid px-0">
-                    <div class="row">
-                        <h3 class="text-success font-weight-bold" >Actualización Profesional</h3>
-                    </div>
-                    <div class="row mt-2">
-<!--                        curso -->
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-body p-0 texto-card">
-                                    <div class="row px-3">
-                                        <div class="col-3 px-0">
-                                            <img class="card-img-top" style="width:100%; height:100%;" src="assets/img/capacitacion_docente/curso1.png" alt="Card image cap">
-                                        </div>
-                                        <div class="col-1 py-1 px-0" >
-                                            <hr class="hr-vertical">
-                                        </div>
-                                        <div class="col-6 py-3 px-0">
-                                            <div class="row text-left pr-4">
-                                                <div class="col-12">
-                                                    <div class="row">
-                                                        <div class="col-2 text-right">
-                                                            <label>Curso:</label>
-                                                        </div>
-                                                        <div class="col-10">
-                                                            <label class="font-weight-bold">Estrategias Docentes en el aula para el fomento de la investigación científica y tecnológica</label>
-                                                        </div>
-                                                    </div>
-<!--                                                    fin curso-->
-                                                    <div class="row">
-                                                        <div class="col-2 text-right" >
-                                                            <label>Por:</label>
-                                                        </div>
-                                                        <div class="col-10">
-                                                           <label class="font-weight-bold"> <a href="#">José Gerardo Carpio Flores</a></label>
-                                                        </div>
-                                                    </div>
-<!--                                                    fin instructor-->
-                                                    <div class="row">
-                                                        <div class="col-2 text-right">
-                                                            <label>Área:</label>
-                                                        </div>
-                                                        <div class="col-10">
-                                                            <label class="font-weight-bold">Sistemas Computacionales</label>
-                                                        </div>
-                                                    </div>
-<!--                                                    fin area-->
-                                                    <div class="row">
-                                                        <div class="col-2 pl-0 text-right">
-                                                            <label>
-                                                                Fecha:</label>
-                                                        </div>
-                                                        <div class="col-10">
-                                                            <label class="font-weight-bold"><fa-icon [icon]="fecha"></fa-icon>
-                                                                12/12/2019 - 12/01/2020</label>
-                                                        </div>
-                                                    </div>
-<!--                                                    fin fecha -->
-                                                    <div class="row">
-                                                        <div class="col-2 text-right">
-                                                            <label>Hora:</label>
-                                                        </div>
-                                                        <div class="col-10">
-                                                            <label class="font-weight-bold"><fa-icon [icon]="hora" ></fa-icon>
-                                                                9:00 am - 12:00 pm</label>
-                                                        </div>
+            <p-accordionTab  class="text-center" header="
+                            {{curso[0].NOMBRE_PERIODO   }}
+                            {{curso[0].FECHA_INICIO | date:'MMMM'| uppercase }} -
+                            {{curso[0].FECHA_FIN | date:'MMMM' | uppercase }}
+                            {{curso[0].FECHA_FIN | date:'yyyy' }}">
 
-                                                    </div>
-<!--                                                    fin hora  -->
-                                                </div>
-                                            </div>
-<!--                                            fin renglon texto-->
-                                        </div>
-<!--                                        fin texto-->
-                                        <div class="col-2 py-5 pl-0 pr-1">
-                                            <a href="#" class="btn btn-info  my-1 btn-block"><fa-icon [icon]="info"></fa-icon> Ver</a>
-                                            <button class="btn btn-warning  my-1 btn-block"><fa-icon [icon]="edit"></fa-icon>Editar</button>
-                                            <button class="btn btn-danger  my-1 btn-block"><fa-icon [icon]="delete"></fa-icon>Eliminar</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+<!--                <div class="container container-fluid px-0">-->
+                        <div class="row">
+                            <h3 class="text-success font-weight-bold" >Actualización Profesional</h3>
                         </div>
-<!--                        fin curso-->
-
-
-                    </div>
-                    <div  class="row">
-                        <h3 class="font-weight-bold text-primary">Formación Docente</h3>
-                    </div>
-                    <div class="row mt-2">
-                        <!--                        curso -->
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-body p-0 texto-card">
-                                    <div class="row px-3">
-                                        <div class="col-3 px-0 m-3">
-                                            <img class="card-img-top img-fluid"  src="assets/img/capacitacion_docente/curso1.png" alt="Card image cap">
-                                        </div>
-                                        <div class="col-1 py-1 px-0" >
-                                            <hr class="hr-vertical">
-                                        </div>
-                                        <div class="col-6 py-1 px-0">
-                                            <div class="row text-left pr-4">
-                                                <div class="col-12">
-                                                    <div class="row">
-                                                        <div class="col-2 text-right">
-                                                            <label>Curso:</label>
-                                                        </div>
-                                                        <div class="col-10">
-                                                            <label class="font-weight-bold">Estrategias Docentes en el aula para el fomento de la investigación científica y tecnológica</label>
-                                                        </div>
-                                                    </div>
-                                                    <!--                                                    fin curso-->
-                                                    <div class="row">
-                                                        <div class="col-2 text-right" >
-                                                            <label>Por:</label>
-                                                        </div>
-                                                        <div class="col-10">
-                                                            <label class="font-weight-bold"> <a href="#">José Gerardo Carpio Flores</a></label>
-                                                        </div>
-                                                    </div>
-                                                    <!--                                                    fin instructor-->
-                                                    <div class="row">
-                                                        <div class="col-2 text-right">
-                                                            <label>Área:</label>
-                                                        </div>
-                                                        <div class="col-10">
-                                                            <label class="font-weight-bold">Sistemas Computacionales</label>
-                                                        </div>
-                                                    </div>
-                                                    <!--                                                    fin area-->
-                                                    <div class="row">
-                                                        <div class="col-2 pl-0 text-right">
-                                                            <label>
-                                                                Fecha:</label>
-                                                        </div>
-                                                        <div class="col-10">
-                                                            <label class="font-weight-bold"><fa-icon [icon]="fecha"></fa-icon>
-                                                                12/12/2019 - 12/01/2020</label>
-                                                        </div>
-                                                    </div>
-                                                    <!--                                                    fin fecha -->
-                                                    <div class="row">
-                                                        <div class="col-2 text-right">
-                                                            <label>Hora:</label>
-                                                        </div>
-                                                        <div class="col-10">
-                                                            <label class="font-weight-bold"><fa-icon [icon]="hora" ></fa-icon>
-                                                                9:00 am - 12:00 pm</label>
-                                                        </div>
-
-                                                    </div>
-                                                    <!--                                                    fin hora  -->
-                                                </div>
-                                            </div>
-                                            <!--                                            fin renglon texto-->
-                                        </div>
-                                        <!--                                        fin texto-->
-                                        <div class="col-2 py-4 pl-0 pr-1">
-                                            <a href="#" class="btn btn-info  my-1 btn-block"><fa-icon [icon]="info"></fa-icon> Ver</a>
-                                            <button class="btn btn-warning  my-1 btn-block"><fa-icon [icon]="edit"></fa-icon>Editar</button>
-                                            <button class="btn btn-danger  my-1 btn-block"><fa-icon [icon]="delete"></fa-icon>Eliminar</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
+<!--                comienzan cards-->
+<!--                <div>-->
+                    <div *ngIf="curso[0].CURSOSAP.length>0; else elseCurso"  class="card-group">
                         <!--                        fin curso-->
-                        <div class="col-4">
+                        <div *ngFor="let item of curso[0].CURSOSAP" class="col-4 my-2">
                             <div class="card">
                                 <div class="card-body p-0 texto-card">
                                     <div class="row px-3">
@@ -211,87 +54,118 @@
                                             <img class="card-img-top img-fluid"  src="assets/img/capacitacion_docente/curso1.png" alt="Card image cap">
                                         </div>
                                     </div>
-<!--                                    FIN RENGLON IMG-->
-<!--                                    <div class="row text-left px-2">-->
-<!--                                        <div class="col-12">-->
-                                            <div class="row text-left pl-3">
-                                                <div class="col-12">
-                                                    <div class="row">
-                                                        <div class="col-2 text-right px-1">
-                                                            <label>Curso:</label>
-                                                        </div>
-                                                        <div class="col-10">
-                                                            <label class="font-weight-bold">Estrategias Docentes en el aula para el fomento de la investigación científica y tecnológica</label>
-                                                        </div>
-                                                    </div>
-                                                    <!--                                                    fin curso-->
-                                                    <div class="row">
-                                                        <div class="col-2 text-right px-1" >
-                                                            <label>Por:</label>
-                                                        </div>
-                                                        <div class="col-10">
-                                                            <label class="font-weight-bold"> <a href="#">José Gerardo Carpio Flores</a></label>
-                                                        </div>
-                                                    </div>
-                                                    <!--                                                    fin instructor-->
-                                                    <div class="row">
-                                                        <div class="col-2 text-right px-1">
-                                                            <label>Área:</label>
-                                                        </div>
-                                                        <div class="col-10">
-                                                            <label class="font-weight-bold">Sistemas Computacionales</label>
-                                                        </div>
-                                                    </div>
-                                                    <!--                                                    fin area-->
-                                                    <div class="row">
-                                                        <div class="col-2  text-right px-1">
-                                                            <label>
-                                                                Fecha:</label>
-                                                        </div>
-                                                        <div class="col-10">
-                                                            <label class="font-weight-bold"><fa-icon [icon]="fecha"></fa-icon>
-                                                                12/12/2019 - 12/01/2020</label>
-                                                        </div>
-                                                    </div>
-                                                    <!--                                                    fin fecha -->
-                                                    <div class="row">
-                                                        <div class="col-2 text-right px-1">
-                                                            <label>Hora:</label>
-                                                        </div>
-                                                        <div class="col-10">
-                                                            <label class="font-weight-bold"><fa-icon [icon]="hora" ></fa-icon>
-                                                                9:00 am - 12:00 pm</label>
-                                                        </div>
+                                    <!--                                    FIN RENGLON IMG-->
+                                    <!--                                    <div class="row text-left px-2">-->
+                                    <!--                                        <div class="col-12">-->
+                                    <div class="row text-left pl-3">
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div class="col-2 text-right px-1">
+                                                    <label>Curso:</label>
+                                                </div>
+                                                <div class="col-10">
+                                                    <label class="font-weight-bold">{{item[0].NOMBRE_CURSO }}</label>
+                                                </div>
+                                            </div>
+                                            <!--                                                    fin curso-->
+                                            <div *ngFor="let instructor of item[0].INSTRUCTORES" class="row">
+                                                <div class="col-2 text-right px-1" >
+                                                    <label>Por:</label>
+                                                </div>
+                                                <div class="col-10">
+                                                    <label  class="font-weight-bold"> <a
+                                                        [routerLink]="['..','de3ec0aa2234aa1e3ee275bbc715c6c9',instructor.PK_PARTICIPANTE_IMPARTE]"
+                                                    >{{instructor.NOMBRE_INSTRUCTOR }}</a></label>
+                                                </div>
+                                            </div>
+                                            <!--                                                    fin instructor-->
+                                            <div class="row">
+                                                <div class="col-2 text-right px-1">
+                                                    <label>Área:</label>
+                                                </div>
+                                                <div class="col-10">
+                                                    <label class="font-weight-bold">{{item[0].NOMBRE_AREA==null
+                                                        ?('Para todas las áreas' | uppercase):(item[0].NOMBRE_AREA | uppercase) }}</label>
+                                                </div>
+                                            </div>
+                                            <!--                                                    fin area-->
+                                            <div class="row">
+                                                <div class="col-2  text-right px-1">
+                                                    <label>
+                                                        Fecha:</label>
+                                                </div>
+                                                <div class="col-10">
+                                                    <label class="font-weight-bold"><fa-icon [icon]="fecha"></fa-icon>
+                                                        {{item[0].FECHA_INICIO | date:'dd/MM/yyyy'}} -
+                                                        {{item[0].FECHA_FIN | date:'dd/MM/yyyy'}}  </label>
+                                                    <!--    12/12/2019 - 12/01/2020-->
+                                                </div>
+                                            </div>
+                                            <!--                                                    fin fecha -->
+                                            <div class="row">
+                                                <div class="col-2 text-right px-1">
+                                                    <label>Hora:</label>
+                                                </div>
+                                                <div class="col-10">
+                                                    <label class="font-weight-bold">
+                                                        (24 hrs)
+                                                        <fa-icon [icon]="hora" ></fa-icon>
+                                                        {{item[0].HORA_INICIO | date:'HH:mm'}} -
+                                                        {{item[0].HORA_FIN | date:'HH:mm' }}
+                                                      </label>
+<!--                                                    9:00 am - 12:00 pm-->
+                                                </div>
 
-                                                    </div>
-                                                    <!--                                                    fin hora  -->
-<!--                                                </div>-->
-<!--                                            </div>-->
+                                            </div>
+                                            <!--                                                    fin hora  -->
+                                            <!--                                                </div>-->
+                                            <!--                                            </div>-->
                                         </div>
                                     </div>
-<!--                                    FIN RENGLON TEXTO-->
-<!--                                    <div class="card-body p-0 texto-card">-->
+                                    <!--                                    FIN RENGLON TEXTO-->
+                                    <!--                                    <div class="card-body p-0 texto-card">-->
                                     <hr>
-                                        <div class="row px-3">
-                                            <div class="col-4">
-                                                <a href="#" class="btn btn-link  my-1 btn-block"><fa-icon [icon]="info"></fa-icon> Ver</a>
-                                            </div>
-                                            <div class="col-4 px-1">
-                                                <button class="btn btn-link   my-1 btn-block"><fa-icon [icon]="edit"></fa-icon>Editar</button>
-                                            </div>
-                                            <div class="col-4 px-1">
-                                                <button class="btn btn-link my-1 btn-block"><fa-icon [icon]="delete"></fa-icon>Eliminar</button>
-                                            </div>
+                                    <div class="row px-3">
+                                        <div class="col-4">
+                                            <a [routerLink]="['..','719d6190109101a74bec7860e0d41d99',item[0].PK_CAT_CURSO_CADO]"
+                                               class="btn btn-link  my-1 btn-block"><fa-icon [icon]="info"></fa-icon> Ver</a>
                                         </div>
-<!--                                        fin renglon botons-->
+                                        <div class="col-4 px-1">
+                                            <button class="btn btn-link   my-1 btn-block"><fa-icon [icon]="edit"></fa-icon>Editar</button>
+                                        </div>
+                                        <div class="col-4 px-1">
+                                            <button class="btn btn-link my-1 btn-block"><fa-icon [icon]="delete"></fa-icon>Eliminar</button>
+                                        </div>
+                                    </div>
+                                    <!--                                        fin renglon botons-->
 
-<!--                                    </div>-->
-
+                                    <!--                                    </div>-->
+<!--                                {{item.TIPO_CURSO}}-->
                                 </div>
                             </div>
                         </div>
                         <!--             PRUEBA VERTICAL           fin curso-->
-                        <div class="col-4">
+                        <!--                        fin col 3-->
+                    </div>
+                <ng-template #elseCurso>
+                    <div class="card-group">
+                            <div class="text-center">
+                                <div class="alert alert-light text-center" role="alert">
+                                    <h4>No se han Registrado cursos de Actualización profesional en este periodo</h4>
+                                </div>
+                            </div>
+                    </div>
+                </ng-template>
+<!--                </div>-->
+<!--fin actualizacion profesional -->
+<!--                </div>-->
+                    <div  class="row">
+                        <h3 class="font-weight-bold text-primary">Formación Docente</h3>
+                    </div>
+
+                    <div *ngIf="curso[0].CURSOSFD.length>0; else elseCurso2" class="card-group">
+                        <!--                        fin curso-->
+                        <div *ngFor="let item of curso[0].CURSOSFD" class="col-4 my-2">
                             <div class="card">
                                 <div class="card-body p-0 texto-card">
                                     <div class="row px-3">
@@ -309,16 +183,19 @@
                                                     <label>Curso:</label>
                                                 </div>
                                                 <div class="col-10">
-                                                    <label class="font-weight-bold">Estrategias Docentes en el aula para el fomento de la investigación científica y tecnológica</label>
+                                                    <label class="font-weight-bold">{{item[0].NOMBRE_CURSO }}</label>
                                                 </div>
                                             </div>
                                             <!--                                                    fin curso-->
-                                            <div class="row">
+                                            <div *ngFor="let instructor of item[0].INSTRUCTORES" class="row">
                                                 <div class="col-2 text-right px-1" >
                                                     <label>Por:</label>
                                                 </div>
                                                 <div class="col-10">
-                                                    <label class="font-weight-bold"> <a href="#">José Gerardo Carpio Flores</a></label>
+
+                                                    <label  class="font-weight-bold"> <a
+                                                        [routerLink]="['..','de3ec0aa2234aa1e3ee275bbc715c6c9',instructor.PK_PARTICIPANTE_IMPARTE]"
+                                                    >{{instructor.NOMBRE_INSTRUCTOR }}</a></label>
                                                 </div>
                                             </div>
                                             <!--                                                    fin instructor-->
@@ -327,7 +204,8 @@
                                                     <label>Área:</label>
                                                 </div>
                                                 <div class="col-10">
-                                                    <label class="font-weight-bold">Sistemas Computacionales</label>
+                                                    <label class="font-weight-bold">{{item[0].NOMBRE_AREA==null
+                                                        ?('Para todas las áreas' | uppercase):(item[0].NOMBRE_AREA | uppercase) }}</label>
                                                 </div>
                                             </div>
                                             <!--                                                    fin area-->
@@ -338,7 +216,9 @@
                                                 </div>
                                                 <div class="col-10">
                                                     <label class="font-weight-bold"><fa-icon [icon]="fecha"></fa-icon>
-                                                        12/12/2019 - 12/01/2020</label>
+                                                        {{item[0].FECHA_INICIO | date:'dd/MM/yyyy'}} -
+                                                        {{item[0].FECHA_FIN | date:'dd/MM/yyyy'}}  </label>
+                                                    <!--    12/12/2019 - 12/01/2020-->
                                                 </div>
                                             </div>
                                             <!--                                                    fin fecha -->
@@ -347,8 +227,13 @@
                                                     <label>Hora:</label>
                                                 </div>
                                                 <div class="col-10">
-                                                    <label class="font-weight-bold"><fa-icon [icon]="hora" ></fa-icon>
-                                                        9:00 am - 12:00 pm</label>
+                                                    <label class="font-weight-bold">
+                                                        (24 hrs)
+                                                        <fa-icon [icon]="hora" ></fa-icon>
+                                                        {{item[0].HORA_INICIO | date:'HH:mm'}} -
+                                                        {{item[0].HORA_FIN | date:'HH:mm' }}
+                                                    </label>
+                                                    <!--                                                    9:00 am - 12:00 pm-->
                                                 </div>
 
                                             </div>
@@ -362,7 +247,8 @@
                                     <hr>
                                     <div class="row px-3">
                                         <div class="col-4">
-                                            <a href="#" class="btn btn-link  my-1 btn-block"><fa-icon [icon]="info"></fa-icon> Ver</a>
+                                            <a [routerLink]="['..','719d6190109101a74bec7860e0d41d99',item[0].PK_CAT_CURSO_CADO]"
+                                               class="btn btn-link  my-1 btn-block"><fa-icon [icon]="info"></fa-icon> Ver</a>
                                         </div>
                                         <div class="col-4 px-1">
                                             <button class="btn btn-link   my-1 btn-block"><fa-icon [icon]="edit"></fa-icon>Editar</button>
@@ -374,103 +260,38 @@
                                     <!--                                        fin renglon botons-->
 
                                     <!--                                    </div>-->
-
+<!--                                    {{item.TIPO_CURSO}}-->
                                 </div>
                             </div>
                         </div>
-<!--                        fin col 2 -->
-                        <div class="col-4">
-                            <div class="card">
-                                <div class="card-body p-0 texto-card">
-                                    <div class="row px-3">
-                                        <div class="col-12 px-0 pb-1 pt-0">
-                                            <img class="card-img-top img-fluid"  src="assets/img/capacitacion_docente/curso1.png" alt="Card image cap">
-                                        </div>
-                                    </div>
-                                    <!--                                    FIN RENGLON IMG-->
-                                    <!--                                    <div class="row text-left px-2">-->
-                                    <!--                                        <div class="col-12">-->
-                                    <div class="row text-left pl-3">
-                                        <div class="col-12">
-                                            <div class="row">
-                                                <div class="col-2 text-right px-1">
-                                                    <label>Curso:</label>
-                                                </div>
-                                                <div class="col-10">
-                                                    <label class="font-weight-bold">Estrategias Docentes en el aula para el fomento de la investigación científica y tecnológica</label>
-                                                </div>
-                                            </div>
-                                            <!--                                                    fin curso-->
-                                            <div class="row">
-                                                <div class="col-2 text-right px-1" >
-                                                    <label>Por:</label>
-                                                </div>
-                                                <div class="col-10">
-                                                    <label class="font-weight-bold"> <a href="#">José Gerardo Carpio Flores</a></label>
-                                                </div>
-                                            </div>
-                                            <!--                                                    fin instructor-->
-                                            <div class="row">
-                                                <div class="col-2 text-right px-1">
-                                                    <label>Área:</label>
-                                                </div>
-                                                <div class="col-10">
-                                                    <label class="font-weight-bold">Sistemas Computacionales</label>
-                                                </div>
-                                            </div>
-                                            <!--                                                    fin area-->
-                                            <div class="row">
-                                                <div class="col-2  text-right px-1">
-                                                    <label>
-                                                        Fecha:</label>
-                                                </div>
-                                                <div class="col-10">
-                                                    <label class="font-weight-bold"><fa-icon [icon]="fecha"></fa-icon>
-                                                        12/12/2019 - 12/01/2020</label>
-                                                </div>
-                                            </div>
-                                            <!--                                                    fin fecha -->
-                                            <div class="row">
-                                                <div class="col-2 text-right px-1">
-                                                    <label>Hora:</label>
-                                                </div>
-                                                <div class="col-10">
-                                                    <label class="font-weight-bold"><fa-icon [icon]="hora" ></fa-icon>
-                                                        9:00 am - 12:00 pm</label>
-                                                </div>
 
-                                            </div>
-                                            <!--                                                    fin hora  -->
-                                            <!--                                                </div>-->
-                                            <!--                                            </div>-->
-                                        </div>
-                                    </div>
-                                    <!--                                    FIN RENGLON TEXTO-->
-                                    <!--                                    <div class="card-body p-0 texto-card">-->
-                                    <hr>
-                                    <div class="row px-3">
-                                        <div class="col-4">
-                                            <a href="#" class="btn btn-link  my-1 btn-block"><fa-icon [icon]="info"></fa-icon> Ver</a>
-                                        </div>
-                                        <div class="col-4 px-1">
-                                            <button class="btn btn-link   my-1 btn-block"><fa-icon [icon]="edit"></fa-icon>Editar</button>
-                                        </div>
-                                        <div class="col-4 px-1">
-                                            <button class="btn btn-link my-1 btn-block"><fa-icon [icon]="delete"></fa-icon>Eliminar</button>
-                                        </div>
-                                    </div>
-                                    <!--                                        fin renglon botons-->
-
-                                    <!--                                    </div>-->
-
-                                </div>
-                            </div>
-                        </div>
 <!--                        fin col 3-->
                 </div>
-            </div>
+                <ng-template #elseCurso2>
+                    <div class="card-group">
+                        <div class="text-center">
+                            <div class="alert alert-light text-center" role="alert">
+                                <h4>No se han Registrado cursos de Formación Docente en este periodo</h4>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+<!--            </div>-->
             </p-accordionTab>
         </p-accordion>
         </div>
     </div>
 </div>
+
+<!-- INICIO VENTANA MODAL DE CARGA -->
+<div bsModal #loaderModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-hidden="false"
+     [config]="{backdrop: 'static',keyboard: false}" [style.display]="this.display">
+    <!--[config]="{backdrop: 'static',keyboard: false}">-->
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content"
+             style="background-color: rgba(51, 51, 51, 0.8); background-clip: padding-box; border: 1px solid rgba(0, 0, 0, 0);">
+            <app-loader></app-loader>
+        </div>
+    </div>
+</div>
+<!-- FIN VENTANA MODAL DE CARGA -->

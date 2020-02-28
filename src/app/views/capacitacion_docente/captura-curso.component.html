@@ -1,9 +1,9 @@
 <h2 class="text-center "> Registro de Cursos </h2>
-<div class="container mt-5">
+<div class="container mt-5 texto-card">
 <!--    inicia formulario -->
     <form>
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 px-0">
             <div class="card">
                 <div class="card-header">
                     <div class="text-center">
@@ -23,21 +23,74 @@
                                     </div>
                                         <div class="col-md-10">
                                             <div class="input-group">
-                                                <textarea  style="resize: none" placeholder="Escribe el nombre del curso"
-                                                 class="form-control"  id="nombrecurso"  required></textarea>
+                                                <textarea [(ngModel)]="this.curso.nombre_curso"  style="resize: none" placeholder="Escriba el nombre del curso"
+                                                            class="form-control"  name="nombrecurso"  id="nombrecurso"  required></textarea>
                                             </div>
                                     </div>
                                 </div>
 <!--                                fin nombre del curso-->
                                 <div class="form-group row">
-                                    <div class="col-md-2 pl-0 col-form-label text-right my-auto">
+                                    <div class="col-md-3 pl-0 col-form-label text-right my-auto">
                                         <label for="nombre_instrcutor" >Nombre del Instructor:</label>
                                         <label style="color:#ff0000;" >*</label>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" id="nombre_instrcutor" name="nombre_instrcutor"
-                                                   placeholder="Escribe el nombre del Instructor" required>
+<!--                                    prueba-->
+
+                                    <div class="col-md-5">
+                                        <div  class="input-group">
+<!--                                            prueba-->
+<!--                                                <div ></div>-->
+<!--                                            fin prueba-->
+
+                                    <p-autoComplete *ngIf="tipo_participante==2; else elsefiltro"
+                                                     [(ngModel)]="this.curso.instructores"
+                                                    [multiple]="true"
+                                                    [suggestions]="this.docentesArray"
+                                                    field="NOMBRE"
+                                                    name="instructores"
+                                                    id="nombre_instrcutor"
+                                                    (completeMethod)="filtro_instructor($event)"
+                                                      styleClass="wid100"
+                                                      required
+                                                      disabled
+                                                      placeholder="Escriba el nombre del instructor">
+                                        <ng-template let-value pTemplate="selectedItem">
+                                            <span style="padding-right: 20px;  font-size:14px">
+                                                {{value.NOMBRE }} {{ value.PRIMER_APELLIDO }} {{value.SEGUNDO_APELLIDO}}</span>
+                                        </ng-template>
+                                        <ng-template let-brand pTemplate="item">
+                                            <div class="">
+                                                <div style="font-size:16px;">
+                                                 {{brand.NOMBRE }} {{brand.PRIMER_APELLIDO }} {{brand.SEGUNDO_APELLIDO}}
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </p-autoComplete>
+                                            <ng-template #elsefiltro>
+                                                <p-autoComplete
+                                                                [(ngModel)]="this.curso.instructores"
+                                                                [multiple]="true"
+                                                                [suggestions]="this.docentesArray"
+                                                                field="NOMBRE"
+                                                                name="instructores"
+                                                                (completeMethod)="filtro_instructor($event)"
+                                                                styleClass="wid100"
+                                                                required
+                                                                placeholder="Escriba el nombre del instructor">
+                                                    <ng-template let-value pTemplate="selectedItem">
+                                                    <span style="padding-right: 20px;  font-size:14px">
+                                                        {{value.NOMBRE }} {{ value.PRIMER_APELLIDO }} {{value.SEGUNDO_APELLIDO}}</span>
+                                                    </ng-template>
+                                                    <ng-template let-brand pTemplate="item">
+                                                        <div class="">
+                                                            <div style="font-size:16px;">
+                                                                {{brand.NOMBRE }} {{brand.PRIMER_APELLIDO }} {{brand.SEGUNDO_APELLIDO}}
+                                                            </div>
+                                                        </div>
+                                                    </ng-template>
+                                                </p-autoComplete>
+                                            </ng-template>
+
                                         </div>
                                     </div>
                                     <div class="col-md-2 col-form-label text-right my-auto">
@@ -46,7 +99,7 @@
                                     </div>
                                     <div class="col-md-2">
                                         <div class="input-group">
-                                            <input type="number" class="form-control" id="cupo" name="cupo"
+                                            <input  [(ngModel)]="this.curso.cupo_maximo" type="number" class="form-control" id="cupo" name="cupo"
                                                    placeholder="Capacidad" required>
                                         </div>
                                     </div>
@@ -57,25 +110,36 @@
                                         <label for="periodo_curso" >Periodo:</label>
                                         <label style="color:#ff0000;" >*</label>
                                     </div>
-                                    <div class="col-md-4">
-                                        <select class="form-control" name="periodo_curso" id="periodo_curso" required>
+                                    <div class="col-md-5">
+                                        <!--<select class="form-control" name="periodo_curso" id="periodo_curso" required>
                                             <option >Selecciona un Periodo</option>
                                             <option value="1">PERIODO EN-FEB 2020</option>
                                             <option value="2">12:00</option>
                                             <option value="3">17:00</option>
+                                        </select>-->
+                                        <select  [(ngModel)]="this.curso.pk_periodo"  class="form-control"
+                                                 name="periodo_curso" id="periodo_curso" required>
+<!--                                            <select [(ngModel)]="edificio" class="form-control" name="edificio" required>-->
+                                            <option value="-1">Selecciona un Periodo</option>
+                                            <option *ngFor="let periodo of this.periodosArray; let i = index"
+                                                    [value]="periodo.PK_PERIODO_CADO">
+                                                {{periodo.NOMBRE_PERIODO}}
+                                                {{periodo.FECHA_INICIO | date:'MMMM'| uppercase }} -
+                                                {{periodo.FECHA_FIN | date:'MMMM' | uppercase }}
+                                                {{periodo.FECHA_FIN | date:'yyyy' }}
+                                            </option>
                                         </select>
                                     </div>
                                     <div class="col-md-2 col-form-label text-right my-auto">
                                         <label for="tipo_curso" >Tipo de Curso:</label>
                                         <label style="color:#ff0000;" >*</label>
                                     </div>
-                                    <div class="col-md-4">
-                                        <select class="form-control" name="tipo_curso" id="tipo_curso" required>
-                                            <option >Selecciona un Tipo de Curso</option>
-                                            <option value="1">Formación Docente</option>
-                                            <option value="2">Actualización Profesional</option>
-                                            <option value="2">Diplomado</option>
-
+                                    <div class="col-md-3">
+                                        <select  [(ngModel)]="this.curso.tipo_curso"  class="form-control" name="tipo_curso" id="tipo_curso" required>
+                                            <option [value]=-1 >Selecciona un Tipo de Curso</option>
+                                            <option [value]=1>Formación Docente</option>
+                                            <option [value]=2>Actualización Profesional</option>
+                                            <option [value]=3>Diplomado</option>
                                         </select>
                                     </div>
                                 </div>
@@ -85,12 +149,21 @@
                                         <label for="area_curso" >Área académica:</label>
                                         <label style="color:#ff0000;" >*</label>
                                     </div>
-                                    <div class="col-md-4">
-                                        <select class="form-control" name="area_curso" id="area_curso" required>
-                                            <option >Selecciona una Área académica</option>
-                                            <option value="1">SISTEMAS</option>
-                                            <option value="2">TICS</option>
-                                            <option value="3">PARA TODAS</option>
+                                    <div class="col-md-5">
+<!--                                        <select class="form-control" name="area_curso" id="area_curso" required>-->
+<!--                                            <option >Selecciona una Área académica</option>-->
+<!--                                            <option value="1">SISTEMAS</option>-->
+<!--                                            <option value="2">TICS</option>-->
+<!--                                            <option value="3">PARA TODAS</option>-->
+<!--                                        </select>-->
+                                        <select [(ngModel)]="this.curso.pk_area_academica" class="form-control" name="area_curso" id="area_curso"  required>
+                                            <!--                                            <select [(ngModel)]="edificio" class="form-control" name="edificio" required>-->
+                                            <option [value]=-1>Selecciona una Área académica</option>
+                                            <option [value]=0>Para todas las Áreas</option>
+                                            <option *ngFor="let area of this.areasArray; let i = index"
+                                                    value="{{area.PK_AREA_ACADEMICA}}">
+                                                {{area.NOMBRE}}
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
@@ -100,10 +173,17 @@
                                         <label for="estado_curso" >Estado del Curso:</label>
                                         <label style="color:#ff0000;" >*</label>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="estado_curso" name="estado_curso"
-                                                   placeholder="Estado del Curso" required>
+                                            <select  [(ngModel)]="this.curso.estado_curso"  class="form-control"
+                                                     name="estado_curso" id="estado_curso" required disabled>
+                                                <option [value]=-1 >Estados del curso</option>
+                                                <option [value]=1>POR AUTORIZAR</option>
+                                                <option [value]=2>AUTORIZADO</option>
+                                                <option [value]=3>RECHAZADO</option>
+                                                <option [value]=3>EN CURSO</option>
+                                                <option [value]=3>TERMINADO</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -145,7 +225,7 @@
                                 </div>
                                 <div class="col-md-5">
                                     <div class="input-group">
-                                        <input type="date" class="form-control" id="fecha_inicio_curso" name="fecha_inicio_curso"
+                                        <input [(ngModel)]="this.curso.fecha_inicio"  type="date" class="form-control" id="fecha_inicio_curso" name="fecha_inicio_curso"
                                                 required>
                                     </div>
                                 </div>
@@ -160,7 +240,7 @@
                                 </div>
                                 <div class="col-md-5">
                                     <div class="input-group">
-                                        <input type="date" class="form-control" id="fecha_fin_curso" name="fecha_fin_curso"
+                                        <input [(ngModel)]="this.curso.fecha_fin" type="date" class="form-control" id="fecha_fin_curso" name="fecha_fin_curso"
                                                required>
                                     </div>
                                 </div>
@@ -174,8 +254,11 @@
                                     <label style="color:#ff0000;" for="hora_incio_curso">*</label>
                                 </div>
                                 <div class="col-md-5">
-                                    <div class="input-group">
-                                        <p-calendar  [timeOnly]="true"   hourFormat="12" id="hora_incio_curso" name="hora_incio_curso"
+                                    <div class="input-group col-md-5">
+                                        <p-calendar [(ngModel)]="this.curso.hora_inicio"
+                                                    [timeOnly]="true"   hourFormat="12"
+                                                    id="hora_incio_curso" name="hora_incio_curso"
+                                                    placeholder="Seleccione la hora"
                                                     required></p-calendar>
                                     </div>
 <!--                                    {{this.hora_inicio_curso}}-->
@@ -190,9 +273,13 @@
                                     <label style="color:#ff0000;" for="hora_fin_curso">*</label>
                                 </div>
                                 <div class="col-md-5">
-                                    <div class="input-group">
-                                        <p-calendar  [timeOnly]="true"   hourFormat="12" id="hora_fin_curso" name="hora_fin_curso"
+                                    <div class="input-group col-md-5">
+                                        <p-calendar [(ngModel)]="this.curso.hora_fin"
+                                                    [timeOnly]="true"   hourFormat="12" id="hora_fin_curso"
+                                                    name="hora_fin_curso"
+                                                    placeholder="Seleccione la hora"
                                                      required></p-calendar>
+
                                     </div>
                                     <!--                                    {{this.hora_inicio_curso}}-->
                                 </div>
@@ -204,8 +291,8 @@
                                 </div>
                                 <div class="col-md-5">
                                     <div class="input-group">
-                                            <input type="number" class="form-control" id="total_horas_curso" name="total_horas_curso"
-                                                    required disabled>
+                                            <input [(ngModel)]="this.curso.total_horas"  type="number" class="form-control" id="total_horas_curso" name="total_horas_curso"
+                                                    required placeholder="Aquí el total de horas">
                                     </div>
                                     <!--                                    {{this.hora_inicio_curso}}-->
                                 </div>
@@ -235,50 +322,59 @@
                     <!--                    <form >-->
                     <div class="row">
                         <div class="form-group col-sm-12 text-center">
+
                             <div class="form-group row">
-                                <div class="col-md-4 col-form-label text-right my-auto">
-                                    <label for="campus" >Campus:</label>
-                                    <label style="color:#ff0000;" for="campus">*</label>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="input-group">
-                                        <select class="form-control" name="campus" id="campus" required>
-                                            <option >Selecciona un campus</option>
-                                            <option value="1">Campus 1</option>
-                                            <option value="2">Campus 2</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--                                fin campus-->
-                            <div class="form-group row">
-                                <div class="col-md-4 col-form-label text-right my-auto">
+                                <div class="col-md-3 col-form-label text-right my-auto">
                                     <label for="edificio" >Edificio:</label>
                                     <label style="color:#ff0000;" for="campus">*</label>
                                 </div>
-                                <div class="col-md-5">
+                                <div class="col-md-9">
                                     <div class="input-group">
-                                        <select class="form-control" name="edificio" id="edificio" required>
-                                            <option >Selecciona un edificio</option>
-                                            <option value="1">Edificio</option>
-                                            <option value="2">Campus 2</option>
+                                        <select [(ngModel)]="this.curso.edificio"
+                                                (change)="autocompletaCampus()"
+                                                class="form-control" name="edificio" id="edificio" required>
+                                            <option  value="-1" selected>Selecciona un edificio</option>
+                                            <option *ngFor="let edificio of this.edificiosArray"
+                                                    [value]="edificio.PK_EDIFICIO"
+                                                    >
+                                                {{'Campus '+edificio.FK_CAMPUS+' - Edificio: '+edificio.PREFIJO+'   '+edificio.NOMBRE}}</option>
+
                                         </select>
                                     </div>
                                 </div>
                             </div>
                             <!--                                fin edificio-->
                             <div class="form-group row">
-                                <div class="col-md-4 col-form-label text-right my-auto">
+                                <div class="col-md-3 col-form-label text-right my-auto">
+                                    <label for="campus" >Campus:</label>
+                                    <label style="color:#ff0000;" for="campus">*</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <select [(ngModel)]="this.curso.campus"  class="form-control" name="campus" id="campus" required>
+                                            <option value="-1"  >Selecciona un campus</option>
+                                            <option [value]=1>Campus 1</option>
+                                            <option [value]=2>Campus 2</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--                                fin campus-->
+                            <div class="form-group row">
+                                <div class="col-md-3 col-form-label text-right my-auto">
                                     <label for="edificio" >Espacio:</label>
                                     <label style="color:#ff0000;" for="espacio">*</label>
                                 </div>
-                                <div class="col-md-5">
+                                <div class="col-md-9">
                                     <div class="input-group">
-                                        <select class="form-control" name="espacio" id="espacio" required>
-                                            <option >Selecciona un espacio</option>
-                                            <option value="1">Sala alfombrada</option>
-                                            <option value="2">Campus 2</option>
-                                        </select>
+                                        <input [(ngModel)]="this.curso.espacio" type="text" class="form-control"
+                                               id="espacio" name="espacio" placeholder="Escriba el nombre de la Sala o Laboratorio"
+                                               required>
+<!--                                        <select [(ngModel)]="this.curso.edificio" class="form-control" name="espacio" id="espacio" required>-->
+<!--                                            <option >Selecciona un espacio</option>-->
+<!--                                            <option value="1">Sala alfombrada</option>-->
+<!--                                            <option value="2">Campus 2</option>-->
+<!--                                        </select>-->
                                     </div>
                                 </div>
                             </div>
@@ -298,15 +394,15 @@
     <!--    fin row-->
     <div class="row mb-5">
         <div class="col-md-12 text-center">
-            <input
+            <input [(ngModel)]="this.validado" name="validado"
                    type="checkbox" class="custom-control-input" id="valida">
             <label class="custom-control-label" for="valida">He verificado la información capturada</label><br><br>
 <!--            <button class="btn btn-primary" [disabled]="!this.validado" (click)="registra_periodo()">-->
-            <button class="btn btn-primary btn-lg">
+            <button   class="btn btn-primary btn-lg" [disabled]="!this.validado" (click)="registrar_curso()" >
                 <fa-icon [icon]="save"></fa-icon>
                 Registrar Nuevo Curso</button>
             <!--                        <pre>{{this.validado}}</pre>-->
-            <button type="button" class="btn btn-danger btn-lg">
+            <button  (click)="back()" type="button" class="btn btn-danger btn-lg">
                 <fa-icon [icon]="cancel"></fa-icon>
                 Cancelar</button>
         </div>
@@ -315,3 +411,21 @@
 <!--    fin fomrulario-->
 </div>
 <!--fin container-->
+<pre>{{this.curso | json }}</pre>
+<pre>{{this.instructor | json }}</pre>
+<pre>{{this.idInstructor | json }}</pre>
+<pre>{{this.validado | json }}</pre>
+<pre>{{this.instructores|json}}</pre>
+
+<!-- INICIO VENTANA MODAL DE CARGA -->
+<div bsModal #loaderModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-hidden="false"
+     [config]="{backdrop: 'static',keyboard: false}" [style.display]="this.display">
+    <!--[config]="{backdrop: 'static',keyboard: false}">-->
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content"
+             style="background-color: rgba(51, 51, 51, 0.8); background-clip: padding-box; border: 1px solid rgba(0, 0, 0, 0);">
+            <app-loader></app-loader>
+        </div>
+    </div>
+</div>
+<!-- FIN VENTANA MODAL DE CARGA -->

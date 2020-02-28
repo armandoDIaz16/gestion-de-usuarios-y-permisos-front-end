@@ -28,7 +28,11 @@
                 </pre> -->
                 <tr *ngFor="let periodo of this.lista_periodos; let i = index" class="text-center">
                     <td>{{i + 1}}</td>
-                    <td>{{periodo.NOMBRE_PERIODO}}</td>
+                    <td>{{periodo.NOMBRE_PERIODO}}
+                    {{periodo.FECHA_INICIO | date:'MMMM'| uppercase }} -
+                    {{periodo.FECHA_FIN | date:'MMMM' | uppercase }}
+                    {{periodo.FECHA_FIN | date:'yyyy' }}
+                    </td>
                     <td>{{periodo.FECHA_INICIO | date:'dd/MM/yyyy' }}</td>
                     <td>{{periodo.FECHA_FIN | date:'dd/MM/yyyy' }}</td>
                     <td *ngIf="periodo.FECHA_FIN  > this.fecha_actual_sistema; else elseestado" class="text-primary text-uppercase ">En curso
@@ -85,6 +89,7 @@
                     <label class="col-md-4 col-form-label text-right" for="nombre_periodo">Nombre del periodo</label>
                     <div class="col-md-6">
                         <input type="text" class="form-control" id="nombre_periodo" name="nombre_periodo" [(ngModel)]="this.periodo.nombre_periodo">
+<!--                        todo colocar un select para capturar el nombre del periodo-->
                     </div>
                     <!-- {{this.periodo.fecha_inicio}} -->
                 </div>
@@ -187,6 +192,7 @@
                     <label class="col-md-4 col-form-label text-right" for="nombre_periodo">Nombre del periodo</label>
                     <div class="col-md-6">
                         <input type="text" class="form-control" name="nombre_periodo" [(ngModel)]="this.periodo.nombre_periodo">
+                        <!--                        todo colocar un select para capturar el nombre del periodo-->
                     </div>
                     <!-- {{this.periodo.fecha_inicio}} -->
                 </div>
@@ -261,3 +267,15 @@
     </div>
 </div>
 <!--  Fin ventana modal PARA EDITAR -->
+<!-- INICIO VENTANA MODAL DE CARGA -->
+<div bsModal #loaderModal2="bs-modal" class="modal" tabindex="-1" role="dialog" aria-hidden="false"
+     [config]="{backdrop: 'static',keyboard: false}" [style.display]="this.display">
+    <!--[config]="{backdrop: 'static',keyboard: false}">-->
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content"
+             style="background-color: rgba(51, 51, 51, 0.8); background-clip: padding-box; border: 1px solid rgba(0, 0, 0, 0);">
+            <app-loader></app-loader>
+        </div>
+    </div>
+</div>
+<!-- FIN VENTANA MODAL DE CARGA -->
