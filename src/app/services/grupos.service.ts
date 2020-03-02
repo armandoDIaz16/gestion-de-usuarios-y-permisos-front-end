@@ -26,7 +26,7 @@ export class GruposService extends GenericServicesService {
     }
 
     get_grupos(): Observable<InterfacecCarreraGruposTutoria> {
-        let body = {
+        const body = {
             permisos: JSON.parse(sessionStorage['permisos'])
         };
 

@@ -25,7 +25,7 @@ const routes: Routes = [
   {
     path: '',
     data: {
-      title: 'Aspitantes'
+      title: 'Aspirantes'
     },
     children: [
       {
@@ -168,7 +168,7 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
   })
-  
+
   export class AsesoriaRoutingModule {}
 
 

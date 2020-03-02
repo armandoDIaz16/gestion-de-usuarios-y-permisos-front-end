@@ -36,6 +36,8 @@ import { SeguimientoComponent } from '../components/tutorias/estudiante/seguimie
 import { HistoricoGruposComponent} from '../components/tutorias/tutor/historico-grupos.component';
 import { DashboardComponent } from '../components/tutorias/dashboard.component';
 import {ConferenciasComponent} from '../components/tutorias/coord_institucional/conferencias.component';
+import {GruposInicialCoordDepComponent} from '../components/tutorias/coord_departamental/grupos-inicial-coord-dep.component';
+import {GruposInicialAdminComponent} from '../components/tutorias/coord_institucional/grupos-inicial-admin.component';
 
 // Angular
 
@@ -72,6 +74,8 @@ import {ConferenciasComponent} from '../components/tutorias/coord_institucional/
         DashboardComponent,
         HistoricoGruposComponent,
         ConferenciasComponent,
+        GruposInicialCoordDepComponent,
+        GruposInicialAdminComponent,
     ],
     exports: [
         ModalModule
