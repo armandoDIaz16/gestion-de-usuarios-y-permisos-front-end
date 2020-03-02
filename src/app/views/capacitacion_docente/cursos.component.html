@@ -1,0 +1,297 @@
+<h2 class="text-center"> Cursos </h2>
+
+<div class="container mt-5 container-fluid">
+    <div class="row">
+        <div class="col-4">
+           <!-- <button type="submit" class="btn btn-primary px-4">
+                Guardar respuestas
+            </button>
+            <a class="btn btn-danger px-4" routerLink="/tutorias/6da5b4309f3cc102b3a2b7ac7e52a62c">Cancelar</a>-->
+
+            <!--<button  type="submit"  class="btn btn-primary btn-lg" >
+                <fa-icon [icon]="add"></fa-icon>
+                Proponer nuevo Curso
+            </button>-->
+            <a class="btn btn-success btn-lg"  [routerLink]="['..','7b44125ec5b3b7b61b000cdee93c6796']">  <fa-icon [icon]="add"></fa-icon>
+                Proponer nuevo Curso </a>
+        </div>
+<!--        <div class="col-6">-->
+<!--            2 of 3 (wider)-->
+<!--        </div>-->
+        <div class="col-4 offset-4">
+            <div class="input-group mb-3 input-group-lg">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" for="buscar_curso"><fa-icon [icon]="search" ></fa-icon></span>
+                </div>
+                <input type="search" class="form-control" placeholder="Buscar un curso" id="buscar_curso">
+            </div>
+<!--           <span><fa-icon [icon]="search" ></fa-icon></span>-->
+<!--            <input class="form-control  input-group-lg  d-inline" type="search" placeholder="Buscar un curso" aria-label="Search">-->
+        </div>
+    </div>
+    <div *ngFor="let curso of this.lista_periodos_cursos" class="row">
+        <div class="col-12">
+        <p-accordion>
+            <p-accordionTab  class="text-center" header="
+                            {{curso[0].NOMBRE_PERIODO   }}
+                            {{curso[0].FECHA_INICIO | date:'MMMM'| uppercase }} -
+                            {{curso[0].FECHA_FIN | date:'MMMM' | uppercase }}
+                            {{curso[0].FECHA_FIN | date:'yyyy' }}">
+
+<!--                <div class="container container-fluid px-0">-->
+                        <div class="row">
+                            <h3 class="text-success font-weight-bold" >Actualización Profesional</h3>
+                        </div>
+<!--                comienzan cards-->
+<!--                <div>-->
+                    <div *ngIf="curso[0].CURSOSAP.length>0; else elseCurso"  class="card-group">
+                        <!--                        fin curso-->
+                        <div *ngFor="let item of curso[0].CURSOSAP" class="col-4 my-2">
+                            <div class="card">
+                                <div class="card-body p-0 texto-card">
+                                    <div class="row px-3">
+                                        <div class="col-12 px-0 pb-1 pt-0">
+                                            <img class="card-img-top img-fluid"  src="assets/img/capacitacion_docente/curso1.png" alt="Card image cap">
+                                        </div>
+                                    </div>
+                                    <!--                                    FIN RENGLON IMG-->
+                                    <!--                                    <div class="row text-left px-2">-->
+                                    <!--                                        <div class="col-12">-->
+                                    <div class="row text-left pl-3">
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div class="col-2 text-right px-1">
+                                                    <label>Curso:</label>
+                                                </div>
+                                                <div class="col-10">
+                                                    <label class="font-weight-bold">{{item[0].NOMBRE_CURSO }}</label>
+                                                </div>
+                                            </div>
+                                            <!--                                                    fin curso-->
+                                            <div *ngFor="let instructor of item[0].INSTRUCTORES" class="row">
+                                                <div class="col-2 text-right px-1" >
+                                                    <label>Por:</label>
+                                                </div>
+                                                <div class="col-10">
+                                                    <label  class="font-weight-bold"> <a
+                                                        [routerLink]="['..','de3ec0aa2234aa1e3ee275bbc715c6c9',instructor.PK_PARTICIPANTE_IMPARTE]"
+                                                    >{{instructor.NOMBRE_INSTRUCTOR }}</a></label>
+                                                </div>
+                                            </div>
+                                            <!--                                                    fin instructor-->
+                                            <div class="row">
+                                                <div class="col-2 text-right px-1">
+                                                    <label>Área:</label>
+                                                </div>
+                                                <div class="col-10">
+                                                    <label class="font-weight-bold">{{item[0].NOMBRE_AREA==null
+                                                        ?('Para todas las áreas' | uppercase):(item[0].NOMBRE_AREA | uppercase) }}</label>
+                                                </div>
+                                            </div>
+                                            <!--                                                    fin area-->
+                                            <div class="row">
+                                                <div class="col-2  text-right px-1">
+                                                    <label>
+                                                        Fecha:</label>
+                                                </div>
+                                                <div class="col-10">
+                                                    <label class="font-weight-bold"><fa-icon [icon]="fecha"></fa-icon>
+                                                        {{item[0].FECHA_INICIO | date:'dd/MM/yyyy'}} -
+                                                        {{item[0].FECHA_FIN | date:'dd/MM/yyyy'}}  </label>
+                                                    <!--    12/12/2019 - 12/01/2020-->
+                                                </div>
+                                            </div>
+                                            <!--                                                    fin fecha -->
+                                            <div class="row">
+                                                <div class="col-2 text-right px-1">
+                                                    <label>Hora:</label>
+                                                </div>
+                                                <div class="col-10">
+                                                    <label class="font-weight-bold">
+                                                        (24 hrs)
+                                                        <fa-icon [icon]="hora" ></fa-icon>
+                                                        {{item[0].HORA_INICIO | date:'HH:mm'}} -
+                                                        {{item[0].HORA_FIN | date:'HH:mm' }}
+                                                      </label>
+<!--                                                    9:00 am - 12:00 pm-->
+                                                </div>
+
+                                            </div>
+                                            <!--                                                    fin hora  -->
+                                            <!--                                                </div>-->
+                                            <!--                                            </div>-->
+                                        </div>
+                                    </div>
+                                    <!--                                    FIN RENGLON TEXTO-->
+                                    <!--                                    <div class="card-body p-0 texto-card">-->
+                                    <hr>
+                                    <div class="row px-3">
+                                        <div class="col-4">
+                                            <a [routerLink]="['..','719d6190109101a74bec7860e0d41d99',item[0].PK_CAT_CURSO_CADO]"
+                                               class="btn btn-link  my-1 btn-block"><fa-icon [icon]="info"></fa-icon> Ver</a>
+                                        </div>
+                                        <div class="col-4 px-1">
+                                            <button class="btn btn-link   my-1 btn-block"><fa-icon [icon]="edit"></fa-icon>Editar</button>
+                                        </div>
+                                        <div class="col-4 px-1">
+                                            <button class="btn btn-link my-1 btn-block"><fa-icon [icon]="delete"></fa-icon>Eliminar</button>
+                                        </div>
+                                    </div>
+                                    <!--                                        fin renglon botons-->
+
+                                    <!--                                    </div>-->
+<!--                                {{item.TIPO_CURSO}}-->
+                                </div>
+                            </div>
+                        </div>
+                        <!--             PRUEBA VERTICAL           fin curso-->
+                        <!--                        fin col 3-->
+                    </div>
+                <ng-template #elseCurso>
+                    <div class="card-group">
+                            <div class="text-center">
+                                <div class="alert alert-light text-center" role="alert">
+                                    <h4>No se han Registrado cursos de Actualización profesional en este periodo</h4>
+                                </div>
+                            </div>
+                    </div>
+                </ng-template>
+<!--                </div>-->
+<!--fin actualizacion profesional -->
+<!--                </div>-->
+                    <div  class="row">
+                        <h3 class="font-weight-bold text-primary">Formación Docente</h3>
+                    </div>
+
+                    <div *ngIf="curso[0].CURSOSFD.length>0; else elseCurso2" class="card-group">
+                        <!--                        fin curso-->
+                        <div *ngFor="let item of curso[0].CURSOSFD" class="col-4 my-2">
+                            <div class="card">
+                                <div class="card-body p-0 texto-card">
+                                    <div class="row px-3">
+                                        <div class="col-12 px-0 pb-1 pt-0">
+                                            <img class="card-img-top img-fluid"  src="assets/img/capacitacion_docente/curso1.png" alt="Card image cap">
+                                        </div>
+                                    </div>
+                                    <!--                                    FIN RENGLON IMG-->
+                                    <!--                                    <div class="row text-left px-2">-->
+                                    <!--                                        <div class="col-12">-->
+                                    <div class="row text-left pl-3">
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div class="col-2 text-right px-1">
+                                                    <label>Curso:</label>
+                                                </div>
+                                                <div class="col-10">
+                                                    <label class="font-weight-bold">{{item[0].NOMBRE_CURSO }}</label>
+                                                </div>
+                                            </div>
+                                            <!--                                                    fin curso-->
+                                            <div *ngFor="let instructor of item[0].INSTRUCTORES" class="row">
+                                                <div class="col-2 text-right px-1" >
+                                                    <label>Por:</label>
+                                                </div>
+                                                <div class="col-10">
+
+                                                    <label  class="font-weight-bold"> <a
+                                                        [routerLink]="['..','de3ec0aa2234aa1e3ee275bbc715c6c9',instructor.PK_PARTICIPANTE_IMPARTE]"
+                                                    >{{instructor.NOMBRE_INSTRUCTOR }}</a></label>
+                                                </div>
+                                            </div>
+                                            <!--                                                    fin instructor-->
+                                            <div class="row">
+                                                <div class="col-2 text-right px-1">
+                                                    <label>Área:</label>
+                                                </div>
+                                                <div class="col-10">
+                                                    <label class="font-weight-bold">{{item[0].NOMBRE_AREA==null
+                                                        ?('Para todas las áreas' | uppercase):(item[0].NOMBRE_AREA | uppercase) }}</label>
+                                                </div>
+                                            </div>
+                                            <!--                                                    fin area-->
+                                            <div class="row">
+                                                <div class="col-2  text-right px-1">
+                                                    <label>
+                                                        Fecha:</label>
+                                                </div>
+                                                <div class="col-10">
+                                                    <label class="font-weight-bold"><fa-icon [icon]="fecha"></fa-icon>
+                                                        {{item[0].FECHA_INICIO | date:'dd/MM/yyyy'}} -
+                                                        {{item[0].FECHA_FIN | date:'dd/MM/yyyy'}}  </label>
+                                                    <!--    12/12/2019 - 12/01/2020-->
+                                                </div>
+                                            </div>
+                                            <!--                                                    fin fecha -->
+                                            <div class="row">
+                                                <div class="col-2 text-right px-1">
+                                                    <label>Hora:</label>
+                                                </div>
+                                                <div class="col-10">
+                                                    <label class="font-weight-bold">
+                                                        (24 hrs)
+                                                        <fa-icon [icon]="hora" ></fa-icon>
+                                                        {{item[0].HORA_INICIO | date:'HH:mm'}} -
+                                                        {{item[0].HORA_FIN | date:'HH:mm' }}
+                                                    </label>
+                                                    <!--                                                    9:00 am - 12:00 pm-->
+                                                </div>
+
+                                            </div>
+                                            <!--                                                    fin hora  -->
+                                            <!--                                                </div>-->
+                                            <!--                                            </div>-->
+                                        </div>
+                                    </div>
+                                    <!--                                    FIN RENGLON TEXTO-->
+                                    <!--                                    <div class="card-body p-0 texto-card">-->
+                                    <hr>
+                                    <div class="row px-3">
+                                        <div class="col-4">
+                                            <a [routerLink]="['..','719d6190109101a74bec7860e0d41d99',item[0].PK_CAT_CURSO_CADO]"
+                                               class="btn btn-link  my-1 btn-block"><fa-icon [icon]="info"></fa-icon> Ver</a>
+                                        </div>
+                                        <div class="col-4 px-1">
+                                            <button class="btn btn-link   my-1 btn-block"><fa-icon [icon]="edit"></fa-icon>Editar</button>
+                                        </div>
+                                        <div class="col-4 px-1">
+                                            <button class="btn btn-link my-1 btn-block"><fa-icon [icon]="delete"></fa-icon>Eliminar</button>
+                                        </div>
+                                    </div>
+                                    <!--                                        fin renglon botons-->
+
+                                    <!--                                    </div>-->
+<!--                                    {{item.TIPO_CURSO}}-->
+                                </div>
+                            </div>
+                        </div>
+
+<!--                        fin col 3-->
+                </div>
+                <ng-template #elseCurso2>
+                    <div class="card-group">
+                        <div class="text-center">
+                            <div class="alert alert-light text-center" role="alert">
+                                <h4>No se han Registrado cursos de Formación Docente en este periodo</h4>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+<!--            </div>-->
+            </p-accordionTab>
+        </p-accordion>
+        </div>
+    </div>
+</div>
+
+<!-- INICIO VENTANA MODAL DE CARGA -->
+<div bsModal #loaderModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-hidden="false"
+     [config]="{backdrop: 'static',keyboard: false}" [style.display]="this.display">
+    <!--[config]="{backdrop: 'static',keyboard: false}">-->
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content"
+             style="background-color: rgba(51, 51, 51, 0.8); background-clip: padding-box; border: 1px solid rgba(0, 0, 0, 0);">
+            <app-loader></app-loader>
+        </div>
+    </div>
+</div>
+<!-- FIN VENTANA MODAL DE CARGA -->
