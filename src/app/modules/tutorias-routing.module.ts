@@ -129,7 +129,7 @@ const routes: Routes = [
                 }
             },
             /* *********************************************************** *
-             * ********** RUTAS DE COORDINADORES DEPARTAMELTALES ********* *
+             * ********** RUTAS DE COORDINADORES DEPARTAMENTALES ********* *
              * *********************************************************** */
             {
                 path: 'a37ecf663279036431a24c6d58f78618', // tinicial_coordinador_departamental
