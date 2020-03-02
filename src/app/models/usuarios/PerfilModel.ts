@@ -39,4 +39,6 @@ export interface InterfacePerfil {
     TELEFONO_CONTACTO?:    string;
     CORREO_CONTACTO?:      string;
     FOTO_PERFIL?:          string;
+
+    NOMBRE_TUTOR?:         string;
 }

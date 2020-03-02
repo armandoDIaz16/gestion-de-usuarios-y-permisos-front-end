@@ -103,7 +103,7 @@ export class NavbarSistemsComponent implements OnInit {
                 switch (nombreSistema) {
                     case 'Aspirantes':
                         if (this.redirigirAspirante) {
-                            this.router.navigateByUrl('/aspirantes/dashboard');
+                            this.router.navigateByUrl('/aspirantes/dc7161be3dbf2250c8954e560cc35060');
                             break;
                         }
                         this.router.navigateByUrl('/aspirantes');

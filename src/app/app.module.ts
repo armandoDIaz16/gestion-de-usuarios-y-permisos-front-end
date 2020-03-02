@@ -71,6 +71,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
 // ventanas modales
 import {ModalModule} from 'ngx-bootstrap';
 import {CollapseModule, TooltipModule} from 'ngx-bootstrap';
+import { GruposInicialCoordDepComponent } from './components/tutorias/coord_departamental/grupos-inicial-coord-dep.component';
+import { GruposInicialAdminComponent } from './components/tutorias/coord_institucional/grupos-inicial-admin.component';
 
 
 @NgModule({
@@ -112,7 +114,7 @@ import {CollapseModule, TooltipModule} from 'ngx-bootstrap';
         StudentOldComponent,
         NavbarSistemsComponent,
         ActivaCuentaComponent,
-        RepositorioTesisComponent
+        RepositorioTesisComponent,
     ],
     exports: [
         ModalModule
