@@ -21,6 +21,7 @@ import {SeguimientoComponent} from '../components/tutorias/estudiante/seguimient
 import {DashboardComponent} from '../components/tutorias/dashboard.component';
 import {HistoricoGruposComponent} from '../components/tutorias/tutor/historico-grupos.component';
 import {ConferenciasComponent} from '../components/tutorias/coord_institucional/conferencias.component';
+import {AplicacionEncuestaComponent} from '../components/tutorias/aplicacion-encuesta.component';
 import {GruposInicialCoordDepComponent} from '../components/tutorias/coord_departamental/grupos-inicial-coord-dep.component';
 import {GruposInicialAdminComponent} from '../components/tutorias/coord_institucional/grupos-inicial-admin.component';
 import {ReporteEncuestaAlumnoComponent} from '../components/tutorias/estudiante/reporte-encuesta.component';
@@ -183,6 +184,13 @@ const routes: Routes = [
                 component: CoordinadoresDepartamentalesComponent,
                 data: {
                     title: 'Coordinadores departamentales'
+                }
+            },
+            {
+                path: '6379bf06fff30085e5b7fb72dcdb01ca', // aplicacion_encuesta
+                component: AplicacionEncuestaComponent,
+                data: {
+                    title: 'Aplicación de encuestas'
                 }
             },
             {

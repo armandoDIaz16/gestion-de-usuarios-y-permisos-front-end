@@ -36,6 +36,7 @@ import { SeguimientoComponent } from '../components/tutorias/estudiante/seguimie
 import { HistoricoGruposComponent} from '../components/tutorias/tutor/historico-grupos.component';
 import { DashboardComponent } from '../components/tutorias/dashboard.component';
 import {ConferenciasComponent} from '../components/tutorias/coord_institucional/conferencias.component';
+import {AplicacionEncuestaComponent} from '../components/tutorias/aplicacion-encuesta.component';
 import {GruposInicialCoordDepComponent} from '../components/tutorias/coord_departamental/grupos-inicial-coord-dep.component';
 import {GruposInicialAdminComponent} from '../components/tutorias/coord_institucional/grupos-inicial-admin.component';
 import {ReporteEncuestaAlumnoComponent} from '../components/tutorias/estudiante/reporte-encuesta.component';
@@ -75,6 +76,7 @@ import {ReporteEncuestaAlumnoComponent} from '../components/tutorias/estudiante/
         DashboardComponent,
         HistoricoGruposComponent,
         ConferenciasComponent,
+        AplicacionEncuestaComponent,
         GruposInicialCoordDepComponent,
         GruposInicialAdminComponent,
         ReporteEncuestaAlumnoComponent
