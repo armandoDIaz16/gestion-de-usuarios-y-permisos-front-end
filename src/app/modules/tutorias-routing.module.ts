@@ -22,6 +22,8 @@ import {DashboardComponent} from '../components/tutorias/dashboard.component';
 import {HistoricoGruposComponent} from '../components/tutorias/tutor/historico-grupos.component';
 import {ConferenciasComponent} from '../components/tutorias/coord_institucional/conferencias.component';
 import {AplicacionEncuestaComponent} from '../components/tutorias/aplicacion-encuesta.component';
+import {GruposInicialCoordDepComponent} from '../components/tutorias/coord_departamental/grupos-inicial-coord-dep.component';
+import {GruposInicialAdminComponent} from '../components/tutorias/coord_institucional/grupos-inicial-admin.component';
 
 const routes: Routes = [
     {
@@ -130,15 +132,56 @@ const routes: Routes = [
             /* *********************************************************** *
              * ********** RUTAS DE COORDINADORES DEPARTAMENTALES ********* *
              * *********************************************************** */
-
+            {
+                path: 'a37ecf663279036431a24c6d58f78618', // tinicial_coordinador_departamental
+                component: GruposInicialCoordDepComponent,
+                data: {
+                    title: 'Grupos de tutoría inicial'
+                }
+            }, /*
+            {
+                path: '4bf2cf43829cc6001200347fff5b9e1a', // tseguimiento_coordinador_departamental
+                component: GruposeguimientoCoordDepComponent,
+                data: {
+                    title: 'Grupos de tutoría de seguimiento'
+                }
+            },
+            {
+                path: 'cd626195c52adf7f302eac9836d4d5dc', // historico_tinicial_coord_departamental
+                component: HistoricoGruposInicialCoordDepComponent,
+                data: {
+                    title: 'Grupos de tutoría inicial'
+                }
+            },
+            {
+                    path: '603c63398cb3fb82ce405fbb720fe7de', // historico_tseguimiento_coord_departamental
+                component: HistoricoGruposeguimientoCoordDepComponent,
+                data: {
+                    title: 'Grupos de tutoría de seguimiento'
+                }
+            },*/
             /* ***************************************************************** *
              * ********** RUTAS DE COORD INSTITUCIONALES/ADMINISTRADOR ********* *
              * ***************************************************************** */
             {
-                path: '2a107d6270125877f8ff8c3a223501c2', // conferencias_administrador
+                path: '4781291c6bd5fdb69af66b8b5bdce033', // grupos_inicial_admin
+                component: GruposInicialAdminComponent,
+                data: {
+                    title: 'Grupos de tutoría incial'
+                }
+            },
+            {
+                path: '2a107d6270125877f8ff8c3a223501c2', // confaerencias_administrador
                 component: ConferenciasComponent,
                 data: {
                     title: 'Administración de jornadas/conferencias'
+                }
+            },
+            {
+                path: '7c3bbdec167c62a1e132960c3ddf4330', // coordinadores_departamentales
+                component: CoordinadoresDepartamentalesComponent,
+                data: {
+                    title: 'Coordinadores departamentales'
                 }
             },
             {
@@ -148,7 +191,13 @@ const routes: Routes = [
                     title: 'Aplicación de encuestas'
                 }
             },
-
+            {
+                path: '04d7c71890c0ce2aa848a97808dc2210', // coordinadores_institucionales
+                component: CoordinadoresInstitucionalesComponent,
+                data: {
+                    title: 'Coordinadores institucionales'
+                }
+            },
             /* **************************************************** *
              * ********** RUTAS DE COORD INVEST EDUCATIVA ********* *
              * **************************************************** */
@@ -192,20 +241,6 @@ const routes: Routes = [
                 component: RespuestasEncuestaComponent,
                 data: {
                     title: 'Respuesta de encuesta'
-                }
-            },
-            {
-                path: 'coordinadores_institucionales',
-                component: CoordinadoresInstitucionalesComponent,
-                data: {
-                    title: 'Coordinadores institucionales'
-                }
-            },
-            {
-                path: 'coordinadores_departamentales',
-                component: CoordinadoresDepartamentalesComponent,
-                data: {
-                    title: 'Coordinadores departamentales'
                 }
             },
         ]

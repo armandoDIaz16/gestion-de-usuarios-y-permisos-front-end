@@ -37,6 +37,9 @@ import { HistoricoGruposComponent} from '../components/tutorias/tutor/historico-
 import { DashboardComponent } from '../components/tutorias/dashboard.component';
 import {ConferenciasComponent} from '../components/tutorias/coord_institucional/conferencias.component';
 import {AplicacionEncuestaComponent} from '../components/tutorias/aplicacion-encuesta.component';
+import {GruposInicialCoordDepComponent} from '../components/tutorias/coord_departamental/grupos-inicial-coord-dep.component';
+import {GruposInicialAdminComponent} from '../components/tutorias/coord_institucional/grupos-inicial-admin.component';
+import {ReporteEncuestaAlumnoComponent} from '../components/tutorias/estudiante/reporte-encuesta.component';
 
 // Angular
 
@@ -73,7 +76,10 @@ import {AplicacionEncuestaComponent} from '../components/tutorias/aplicacion-enc
         DashboardComponent,
         HistoricoGruposComponent,
         ConferenciasComponent,
-        AplicacionEncuestaComponent
+        AplicacionEncuestaComponent,
+        GruposInicialCoordDepComponent,
+        GruposInicialAdminComponent,
+        ReporteEncuestaAlumnoComponent
     ],
     exports: [
         ModalModule

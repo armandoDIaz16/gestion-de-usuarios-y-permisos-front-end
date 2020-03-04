@@ -32,7 +32,7 @@
                          src="assets/img/avatars/default.svg"
                          style="width:40px">
                     <img *ngIf="this.coordinador.FOTO_PERFIL != null"
-                         src="{{this.coordinadores_service.get_endpoint(this.coordinador.FOTO_PERFIL)}}"
+                         src="{{this.coordinadores_service.get_url_back(this.coordinador.FOTO_PERFIL)}}"
                          style="width:40px">
                     {{coordinador.NUMERO_CONTROL}}
                 </td>

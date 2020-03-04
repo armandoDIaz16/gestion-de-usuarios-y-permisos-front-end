@@ -21,20 +21,18 @@ export class HistoricoGruposComponent implements OnInit {
 
     ngOnInit() {
         this.grupos_service.get_historico_grupos().subscribe(
-            data => this.handleResponse(data),
-            error => this.handleError(error)
+            data => this.historico_grupos_ok(data),
+            error => this.historico_grupos_error(error)
         );
     }
 
-    handleResponse(data) {
-        if (data.data) {
-            this.display = 'none';
-            this.lista_grupos = data.data;
-        }
+    historico_grupos_ok(data) {
+        this.display = 'none';
+        this.lista_grupos = data.data;
     }
 
-    handleError(error) {
-        this.error = error.error;
+    historico_grupos_error(error) {
+        this.error = error.error.error;
         this.display = 'none';
     }
 }
