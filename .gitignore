@@ -44,3 +44,5 @@ testem.log
 .DS_Store
 Thumbs.db
 src/app/services/generic-services.service.ts
+
+src/app/models/oficios/.idea/
