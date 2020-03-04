@@ -52,10 +52,10 @@
             <tbody *ngIf="this.hay_encuestas; else elseBlock">
             <tr *ngFor="let encuesta of this.lista_encuestas; let i = index" class="text-center">
                 <td>{{i + 1}}</td>
-                <td>{{encuesta.NOMBRE}}</td>
+                <td>{{encuesta.NOMBRE_ENCUESTA}}</td>
                 <td>{{encuesta.FECHA_APLICACION}}</td>
                 <td>{{encuesta.FECHA_RESPUESTA}}</td>
-                <td *ngIf="encuesta.ESTADO_APLICACION == 2; else elseSinResponder">
+                <td *ngIf="encuesta.ESTADO == 2; else elseSinResponder">
                     <!--
                     <a [routerLink]="['/tutorias/respuestas-encuesta']"
                        [queryParams]="{clave_grupo: encuesta.PK_APLICACION_ENCUESTA}"
@@ -71,7 +71,7 @@
                         No respondida
                     </td>
                 </ng-template>
-                <td *ngIf="encuesta.ESTADO_APLICACION == 2; else elseSinResponder">
+                <td *ngIf="encuesta.ESTADO == 2; else elseSinResponder">
                     <a [routerLink]="['/tutorias/reporte-encuesta']"
                        [queryParams]="{aplicacion: encuesta.PK_APLICACION_ENCUESTA}"
                        tooltip="Ver reporte de la encuesta"

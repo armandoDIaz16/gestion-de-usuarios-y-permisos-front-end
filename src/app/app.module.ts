@@ -71,6 +71,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 // ventanas modales
 import {ModalModule} from 'ngx-bootstrap';
 import {CollapseModule, TooltipModule} from 'ngx-bootstrap';
+import { AplicacionEncuestaComponent } from './components/tutorias/aplicacion-encuesta.component';
 
 
 @NgModule({

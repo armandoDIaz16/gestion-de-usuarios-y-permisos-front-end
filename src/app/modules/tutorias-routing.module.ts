@@ -21,6 +21,7 @@ import {SeguimientoComponent} from '../components/tutorias/estudiante/seguimient
 import {DashboardComponent} from '../components/tutorias/dashboard.component';
 import {HistoricoGruposComponent} from '../components/tutorias/tutor/historico-grupos.component';
 import {ConferenciasComponent} from '../components/tutorias/coord_institucional/conferencias.component';
+import {AplicacionEncuestaComponent} from '../components/tutorias/aplicacion-encuesta.component';
 
 const routes: Routes = [
     {
@@ -138,6 +139,13 @@ const routes: Routes = [
                 component: ConferenciasComponent,
                 data: {
                     title: 'Administración de jornadas/conferencias'
+                }
+            },
+            {
+                path: '6379bf06fff30085e5b7fb72dcdb01ca', // aplicacion_encuesta
+                component: AplicacionEncuestaComponent,
+                data: {
+                    title: 'Aplicación de encuestas'
                 }
             },
 
