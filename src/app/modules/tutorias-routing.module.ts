@@ -23,6 +23,8 @@ import {HistoricoGruposComponent} from '../components/tutorias/tutor/historico-g
 import {ConferenciasComponent} from '../components/tutorias/coord_institucional/conferencias.component';
 import {GruposInicialCoordDepComponent} from '../components/tutorias/coord_departamental/grupos-inicial-coord-dep.component';
 import {GruposInicialAdminComponent} from '../components/tutorias/coord_institucional/grupos-inicial-admin.component';
+import {ReporteEncuestaAlumnoComponent} from '../components/tutorias/estudiante/reporte-encuesta.component';
+import {ReporteEncuestaTutorComponent} from '../components/tutorias/tutor/reporte-encuesta-tutor.component';
 
 const routes: Routes = [
     {
@@ -71,9 +73,9 @@ const routes: Routes = [
             },
             {
                 path: 'd41ac8705ff2bfef62c749c4928edb98', // reporte_encuesta_alumno
-                component: ReporteEncuestaComponent,
+                component: ReporteEncuestaAlumnoComponent,
                 data: {
-                    title: 'Resporte de encuesta'
+                    title: 'Reporte de encuesta'
                 }
             },
             /* ************************************* *
@@ -116,9 +118,9 @@ const routes: Routes = [
             },
             {
                 path: 'reporte_encuesta_tutor', // reporte_encuesta_tutor
-                component: ReporteEncuestaComponent,
+                component: ReporteEncuestaTutorComponent,
                 data: {
-                    title: 'Resporte de encuesta'
+                    title: 'Reporte de encuesta'
                 }
             },
             {
