@@ -34,6 +34,7 @@
                                         <label for="nombre_instrcutor" >Nombre del Instructor:</label>
                                         <label style="color:#ff0000;" >*</label>
                                     </div>
+
 <!--                                    prueba-->
 
                                     <div class="col-md-5">
@@ -50,17 +51,17 @@
                                                     name="instructores"
                                                     id="nombre_instrcutor"
                                                     (completeMethod)="filtro_instructor($event)"
-                                                      styleClass="wid100"
+                                                    [inputStyle] = "{'width':'13.125rem'}"
                                                       required
                                                       disabled
                                                       placeholder="Escriba el nombre del instructor">
                                         <ng-template let-value pTemplate="selectedItem">
-                                            <span style="padding-right: 20px;  font-size:14px">
+                                            <span style="padding-right: 1.25rem;  font-size:0.875rem">
                                                 {{value.NOMBRE }} {{ value.PRIMER_APELLIDO }} {{value.SEGUNDO_APELLIDO}}</span>
                                         </ng-template>
                                         <ng-template let-brand pTemplate="item">
                                             <div class="">
-                                                <div style="font-size:16px;">
+                                                <div style="font-size:0.875rem;">
                                                  {{brand.NOMBRE }} {{brand.PRIMER_APELLIDO }} {{brand.SEGUNDO_APELLIDO}}
                                                 </div>
                                             </div>
@@ -74,7 +75,7 @@
                                                                 field="NOMBRE"
                                                                 name="instructores"
                                                                 (completeMethod)="filtro_instructor($event)"
-                                                                styleClass="wid100"
+                                                                [inputStyle] = "{'width':'13.125rem'}"
                                                                 required
                                                                 placeholder="Escriba el nombre del instructor">
                                                     <ng-template let-value pTemplate="selectedItem">
@@ -93,7 +94,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="col-md-2 col-form-label text-right my-auto">
+                                    <div class="col-md-2 col-form-label text-right">
                                         <label for="cupo" >Cupo Máximo:</label>
                                         <label style="color:#ff0000;" >*</label>
                                     </div>
@@ -124,7 +125,8 @@
                                             <option *ngFor="let periodo of this.periodosArray; let i = index"
                                                     [value]="periodo.PK_PERIODO_CADO">
                                                 {{periodo.NOMBRE_PERIODO}}
-                                                {{periodo.FECHA_INICIO | date:'MMMM'| uppercase }} -
+                                                {{periodo.FECHA_INICIO | date:'MMMM'| uppercase }}
+                                                {{periodo.FECHA_INICIO | date:'yyyy' }} -
                                                 {{periodo.FECHA_FIN | date:'MMMM' | uppercase }}
                                                 {{periodo.FECHA_FIN | date:'yyyy' }}
                                             </option>
@@ -286,13 +288,21 @@
                             </div>
                             <!--                                fin hora fin del curso-->
                             <div class="form-group row">
-                                <div class="col-md-7 col-form-label text-right my-auto">
+                                <div class="col-md-3 col-form-label text-right my-auto">
+                                    <button (click)="calcularTotalHoras()"
+                                        class="btn btn-primary btn-sm">Calcular total de Horas</button>
+                                </div>
+                                <div class="col-md-5 col-form-label text-right my-auto">
                                     <label for="total_horas_curso" >Total de horas del Curso:</label>
                                 </div>
-                                <div class="col-md-5">
-                                    <div class="input-group">
-                                            <input [(ngModel)]="this.curso.total_horas"  type="number" class="form-control" id="total_horas_curso" name="total_horas_curso"
-                                                    required placeholder="Aquí el total de horas">
+                                <div class="col-md-4">
+                                    <div class="input-group my-auto">
+                                            <input  #totalHoras
+                                                    [(ngModel)]="this.curso.total_horas"  type="number"
+                                                   class="form-control mt-2" id="total_horas_curso"
+                                                   name="total_horas_curso"
+                                                   disabled
+                                                    required placeholder="Total de horas">
                                     </div>
                                     <!--                                    {{this.hora_inicio_curso}}-->
                                 </div>

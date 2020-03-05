@@ -28,8 +28,9 @@
                 </pre> -->
                 <tr *ngFor="let periodo of this.lista_periodos; let i = index" class="text-center">
                     <td>{{i + 1}}</td>
-                    <td>{{periodo.NOMBRE_PERIODO}}
-                    {{periodo.FECHA_INICIO | date:'MMMM'| uppercase }} -
+                    <td>{{periodo.NOMBRE_PERIODO}}<br>
+                    {{periodo.FECHA_INICIO | date:'MMMM'| uppercase }}
+                    {{periodo.FECHA_INICIO | date:'yyyy' }} -
                     {{periodo.FECHA_FIN | date:'MMMM' | uppercase }}
                     {{periodo.FECHA_FIN | date:'yyyy' }}
                     </td>

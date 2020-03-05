@@ -29,10 +29,11 @@
 <!--            <input class="form-control  input-group-lg  d-inline" type="search" placeholder="Buscar un curso" aria-label="Search">-->
         </div>
     </div>
-    <div *ngFor="let curso of this.lista_periodos_cursos" class="row">
+    <div *ngFor="let curso of this.lista_periodos_cursos; let i = index;" class="row">
         <div class="col-12">
         <p-accordion>
-            <p-accordionTab  class="text-center" header="
+            <p-accordionTab [selected]="(i == 0)?true:false"
+                            class="text-center" header="
                             {{curso[0].NOMBRE_PERIODO   }}
                             {{curso[0].FECHA_INICIO | date:'MMMM'| uppercase }} -
                             {{curso[0].FECHA_FIN | date:'MMMM' | uppercase }}
@@ -51,7 +52,7 @@
                                 <div class="card-body p-0 texto-card">
                                     <div class="row px-3">
                                         <div class="col-12 px-0 pb-1 pt-0">
-                                            <img class="card-img-top img-fluid"  src="assets/img/capacitacion_docente/curso1.png" alt="Card image cap">
+                                            <img class="card-img-top img-fluid"  src="assets/img/capacitacion_docente/curso2.png" alt="Card image cap">
                                         </div>
                                     </div>
                                     <!--                                    FIN RENGLON IMG-->
@@ -126,14 +127,16 @@
                                     <!--                                    <div class="card-body p-0 texto-card">-->
                                     <hr>
                                     <div class="row px-3">
-                                        <div class="col-4">
+                                        <div class="col-12">
                                             <a [routerLink]="['..','719d6190109101a74bec7860e0d41d99',item[0].PK_CAT_CURSO_CADO]"
-                                               class="btn btn-link  my-1 btn-block"><fa-icon [icon]="info"></fa-icon> Ver</a>
+                                               class="btn btn-link  my-1 btn-block"><fa-icon [icon]="info"></fa-icon> Ver Ficha Técnica</a>
                                         </div>
-                                        <div class="col-4 px-1">
+                                    </div>
+                                    <div class="row px-3">
+                                        <div class="col-6 px-1">
                                             <button class="btn btn-link   my-1 btn-block"><fa-icon [icon]="edit"></fa-icon>Editar</button>
                                         </div>
-                                        <div class="col-4 px-1">
+                                        <div class="col-6 px-1">
                                             <button class="btn btn-link my-1 btn-block"><fa-icon [icon]="delete"></fa-icon>Eliminar</button>
                                         </div>
                                     </div>
@@ -246,14 +249,16 @@
                                     <!--                                    <div class="card-body p-0 texto-card">-->
                                     <hr>
                                     <div class="row px-3">
-                                        <div class="col-4">
+                                        <div class="col-12">
                                             <a [routerLink]="['..','719d6190109101a74bec7860e0d41d99',item[0].PK_CAT_CURSO_CADO]"
-                                               class="btn btn-link  my-1 btn-block"><fa-icon [icon]="info"></fa-icon> Ver</a>
+                                               class="btn btn-link  my-1 btn-block"><fa-icon [icon]="info"></fa-icon> Ver Ficha Técnica</a>
                                         </div>
-                                        <div class="col-4 px-1">
+                                    </div>
+                                    <div class="row px-3">
+                                        <div class="col-6 px-1">
                                             <button class="btn btn-link   my-1 btn-block"><fa-icon [icon]="edit"></fa-icon>Editar</button>
                                         </div>
-                                        <div class="col-4 px-1">
+                                        <div class="col-6 px-1">
                                             <button class="btn btn-link my-1 btn-block"><fa-icon [icon]="delete"></fa-icon>Eliminar</button>
                                         </div>
                                     </div>

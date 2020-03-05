@@ -44,6 +44,7 @@ export class PeriodosComponent implements OnInit {
   public validado = false;
   public fecha_actual_sistema = new Date();
   public lista_periodos: object;
+  public lista_periodos_con_cursos: Array<Object>;
 
   constructor(private periodo_service: PeriodosCadoService) {
     // this._init_components();
@@ -109,7 +110,80 @@ export class PeriodosComponent implements OnInit {
 
   eliminar_periodo(pk_periodo: number) {
     // console.log(pk_periodo); todo validar que no tenga cursos asignados activos y avisar que debe dar de baja primero los cursos
-      Swal.fire({
+      this.periodo_service.busca_periodo_con_cursos(pk_periodo).subscribe(
+          data => {
+              console.log(data);
+              this.lista_periodos_con_cursos = [];
+              for ( const i in data) {
+                  this.lista_periodos_con_cursos.push( this.lista_periodos_con_cursos[i] );
+              }
+
+              if (this.lista_periodos_con_cursos.length > 0) {
+                  Swal.fire({
+                      icon: 'warning',
+                      title: '¡No se puede eliminar un Periodo con Cursos Asignados, elimine primero los cursos del Periodo!',
+                      showConfirmButton: true,
+                      confirmButtonText: 'OK',
+                  });
+                  return false;
+              } else {
+                  // eliminar periodo
+                  Swal.fire({
+                      title: '¿Está seguro que desea eliminar el  periodo?',
+                      // text: "You won't be able to revert this!",
+                      icon: 'question',
+                      showCancelButton: true,
+                      confirmButtonColor: '#3085d6',
+                      cancelButtonColor: '#d33',
+                      confirmButtonText: 'Continuar'
+                  }).then((result) => {
+                      if (result.value) {
+                          // definiendo body
+                          let body = {
+                              pk_periodo_cado: pk_periodo
+                          };
+                          // eliminar mediante WS
+                          this.periodo_service.eliminar_periodo(body).subscribe(
+                              data => {  // cuando sale bien todo
+                                  if (data) {
+                                      this._init_components();
+                                      Swal.fire({
+                                          icon: 'success',
+                                          title: '¡Se ha eliminado el periodo correctamente!',
+                                          showConfirmButton: true,
+                                          confirmButtonText: 'OK',
+                                          // timer: 2000
+                                      });
+                                      this.ngOnInit();
+                                      //  volver a consultar los periodos
+                                  }
+                              },
+                              error => { // cuando ocurre un error
+                                  Swal.fire({
+                                      icon: 'error',
+                                      title: '¡Lo sentimos ha ocurrido un error, intentalo más tarde!',
+                                      showConfirmButton: true,
+                                      confirmButtonText: 'OK',
+                                      // timer: 2000
+                                  });
+                              }
+                          ); // fin subscribe eliminar periodo
+                      } // fin confirmacion
+                  }); // fin confirmacion alert
+              } // fin else
+          }, // fin data
+          error => { // cuando ocurre un error
+              Swal.fire({
+                  icon: 'error',
+                  title: '¡Lo sentimos ha ocurrido un error, intentalo más tarde!',
+                  showConfirmButton: true,
+                  confirmButtonText: 'OK',
+                  // timer: 2000
+              }); // fin error
+          } // fin error al busca_periodo_con_cursos
+      );// fin busca_periodo_con_cursos
+
+      /*Swal.fire({
           title: '¿Está seguro que desea eliminar el  periodo?',
           // text: "You won't be able to revert this!",
           icon: 'question',
@@ -150,49 +224,10 @@ export class PeriodosComponent implements OnInit {
                  });
              }
          );
-
-         // this.ngOnInit();
           }
-
-
-      });
-    /*if (confirm('¿Está seguro que desea borrar el periodo?')) {
-      // definiendo body
-      let body = {
-        pk_periodo_cado: pk_periodo
-      };
-
-      // registrar mediante WS
-      this.periodo_service.eliminar_periodo(body).subscribe(
-        data => {  // cuando sale bien todo
-          if (data) {
-            this._init_components();
-              Swal.fire({
-                  icon: 'success',
-                  title: '¡Se ha eliminado el periodo correctamente!',
-                  showConfirmButton: true,
-                  confirmButtonText: 'OK',
-                  // timer: 2000
-              });
-            this.ngOnInit();
-            //  volver a consultar los periodos
-          }
-        },
-        error => { // cuando ocurre un error
-            Swal.fire({
-                icon: 'error',
-                title: '¡Lo sentimos ha ocurrido un error, intentalo más tarde!',
-                showConfirmButton: true,
-                confirmButtonText: 'OK',
-                // timer: 2000
-            });
-        }
-    );
-
-    // this.ngOnInit();
-    }*/
-
+      });*/
   }
+
   registra_periodo() {
     // console.log(this.periodo.fecha_fin);
     // console.log(this.fecha_actual_sistema);
@@ -285,10 +320,17 @@ export class PeriodosComponent implements OnInit {
       // alert('Debes indicar la /**/fecha de fin del periodo');
       return false;
     }
-    // if(this.periodo.tipo_periodo == 0) {
-    //   alert('Debes indicar el tipo');
-    //   return false;
-    // }
+      if (this.periodo.fecha_inicio > this.periodo.fecha_fin ) {
+          Swal.fire({
+              icon: 'info',
+              title: 'La fecha de inicio no puede ser mayor a la fecha de finalización',
+              showConfirmButton: true,
+              confirmButtonText: 'OK',
+              // timer: 2000
+          });
+          // alert('Debes indicar el nombre del periodo');
+          return false;
+      }
     return true;
   }
 

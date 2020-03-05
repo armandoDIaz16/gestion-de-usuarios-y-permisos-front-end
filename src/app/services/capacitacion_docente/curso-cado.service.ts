@@ -12,6 +12,14 @@ export class CursoCadoService extends GenericServicesService {
       super(http);
   }
 
+
+    busca_curso_misma_hora(fecha_inicio) {
+        return this.http.get(
+            GenericServicesService.API_ENDPOINT + 'busca_instructor/' + fecha_inicio,
+            GenericServicesService.HEADERS
+        );
+    }
+
     busca_instructor(pk_participante) {
         return this.http.get(
             GenericServicesService.API_ENDPOINT + 'busca_instructor/' + pk_participante,
