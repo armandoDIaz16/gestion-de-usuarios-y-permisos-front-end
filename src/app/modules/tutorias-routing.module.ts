@@ -26,6 +26,7 @@ import {GruposInicialCoordDepComponent} from '../components/tutorias/coord_depar
 import {GruposInicialAdminComponent} from '../components/tutorias/coord_institucional/grupos-inicial-admin.component';
 import {ReporteEncuestaAlumnoComponent} from '../components/tutorias/estudiante/reporte-encuesta.component';
 import {ReporteEncuestaTutorComponent} from '../components/tutorias/tutor/reporte-encuesta-tutor.component';
+import {GruposTutoriasSiiaComponent} from '../components/tutorias/coord_institucional/grupos-tutorias-siia.component';
 
 const routes: Routes = [
     {
@@ -165,6 +166,13 @@ const routes: Routes = [
             /* ***************************************************************** *
              * ********** RUTAS DE COORD INSTITUCIONALES/ADMINISTRADOR ********* *
              * ***************************************************************** */
+            {
+                path: 'def20b9bf5392cc89bc5f2b27ce3c4b7', // grupos_tutorias_siia
+                component: GruposTutoriasSiiaComponent,
+                data: {
+                    title: 'Grupos de tutoría del SIIA'
+                }
+            },
             {
                 path: '4781291c6bd5fdb69af66b8b5bdce033', // grupos_inicial_admin
                 component: GruposInicialAdminComponent,

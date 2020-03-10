@@ -59,3 +59,22 @@ export interface InterfaceHistoricoGrupoTutoria {
     ENCUESTAS_CONTESTADAS?: number;
     EVALUACION_GRUPO:       number;
 }
+
+export interface InterfaceGrupoSiia {
+    CLAVE_GRUPO:       string;
+    NOMBRE:            string;
+    PRIMER_APELLIDO:   string;
+    SEGUNDO_APELLIDO:  string;
+    AULA:              string;
+    HORARIO:           InterfaceDiaHorarioSiia[];
+    CANTIDAD_ALUMNOS:  number;
+    CARRERA:           string;
+}
+
+export interface InterfaceDiaHorarioSiia {
+    Lunes:      string;
+    Martes:     string;
+    Miercoles:  string;
+    Jueves:     string;
+    Viernes:    string;
+}

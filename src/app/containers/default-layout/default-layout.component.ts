@@ -82,10 +82,6 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
 
         this.loaderModal.hide();
     }
-
-    recargar() {
-        location.reload();
-    }
 }
 
 // export const rutasRoles2 = rutas;

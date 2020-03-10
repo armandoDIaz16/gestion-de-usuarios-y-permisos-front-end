@@ -35,7 +35,7 @@ export class EncuestasService extends GenericServicesService {
         );
     }
 
-    get_encuestas_historico(): Observable<InterfaceEncuestaAdmin[]>{
+    get_encuestas_historico(): Observable<InterfaceEncuestaAdmin[]> {
         return this.http.get<InterfaceEncuestaAdmin[]>(
             GenericServicesService.API_ENDPOINT + 'get_encuestas_historico',
             GenericServicesService.HEADERS);
@@ -52,5 +52,13 @@ export class EncuestasService extends GenericServicesService {
         return this.http.post(GenericServicesService.API_ENDPOINT + 'aplicar_encuesta',
             body,
             GenericServicesService.HEADERS);
+    }
+
+    validar_numero_control(numero_control: string) {
+        return this.http.post(
+            GenericServicesService.API_ENDPOINT + 'valida_numero_control',
+            {NUMERO_CONTROL: numero_control},
+            GenericServicesService.HEADERS
+        );
     }
 }
