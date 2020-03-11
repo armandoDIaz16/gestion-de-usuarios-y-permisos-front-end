@@ -97,7 +97,9 @@ export class CursosComponent implements OnInit {
                     });
                 }
             );
-        } // fin if
+        } else {
+            this.display = 'none';
+        }// fin if
         // this.display = 'none';
     } // fin carga cursos
 

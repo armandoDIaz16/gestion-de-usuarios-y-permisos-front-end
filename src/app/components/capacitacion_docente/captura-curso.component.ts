@@ -131,12 +131,9 @@ export class CapturaCursoComponent implements OnInit {
                 confirmButtonText: 'Continuar'
             }).then((result) => {
                 if (result.value) {
-
-                    // validamos que no haya un curso registrado el mismo dia y misma hora
+                   /* // validamos que no haya un curso registrado el mismo dia y misma hora
                     this.curso_service.busca_curso_misma_hora(this.curso.fecha_inicio).subscribe(
                         data => {  //  200 ok
-
-
                             if (error) {
                                 Swal.fire({
                                     icon: 'error',
@@ -153,10 +150,10 @@ export class CapturaCursoComponent implements OnInit {
                                     // timer: 2000
                                 });
                             }
-                        });
-
+                        });*/
                     // definiendo body
                     let error = false;
+                    let mensaje = '';
                     const arrayInstructores = [];
                     for (const instructor of this.curso.instructores) {
                         // console.log(edificio['PK_EDIFICIO']);
@@ -189,28 +186,19 @@ export class CapturaCursoComponent implements OnInit {
                             for ( const i in data) {
                                 if (data[i]['estado'] === 'error') {
                                      error = true;
+                                     mensaje = data[i]['mensaje'];
                                 }
                             }
                             if (error) {
+                                if (mensaje === '')
+                                    mensaje = '¡Lo sentimos ha ocurrido un error, intentalo más tarde!';
+
                                 Swal.fire({
                                     icon: 'error',
-                                    title: '¡Lo sentimos ha ocurrido un error, intentalo más tarde!',
+                                    title: mensaje,
                                     showConfirmButton: true,
                                     confirmButtonText: 'OK',
                                 });
-                                /*this._init_components();
-                                // this.loaderModal.hide();
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: '¡Se ha registrado el nuevo Curso correctamente!',
-                                    showConfirmButton: true,
-                                    confirmButtonText: 'OK',
-                                    // timer: 2000
-                                });
-                                // alert('Se ha registrado el periodo');
-                                //  volver a consultar los periodos
-                                this.router.navigateByUrl('/capacitacion_docente/fdf484eeeb011a5fb52cf33751b4e22f');
-                                // this.ngOnInit();*/
                             } else {
                                 this._init_components();
                                 // this.loaderModal.hide();
@@ -584,7 +572,7 @@ export class CapturaCursoComponent implements OnInit {
         if (this.curso.espacio === '') {
             Swal.fire({
                 icon: 'info',
-                title: 'Debes indicar el espacio done se realizará el curso',
+                title: 'Debes indicar el espacio donde se realizará el curso',
                 showConfirmButton: true,
                 confirmButtonText: 'OK',
                 // timer: 2000
@@ -614,12 +602,18 @@ export class CapturaCursoComponent implements OnInit {
 // let r = new Date(this.curso.fecha_fin);
 //             if (fechai < fechaf) {
                 // entro
-                // totalDias = fechaf.getDate() - fechai.getDate();
-                console.log('total dias ' + totalDias);
+            let fechai    = new Date(this.curso.fecha_inicio).getTime();
+            var fechaf    = new Date(this.curso.fecha_fin).getTime();
+
+            const diff = fechaf - fechai;
+
+            console.log(diff / (1000 * 60 * 60 * 24 ));
+                totalDias = diff / (1000 * 60 * 60 * 24 );
+                console.log('total dias ' + (totalDias + 1) );
                 // if (horai < horaf) {
                     totalHoras = horaf.getHours() - horai.getHours();
                     console.log('total hrs ' + totalHoras);
-                    totalFinal = totalHoras * 7;
+                    totalFinal = totalHoras *  (totalDias + 1);
                     console.log('total total ' + totalFinal);
                     this.render.setProperty(this.totalHoras.nativeElement, 'value', totalFinal.toString());
                     // this.render.setValue(this.totalHoras.nativeElement, totalFinal.toString());
@@ -675,6 +669,49 @@ export class CapturaCursoComponent implements OnInit {
             // alert('Debes indicar el nombre del periodo');
             return false;
         }
+
+        if (this.periodosArray.length > 0 ) {
+            let temfechai = null;
+            let temfechaf = null;
+            for (let periodo of this.periodosArray) {
+                       if (periodo['PK_PERIODO_CADO'] = this.curso.pk_periodo ) {
+                           temfechai = formatDate(periodo['FECHA_INICIO'], 'yyyy-MM-dd', 'en-US', '');
+                           // temfechai = periodo['FECHA_INICIO'];
+                           temfechaf =   formatDate(periodo['FECHA_FIN'], 'yyyy-MM-dd', 'en-US', '');
+                           // temfechaf = periodo['FECHA_FIN'];
+                       }
+            }
+            console.log(this.curso.fecha_inicio);
+            console.log(temfechai);
+            if (this.curso.fecha_inicio < temfechai ) {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'La fecha de inicio del curso no puede ser menor  a la fecha de inicio del periodo ' +
+                        formatDate(temfechai, 'dd-MM-yyyy', 'en-US', '') ,
+                    showConfirmButton: true,
+                    confirmButtonText: 'OK',
+                    // timer: 2000
+                });
+                // alert('Debes indicar el nombre del periodo');
+                return false;
+            }
+            console.log(this.curso.fecha_fin);
+            console.log(temfechaf);
+            if (this.curso.fecha_fin > temfechaf ) {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'La fecha de finalización del curso no puede ser mayor a la fecha de finalización del periodo ' +
+                        formatDate(temfechaf, 'dd-MM-yyyy', 'en-US', '') ,
+                    showConfirmButton: true,
+                    confirmButtonText: 'OK',
+                    // timer: 2000
+                });
+                // alert('Debes indicar el nombre del periodo');
+                return false;
+            }
+        }
+
+
 
         if (this.curso.hora_inicio == null || this.curso.hora_fin == null ) {
             Swal.fire({
