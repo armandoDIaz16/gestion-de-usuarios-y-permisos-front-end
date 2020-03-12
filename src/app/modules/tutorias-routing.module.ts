@@ -12,7 +12,6 @@ import {CanalizacionesAlumnoComponent} from '../components/tutorias/canalizacion
 import {EncuestasAlumnoComponent} from '../components/tutorias/encuestas-alumno.component';
 import {HorarioAlumnoComponent} from '../components/tutorias/horario-alumno.component';
 import {RespuestasEncuestaComponent} from '../components/tutorias/respuestas-encuesta.component';
-import {ReporteEncuestaComponent} from '../components/tutorias/reporte-encuesta.component';
 import {CoordinadoresInstitucionalesComponent} from '../components/tutorias/coordinadores-institucionales.component';
 import {CoordinadoresDepartamentalesComponent} from '../components/tutorias/coord_institucional/coordinadores-departamentales.component';
 import {DatosTutorComponent} from '../components/tutorias/estudiante/datos-tutor.component';
