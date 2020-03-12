@@ -183,49 +183,6 @@ export class PeriodosComponent implements OnInit {
           } // fin error al busca_periodo_con_cursos
       );// fin busca_periodo_con_cursos
 
-      /*Swal.fire({
-          title: '¿Está seguro que desea eliminar el  periodo?',
-          // text: "You won't be able to revert this!",
-          icon: 'question',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Continuar'
-      }).then((result) => {
-          if (result.value) {
-              // definiendo body
-         let body = {
-             pk_periodo_cado: pk_periodo
-         };
-
-         // eliminar mediante WS
-         this.periodo_service.eliminar_periodo(body).subscribe(
-             data => {  // cuando sale bien todo
-                 if (data) {
-                     this._init_components();
-                     Swal.fire({
-                         icon: 'success',
-                         title: '¡Se ha eliminado el periodo correctamente!',
-                         showConfirmButton: true,
-                         confirmButtonText: 'OK',
-                         // timer: 2000
-                     });
-                     this.ngOnInit();
-                     //  volver a consultar los periodos
-                 }
-             },
-             error => { // cuando ocurre un error
-                 Swal.fire({
-                     icon: 'error',
-                     title: '¡Lo sentimos ha ocurrido un error, intentalo más tarde!',
-                     showConfirmButton: true,
-                     confirmButtonText: 'OK',
-                     // timer: 2000
-                 });
-             }
-         );
-          }
-      });*/
   }
 
   registra_periodo() {

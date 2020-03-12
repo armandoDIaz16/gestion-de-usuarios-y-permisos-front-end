@@ -7,9 +7,10 @@ import Swal from 'sweetalert2';
  import {PeriodosCadoService} from '../../services/capacitacion_docente/periodos-cado.service';
 import { CursoCadoService } from '../../services/capacitacion_docente/curso-cado.service';
 import {Curso} from '../../models/capacitacion_docente/cado-model.model';
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 import {formatDate} from '@angular/common';
 import { LoaderComponent } from '../../components/loader/loader.component';
+// import {Object} from '@amcharts/amcharts4/.internal/fabric/fabric-impl';
 
 @Component({
   selector: 'app-captura-curso',
@@ -81,7 +82,9 @@ export class CapturaCursoComponent implements OnInit {
   constructor(private periodo_service: PeriodosCadoService,
               private curso_service: CursoCadoService,
               private router: Router,
+              private activatedRouter: ActivatedRoute,
               private render: Renderer2) {
+      this.carga_curso_param();
       const usuario = JSON.parse( sessionStorage.getItem('permisos'));
       this.usuario_en_sistema = usuario['numero_control'];
   }
@@ -268,8 +271,8 @@ export class CapturaCursoComponent implements OnInit {
     autocompletaCampus() {
 
         for (const edificio of this.edificiosArray) {
-            console.log(edificio['PK_EDIFICIO']);
-            console.log(this.curso.edificio);
+            // console.log(edificio['PK_EDIFICIO']);
+            // console.log(this.curso.edificio);
 
             if (edificio['PK_EDIFICIO'] == this.curso.edificio) {
                 this.curso.campus = edificio['FK_CAMPUS'];
@@ -294,6 +297,7 @@ export class CapturaCursoComponent implements OnInit {
                 }
                 console.log(this.edificiosArray);
                 console.log(this.lista_edificios);
+                this.autocompletaCampus();
                 this.display = 'none';
             },
             error => {
@@ -765,4 +769,56 @@ export class CapturaCursoComponent implements OnInit {
         return true;
     }
 
-}
+    carga_curso_param() {
+
+        this.activatedRouter.params.subscribe( param => {
+            if ( Object.keys(param).length === 0) {
+                console.log('no llego el parametro ' + param);
+            } else {
+                console.log('si llego el parametro ' + param['id']);
+                this.curso_service.busca_curso_por_pk(param['id']).subscribe(
+                    data => {
+                        console.log('cuerpo del curso');
+                        console.log( data[0][0]);
+                        const curso = data[0][0];
+                        // this.curso.instructores = [];
+                        // this.curso.instructores[0] = data[0];
+                        // this.render.setAttribute(this.filtro.nativeElement, 'disabled', 'true' );
+                        this.curso = {
+                            pk_curso : curso['PK_CAT_CURSO_CADO'],
+                            nombre_curso:  curso['NOMBRE_CURSO'],
+                            tipo_curso: curso['TIPO_CURSO'],
+                            cupo_maximo: curso['CUPO_MAXIMO'],
+                            cupo_actual: -1,
+                            total_horas: curso['TOTAL_HORAS'],
+                            pk_periodo: curso['FK_PERIODO_CADO'],
+                            pk_area_academica: curso['FK_AREA_ACADEMICA'] == null ? 0 : curso['FK_AREA_ACADEMICA'] ,
+                            instructores: curso['INSTRUCTORES'],
+                            fecha_inicio: curso['FECHA_INICIO'],
+                            fecha_fin: curso['FECHA_FIN'],
+                            hora_inicio: new Date( curso['HORA_INICIO']),
+                            hora_fin:    new Date( curso['HORA_FIN']),
+                            campus: -1,
+                            edificio: curso['FK_EDIFICIO'],
+                            espacio: curso['NOMBRE_ESPACIO'],
+                            estado_curso: curso['ESTADO_CURSO']
+                        };
+
+                    },
+                    error => {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'No se pudo cargar el curso, intentelo más tarde!',
+                            showConfirmButton: true,
+                            confirmButtonText: 'OK',
+                            // timer: 2000
+                        });
+
+                    }
+                ); // fin busca curso
+
+            } // fin else si llego param
+        }); // fin activate route
+    } // fin metodo
+
+}// end class

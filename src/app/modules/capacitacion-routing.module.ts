@@ -41,7 +41,14 @@ const routes: Routes = [
               path: '7b44125ec5b3b7b61b000cdee93c6796', // captura_cursos
               component: CapturaCursoComponent,
               data: {
-                  title: 'Captura cursos'
+                  title: 'Registro de cursos'
+              }
+          },
+          {
+              path: '7b44125ec5b3b7b61b000cdee93c6796/:id', // captura_cursos
+              component: CapturaCursoComponent,
+              data: {
+                  title: 'Modifica curso'
               }
           },
           {
