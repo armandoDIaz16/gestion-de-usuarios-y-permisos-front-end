@@ -8,8 +8,7 @@ import {string} from '@amcharts/amcharts4/core';
 
 @Component({
     selector: 'app-dashboard',
-    templateUrl: './default-layout.component.html',
-    styleUrls: ['default-layout.component.css']
+    templateUrl: './default-layout.component.html'
 })
 
 export class DefaultLayoutComponent implements OnDestroy, OnInit {
