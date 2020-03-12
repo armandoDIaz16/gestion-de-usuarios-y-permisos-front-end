@@ -8,7 +8,8 @@ import {string} from '@amcharts/amcharts4/core';
 
 @Component({
     selector: 'app-dashboard',
-    templateUrl: './default-layout.component.html'
+    templateUrl: './default-layout.component.html',
+    styleUrls: ['default-layout.component.css']
 })
 
 export class DefaultLayoutComponent implements OnDestroy, OnInit {
@@ -23,7 +24,7 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
 
     public tipo_usuario = sessionStorage.getItem('tipo_usuario');
     public nombre_usuario: string;
-    public numero_control: string = '';
+    public numero_control: string;
 
     // modal
     @ViewChild('loaderModal') loaderModal;
@@ -54,17 +55,22 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
     }
 
     ngOnInit() {
-        if (sessionStorage.getItem('primer_login') == '1') {
+        if (sessionStorage.getItem('primer_login') === '1') {
             this.mostrarVideo = true;
         }
 
         if (sessionStorage.getItem('permisos') != null) {
-            this.nombre_usuario = JSON.parse(sessionStorage.getItem('permisos')).nombre_usuario;
-            this.numero_control = JSON.parse(sessionStorage.getItem('permisos')).numero_control;
+            if (window.innerWidth > 991) {
+                this.nombre_usuario = JSON.parse(sessionStorage.getItem('permisos')).nombre_usuario;
+                this.numero_control = '(' + JSON.parse(sessionStorage.getItem('permisos')).numero_control + ')';
+            } else {
+                this.nombre_usuario = '';
+                this.numero_control = '';
+            }
         }
 
         const URLhash = window.location.hash;
-        if (URLhash == '#/home') {
+        if (URLhash === '#/home') {
             this.mostrarAyuda = true;
         }
         // this.Auth.authStatus.subscribe(value => this.loggedIn = value);
@@ -81,6 +87,10 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
         this.router.navigateByUrl('/login');
 
         this.loaderModal.hide();
+    }
+
+    recargar() {
+        location.reload();
     }
 }
 
