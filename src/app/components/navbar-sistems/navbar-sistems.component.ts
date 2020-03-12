@@ -8,7 +8,7 @@ var rutasRoles = [];
 @Component({
     selector: 'app-navbar-sistems',
     templateUrl: './navbar-sistems.component.html',
-    styleUrls: ['./navbar-sistems.component.scss', './navbar-sistems.component.css'],
+    styleUrls: ['./navbar-sistems.component.scss'],
     providers: [UsuarioRolesService,
         SistemaPermisosService]
 })
