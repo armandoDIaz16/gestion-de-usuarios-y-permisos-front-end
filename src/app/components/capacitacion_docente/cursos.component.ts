@@ -106,21 +106,21 @@ export class CursosComponent implements OnInit {
                 // eliminar mediante WS
                 //     console.log('entro if');
                     this.eliminarCursoPorService(body, error, mensaje);
-            } else if(estado_curso == 2) { // estado curso 2 = autorizado // todo si esta autorizado que  desincriba a las personas inscritas
+                } else if(estado_curso == 2) { // estado curso 2 = autorizado // todo si esta autorizado que  desincriba a las personas inscritas
 
-                } else if (estado_curso == 3) { // estado curso 3 = rechazado // todo si esta rechazdo que lo elimine logicamnete
-                    // eliminar mediante WS
-                    this.eliminarCursoPorService(body, error, mensaje);
-                    } else if (estado_curso == 4) { // estado curso 4 = evaluado // todo si esta terminado y con evaluaciones que  no lo permita
-                    Swal.fire({
-                        icon: 'info',
-                        title: '¡Lo sentimos no se puede eliminar un curso que ya ha sido evaluado!',
-                        showConfirmButton: true,
-                        confirmButtonText: 'OK',
-                        // timer: 2000
-                    });
-                        return false;
-                     }
+                         } else if (estado_curso == 3) { // estado curso 3 = rechazado // todo si esta rechazdo que lo elimine logicamnete
+                            // eliminar mediante WS
+                            this.eliminarCursoPorService(body, error, mensaje);
+                            } else if (estado_curso == 4) { // estado curso 4 = evaluado // todo si esta terminado y con evaluaciones que  no lo permita
+                                Swal.fire({
+                                    icon: 'info',
+                                    title: '¡Lo sentimos no se puede eliminar un curso que ya ha sido evaluado!',
+                                    showConfirmButton: true,
+                                    confirmButtonText: 'OK',
+                                    // timer: 2000
+                                });
+                                    return false;
+                                 }
             } // fin confirmacion
         }); // fin confirmacion alert
 
@@ -128,7 +128,7 @@ export class CursosComponent implements OnInit {
 
     carga_periodos_cursos() {
         this.lista_periodos_cursos = null;
-        // console.log(this.tipo_participante);
+        // consulta para coordinador
         if( this.tipo_participante == '4') {
             this.curso_service.consulta_cursos_coordinador().subscribe (
                 data => {
@@ -149,6 +149,7 @@ export class CursosComponent implements OnInit {
 
                 }
             );
+            // consulta para participante
         } else if( this.tipo_participante == '2') {
             this.curso_service.consulta_cursos_instructor(this.participante).subscribe (
                 data => {

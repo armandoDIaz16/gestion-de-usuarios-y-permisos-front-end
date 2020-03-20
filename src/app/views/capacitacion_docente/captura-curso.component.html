@@ -407,9 +407,12 @@
                    type="checkbox" class="custom-control-input" id="valida">
             <label class="custom-control-label" for="valida">He verificado la información capturada</label><br><br>
 <!--            <button class="btn btn-primary" [disabled]="!this.validado" (click)="registra_periodo()">-->
-            <button   class="btn btn-primary btn-lg" [disabled]="!this.validado" (click)="registrar_curso()" >
+            <button #btnregistro  class="btn btn-primary btn-lg" [disabled]="!this.validado" (click)="registrar_curso()" >
                 <fa-icon [icon]="save"></fa-icon>
                 Registrar Nuevo Curso</button>
+            <button #btnmodificar  hidden  class="btn btn-warning btn-lg" [disabled]="!this.validado" (click)="modificar_curso()" >
+                <fa-icon [icon]="edit"></fa-icon>
+                Modificar Curso</button>
             <!--                        <pre>{{this.validado}}</pre>-->
             <button  (click)="back()" type="button" class="btn btn-danger btn-lg">
                 <fa-icon [icon]="cancel"></fa-icon>

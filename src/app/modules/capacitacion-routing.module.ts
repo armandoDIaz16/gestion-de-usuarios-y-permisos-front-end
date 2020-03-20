@@ -8,6 +8,7 @@ import { BienvenidoComponent } from '../components/capacitacion_docente/bienveni
 import { CapturaCursoComponent } from '../components/capacitacion_docente/captura-curso.component';
 import { InstructorCvComponent } from '../components/capacitacion_docente/instructor-cv.component';
 import {VerCursoComponent} from '../components/capacitacion_docente/ver-curso.component';
+import {VerCursoParticipanteComponent} from '../components/capacitacion_docente/ver-curso-participante.component';
 
 const routes: Routes = [
   {
@@ -41,7 +42,7 @@ const routes: Routes = [
               path: '7b44125ec5b3b7b61b000cdee93c6796', // captura_cursos
               component: CapturaCursoComponent,
               data: {
-                  title: 'Registro de cursos'
+                  title: 'Registro de curso'
               }
           },
           {
@@ -62,7 +63,14 @@ const routes: Routes = [
               path: '719d6190109101a74bec7860e0d41d99/:idcurso', // ver_curso
               component: VerCursoComponent,
               data: {
-                  title: 'Curso'
+                  title: 'Información del Curso'
+              }
+          },
+          {
+              path: 'a9f4d4caa23c7f2d8ccf466f12c53cb4/:idcurso', // ver_curso_participante
+              component: VerCursoParticipanteComponent,
+              data: {
+                  title: 'Información del Curso'
               }
           },
       ]

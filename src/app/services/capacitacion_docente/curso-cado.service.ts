@@ -54,6 +54,14 @@ export class CursoCadoService extends GenericServicesService {
         );
     }
 
+    modifica_curso(body: object) {
+        return this.http.post(
+            GenericServicesService.API_ENDPOINT + 'modifica_curso',
+            body,
+            GenericServicesService.HEADERS
+        );
+    }
+
     registra_curso(body: object) {
         return this.http.post(
             GenericServicesService.API_ENDPOINT + 'registro_curso',

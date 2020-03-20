@@ -31,6 +31,7 @@ import {BienvenidoComponent} from '../components/capacitacion_docente/bienvenido
 import {CapturaCursoComponent} from '../components/capacitacion_docente/captura-curso.component';
 import {InstructorCvComponent} from '../components/capacitacion_docente/instructor-cv.component';
 import {VerCursoComponent} from '../components/capacitacion_docente/ver-curso.component';
+import {VerCursoParticipanteComponent} from '../components/capacitacion_docente/ver-curso-participante.component';
 // PrimeNG
 import {InputSwitchModule} from 'primeng/inputswitch';
 import {CalendarModule} from 'primeng/calendar';
@@ -61,7 +62,8 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
       BienvenidoComponent,
       CapturaCursoComponent,
       InstructorCvComponent,
-      VerCursoComponent
+      VerCursoComponent,
+      VerCursoParticipanteComponent
   ],
   exports: [
       ModalModule
