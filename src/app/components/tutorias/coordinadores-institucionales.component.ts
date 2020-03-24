@@ -49,10 +49,10 @@ export class CoordinadoresInstitucionalesComponent implements OnInit {
                 data => {
                     if (data) {
                         this.coordinadores_service.get_coordinadores().subscribe(
-                            data => {
+                            data2 => {
 
                             },
-                            error => {
+                            error2 => {
 
                             }
                         );
@@ -68,8 +68,8 @@ export class CoordinadoresInstitucionalesComponent implements OnInit {
 
     guardar_coordinador() {
         if (this.coordinador_seleccionado != 0) {
-            if(confirm('¿Está seguro que desea asignar al coordinador institucional?')) {
-                let body = {
+            if (confirm('¿Está seguro que desea asignar al coordinador institucional?')) {
+                const body = {
                     pk_nuevo_coordinador: this.coordinador_seleccionado
                 };
 
@@ -91,7 +91,7 @@ export class CoordinadoresInstitucionalesComponent implements OnInit {
         if (this.nuevo_coordinador.trim().length > 0) {
             this.coordinadores_service.get_usuarios_nombre(this.nuevo_coordinador).subscribe(
                 data => {
-                    this.lista_usuarios = JSON.parse(data.toString());
+                    this.lista_usuarios = data.data;
                 },
                 error => {
                     alert('Ha ocurrido un error');

@@ -58,7 +58,7 @@ export class DetalleGrupoComponent implements OnInit {
             this.detalle_grupo_service.get_url_back('get_pdf_perfil_personal_ingreso?pk_encriptada=' + pk_encriptada),
             '_blank',
             ''
-        )
+        );
     }
 
 }
