@@ -5,6 +5,7 @@
             <div class="card">
                 <h2 class="card-header">Habilitar residentes</h2>
                 <div class="card-body" style="text-align: center">
+                    <div style="text-align: left">Asigna rol de residente a alumnos próximos a cursar residencias</div><br>
                     <label class="btn btn-dark">
                         Habilitar <input type="submit" value="submit" name="submit" hidden (click)="habilitarAlumnos()"></label>
                 </div>
@@ -16,6 +17,7 @@
             <div class="card">
                 <h2 class="card-header">Deshabilitar</h2>
                 <div class="card-body" style="text-align: center">
+                    <div style="text-align: left">Quita rol de residente a alumnos que no dieron de alta residencias en el horario</div><br>
                     <label class="btn btn-dark">
                         Deshabilitar <input type="submit" value="submit" name="submit" hidden
                                             (click)="deshabilitarAlumnos()"></label>
@@ -28,6 +30,7 @@
             <div class="card">
                 <h2 class="card-header">Dar de baja alumno</h2>
                 <div class="card-body" style="text-align: center">
+                    <div style="text-align: left">Quita rol de residente a un alumno</div><br>
                     <input [(ngModel)]="nocontrol" class="form-control form-control-lg" type="text"><br>
                     <label class="btn btn-dark">
                         Dar de baja <input type="submit" value="submit" name="submit" hidden
@@ -41,7 +44,7 @@
             <div class="card">
                 <h2 class="card-header">Terminar semestre</h2>
                 <div class="card-body" style="text-align: center">
-                    <input [(ngModel)]="nocontrol" class="form-control form-control-lg" type="text"><br>
+                    <div style="text-align: left">Quita rol a alumnos y asesores</div><br>
                     <label class="btn btn-dark">
                         Finalizar <input type="submit" value="submit" name="submit" hidden
                                            (click)="Terminar()"></label>

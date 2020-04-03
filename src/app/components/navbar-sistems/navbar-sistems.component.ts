@@ -39,17 +39,23 @@ export class NavbarSistemsComponent implements OnInit {
     }
 
 
-    mostrarRoles(sistemaSelect, nombreSistema) {
+    async mostrarRoles(sistemaSelect, nombreSistema) {
         this.loaderModal.show();
+        this.router.navigateByUrl('/home');
 
-        if (!sessionStorage.rutas) {
-            this.router.navigateByUrl('/home');
+        /*if (sessionStorage.rutas) {*/
             sessionStorage.setItem('sistema', sistemaSelect);
-            this.usuarioRolesService.getUsuarioRoles().subscribe(data => {
+            const data = await this.usuarioRolesService.getUsuarioRoles().subscribe(data => {
+
+                /*console.log(data);*/
+
                 let sistemas = JSON.parse(sessionStorage.sistemas);
                 for (var sistema in sistemas[0].SISTEMAS) {
                     if (sistemas[0].SISTEMAS[sistema].PK_SISTEMA === sessionStorage.getItem('sistema')) {
                         // console.log("--"+sistemas[0].SISTEMAS[sistema].NOMBRE)
+
+                        while (rutasRoles.pop()) {}
+
                         for (var rol in sistemas[0].SISTEMAS[sistema].ROLES) {
                             var rutasModulos = [];
                             if (sistemas[0].SISTEMAS[sistema].ROLES[rol].NOMBRE == 'Aspirante') {
@@ -71,13 +77,14 @@ export class NavbarSistemsComponent implements OnInit {
                                             .replace(new RegExp(/[ìíîï]/g), 'i')
                                             .replace(new RegExp(/[òóôõö]/g), 'o')
                                             .replace(new RegExp(/[ùúûü]/g), 'u')
-                                            + '/' + sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE.toLowerCase()
+                                            + '/' + sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].RUTA_MD5.trim(),
+                                            /*+ '/' + sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE.toLowerCase()
                                             .replace(/\s/g, '_')
                                             .replace(new RegExp(/[àáâãäå]/g), 'a')
                                             .replace(new RegExp(/[èéêë]/g), 'e')
                                             .replace(new RegExp(/[ìíîï]/g), 'i')
                                             .replace(new RegExp(/[òóôõö]/g), 'o')
-                                            .replace(new RegExp(/[ùúûü]/g), 'u'),
+                                            .replace(new RegExp(/[ùúûü]/g), 'u'),*/
                                     icon: 'icon-arrow-right'
                                 });
                                 // modulos.push(sistemas[0].SISTEMAS[sistema].ROLES[rol].MODULOS[modulo].NOMBRE);
@@ -93,6 +100,7 @@ export class NavbarSistemsComponent implements OnInit {
                 }
 
                 sessionStorage['rutas'] = JSON.stringify(rutasRoles);
+                // console.log(nombreSistema);
                 switch (nombreSistema) {
                     case 'Aspirantes':
                         if (this.redirigirAspirante) {
@@ -105,7 +113,7 @@ export class NavbarSistemsComponent implements OnInit {
                         this.router.navigateByUrl('/residencias');
                         break;
                     case 'Tutorías':
-                        this.router.navigateByUrl('/tutorias/dashboard');
+                        this.router.navigateByUrl('/tutorias/dc7161be3dbf2250c8954e560cc35060'); // dashboard
                         break;
                     case 'asesoría académica':
                         this.router.navigateByUrl('/asesoria_academica');
@@ -116,11 +124,12 @@ export class NavbarSistemsComponent implements OnInit {
                     case 'Creditos':
                         this.router.navigateByUrl('/creditos');
                         break;
+                    case 'Referencias':
+                        this.router.navigateByUrl('/referencias');
+                        break;
                 }
-
-
             });
-        }
+        /*}*/
 
         this.loaderModal.hide();
     }

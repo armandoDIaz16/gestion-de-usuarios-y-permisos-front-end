@@ -31,7 +31,7 @@ export interface InterfaceAlumno {
     // datos de encuestas
     ENCUESTAS_ACTIVAS?:     number;
     ENCUESTAS_CONTESTADAS?: number;
-    HORARIO?:               InterfaceMateriaHorario[]
+    HORARIO?:               InterfaceMateriaHorario[];
 }
 
 export interface InterfaceMateriaHorario {

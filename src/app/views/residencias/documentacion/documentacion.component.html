@@ -8,17 +8,31 @@
                 </div>
                 <div class="card-body">
                     <div style="text-align: center;">
-                        <!--  <input [(ngModel)]="id" type="text" autofocus maxlength="2" name="id"> -->
-                        <select [(ngModel)]="id" name="id" class="form-control form-control-lg"
-                                placeholder="Area academica">
-                            <option value="0">No seleccionado</option>
-                            <option value="1">Solicitud de residencias</option>
-                            <option value="2">Carta de aceptación</option>
-                        </select><br>
-                        <label class="btn btn-dark">
-                            Selecciona archivo<input type="file" name="file" hidden multiple
-                                                     (change)="uploadFile($event)">
-                        </label>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Cargar</th>
+                                <th>Archivo</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Solicitud de residencias</td>
+                                <td><label class="btn btn-dark">
+                                    Subir<input type="file" name="file" hidden multiple
+                                                (change)="uploadFile($event, 1)">
+                        </label></td>
+                                <td>{{anteproyectosLista[0].SOLICITUD}}</td></tr><tr>
+                                <td>Carta de aceptación</td>
+                                <td><label class="btn btn-dark">
+                                    Subir<input type="file" name="file" hidden multiple
+                                                (change)="uploadFile($event, 2)">
+                        </label></td>
+                        <td>{{anteproyectosLista[0].CARTA_ACEPTACION}}</td>
+                    </tr>
+                    </tbody>
+                </table>
                     </div>
                 </div>
             </div>

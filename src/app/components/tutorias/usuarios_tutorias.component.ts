@@ -104,7 +104,7 @@ export class UsuariosTutoriasComponent implements OnInit {
     }
 
     _init() {
-        this.tipo_usuario = 0;
+        this.tipo_usuario = this.tipo_usuario;
         this.numero_control = '';
         this.nombre = '';
     }

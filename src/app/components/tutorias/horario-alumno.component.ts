@@ -45,7 +45,7 @@ export class HorarioAlumnoComponent implements OnInit {
         this.display = 'block';
 
         this.horario_service.get_horario(
-            parseInt(this.route.snapshot.queryParamMap.get('alumno'))).subscribe(
+            this.route.snapshot.queryParamMap.get('alumno')).subscribe(
             data => this.handleResponse(data),
             error => this.handleError(error)
         );

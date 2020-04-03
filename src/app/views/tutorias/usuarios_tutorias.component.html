@@ -11,28 +11,43 @@
         </div>
         <br>
 
-        <!-- Inicio de tabla de coordiandores -->
+        <!-- Inicio de tabla de coordinadores -->
         <p class="text-center h4">Se mostrarán máximo 50 usuarios por búsqueda</p>
         <table class="table table-striped">
             <thead>
             <tr class="text-center">
                 <th>No.</th>
+                <th>Foto</th>
                 <th>Número de control/SIIA</th>
                 <th>Nombre</th>
+                <th>CURP</th>
                 <th>Correo</th>
+                <th *ngIf="this.tipo_usuario == 1">Carrera</th>
+                <th *ngIf="this.tipo_usuario == 1">Semestre</th>
+                <th *ngIf="this.tipo_usuario == 1">Nombre tutor</th>
+                <th *ngIf="this.tipo_usuario == 2">Área académica</th>
                 <th>Operaciones</th>
             </tr>
             </thead>
             <tbody *ngIf="this.lista_usuarios.length > 0; else elseBlock">
             <tr class="text-center" *ngFor="let usuario of this.lista_usuarios; let i = index">
                 <td>{{i + 1}}</td>
+                <td>
+                    <img *ngIf="this.usuario.FOTO_PERFIL == null" src="../../../assets/img/avatars/user_icon.png" alt="" class="img" width="60">
+                    <img *ngIf="this.usuario.FOTO_PERFIL != null" src="{{this.usuarios_service.get_url_back(this.usuario.FOTO_PERFIL)}}" alt="" class="img" width="60">
+                </td>
                 <td>{{usuario.NUMERO_CONTROL}}</td>
                 <td>{{usuario.NOMBRE}} {{usuario.PRIMER_APELLIDO}} {{usuario.SEGUNDO_APELLIDO}}</td>
+                <td>{{usuario.CURP}}</td>
                 <td>
                     {{usuario.CORREO1}}
                     <br>
                     {{usuario.CORREO_INSTITUCIONAL}}
                 </td>
+                 <td *ngIf="this.tipo_usuario == 1">{{usuario.CARRERA}}</td>
+                 <td *ngIf="this.tipo_usuario == 1">{{usuario.SEMESTRE}}°</td>
+                 <td *ngIf="this.tipo_usuario == 1">{{usuario.NOMBRE_TUTOR}}</td>
+                <td *ngIf="this.tipo_usuario == 2">{{usuario.AREA_ACADEMICA}}</td>
                 <td>
                     <button class="btn btn-sm btn-warning" (click)="carga_usuario(usuario.PK_USUARIO)"
                             tooltip="Editar correo electrónico de usuario">
@@ -48,7 +63,7 @@
             <ng-template #elseBlock>
                 <tbody>
                 <tr class="text-center">
-                    <td colspan="5">No se encontraron usuarios</td>
+                    <td [attr.colspan]="this.tipo_usuario == 1? 10: 8">No se encontraron usuarios</td>
                 </tr>
                 </tbody>
             </ng-template>
@@ -75,7 +90,6 @@
                     <div class="col-md-6">
                         <select class="form-control" id="tipo_usuario" name="tipo_usuario"
                                 [(ngModel)]="this.tipo_usuario">
-                            <option value="0">Todos</option>
                             <option value="1">Alumno</option>
                             <option value="2">Tutor (docente)</option>
                         </select>

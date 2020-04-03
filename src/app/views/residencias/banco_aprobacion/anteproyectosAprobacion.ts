@@ -8,6 +8,6 @@ import {GenericServicesService} from '../../../services/generic-services.service
 export class AnteproyectosAprobacion extends GenericServicesService {
     constructor(private http: HttpClient) { super(http); }
     getAnteproyectos(id): Observable<IAnteproyectos[]> {
-        return this.http.get<IAnteproyectos[]>(GenericServicesService.API_ENDPOINT + 'Proyecto2/' + id, GenericServicesService.HEADERS);
+        return this.http.get<IAnteproyectos[]>(GenericServicesService.API_ENDPOINT + 'Proyecto3/' + id, GenericServicesService.HEADERS);
     }
 }

@@ -1,20 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {Documento} from './documentacion';
 import {GenericServicesService} from '../../../services/generic-services.service';
 import { ValidarModuloService } from '../../../services/validarModulo.service';
+import {forEach} from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-documentacion',
   templateUrl: './documentacion.component.html',
   styleUrls: ['./documentacion.component.scss'],
-  providers: [ValidarModuloService]
+  providers: [Documento, ValidarModuloService]
 })
 export class DocumentacionComponent extends GenericServicesService implements OnInit {
 
-  constructor(private http: HttpClient, private validarModuloService: ValidarModuloService) { super(http); }
+  constructor(private http: HttpClient, private validarModuloService: ValidarModuloService, public documento: Documento) { super(http);
+  this.documento.getDocumento(this.usuario).subscribe(data => {this.anteproyectosLista = data; }); }
 
   public mostrarModulo = false;
   public sistema = 'Residencias';
+    anteproyectosLista = [];
+     carta_documentacion;
+     solicitud;
   id = this.id;
   file = this.file;
   usuario = sessionStorage.getItem('IdUsuario');
@@ -30,7 +36,7 @@ export class DocumentacionComponent extends GenericServicesService implements On
   }
 
 
-  uploadFile(event) {
+  uploadFile(event, ed) {
       let archivo: File = event.target.files[0];
       if (!archivo) {
         return;
@@ -41,7 +47,7 @@ export class DocumentacionComponent extends GenericServicesService implements On
                                     'Nombre': archivo.name.split('.').shift(),
                                     'Extencion': archivo.name.split('.').pop(),
                                     'Archivo': myReader.result,
-                                    'id': this.usuario}, this.id);
+                                    'id': this.usuario}, ed);
       };
       myReader.readAsDataURL(archivo);
   }

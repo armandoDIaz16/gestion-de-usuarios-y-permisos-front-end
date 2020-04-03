@@ -22,7 +22,8 @@ export class FichaUnicaAsignacionComponent extends GenericServicesService implem
   }
 
   fichas() {
-      const url = [GenericServicesService.API_ENDPOINT + 'Pdf/' + this.usuario.toString(), GenericServicesService.HEADERS];
+      console.log(this.usuario);
+      const url = [GenericServicesService.API_ENDPOINT + 'Pdf/' + this.usuario, GenericServicesService.HEADERS];
       // @ts-ignore
       const win = window.open(url, '_blank');
       win.focus();

@@ -47,6 +47,7 @@ export class PerfilDocenteComponent implements OnInit {
     };
 
     @ViewChild('loaderModal') loaderModal;
+    public display: string;
 
     constructor(
         private route: ActivatedRoute,
@@ -54,15 +55,16 @@ export class PerfilDocenteComponent implements OnInit {
         private perfil_service: PerfilService,
         private area_academica_service: AreaAcademicaServiceService
     ) {
-        this.perfil = <InterfacePerfil>{};
+        this.perfil = <InterfacePerfil> {};
         this.estados_civiles = [];
         this.areas_academicas = [];
         this.datos_codigo_postal = <InterfaceDatosCodigoPostal>{};
         this.datos_codigo_postal.COLONIAS = [];
+        this.display = 'none';
     }
 
     async ngOnInit() {
-        // this.loaderModal.show(); .
+        this.display = 'block';
 
         const data_perfil = await this.perfil_service.get_perfil(this.pk_usuario);
         if (data_perfil) {
@@ -117,7 +119,8 @@ export class PerfilDocenteComponent implements OnInit {
 
         // CARGAR COLONIA
         this.procesa_codigo_postal();
-        // this.loaderModal.hide();
+
+        this.display = 'none';
     }
 
     handleResponseAreas(data) {
@@ -125,12 +128,16 @@ export class PerfilDocenteComponent implements OnInit {
     }
 
     onSubmit() {
+        this.display = 'block';
+
         if (this.valida_perfil()) {
             this.perfil_service.guardar_perfil(this.form).subscribe(
                 data => this.handleResponse(data),
                 error => this.handleError(error)
             );
         }
+
+        this.display = 'none';
     }
 
     valida_perfil() {
@@ -245,4 +252,34 @@ export class PerfilDocenteComponent implements OnInit {
         }
     }
 
+    actualiza_foto(evt: any) {
+        if (confirm('¿Está seguro que desea actualizar la foto la perfil?')) {
+            const archivo: File = evt.target.files[0];
+            if (!archivo) {
+                alert('Seleccione la foto de perfil');
+                return;
+            }
+
+            this.loaderModal.show();
+            const myReader: FileReader = new FileReader();
+            myReader.onloadend = async (e) => {
+                const body  = {
+                    'PK_ENCRIPTADA':  sessionStorage.getItem('IdEncriptada'),
+                    'NOMBRE_ARCHIVO': archivo.name.split('.').shift(),
+                    'EXTENSION':      archivo.name.split('.').pop(),
+                    'CONTENIDO':      myReader.result
+                };
+
+                this.perfil_service.cambia_foto(body).subscribe(
+                    data => {
+                        this.perfil.FOTO_PERFIL = data + '';
+                    },
+                    error => { }
+                );
+            };
+            myReader.readAsDataURL(archivo);
+
+            this.loaderModal.hide();
+        }
+    }
 }

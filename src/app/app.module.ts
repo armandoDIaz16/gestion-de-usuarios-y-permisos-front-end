@@ -112,7 +112,7 @@ import {CollapseModule, TooltipModule} from 'ngx-bootstrap';
         StudentOldComponent,
         NavbarSistemsComponent,
         ActivaCuentaComponent,
-        RepositorioTesisComponent
+        RepositorioTesisComponent,
     ],
     exports: [
         ModalModule

@@ -18,6 +18,7 @@ export class ResponderEncuestaComponent implements OnInit {
     public encuesta_completa = <InterfaceEncuestaCompleta>{};
     public pregunta_inicial: number;
     public cantidad_preguntas: number;
+    public error = null;
 
     constructor(private responder_encuestas_service: ResponderEncuestaService,
                 private route: ActivatedRoute,
@@ -46,6 +47,7 @@ export class ResponderEncuestaComponent implements OnInit {
     }
 
     handleError(error) {
+        this.error = error.error;
     }
 
     onSubmit() {
@@ -58,7 +60,7 @@ export class ResponderEncuestaComponent implements OnInit {
 
     public handleResponseGuardar(data) {
         if (data.data) {
-            this.router.navigateByUrl('/tutorias/encuestas');
+            this.router.navigateByUrl('/tutorias/6da5b4309f3cc102b3a2b7ac7e52a62c');
         }
     }
 

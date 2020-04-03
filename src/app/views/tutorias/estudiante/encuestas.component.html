@@ -1,0 +1,63 @@
+<h2 class="text-center">Historial de encuestas</h2>
+<br><br>
+<div class="row">
+    <div class="offset-2 col-md-8">
+        <table class="table table-striped">
+            <thead>
+            <tr class="text-center">
+                <th>Número</th>
+                <th>Nombre</th>
+                <th>Fecha aplicación</th>
+                <th>Fecha respuesta</th>
+                <th>Operaciones</th>
+            </tr>
+            </thead>
+            <tbody *ngIf="this.hay_encuestas; else elseBlock">
+            <tr *ngFor="let encuesta of this.lista_encuestas; let i = index" class="text-center">
+                <td>{{i + 1}}</td>
+                <td>{{encuesta.NOMBRE}}</td>
+                <td>{{encuesta.FECHA_APLICACION}}</td>
+                <td>{{encuesta.FECHA_RESPUESTA}}</td>
+                <td>
+                    <a *ngIf="encuesta.ESTADO_APLICACION == 1; else elseBlockRespuesta"
+                       [routerLink]="['/tutorias/745651e29c6bb18baf4a1118fa8a0fc5']"
+                       [queryParams]="{pk_aplicacion_encuesta: encuesta.PK_APLICACION_ENCUESTA}"
+                       class="btn btn-primary">
+                        Responder
+                    </a>
+                    <ng-template #elseBlockRespuesta>
+                        <a *ngIf=" encuesta.PK_ENCUESTA == 6; else elseReporte" class="btn btn-sm btn-success"
+                           [routerLink]="['/tutorias/d41ac8705ff2bfef62c749c4928edb98']"
+                           [queryParams]="{aplicacion: encuesta.PK_APLICACION_ENCUESTA}">
+                            Ver reporte
+                        </a>
+                        <ng-template #elseReporte>
+                            Respondida
+                        </ng-template>
+                    </ng-template>
+                </td>
+            </tr>
+            </tbody>
+            <ng-template #elseBlock>
+                <tbody>
+                <tr class="text-center">
+                    <td colspan="5">No se encontraron encuestas pendientes</td>
+                </tr>
+                </tbody>
+            </ng-template>
+        </table>
+    </div>
+</div>
+
+<!-- INICIO VENTANA MODAL DE CARGA -->
+<div bsModal #loaderModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-hidden="false"
+[config]="{backdrop: 'static',keyboard: false}" [style.display]="this.display">
+    <!--[config]="{backdrop: 'static',keyboard: false}">-->
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content"
+             style="background-color: rgba(51, 51, 51, 0.8); background-clip: padding-box; border: 1px solid rgba(0, 0, 0, 0);">
+            <app-loader></app-loader>
+        </div>
+    </div>
+</div>
+<!-- FIN VENTANA MODAL DE CARGA -->

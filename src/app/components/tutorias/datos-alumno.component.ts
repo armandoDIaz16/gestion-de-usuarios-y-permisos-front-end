@@ -30,7 +30,7 @@ export class DatosAlumnoComponent implements OnInit {
     async ngOnInit() {
         this.display = 'block';
 
-        const data_perfil = await this.perfil_service.get_perfil(parseInt(this.route.snapshot.queryParamMap.get('alumno')));
+        const data_perfil = await this.perfil_service.get_perfil(this.route.snapshot.queryParamMap.get('alumno'));
         if (data_perfil) {
             this.perfil = <InterfacePerfil>data_perfil;
         }

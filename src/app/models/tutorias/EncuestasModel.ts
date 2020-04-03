@@ -1,12 +1,25 @@
+export interface InterfaceEncuestaAdmin {
+    PK_ENCUESTA:                    number;
+    NOMBRE:                         string;
+    OBJETIVO:                       string;
+    ESTADO_ENCUESTA:                number;
+    TIPO_APLICACION?:               InterfaceTipoAplicacion;
+}
+
+export interface InterfaceTipoAplicacion {
+    NOMBRE:     string;
+}
+
 export interface InterfaceEncuestaPendiente {
     PK_APLICACION_ENCUESTA: number;
     FK_USUARIO:             number;
     FECHA_APLICACION:       string;
     FECHA_RESPUESTA?:       string;
-    ESTADO_APLICACION:      number;
+    ESTADO:                 number;
     PK_ENCUESTA:            number;
-    NOMBRE:                 string;
+    NOMBRE_ENCUESTA:        string;
     ESTADO_ENCUESTA:        number;
+    TIPO_APLICACION?:       InterfaceTipoAplicacion;
 }
 
 export interface InterfaceEncuestaCompleta {
@@ -83,17 +96,3 @@ export interface InterfaceRespuestasResueltas {
     RANGO:         number | null;
 }
 /* FIN INTERFACES PARA PROCESAR LAS RESPUESTAS */
-
-
-
-
-
-
-
-
-
-
-
-
-
-

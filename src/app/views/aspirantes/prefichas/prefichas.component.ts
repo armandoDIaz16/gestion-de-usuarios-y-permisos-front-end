@@ -33,6 +33,11 @@ export class PrefichasComponent extends GenericServicesService implements OnInit
   public mostrarModulo = false;
   public carreraLista = [];
   public aspirante = [];
+
+  nombre = null;
+  primerApellido = null;
+  segundoApellido = null;
+
   telefonoCasa = null;
   telefonoMovil = null;
   CORREO1 = null;
@@ -192,6 +197,10 @@ export class PrefichasComponent extends GenericServicesService implements OnInit
         case 2: this.aspirante[0].SEXO = "Femenino";
           break;
       }
+      this.nombre = this.aspirante[0].NOMBRE;
+      this.primerApellido = this.aspirante[0].PRIMER_APELLIDO;
+      this.segundoApellido = this.aspirante[0].SEGUNDO_APELLIDO;
+
       this.telefonoCasa = this.aspirante[0].TELEFONO_CASA;
       this.telefonoMovil = this.aspirante[0].TELEFONO_MOVIL;
       this.CORREO1 = this.aspirante[0].CORREO1;
@@ -204,13 +213,16 @@ export class PrefichasComponent extends GenericServicesService implements OnInit
   }
 
   async modificarAspirante() {
-    //this.loaderModal.show();    
+    //this.loaderModal.show();
     if (this.telefonoMovil == null) {
       this.telefonoMovil = "";
     }
     const data = await this.aspiranteService.updateAspirante(
       {
         "PK_USUARIO": this.pkUsuario,
+        "NOMBRE": this.nombre,
+        "PRIMER_APELLIDO": this.primerApellido,
+        "SEGUNDO_APELLIDO": this.segundoApellido,
         "CURP": this.CURP.toUpperCase(),
         "TELEFONO_CASA": this.telefonoCasa,
         "TELEFONO_MOVIL": "" + this.telefonoMovil + "",

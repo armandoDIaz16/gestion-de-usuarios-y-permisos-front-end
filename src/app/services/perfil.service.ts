@@ -14,7 +14,7 @@ export class PerfilService extends GenericServicesService {
     }
 
     async get_perfil(pk_usuario: any) {
-        let body = {
+        const body = {
             'pk_encriptada': pk_usuario
         };
 
@@ -58,7 +58,7 @@ export class PerfilService extends GenericServicesService {
     }
 
     get_perfil_tutor(pk_encriptada: string): Observable<InterfacePerfil> {
-        let body = {
+        const body = {
             pk_encriptada: pk_encriptada
         };
         return this.http.post<InterfacePerfil>(

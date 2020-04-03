@@ -1,0 +1,160 @@
+<!-- FORMULARIO DE APLICACIÓN -->
+<div class="row">
+    <div class="offset-3 col-md-6">
+        <div class="card">
+            <div class="card-header">Aplicar una encuesta</div>
+            <div class="card-body">
+                <div class="bd-example bd-example-type">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="lista_encuestas" class="pull-right">Encuesta:</label>
+                            </div>
+                            <div class="col-8">
+                                <select *ngIf="this.hay_encuestas;" id="lista_encuestas" class="form-control"
+                                        name="lista_encuestas" [(ngModel)]="this.encuesta">
+                                    <option value="0">* Seleccione una opción</option>
+                                    <option *ngFor="let encuesta of this.lista_encuestas"
+                                            class="text-center" value="{{encuesta.PK_ENCUESTA}}">
+                                        {{encuesta.NOMBRE}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="tipo_aplicacion" class="pull-right">Tipo de aplicación:</label>
+                            </div>
+                            <div class="col-8">
+                                <select *ngIf="this.hay_tipos_encuesta; " id="tipo_aplicacion" class="form-control"
+                                        name="tipo_aplicacion" [(ngModel)]="this.tipo_aplicacion">
+                                    <option value="0">* Seleccione una opción</option>
+                                    <option *ngFor="let tipo_aplicacion of this.lista_tipos_encuesta; let i = index"
+                                            class="text-center" value="{{i+1}}">{{tipo_aplicacion.NOMBRE}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" *ngIf="this.tipo_aplicacion == 3">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="semestre" class="pull-right">Semestre:</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input placeholder="Número de semestre" [(ngModel)]="this.numero_semestre"
+                                       id="semestre" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" *ngIf="this.tipo_aplicacion == 2">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="carrera" class="pull-right">Carrera:</label>
+                            </div>
+                            <div class="col-md-8">
+                                <select id="carrera" class="form-control" name="carrera" [(ngModel)]="this.carrera">
+                                    <option value="0">* Seleccione una opción</option>
+                                    <option *ngFor="let carrera of this.lista_carreras;"
+                                            class="text-center" value="{{carrera.PK_CARRERA}}">
+                                        {{carrera.NOMBRE}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" *ngIf="this.tipo_aplicacion == 5">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="numero_control" class="pull-right">Número de control:</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input class="form-control" id="numero_control" name="numero_control"
+                                           [(ngModel)]="this.numero_control" placeholder="Número de control"
+                                           type="text">
+                                    <span class="input-group-prepend">
+                                        <button class="btn btn-primary" type="button" (click)="this.valida_numero_control()">
+                                            <i class="fa fa-search"></i> Validar
+                                        </button>
+                                    </span>
+                                    <div class="clearfix"></div>
+                                    <div class="col-md-12">
+                                        <p class="help-block">{{this.nombre_numero_control}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <button class="btn btn-primary" (click)="aplicar_encuesta()"
+                                        *ngIf="this.numero_control_valido && this.tipo_aplicacion == 5">
+                                    Aplicar encuesta
+                                </button>
+                                <button class="btn btn-primary" (click)="aplicar_encuesta()"
+                                        *ngIf="this.tipo_aplicacion != 5">
+                                    Aplicar encuesta
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+<!-- TABLA DE APLICACIONES -->
+<div class="row">
+    <div class="offset-1 col-md-10">
+        <br><br>
+        <p class="h3 text-center">Histórico de encuestas</p>
+        <div class="row">
+            <br>
+            <table class="table table-striped">
+                <thead>
+                <tr class="text-center">
+                    <th>Número</th>
+                    <th>Encuesta</th>
+                    <th>Tipo aplicación</th>
+                    <th>Fecha aplicación</th>
+                </tr>
+                </thead>
+                <tbody *ngIf="this.hay_encuestas_historicos; else elseBlock">
+                <tr *ngFor="let encuesta of this.lista_historico; let i = index" class="text-center">
+                    <td>{{i + 1}}</td>
+                    <td>{{encuesta.NOMBRE_ENCUESTA}}</td>
+                    <td>{{encuesta.TIPO_APLICACION}}</td>
+                    <td>{{encuesta.FECHA_APLICACION}}</td>
+                </tr>
+                </tbody>
+                <ng-template #elseBlock>
+                    <tbody>
+                    <tr class="text-center">
+                        <td colspan="6">No se encontraron encuestas</td>
+                    </tr>
+                    </tbody>
+                </ng-template>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- INICIO VENTANA MODAL DE CARGA -->
+<div bsModal #loaderModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-hidden="false"
+     [config]="{backdrop: 'static',keyboard: false}" [style.display]="this.display">
+    <!--[config]="{backdrop: 'static',keyboard: false}">-->
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content"
+             style="background-color: rgba(51, 51, 51, 0.8); background-clip: padding-box; border: 1px solid rgba(0, 0, 0, 0);">
+            <app-loader></app-loader>
+        </div>
+    </div>
+</div>
+<!-- FIN VENTANA MODAL DE CARGA -->
+
+
