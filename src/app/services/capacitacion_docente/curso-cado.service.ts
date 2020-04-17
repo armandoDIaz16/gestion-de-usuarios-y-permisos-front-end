@@ -82,6 +82,12 @@ export class CursoCadoService extends GenericServicesService {
             GenericServicesService.HEADERS
         );
     }
+    consulta_institutos() {
+        return this.http.get(
+            GenericServicesService.API_ENDPOINT + 'consulta_institutos',
+            GenericServicesService.HEADERS
+        );
+    }
     filtro_docente(valor) {
         return this.http.get(
             GenericServicesService.API_ENDPOINT + 'filtro_docente/' + valor,

@@ -1,8 +1,9 @@
 // Angular
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-// import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+
 
 // ventanas modales
 import {ModalModule} from 'ngx-bootstrap';
@@ -30,7 +31,10 @@ import {CursosComponent} from '../components/capacitacion_docente/cursos.compone
 import {BienvenidoComponent} from '../components/capacitacion_docente/bienvenido.component';
 import {CapturaCursoComponent} from '../components/capacitacion_docente/captura-curso.component';
 import {InstructorCvComponent} from '../components/capacitacion_docente/instructor-cv.component';
-import {VerCursoComponent} from '../components/capacitacion_docente/ver-curso.component';
+import {RegistroFichaTecnicaComponent} from '../components/capacitacion_docente/registro-ficha-tecnica.component';
+import {ListaDeParticipantesComponent} from '../components/capacitacion_docente/lista-de-participantes.component';
+import {MaterialDelCursoComponent} from '../components/capacitacion_docente/material-del-curso.component';
+import {VerFichaTecnicaComponent} from '../components/capacitacion_docente/ver-ficha-tecnica.component';
 import {VerCursoParticipanteComponent} from '../components/capacitacion_docente/ver-curso-participante.component';
 // PrimeNG
 import {InputSwitchModule} from 'primeng/inputswitch';
@@ -46,6 +50,7 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
     CapacitacionRoutingModule,
     BsDropdownModule.forRoot(),
     FormsModule,
+    ReactiveFormsModule,
     CollapseModule,
     TooltipModule.forRoot(),
     LoaderModule,
@@ -62,8 +67,11 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
       BienvenidoComponent,
       CapturaCursoComponent,
       InstructorCvComponent,
-      VerCursoComponent,
-      VerCursoParticipanteComponent
+      RegistroFichaTecnicaComponent,
+      ListaDeParticipantesComponent,
+      MaterialDelCursoComponent,
+      VerFichaTecnicaComponent,
+      VerCursoParticipanteComponent,
   ],
   exports: [
       ModalModule

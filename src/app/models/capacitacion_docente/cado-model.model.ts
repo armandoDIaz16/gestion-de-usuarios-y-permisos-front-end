@@ -1,9 +1,16 @@
 export interface Periodo {
-     pk_periodo_cado:   number;
-     nombre_periodo:    string;
-     fecha_inicio:      string;
-     fecha_fin:         string;
-     // estado_periodo:   number;
+    pk_periodo_cado:   number;
+    nombre_periodo:    string;
+    fecha_inicio:      string;
+    fecha_fin:         string;
+}
+
+export interface Contenido_Tematico {
+     pk_tema:                  number;
+     nombre_tema:              string;
+     actividad_aprendizaje:    string;
+     tiempo_horas:             number;
+     indice_array:             number;
 }
 
 export interface Curso {
@@ -15,6 +22,9 @@ export interface Curso {
     total_horas: number;
     pk_periodo: number;
     pk_area_academica: number;
+    // agregar fk_ficha_tecnica
+    fk_ficha_tecnica?: number;
+    imagen_curso?: string;
     instructores: Array<Object>;
     fecha_inicio:   string;
     fecha_fin:   string;
@@ -24,5 +34,23 @@ export interface Curso {
     edificio: number;
     espacio: string;
     estado_curso:  number;
+}
+
+export interface FichaTecnica {
+    pk_ficha:   number;
+    lugar_institucion: number;
+    introduccion: string;
+    justificacion: string;
+    objetivo_general: string;
+    tipo_servicio: number;
+    otro_servicio?: string;
+    // ------------------------
+    fecha_registro:   string;
+    hora_registro:   string;
+    contenido_tematico: Array<Object>; // este contendra los archivos aenxados por tema
+    elementos_didacticos: Array<Object>;
+    criterios_evaluacion: Array<Object>;
+    competencias: Array<Object>;
+    fuentes_informacion: Array<Object>;
 }
 

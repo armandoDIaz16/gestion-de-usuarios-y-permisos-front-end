@@ -7,7 +7,10 @@ import { CursosComponent } from '../components/capacitacion_docente/cursos.compo
 import { BienvenidoComponent } from '../components/capacitacion_docente/bienvenido.component';
 import { CapturaCursoComponent } from '../components/capacitacion_docente/captura-curso.component';
 import { InstructorCvComponent } from '../components/capacitacion_docente/instructor-cv.component';
-import {VerCursoComponent} from '../components/capacitacion_docente/ver-curso.component';
+import {RegistroFichaTecnicaComponent} from '../components/capacitacion_docente/registro-ficha-tecnica.component';
+import {ListaDeParticipantesComponent} from '../components/capacitacion_docente/lista-de-participantes.component';
+import {MaterialDelCursoComponent} from '../components/capacitacion_docente/material-del-curso.component';
+import {VerFichaTecnicaComponent} from '../components/capacitacion_docente/ver-ficha-tecnica.component';
 import {VerCursoParticipanteComponent} from '../components/capacitacion_docente/ver-curso-participante.component';
 
 const routes: Routes = [
@@ -60,19 +63,41 @@ const routes: Routes = [
               }
           },
           {
-              path: '719d6190109101a74bec7860e0d41d99/:idcurso', // ver_curso
-              component: VerCursoComponent,
+              path: 'a8061fb3c2160acc4b456babcf74fe82/:idcurso', // registro_ficha_tecnica
+              component: RegistroFichaTecnicaComponent,
+              data: {
+                  title: 'Ficha Técnica del Curso'
+              }
+          },
+          {
+              path: 'a9f4d4caa23c7f2d8ccf466f12c53cb4/:idcurso', // ver_curso_participante
+               component: VerCursoParticipanteComponent, // todo pendiente utilizar componente
               data: {
                   title: 'Información del Curso'
               }
           },
           {
-              path: 'a9f4d4caa23c7f2d8ccf466f12c53cb4/:idcurso', // ver_curso_participante
-              component: VerCursoParticipanteComponent,
+              path: 'c3bfaea0f0bb5f3ebdc7a12e50013ca5/:idcurso', // material_del_curso
+              component: MaterialDelCursoComponent,
               data: {
-                  title: 'Información del Curso'
+                  title: 'Material del Curso'
               }
           },
+          {
+              path: '0629dad63eedea217bbbf202c19ed531/:idcurso', // lista_de_participantes
+              component: ListaDeParticipantesComponent,
+              data: {
+                  title: 'Lista de Participantes'
+              }
+          },
+          {
+              path: '55522b2cdc0af2da326c79a3cbb63f47/:idcurso', // ver_ficha_tecnica
+              component: VerFichaTecnicaComponent,
+              data: {
+                  title: 'Ficha Técnica del Curso'
+              }
+          },
+
       ]
   }];
 

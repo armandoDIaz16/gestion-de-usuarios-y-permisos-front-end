@@ -1,6 +1,56 @@
+a.btn.bg-white:hover{
+    background-color: rgb(32,168,216) !important;
+}
 *{
     //font-size: 20px;
 }
+a:hover {
+    text-decoration: none;
+}
+.btn-link:hover{
+    text-decoration: none;
+}
+
+
+.contenido-tittle{
+    color: rgb(255, 253, 254);
+}
+.contenido-tittle:hover{
+    color: #222222;
+}
+.contenido-tittle:active{
+    color: #545454;
+}
+.btn-contenido-edit{
+    color: rgb(255, 253, 254);
+}
+.btn-contenido-edit:hover{
+    color: #ffec00;
+}
+.btn-contenido-edit:active{
+    color: #dcaa1a;
+}
+.btn-contenido-delete{
+    color: rgb(255, 253, 254);
+}
+.btn-contenido-delete:hover{
+    color: rgb(255, 77, 87);
+}
+.btn-contenido-delete:active{
+    color: #b6000b;
+}
+
+.bg-contenido{
+    background-color: rgb(21, 111, 176);
+    color: #fffdfe;
+}
+
+.texto-acompana{
+    font-size:1.125rem;
+    font-weight: bold;
+
+}
+
 .texto-card{
     font-size: 1rem;
     //font-size: 1rem+.16rem;
@@ -18,9 +68,33 @@
 
 .btn-success{
     background-color:rgb(0,119,145) ;
+    //border-radius: 0;
+}
+
+.btn-menu{
+     border-radius: 0;
+}
+
+.btn-enviar{
+    //border-radius: 0;
+}
+.btn-enviar2{
+    border-radius: 0;
+}
+
+.btn.active{
+    background-color: rgb(21, 85, 145);
+    box-shadow:  0 0 0 0.2rem rgba(21, 111, 176, 0.98);
+    color: #fffdfe;
+}
+.btn-menu:focus{
+    background-color: rgb(21, 85, 145);
+    box-shadow:  0 0 0 0.2rem rgba(21, 111, 176, 0.98);
+    color: #fffdfe;
 }
 .text-success{
     color:rgb(0,119,145) ;
+
 }
 p-accordionTab{
     font-size: 20px;

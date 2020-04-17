@@ -87,6 +87,12 @@ export class CapturaCursoComponent implements OnInit {
               private router: Router,
               private activatedRouter: ActivatedRoute,
               private render: Renderer2) {
+      this.participante = sessionStorage.getItem('participante');
+      if ( this.participante !== '0') {
+          this.tipo_participante = sessionStorage.getItem('tipo_participante');
+      } else {
+          this.tipo_participante = '-1';
+      }
       this.carga_curso_param();
       const usuario = JSON.parse( sessionStorage.getItem('permisos'));
       this.usuario_en_sistema = usuario['numero_control'];
@@ -97,7 +103,7 @@ export class CapturaCursoComponent implements OnInit {
       this.carga_periodos();
       this.carga_area_academica();
       this.consulta_edificios();
-      this.carga_instructor();
+//      this.carga_instructor();
 
   }
 
@@ -202,9 +208,7 @@ export class CapturaCursoComponent implements OnInit {
 
 
   carga_instructor() {
-      this.participante = sessionStorage.getItem('participante');
       if ( this.participante !== '0') {
-          this.tipo_participante = sessionStorage.getItem('tipo_participante');
           if(this.tipo_participante === '2') {
               this.curso_service.busca_instructor(this.participante).subscribe(
                   data => {
@@ -387,7 +391,7 @@ export class CapturaCursoComponent implements OnInit {
                 console.error('no se cargaron la lista de Edificios');
                 Swal.fire({
                     icon: 'error',
-                    title: '¡Lo sentimos ha ocurrido un error, no se cargó la lista de Edificios  reportelo a Sistemas!',
+                    title: '¡Lo sentimos ha ocurrido un error, no se cargó la lista de Edificios  intentelo más tarde!',
                     showConfirmButton: true,
                     confirmButtonText: 'OK',
                     // timer: 2000
@@ -417,7 +421,7 @@ export class CapturaCursoComponent implements OnInit {
                 console.error('no se cargaron la lista de Áreas Académicas');
                 Swal.fire({
                     icon: 'error',
-                    title: '¡Lo sentimos ha ocurrido un error, no se cargó la lista de Áreas Académicas reportelo a Sistemas!',
+                    title: '¡Lo sentimos ha ocurrido un error, no se cargó la lista de Áreas Académicas intentelo más tarde!',
                     showConfirmButton: true,
                     confirmButtonText: 'OK',
                     // timer: 2000
@@ -448,7 +452,7 @@ export class CapturaCursoComponent implements OnInit {
                 console.error('no se cargaron los periodos');
                 Swal.fire({
                     icon: 'error',
-                    title: '¡Lo sentimos ha ocurrido un error, no se cargaron los periodos reportelo a Sistemas!',
+                    title: '¡Lo sentimos ha ocurrido un error, no se cargaron los periodos intentelo más tarde!',
                     showConfirmButton: true,
                     confirmButtonText: 'OK',
                     // timer: 2000
@@ -515,18 +519,18 @@ export class CapturaCursoComponent implements OnInit {
             // alert('Debes indicar el nombre del periodo');
             return false;
         }
-
-        if (this.curso.pk_periodo === -1) {
+        if (!(this.curso.cupo_maximo % 1 === 0)) {
             Swal.fire({
                 icon: 'info',
-                title: 'Debes indicar el Periodo al cual quieres asignar el curso',
+                title: 'El valor del cupo máximo no puede ser decimal, verificalo!',
                 showConfirmButton: true,
                 confirmButtonText: 'OK',
                 // timer: 2000
             });
-            // alert('Debes indicar el nombre del periodo');
             return false;
         }
+
+
         if (this.curso.tipo_curso === -1) {
             Swal.fire({
                 icon: 'info',
@@ -549,75 +553,6 @@ export class CapturaCursoComponent implements OnInit {
             // alert('Debes indicar el nombre del periodo');
             return false;
         }
-/*
-        if (this.curso.fecha_inicio === '') {
-            Swal.fire({
-                icon: 'info',
-                title: 'Debes indicar la fecha de inicio del curso',
-                showConfirmButton: true,
-                confirmButtonText: 'OK',
-                // timer: 2000
-            });
-            // alert('Debes indicar el nombre del periodo');
-            return false;
-        }
-        if (this.curso.fecha_fin === '') {
-            Swal.fire({
-                icon: 'info',
-                title: 'Debes indicar la fecha de finallización del curso',
-                showConfirmButton: true,
-                confirmButtonText: 'OK',
-                // timer: 2000
-            });
-            // alert('Debes indicar el nombre del periodo');
-            return false;
-        }
-        if (this.curso.hora_inicio == null) {
-            Swal.fire({
-                icon: 'info',
-                title: 'Debes indicar la hora de inicio del curso',
-                showConfirmButton: true,
-                confirmButtonText: 'OK',
-                // timer: 2000
-            });
-            // alert('Debes indicar el nombre del periodo');
-            return false;
-        }
-        if (this.curso.hora_fin == null) {
-            Swal.fire({
-                icon: 'info',
-                title: 'Debes indicar la hora de finallización del curso',
-                showConfirmButton: true,
-                confirmButtonText: 'OK',
-                // timer: 2000
-            });
-            // alert('Debes indicar el nombre del periodo');
-            return false;
-        }
-
-        if (this.curso.hora_inicio.getHours() < 7) {
-            Swal.fire({
-                icon: 'info',
-                title: 'La hora de inicio no puede ser menor a las 7:00 am, el horario de Cursos es de 7:00 am a 9:00 pm ',
-                showConfirmButton: true,
-                confirmButtonText: 'OK',
-                // timer: 2000
-            });
-            // alert('Debes indicar el nombre del periodo');
-            return false;
-        }
-        console.log(this.curso.hora_fin.getHours());
-        if (this.curso.hora_fin.getHours() >= 21) {
-            Swal.fire({
-                icon: 'info',
-                title: 'La hora de finalización no puede ser mayor a las 9:00 pm, el horario de Cursos es de 7:00 am a 9:00 pm ',
-                showConfirmButton: true,
-                confirmButtonText: 'OK',
-                // timer: 2000
-            });
-            // alert('Debes indicar el nombre del periodo');
-            return false;
-        }*/
 
         if (this.curso.total_horas == null || this.curso.total_horas < 30) {
             Swal.fire({
@@ -757,11 +692,23 @@ export class CapturaCursoComponent implements OnInit {
             return false;
         }
 
+        if (this.curso.pk_periodo === -1) {
+            Swal.fire({
+                icon: 'info',
+                title: 'Debes indicar el Periodo al cual quieres asignar el curso',
+                showConfirmButton: true,
+                confirmButtonText: 'OK',
+                // timer: 2000
+            });
+            // alert('Debes indicar el nombre del periodo');
+            return false;
+        }
+
         if (this.periodosArray.length > 0 ) {
             let temfechai = null;
             let temfechaf = null;
             for (let periodo of this.periodosArray) {
-                       if (periodo['PK_PERIODO_CADO'] = this.curso.pk_periodo ) {
+                       if (periodo['PK_PERIODO_CADO'] == this.curso.pk_periodo ) {
                            temfechai = formatDate(periodo['FECHA_INICIO'], 'yyyy-MM-dd', 'en-US', '');
                            // temfechai = periodo['FECHA_INICIO'];
                            temfechaf =   formatDate(periodo['FECHA_FIN'], 'yyyy-MM-dd', 'en-US', '');
@@ -858,6 +805,7 @@ console.log(this.curso.hora_inicio.getHours());
         this.activatedRouter.params.subscribe( param => {
             if ( Object.keys(param).length === 0) {
                 console.log('no llego el parametro ' + param);
+                this.carga_instructor();
             } else {
                 console.log('si llego el parametro ' + param['id']);
                 this.curso_service.busca_curso_por_pk(param['id']).subscribe(
