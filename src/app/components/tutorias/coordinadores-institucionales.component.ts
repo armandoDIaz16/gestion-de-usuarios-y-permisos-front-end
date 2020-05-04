@@ -90,9 +90,7 @@ export class CoordinadoresInstitucionalesComponent implements OnInit {
     buscar_usuarios() {
         if (this.nuevo_coordinador.trim().length > 0) {
             this.coordinadores_service.get_usuarios_nombre(this.nuevo_coordinador).subscribe(
-                data => {
-                    this.lista_usuarios = data.data;
-                },
+                data => this.buscar_usuarios_ok(data),
                 error => {
                     alert('Ha ocurrido un error');
                 }
@@ -100,6 +98,10 @@ export class CoordinadoresInstitucionalesComponent implements OnInit {
         } else {
             alert('Debe ingresar un nombre para buscar');
         }
+    }
+
+    buscar_usuarios_ok(data) {
+        this.lista_usuarios = data.data;
     }
 
     ocultar_modal_coordinadores() {

@@ -1,0 +1,95 @@
+<h2 class="text-center">Grupos de tutoría de seguimiento</h2>
+<!--
+<br><br>
+<div class="alert alert-danger" [hidden]="!error">
+    {{error}}
+</div>
+-->
+<br><br>
+
+<div class="row">
+    <div class="offset-1 col-md-10">
+        <!-- Incio lista de carreras -->
+        <div *ngFor="let carrera of lista_grupos.CARRERAS">
+            <p class="h3 text-center">
+                {{carrera.CARRERA}}
+            </p>
+
+            <!-- Inicio de grupos por carrera -->
+            <table class="table table-striped">
+                <thead>
+                <tr class="text-center">
+                    <th>No.</th>
+                    <th>Cantidad alumnos</th>
+                    <th>Encuestas <br> activas</th>
+                    <th>Encuestas <br> contestadas</th>
+                    <th>Evalución de grupo</th>
+                    <th>Perfil grupal</th>
+                    <th>Operaciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="text-center" *ngFor="let grupo of carrera.GRUPOS; let i = index">
+                    <td>{{i + 1}}</td>
+                    <td>{{grupo.CLAVE}}</td>
+                    <td>{{grupo.AULA}}</td>
+                    <td>
+                        <p *ngFor="let horario of grupo.HORARIO">
+                            {{horario.DIA}}: {{horario.HORA_INICIAL}} - {{horario.HORA_FINAL}}
+                        </p>
+                    </td>
+                    <td>{{grupo.CANTIDAD_ALUMNOS}}</td>
+                    <td>{{grupo.ENCUESTAS_ACTIVAS}}</td>
+                    <td>{{grupo.ENCUESTAS_CONTESTADAS}}</td>
+                    <td>
+                        <p *ngIf="grupo.EVALUACION_GRUPO == 1; else noEvaluado">
+                            Evaluado
+                        </p>
+                        <ng-template #noEvaluado>
+                            <p>
+                                No evaluado
+                            </p>
+                        </ng-template>
+                    </td>
+                    <td>
+                        <button class="btn btn-success btn-sm" (click)="reporte_perfil_grupal(grupo.PK_GRUPO_TUTORIA)">
+                            Ver reporte
+                        </button>
+                    </td>
+                    <td>
+                        <a [routerLink]="['/tutorias/47b8563343b0fec813625cb20111085f']"
+                           [queryParams]="{clave_grupo: grupo.PK_GRUPO_TUTORIA}"
+                           class="btn btn-primary btn-sm">
+                            Ver detalles
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+                <ng-template #elseBlock>
+                    <tbody>
+                    <tr class="text-center">
+                        <td colspan="5">No se encontraron encuestas pendientes</td>
+                    </tr>
+                    </tbody>
+                </ng-template>
+            </table>
+            <!-- Fin grupos por carrera -->
+
+        </div>
+        <!-- Fin lista de carreras -->
+    </div>
+</div>
+
+
+<!-- INICIO VENTANA MODAL DE CARGA -->
+<div bsModal #loaderModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-hidden="false"
+     [config]="{backdrop: 'static',keyboard: false}" [style.display]="this.display">
+    <!--[config]="{backdrop: 'static',keyboard: false}">-->
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content"
+             style="background-color: rgba(51, 51, 51, 0.8); background-clip: padding-box; border: 1px solid rgba(0, 0, 0, 0);">
+            <app-loader></app-loader>
+        </div>
+    </div>
+</div>
+<!-- FIN VENTANA MODAL DE CARGA -->

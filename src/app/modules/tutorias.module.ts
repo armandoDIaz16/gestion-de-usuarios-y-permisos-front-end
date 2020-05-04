@@ -36,12 +36,13 @@ import { SeguimientoComponent } from '../components/tutorias/estudiante/seguimie
 import { HistoricoGruposComponent} from '../components/tutorias/tutor/historico-grupos.component';
 import { DashboardComponent } from '../components/tutorias/dashboard.component';
 import {ConferenciasComponent} from '../components/tutorias/coord_institucional/conferencias.component';
-import {AplicacionEncuestaComponent} from '../components/tutorias/aplicacion-encuesta.component';
+import {AplicacionEncuestaComponent} from '../components/tutorias/coord_institucional/aplicacion-encuesta.component';
 import {GruposInicialCoordDepComponent} from '../components/tutorias/coord_departamental/grupos-inicial-coord-dep.component';
 import {GruposInicialAdminComponent} from '../components/tutorias/coord_institucional/grupos-inicial-admin.component';
 import {ReporteEncuestaAlumnoComponent} from '../components/tutorias/estudiante/reporte-encuesta.component';
 import {ReporteEncuestaTutorComponent} from '../components/tutorias/tutor/reporte-encuesta-tutor.component';
 import {GruposTutoriasSiiaComponent} from '../components/tutorias/coord_institucional/grupos-tutorias-siia.component';
+import {GruposSeguimientoAdminComponent} from '../components/tutorias/coord_institucional/grupos-seguimiento-admin.component';
 
 // Angular
 
@@ -84,6 +85,7 @@ import {GruposTutoriasSiiaComponent} from '../components/tutorias/coord_instituc
         ReporteEncuestaAlumnoComponent,
         ReporteEncuestaTutorComponent,
         GruposTutoriasSiiaComponent,
+        GruposSeguimientoAdminComponent,
     ],
     exports: [
         ModalModule

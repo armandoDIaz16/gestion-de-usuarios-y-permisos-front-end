@@ -1,13 +1,13 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {InterfaceEncuestaAdmin, InterfaceTipoAplicacion, InterfaceEncuestaPendiente} from '../../models/tutorias/EncuestasModel';
-import {EncuestasService} from '../../services/tutorias/encuestas.service';
-import {InterfaceCarrera} from '../../models/tutorias/CarreraModel';
+import {InterfaceEncuestaAdmin, InterfaceTipoAplicacion, InterfaceEncuestaPendiente} from '../../../models/tutorias/EncuestasModel';
+import {EncuestasService} from '../../../services/tutorias/encuestas.service';
+import {InterfaceCarrera} from '../../../models/tutorias/CarreraModel';
 
 @Component({
     selector: 'app-aplicacion-encuesta',
-    templateUrl: '../../views/tutorias/aplicacion-encuesta.component.html',
-    styleUrls: ['../../views/tutorias/aplicacion-encuesta.component.scss']
+    templateUrl: '../../../views/tutorias/coord_institucional/aplicacion-encuesta.component.html',
+    styleUrls: ['../../../views/tutorias/coord_institucional/aplicacion-encuesta.component.scss']
 })
 export class AplicacionEncuestaComponent implements OnInit {
 

@@ -79,88 +79,91 @@ export class DashboardComponent extends GenericServicesService implements OnInit
                 this.mensajeRechazado = data[0].MENSAJE_RECHAZADO;
                 this.fechaActual = data[0].FECHA_ACTUAL;
                 this.mostrarResultados = data[0].RESULTADOS;
-            }
-        });
-        this.aspiranteService.getAspirante().subscribe(data => {
-            if (data) {
-                this.aspirante = data;
-                // this.aspirante[0].PREFICHA = this.aspirante[0].PREFICHA.replace(/ /g, "")
-                // this.aspiranteService.getReferencia(this.aspirante[0].PREFICHA).subscribe(data => this.referencia = data);
-                if (this.aspirante[0].SEGUNDO_APELLIDO == null) {
-                    this.aspirante[0].SEGUNDO_APELLIDO = '';
-                }
-                switch (Number(this.aspirante[0].FK_ESTATUS)) {
-                    case 1:
-                        if (this.compararFechas(this.fechaInicio, this.fechaFin, this.fechaActual, 2)) {
-                            this.habilitarReferencia = true;
+
+                this.aspiranteService.getAspirante().subscribe(data2 => {
+                    if (data2) {
+                        this.aspirante = data2;
+                        // this.aspirante[0].PREFICHA = this.aspirante[0].PREFICHA.replace(/ /g, "")
+                        // this.aspiranteService.getReferencia(this.aspirante[0].PREFICHA).subscribe(data => this.referencia = data);
+                        if (this.aspirante[0].SEGUNDO_APELLIDO == null) {
+                            this.aspirante[0].SEGUNDO_APELLIDO = '';
                         }
-                        break;
-                    case 2:
-                        this.paso2 = 'active';
-                        this.habilitarReferencia = false;
-                        break;
-                    case 3:
-                        this.paso2 = 'active';
-                        this.habilitarReferencia = false;
-                        this.habilitarRegistro = true;
-                        break;
-                    case 4:
-                        this.paso2 = 'active';
-                        this.paso3 = 'active';
-                        this.paso4 = 'active';
-                        this.habilitarReferencia = false;
-                        this.habilitarFicha = true;
-                        break;
-                    case 5:
-                        this.paso2 = 'active';
-                        this.paso3 = 'active';
-                        this.paso4 = 'active';
-                        this.paso5 = 'active';
-                        break;
-                }
+                        switch (Number(this.aspirante[0].FK_ESTATUS)) {
+                            case 1:
+                                if (this.compararFechas(this.fechaInicio, this.fechaFin, this.fechaActual, 2)) {
+                                    this.habilitarReferencia = true;
+                                }
+                                break;
+                            case 2:
+                                this.paso2 = 'active';
+                                this.habilitarReferencia = false;
+                                break;
+                            case 3:
+                                this.paso2 = 'active';
+                                this.habilitarReferencia = false;
+                                this.habilitarRegistro = true;
+                                break;
+                            case 4:
+                                this.paso2 = 'active';
+                                this.paso3 = 'active';
+                                this.paso4 = 'active';
+                                this.habilitarReferencia = false;
+                                this.habilitarFicha = true;
+                                break;
+                            case 5:
+                                this.paso2 = 'active';
+                                this.paso3 = 'active';
+                                this.paso4 = 'active';
+                                this.paso5 = 'active';
+                                break;
+                        }
 
-                if (this.mostrarResultados == 1) {
-                    this.paso6 = 'active';
-                    this.habilitarRegistro = false;
-                    this.habilitarGuia = false;
-                    this.habilitarFicha = false;
-                    switch (Number(this.aspirante[0].ACEPTADO)) {
-                        case 0:
-                            this.habilitarRechazado = true;
-                            break;
-                        case 1:
-                            this.habilitarAceptado = true;
-                            if (this.compararFechas(this.fechaInicioCurso, this.fechaFinCurso, this.fechaActual, 0)) {
-                                this.habilitarCurso = true;
+                        if (this.mostrarResultados == 1) {
+                            this.paso6 = 'active';
+                            this.habilitarRegistro = false;
+                            this.habilitarGuia = false;
+                            this.habilitarFicha = false;
+                            switch (Number(this.aspirante[0].ACEPTADO)) {
+                                case 0:
+                                    this.habilitarRechazado = true;
+                                    break;
+                                case 1:
+                                    this.habilitarAceptado = true;
+                                    if (this.compararFechas(this.fechaInicioCurso, this.fechaFinCurso, this.fechaActual, 0)) {
+                                        this.habilitarCurso = true;
+                                    }
+                                    if (this.compararFechas(this.fechaInicioInscripcion, this.fechaFinInscripcion, this.fechaActual, 0)) {
+                                        this.habilitarInscripcion = true;
+                                    }
+                                    break;
+                                case 2:
+                                    this.habilitarAceptadoCero = true;
+                                    if (this.compararFechas(
+                                        this.fechaInicioInscripcionCero,
+                                        this.fechaFinInscripcionCero,
+                                        this.fechaActual, 0)) {
+                                        this.habilitarInscripcionCero = true;
+                                    }
+                                    break;
                             }
-                            if (this.compararFechas(this.fechaInicioInscripcion, this.fechaFinInscripcion, this.fechaActual, 0)) {
-                                this.habilitarInscripcion = true;
+                        }
+
+
+                        if (this.mostrarResultados == 1) {
+                            this.habilitarFicha = false;
+                            this.habilitarResultados = true;
+                            this.puntaje = this.aspirante[0].ICNE;
+                            switch (Number(this.aspirante[0].DDD_MG_MAT)) {
+                                case 1:
+                                    this.matematicas = 'insatisfactorio';
+                                    break;
+                                case 2:
+                                    this.matematicas = 'Satisfactorio';
+                                    break;
                             }
-                            break;
-                        case 2:
-                            this.habilitarAceptadoCero = true;
-                            if (this.compararFechas(this.fechaInicioInscripcionCero, this.fechaFinInscripcionCero, this.fechaActual, 0)) {
-                                this.habilitarInscripcionCero = true;
-                            }
-                            break;
+                        }
                     }
-                }
-
-
-
-                if (this.mostrarResultados == 1) {
-                    this.habilitarFicha = false;
-                    this.habilitarResultados = true;
-                    this.puntaje = this.aspirante[0].ICNE;
-                    switch (Number(this.aspirante[0].DDD_MG_MAT)) {
-                        case 1:
-                            this.matematicas = 'insatisfactorio';
-                            break;
-                        case 2:
-                            this.matematicas = 'Satisfactorio';
-                            break;
-                    }
-                }
+                });
             }
         });
     }
