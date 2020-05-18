@@ -133,6 +133,10 @@ export class NavbarSistemsComponent implements OnInit {
 
         this.loaderModal.hide();
     }
+
+    recargar() {
+        location.reload();
+    }
 }
 
 export const rutasNav = rutasRoles;

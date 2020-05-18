@@ -65,7 +65,7 @@
     </ul>
 </app-header>
 <div class="app-body">
-    <app-sidebar [fixed]="true" [display]="''">
+    <app-sidebar [fixed]="true" [display]="false">
         <app-sidebar-nav [navItems]="navItems" [perfectScrollbar] [disabled]="sidebarMinimized"></app-sidebar-nav>
         <app-sidebar-minimizer></app-sidebar-minimizer>
     </app-sidebar>
@@ -91,9 +91,6 @@
                 <div *ngIf="mostrarVideo">
                     <p class="h3">Ayuda</p>
                     <br>
-                    <a class="btn btn-warning" (click)="this.recargar();">Cargar menú de sistemas</a>
-                    <br>
-                    <br>
                     <a href="assets/video/guia.mp4" target="_blank">Ver video guía del panel principal del sistema</a>
                 </div>
             </div>
@@ -101,7 +98,7 @@
         </div>
 
     </main>
-    <app-aside [fixed]="true" [display]="false">
+    <app-aside [fixed]="true" [display]="''">
         <app-navbar-sistems></app-navbar-sistems>
     </app-aside>
 </div>
