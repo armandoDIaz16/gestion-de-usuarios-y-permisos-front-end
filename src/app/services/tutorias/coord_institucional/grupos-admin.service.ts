@@ -24,4 +24,16 @@ export class GruposAdminService extends GenericServicesService {
             GenericServicesService.HEADERS
         );
     }
+
+    get_grupos_seguimiento(): Observable<InterfacecCarreraGruposTutoria> {
+        const body = {
+            pk_encriptada: sessionStorage['IdEncriptada']
+        };
+
+        return this.http.post<InterfacecCarreraGruposTutoria>(
+            GenericServicesService.API_ENDPOINT + 'grupos_seguimiento_admin',
+            body,
+            GenericServicesService.HEADERS
+        );
+    }
 }

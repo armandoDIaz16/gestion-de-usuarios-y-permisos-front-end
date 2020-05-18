@@ -42,8 +42,6 @@ export class LoginComponent implements OnInit {
             data => this.handleResponse(data),
             error => this.handleError(error)
         );
-
-        this.loaderModal.hide();
     }
 
     handleResponse(data) {
@@ -61,6 +59,9 @@ export class LoginComponent implements OnInit {
             sessionStorage.setItem('sistemas', JSON.stringify(data));
             this.router.navigateByUrl('/home');
             // agregar el json de sistemas para empezar a comparar
+
+            // OCULTAR MODAL
+            this.loaderModal.hide();
         });
 
         // NO MODIFICAR (PERMISOS SOBRE SISTEMAS)
@@ -72,6 +73,9 @@ export class LoginComponent implements OnInit {
     }
 
     handleError(error) {
+        // OCULTAR MODAL
+        this.loaderModal.hide();
+
         this.error = error.error.error;
     }
 

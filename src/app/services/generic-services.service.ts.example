@@ -64,8 +64,8 @@ export class GenericServicesService {
         );
     }
 
-    get_url_back(ruta: string): string {
-        return GenericServicesService.ENDPOINT + ruta;
+    get_url_back(url: string): string {
+        return GenericServicesService.API_ENDPOINT + url;
     }
 
     /* Ejemplo_Enviar_Archivo(evt: any) {
@@ -75,7 +75,14 @@ export class GenericServicesService {
         };
         var myReader: FileReader = new FileReader();
         myReader.onloadend = (e) => {
-            this.aspiranteService.addPagos({ "Sistema": this.sistema, "Nombre": archivo.name.split('.').shift(), "Extencion": archivo.name.split('.').pop(), "Archivo": myReader.result }, this.periodo);
+            this.aspiranteService.addPagos(
+            {
+            "Sistema": this.sistema,
+            "Nombre": archivo.name.split('.').shift(),
+            "Extencion": archivo.name.split('.').pop(),
+            "Archivo": myReader.result
+            }, this.periodo
+            );
         }
         myReader.readAsDataURL(archivo);
     } */

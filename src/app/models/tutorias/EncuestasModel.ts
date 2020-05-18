@@ -19,6 +19,7 @@ export interface InterfaceEncuestaPendiente {
     PK_ENCUESTA:            number;
     NOMBRE_ENCUESTA:        string;
     ESTADO_ENCUESTA:        number;
+    PERIODO:                string;
     TIPO_APLICACION?:       InterfaceTipoAplicacion;
 }
 
