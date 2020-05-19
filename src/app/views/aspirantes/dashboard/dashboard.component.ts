@@ -63,7 +63,8 @@ export class DashboardComponent extends GenericServicesService implements OnInit
         if (!this.mostrarModulo) {
             return;
         }
-        this.periodoService.getPeriodo().subscribe(data => {
+
+        this.periodoService.getPeriodoAspirante().subscribe(data => {
             if (data) {
                 this.fechaInicio = data[0].FECHA_INICIO;
                 this.fechaFin = data[0].FECHA_FIN;

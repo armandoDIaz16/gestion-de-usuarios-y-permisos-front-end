@@ -74,8 +74,15 @@ export class PeriodoService extends GenericServicesService {
         return this.http.post(this.baseUrl + 'ModificarReferencias', tipo, this.headers).toPromise();
     }
 
-    // TODO ENVIAR PK_ASPIRANTE Y HACER JOIN CON EL PERIODO EN BACK
     getPeriodo(): Observable<Periodo> {
         return this.http.get<Periodo>(GenericServicesService.API_ENDPOINT + 'Periodo');
+    }
+
+    getPeriodoAspirante(): Observable<Periodo> {
+        return this.http.post<Periodo>(
+            GenericServicesService.API_ENDPOINT + 'PeriodoAspirante',
+            {PK_ENCRIPTADA: sessionStorage.getItem('IdEncriptada')},
+            GenericServicesService.HEADERS
+        );
     }
 }

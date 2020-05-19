@@ -122,7 +122,7 @@ export const routes: Routes = [
             },
             {
                 path: 'capacitacion_docente',
-                loadChildren: './modules/capacitacion.module#CapacitacionModule'
+                loadChildren: './views/capacitacion_docente/capacitacion.module#CapacitacionModule'
             },
             {
                 path: 'asesoria_academica',
