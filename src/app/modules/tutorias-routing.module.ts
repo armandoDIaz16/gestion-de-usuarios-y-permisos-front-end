@@ -27,6 +27,7 @@ import {ReporteEncuestaAlumnoComponent} from '../components/tutorias/estudiante/
 import {ReporteEncuestaTutorComponent} from '../components/tutorias/tutor/reporte-encuesta-tutor.component';
 import {GruposTutoriasSiiaComponent} from '../components/tutorias/coord_institucional/grupos-tutorias-siia.component';
 import {GruposSeguimientoAdminComponent} from '../components/tutorias/coord_institucional/grupos-seguimiento-admin.component';
+import {DetalleGrupoSegAdminComponent} from '../components/tutorias/coord_institucional/detalle-grupo-seg-admin.component';
 
 const routes: Routes = [
     {
@@ -211,6 +212,13 @@ const routes: Routes = [
             {
                 path: '45df774b0e447feee7fc7ecc8fad8e5d', // grupos_seguimiento_admin
                 component: GruposSeguimientoAdminComponent,
+                data: {
+                    title: 'Grupos de seguimiento'
+                }
+            },
+            {
+                path: '5d41d6d4aca9197eccb66426b1269af9', // detalle_grupo_seguimiento_admin
+                component: DetalleGrupoSegAdminComponent,
                 data: {
                     title: 'Grupos de seguimiento'
                 }

@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {GenericServicesService} from '../generic-services.service';
 import {InterfaceEncuestaAdmin, InterfaceEncuestaPendiente, InterfaceTipoAplicacion} from '../../models/tutorias/EncuestasModel';
-import {InterfaceCarrera} from '../../models/tutorias/CarreraModel';
+import {InterfaceCarrera} from '../../models/general/CarreraModel';
 
 @Injectable({
     providedIn: 'root'

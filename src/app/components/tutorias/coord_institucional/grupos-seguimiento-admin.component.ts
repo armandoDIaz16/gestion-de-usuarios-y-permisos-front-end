@@ -1,6 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {InterfacecCarreraGruposTutoria} from '../../../models/tutorias/GrupoModel';
 import {GruposAdminService} from '../../../services/tutorias/coord_institucional/grupos-admin.service';
+import {InterfaceCarrera} from '../../../models/general/CarreraModel';
+import {CarrerasService} from '../../../services/general/carreras.service';
+import {InterfaceUsuario} from '../../../models/general/UsuarioModel';
+import {UsuariosService} from '../../../services/usuarios/usuarios.service';
 
 @Component({
     selector: 'app-grupos-seguimiento-admin',
@@ -9,38 +13,118 @@ import {GruposAdminService} from '../../../services/tutorias/coord_institucional
 })
 export class GruposSeguimientoAdminComponent implements OnInit {
 
+    // ventanas modales
+    @ViewChild('modalGrupoNuevo') modalGrupoNuevo;
+
     public error = null;
     public lista_grupos: InterfacecCarreraGruposTutoria;
     public display = '';
+    public lista_carreras: InterfaceCarrera[];
+    public lista_tutores: InterfaceUsuario[];
+    public form_grupo = {
+        carrera: 0,
+        tutor: 0,
+        clave_grupo: ''
+    };
 
-    constructor(private grupos_service: GruposAdminService) {
+    constructor(private grupos_service: GruposAdminService,
+                private carreras_service: CarrerasService,
+                private usuarios_service: UsuariosService) {
         this.lista_grupos = <InterfacecCarreraGruposTutoria>{};
     }
 
     ngOnInit() {
         this.display = 'block';
+        this._init();
+
         this.grupos_service.get_grupos_seguimiento().subscribe(
-            data => this.grupos_actuales_ok(data),
-            error => this.grupos_actuales_error(error)
+            data => {
+                this.lista_grupos = data;
+            },
+            error => {
+                this.error = error.error.error;
+            },
+            () => {
+                this.display = 'none';
+            }
+        );
+
+        this.carreras_service.get_carreras('').subscribe(
+            data => {
+                this.lista_carreras = data;
+            },
+            error => {
+                this.error = error.error.error;
+            }
         );
     }
 
-    grupos_actuales_ok(data) {
-        this.display = 'none';
-        this.lista_grupos = data;
+    elimina_grupo() {
+        // eliminar un grupo
     }
 
-    grupos_actuales_error(error) {
-        this.display = 'none';
-        this.error = error.error.error;
+    guardar_grupo() {
+        // guardar grupo de seguimiento
+        if (this.valida_grupo()) {
+            this.display = 'block';
+            this.grupos_service.guarda_grupo_seguimiento(this.form_grupo).subscribe(
+                data => {
+                    alert('El grupo ha sido creado');
+                },
+                error => {
+                    this.error = error.error.error;
+                },
+                () => {
+                    this.display = 'none';
+                    this.modalGrupoNuevo.hide();
+                    this.ngOnInit();
+                }
+            );
+        }
     }
 
-    reporte_perfil_grupal(pk_grupo: number) {
-        open(
-            this.grupos_service.get_url_back('get_pdf_perfil_grupal_ingreso?grupo=' + pk_grupo),
-            '_blank',
-            ''
-        );
+    busca_tutores() {
+        this.lista_tutores = [];
+        this.form_grupo.tutor = 0;
+        // buscar tutores por carrera
+        if (this.form_grupo.carrera !== 0) {
+            this.usuarios_service.get_usuarios(
+                '?carrera=' + this.form_grupo.carrera
+                + '&tipo_usuario=2' // 2 - administrativo o docente
+            ).subscribe(
+                data => {
+                    this.lista_tutores = data.data;
+                },
+                error => {
+                    this.error = error.error.error;
+                }
+            );
+        }
+    }
+
+    ocultar_modal_grupo() {
+        this.modalGrupoNuevo.hide();
+        this._init();
+    }
+
+    private valida_grupo() {
+        if (this.form_grupo.carrera !== 0
+        && this.form_grupo.tutor !== 0
+            && this.form_grupo.clave_grupo.trim().length !== 0) {
+            return true;
+        } else {
+            alert('Complete todos los datos');
+            return false;
+        }
+    }
+
+    private _init() {
+        this.display = 'none';
+        this.form_grupo = {
+            carrera: 0,
+            tutor: 0,
+            clave_grupo: ''
+        };
     }
 
 }

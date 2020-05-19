@@ -39,9 +39,9 @@ export interface InterfacePersona {
     PK_USUARIO:       number;
     PK_ENCRIPTADA:    string;
     NOMBRE:           string;
-    PRIMER_APELLIDO:  string;
-    SEGUNDO_APELLIDO: string;
-    NUMERO_CONTROL:   string;
+    PRIMER_APELLIDO?:  string;
+    SEGUNDO_APELLIDO?: string;
+    NUMERO_CONTROL?:   string;
 }
 
 export interface InterfaceSeguimiento {

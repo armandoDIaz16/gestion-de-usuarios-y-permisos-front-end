@@ -12,7 +12,7 @@ import {DetalleGrupoService} from '../../services/tutorias/detalle-grupo.service
 export class DetalleGrupoComponent implements OnInit {
 
     public lista_grupos: InterfaceGruposTutoria;
-    public detalle_grupo: InterfaceGrupoTutoria;
+    public detalle_grupo: InterfaceGrupoTutoria ;
     public error = null;
 
     // modal

@@ -43,6 +43,7 @@ import {ReporteEncuestaAlumnoComponent} from '../components/tutorias/estudiante/
 import {ReporteEncuestaTutorComponent} from '../components/tutorias/tutor/reporte-encuesta-tutor.component';
 import {GruposTutoriasSiiaComponent} from '../components/tutorias/coord_institucional/grupos-tutorias-siia.component';
 import {GruposSeguimientoAdminComponent} from '../components/tutorias/coord_institucional/grupos-seguimiento-admin.component';
+import {DetalleGrupoSegAdminComponent} from '../components/tutorias/coord_institucional/detalle-grupo-seg-admin.component';
 
 // Angular
 
@@ -86,6 +87,7 @@ import {GruposSeguimientoAdminComponent} from '../components/tutorias/coord_inst
         ReporteEncuestaTutorComponent,
         GruposTutoriasSiiaComponent,
         GruposSeguimientoAdminComponent,
+        DetalleGrupoSegAdminComponent,
     ],
     exports: [
         ModalModule

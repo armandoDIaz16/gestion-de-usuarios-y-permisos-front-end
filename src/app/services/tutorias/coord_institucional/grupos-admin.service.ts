@@ -13,6 +13,28 @@ export class GruposAdminService extends GenericServicesService {
         super(http);
     }
 
+    guarda_grupo_seguimiento(body: object) {
+        return this.http.post(
+            GenericServicesService.API_ENDPOINT + 'guarda_grupo_seguimiento',
+            body,
+            GenericServicesService.HEADERS
+        );
+    }
+
+    get_grupo_seguimiento(query_params: string): any {
+        return this.http.get<any>(
+            GenericServicesService.API_ENDPOINT + 'get_grupo_seguimiento' + query_params,
+            GenericServicesService.HEADERS
+        );
+    }
+
+    get_alumnos_grupo(query_params: string): any {
+        return this.http.get<any>(
+            GenericServicesService.API_ENDPOINT + 'get_alumnos_grupo' + query_params,
+            GenericServicesService.HEADERS
+        );
+    }
+
     get_grupos_actuales(): Observable<InterfacecCarreraGruposTutoria> {
         const body = {
             pk_encriptada: sessionStorage['IdEncriptada']
@@ -25,12 +47,12 @@ export class GruposAdminService extends GenericServicesService {
         );
     }
 
-    get_grupos_seguimiento(): Observable<InterfacecCarreraGruposTutoria> {
+    get_grupos_seguimiento(): any {
         const body = {
             pk_encriptada: sessionStorage['IdEncriptada']
         };
 
-        return this.http.post<InterfacecCarreraGruposTutoria>(
+        return this.http.post<any>(
             GenericServicesService.API_ENDPOINT + 'grupos_seguimiento_admin',
             body,
             GenericServicesService.HEADERS

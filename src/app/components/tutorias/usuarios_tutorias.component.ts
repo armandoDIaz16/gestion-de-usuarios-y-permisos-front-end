@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {InterfacePerfil} from '../../models/usuarios/PerfilModel';
-import {UsuariosServiceService} from '../../services/usuarios-service.service';
+import {UsuariosService} from '../../services/usuarios/usuarios.service';
 import {JarwisService} from '../../services/jarwis.service';
 
 @Component({
@@ -23,7 +23,7 @@ export class UsuariosTutoriasComponent implements OnInit {
     // datos para actualizar usuario
     public correo_personal: string;
 
-    constructor(private usuarios_service: UsuariosServiceService,
+    constructor(private usuarios_service: UsuariosService,
                 private Jarvis: JarwisService) {
         this._init();
     }
