@@ -13,6 +13,13 @@ export class UsuariosService extends GenericServicesService {
         super(http);
     }
 
+    get_alumno(query: string): any {
+        return this.http.get<any>(
+            GenericServicesService.API_ENDPOINT + 'alumno' + query,
+            GenericServicesService.HEADERS
+        );
+    }
+
     get_usuarios(query: string): any {
         return this.http.get<any>(
             GenericServicesService.API_ENDPOINT + 'usuario' + query,

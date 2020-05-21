@@ -28,6 +28,7 @@ import {ReporteEncuestaTutorComponent} from '../components/tutorias/tutor/report
 import {GruposTutoriasSiiaComponent} from '../components/tutorias/coord_institucional/grupos-tutorias-siia.component';
 import {GruposSeguimientoAdminComponent} from '../components/tutorias/coord_institucional/grupos-seguimiento-admin.component';
 import {DetalleGrupoSegAdminComponent} from '../components/tutorias/coord_institucional/detalle-grupo-seg-admin.component';
+import {InvitacionConferenciasComponent} from '../components/tutorias/coord_institucional/invitacion-conferencias.component';
 
 const routes: Routes = [
     {
@@ -186,6 +187,13 @@ const routes: Routes = [
                 component: ConferenciasComponent,
                 data: {
                     title: 'Administración de jornadas/conferencias'
+                }
+            },
+            {
+                path: 'fb7da0f7e284eaab3b5e96338ba01c63', // invitacion_conferencias
+                component: InvitacionConferenciasComponent,
+                data: {
+                    title: 'Invitación a jornadas/conferencias'
                 }
             },
             {

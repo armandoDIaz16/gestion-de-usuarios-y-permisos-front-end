@@ -52,6 +52,7 @@ export interface InterfaceDiaHorario {
 }
 
 export interface InterfaceAlumnoTutoria {
+    PK_GRUPO_TUTORIA_DETALLE: number;
     PK_USUARIO: string;
     PK_ENCRIPTADA?: string;
     NOMBRE: string;

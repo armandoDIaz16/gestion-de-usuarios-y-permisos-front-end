@@ -1,5 +1,5 @@
 export interface InterfaceConferencia {
-    PK_CONFERENCIAS:         number;
+    PK_JORNADA:         number;
     TEMA:                    string;
     FECHA:                   string;
     LUGAR:                   string;

@@ -12,7 +12,7 @@
 
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md12 col-lg-12">
-                <button (click)="modalGrupoNuevo.show()" class="btn btn-success pull-right">
+                <button (click)="this.mostrar_modal_grupo()" class="btn btn-success pull-right">
                     Crear grupo
                 </button>
             </div>
@@ -63,7 +63,10 @@
                                class="btn btn-primary btn-sm" tooltip="Ver detalles del grupo">
                                 <i class="icon-list"></i>
                             </a>
-                            <button (click)="elimina_grupo()" class="btn btn-danger btn-sm" tooltip="Eliminar el grupo">
+                            <button (click)="editar_grupo(grupo.PK_GRUPO_TUTORIA)" class="btn btn-warning btn-sm" tooltip="Editar el grupo">
+                                <i class="icon-check"></i>
+                            </button>
+                            <button (click)="elimina_grupo(grupo.PK_GRUPO_TUTORIA)" class="btn btn-danger btn-sm" tooltip="Eliminar el grupo">
                                 <i class="icon-trash"></i>
                             </button>
                         </td>
@@ -92,7 +95,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title text-center">Crear nuevo grupo</h4>
-                <button type="button" class="close" (click)="ocultar_modal_grupo()" aria-label="Close">
+                <button type="button" class="close" (click)="this.modalGrupoNuevo.hide()" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -136,7 +139,7 @@
             <div class="modal-footer">
                 <div class="col-md-12 text-center">
                     <button type="button" class="btn btn-primary" (click)="guardar_grupo()">Guardar</button>
-                    <button type="button" class="btn btn-danger" (click)="ocultar_modal_grupo()">Cancelar</button>
+                    <button type="button" class="btn btn-danger" (click)="this.modalGrupoNuevo.hide()">Cancelar</button>
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgModule} from '@angular/core';
 
 // ventanas modales
@@ -44,6 +44,7 @@ import {ReporteEncuestaTutorComponent} from '../components/tutorias/tutor/report
 import {GruposTutoriasSiiaComponent} from '../components/tutorias/coord_institucional/grupos-tutorias-siia.component';
 import {GruposSeguimientoAdminComponent} from '../components/tutorias/coord_institucional/grupos-seguimiento-admin.component';
 import {DetalleGrupoSegAdminComponent} from '../components/tutorias/coord_institucional/detalle-grupo-seg-admin.component';
+import {InvitacionConferenciasComponent} from '../components/tutorias/coord_institucional/invitacion-conferencias.component';
 
 // Angular
 
@@ -56,7 +57,9 @@ import {DetalleGrupoSegAdminComponent} from '../components/tutorias/coord_instit
         FormsModule,
         CollapseModule,
         TooltipModule.forRoot(),
-        LoaderModule
+        LoaderModule,
+        FormsModule,
+        ReactiveFormsModule,
     ],
     declarations: [
         UsuariosTutoriasComponent,
@@ -88,6 +91,7 @@ import {DetalleGrupoSegAdminComponent} from '../components/tutorias/coord_instit
         GruposTutoriasSiiaComponent,
         GruposSeguimientoAdminComponent,
         DetalleGrupoSegAdminComponent,
+        InvitacionConferenciasComponent,
     ],
     exports: [
         ModalModule

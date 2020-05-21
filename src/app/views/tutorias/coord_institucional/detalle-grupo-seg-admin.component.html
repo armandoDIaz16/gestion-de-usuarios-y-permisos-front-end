@@ -24,15 +24,17 @@
         </div>
         <br>
         <!-- Agregar alumnos -->
-        <div class="col-md-12">
-            <h3 class="text-center">Agregar alumnos</h3>
-        </div>
+        <div class="clearfix"></div>
         <div class="row">
-            <div class="input-group col-md-3">
+            <div class="col-md-4 text-right">
+                <label for="numero_control" class="h4">Agregar alumnos</label>
+            </div>
+            <div class="col-md-4 input-group">
                 <input type="text" id="numero_control" name="numero_control" class="form-control"
-                       placeholder="Número de control" [(ngModel)]="this.numero_control" aria-describedby="boton_buscar">
+                       placeholder="Número de control" [(ngModel)]="this.numero_control"
+                       aria-describedby="boton_buscar">
                 <div class="input-group-append">
-                    <button class="btn btn-primary" type="button" id="boton_buscar" (click)="this.buscar_alumnos()">
+                    <button class="btn btn-primary" type="button" id="boton_buscar" (click)="this.buscar_alumno()">
                         <span class="icon-magnifier"></span>
                     </button>
                 </div>
@@ -42,7 +44,7 @@
         <br>
 
         <div class="table-responsive">
-            <table class="table table-striped table-hover table-bordered">
+            <table class="table table-striped table-hover table-bordered" *ngIf="this.alumno_busqueda != null">
                 <thead>
                 <tr>
                     <th class="text-center">Número de control</th>
@@ -53,7 +55,7 @@
                     <th class="text-center">Agregar</th>
                 </tr>
                 </thead>
-                <tbody *ngIf="this.mostrar_busqueda && this.alumno_busqueda != null">
+                <tbody *ngIf="this.alumno_busqueda">
                 <tr>
                     <td class="text-center">{{this.alumno_busqueda.NUMERO_CONTROL}}</td>
                     <td>
@@ -75,9 +77,9 @@
                     </td>
                 </tr>
                 </tbody>
-                <tbody *ngIf="!this.mostrar_busqueda">
+                <tbody *ngIf="this.alumno_busqueda == null">
                 <tr>
-                    <td colspan="6"></td>
+                    <td colspan="6">No se han encontrado datos</td>
                 </tr>
                 </tbody>
             </table>
@@ -110,7 +112,7 @@
                         <td>{{alumno.CARRERA}}</td>
                         <td>
                             <button class="btn btn-sm btn-danger"
-                                    (click)="this.eliminar_alumno(alumno.PK_ENCRIPTADA, grupo.PK_GRUPO_TUTORIA)">
+                                    (click)="this.eliminar_alumno(alumno.PK_GRUPO_TUTORIA_DETALLE)">
                                 <i class="icon-trash"></i>
                             </button>
                         </td>
@@ -138,3 +140,4 @@
         </div>
     </div>
     <!-- FIN VENTANA MODAL DE CARGA -->
+</div>

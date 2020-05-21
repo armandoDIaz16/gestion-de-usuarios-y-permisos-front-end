@@ -13,9 +13,32 @@ export class GruposAdminService extends GenericServicesService {
         super(http);
     }
 
-    guarda_grupo_seguimiento(body: object) {
+    elimina_alumno_grupo(pk_detalle: number) {
+        return this.http.delete(
+            GenericServicesService.API_ENDPOINT + 'elimina_alumno_grupo/' + pk_detalle,
+            GenericServicesService.HEADERS
+        );
+    }
+
+    agrega_alumno(body): any {
+        return this.http.post<any>(
+            GenericServicesService.API_ENDPOINT + 'agrega_alumno_grupo',
+            body,
+            GenericServicesService.HEADERS
+        );
+    }
+
+    crea_grupo_seguimiento(body) {
         return this.http.post(
             GenericServicesService.API_ENDPOINT + 'guarda_grupo_seguimiento',
+            body,
+            GenericServicesService.HEADERS
+        );
+    }
+
+    actualiza_grupo_seguimiento(body, pk_grupo: number) {
+        return this.http.put(
+            GenericServicesService.API_ENDPOINT + 'actualiza_grupo_seguimiento' + '/' + pk_grupo,
             body,
             GenericServicesService.HEADERS
         );
@@ -55,6 +78,13 @@ export class GruposAdminService extends GenericServicesService {
         return this.http.post<any>(
             GenericServicesService.API_ENDPOINT + 'grupos_seguimiento_admin',
             body,
+            GenericServicesService.HEADERS
+        );
+    }
+
+    elimina_grupo(pk_grupo: number): any {
+        return this.http.delete<any>(
+            GenericServicesService.API_ENDPOINT + 'elimina_grupo_seguimiento/' + pk_grupo,
             GenericServicesService.HEADERS
         );
     }
