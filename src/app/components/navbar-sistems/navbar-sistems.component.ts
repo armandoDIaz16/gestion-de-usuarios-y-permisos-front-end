@@ -137,10 +137,6 @@ export class NavbarSistemsComponent implements OnInit {
     recargar() {
         location.reload();
     }
-
-    recargar() {
-        location.reload();
-    }
 }
 
 export const rutasNav = rutasRoles;
