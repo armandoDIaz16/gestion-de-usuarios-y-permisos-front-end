@@ -13,10 +13,10 @@ export class CoordinadoresDepartamentalesComponent implements OnInit {
 
     public error = null;
     public lista_coordinadores: InterfaceCoordinadoresDepartamentales[] = [];
-    public areas_academicas:    InterfaceAreaAcademica[] = [];
-    public lista_usuarios:      InterfacePersona[];
-    public nuevo_coordinador:   string;
-    public select_area_academica:  number;
+    public areas_academicas: InterfaceAreaAcademica[] = [];
+    public lista_usuarios: InterfacePersona[];
+    public nuevo_coordinador: string;
+    public select_area_academica: number;
     public coordinador_actual: string;
     public coordinador_seleccionado = 0;
 
@@ -78,7 +78,7 @@ export class CoordinadoresDepartamentalesComponent implements OnInit {
     }
 
     handleResponseUsuarios(data) {
-        if (data.data){
+        if (data.data) {
             this.lista_usuarios = data.data;
         } else {
             this.lista_usuarios = [];
@@ -86,10 +86,10 @@ export class CoordinadoresDepartamentalesComponent implements OnInit {
     }
 
     guardar_coordinador() {
-        if (this.select_area_academica != 0) {
-            if (this.coordinador_seleccionado != 0) {
-                if(confirm('¿Está seguro que desea asignar el coordinador de área?')) {
-                    let body = {
+        if (this.select_area_academica !== 0) {
+            if (this.coordinador_seleccionado !== 0) {
+                if (confirm('¿Está seguro que desea asignar el coordinador de área?')) {
+                    const body = {
                         pk_area_academica: this.select_area_academica,
                         pk_nuevo_coordinador: this.coordinador_seleccionado
                     };
@@ -112,7 +112,7 @@ export class CoordinadoresDepartamentalesComponent implements OnInit {
     }
 
     handleResponseGuardaCoordinador(data) {
-        if (data.data){
+        if (data.data) {
             this._init();
             this.modalModificar.hide();
 
@@ -125,7 +125,7 @@ export class CoordinadoresDepartamentalesComponent implements OnInit {
         }
     }
 
-    busca_coordinador_actual(){
+    busca_coordinador_actual() {
         this.coordinador_seleccionado = 0;
         if (this.select_area_academica != 0) {
             this.coordinadores_service.get_coordinador_area(this.select_area_academica).subscribe(
@@ -138,7 +138,7 @@ export class CoordinadoresDepartamentalesComponent implements OnInit {
     handleResponseCoordinador(data) {
         if (data.data) {
             this.coordinador_actual =
-                data.data.NOMBRE  + ' '
+                data.data.NOMBRE + ' '
                 + data.data.PRIMER_APELLIDO
                 + ' '
                 + data.data.SEGUNDO_APELLIDO;

@@ -27,6 +27,8 @@ import {ReporteEncuestaAlumnoComponent} from '../components/tutorias/estudiante/
 import {ReporteEncuestaTutorComponent} from '../components/tutorias/tutor/reporte-encuesta-tutor.component';
 import {GruposTutoriasSiiaComponent} from '../components/tutorias/coord_institucional/grupos-tutorias-siia.component';
 import {GruposSeguimientoAdminComponent} from '../components/tutorias/coord_institucional/grupos-seguimiento-admin.component';
+import {DetalleGrupoSegAdminComponent} from '../components/tutorias/coord_institucional/detalle-grupo-seg-admin.component';
+import {InvitacionConferenciasComponent} from '../components/tutorias/coord_institucional/invitacion-conferencias.component';
 
 const routes: Routes = [
     {
@@ -188,6 +190,13 @@ const routes: Routes = [
                 }
             },
             {
+                path: 'fb7da0f7e284eaab3b5e96338ba01c63', // invitacion_conferencias
+                component: InvitacionConferenciasComponent,
+                data: {
+                    title: 'Invitación a jornadas/conferencias'
+                }
+            },
+            {
                 path: '7c3bbdec167c62a1e132960c3ddf4330', // coordinadores_departamentales
                 component: CoordinadoresDepartamentalesComponent,
                 data: {
@@ -211,6 +220,13 @@ const routes: Routes = [
             {
                 path: '45df774b0e447feee7fc7ecc8fad8e5d', // grupos_seguimiento_admin
                 component: GruposSeguimientoAdminComponent,
+                data: {
+                    title: 'Grupos de seguimiento'
+                }
+            },
+            {
+                path: '5d41d6d4aca9197eccb66426b1269af9', // detalle_grupo_seguimiento_admin
+                component: DetalleGrupoSegAdminComponent,
                 data: {
                     title: 'Grupos de seguimiento'
                 }

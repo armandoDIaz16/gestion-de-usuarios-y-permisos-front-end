@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {InterfaceEncuestaAdmin, InterfaceTipoAplicacion, InterfaceEncuestaPendiente} from '../../../models/tutorias/EncuestasModel';
 import {EncuestasService} from '../../../services/tutorias/encuestas.service';
-import {InterfaceCarrera} from '../../../models/tutorias/CarreraModel';
+import {InterfaceCarrera} from '../../../models/general/CarreraModel';
 
 @Component({
     selector: 'app-aplicacion-encuesta',
