@@ -36,11 +36,16 @@ import {ListaDeParticipantesComponent} from '../components/capacitacion_docente/
 import {MaterialDelCursoComponent} from '../components/capacitacion_docente/material-del-curso.component';
 import {VerFichaTecnicaComponent} from '../components/capacitacion_docente/ver-ficha-tecnica.component';
 import {VerCursoParticipanteComponent} from '../components/capacitacion_docente/ver-curso-participante.component';
+import {ConvocatoriaComponent} from '../components/capacitacion_docente/convocatoria.component';
+import {VistaCursoConvocatoriaComponent} from '../components/capacitacion_docente/vista-curso-convocatoria.component';
+import {ModificarCvInstructorComponent} from '../components/capacitacion_docente/modificar-cv-instructor.component';
+
 // PrimeNG
 import {InputSwitchModule} from 'primeng/inputswitch';
 import {CalendarModule} from 'primeng/calendar';
 import {AccordionModule} from 'primeng/accordion';
 import {AutoCompleteModule} from 'primeng/autocomplete';
+import {EditorModule} from 'primeng/editor';
 
 @NgModule({
   imports: [
@@ -58,7 +63,8 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
     InputSwitchModule,
     CalendarModule,
     AccordionModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    EditorModule
 
   ],
   declarations: [
@@ -72,6 +78,9 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
       MaterialDelCursoComponent,
       VerFichaTecnicaComponent,
       VerCursoParticipanteComponent,
+      ConvocatoriaComponent,
+      VistaCursoConvocatoriaComponent,
+      ModificarCvInstructorComponent
   ],
   exports: [
       ModalModule

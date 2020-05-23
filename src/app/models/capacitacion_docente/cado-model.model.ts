@@ -52,5 +52,20 @@ export interface FichaTecnica {
     criterios_evaluacion: Array<Object>;
     competencias: Array<Object>;
     fuentes_informacion: Array<Object>;
+    comentarios: Array<Object>;
+
+}
+
+export interface CV {
+    pk_cv:   number;
+    rfc: string;
+    biografia: string;
+    fk_participante: number;
+    // ------------------------
+    formacion_academica: Array<Object>; // este contendra el tipo formacion
+    experiencia_laboral: Array<Object>;
+    experiencia_docente: Array<Object>;
+    productos_academicos: Array<Object>;
+    participacion_instructor: Array<Object>;
 }
 

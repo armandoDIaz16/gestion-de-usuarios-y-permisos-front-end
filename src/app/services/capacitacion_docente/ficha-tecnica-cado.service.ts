@@ -12,6 +12,21 @@ export class FichaTecnicaCadoService extends GenericServicesService {
       super(http);
   }
 
+    busca_participante_por_pk(pk_participante) {
+        return this.http.get(
+            GenericServicesService.API_ENDPOINT + 'busca_participante_por_pk/' + pk_participante,
+            GenericServicesService.HEADERS
+        );
+    }
+
+
+    guarda_comentario(body: object) {
+        return this.http.post(
+            GenericServicesService.API_ENDPOINT + 'guarda_comentario',
+            body,
+            GenericServicesService.HEADERS
+        );
+    }
     registra_foto_curso(body: object) {
         return this.http.post(
             GenericServicesService.API_ENDPOINT + 'registra_foto_curso',

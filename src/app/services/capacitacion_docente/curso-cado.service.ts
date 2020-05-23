@@ -12,12 +12,13 @@ export class CursoCadoService extends GenericServicesService {
       super(http);
   }
 
-    busca_curso_por_pk(pk_curso) {
+     async busca_curso_por_pk(pk_curso) {
         return this.http.get(
             GenericServicesService.API_ENDPOINT + 'busca_curso_por_pk/' + pk_curso,
             GenericServicesService.HEADERS
-        );
+        ).toPromise();
     }
+
 
     eliminar_curso(body: object) {
         return this.http.post(
@@ -54,6 +55,13 @@ export class CursoCadoService extends GenericServicesService {
         );
     }
 
+    carga_convocatoria_cursos() {
+        return this.http.get(
+            GenericServicesService.API_ENDPOINT + 'carga_convocatoria_cursos',
+            GenericServicesService.HEADERS
+        );
+    }
+
     modifica_curso(body: object) {
         return this.http.post(
             GenericServicesService.API_ENDPOINT + 'modifica_curso',
@@ -68,6 +76,21 @@ export class CursoCadoService extends GenericServicesService {
             body,
             GenericServicesService.HEADERS
         );
+    }
+
+    carga_estados_curso() {
+        return this.http.get(
+            GenericServicesService.API_ENDPOINT + 'carga_estados_curso',
+            GenericServicesService.HEADERS
+        );
+    }
+
+    actualiza_estatus_curso( pk_curso , estatus) {
+        return this.http.get(
+            GenericServicesService.API_ENDPOINT + 'actualiza_estatus_curso/' + pk_curso + '/' + estatus,
+            GenericServicesService.HEADERS
+        );
+
     }
 
     consulta_area_academica() {

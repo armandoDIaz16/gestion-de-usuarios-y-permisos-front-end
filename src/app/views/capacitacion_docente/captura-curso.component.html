@@ -123,12 +123,12 @@
 <!--                                            <select [(ngModel)]="edificio" class="form-control" name="edificio" required>-->
                                             <option value="-1">Selecciona un Periodo</option>
                                             <option *ngFor="let periodo of this.periodosArray; let i = index"
-                                                    [value]="periodo.PK_PERIODO_CADO">
-                                                {{periodo.NOMBRE_PERIODO}}
-                                                {{periodo.FECHA_INICIO | date:'MMMM'| uppercase }}
-                                                {{periodo.FECHA_INICIO | date:'yyyy' }} -
-                                                {{periodo.FECHA_FIN | date:'MMMM' | uppercase }}
-                                                {{periodo.FECHA_FIN | date:'yyyy' }}
+                                                    [value]="periodo['PK_PERIODO_CADO']">
+                                                {{periodo['NOMBRE_PERIODO']}}
+                                                {{periodo['FECHA_INICIO'] | date:'MMMM'| uppercase }}
+                                                {{periodo['FECHA_INICIO'] | date:'yyyy' }} -
+                                                {{periodo['FECHA_FIN'] | date:'MMMM' | uppercase }}
+                                                {{periodo['FECHA_FIN'] | date:'yyyy' }}
                                             </option>
                                         </select>
                                     </div>
@@ -163,8 +163,8 @@
                                             <option [value]=-1>Selecciona una Área académica</option>
                                             <option [value]=0>Para todas las Áreas</option>
                                             <option *ngFor="let area of this.areasArray; let i = index"
-                                                    value="{{area.PK_AREA_ACADEMICA}}">
-                                                {{area.NOMBRE}}
+                                                    value="{{area['PK_AREA_ACADEMICA']}}">
+                                                {{area['NOMBRE']}}
                                             </option>
                                         </select>
                                     </div>
@@ -180,10 +180,10 @@
                                             <select  [(ngModel)]="this.curso.estado_curso"  class="form-control"
                                                      name="estado_curso" id="estado_curso" required disabled>
                                                 <option [value]=-1 >Estados del curso</option>
-                                                <option [value]=1>POR AUTORIZAR</option>
-                                                <option [value]=2>AUTORIZADO</option>
-                                                <option [value]=3>RECHAZADO</option>
-                                                <option [value]=4>EVALUADO</option>
+                                                <option *ngFor="let estado of this.cursosArray"
+                                                        [value]="estado['PK_ESTADO_CURSO']">
+                                                    {{estado['NOMBRE_ESTADO']}}
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
@@ -344,9 +344,9 @@
                                                 class="form-control" name="edificio" id="edificio" required>
                                             <option  value="-1" selected>Selecciona un edificio</option>
                                             <option *ngFor="let edificio of this.edificiosArray"
-                                                    [value]="edificio.PK_EDIFICIO"
+                                                    [value]="edificio['PK_EDIFICIO']"
                                                     >
-                                                {{'Campus '+edificio.FK_CAMPUS+' - Edificio: '+edificio.PREFIJO+'   '+edificio.NOMBRE}}</option>
+                                                {{'Campus '+edificio['FK_CAMPUS']+' - Edificio: '+edificio['PREFIJO']+'   '+edificio['NOMBRE']}}</option>
 
                                         </select>
                                     </div>

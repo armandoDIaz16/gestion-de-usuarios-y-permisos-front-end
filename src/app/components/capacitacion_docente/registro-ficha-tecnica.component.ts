@@ -18,6 +18,7 @@ import {formatDate} from '@angular/common';
 
 // servicios de funciones
 import { FichaTecnicaCadoFunction } from '../../services/capacitacion_docente/ficha-tecnica-cado.function';
+
 @Component({
   selector: 'app-registro-ficha-tecnica',
   templateUrl: '../../views/capacitacion_docente/registro-ficha-tecnica.component.html',
@@ -61,11 +62,14 @@ export class RegistroFichaTecnicaComponent implements OnInit {
     public display2: string;
     public periodo_curso: object;
     public usuario_en_sistema: string;
+    public pk_participante_sistema: string;
+    public tipo_participante: string;
     public elemento_apoyo = '';
     public criterio_apoyo = '';
     public instrumentocriterio_apoyo = '';
     public valor_criterio_apoyo: number;
     public competencia_apoyo = '';
+    public comentario = '';
     public fuente_informacion_apoyo = '';
     public nombre_tema_apoyo = '';
     public actividad_aprendizaje_apoyo = '';
@@ -78,11 +82,14 @@ export class RegistroFichaTecnicaComponent implements OnInit {
     areasArray: Array<Object>;
     public lista_periodos: object; // periodos
     periodosArray: Array<Object>;
+    public lista_cursos: object; // areas
+    cursosArray: Array<Object>;
     public lista_edificios: object; // edificios
     edificiosArray: Array<Object>;
     public lista_institutos: object; // institutos
     institutosArray: Array<Object>;
     public lista_temas: object; // temas
+    public lista_comentarios: object; // lista_comentarios
 
 // modelos
     ficha: FichaTecnica = {
@@ -100,7 +107,8 @@ export class RegistroFichaTecnicaComponent implements OnInit {
     elementos_didacticos: [],
     criterios_evaluacion: [],
     competencias: [],
-    fuentes_informacion: []
+    fuentes_informacion: [],
+    comentarios: [],
     };
     private contenido_modal: Contenido_Tematico = {
     pk_tema:  -1,
@@ -138,19 +146,42 @@ export class RegistroFichaTecnicaComponent implements OnInit {
                private render: Renderer2,
                private fichaFunction: FichaTecnicaCadoFunction,
                private fb: FormBuilder) {
-      this.carga_curso_param();
-      this.crearFormularioElementosDidacticos();
   }
 
-  ngOnInit() {
+   ngOnInit() {
       this.display = 'block'; // despliega modal de carga TecNM
-      // this.display2 = 'block';
-      this.carga_periodos();
-      this.carga_usuario_en_sistema();
-      this.carga_area_academica();
-      this.consulta_edificios();
-      this.consulta_institutos();
-
+       // carga sessionstorage
+       this.carga_usuario_en_sistema();
+       this.crearFormularioElementosDidacticos();
+       // carga param
+       this.activatedRouter.params.subscribe( async param => {
+           if (Object.keys(param).length === 0) {
+               // no llego el param
+               this.carga_periodos();
+               this.carga_area_academica();
+               this.consulta_edificios();
+               this.consulta_institutos();
+               this.carga_estados_curso();
+           } else {
+               // si llego el param
+               try {
+                   const data = await this.curso_service.busca_curso_por_pk(param['idcurso']);
+                   this.procesa_curso_param(data);
+                   this.carga_periodos();
+                   this.carga_area_academica();
+                   this.consulta_edificios();
+                   this.consulta_institutos();
+                   this.carga_estados_curso();
+               } catch (e) {
+                       Swal.fire({
+                           icon: 'error',
+                           title: 'No se pudo cargar el curso, intentelo más tarde!',
+                           showConfirmButton: true,
+                           confirmButtonText: 'OK',
+                       });
+               }
+           }
+       }); // fin subscribe param
   }
 // geters
     get elementos_didacticos() {
@@ -168,12 +199,40 @@ export class RegistroFichaTecnicaComponent implements OnInit {
     get contenido_tematico() {
         return this.ficha.contenido_tematico;
     }
+    get comentarios() {
+        return this.ficha.comentarios;
+    }
 
     // set contenido_tematico(contenido_tematico: Array<Object>) {
     //      this.ficha.contenido_tematico = contenido_tematico;
     // }
 
 // metodos de carga  catalagos
+    carga_estados_curso() {
+        this.lista_cursos = null;
+        this.curso_service.carga_estados_curso().subscribe (
+            data => {
+                this.lista_cursos = data;
+                this.cursosArray = [];
+                // convierte el objeto en un arreglo para evitar problemas con ngFor
+                // tslint:disable-next-line:forin
+                for ( const i in this.lista_cursos) {
+                    this.cursosArray.push( this.lista_cursos[i]);
+                }
+                console.log(this.cursosArray);
+            },
+            error => {
+                Swal.fire({
+                    icon: 'error',
+                    title: '¡Lo sentimos ha ocurrido un error, no se cargó la lista de estados del Curso, intentelo más tarde!',
+                    showConfirmButton: true,
+                    confirmButtonText: 'OK',
+                    // timer: 2000
+                });
+            }
+        );
+    }
+
     carga_periodos() {
         this.lista_periodos = null;
         this.periodo_service.consulta_periodos_activos().subscribe (
@@ -193,8 +252,8 @@ export class RegistroFichaTecnicaComponent implements OnInit {
                     if (this.curso.pk_periodo == this.lista_periodos[i]['PK_PERIODO_CADO'])
                         this.periodo_curso = this.lista_periodos[i];
                 }
-                // console.log(this.lista_periodos);
-                // console.log(this.periodosArray);
+                console.log(this.lista_periodos);
+                console.log(this.periodosArray);
             },
             error => {
                 console.error('no se cargaron los periodos');
@@ -219,8 +278,8 @@ export class RegistroFichaTecnicaComponent implements OnInit {
                 for ( const i in this.lista_edificios) {
                     this.edificiosArray.push( this.lista_edificios[i]);
                 }
-                // console.log(this.edificiosArray);
-                // console.log(this.lista_edificios);
+                console.log(this.edificiosArray);
+                console.log(this.lista_edificios);
                 this.autocompletaCampus();
                 this.display = 'none';
             },
@@ -248,8 +307,8 @@ export class RegistroFichaTecnicaComponent implements OnInit {
                 for ( const i in this.lista_institutos) {
                     this.institutosArray.push( this.lista_institutos[i]);
                 }
-                // console.log(this.institutosArray);
-                // console.log(this.lista_institutos);
+                console.log(this.institutosArray);
+                console.log(this.lista_institutos);
                 this.display = 'none';
             },
             error => {
@@ -276,8 +335,8 @@ export class RegistroFichaTecnicaComponent implements OnInit {
                 for ( const i in this.lista_area_academica) {
                     this.areasArray.push( this.lista_area_academica[i]);
                 }
-                // console.log(this.lista_area_academica);
-                // console.log(this.areasArray);
+                console.log(this.lista_area_academica);
+                console.log(this.areasArray);
             },
             error => {
                 console.error('no se cargaron la lista de Áreas Académicas');
@@ -1258,88 +1317,97 @@ export class RegistroFichaTecnicaComponent implements OnInit {
         });
     }
 
-// metodos generales
-    carga_curso_param() {
-        this.activatedRouter.params.subscribe( param => {
-            // console.log('carga_curso_param' + param);
-            if ( Object.keys(param).length === 0) {
-                // console.log('no llego el parametro ' + param);
-            } else {
-                // console.log('si llego el parametro ' + param['idcurso']);
-                this.curso_service.busca_curso_por_pk(param['idcurso']).subscribe(
-                    data => {
-                        // console.log( data[0][0]);
-                        const curso = data[0][0];
-                        // this.curso.instructores = [];
-                        // this.curso.instructores[0] = data[0];
-                        // this.render.setAttribute(this.filtro.nativeElement, 'disabled', 'true' );
-                        // armamos el curso
-                        this.curso = {
-                            pk_curso : curso['PK_CAT_CURSO_CADO'],
-                            nombre_curso:  curso['NOMBRE_CURSO'],
-                            tipo_curso: curso['TIPO_CURSO'],
-                            cupo_maximo: curso['CUPO_MAXIMO'],
-                            cupo_actual: -1,
-                            total_horas: curso['TOTAL_HORAS'],
-                            pk_periodo: curso['FK_PERIODO_CADO'],
-                            pk_area_academica: curso['FK_AREA_ACADEMICA'] == null ? 0 : curso['FK_AREA_ACADEMICA'] ,
-                            imagen_curso: curso['RUTA_IMAGEN_CURSO'],
-                            instructores: curso['INSTRUCTORES'],
-                            fecha_inicio: curso['FECHA_INICIO'],
-                            fecha_fin: curso['FECHA_FIN'],
-                            hora_inicio: new Date( curso['HORA_INICIO']),
-                            hora_fin:    new Date( curso['HORA_FIN']),
-                            campus: -1,
-                            edificio: curso['FK_EDIFICIO'],
-                            espacio: curso['NOMBRE_ESPACIO'],
-                            estado_curso: curso['ESTADO_CURSO']
-                        };
 
-                        if ( curso['FK_FICHA_TECNICA_CADO'] == null ) {
-                            // console.log("es null la fk_ficha");
-                            // si la pk de la ficha es null entonces se la creamos
-                            this.crear_actualizar_ficha( curso['PK_CAT_CURSO_CADO'] );
+    // seccion comentarios
+    add_comentario() {
+      // console.log('comentario');
+        if (this.comentario !== '' || this.comentario.length < 500) {
+            Swal.fire({
+                title: '¿Está seguro que desea guardar el comentario?',
+                // text: "You won't be able to revert this!",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Continuar'
+            }).then((result) => {
+                if (result.value) {
+                    // definiendo body
+                    let error = false;
+                    let mensaje = '';
+                    this.loaderModal.show();
+                    // console.log(arrayInstructores);
+                    const body = {
+                        pk_ficha: this.ficha.pk_ficha,
+                        pk_participante: this.pk_participante_sistema,
+                        texto_comentario: this.comentario
+                    };
+                    // console.log(body);
 
-                        } else {
-                            // console.log("no es null la fk_ficha");
-                            // this.ficha.pk_ficha = curso['FK_FICHA_TECNICA_CADO'];
-                            console.log(curso['OBJ_FICHA_TECNICA']);
-                            // console.log('tamaño de llaves' + Object.keys(curso['OBJ_FICHA_TECNICA']).length);
-                            if ( Object.keys(curso['OBJ_FICHA_TECNICA']).length > 0 ) {
-                                this.ficha = { // armamos la ficha
-                                    pk_ficha: curso['OBJ_FICHA_TECNICA']['PK_CAT_FICHA_TECNICA'],
-                                    lugar_institucion : curso['OBJ_FICHA_TECNICA']['FK_LUGAR'], // 1 es por defautl el ITL
-                                    introduccion: curso['OBJ_FICHA_TECNICA']['INTRODUCCION'],
-                                    justificacion: curso['OBJ_FICHA_TECNICA']['JUSTIFICACION'],
-                                    objetivo_general: curso['OBJ_FICHA_TECNICA']['OBJETIVO_GENERAL'],
-                                    tipo_servicio: curso['OBJ_FICHA_TECNICA']['TIPO_SERVICIO'],
-                                    otro_servicio: curso['OBJ_FICHA_TECNICA']['OTRO_SERVICIO'],
-                                    // ------------------------
-                                    fecha_registro: curso['OBJ_FICHA_TECNICA']['FECHA_MODIFICACION'],
-                                    hora_registro: curso['OBJ_FICHA_TECNICA']['FECHA_MODIFICACION'],
-                                    contenido_tematico: curso['OBJ_FICHA_TECNICA']['contenido_tematico'], // este contendra los archivos
-                                    elementos_didacticos: curso['OBJ_FICHA_TECNICA']['material_didactico'],
-                                    criterios_evaluacion: curso['OBJ_FICHA_TECNICA']['criterios_evaluacion'],
-                                    competencias: curso['OBJ_FICHA_TECNICA']['competencias'],
-                                    fuentes_informacion:  curso['OBJ_FICHA_TECNICA']['fuentes_informacion'],
-                                };
-                                this.verificaOtroServicio();
+                    // registrar mediante WS
+                    this.ficha_service.guarda_comentario(body).subscribe(
+                        data => {  //  200 ok
+                            // console.log(data);
+                            console.log(data);
+                            this.lista_comentarios = data[0]['comentarios'];
+                            this.ficha.comentarios = [];
+                            // convierte el objeto en un arreglo
+                            for ( const i in this.lista_comentarios) {
+                                this.ficha.comentarios.push( this.lista_comentarios[i]);
                             }
+                            this.loaderModal.hide();
+                            for (const i in data) {
+                                if (data[i]['estado'] === 'error') {
+                                    error = true;
+                                    mensaje = data[i]['mensaje'];
+                                }
+                            }
+                            if (error) {
+                                if (mensaje === '')
+                                    mensaje = '¡Lo sentimos ha ocurrido un error, intentalo más tarde!';
+
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: mensaje,
+                                    showConfirmButton: true,
+                                    confirmButtonText: 'OK',
+                                });
+                            } else {
+                                this.comentario = '';
+                                // this.loaderModal.hide();
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Se guardo el comentario  exitosamente!',
+                                    showConfirmButton: true,
+                                    confirmButtonText: 'OK',
+                                    // timer: 2000
+                                });
+                            }
+                        },
+                        error => { // cuando ocurre un error
+                            this.loaderModal.hide();
+                            Swal.fire({
+                                icon: 'error',
+                                title: '¡Lo sentimos ha ocurrido un error, intentalo más tarde!',
+                                showConfirmButton: true,
+                                confirmButtonText: 'OK',
+                                // timer: 2000
+                            });
                         }
-                    },
-                    error => {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'No se pudo cargar el curso, intentelo más tarde!',
-                            showConfirmButton: true,
-                            confirmButtonText: 'OK',
-                            // timer: 2000
-                        });
-                    }
-                ); // fin busca curso
-            } // fin else si llego param
-        }); // fin activate route
-    } // fin metodo
+                    );
+                }
+            });
+        } else {
+            Swal.fire({
+                icon: 'info',
+                title: 'Captura un comentario valido, admite solo 500 caracteres por comentario',
+                showConfirmButton: true,
+                confirmButtonText: 'OK',
+                // timer: 2000
+            });
+        }
+}
+// metodos generales
     crear_actualizar_ficha(pk_curso) {
         const body = {
             pk_curso:  pk_curso
@@ -1363,6 +1431,8 @@ export class RegistroFichaTecnicaComponent implements OnInit {
         // 1:Curso 2:Curso - taller 3:Taller 4:Diplomado 5:Serie de platicas 6:Simposium 7:Otro
       if (this.ficha.tipo_servicio == 7) {
           this.render.removeAttribute(this.inputOtroTipoCurso.nativeElement, 'hidden');
+      } else {
+          this.render.setAttribute(this.inputOtroTipoCurso.nativeElement, 'hidden','');
       }
     }
     preparaTextoPeriodo() {
@@ -1386,6 +1456,11 @@ export class RegistroFichaTecnicaComponent implements OnInit {
     }
     carga_usuario_en_sistema() {
         this.usuario_en_sistema = sessionStorage.getItem('IdUsuario');
+
+        this.pk_participante_sistema = sessionStorage.getItem('participante');
+        if ( this.pk_participante_sistema !== '0') {
+            this.tipo_participante = sessionStorage.getItem('tipo_participante');
+        }
     }
     crearFormularioElementosDidacticos() {
         this.formaElementosDidacticos = this.fb.group({
@@ -1393,5 +1468,231 @@ export class RegistroFichaTecnicaComponent implements OnInit {
         });
 
     }
+    enviar_ficha () {
+        // estatus 5 es  ENVIADO A REVISIÓN
+      if(this.curso.estado_curso == 5 ) {
+          Swal.fire({
+              icon: 'warning',
+              title: 'La ficha técnica ya fue enviada para su revisión',
+              showConfirmButton: true,
+              confirmButtonText: 'OK',
+          });
+          return false;
+      }
+        // estatus 2 es  AUTORIZADO
+        if(this.curso.estado_curso == 2 ) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'La ficha técnica ya fue autorizada',
+                showConfirmButton: true,
+                confirmButtonText: 'OK',
+            });
+            return false;
+        }
+        // validamos todas las secciones
+            if (!this.validar_seccion_descripcion_servicio()) {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'No se puede enviar aún la ficha técnica, debes completar la sección ' +
+                        'Descripción del Servicio!',
+                    showConfirmButton: true,
+                    confirmButtonText: 'OK',
+                });
+                return false;
+            }
+            // console.log(this.fichaFunction.validar_seccion_informacion_servicio(this.ficha, this.curso));
+        if (!(this.fichaFunction.validar_seccion_informacion_servicio(this.ficha, this.curso) === true)) {
+            Swal.fire({
+                icon: 'info',
+                title: 'No se puede enviar aún la ficha técnica, debes completar la sección' +
+                    ' Información del Servicio!',
+                showConfirmButton: true,
+                confirmButtonText: 'OK',
+            });
+            return false;
+        }
+        if (!(this.fichaFunction.validar_seccion_contenidos_tematicos(this.contenido_tematico) === true)) {
+            Swal.fire({
+                icon: 'info',
+                title: 'No se puede enviar aún la ficha técnica, debes completar la sección' +
+                    ' Contenido temático!',
+                showConfirmButton: true,
+                confirmButtonText: 'OK',
+            });
+            return false;
+        }
+        // console.log(this.fichaFunction.validar_seccion_elementos_didacticos(this.elementos_didacticos));
+        if (!(this.fichaFunction.validar_seccion_elementos_didacticos(this.elementos_didacticos) === true)) {
+            Swal.fire({
+                icon: 'info',
+                title: 'No se puede enviar aún la ficha técnica, debes completar la sección' +
+                    ' Elementos didácticos!',
+                showConfirmButton: true,
+                confirmButtonText: 'OK',
+            });
+            return false;
+        }
+        if (!(this.fichaFunction.validar_seccion_criterios_evaluacion(this.criterios_evaluacion) === true)) {
+            Swal.fire({
+                icon: 'info',
+                title: 'No se puede enviar aún la ficha técnica, debes completar la sección' +
+                    ' Criterios de evaluación!',
+                showConfirmButton: true,
+                confirmButtonText: 'OK',
+            });
+            return false;
+        }
+        if (!(this.fichaFunction.validar_seccion_competencias(this.competencias) === true)) {
+            Swal.fire({
+                icon: 'info',
+                title: 'No se puede enviar aún la ficha técnica, debes completar la sección' +
+                    ' Competencias a desarrollar!',
+                showConfirmButton: true,
+                confirmButtonText: 'OK',
+            });
+            return false;
+        }
+        // validamos que haya capturado su CV
+        this.ficha_service.busca_participante_por_pk(this.pk_participante_sistema).subscribe(
+            data => {
+                console.log(data['cv']);
+                const cv = <Array<object>> data['cv'];
+                if ( cv == null || cv.length <= 0) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'No se puede enviar aún la ficha técnica, debes capturar el CV del instructor',
+                        showConfirmButton: true,
+                        confirmButtonText: 'OK',
+                        // timer: 2000
+                    });
+                    return false;
+                } else {
+                    //datos
+                    let error = false;
+                    let mensaje = '';
+                    this.loaderModal.show();
+                    // estatus 5 es  ENVIADO A REVISIÓN
+                    this.curso_service.actualiza_estatus_curso(this.curso.pk_curso, 5).subscribe(
+                        data => {
+                            console.log(data);
+                            this.loaderModal.hide();//  200 ok
+                            // console.log(data);
+                            for ( const i in data) {
+                                if (data[i]['estado'] === 'error') {
+                                    error = true;
+                                    mensaje = data[i]['mensaje'];
+                                }
+                            }
+                            if (error) {
+                                if (mensaje === '')
+                                    mensaje = '¡Lo sentimos ha ocurrido un error, intentalo más tarde!';
+
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: mensaje,
+                                    showConfirmButton: true,
+                                    confirmButtonText: 'OK',
+                                });
+                            } else {
+                                //actualizamos el estado a ENVIADO A REVISIÓN
+                                this.curso.estado_curso = 5;
+                                for ( const i in data) {
+                                    if (data[i]['estado'] === 'exito')
+                                        mensaje = data[i]['mensaje'];
+                                }
+                                if (mensaje === '')
+                                    mensaje = '¡Se envió la ficha correctamente!';
+
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: mensaje,
+                                    showConfirmButton: true,
+                                    confirmButtonText: 'OK'
+                                });
+                            }
+                        },
+                        error => {
+                            Swal.fire({
+                                icon: 'error',
+                                title: '¡Lo sentimos ha ocurrido un error, no se pudo enviar la ficha, intentelo más tarde!',
+                                showConfirmButton: true,
+                                confirmButtonText: 'OK',
+                                // timer: 2000
+                            });
+                        }
+                    );
+                }
+            },
+            error => {
+                Swal.fire({
+                    icon: 'error',
+                    title: '¡Lo sentimos ha ocurrido un error, no se cargaron los periodos intentelo más tarde!',
+                    showConfirmButton: true,
+                    confirmButtonText: 'OK',
+                    // timer: 2000
+                });
+            });
+
+    }
+    procesa_curso_param(data: any) {
+           // console.log( data[0][0]);
+            const curso = data[0][0];
+            // armamos el curso
+            this.curso = {
+                pk_curso : curso['PK_CAT_CURSO_CADO'],
+                nombre_curso:  curso['NOMBRE_CURSO'],
+                tipo_curso: curso['TIPO_CURSO'],
+                cupo_maximo: curso['CUPO_MAXIMO'],
+                cupo_actual: -1,
+                total_horas: curso['TOTAL_HORAS'],
+                pk_periodo: curso['FK_PERIODO_CADO'],
+                pk_area_academica: curso['FK_AREA_ACADEMICA'] == null ? 0 : curso['FK_AREA_ACADEMICA'] ,
+                imagen_curso: curso['RUTA_IMAGEN_CURSO'],
+                instructores: curso['INSTRUCTORES'],
+                fecha_inicio: curso['FECHA_INICIO'],
+                fecha_fin: curso['FECHA_FIN'],
+                hora_inicio: new Date( curso['HORA_INICIO']),
+                hora_fin:    new Date( curso['HORA_FIN']),
+                campus: -1,
+                edificio: curso['FK_EDIFICIO'],
+                espacio: curso['NOMBRE_ESPACIO'],
+                estado_curso: curso['ESTADO_CURSO']
+            };
+
+            if ( curso['FK_FICHA_TECNICA_CADO'] == null ) {
+                // console.log("es null la fk_ficha");
+                // si la pk de la ficha es null entonces se la creamos
+                this.crear_actualizar_ficha( curso['PK_CAT_CURSO_CADO'] );
+            } else {
+                // console.log("no es null la fk_ficha");
+                // this.ficha.pk_ficha = curso['FK_FICHA_TECNICA_CADO'];
+                console.log(curso['OBJ_FICHA_TECNICA']);
+                // console.log('tamaño de llaves' + Object.keys(curso['OBJ_FICHA_TECNICA']).length);
+                if ( Object.keys(curso['OBJ_FICHA_TECNICA']).length > 0 ) {
+                    this.ficha = { // armamos la ficha
+                        pk_ficha: curso['OBJ_FICHA_TECNICA']['PK_CAT_FICHA_TECNICA'],
+                        lugar_institucion : curso['OBJ_FICHA_TECNICA']['FK_LUGAR'], // 1 es por defautl el ITL
+                        introduccion: curso['OBJ_FICHA_TECNICA']['INTRODUCCION'],
+                        justificacion: curso['OBJ_FICHA_TECNICA']['JUSTIFICACION'],
+                        objetivo_general: curso['OBJ_FICHA_TECNICA']['OBJETIVO_GENERAL'],
+                        tipo_servicio: curso['OBJ_FICHA_TECNICA']['TIPO_SERVICIO'],
+                        otro_servicio: curso['OBJ_FICHA_TECNICA']['OTRO_SERVICIO'],
+                        // ------------------------
+                        fecha_registro: curso['OBJ_FICHA_TECNICA']['FECHA_MODIFICACION'],
+                        hora_registro: curso['OBJ_FICHA_TECNICA']['FECHA_MODIFICACION'],
+                        contenido_tematico: curso['OBJ_FICHA_TECNICA']['contenido_tematico'], // este contendra los archivos
+                        elementos_didacticos: curso['OBJ_FICHA_TECNICA']['material_didactico'],
+                        criterios_evaluacion: curso['OBJ_FICHA_TECNICA']['criterios_evaluacion'],
+                        competencias: curso['OBJ_FICHA_TECNICA']['competencias'],
+                        fuentes_informacion:  curso['OBJ_FICHA_TECNICA']['fuentes_informacion'],
+                        comentarios:  curso['OBJ_FICHA_TECNICA']['comentarios'],
+                    };
+                    this.verificaOtroServicio();
+                }
+            }// fin else
+    }
+
+
+    // TODO VALIDAR LONGITUDES DE LOS CAMPOS DE BD CON LO CAPTURADO
 
 }

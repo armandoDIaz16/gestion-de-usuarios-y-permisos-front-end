@@ -12,6 +12,9 @@ import {ListaDeParticipantesComponent} from '../components/capacitacion_docente/
 import {MaterialDelCursoComponent} from '../components/capacitacion_docente/material-del-curso.component';
 import {VerFichaTecnicaComponent} from '../components/capacitacion_docente/ver-ficha-tecnica.component';
 import {VerCursoParticipanteComponent} from '../components/capacitacion_docente/ver-curso-participante.component';
+import {ConvocatoriaComponent} from '../components/capacitacion_docente/convocatoria.component';
+import {VistaCursoConvocatoriaComponent} from '../components/capacitacion_docente/vista-curso-convocatoria.component';
+import {ModificarCvInstructorComponent} from '../components/capacitacion_docente/modificar-cv-instructor.component';
 
 const routes: Routes = [
   {
@@ -56,10 +59,24 @@ const routes: Routes = [
               }
           },
           {
-              path: 'de3ec0aa2234aa1e3ee275bbc715c6c9/:id', // cv
+              path: 'de3ec0aa2234aa1e3ee275bbc715c6c9/:pk_participante', // cv
               component: InstructorCvComponent,
               data: {
                   title: 'CV'
+              }
+          },
+          {
+              path: 'de3ec0aa2234aa1e3ee275bbc715c6c9', // cv
+              component: InstructorCvComponent,
+              data: {
+                  title: 'CV'
+              }
+          },
+          {
+              path: 'b0ea21e8d9f5703448517968a9403973', // modificar_cv
+              component: ModificarCvInstructorComponent,
+              data: {
+                  title: 'Modificar curriculum'
               }
           },
           {
@@ -95,6 +112,20 @@ const routes: Routes = [
               component: VerFichaTecnicaComponent,
               data: {
                   title: 'Ficha Técnica del Curso'
+              }
+          },
+          {
+              path: '1191b30011f35ae3bfa0e376dbdff635', // convocatoria
+              component: ConvocatoriaComponent,
+              data: {
+                  title: 'Convocatoria'
+              }
+          },
+          {
+              path: '69f731dc339202af2c0f90fd1ec6fa43/:idCurso', // ver_curso_convocatoria
+              component: VistaCursoConvocatoriaComponent,
+              data: {
+                  title: 'Inscribete al curso'
               }
           },
 

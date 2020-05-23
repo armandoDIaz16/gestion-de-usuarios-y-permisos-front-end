@@ -1,13 +1,17 @@
 // import Swal from "sweetalert2";
-import {FichaTecnica,Curso} from '../../models/capacitacion_docente/cado-model.model';
+import {FichaTecnica, Curso} from '../../models/capacitacion_docente/cado-model.model';
 import {Injectable} from '@angular/core';
+import {FichaTecnicaCadoService} from './ficha-tecnica-cado.service';
+// import Swal from "sweetalert2";
+import {CursoCadoService} from './curso-cado.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class FichaTecnicaCadoFunction  {
 
-  constructor() {}
+  constructor(private ficha_service: FichaTecnicaCadoService,
+              private curso_service: CursoCadoService) {}
 
 
     validar_seccion_elementos_didacticos( elementosArray: Array<Object>) {
@@ -42,7 +46,7 @@ export class FichaTecnicaCadoFunction  {
         return true;
     }
 
-    validar_contenido_tematico( tema: string, tiempo: number, actividad: string, curso: Curso) {
+        validar_contenido_tematico( tema: string, tiempo: number, actividad: string, curso: Curso) {
 
         if (tema.trim()  ==  '' ) {
             return 'Debes indicar el nombre del tema';
@@ -100,6 +104,66 @@ export class FichaTecnicaCadoFunction  {
 
         }
         return true;
+    }
+
+    actualiza_estatus_curso(curso: Curso, estatus: number, loaderModal: any , Swal: any) {
+        //datos
+        let error = false;
+        let mensaje = '';
+        loaderModal.show();
+        // estatus 5 es  ENVIADO A REVISIÓN
+        this.curso_service.actualiza_estatus_curso(curso.pk_curso, estatus).subscribe(
+            data => {
+                console.log(data);
+                loaderModal.hide();//  200 ok
+                // console.log(data);
+                for ( const i in data) {
+                    if (data[i]['estado'] === 'error') {
+                        error = true;
+                        mensaje = data[i]['mensaje'];
+                    }
+                }
+                if (error) {
+                    if (mensaje === '')
+                        mensaje = '¡Lo sentimos ha ocurrido un error, intentalo más tarde!';
+
+                    Swal.fire({
+                        icon: 'error',
+                        title: mensaje,
+                        showConfirmButton: true,
+                        confirmButtonText: 'OK',
+                    });
+                    // return false;
+                } else {
+                    //actualizamos el estado a ENVIADO A REVISIÓN
+                    curso.estado_curso = estatus;
+                    for ( const i in data) {
+                        if (data[i]['estado'] === 'exito')
+                            mensaje = data[i]['mensaje'];
+                    }
+                    if (mensaje === '')
+                        mensaje = '¡Se envió la información correctamente!';
+
+                    Swal.fire({
+                        icon: 'success',
+                        title: mensaje,
+                        showConfirmButton: true,
+                        confirmButtonText: 'OK'
+                    });
+                    // return curso;
+                }
+            },
+            error => {
+                Swal.fire({
+                    icon: 'error',
+                    title: '¡Lo sentimos ha ocurrido un error, no se pudo enviar la información, intentelo más tarde!',
+                    showConfirmButton: true,
+                    confirmButtonText: 'OK',
+                    // timer: 2000
+                });
+                // return false;
+            }
+        );
     }
 
 }
