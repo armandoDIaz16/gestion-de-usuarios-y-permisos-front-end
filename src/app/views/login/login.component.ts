@@ -32,7 +32,8 @@ export class LoginComponent implements OnInit {
                 private router: Router,
                 private Auth: AuthService,
                 private usuarioRolesService: UsuarioRolesService
-    ) {}
+    ) {
+    }
 
     onSubmit() {
         this.loaderModal.show();
@@ -55,14 +56,15 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('IdEncriptada', data.IdEncriptada);
         sessionStorage.setItem('tipo_usuario', data.tipo_usuario);
         // NO MODIFICAR
-        this.usuarioRolesService.getUsuarioRoles().subscribe(data => {
-            sessionStorage.setItem('sistemas', JSON.stringify(data));
-            this.router.navigateByUrl('/home');
-            // agregar el json de sistemas para empezar a comparar
+        this.usuarioRolesService.getUsuarioRoles().subscribe(
+            data => {
+                sessionStorage.setItem('sistemas', JSON.stringify(data));
+                this.router.navigateByUrl('/home');
+                // agregar el json de sistemas para empezar a comparar
 
-            // OCULTAR MODAL
-            this.loaderModal.hide();
-        });
+                // OCULTAR MODAL
+                this.loaderModal.hide();
+            });
 
         // NO MODIFICAR (PERMISOS SOBRE SISTEMAS)
         this.usuarioRolesService.get_permisos_tutorias().subscribe(data => {

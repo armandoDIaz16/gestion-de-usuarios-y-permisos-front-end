@@ -17,7 +17,7 @@
 </h2>
 <br><br>
 
-<div class="row"  *ngIf="this.error == null">
+<div class="row" *ngIf="this.error == null">
     <div class="offset-md-2 col-md-8 offset-sm-1 col-sm-10 offset-xs-1 col-xs-10">
         <h3 *ngIf="this.encuesta_completa.OBJETIVO" class="text-center">
             Objetivo: {{this.encuesta_completa.OBJETIVO}}
@@ -83,17 +83,16 @@
                                         <!-- INICIO DICOTÓMICA (DOS OPCIONES) -->
                                         <div
                                             *ngIf="pregunta.FK_TIPO_PREGUNTA == 1 || pregunta.FK_TIPO_PREGUNTA == 2">
-                                            <div class="custom-control custom-radio">
+                                            <div class="col-md-12">
                                                 <input type="radio"
                                                        [name]="['res_'+pregunta.PK_PREGUNTA]"
                                                        [id]="['res_'+respuesta.PK_RESPUESTA_POSIBLE]"
-                                                       (click)="procesa_respuesta(index_pregunta, index_respuesta)"
-                                                       class="custom-control-input">
-                                                <label [for]="['res_'+respuesta.PK_RESPUESTA_POSIBLE]"
-                                                       class="h5 custom-control-label">
+                                                       (click)="procesa_respuesta(index_pregunta, index_respuesta)">
+                                                <label [for]="['res_'+respuesta.PK_RESPUESTA_POSIBLE]">
                                                     {{respuesta.RESPUESTA}}
                                                 </label>
                                             </div>
+                                            <div class="clearfix"></div>
                                         </div>
                                         <!-- FIN DICOTÓMICA (DOS OPCIONES) -->
 
@@ -106,23 +105,25 @@
                                         <!-- FIN POLITÓMICA (MULTIPLES OPCIONES) -->
 
                                         <!-- INICIO MIXTA (MULTIPLES OPCIONES, CON OPCION A ABIERTA) -->
-                                        <div *ngIf="pregunta.FK_TIPO_PREGUNTA == 3">
-                                            <div class="custom-control custom-radio">
+                                        <div *ngIf="pregunta.FK_TIPO_PREGUNTA == 3" class="row">
+                                            <div class="col-md-8">
                                                 <input type="radio"
                                                        [name]="['res_'+pregunta.PK_PREGUNTA]"
                                                        [id]="['res_'+respuesta.PK_RESPUESTA_POSIBLE]"
-                                                       (click)="procesa_respuesta(index_pregunta, index_respuesta)"
-                                                       class="custom-control-input">
+                                                       (click)="procesa_respuesta(index_pregunta, index_respuesta)">
 
-                                                <label [for]="['res_'+respuesta.PK_RESPUESTA_POSIBLE]"
-                                                       class="h5 custom-control-label">
+                                                <label [for]="['res_'+respuesta.PK_RESPUESTA_POSIBLE]">
                                                     {{respuesta.RESPUESTA}}
                                                 </label>
+                                            </div>
+                                            <div class="col-md-4">
                                                 <input *ngIf="respuesta.ES_MIXTA == 1" type="text"
+                                                       placeholder="Indique la respuesta"
                                                        [name]="['res_mixta_'+pregunta.PK_PREGUNTA]"
                                                        [id]="['res_mixta_'+respuesta.PK_RESPUESTA_POSIBLE]"
                                                        class="form-control">
                                             </div>
+                                            <div class="clearfix"></div>
                                         </div>
                                         <!-- FIN MIXTA (MULTIPLES OPCIONES, CON OPCION A ABIERTA) -->
 
@@ -198,3 +199,16 @@
 
     </div>
 </div>
+
+<!-- INICIO VENTANA MODAL DE CARGA -->
+<div bsModal #loaderModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-hidden="false"
+     [config]="{backdrop: 'static',keyboard: false}" [style.display]="this.display">
+    <!--[config]="{backdrop: 'static',keyboard: false}">-->
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content"
+             style="background-color: rgba(51, 51, 51, 0.8); background-clip: padding-box; border: 1px solid rgba(0, 0, 0, 0);">
+            <app-loader></app-loader>
+        </div>
+    </div>
+</div>
+<!-- FIN VENTANA MODAL DE CARGA -->

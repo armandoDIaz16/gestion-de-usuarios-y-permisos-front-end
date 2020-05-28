@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
 import {InterfaceEncuestaCompleta, InterfacePreguntaEncuesta} from '../../models/tutorias/EncuestasModel';
 import {ResponderEncuestaService} from '../../services/tutorias/responder-encuesta.service';
 
@@ -19,19 +18,26 @@ export class ResponderEncuestaComponent implements OnInit {
     public pregunta_inicial: number;
     public cantidad_preguntas: number;
     public error = null;
+    public display;
 
     constructor(private responder_encuestas_service: ResponderEncuestaService,
                 private route: ActivatedRoute,
-                private http: HttpClient,
                 private router: Router,
                 private helpers: Helpers) {
-        this.pk_aplicacion_encuesta = parseInt(this.route.snapshot.queryParamMap.get('pk_aplicacion_encuesta'));
+        this.pk_aplicacion_encuesta = parseInt(this.route.snapshot.queryParamMap.get('encuesta'), 10);
+        this.display = 'block';
     }
 
     ngOnInit() {
-        this.responder_encuestas_service.get_encuesta_completa(this.pk_aplicacion_encuesta).subscribe(
+        this.responder_encuestas_service.get_encuesta_completa(
+            '?pk_detalle=' + this.pk_aplicacion_encuesta
+            + '&usuario=' + sessionStorage['IdEncriptada']
+        ).subscribe(
             data => this.handleResponse(data),
-            error => this.handleError(error)
+            error => this.handleError(error),
+            () => {
+                this.display = 'none';
+            }
         );
     }
 
@@ -48,17 +54,24 @@ export class ResponderEncuestaComponent implements OnInit {
 
     handleError(error) {
         this.error = error.error;
+        this.display = 'none';
     }
 
     onSubmit() {
-        if (this.encuesta_completa.PK_ENCUESTA === 1) {
-            this.encuesta_pasatiempos(); // OK
+        if (confirm('¿Está seguro de enviar las respuestas?')) {
+            this.display = 'block';
+            if (this.encuesta_completa.PK_ENCUESTA === 1) {
+                this.encuesta_pasatiempos(); // OK
+            } else {
+                this.procesa_encuesta();
+            }
         } else {
-            this.procesa_encuesta();
+            return false;
         }
     }
 
     public handleResponseGuardar(data) {
+        this.display = 'none';
         if (data.data) {
             this.router.navigateByUrl('/tutorias/6da5b4309f3cc102b3a2b7ac7e52a62c');
         }
@@ -69,10 +82,10 @@ export class ResponderEncuestaComponent implements OnInit {
             (<HTMLInputElement>document.getElementById(id_escala)).value;
 
         this.encuesta_completa.SECCIONES[0].PREGUNTAS[index_pregunta].RESPUESTAS[index_respuesta].SELECCIONADA =
-            parseInt((<HTMLInputElement>document.getElementById(id_escala)).value);
+            parseInt((<HTMLInputElement>document.getElementById(id_escala)).value, 10);
 
         this.encuesta_completa.SECCIONES[0].PREGUNTAS[index_pregunta].RESPUESTAS[index_respuesta].RANGO =
-            parseInt((<HTMLInputElement>document.getElementById(id_escala)).value);
+            parseInt((<HTMLInputElement>document.getElementById(id_escala)).value, 10);
 
         // console.log(this.encuesta_completa.SECCIONES[0].PREGUNTAS[index_pregunta].RESPUESTAS[index_respuesta].RANGO);
     }
@@ -87,6 +100,7 @@ export class ResponderEncuestaComponent implements OnInit {
 
     /* INICIO PROCESAMIENTO DE ENCUESTA */
     public procesa_encuesta() {
+        this.display = 'none';
         if (this.valida_encuesta()) {
             this.responder_encuestas_service.guarda_respuestas(
                 this.get_body_encuesta()
@@ -110,7 +124,7 @@ export class ResponderEncuestaComponent implements OnInit {
 
     private valida_encuesta() {
         let index_pregunta = 1;
-        for (let pregunta of this.encuesta_completa.SECCIONES[0].PREGUNTAS) {
+        for (const pregunta of this.encuesta_completa.SECCIONES[0].PREGUNTAS) {
             // lenar contenido de las abiertas
             if (pregunta.FK_TIPO_PREGUNTA == 6) {
                 pregunta.RESPUESTAS[0].ABIERTA =
@@ -121,7 +135,7 @@ export class ResponderEncuestaComponent implements OnInit {
 
             if (pregunta.FK_TIPO_PREGUNTA == 3) {
                 let _i = 0;
-                for(let temp_respuesta of pregunta.RESPUESTAS) {
+                for (const temp_respuesta of pregunta.RESPUESTAS) {
                     if (temp_respuesta.SELECCIONADA == 1) {
                         if (temp_respuesta.ES_MIXTA == 1) {
                             pregunta.RESPUESTAS[_i].ABIERTA =
@@ -151,10 +165,10 @@ export class ResponderEncuestaComponent implements OnInit {
 
     /* INICIO PROCESAMIENTO DE ENCUESTA DE PASATIEMPOS */
     public encuesta_pasatiempos() {
-        var array_respuestas = [], array_original = [];
+        const array_respuestas = [], array_original = [];
         for (let _i = 0; _i < 15; _i++) {
             array_respuestas.push(
-                parseInt((<HTMLInputElement>document.getElementById('res_' + _i)).value)
+                parseInt((<HTMLInputElement>document.getElementById('res_' + _i)).value, 10)
             );
             array_original.push({
                 pk_respuesta: (<HTMLInputElement>document.getElementById('pk_res_' + _i)).value,
@@ -174,6 +188,7 @@ export class ResponderEncuestaComponent implements OnInit {
                 error => this.handleError(error)
             );
         }
+        this.display = 'none';
     }
 
     /* FIN PROCESAMIENTO DE ENCUESTA DE PASATIEMPOS */

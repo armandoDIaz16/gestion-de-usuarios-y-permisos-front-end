@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {HorarioAlumnoService} from '../../../services/tutorias/horario-alumno.service';
+import {HorarioAlumnoService} from '../../../services/tutorias/horario_alumno/horario-alumno.service';
 import {InterfaceAlumno} from '../../../models/tutorias/AlumnoModel';
 
 @Component({

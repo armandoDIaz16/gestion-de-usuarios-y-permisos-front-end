@@ -1,13 +1,24 @@
 <h2 class="text-center">Historial de encuestas</h2>
 <br><br>
 <div class="row">
-    <div class="offset-2 col-md-8">
+    <div class="offset-1 col-md-10">
+        <!--<div class="row">
+            <label for="periodo">
+                <b>Periodo</b>
+            </label>
+            <select id="periodo" [(ngModel)]="this.periodo_select" class="form-control">
+                <option *ngFor="let periodo of this.lista_periodos" value="{{periodo.PERIODO}}">
+                    {{periodo.NOMBRE}}
+                </option>
+            </select>
+        </div>-->
         <table class="table table-striped">
             <thead>
             <tr class="text-center">
                 <th>Número</th>
                 <th>Nombre</th>
                 <th>Fecha aplicación</th>
+                <th>Periodo</th>
                 <th>Fecha respuesta</th>
                 <th>Operaciones</th>
             </tr>
@@ -16,14 +27,24 @@
             <tr *ngFor="let encuesta of this.lista_encuestas; let i = index" class="text-center">
                 <td>{{i + 1}}</td>
                 <td>{{encuesta.NOMBRE}}</td>
-                <td>{{encuesta.FECHA_APLICACION}}</td>
-                <td>{{encuesta.FECHA_RESPUESTA}}</td>
+                <td>{{encuesta.FECHA_APLICACION | date}}</td>
+                <td>
+                    <!--{{encuesta.PERIODO}}
+                    <br>-->
+                    {{encuesta.NOMBRE_PERIODO}}
+                </td>
+                <td *ngIf="encuesta.FECHA_RESPUESTA">
+                    {{encuesta.FECHA_RESPUESTA | date}}
+                </td>
+                <td *ngIf="encuesta.FECHA_RESPUESTA == null">
+                    -
+                </td>
                 <td>
                     <a *ngIf="encuesta.ESTADO_APLICACION == 1; else elseBlockRespuesta"
                        [routerLink]="['/tutorias/745651e29c6bb18baf4a1118fa8a0fc5']"
-                       [queryParams]="{pk_aplicacion_encuesta: encuesta.PK_APLICACION_ENCUESTA}"
-                       class="btn btn-primary">
-                        Responder
+                       [queryParams]="{encuesta: encuesta.PK_APLICACION_ENCUESTA_DETALLE}"
+                       class="btn btn-sm btn-primary" tooltip="Responder encuesta">
+                        <i class="icon-list"></i>
                     </a>
                     <ng-template #elseBlockRespuesta>
                         <a *ngIf=" encuesta.PK_ENCUESTA == 6; else elseReporte" class="btn btn-sm btn-success"

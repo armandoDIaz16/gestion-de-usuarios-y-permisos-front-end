@@ -41,9 +41,16 @@ export class EncuestasService extends GenericServicesService {
             GenericServicesService.HEADERS);
     }
 
-    get_encuestas(id_usuario: any): Observable<InterfaceEncuestaPendiente[]> {
-        return this.http.get<InterfaceEncuestaPendiente[]>(
+    get_encuestas(id_usuario: any): any {
+        return this.http.get<any>(
             GenericServicesService.API_ENDPOINT + 'cuestionarios_usuario/' + id_usuario,
+            GenericServicesService.HEADERS
+        );
+    }
+
+    get_periodos_encuestas(id_usuario: any): any {
+        return this.http.get<any>(
+            GenericServicesService.API_ENDPOINT + 'cuestionarios_usuario_periodos/' + id_usuario,
             GenericServicesService.HEADERS
         );
     }
