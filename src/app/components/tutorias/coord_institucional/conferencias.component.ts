@@ -2,7 +2,6 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {InterfaceConferencia} from '../../../models/tutorias/ConferenciaModel';
 import {ConferenciasServiceService} from '../../../services/tutorias/coord_institucional/conferencias-service.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {number, string} from '@amcharts/amcharts4/core';
 import {UsuariosService} from '../../../services/usuarios/usuarios.service';
 
 @Component({
@@ -132,6 +131,18 @@ export class ConferenciasComponent implements OnInit {
         this.pk_conferencia_selected = pk_conferencia;
         this.obtener_capturistas();
         this.modal_capturistas.show();
+    }
+
+    cerrar_modal_capturistas() {
+        this.modal_capturistas.hide();
+        this.lista_capturistas = [];
+        this.numero_control = null;
+        this.pk_conferencia_selected = null;
+        this.capturista_busqueda = {
+            pk_usuario: 0,
+            nombre: '',
+            numero_control: ''
+        };
     }
 
     ngOnInit() {

@@ -1,46 +1,44 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
-import {InterfacePerfil} from '../../models/usuarios/PerfilModel';
-import {PerfilService} from '../../services/perfil.service';
-import {Modulos} from '../../config/Tutorias';
+import {HorarioAlumnoService} from '../../../services/tutorias/horario_alumno/horario-alumno.service';
+import {Modulos} from '../../../config/Tutorias';
 
 @Component({
-    selector: 'app-datos-alumno',
-    templateUrl: '../../views/tutorias/datos_alumno/datos-alumno.html',
-    styleUrls: ['../../views/tutorias/datos_alumno/datos-alumno.scss']
+    selector: 'app-horario-alumno',
+    templateUrl: '../../../views/tutorias/horario_alumno/horario-alumno.html',
+    styleUrls: ['../../../views/tutorias/horario_alumno/horario-alumno.scss']
 })
-export class DatosAlumnoComponent implements OnInit {
+export class HorarioAlumnoComponent implements OnInit {
     /* Configuracion */
     public rol = '';
     public display = 'block';
     public error = null;
 
     /* Permisos */
-    public ver_datos_personales_alumno = false;
+    public ver_horario_alumno = false;
 
     /* Ventanas modales */
 
     /* Datos propios */
-    public perfil = null;
+    public horario_alumno = null;
     public pk_alumno = '';
 
-    constructor(private perfil_service: PerfilService,
+    constructor(private horario_service: HorarioAlumnoService,
                 private route: ActivatedRoute,
-                private router: Router,
+                protected router: Router,
     ) { }
 
     ngOnInit() {
         this._init();
         this.valida_permisos();
-        this.get_perfil();
+        this.get_horario();
     }
 
-    get_perfil() {
+    get_horario() {
         this.display = 'block';
-        this.perfil_service.get_perfil('?pk_encriptada=' + this.pk_alumno).subscribe(
+        this.horario_service.get_horario(this.pk_alumno).subscribe(
             data => {
-                this.perfil = data.data;
+                this.horario_alumno = data.data;
             },
             error => {
                 alert('Ha ocurrido un error');
@@ -51,9 +49,13 @@ export class DatosAlumnoComponent implements OnInit {
         );
     }
 
+    volver() {
+        history.back();
+    }
+
     _init() {
         this.rol = 'ADM_TUT';
-        this.perfil = [];
+        this.horario_alumno = [];
         if (this.route.snapshot.queryParamMap.get('alumno')) {
             this.pk_alumno = this.route.snapshot.queryParamMap.get('alumno');
         } else {
@@ -62,11 +64,6 @@ export class DatosAlumnoComponent implements OnInit {
     }
 
     valida_permisos() {
-        this.ver_datos_personales_alumno = Modulos.valida_rol_accion(this.rol, Modulos.VER_DATOS_PERSONALES_ALUMNO);
+        this.ver_horario_alumno = Modulos.valida_rol_accion(this.rol, Modulos.VER_HORARIO_ALUMNO);
     }
-
-    volver() {
-        history.back();
-    }
-
 }

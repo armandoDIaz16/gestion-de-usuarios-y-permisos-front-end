@@ -1,17 +1,25 @@
 import {Injectable} from '@angular/core';
-import {GenericServicesService} from '../../generic-services.service';
+import {GenericServicesService} from '../generic-services.service';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {InterfacecCarreraGruposTutoria} from '../../../models/tutorias/GrupoModel';
+import {InterfacecCarreraGruposTutoria} from '../../models/tutorias/GrupoModel';
 
 @Injectable({
     providedIn: 'root'
 })
-export class GruposAdminService extends GenericServicesService {
+export class GruposInicialService extends GenericServicesService {
 
     constructor(private http: HttpClient) {
         super(http);
     }
+    /* VALIDADO */
+    get_grupos(query_params?: string): any {
+        return this.http.get<any>(
+            GenericServicesService.API_ENDPOINT + 'grupos_inicial' + query_params,
+            GenericServicesService.HEADERS
+        );
+    }
+    /* VALIDADO */
 
     elimina_alumno_grupo(pk_detalle: number) {
         return this.http.delete(
@@ -58,9 +66,10 @@ export class GruposAdminService extends GenericServicesService {
         );
     }
 
-    get_grupos_actuales(): Observable<InterfacecCarreraGruposTutoria> {
+    get_grupos_actuales(rol: string): Observable<InterfacecCarreraGruposTutoria> {
         const body = {
-            pk_encriptada: sessionStorage['IdEncriptada']
+            pk_encriptada: sessionStorage['IdEncriptada'],
+            rol: rol
         };
 
         return this.http.post<InterfacecCarreraGruposTutoria>(

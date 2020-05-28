@@ -7,10 +7,10 @@ import {ActivatedRoute} from '@angular/router';
 
 @Component({
     selector: 'app-detalle-grupo-seg-admin',
-    templateUrl: '../../../views/tutorias/coord_institucional/detalle-grupo-seg-admin.component.html',
-    styleUrls: ['../../../views/tutorias/coord_institucional/detalle-grupo-seg-admin.component.scss']
+    templateUrl: '../../../views/tutorias/grupos_seguimiento/gestion-grupo-seguimiento.html',
+    styleUrls: ['../../../views/tutorias/grupos_seguimiento/gestion-grupo-seguimiento.scss']
 })
-export class DetalleGrupoSegAdminComponent implements OnInit {
+export class GestionGrupoSeguimientoComponent implements OnInit {
 
     // datos de configuración
     public display: string;

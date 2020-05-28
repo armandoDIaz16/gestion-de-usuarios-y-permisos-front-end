@@ -16,7 +16,7 @@
                     <b>Nombre</b>
                 </td>
                 <td>
-                    {{alumno.NOMBRE}} {{alumno.PRIMER_APELLIDO}} {{alumno.SEGUNDO_APELLIDO}}
+                    {{this.horario_alumno.NOMBRE}} {{this.horario_alumno.PRIMER_APELLIDO}} {{this.horario_alumno.SEGUNDO_APELLIDO}}
                 </td>
             </tr>
             <tr>
@@ -24,15 +24,7 @@
                     <b>Semestre</b>
                 </td>
                 <td>
-                    {{alumno.SEMESTRE}}
-                </td>
-            </tr>
-            <tr>
-                <td class="text-right">
-                    <b>Periodo</b>
-                </td>
-                <td>
-                    {{alumno.HORARIO[0].PERIODO}}
+                    {{this.horario_alumno.SEMESTRE}}
                 </td>
             </tr>
             </tbody>
@@ -68,7 +60,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="text-center" *ngFor="let materia of alumno.HORARIO; let i = index">
+            <tr class="text-center" *ngFor="let materia of this.horario_alumno.HORARIO; let i = index">
                 <td>
                     {{i + 1}}
                 </td>

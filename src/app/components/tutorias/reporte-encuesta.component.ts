@@ -1,9 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
-import {InterfaceEncuestaCompleta, InterfacePreguntaEncuesta} from '../../models/tutorias/EncuestasModel';
+import {InterfaceEncuestaCompleta} from '../../models/tutorias/EncuestasModel';
 import {ReporteEncuestaService} from '../../services/tutorias/reporte-encuesta.service';
-import {ResponderEncuestaService} from '../../services/tutorias/responder-encuesta.service';
 import {Helpers} from './helpers';
 
 @Component({
@@ -28,14 +27,14 @@ export class ReporteEncuestaComponent implements OnInit {
                 private http: HttpClient,
                 private router: Router,
                 private helpers: Helpers) {
-        this.pk_aplicacion_encuesta = parseInt(this.route.snapshot.queryParamMap.get('aplicacion'));
+        this.pk_aplicacion_encuesta = parseInt(this.route.snapshot.queryParamMap.get('aplicacion'), 10);
         this.display = 'none';
     }
 
     ngOnInit() {
         this.display = 'block';
 
-        this.reporte_encuesta.get_reporte_encuesta(this.pk_aplicacion_encuesta).subscribe(
+        this.reporte_encuesta.get_reporte(this.pk_aplicacion_encuesta).subscribe(
             data => this.handleResponse(data),
             error => this.handleError(error)
         );

@@ -1,4 +1,4 @@
-<h2 class="text-center">Grupos de tutoría de seguimiento</h2>
+<h2 class="text-center">GruposBaseComponent de tutoría de seguimiento</h2>
 <!--
 <br><br>
 <div class="alert alert-danger" [hidden]="!error">
@@ -58,15 +58,22 @@
                             </ng-template>
                         </td>
                         <td>
+                            <a [routerLink]="['/tutorias/f98d2d1d9fc67e21fec2f46abb87023b']"
+                               [queryParams]="{clave_grupo: grupo.PK_GRUPO_TUTORIA}"
+                               class="btn btn-success btn-sm" tooltip="Ver detalles del grupo">
+                                <i class="icon-eye"></i>
+                            </a>
                             <a [routerLink]="['/tutorias/5d41d6d4aca9197eccb66426b1269af9']"
                                [queryParams]="{clave_grupo: grupo.PK_GRUPO_TUTORIA}"
-                               class="btn btn-primary btn-sm" tooltip="Ver detalles del grupo">
-                                <i class="icon-list"></i>
+                               class="btn btn-primary btn-sm" tooltip="Administrar alumnos del grupo">
+                                <i class="icon-settings"></i>
                             </a>
-                            <button (click)="editar_grupo(grupo.PK_GRUPO_TUTORIA)" class="btn btn-warning btn-sm" tooltip="Editar el grupo">
-                                <i class="icon-check"></i>
+                            <button (click)="editar_grupo(grupo.PK_GRUPO_TUTORIA)" class="btn btn-warning btn-sm"
+                                    tooltip="Editar el grupo">
+                                <i class="icon-wrench"></i>
                             </button>
-                            <button (click)="elimina_grupo(grupo.PK_GRUPO_TUTORIA)" class="btn btn-danger btn-sm" tooltip="Eliminar el grupo">
+                            <button (click)="elimina_grupo(grupo.PK_GRUPO_TUTORIA)" class="btn btn-danger btn-sm"
+                                    tooltip="Eliminar el grupo">
                                 <i class="icon-trash"></i>
                             </button>
                         </td>

@@ -13,9 +13,9 @@ export class ReporteEncuestaService extends GenericServicesService {
         super(http);
     }
 
-    get_reporte_encuesta(pk_aplicacion_encuesta: number): Observable<InterfaceEncuestaCompleta> {
-        return this.http.get<InterfaceEncuestaCompleta>(
-            GenericServicesService.API_ENDPOINT + 'get_reporte_encuesta/' + pk_aplicacion_encuesta,
+    get_reporte(query_params): any {
+        return this.http.get<any>(
+            GenericServicesService.API_ENDPOINT + 'get_reporte_encuesta' + query_params,
             GenericServicesService.HEADERS
         );
     }

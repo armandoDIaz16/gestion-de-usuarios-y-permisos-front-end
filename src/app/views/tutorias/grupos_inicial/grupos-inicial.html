@@ -1,4 +1,4 @@
-<h2 class="text-center">GruposBaseComponent de tutoría inicial</h2>
+<h2 class="text-center">Grupos de tutoría inicial</h2>
 <!--
 <br><br>
 <div class="alert alert-danger" [hidden]="!error">
@@ -10,9 +10,9 @@
 <div class="row">
     <div class="offset-1 col-md-10">
         <!-- Incio lista de carreras -->
-        <div *ngFor="let carrera of lista_grupos.CARRERAS">
+        <div *ngFor="let carrera of this.lista_grupos">
             <p class="h3 text-center">
-                {{carrera.CARRERA}}
+                {{carrera.carrera}}
             </p>
 
             <!-- Inicio de grupos por carrera -->
@@ -21,20 +21,21 @@
                 <tr class="text-center">
                     <th>No.</th>
                     <th>Clave grupo</th>
+                    <th>Tutor</th>
                     <th>Aula</th>
                     <th>Horario</th>
                     <th>Cantidad alumnos</th>
                     <th>Encuestas <br> activas</th>
                     <th>Encuestas <br> contestadas</th>
                     <th>Evalución de grupo</th>
-                    <th>Perfil grupal</th>
                     <th>Operaciones</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr class="text-center" *ngFor="let grupo of carrera.GRUPOS; let i = index">
+                <tr class="text-center" *ngFor="let grupo of carrera.grupos; let i = index">
                     <td>{{i + 1}}</td>
                     <td>{{grupo.CLAVE}}</td>
+                    <td>{{grupo.TUTOR}}</td>
                     <td>{{grupo.AULA}}</td>
                     <td>
                         <p *ngFor="let horario of grupo.HORARIO">
@@ -55,15 +56,17 @@
                         </ng-template>
                     </td>
                     <td>
-                        <button class="btn btn-success btn-sm" (click)="reporte_perfil_grupal(grupo.PK_GRUPO_TUTORIA)">
-                            Ver reporte
+                        <button *ngIf="this.ver_perfil_grupal"
+                            class="btn btn-danger btn-sm" (click)="this.perfil_grupal(grupo.PK_GRUPO_TUTORIA)"
+                            tooltip="Ver reporte del perfil grupal">
+                            <i class="icon-doc"></i>
                         </button>
-                    </td>
-                    <td>
-                        <a [routerLink]="['/tutorias/47b8563343b0fec813625cb20111085f']"
-                           [queryParams]="{clave_grupo: grupo.PK_GRUPO_TUTORIA}"
-                           class="btn btn-primary btn-sm">
-                            Ver detalles
+                        <a  *ngIf="this.ver_detalles_grupo"
+                            [routerLink]="['/tutorias/0c6199c35bb10e33ef730883a483dbb7']"
+                           [queryParams]="{grupo: grupo.PK_GRUPO_TUTORIA, token: this.token_rol}"
+                           class="btn btn-success btn-sm"
+                           tooltip="Ver detalles del grupo">
+                            <i class="icon-list"></i>
                         </a>
                     </td>
                 </tr>

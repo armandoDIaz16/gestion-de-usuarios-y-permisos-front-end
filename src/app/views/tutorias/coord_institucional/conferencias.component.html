@@ -82,7 +82,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <p class="h3">Usuarios capturistas de asistencia</p>
-                <button type="button" class="close" (click)="this.modal_capturistas.hide()" aria-label="Close">
+                <button type="button" class="close" (click)="this.cerrar_modal_capturistas()" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -130,13 +130,6 @@
                     <div class="col-md-1"></div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-md-12 text-center">
-                        <button (click)="this.busca_capturista()" class="btn btn-primary">
-                            Buscar
-                        </button>
-                    </div>
-                </div>
-                <div class="form-group row">
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
                         <p class="h4 text-center">Lista de capturistas</p>
@@ -148,16 +141,21 @@
                                 <th>Eliminar</th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <tr class="text-center" *ngFor="let capturista of this.lista_conferencias">
-                                <td>1</td>
-                                <td>APL</td>
+                            <tbody *ngIf="this.lista_capturistas.length > 0">
+                            <tr class="text-center" *ngFor="let capturista of this.lista_capturistas">
+                                <td>{{capturista.NUMERO_CONTROL}}</td>
+                                <td>{{capturista.NOMBRE}} {{capturista.PRIMER_APELLIDO}} {{capturista.SEGUNDO_APELLIDO}}</td>
                                 <td>
                                     <button class="btn btn-danger" tooltip="Eliminar"
-                                            (click)="this.eliminar_capturista(123)">
+                                            (click)="this.eliminar_capturista(capturista.PK_CAPTURISTA)">
                                         <i class="icon-plus"></i>
                                     </button>
                                 </td>
+                            </tr>
+                            </tbody>
+                            <tbody *ngIf="this.lista_capturistas.length == 0">
+                            <tr class="text-center">
+                                <td colspan="3">No se han registrado datos</td>
                             </tr>
                             </tbody>
                         </table>

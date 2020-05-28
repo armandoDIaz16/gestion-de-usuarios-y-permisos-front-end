@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {InterfacecCarreraGruposTutoria} from '../../../models/tutorias/GrupoModel';
-import {GruposAdminService} from '../../../services/tutorias/coord_institucional/grupos-admin.service';
+import {GruposInicialService} from '../../../services/tutorias/grupos-inicial.service';
 import {InterfaceCarrera} from '../../../models/general/CarreraModel';
 import {CarrerasService} from '../../../services/general/carreras.service';
 import {InterfaceUsuario} from '../../../models/general/UsuarioModel';
@@ -29,7 +29,7 @@ export class GruposSeguimientoAdminComponent implements OnInit {
         clave_grupo: ''
     };
 
-    constructor(private grupos_service: GruposAdminService,
+    constructor(private grupos_service: GruposInicialService,
                 private carreras_service: CarrerasService,
                 private usuarios_service: UsuariosService) {
         this.lista_grupos = <InterfacecCarreraGruposTutoria>{};

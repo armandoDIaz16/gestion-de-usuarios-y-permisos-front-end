@@ -4,13 +4,11 @@ import {Routes, RouterModule} from '@angular/router';
 import {UsuariosTutoriasComponent} from '../components/tutorias/usuarios_tutorias.component';
 import {EncuestasComponent} from '../components/tutorias/estudiante/encuestas.component';
 import {ResponderEncuestaComponent} from '../components/tutorias/responder-encuesta.component';
-import {GruposComponent} from '../components/tutorias/tutor/grupos.component';
-import {DetalleGrupoComponent} from '../components/tutorias/detalle-grupo.component';
+import {DetalleGrupoAdministradorComponent} from '../components/tutorias/grupos_inicial_detalle/detalle-grupo-administrador.component';
 import {DatosAlumnoComponent} from '../components/tutorias/datos-alumno.component';
 import {CitasAlumnoComponent} from '../components/tutorias/citas-alumno.component';
 import {CanalizacionesAlumnoComponent} from '../components/tutorias/canalizaciones-alumno.component';
-import {EncuestasAlumnoComponent} from '../components/tutorias/encuestas-alumno.component';
-import {HorarioAlumnoComponent} from '../components/tutorias/horario-alumno.component';
+import {HorarioAlumnoComponent} from '../components/tutorias/horario_alumno/horario-alumno.component';
 import {RespuestasEncuestaComponent} from '../components/tutorias/respuestas-encuesta.component';
 import {CoordinadoresInstitucionalesComponent} from '../components/tutorias/coordinadores-institucionales.component';
 import {CoordinadoresDepartamentalesComponent} from '../components/tutorias/coord_institucional/coordinadores-departamentales.component';
@@ -24,11 +22,17 @@ import {AplicacionEncuestaComponent} from '../components/tutorias/coord_instituc
 import {GruposInicialCoordDepComponent} from '../components/tutorias/coord_departamental/grupos-inicial-coord-dep.component';
 import {GruposInicialAdminComponent} from '../components/tutorias/coord_institucional/grupos-inicial-admin.component';
 import {ReporteEncuestaAlumnoComponent} from '../components/tutorias/estudiante/reporte-encuesta.component';
-import {ReporteEncuestaTutorComponent} from '../components/tutorias/tutor/reporte-encuesta-tutor.component';
 import {GruposTutoriasSiiaComponent} from '../components/tutorias/coord_institucional/grupos-tutorias-siia.component';
 import {GruposSeguimientoAdminComponent} from '../components/tutorias/coord_institucional/grupos-seguimiento-admin.component';
 import {DetalleGrupoSegAdminComponent} from '../components/tutorias/coord_institucional/detalle-grupo-seg-admin.component';
 import {InvitacionConferenciasComponent} from '../components/tutorias/coord_institucional/invitacion-conferencias.component';
+import {GestionGrupoSeguimientoComponent} from '../components/tutorias/grupos_seguimiento/gestion-grupo-seguimiento.component';
+import {GruposAdministradorComponent} from '../components/tutorias/grupos_inicial/grupos-administrador.component';
+import {GruposInstitucionalComponent} from '../components/tutorias/grupos_inicial/grupos-institucional.component';
+import {GruposDepartamentalComponent} from '../components/tutorias/grupos_inicial/grupos-departamental.component';
+import {GruposTutorComponent} from '../components/tutorias/grupos_inicial/grupos-tutor.component';
+import {EncuestasAdministradorComponent} from '../components/tutorias/encuestas_alumno/encuestas-administrador.component';
+import {ReporteEncuestaAdministradorComponent} from '../components/tutorias/encuestas_alumno_reporte/reporte-encuesta-administrador.component';
 
 const routes: Routes = [
     {
@@ -83,18 +87,42 @@ const routes: Routes = [
                 }
             },
             /* ************************************* *
-             * ********** RUTAS DE TUTORES ********* *
+             * ********** RUTAS DE GRUPOS INICIAL ********* *
              * ************************************* */
             {
-                path: 'a20e50d69f0242136be5a392524da972', // grupos_tutor
-                component: GruposComponent,
+                path: '356d6ac93fda8326cb1a6e79322b4204', // grupos_inicial_administrador
+                component: GruposAdministradorComponent,
+                data: {
+                    title: 'Grupos'
+                }
+            },
+            {
+                path: '0ce76a3a2b5f68a249b6e4d20218a32c', // grupos_inicial_institucional
+                component: GruposInstitucionalComponent,
                 data: {
                     title: 'Ver grupos'
                 }
             },
             {
-                path: '47b8563343b0fec813625cb20111085f', // detalle-grupo
-                component: DetalleGrupoComponent,
+                path: '1ccad2e5e9fc7f9c0be6bca26297f3e4', // grupos_inicial_departamental
+                component: GruposDepartamentalComponent,
+                data: {
+                    title: 'Ver grupos'
+                }
+            },
+            {
+                path: '518d564f7dd83337c97ec6d4535832f4', // grupos_inicial_tutor
+                component: GruposTutorComponent,
+                data: {
+                    title: 'Ver grupos'
+                }
+            },
+            /* ************************************* *
+             * ********** RUTAS DE DETALLE DE GRUPOS INICIAL ********* *
+             * ************************************* */
+            {
+                path: '0c6199c35bb10e33ef730883a483dbb7', // detalle_grupo_administrador
+                component: DetalleGrupoAdministradorComponent,
                 data: {
                     title: 'Ver grupo'
                 }
@@ -115,18 +143,28 @@ const routes: Routes = [
             },
             {
                 path: '7cb70e1b1cc26baefc65581481ff2c05', // ver-encuestas
-                component: EncuestasAlumnoComponent,
+                component: EncuestasAdministradorComponent, // encuestas de alumno desde admin
                 data: {
-                    title: 'Encuesta estudiante'
+                    title: 'Encuestas estudiante'
                 }
             },
             {
-                path: 'reporte_encuesta_tutor', // reporte_encuesta_tutor
-                component: ReporteEncuestaTutorComponent,
+                path: '278ceea6e50746dc7430cd184f165a36', // respuestas_encuesta
+                component: RespuestasEncuestaComponent,
+                data: {
+                    title: 'Respuesta de encuesta'
+                }
+            },
+            {
+                path: '483923951a3fb91ea3a6e91789c5d456', // reporte_encuesta
+                component: ReporteEncuestaAdministradorComponent,
                 data: {
                     title: 'Reporte de encuesta'
                 }
             },
+
+
+
             {
                 path: 'e150022cbe6813b2d7efe161c9641e93', // historico_grupos_tutor
                 component: HistoricoGruposComponent,
@@ -148,21 +186,21 @@ const routes: Routes = [
                 path: '4bf2cf43829cc6001200347fff5b9e1a', // tseguimiento_coordinador_departamental
                 component: GruposeguimientoCoordDepComponent,
                 data: {
-                    title: 'Grupos de tutoría de seguimiento'
+                    title: 'GruposBaseComponent de tutoría de seguimiento'
                 }
             },
             {
                 path: 'cd626195c52adf7f302eac9836d4d5dc', // historico_tinicial_coord_departamental
                 component: HistoricoGruposInicialCoordDepComponent,
                 data: {
-                    title: 'Grupos de tutoría inicial'
+                    title: 'GruposBaseComponent de tutoría inicial'
                 }
             },
             {
                     path: '603c63398cb3fb82ce405fbb720fe7de', // historico_tseguimiento_coord_departamental
                 component: HistoricoGruposeguimientoCoordDepComponent,
                 data: {
-                    title: 'Grupos de tutoría de seguimiento'
+                    title: 'GruposBaseComponent de tutoría de seguimiento'
                 }
             },*/
             /* ***************************************************************** *
@@ -172,14 +210,14 @@ const routes: Routes = [
                 path: 'def20b9bf5392cc89bc5f2b27ce3c4b7', // grupos_tutorias_siia
                 component: GruposTutoriasSiiaComponent,
                 data: {
-                    title: 'Grupos de tutoría del SIIA'
+                    title: 'GruposBaseComponent de tutoría del SIIA'
                 }
             },
             {
                 path: '4781291c6bd5fdb69af66b8b5bdce033', // grupos_inicial_admin
                 component: GruposInicialAdminComponent,
                 data: {
-                    title: 'Grupos de tutoría incial'
+                    title: 'GruposBaseComponent de tutoría incial'
                 }
             },
             {
@@ -221,14 +259,21 @@ const routes: Routes = [
                 path: '45df774b0e447feee7fc7ecc8fad8e5d', // grupos_seguimiento_admin
                 component: GruposSeguimientoAdminComponent,
                 data: {
-                    title: 'Grupos de seguimiento'
+                    title: 'GruposBaseComponent de seguimiento'
                 }
             },
             {
                 path: '5d41d6d4aca9197eccb66426b1269af9', // detalle_grupo_seguimiento_admin
-                component: DetalleGrupoSegAdminComponent,
+                component: DetalleGrupoSegAdminComponent, // para administrar alumnos del grupo
                 data: {
-                    title: 'Grupos de seguimiento'
+                    title: 'Alumnos de grupo'
+                }
+            },
+            {
+                path: 'f98d2d1d9fc67e21fec2f46abb87023b', // gestion_grupo_seguimiento_admin
+                component: GestionGrupoSeguimientoComponent, // para ver citas, canalizaciones, etc.
+                data: {
+                    title: 'Accion tutorial de grupo'
                 }
             },
             /* **************************************************** *
@@ -250,7 +295,7 @@ const routes: Routes = [
             }, /*
             {
                 path: 'grupos',
-                component: GruposComponent,
+                component: GruposBaseComponent,
                 data: {
                     title: 'Ver grupos'
                 }
@@ -267,13 +312,6 @@ const routes: Routes = [
                 component: CanalizacionesAlumnoComponent,
                 data: {
                     title: 'Canalizaciones estudiante'
-                }
-            },
-            {
-                path: 'respuestas-encuesta',
-                component: RespuestasEncuestaComponent,
-                data: {
-                    title: 'Respuesta de encuesta'
                 }
             },
         ]
