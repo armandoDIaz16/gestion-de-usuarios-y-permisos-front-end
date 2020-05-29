@@ -65,4 +65,8 @@ export class DetalleBaseComponent {
         this.ver_detalle_encuestas_alumno = Modulos.valida_rol_accion(this.rol, Modulos.VER_DETALLE_ENCUESTAS_ALUMNO);
         this.ver_perfil_personal = Modulos.valida_rol_accion(this.rol, Modulos.VER_PERFIL_PERSONAL);
     }
+
+    protected volver() {
+        history.back();
+    }
 }

@@ -11,6 +11,8 @@ import {AreaAcademicaServiceService} from '../../../services/area-academica-serv
 })
 export class CoordinadoresDepartamentalesComponent implements OnInit {
 
+    // TODO IMPLEMENAR PERMISOS
+
     public error = null;
     public lista_coordinadores: InterfaceCoordinadoresDepartamentales[] = [];
     public areas_academicas: InterfaceAreaAcademica[] = [];

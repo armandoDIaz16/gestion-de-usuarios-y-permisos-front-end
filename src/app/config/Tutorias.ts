@@ -32,6 +32,11 @@ export class Modulos {
     static REPORTE_ENCUESTA_16PF = 'REPORTE_ENCUESTA_16PF';
     /* /REPORTE DE ENCUESTAS */
 
+    /* MODULO DE USUARIOS DE TUTORIA */
+    static EDITAR_USUARIO = 'EDITAR_USUARIO';
+    static CORREO_RECUPERAR_CONTRASENIA = 'CORREO_RECUPERAR_CONTRASENIA';
+    /* /MODULO DE USUARIOS DE TUTORIA */
+
     /*
     * Validar accion mediante rol y accion
     * */

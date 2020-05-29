@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {InterfacePerfil} from '../../models/usuarios/PerfilModel';
 import {UsuariosService} from '../../services/usuarios/usuarios.service';
 import {JarwisService} from '../../services/jarwis.service';
+import {Modulos} from '../../config/Tutorias';
 
 @Component({
     selector: 'app-usuarios',
@@ -9,11 +10,22 @@ import {JarwisService} from '../../services/jarwis.service';
     styleUrls: ['../../views/tutorias/usuarios_tutorias.component.scss']
 })
 export class UsuariosTutoriasComponent implements OnInit {
-
+    /* Configuracion */
+    public rol = null;
+    public token_rol = null;
+    public display = '';
     public error = null;
     public error_actualizar = null;
-    @ViewChild('loaderModal') loaderModal;
+
+    /* Permisos */
+    public editar_usuario = false;
+    public correo_recuperar_contrasenia = false;
+
+    /* Ventanas modales */
     @ViewChild('loaderModalModificar') loaderModalModificar;
+    @ViewChild('modal_busqueda') modal_busqueda;
+
+    /* Datos propios */
     public lista_usuarios: InterfacePerfil[] = [];
     public usuario_modificacion: InterfacePerfil;
     public tipo_usuario: number;
@@ -29,27 +41,35 @@ export class UsuariosTutoriasComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.rol = 'ADM_TUT';
     }
 
     buscar_usuarios() {
-        let body = {
+        const body = {
             tipo_usuario: this.tipo_usuario,
             numero_control: this.numero_control,
             nombre: this.nombre
         };
 
+        this.display = 'block';
         this.usuarios_service.busca_usuarios(body).subscribe(
             data => {
                 this.lista_usuarios = data;
-                this.loaderModal.hide();
                 this._init();
             },
-            error => this.error = error.error
+            error => {
+                this.display = 'none';
+                this.error = error.error;
+            },
+            () => {
+                this.display = 'none';
+                this.modal_busqueda.hide();
+            }
         );
     }
 
     carga_usuario(pk_usuario) {
-        let usuario = this.lista_usuarios.filter(usuario => usuario.PK_USUARIO == pk_usuario);
+        const usuario = this.lista_usuarios.filter(data => data.PK_USUARIO === pk_usuario);
         this.usuario_modificacion = usuario[0];
         this.correo_personal = this.usuario_modificacion.CORREO1;
         this.loaderModalModificar.show();
@@ -58,8 +78,9 @@ export class UsuariosTutoriasComponent implements OnInit {
     actualizar_correo() {
         if (this.correo_personal.trim().length > 0) {
             if (confirm('¿Realmente desea actualizar el correo?')) {
+                this.display = 'block';
                 this.error_actualizar = null;
-                let body = {
+                const body = {
                     pk_encriptada: this.usuario_modificacion.PK_ENCRIPTADA,
                     correo: this.correo_personal
                 };
@@ -67,7 +88,13 @@ export class UsuariosTutoriasComponent implements OnInit {
                     data => {
                         this.usuario_modificacion.CORREO1 = this.correo_personal;
                     },
-                    error => this.error_actualizar = error.error
+                    error => {
+                        this.error_actualizar = error.error;
+                        this.display = 'none';
+                    },
+                    () => {
+                        this.display = 'none';
+                    }
                 );
             }
         } else {
@@ -77,7 +104,8 @@ export class UsuariosTutoriasComponent implements OnInit {
 
     cambio_contrasenia(curp: string) {
         if (confirm('¿Realmente desea enviar correo para recuperación de contraseña?')) {
-            let body = {
+            this.display = 'block';
+            const body = {
                 CURP: curp
             };
             this.Jarvis.recuperarContrasena(body).subscribe(
@@ -88,6 +116,9 @@ export class UsuariosTutoriasComponent implements OnInit {
                 },
                 error => {
                     this.error = error.error;
+                },
+                () => {
+                    this.display = 'none';
                 }
             );
         }
@@ -99,13 +130,19 @@ export class UsuariosTutoriasComponent implements OnInit {
     }
 
     ocultar_modal_busqueda() {
-        this.loaderModal.hide();
+        this.modal_busqueda.hide();
         this._init();
     }
 
     _init() {
-        this.tipo_usuario = this.tipo_usuario;
+        this.tipo_usuario = null;
         this.numero_control = '';
         this.nombre = '';
+    }
+
+    valida_permisos() {
+        this.token_rol = Modulos.rol_token(this.rol);
+        this.editar_usuario = Modulos.valida_rol_accion(this.rol, Modulos.EDITAR_USUARIO);
+        this.correo_recuperar_contrasenia = Modulos.valida_rol_accion(this.rol, Modulos.CORREO_RECUPERAR_CONTRASENIA);
     }
 }

@@ -29,7 +29,7 @@
             </tr>
             <tr>
                 <td class="text-right">
-                    <b>Cantidad alumnos</b>
+                    <b>Cantidad alumnos (SIIA)</b>
                 </td>
                 <td>
                     {{this.detalle_grupo.CANTIDAD_ALUMNOS}}
@@ -46,9 +46,9 @@
     <div class="offset-1 col-md-10">
         <div class="row">
             <div class="col-md-12">
-                <a [routerLink]="['/tutorias/a20e50d69f0242136be5a392524da972']" class="btn btn-primary">
+                <a (click)="volver()" class="btn btn-primary">
                     <i class="fa fa-caret-square-o-left"></i>
-                    Regresar a grupos
+                    Volver
                 </a>
             </div>
         </div>

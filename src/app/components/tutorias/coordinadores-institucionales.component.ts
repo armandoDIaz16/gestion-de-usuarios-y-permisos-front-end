@@ -75,7 +75,7 @@ export class CoordinadoresInstitucionalesComponent implements OnInit {
 
                 this.coordinadores_service.guarda_coordinador(body).subscribe(
                     data => {
-
+                        this.ngOnInit();
                     },
                     error => {
 

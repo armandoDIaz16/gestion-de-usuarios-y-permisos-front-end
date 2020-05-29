@@ -12,7 +12,7 @@
                 </option>
             </select>
         </div>-->
-        <table class="table table-striped">
+        <table class="table table-striped table-hover table-bordered">
             <thead>
             <tr class="text-center">
                 <th>Número</th>
@@ -47,7 +47,7 @@
                         <i class="icon-list"></i>
                     </a>
                     <ng-template #elseBlockRespuesta>
-                        <a *ngIf=" encuesta.PK_ENCUESTA == 6; else elseReporte" class="btn btn-sm btn-success"
+                        <a *ngIf=" encuesta.PK_ENCUESTA == 200; else elseReporte" class="btn btn-sm btn-success"
                            [routerLink]="['/tutorias/d41ac8705ff2bfef62c749c4928edb98']"
                            [queryParams]="{aplicacion: encuesta.PK_APLICACION_ENCUESTA}">
                             Ver reporte

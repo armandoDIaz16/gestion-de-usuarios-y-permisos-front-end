@@ -19,8 +19,6 @@ import {DashboardComponent} from '../components/tutorias/dashboard.component';
 import {HistoricoGruposComponent} from '../components/tutorias/tutor/historico-grupos.component';
 import {ConferenciasComponent} from '../components/tutorias/coord_institucional/conferencias.component';
 import {AplicacionEncuestaComponent} from '../components/tutorias/coord_institucional/aplicacion-encuesta.component';
-import {GruposInicialCoordDepComponent} from '../components/tutorias/coord_departamental/grupos-inicial-coord-dep.component';
-import {GruposInicialAdminComponent} from '../components/tutorias/coord_institucional/grupos-inicial-admin.component';
 import {ReporteEncuestaAlumnoComponent} from '../components/tutorias/estudiante/reporte-encuesta.component';
 import {GruposTutoriasSiiaComponent} from '../components/tutorias/coord_institucional/grupos-tutorias-siia.component';
 import {GruposSeguimientoAdminComponent} from '../components/tutorias/coord_institucional/grupos-seguimiento-admin.component';
@@ -42,13 +40,27 @@ const routes: Routes = [
         },
         children: [
             /* ************************************* *
-             * ********** RUTAS DE ALUMNOS ********* *
+             * ********** MODULOS DE ALUMNOS ********* *
              * ************************************* */
             {
                 path: '6da5b4309f3cc102b3a2b7ac7e52a62c', // encuestas_alumno
                 component: EncuestasComponent,
                 data: {
                     title: 'Encuestas'
+                }
+            },
+            {
+                path: '745651e29c6bb18baf4a1118fa8a0fc5', // responder_encuesta
+                component: ResponderEncuestaComponent,
+                data: {
+                    title: 'Responder encuesta'
+                }
+            },
+            {
+                path: 'd41ac8705ff2bfef62c749c4928edb98', // reporte_encuesta_alumno
+                component: ReporteEncuestaAlumnoComponent,
+                data: {
+                    title: 'Reporte de encuesta'
                 }
             },
             {
@@ -72,20 +84,34 @@ const routes: Routes = [
                     title: 'Seguimiento académico'
                 }
             },
+
+
+
+
+
+
+
+
+
+            /* ************************************* *
+             * ********** RUTAS DE DASHBOARD ********* *
+             * ************************************* */
             {
-                path: '745651e29c6bb18baf4a1118fa8a0fc5', // responder_encuesta
-                component: ResponderEncuestaComponent,
+                path: 'dc7161be3dbf2250c8954e560cc35060', // dashboard
+                component: DashboardComponent,
                 data: {
-                    title: 'Responder encuesta'
+                    title: 'Dashboard'
                 }
             },
-            {
-                path: 'd41ac8705ff2bfef62c749c4928edb98', // reporte_encuesta_alumno
-                component: ReporteEncuestaAlumnoComponent,
-                data: {
-                    title: 'Reporte de encuesta'
-                }
-            },
+
+
+
+
+
+
+
+
+
             /* ************************************* *
              * ********** RUTAS DE GRUPOS INICIAL ********* *
              * ************************************* */
@@ -117,6 +143,13 @@ const routes: Routes = [
                     title: 'Ver grupos'
                 }
             },
+
+
+
+
+
+
+
             /* ************************************* *
              * ********** RUTAS DE DETALLE DE GRUPOS INICIAL ********* *
              * ************************************* */
@@ -165,63 +198,69 @@ const routes: Routes = [
 
 
 
+
+
+
+            /* ********************************************* *
+             * ********** RUTAS DE MODULO USUARIOS ********* *
+             * ********************************************* */
             {
-                path: 'e150022cbe6813b2d7efe161c9641e93', // historico_grupos_tutor
-                component: HistoricoGruposComponent,
+                path: '03f996214fba4a1d05a68b18fece8e71', // usuarios
+                component: UsuariosTutoriasComponent,
                 data: {
-                    title: 'Ver histórico de grupos'
+                    title: 'Usuarios'
                 }
             },
-            /* *********************************************************** *
-             * ********** RUTAS DE COORDINADORES DEPARTAMENTALES ********* *
-             * *********************************************************** */
+
+
+
+            /* ********************************************* *
+             * ********** RUTAS DE ADMONISTRACIÓN DE COORDINADORES INSTITUCIONALES ********* *
+             * ********************************************* */
             {
-                path: 'a37ecf663279036431a24c6d58f78618', // tinicial_coordinador_departamental
-                component: GruposInicialCoordDepComponent,
+                path: '04d7c71890c0ce2aa848a97808dc2210', // coordinadores_institucionales
+                component: CoordinadoresInstitucionalesComponent,
                 data: {
-                    title: 'Grupos de tutoría inicial'
-                }
-            }, /*
-            {
-                path: '4bf2cf43829cc6001200347fff5b9e1a', // tseguimiento_coordinador_departamental
-                component: GruposeguimientoCoordDepComponent,
-                data: {
-                    title: 'GruposBaseComponent de tutoría de seguimiento'
+                    title: 'Coordinadores institucionales'
                 }
             },
+
+
+
+
+            /* ********************************************* *
+             * ********** RUTAS DE ADMONISTRACIÓN DE COORDINADORES INSTITUCIONALES ********* *
+             * ********************************************* */
             {
-                path: 'cd626195c52adf7f302eac9836d4d5dc', // historico_tinicial_coord_departamental
-                component: HistoricoGruposInicialCoordDepComponent,
+                path: '7c3bbdec167c62a1e132960c3ddf4330', // coordinadores_departamentales
+                component: CoordinadoresDepartamentalesComponent,
                 data: {
-                    title: 'GruposBaseComponent de tutoría inicial'
+                    title: 'Coordinadores departamentales'
                 }
             },
-            {
-                    path: '603c63398cb3fb82ce405fbb720fe7de', // historico_tseguimiento_coord_departamental
-                component: HistoricoGruposeguimientoCoordDepComponent,
-                data: {
-                    title: 'GruposBaseComponent de tutoría de seguimiento'
-                }
-            },*/
-            /* ***************************************************************** *
-             * ********** RUTAS DE COORD INSTITUCIONALES/ADMINISTRADOR ********* *
-             * ***************************************************************** */
+
+
+
+
+            /* ********************************************* *
+             * ********** RUTAS DE VER GRUPOS SIIA ********* *
+             * ********************************************* */
             {
                 path: 'def20b9bf5392cc89bc5f2b27ce3c4b7', // grupos_tutorias_siia
                 component: GruposTutoriasSiiaComponent,
                 data: {
-                    title: 'GruposBaseComponent de tutoría del SIIA'
+                    title: 'Grupos SIIA'
                 }
             },
+
+
+
+
+            /* ********************************************* *
+             * ********** RUTAS DE CONFERENCIAS ********* *
+             * ********************************************* */
             {
-                path: '4781291c6bd5fdb69af66b8b5bdce033', // grupos_inicial_admin
-                component: GruposInicialAdminComponent,
-                data: {
-                    title: 'GruposBaseComponent de tutoría incial'
-                }
-            },
-            {
-                path: '2a107d6270125877f8ff8c3a223501c2', // confaerencias_administrador
+                path: '2a107d6270125877f8ff8c3a223501c2', // conferencias_administrador
                 component: ConferenciasComponent,
                 data: {
                     title: 'Administración de jornadas/conferencias'
@@ -234,13 +273,13 @@ const routes: Routes = [
                     title: 'Invitación a jornadas/conferencias'
                 }
             },
-            {
-                path: '7c3bbdec167c62a1e132960c3ddf4330', // coordinadores_departamentales
-                component: CoordinadoresDepartamentalesComponent,
-                data: {
-                    title: 'Coordinadores departamentales'
-                }
-            },
+
+
+
+
+            /* ********************************************* *
+             * ********** RUTAS DE APLICACIÓN DE ENCUESTAS ********* *
+             * ********************************************* */
             {
                 path: '6379bf06fff30085e5b7fb72dcdb01ca', // aplicacion_encuesta
                 component: AplicacionEncuestaComponent,
@@ -248,18 +287,18 @@ const routes: Routes = [
                     title: 'Aplicación de encuestas'
                 }
             },
-            {
-                path: '04d7c71890c0ce2aa848a97808dc2210', // coordinadores_institucionales
-                component: CoordinadoresInstitucionalesComponent,
-                data: {
-                    title: 'Coordinadores institucionales'
-                }
-            },
+
+
+
+
+            /* ********************************************* *
+             * ********** RUTAS DE GRUPOS DE SEGUIMIENTO ********* *
+             * ********************************************* */
             {
                 path: '45df774b0e447feee7fc7ecc8fad8e5d', // grupos_seguimiento_admin
                 component: GruposSeguimientoAdminComponent,
                 data: {
-                    title: 'GruposBaseComponent de seguimiento'
+                    title: 'Grupos de seguimiento'
                 }
             },
             {
@@ -276,23 +315,21 @@ const routes: Routes = [
                     title: 'Accion tutorial de grupo'
                 }
             },
-            /* **************************************************** *
-             * ********** RUTAS DE COORD INVEST EDUCATIVA ********* *
-             * **************************************************** */
+
+
+
+
+
+
             {
-                path: 'dc7161be3dbf2250c8954e560cc35060', // dashboard_tutorias
-                component: DashboardComponent,
+                path: 'e150022cbe6813b2d7efe161c9641e93', // historico_grupos_tutor
+                component: HistoricoGruposComponent,
                 data: {
-                    title: 'Tablero de control'
+                    title: 'Ver histórico de grupos'
                 }
             },
-            {
-                path: '03f996214fba4a1d05a68b18fece8e71', // usuarios
-                component: UsuariosTutoriasComponent,
-                data: {
-                    title: 'Usuarios'
-                }
-            }, /*
+
+            /*
             {
                 path: 'grupos',
                 component: GruposBaseComponent,
