@@ -68,4 +68,11 @@ export class EncuestasService extends GenericServicesService {
             GenericServicesService.HEADERS
         );
     }
+
+    get_lista_encuestas(query_params?: string): any {
+        return this.http.get<any>(
+            GenericServicesService.API_ENDPOINT + 'encuestas' + query_params,
+            GenericServicesService.HEADERS
+        );
+    }
 }

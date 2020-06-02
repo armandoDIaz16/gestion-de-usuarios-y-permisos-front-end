@@ -13,6 +13,13 @@ export class CarrerasService extends GenericServicesService {
         super(http);
     }
 
+    carreras(query_params?: string): any {
+        return this.http.get<any>(
+            GenericServicesService.API_ENDPOINT + 'get_lista_carreras' + query_params,
+            GenericServicesService.HEADERS
+        );
+    }
+
     get_carreras(query_params: string): any {
         return this.http.get<any>(
             GenericServicesService.API_ENDPOINT + 'Carrera' + query_params

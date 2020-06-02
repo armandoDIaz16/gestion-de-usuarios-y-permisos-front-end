@@ -19,4 +19,11 @@ export class ReporteEncuestaService extends GenericServicesService {
             GenericServicesService.HEADERS
         );
     }
+
+    get_periodos(query_params): any {
+        return this.http.get<any>(
+            GenericServicesService.API_ENDPOINT + 'periodos_tutoria' + query_params,
+            GenericServicesService.HEADERS
+        );
+    }
 }

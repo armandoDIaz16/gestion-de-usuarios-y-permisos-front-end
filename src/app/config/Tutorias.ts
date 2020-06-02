@@ -37,6 +37,11 @@ export class Modulos {
     static CORREO_RECUPERAR_CONTRASENIA = 'CORREO_RECUPERAR_CONTRASENIA';
     /* /MODULO DE USUARIOS DE TUTORIA */
 
+    /* MODULO DE REPORTES DE ENCUESTAS */
+    static VER_REPORTE_ENCUESTA = 'VER_REPORTE_ENCUESTA';
+    static EXPORTA_REPORTE_ENCUESTA = 'EXPORTA_REPORTE_ENCUESTA';
+    /* /MODULO DE USUARIOS DE TUTORIA */
+
     /*
     * Validar accion mediante rol y accion
     * */

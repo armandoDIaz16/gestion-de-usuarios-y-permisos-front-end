@@ -158,8 +158,7 @@ export const routes: Routes = [
         data: {
             title: 'Repositorio tesis'
         }
-    },
-
+    }
 ];
 
 @NgModule({

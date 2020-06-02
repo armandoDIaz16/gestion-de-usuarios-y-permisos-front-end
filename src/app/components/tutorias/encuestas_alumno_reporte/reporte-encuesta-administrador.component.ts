@@ -10,19 +10,31 @@ export class ReporteEncuestaAdministradorComponent extends ReporteEncuestaBaseCo
 
     ngOnInit() {
         this._init();
-        this.get_reporte();
+        this.get_periodos();
+        this.get_encuestas();
+        this.get_areas_academicas();
     }
 
     _init() {
+        this.rol = 'ADM_TUT';
+        this.valida_permisos();
+
+        // inicializar variables
         this.reporte = [];
-        if (this.activated_route.snapshot.queryParamMap.get('aplicacion')) {
-            this.pk_aplicacion = this.activated_route.snapshot.queryParamMap.get('aplicacion');
-        } else {
-            this.router.navigateByUrl('/home');
-        }
-        if (this.activated_route.snapshot.queryParamMap.get('token')) {
-            this.rol = this.activated_route.snapshot.queryParamMap.get('token');
-        } else {
+        this.reporte = [];
+        this.lista_encuestas = [];
+        this.lista_periodos = [];
+        this.lista_areas_academicas = [];
+        this.lista_carreras = [];
+        this.lista_grupos = [];
+        this.reporte_encuesta = 0;
+        this.reporte_periodo = 0;
+        this.reporte_area = 0;
+        this.reporte_carrera = 0;
+        this.reporte_grupo = 0;
+
+        // validar acceso a pantalla
+        if (!this.ver_reporte_encuesta) {
             this.router.navigateByUrl('/home');
         }
     }

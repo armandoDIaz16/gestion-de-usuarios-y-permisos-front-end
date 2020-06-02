@@ -91,7 +91,6 @@ import {ReporteEncuestaAdministradorComponent} from '../components/tutorias/encu
         GruposInicialCoordDepComponent,
         GruposInicialAdminComponent,
         ReporteEncuestaAlumnoComponent,
-        ReporteEncuestaBaseComponent,
         GruposTutoriasSiiaComponent,
         GruposSeguimientoAdminComponent,
         DetalleGrupoSegAdminComponent,

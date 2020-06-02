@@ -19,4 +19,11 @@ export class AreaAcademicaServiceService extends GenericServicesService {
             GenericServicesService.HEADERS
         );
     }
+
+    get_areas(query_params?: string): any {
+        return this.http.get<any>(
+            GenericServicesService.API_ENDPOINT + 'areas_academicas' + query_params,
+            GenericServicesService.HEADERS
+        );
+    }
 }

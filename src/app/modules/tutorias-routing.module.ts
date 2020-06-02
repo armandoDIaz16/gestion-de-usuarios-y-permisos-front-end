@@ -188,11 +188,18 @@ const routes: Routes = [
                     title: 'Respuesta de encuesta'
                 }
             },
+
+
+
+
+            /* ************************************* *
+             * ********** RUTAS DE REPORTES ********* *
+             * ************************************* */
             {
-                path: '483923951a3fb91ea3a6e91789c5d456', // reporte_encuesta
+                path: '7383ffd1d6afaba4f5bc0e01c2c636c0', // reporte_encuesta_admin
                 component: ReporteEncuestaAdministradorComponent,
                 data: {
-                    title: 'Reporte de encuesta'
+                    title: 'Reportes de encuestas'
                 }
             },
 
@@ -229,7 +236,7 @@ const routes: Routes = [
 
 
             /* ********************************************* *
-             * ********** RUTAS DE ADMONISTRACIÓN DE COORDINADORES INSTITUCIONALES ********* *
+             * ********** RUTAS DE ADMONISTRACIÓN DE COORDINADORES DEPARTAMENTALES ********* *
              * ********************************************* */
             {
                 path: '7c3bbdec167c62a1e132960c3ddf4330', // coordinadores_departamentales
@@ -318,9 +325,9 @@ const routes: Routes = [
 
 
 
-
-
-
+            /* ************************************* *
+             * ********** RUTAS PENDIENTES ********* *
+             * ************************************* */
             {
                 path: 'e150022cbe6813b2d7efe161c9641e93', // historico_grupos_tutor
                 component: HistoricoGruposComponent,
