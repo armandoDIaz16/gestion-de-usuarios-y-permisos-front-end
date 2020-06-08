@@ -107,7 +107,7 @@ export class CursosComponent implements OnInit {
                 //     console.log('entro if');
                     this.eliminarCursoPorService(body, error, mensaje);
                 } else if(estado_curso == 2) { // estado curso 2 = autorizado // todo si esta autorizado que  desincriba a las personas inscritas
-
+//todo  falta implementar el estatus 2
                          } else if (estado_curso == 3) { // estado curso 3 = rechazado // todo si esta rechazdo que lo elimine logicamnete
                             // eliminar mediante WS
                             this.eliminarCursoPorService(body, error, mensaje);
@@ -120,7 +120,7 @@ export class CursosComponent implements OnInit {
                                     // timer: 2000
                                 });
                                     return false;
-                                 }
+                                 } // todo falta contemplar el estatus 5
             } // fin confirmacion
         }); // fin confirmacion alert
 
