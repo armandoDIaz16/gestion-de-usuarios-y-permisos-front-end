@@ -1,0 +1,970 @@
+<h2 class="text-center mb-5"> Modificar Curriculum</h2>
+
+
+<div class="container">
+<ul class="nav nav-pills mb-3 mb-5" id="pills-tab" role="tablist">
+    <li class="nav-item">
+        <a class="btn btn-menu-cv  texto-menu-cv active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">
+            Datos personales</a>
+    </li>
+    <li class="nav-item">
+        <a class="btn btn-menu-cv  texto-menu-cv" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">
+            Formación académica</a>
+    </li>
+    <li class="nav-item">
+        <a class="btn btn-menu-cv  texto-menu-cv" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">
+            Experiencia laboral</a>
+    </li>
+    <li class="nav-item">
+        <a class="btn btn-menu-cv  texto-menu-cv" id="docente_tab" data-toggle="pill"
+           href="#docente_panel" role="tab" aria-controls="docente_panel" aria-selected="false">
+            Experiencia docente</a>
+    </li>
+    <li class="nav-item">
+        <a class="btn btn-menu-cv  texto-menu-cv" id="productos_tab" data-toggle="pill"
+           href="#productos_panel" role="tab" aria-controls="productos_panel" aria-selected="false">
+            Productos académicos</a>
+    </li>
+    <li class="nav-item">
+        <a class="btn btn-menu-cv  texto-menu-cv" id="participacion_tab" data-toggle="pill"
+           href="#participacion_panel" role="tab" aria-controls="participacion_panel" aria-selected="false">
+            Participación como instructor</a>
+    </li>
+</ul>
+</div>
+
+<div class="container">
+    <div class="tab-content" id="pills-tabContent" style="border:none">
+        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+            <div class="row">
+                <div class="col-5">
+                    <div class="form-group">
+                        <div class="col-form-label text-left texto-form texto-card my-auto">
+                            <label for="nombre" >Nombre(s):</label>
+                        </div>
+                            <div class="input-group texto-card">
+                                <input  [(ngModel)]=" this.perfil.NOMBRE"
+                                        type="text" class="form-control texto-card" id="nombre"
+                                        name="nombre"
+                                         required disabled>
+                            </div>
+                    </div>
+                    <!--                                fin nombre-->
+                    <div class="form-group">
+                        <div class="col-form-label text-left texto-form texto-card my-auto">
+                            <label for="apaterno" >Apellido Paterno:</label>
+                        </div>
+                        <div class="input-group texto-card">
+                            <input [(ngModel)]=" this.perfil.PRIMER_APELLIDO"
+                                type="text" class="form-control texto-card" id="apaterno"
+                                name="apaterno"
+                                required disabled>
+                        </div>
+                    </div>
+                    <!--                                fin nombre-->
+                    <div class="form-group">
+                        <div class="col-form-label text-left texto-form texto-card my-auto">
+                            <label for="amaterno" >Apellido Materno:</label>
+                        </div>
+                        <div class="input-group texto-card">
+                            <input  [(ngModel)]=" this.perfil.SEGUNDO_APELLIDO"
+                                type="text" class="form-control texto-card" id="amaterno"
+                                name="amaterno"
+                                required disabled>
+                        </div>
+                    </div>
+                    <!--                                fin nombre-->
+                    <div class="form-group">
+                        <div class="col-form-label text-left texto-form texto-card my-auto">
+                            <label for="fechan" >Fecha nacimiento:</label>
+                        </div>
+                        <div class="input-group texto-card">
+                            <input [(ngModel)]=" this.perfil.FECHA_NACIMIENTO"
+                                type="date" class="form-control texto-card" id="fechan"
+                                name="fechan"
+                                required disabled>
+                        </div>
+                    </div>
+                    <!--                                fin fecha -->
+
+                    <div class="form-group">
+                        <div class="col-form-label text-left texto-form texto-card my-auto">
+                            <label for="biografia" >Biografía:</label>
+                        </div>
+                        <div class="texto-card">
+                        <p-editor  id="biografia" [(ngModel)]="this.cv.biografia"
+                                  [style]="{'height':'15.625rem','font-size':'1rem'}" placeholder="Sobre mí"
+                                  required name="biografia">
+                            <p-header>
+                            <span class="ql-formats">
+                                <button class="ql-bold" aria-label="Bold"></button>
+                                <button class="ql-italic" aria-label="Italic"></button>
+                                <button class="ql-underline" aria-label="Underline"></button>
+                            </span>
+                            </p-header>
+                        </p-editor>
+                        </div>
+                    </div>
+                    <!--                                fin fecha -->
+                </div>
+                <div class="col-4 ">
+                    <div class="form-group">
+                        <div class="col-form-label text-left texto-form texto-card my-auto">
+                            <label for="curp" >CURP:</label>
+                        </div>
+                        <div class="input-group texto-card">
+                            <input [(ngModel)]=" this.perfil.CURP"
+                                type="text" class="form-control texto-card" id="curp"
+                                name="curp"
+                                required disabled>
+                        </div>
+                    </div>
+                    <!--                                fin curp    -->
+                    <div class="form-group">
+                        <div class="col-form-label text-left texto-form texto-card my-auto">
+                            <label for="rfc" >RFC:</label>
+                        </div>
+                        <div class="input-group texto-card">
+                            <input [(ngModel)]="this.cv.rfc"
+                                type="text" class="form-control texto-card" id="rfc"
+                                name="rfc" placeholder="Escriba su RFC con homoclave"
+                                required  maxlength=13
+                                onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase().replace(' ','')"
+                            >
+                        </div>
+                    </div>
+                    <!--                                fin curp    -->
+                    <div class="form-group">
+                        <div class="col-form-label text-left texto-form texto-card my-auto">
+                            <label for="tel" >Teléfono de contacto:</label>
+                        </div>
+                        <div class="input-group texto-card">
+                            <input [(ngModel)]=" this.perfil.TELEFONO_MOVIL"
+                                type="text" class="form-control texto-card" id="tel"
+                                name="tel"
+                                required disabled>
+                        </div>
+                    </div>
+                    <!--                                fin curp    -->
+                    <div class="form-group">
+                        <div class="col-form-label text-left texto-form texto-card my-auto">
+<!--                            <img src="assets/itl.ico" style="width: 14px; height: 14px;">-->
+                            <label for="email" ><fa-icon [icon]="mail"></fa-icon>
+                                Correo institucional:</label>
+                        </div>
+                        <div class="input-group texto-card">
+                            <input [(ngModel)]=" this.perfil.CORREO_INSTITUCIONAL"
+                                type="email" class="form-control texto-card" id="email"
+                                name="email"
+                                required disabled>
+                        </div>
+                    </div>
+                    <!--                                fin email    -->
+                </div>
+                <div class="col-3">
+                    <div class="row">
+                        <div class="col-12 offset-3">
+                            <label *ngIf="this.perfil.FOTO_PERFIL ==null ||this.perfil.FOTO_PERFIL.trim() == ''; else elseFoto"  for="img_cv">
+                                <img  class="card-img-top img-fluid size-img-cv"
+                              src="assets/img/avatars/user_icon.png">
+                            </label>
+                            <ng-template #elseFoto>
+                                <label   for="img_cv">
+                                    <img  class="card-img-top img-fluid size-img-cv rounded-circle"
+                                          src="{{this.perfil_service.get_url_back(this.perfil.FOTO_PERFIL)}}"
+                                    >
+                                </label>
+                            </ng-template>
+                        </div>
+                        <div class="col-12">
+                            <div class="text-center texto-form texto-card texto-foto">
+                                <label for="img_cv" >Agregar fotografía
+                                    <fa-icon [icon]="add" ></fa-icon></label>
+                            </div>
+                                <input type="file" style="display: none"
+                                       class="form-control texto-card"
+                                       id="img_cv" name="img_cv"
+                                       accept=".png, .jpeg, .jpg"
+                                       (change)="actualiza_foto($event)"
+                                       required>
+                            </div>
+                    </div>
+                    <br><br><br><br><br><br>
+                    <div class="row  ml-2">
+
+<!--                        <div class="form-group">-->
+<!--                            <div class="col-md-12 text-center">-->
+                                <button  (click)="guardar_datos_personales()"
+                                    class="btn btn-ghost-danger btn-lg btn-enviar2 texto-form texto-card btn-block"
+                                    >
+                                    <fa-icon [icon]="seccion"></fa-icon>
+                                    Guardar esta sección</button>
+<!--                            </div>-->
+<!--                        </div>-->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+            <div class="row">
+                <div class="col-3">
+                    <div class="form-group">
+                        <div class="col-form-label text-left texto-form texto-card my-auto">
+                            <label for="especialidad" >Formación académica:</label>
+                        </div>
+                        <div class="input-group texto-card">
+                            <select   [(ngModel)]="this.tipo_formacion_apoyo"
+                                      (change)="verificaOtroTipoFormacion()"
+                                class="form-control texto-card"
+                                      name="especialidad" id="especialidad" required>
+                                <option value="-1">Selcciona una especialidad</option>
+                               <!-- <option value="1">Licenciatura </option>
+                                <option value="2">Maestría </option>
+                                <option value="3">Doctorado </option>
+                                <option value="4">Especialidad</option>
+                                <option value="5">otros estudios</option>-->
+                                <option *ngFor="let formacion of this.formacionArray; let i = index"
+                                        [value]="formacion['PK_TIPO_FORMACION_ACADEMICA']">
+                                    {{formacion['NOMBRE_TIPO']}}
+
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <!--                                fin especialidad-->
+                    <div class="form-group">
+                    <input #inputOtroTipoFormacion
+                        [(ngModel)]="this.otro_tipo_formacion_apoyo"
+                        type="text" hidden class="form-control texto-card" id="otra_especialidad"
+                        name="otra_especialidad"  placeholder="Especifica otros estudios"
+                        required>
+                    </div>
+<!--                    fin oculto-->
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <div class="col-form-label text-left texto-form texto-card my-auto">
+                            <label for="nombrecarrera" >Nombre de la carrera o especialidad:</label>
+                        </div>
+                        <div class="input-group texto-card">
+                            <input  [(ngModel)]="this.nombre_formacion_apoyo"
+                                type="text" class="form-control texto-card" id="nombrecarrera"
+                                name="nombrecarrera" placeholder="Escribe el nombre de la carrera"
+                                required>
+                        </div>
+                    </div>
+                    <!--                                fin curp    -->
+                </div>
+                <div class="col-5">
+                    <div class="form-group">
+                        <div class="col-form-label text-left texto-form texto-card my-auto">
+                            <label for="institucion" >Institución:</label>
+                        </div>
+                        <div class="input-group texto-card">
+                            <input  [(ngModel)]="this.nombre_institucion_apoyo"
+                                type="text" class="form-control texto-card" id="institucion"
+                                name="institucion" placeholder="Escribe el nombre de la institución"
+                                required>
+                        </div>
+                    </div>
+                    <!--                                fin institucion-->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <div class="form-group">
+                        <div class="col-form-label text-left texto-form texto-card my-auto">
+                            <label for="fechatitulacion" >Fecha titulación:</label>
+                        </div>
+                        <div class="input-group texto-card">
+                            <input  [(ngModel)]="this.fecha_titulacion_apoyo"
+                                type="date" class="form-control texto-card" id="fechatitulacion"
+                                name="fechatitulacion"
+                                required>
+                        </div>
+                    </div>
+                    <!--                                fin fecha -->
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <div class="col-form-label text-left texto-form texto-card my-auto">
+                            <label for="rfc" >Cédula profesional:</label>
+                        </div>
+                        <div class="input-group texto-card">
+                            <input [(ngModel)]="this.cedula_apoyo"
+                                type="number" class="form-control texto-card" id="cedula"
+                                placeholder="Número de cédula profesional"
+                                name="cedula" >
+                        </div>
+                    </div>
+                    <!--                                fin cedula    -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-6 offset-3">
+                    <div class="form-group row text-center mt-5">
+                        <div class="col-md-12 col-form-label text-center my-auto">
+                            <button (click)="add_formacion_academica()"
+                                class="btn btn-primary btn-enviar texto-form texto-card texto-card">
+                                Agregar formación académica</button>
+                        </div>
+                    </div>  <!-- fin  boton agrega instrumento  de evaluacion  -->
+                </div>
+                <!--                                fin curp    -->
+                <div class="col-12">
+                    <table class="table table-striped table-hover texto-card">
+                        <thead>
+                        <tr class="text-center">
+                            <th>No.</th>
+                            <th>Tipo</th>
+                            <th>Formación</th>
+                            <th>Instituto</th>
+                            <th>Titulación</th>
+                            <th>Cédula profesional</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody *ngIf="formacion_academica_list.length > 0; else formacionLista" >
+                        <tr class="text-center"
+                            *ngFor="let formacion of formacion_academica_list; let i = index;">
+                            <td>{{i + 1 }}</td>
+                            <td *ngIf="formacion['TIPO_FORMACION'] == 5; else elseTipoFormacion">
+                                {{ formacion['OTRO_TIPO'] }}</td>
+                            <ng-template #elseTipoFormacion>
+                                <td>{{formacion['tipo_formacion']['NOMBRE_TIPO']}}</td>
+                            </ng-template>
+                            <td>{{formacion['NOMBRE_CARRERA']}}</td>
+                            <td>{{formacion['INSTITUCION']}}</td>
+                            <td>{{formacion['FECHA_TITULACION'] | date :'longDate' }}</td>
+                            <td *ngIf=" formacion['CEDULA_PROFESIONAL'] != null && formacion['CEDULA_PROFESIONAL'] > 0; else elseCedula">
+                                {{formacion['CEDULA_PROFESIONAL']}}</td>
+                            <ng-template #elseCedula>
+                            <td></td>
+                            </ng-template>
+                            <!-- BOTONES DE ACCION  -->
+                            <td>
+                            <button (click)="borrar_formacion_academica(i)" class="btn btn-sm btn-light">
+                                    <fa-icon [icon]="cancel"></fa-icon>
+                                </button>
+                            </td>
+                            <!-- FIN BOTONES DE ACCION  -->
+                        </tr>
+                        </tbody>
+                        <ng-template #formacionLista>
+                            <tbody>
+                            <tr>
+                                <td colspan="7" class="text-center texto-card">
+                                    No se encontraron registros
+                                </td>
+                            </tr>
+                            </tbody>
+                        </ng-template>
+
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4 offset-4">
+                    <div class="row  ml-2 mt-5">
+                        <!--                        <div class="form-group">-->
+                        <!--                            <div class="col-md-12 text-center">-->
+                        <button (click)="guardar_formacion_academica()"
+                            class="btn btn-ghost-danger btn-lg btn-enviar2 texto-form texto-card btn-block">
+                            <fa-icon [icon]="seccion"></fa-icon>
+                            Guardar esta sección</button>
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+        </div>
+        <!--            fin seccion formacion academica -->
+
+        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <div class="col-form-label text-left texto-form texto-card my-auto">
+                            <label for="puesto" >Puesto:</label>
+                        </div>
+                        <div class="input-group texto-card">
+                            <input [(ngModel)]="this.puesto_form"
+                                type="text" class="form-control texto-card" id="puesto"
+                                name="puesto" placeholder="Escribe el puesto desempeñado"
+                                required>
+                        </div>
+                    </div>
+                    <!--                                fin puesto-->
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <div class="col-form-label text-left texto-form texto-card my-auto">
+                            <label for="nombreempresa" >Nombre de la Empresa:</label>
+                        </div>
+                        <div class="input-group texto-card">
+                            <input [(ngModel)]="this.empresa_form"
+                                type="text" class="form-control texto-card" id="nombreempresa"
+                                name="nombreempresa" placeholder="Escribe el nombre de la empresa"
+                                required>
+                        </div>
+                    </div>
+                    <!--                                fin nombreempresa    -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <div class="form-group">
+                        <div class="col-form-label text-left texto-form texto-card my-auto">
+                            <label for="fechapermancencia1" >Permanencia:</label>
+                        </div>
+                        <div class="input-group texto-card">
+                            <input [(ngModel)]="this.permanencia1_form"
+                                type="date" class="form-control texto-card" id="fechapermancencia1"
+                                name="fechapermancencia1" placeholder="fecha inicio"
+                                required>
+                        </div>
+                    </div>
+                    <!--                                fin fecha1 -->
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <div class="col-form-label text-left texto-form texto-card my-auto">
+                            <label for="fechapermancencia2" >&nbsp;</label>
+                        </div>
+                        <div class="input-group texto-card">
+                            <input [(ngModel)]="this.permanencia2_form"
+                                type="date" class="form-control texto-card" id="fechapermancencia2"
+                                name="fechapermancencia2"
+                                required>
+                        </div>
+                    </div>
+                    <!--                                fin fecha2 -->
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <div class="col-form-label text-left texto-form texto-card my-auto">
+                            <label for="actividades" >Actividades a su cargo:</label>
+                        </div>
+                        <div class="input-group texto-card">
+                            <textarea [(ngModel)]="this.actividades_cargo_form"
+                                      style="resize: none" placeholder="Escriba brevemente las actividasdes a su cargo"
+                                      class="form-control texto-card"  name="actividades"
+                                      id="actividades"  required></textarea>
+                        </div>
+                    </div>
+                    <!--                                fin cedula    -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-6 offset-3">
+                    <div class="form-group row text-center mt-5">
+                        <div class="col-md-12 col-form-label text-center my-auto">
+                            <button (click)="add_experiencia_laboral()"
+                                class="btn btn-primary btn-enviar texto-form texto-card">
+                                Agregar experiencia laboral</button>
+                        </div>
+                    </div>  <!-- fin  boton agrega instrumento  de evaluacion  -->
+                </div>
+                <!--                                fin curp    -->
+                <div class="col-12">
+                    <table class="table table-striped table-hover texto-card">
+                        <thead>
+                        <tr class="text-center">
+                            <th>No.</th>
+                            <th>Puesto</th>
+                            <th>Empresa</th>
+                            <th>Permanencia</th>
+                            <th>Actividades</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody *ngIf="experiencia_laboral_list.length > 0; else experienciaLista" >
+                        <tr class="text-center"
+                            *ngFor="let experiencia of experiencia_laboral_list; let i = index;">
+                            <td>{{i+1}}</td>
+                            <td class="text-left">
+                                {{ experiencia['NOMBRE_PUESTO'] }} </td>
+                            <td> {{ experiencia['NOMBRE_EMPRESA'] }}</td>
+                            <td>{{ experiencia['FECHA_INICIO_PERMANENCIA']  | date :'MMMM yyyy'}}
+                                a {{ experiencia['FECHA_FIN_PERMANENCIA']   | date :'MMMM yyyy' }}
+                            </td>
+                            <td class="text-justify" >
+                                {{ experiencia['ACTIVIDADES_A_CARGO'] }}</td>
+                            <!-- BOTONES DE ACCION  -->
+                            <td>
+                                <!--                                <button (click)="borrar_criterio(i)"-->
+                                <button   (click)="borrar_experiencia_laboral(i)"
+                                    class="btn btn-sm btn-light">
+                                    <fa-icon [icon]="cancel"></fa-icon>
+                                </button>
+                            </td>
+                            <!-- FIN BOTONES DE ACCION  -->
+                        </tr>
+                        </tbody>
+                        <ng-template #experienciaLista>
+                            <tbody>
+                            <tr>
+                                <td colspan="6" class="text-center texto-card">
+                                    No se encontraron registros
+                                </td>
+                            </tr>
+                            </tbody>
+                        </ng-template>
+
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4 offset-4">
+                    <div class="row  ml-2 mt-5">
+                        <!--                        <div class="form-group">-->
+                        <!--                            <div class="col-md-12 text-center">-->
+                        <button    (click)="guardar_experiencia_laboral()"
+                            class="btn btn-ghost-danger btn-lg btn-enviar2 texto-form texto-card btn-block">
+                            <fa-icon [icon]="seccion"></fa-icon>
+                            Guardar esta sección</button>
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+        </div>
+        <!--            fin seccion expe laboro-->
+        <div class="tab-pane fade" id="docente_panel" role="tabpanel"
+             aria-labelledby="docente_tab">
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <div class="col-form-label text-left texto-form texto-card my-auto">
+                            <label for="materia" >Materia:</label>
+                        </div>
+                        <div class="input-group texto-card">
+                            <input  [(ngModel)]="materia_form"
+                                type="text" class="form-control texto-card" id="materia"
+                                name="materia" placeholder="Escribe el nombre de la materia"
+                                required>
+                        </div>
+                    </div>
+                    <!--                                fin puesto-->
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <div class="col-form-label text-left texto-form texto-card my-auto">
+                            <label for="instituto" >Institución:</label>
+                        </div>
+                        <div class="input-group texto-card">
+<!--                            <input-->
+<!--                                type="text" class="form-control texto-card" id="nombreinstitucion"-->
+<!--                                name="instituto" placeholder="Escribe el nombre de la Institución"-->
+<!--                                required>-->
+                            <select [(ngModel)]="this.institucion_materia_form"
+                                    (change)="verificaOtraInstitucion()"
+                                    class="form-control texto-card" name="instituto" id="instituto" required>
+                                <option  value="-1" selected>Selecciona un Instituto</option>
+                                <option *ngFor="let instituto of this.institutosArray"
+                                        [value]="instituto['PK_INSTITUCION']">
+                                    {{instituto['NOMBRE']}} </option>
+                                <option  value="0" >Otra institución</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!--                                fin nombreempresa    -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 offset-6">
+                    <div class="form-group">
+                        <div class="input-group texto-card">
+                            <input #otraInstitucion
+                                [(ngModel)]="otra_institucion_materia_form"
+                                type="text" hidden class="form-control texto-card" id="otrainstitucion"
+                                name="otrainstitucion" placeholder="Escribe el nombre de otra institución"
+                                required>
+                        </div>
+                    </div>
+                    <!--                                fin fecha2 -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <div class="form-group">
+                        <div class="col-form-label text-left texto-form texto-card my-auto">
+                            <label for="fechamateria1" >Periodo:</label>
+                        </div>
+                        <div class="input-group texto-card">
+                            <input [(ngModel)]="this.fecha1_periodo_form"
+                                type="date" class="form-control texto-card" id="fechamateria1"
+                                name="fechamateria1"
+                                required>
+                        </div>
+                    </div>
+                    <!--                                fin fecha1 -->
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <div class="col-form-label text-left texto-form texto-card my-auto">
+                            <label for="fechamateria2" >&nbsp;</label>
+                        </div>
+                        <div class="input-group texto-card">
+                            <input  [(ngModel)]="this.fecha2_periodo_form"
+                                type="date" class="form-control texto-card" id="fechamateria2"
+                                name="fechamateria2"
+                                required>
+                        </div>
+                    </div>
+                    <!--                                fin fecha2 -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-6 offset-3">
+                    <div class="form-group row text-center mt-5">
+                        <div class="col-md-12 col-form-label text-center my-auto">
+                            <button (click)="add_experiencia_docente()"
+                                class="btn btn-primary btn-enviar texto-form texto-card">
+                                Agregar experiencia docente</button>
+                        </div>
+                    </div>  <!-- fin  boton agrega instrumento  de evaluacion  -->
+                </div>
+                <!--                                fin curp    -->
+                <div class="col-12">
+                    <table class="table table-striped table-hover texto-card">
+                        <thead>
+                        <tr class="text-center">
+                            <th>No.</th>
+                            <th>Materia</th>
+                            <th>Institución</th>
+                            <th>Periodo</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+
+                        <tbody *ngIf="experiencia_docente_list.length > 0; else expDocenteLista" >
+                        <tr class="text-center" *ngFor="let experiencia of experiencia_docente_list; let i = index;">
+                            <td>{{ i + 1 }}</td>
+                            <td class="text-justify" > {{ experiencia['NOMBRE_MATERIA'] }} </td>
+                            <td *ngIf="experiencia['FK_INSTITUCION'] == 0; else elseInstitucion">
+                                {{ experiencia['NOMBRE_OTRA_INSTITUCION'] }}</td>
+                            <ng-template #elseInstitucion>
+                                <td>{{ experiencia['instituto']['NOMBRE'] }}</td>
+                            </ng-template>
+                            <td>{{ experiencia['FECHA_INICIO_PERIODO']  | date :'MMMM yyyy' }} -
+                                {{  experiencia['FECHA_FIN_PERIODO'] | date :'MMMM yyyy' }} </td>
+                            <!-- BOTONES DE ACCION  -->
+                            <td>
+                                <button (click)="borrar_experiencia_docente(i)"
+                                    class="btn btn-sm btn-light">
+                                    <fa-icon [icon]="cancel"></fa-icon>
+                                </button>
+                            </td>
+                            <!-- FIN BOTONES DE ACCION  -->
+                        </tr>
+                        </tbody>
+                        <ng-template #expDocenteLista>
+                            <tbody>
+                            <tr>
+                                <td colspan="5" class="text-center texto-card">
+                                    No se encontraron registros
+                                </td>
+                            </tr>
+                            </tbody>
+                        </ng-template>
+
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4 offset-4">
+                    <div class="row  ml-2 mt-5">
+                        <!--                        <div class="form-group">-->
+                        <!--                            <div class="col-md-12 text-center">-->
+                        <button (click)="guardar_seccion_experiencia_docente()"
+                            class="btn btn-ghost-danger btn-lg btn-enviar2 texto-form texto-card btn-block">
+                            <fa-icon [icon]="seccion"></fa-icon>
+                            Guardar esta sección</button>
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+        </div>
+        <!--            fin seccion experiencia docente-->
+        <div class="tab-pane fade" id="productos_panel" role="tabpanel"
+             aria-labelledby="productos_tab">
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <div class="col-form-label text-left texto-form texto-card my-auto">
+                            <label for="producto_academico" >Actividad o producto:</label>
+                        </div>
+                        <div class="input-group texto-card">
+                            <input [(ngModel)]="actividad_form"
+                                type="text" class="form-control texto-card" id="producto_academico"
+                                name="producto_academico" placeholder="Escribe el nombre de la actividad o producto"
+                                required>
+                        </div>
+                    </div>
+                    <!--                                fin puesto-->
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <div class="col-form-label text-left texto-form texto-card my-auto">
+                            <label for="descripcion_producto" >Descripción:</label>
+                        </div>
+                        <div class="input-group texto-card">
+                         <textarea [(ngModel)]="desc_actividad_form"
+                             style="resize: none" placeholder="Describe la actividad o producto académico"
+                             class="form-control texto-card"  name="descripcion_producto"
+                             id="descripcion_producto"  required></textarea>
+                        </div>
+                    </div>
+                    <!--                                fin nombreempresa    -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <div class="form-group">
+                        <div class="col-form-label text-left texto-form texto-card my-auto">
+                            <label for="fechaproducto" >Fecha:</label>
+<!--                            todo pregunta? fecha de emisión o que?-->
+                        </div>
+                        <div class="input-group texto-card">
+                            <input [(ngModel)]="fecha_actividad_form"
+                                type="date" class="form-control texto-card" id="fechaproducto"
+                                name="fechaproducto"
+                                required>
+                        </div>
+                    </div>
+                    <!--                                fin fecha1 -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-6 offset-3">
+                    <div class="form-group row text-center mt-5">
+                        <div class="col-md-12 col-form-label text-center my-auto">
+                            <button (click)="add_producto_academico()"
+                                class="btn btn-primary btn-enviar texto-form texto-card">
+                                Agregar producto académico</button>
+                        </div>
+                    </div>  <!-- fin  boton agrega instrumento  de evaluacion  -->
+                </div>
+                <!--                                fin curp    -->
+                <div class="col-12">
+                    <table class="table table-striped table-hover texto-card">
+                        <thead>
+                        <tr class="text-center">
+                            <th>No.</th>
+                            <th>Actividad o Producto</th>
+                            <th>Descripción</th>
+                            <th>Fecha</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody *ngIf="prductos_academicos_list.length > 0; else productosLista" >
+                        <tr class="text-center"
+                            *ngFor="let prducto of prductos_academicos_list; let i = index;">
+                            <td>{{i+1}}</td>
+                            <td class="" >{{ prducto['NOMBRE_PRODUCTO'] }}</td>
+                            <td class="text-justify">{{ prducto['DESCRIPCION'] }}</td>
+                            <td>{{ prducto['FECHA_PRODUCTO'] | date:'MMMM yyyy'}}</td>
+                            <!-- BOTONES DE ACCION  -->
+                            <td>
+                                <!--                                <button (click)="borrar_criterio(i)"-->
+                                <button (click)="borrar_producto_academico(i)"
+                                        class="btn btn-sm btn-light">
+                                    <fa-icon [icon]="cancel"></fa-icon>
+                                </button>
+                            </td>
+                            <!-- FIN BOTONES DE ACCION  -->
+                        </tr>
+                        </tbody>
+                        <ng-template #productosLista>
+                            <tbody>
+                            <tr>
+                                <td colspan="5" class="text-center texto-card">
+                                    No se encontraron registros
+                                </td>
+                            </tr>
+                            </tbody>
+                        </ng-template>
+
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4 offset-4">
+                    <div class="row  ml-2 mt-5">
+                        <!--                        <div class="form-group">-->
+                        <!--                            <div class="col-md-12 text-center">-->
+                        <button   (click)="guardar_productos_academicos()"
+                            class="btn btn-ghost-danger btn-lg btn-enviar2 texto-form texto-card btn-block">
+                            <fa-icon [icon]="seccion"></fa-icon>
+                            Guardar esta sección</button>
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+        </div>
+        <!--            fin seccion prductos-->
+        <div class="tab-pane fade" id="participacion_panel" role="tabpanel"
+             aria-labelledby="participacion_tab">
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <div class="col-form-label text-left texto-form texto-card my-auto">
+                            <label for="titulo_curso" >Título del curso impartido:</label>
+                        </div>
+                        <div class="input-group texto-card">
+                            <input [(ngModel)]="this.curso_form"
+                                type="text" class="form-control texto-card" id="titulo_curso"
+                                name="titulo_curso" placeholder="Escribe el título del curso impartido"
+                                required>
+                        </div>
+                    </div>
+                    <!--                                fin puesto-->
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <div class="col-form-label text-left texto-form texto-card my-auto">
+                            <label for="institucion_curso" >Institución, Empresa u Organización:</label>
+                        </div>
+                        <div class="input-group texto-card">
+                            <input  [(ngModel)]="this.empresa_curso_form"
+                                type="text" class="form-control texto-card" id="institucion_curso"
+                                name="institucion_curso" placeholder="Escribe el nombre de la institución, empresa u organización"
+                                required>
+                        </div>
+                    </div>
+                    <!--                                fin nombreempresa    -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <div class="form-group">
+                        <div class="col-form-label text-left texto-form texto-card my-auto">
+                            <label for="fecha_curso">Duración
+                                <span class="">(hrs)</span>:</label>
+                        </div>
+                        <div class="input-group texto-card">
+                            <input  [(ngModel)]="this.total_horas_curso_form"
+                                type="number" class="form-control texto-card" id="horas_curso"
+                                name="horas_curso" placeholder="Total de horas del curso"
+                                required>
+                        </div>
+                    </div>
+                    <!--                                fin fecha1 -->
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <div class="col-form-label text-left texto-form texto-card my-auto">
+                            <label for="fecha_curso">Fecha</label>
+                        </div>
+                        <div class="input-group texto-card">
+                            <input  [(ngModel)]="this.fecha_curso_form"
+                                type="date" class="form-control texto-card" id="fecha_curso"
+                                name="fecha_curso"
+                                required>
+                        </div>
+                    </div>
+                    <!--                                fin fecha1 -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-6 offset-3">
+                    <div class="form-group row text-center mt-5">
+                        <div class="col-md-12 col-form-label text-center my-auto">
+                            <button (click)="add_participacion_instructor()"
+                                class="btn btn-primary btn-enviar texto-form texto-card">
+                                Agregar participación como instructor</button>
+                        </div>
+                    </div>  <!-- fin  boton agrega instrumento  de evaluacion  -->
+                </div>
+                <!--                                fin curp    -->
+                <div class="col-12">
+                    <table class="table table-striped table-hover texto-card">
+                        <thead>
+                        <tr class="text-center">
+                            <th>No.</th>
+                            <th>Título</th>
+                            <th>Institución o Empresa u Organización</th>
+                            <th>Duración(Hrs)</th>
+                            <th>Fecha</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody *ngIf="participacion_instructor_list.length > 0; else participacionLista" >
+                        <tr class="text-center">
+                            <tr class="text-center"
+                                *ngFor="let participacion of participacion_instructor_list; let i = index;">
+                            <td>{{ i + 1 }} </td>
+                            <td class="" > {{ participacion['TITULO_CURSO'] }} </td>
+                            <td class=""> {{ participacion['NOMBRE_INSTITUCION'] }} </td>
+                            <td> {{ participacion['HRS_DURACION_CURSO'] }} </td>
+                            <td> {{ participacion['FECHA_IMPARTICION'] | date : 'MMMM yyyy'  }} </td>
+                            <!-- BOTONES DE ACCION  -->
+                            <td>
+                            <button (click)="borrar_participacion_instructor(i)"
+                                    class="btn btn-sm btn-light">
+                                    <fa-icon [icon]="cancel"></fa-icon>
+                                </button>
+                            </td>
+                            <!-- FIN BOTONES DE ACCION  -->
+                        </tr>
+                        </tbody>
+                        <ng-template #participacionLista>
+                            <tbody>
+                            <tr>
+                                <td colspan="6" class="text-center texto-card">
+                                    No se encontraron registros
+                                </td>
+                            </tr>
+                            </tbody>
+                        </ng-template>
+
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4 offset-4">
+                    <div class="row  ml-2 mt-5">
+                        <!--                        <div class="form-group">-->
+                        <!--                            <div class="col-md-12 text-center">-->
+                        <button (click)="guardar_seccion_participacion_instructor()"
+                            class="btn btn-ghost-danger btn-lg btn-enviar2 texto-form texto-card btn-block">
+                            <fa-icon [icon]="seccion"></fa-icon>
+                            Guardar esta sección</button>
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+        </div>
+        <!--            fin seccion participacion como instructor-->
+    </div>
+</div>
+
+<!-- INICIO VENTANA MODAL DE CARGA -->
+<div bsModal #loaderModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-hidden="false"
+     [config]="{backdrop: 'static',keyboard: false}" [style.display]="this.display">
+    <!--[config]="{backdrop: 'static',keyboard: false}">-->
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content"
+             style="background-color: rgba(51, 51, 51, 0.8); background-clip: padding-box; border: 1px solid rgba(0, 0, 0, 0);">
+            <app-loader></app-loader>
+        </div>
+    </div>
+</div>
+<!-- FIN VENTANA MODAL DE CARGA -->
+
+<pre>{{this.cv | json }}</pre>

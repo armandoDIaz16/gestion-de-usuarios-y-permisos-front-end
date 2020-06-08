@@ -123,6 +123,9 @@ export class NavbarSistemsComponent implements OnInit {
                     case 'Creditos':
                         this.router.navigateByUrl('/creditos');
                         break;
+                     case 'Capacitación docente':
+                        this.router.navigateByUrl('/capacitacion_docente/787eb37068bf4a5b174c44f75d22cc51');
+                        break;
                 }
             });
         /*}*/

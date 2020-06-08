@@ -1,0 +1,1218 @@
+<h2 class="text-left"> Ficha Técnica del Curso </h2>
+
+<!--<div class="container mt-5">-->
+    <div class="row">
+        <div class="col-2 mt-5">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+<!--                <div class="row">-->
+                    <a class="btn btn-menu  texto-card active" id="v-pills-home-tab" data-toggle="pill"
+                       href="#v-pills-home" role="tab"aria-controls="v-pills-home"
+                       aria-selected="true">Descripción del Servicio</a>
+<!--                </div>-->
+<!--                <div class="row">-->
+                    <a class="btn btn-menu  texto-card mt-3" id="v-pills-profile-tab" data-toggle="pill"
+                       href="#v-pills-profile" role="tab" aria-controls="v-pills-profile"
+                       aria-selected="false">Información del Servicio</a>
+<!--                </div>-->
+<!--                <div class="row">-->
+                    <a class="btn btn-menu  texto-card mt-3" id="v-pills-messages-tab" data-toggle="pill"
+                       href="#v-pills-messages" role="tab" aria-controls="v-pills-messages"
+                       aria-selected="false">Contenido Temático</a>
+<!--                </div>-->
+<!--                <div class="row">-->
+                    <a class="btn btn-menu  texto-card mt-3" id="v-pills-settings-tab" data-toggle="pill"
+                       href="#v-pills-settings" role="tab" aria-controls="v-pills-settings"
+                       aria-selected="false">Elementos Didácticos</a>
+<!--                </div>-->
+<!--                <div class="row">-->
+                    <a class="btn btn-menu  texto-card mt-3" id="criterios_tab" data-toggle="pill"
+                       href="#criterios_panel" role="tab" aria-controls="criterios_panel"
+                       aria-selected="false">Criterios de Evaluación</a>
+<!--                </div>-->
+<!--                <div class="row">-->
+                    <a class="btn btn-menu  texto-card mt-3" id="competencias_tab" data-toggle="pill"
+                       href="#competencias_panel" role="tab" aria-controls="competencias_panel"
+                       aria-selected="false">Competencias</a>
+<!--                </div>-->
+<!--                <div class="row">-->
+                    <a class="btn btn-menu  texto-card mt-3" id="fuentes_tab" data-toggle="pill"
+                       href="#fuentes_panel" role="tab" aria-controls="fuentes_panel"
+                       aria-selected="false">Fuentes de información</a>
+                <!--                </div>-->
+                <!--                <div class="row">-->
+                <a class="btn btn-menu  texto-card mt-3" id="comentarios_tab" data-toggle="pill"
+                   href="#comentarios_panel" role="tab" aria-controls="fuentes_panel"
+                   aria-selected="false">Comentarios</a>
+<!--                </div>-->
+                <br>
+                <div class="row mb-5 mt-5">
+                    <div class="col-md-12 text-center">
+                        <input [(ngModel)]="this.validado" name="validado"
+                               type="checkbox" class="custom-control-input pl-2" id="valida">
+                        <label class="custom-control-label ml-3" for="valida">
+                            Declaro haber verificado la información capturada</label>
+                        <br><br>
+                        <!--            <button class="btn btn-primary" [disabled]="!this.validado" (click)="registra_periodo()">-->
+                        <button #btnregistro  class="btn btn-danger btn-enviar2 texto-form texto-card btn-block"
+                                [disabled]="!this.validado" (click)="enviar_ficha()" >
+                            <fa-icon [icon]="enviar"></fa-icon>
+                            Enviar para revisión</button>
+                       <!-- <button #btnmodificar  hidden  class="btn btn-warning btn-lg" [disabled]="!this.validado" (click)="modificar_curso()" >
+                            <fa-icon [icon]="edit"></fa-icon>
+                            Modificar Curso</button>-->
+                        <!--                        <pre>{{this.validado}}</pre>-->
+<!--                        <button  (click)="back()" type="button" class="btn btn-danger btn-lg">-->
+<!--                            <fa-icon [icon]="cancel"></fa-icon>-->
+<!--                            Cancelar</button>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div  class="col-10 mt-3 mb-5">
+            <div class="tab-content" id="v-pills-tabContent">
+                <div class="tab-pane fade show active text-center texto-form"
+                     style="-webkit-box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);
+                        -moz-box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);
+                        box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);"
+                     id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                    <!-- inicia contenido de descripcion del servicio -->
+                    <h3>Descripción del servicio</h3>
+                    <hr>
+                    <div class="form-group col-sm-12 texto-card">
+                        <div class="form-group">
+                            <div class="col-form-label text-left my-auto">
+                                <label for="nombrecurso" >Nombre del Servicio:</label>
+                                <label style="color:#ff0000;" for="nombrecurso">*</label>
+                            </div>
+                            <div class="">
+                                <div class="input-group">
+                                                <textarea disabled [(ngModel)]="this.curso.nombre_curso"
+                                                           style="resize: none" placeholder="Escriba el nombre del servicio"
+                                                    class="form-control texto-card"  name="nombrecurso"
+                                                    id="nombrecurso"  required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <!--                                fin nombre del curso-->
+                        <div class="form-group">
+                            <div class="col-form-label text-left my-auto">
+                                <label for="introduccion" >Introducción:</label>
+                                <label style="color:#ff0000;" for="introduccion">*</label>
+                            </div>
+                                <div class="input-group">
+                                                <textarea  [(ngModel)]="this.ficha.introduccion"
+                                                    style="resize: none"  rows="8"
+                                                    placeholder="Escriba la introducción del servicio"
+                                                    class="form-control texto-card"  name="introduccion"
+                                                    id="introduccion"  required></textarea>
+                                </div>
+                        </div>
+                        <!--                                fin introduccion del curso-->
+                        <div class="form-group">
+                            <div class="col-form-label text-left my-auto">
+                                <label for="introduccion" >Justificación:</label>
+                                <label style="color:#ff0000;" for="justificacion">*</label>
+                            </div>
+                            <div class="input-group">
+                                                <textarea  [(ngModel)]="this.ficha.justificacion"
+                                                    style="resize: none"  rows="4"
+                                                    placeholder="Escriba la justificación del servicio"
+                                                    class="form-control texto-card"  name="justificacion"
+                                                    id="justificacion"  required></textarea>
+                            </div>
+                        </div>
+                        <!--                                fin justificacion del curso-->
+                        <div class="form-group">
+                            <div class="col-form-label text-left my-auto">
+                                <label for="introduccion" >Objetivo general:</label>
+                                <label style="color:#ff0000;" for="objetivo_general">*</label>
+                            </div>
+                            <div class="input-group">
+                                                <textarea  [(ngModel)]="this.ficha.objetivo_general"
+                                                    style="resize: none"  rows="4"
+                                                    placeholder="Escriba el objetivo general del servicio"
+                                                    class="form-control texto-card"  name="objetivo_general"
+                                                    id="objetivo_general"  required></textarea>
+                            </div>
+                        </div>
+                        <!--                                fin justificacion del curso-->
+                        <div class="form-group">
+                            <div class="col-md-4 text-center offset-4">
+                                <br><br>
+                                <button   class="btn btn-ghost-danger btn-lg btn-enviar2 texto-form texto-card btn-block"
+                                        (click)="guardar_descripcion_servicio()" >
+                                    <fa-icon [icon]="seccion"></fa-icon>
+                                    Guardar esta sección</button>
+                            </div>
+                        </div>
+                        <!--                                fin boton de seccion descripcion del servicio -->
+                    </div>
+
+
+                </div> <!-- termina contenido de descripcion del servicio -->
+                <div class="tab-pane fade text-center texto-card texto-form" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab"
+                     style="-webkit-box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);
+-moz-box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);
+box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);">
+                    <!-- inicia contenido de Información del servicio -->
+                    <h3> <fa-icon [icon]="info"></fa-icon> Información del servicio</h3>
+<!--                    todo falta acomodar la vista-->
+                    <hr>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label text-right my-auto">
+                                    <label for="nombre_instrcutor" >Instructor(a):</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <div  class="input-group">
+                                        <p-autoComplete
+                                                        [(ngModel)]="this.curso.instructores"
+                                                        [multiple]="true"
+                                                        [suggestions]="this.docentesArray"
+                                                        field="NOMBRE"
+                                                        name="instructores"
+                                                        id="nombre_instrcutor"
+                                                        (completeMethod)="filtro_instructor($event)"
+                                                        [inputStyle] = "{'width':'13.125rem'}"
+                                                        required
+                                                        disabled
+                                                        placeholder="Escriba el nombre del instructor">
+                                            <ng-template let-value pTemplate="selectedItem">
+                                            <span style="padding-right: 1.25rem;  font-size:0.875rem">
+                                                {{value.NOMBRE }} {{ value.PRIMER_APELLIDO }} {{value.SEGUNDO_APELLIDO}}</span>
+                                            </ng-template>
+                                            <ng-template let-brand pTemplate="item">
+                                                <div class="">
+                                                    <div style="font-size:0.875rem;">
+                                                        {{brand.NOMBRE }} {{brand.PRIMER_APELLIDO }} {{brand.SEGUNDO_APELLIDO}}
+                                                    </div>
+                                                </div>
+                                            </ng-template>
+                                        </p-autoComplete>
+                                    </div>
+                                </div>
+                            </div><!-- fin instructor -->
+                        </div>  <!-- lado izq-->
+                        <div class="col-6">
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label text-right">
+                                    <label for="duracion_horas" >Duración del curso en horas:</label>
+
+                                </div>
+                                <div class="col-md-5 text-left">
+                                    <div class="input-group">
+                                        <input  [(ngModel)]="this.curso.total_horas" disabled
+                                                type="number" class="form-control texto-card" id="duracion_horas" name="duracion_horas"
+                                                placeholder="Duración del curso en horas" required>
+                                    </div>
+
+                                </div>
+                            </div>  <!-- fin cupo maximo -->
+                        </div> <!-- lado der -->
+                     </div> <!-- renglon 1-->
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label text-right my-auto">
+                                    <label for="area_curso" >Área académica:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <select  [(ngModel)]="this.curso.pk_area_academica" disabled
+                                             class="form-control texto-card" name="area_curso" id="area_curso"  required>
+                                        <option [value]=-1>Selecciona una Área académica</option>
+                                        <option [value]=0>Para todas las Áreas</option>
+                                        <option *ngFor="let area of this.areasArray; let i = index"
+                                                value="{{area.PK_AREA_ACADEMICA}}">
+                                            {{area.NOMBRE}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div><!-- fin area academica -->
+                        </div>  <!-- lado izq-->
+                        <div class="col-6">
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label text-right my-auto">
+                                    <span style="font-size:1rem;"><fa-icon [icon]="date" ></fa-icon>
+                                            </span>
+                                    <label for="fecha_inicio_curso" >Fecha de Inicio:</label>
+                                </div>
+                                <div class="col-md-5 text-right">
+                                    <div class="input-group">
+                                        <input    [(ngModel)]="this.curso.fecha_inicio" disabled
+                                                  type="date" class="form-control texto-card" id="fecha_inicio_curso" name="fecha_inicio_curso"
+                                               required>
+                                    </div>
+                                </div>
+                            </div>  <!-- fin fecha inicio -->
+                        </div> <!-- lado der -->
+                    </div> <!-- renglon 1-->
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label text-right my-auto">
+                                    <label for="periodo_curso" >Periodo:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <select   [(ngModel)]="this.curso.pk_periodo" disabled
+                                              class="form-control texto-card"
+                                             name="periodo_curso" id="periodo_curso" required>
+                                       <option value="-1">Selecciona un Periodo</option>
+                                        <option *ngFor="let periodo of this.periodosArray; let i = index"
+                                                [value]="periodo.PK_PERIODO_CADO">
+                                            {{periodo.NOMBRE_PERIODO}}
+                                            {{periodo.FECHA_INICIO | date:'MMMM'| uppercase }}
+                                            {{periodo.FECHA_INICIO | date:'yyyy' }} -
+                                            {{periodo.FECHA_FIN | date:'MMMM' | uppercase }}
+                                            {{periodo.FECHA_FIN | date:'yyyy' }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div><!-- fin periodo -->
+                        </div>  <!-- lado izq-->
+                        <div class="col-6">
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label text-right my-auto">
+                                    <span style="font-size:1rem;"><fa-icon [icon]="date" ></fa-icon>
+                                            </span>
+                                    <label for="fecha_fin_curso" >Fecha de Finalización:</label>
+
+                                </div>
+                                <div class="col-md-5 text-right">
+                                    <div class="input-group">
+                                        <input   type="date" class="form-control texto-card" id="fecha_fin_curso" name="fecha_fin_curso"
+                                                 [(ngModel)]="this.curso.fecha_fin" disabled required>
+                                    </div>
+                                </div>
+                            </div>  <!-- fin fecha fin -->
+                        </div> <!-- lado der -->
+                    </div> <!-- renglon 3-->
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label text-right my-auto">
+                                    <span style="font-size:1rem;"><fa-icon [icon]="mapa" ></fa-icon>
+                                            </span>
+                                    <label for="edificio_curso" >Edificio donde se impartirá:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="input-group texto-card">
+                                        <!--                                        <select [(ngModel)]="this.curso.edificio"  (change)="autocompletaCampus()"-->
+                                        <select [(ngModel)]="this.curso.edificio" disabled
+                                                class="form-control texto-card" name="edificio_curso" id="edificio_curso" required>
+                                            <option  value="-1" selected>Selecciona un edificio</option>
+                                            <option *ngFor="let edificio of this.edificiosArray"
+                                                    [value]="edificio.PK_EDIFICIO">
+                                                {{'Campus '+edificio.FK_CAMPUS+' - Edificio: '+edificio.PREFIJO+'   '+edificio.NOMBRE}}</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>  <!-- fin edificio -->
+<!--                            fin pr-->
+                        </div>  <!-- lado izq-->
+                        <div class="col-6">
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label text-right my-auto">
+                                    <span style="font-size:1rem;"><fa-icon [icon]="hora" ></fa-icon>
+                                            </span>
+                                    <label for="hora_incio_curso" >Hora de Incio:</label>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="input-group col-md-5 texto-card">
+                                        <p-calendar
+                                                    [(ngModel)]="this.curso.hora_inicio"
+                                                    [timeOnly]="true"   hourFormat="12"
+                                                    id="hora_incio_curso" name="hora_incio_curso"
+                                                    placeholder="Seleccione la hora"
+                                                    required disabled></p-calendar>
+                                    </div>
+                                </div>
+                            </div>  <!-- fin hora inicio -->
+                        </div> <!-- lado der -->
+                    </div> <!-- renglon 4-->
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label text-right my-auto">
+                                        <span style="font-size:1rem;"><fa-icon [icon]="mapa" ></fa-icon>
+                                                </span>
+                                    <label for="lugar_curso" >Espacio:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <div
+                                        class="input-group texto-card">
+                                        <input [(ngModel)]="this.curso.espacio" disabled
+                                               type="text" class="form-control texto-card" id="lugar_curso" name="lugar_curso"
+                                               placeholder="Lugar del curso" required>
+                                    </div>
+                                </div>
+                            </div>  <!-- fin  espacio -->
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label text-right my-auto">
+                                    <span style="font-size:1rem;"><fa-icon [icon]="hora" ></fa-icon>
+                                            </span>
+                                    <label for="hora_fin_curso" >Hora de Finalización:</label>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="input-group col-md-5 texto-card">
+                                        <p-calendar
+                                            [(ngModel)]="this.curso.hora_fin"
+                                            [timeOnly]="true"   hourFormat="12"
+                                            id="hora_fin_curso" name="hora_fin_curso"
+                                            placeholder="Seleccione la hora"
+                                            required disabled>
+                                        </p-calendar>
+                                    </div>
+                                </div>
+                            </div>  <!-- fin hora fin -->
+                        </div> <!-- lado der -->
+                    </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group row">
+                                    <div class="col-md-6 col-form-label text-right my-auto">
+                                    <span style="font-size:1rem;"><fa-icon [icon]="mapa" ></fa-icon>
+                                            </span>
+                                        <label for="instituto" >Instituto, Centro o Unidad:</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-group texto-card">
+                                            <!--                                        <select [(ngModel)]="this.curso.edificio"  (change)="autocompletaCampus()"-->
+                                            <select [(ngModel)]="this.ficha.lugar_institucion"
+                                                    class="form-control texto-card" name="instituto" id="instituto" required>
+                                                <option  value="-1" selected>Selecciona un Instituto</option>
+                                                <option *ngFor="let instituto of this.institutosArray"
+                                                        [value]="instituto.PK_INSTITUCION">
+                                                    {{instituto.NOMBRE}}</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>  <!-- fin edificio -->
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group row">
+                                    <div class="col-md-5 col-form-label text-right my-auto">
+                                    <span style="font-size:1rem;">
+                                            </span>
+                                        <label for="lugar_curso" >Estado del curso:</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="input-group">
+                                            <select  [(ngModel)]="this.curso.estado_curso"
+                                                     class="form-control texto-card"
+                                                     name="estado_curso" id="estado_curso" required disabled>
+                                                <option value="-1" >Estados del curso</option>
+                                                <option *ngFor="let estado of this.cursosArray"
+                                                        [value]="estado['PK_ESTADO_CURSO']">
+                                                    {{estado['NOMBRE_ESTADO']}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>  <!-- fin estado -->
+                            </div> <!-- fin izq-->
+                        </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group row">
+                                        <div class="col-md-6 col-form-label text-right my-auto">
+                                            <label for="tipo_servicio" >Tipo de Servicio:</label>
+                                            <label style="color:#ff0000;" >*</label>
+                                        </div>
+                                        <div class="col-md-6 text-right">
+                                            <select     [(ngModel)]="this.ficha.tipo_servicio"
+                                                        (change)="verificaOtroServicio()"
+                                                        class="form-control texto-card" name="tipo_servicio" id="tipo_servicio" required>
+                                                <option [value]=-1 >Selecciona un Tipo de Servicio</option>
+                                                <option [value]=1>Curso</option>
+                                                <option [value]=2>Curso - taller </option>
+                                                <option [value]=3>Taller</option>
+                                                <option [value]=4>Diplomado</option>
+                                                <option [value]=5>Serie de platicas</option>
+                                                <option [value]=6>Simposium </option>
+                                                <option [value]=7>Otro </option>
+                                            </select>
+                                        </div>
+                                        <br>
+                                        <div class="col-md-6 offset-6">
+                                            <input #inputOtroTipoCurso type="text" hidden class="form-control texto-card" id="otro_servicio" name="otro_servicio"
+                                                   placeholder="Especifique el otro tipo de servicio" required
+                                                   [(ngModel)]="this.ficha.otro_servicio">
+                                        </div>
+                                    </div><!-- fin tipo servicio -->
+                                </div> <!-- fin der-->
+                    </div> <!-- renglon 5-->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group row">
+                                <div class="col-md-3 col-form-label text-right">
+                                    <label for="img_curso" ><fa-icon [icon]="img" ></fa-icon> Imagen del curso:</label>
+                                    <label style="color:#ff0000;" >*</label>
+                                </div>
+                                    <div class="col-md-5  border">
+                                    <div class="input-group">
+                                        <input type="file"
+                                               class="form-control texto-card"
+                                               id="img_curso" name="img_curso"
+                                               (change)="actualizaImagen($event)"
+                                               accept="image/png, image/jpeg"
+                                               required>
+                                    </div>
+                                    <div class="col-11 px-0 pb-1 pt-1">
+                                        <img    *ngIf="this.curso.imagen_curso != null"
+                                                class="card-img-top img-fluid size-img"
+                                                src="{{this.ficha_service.get_url_back(this.curso.imagen_curso)}}"
+                                                 >
+
+                                        <!--                                        <img class="card-img-top img-fluid"  src="assets/img/capacitacion_docente/curso1.png" alt="Card image cap">-->
+                                    </div>
+                                 </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4 text-center offset-4">
+                            <br><br>
+                            <button   class="btn btn-ghost-danger btn-lg btn-enviar2 texto-form texto-card btn-block"
+                                      (click)="guardar_informacion_servicio()" >
+                                <fa-icon [icon]="seccion"></fa-icon>
+                                Guardar esta sección</button>
+                        </div>
+                    </div>
+                    <!--                                fin boton de seccion descripcion del servicio -->
+
+                </div><!-- termina Información de descripcion del servicio -->
+                <div class="tab-pane fade text-center texto-card"   style="-webkit-box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);
+                        -moz-box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);
+                        box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);"
+                     id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                    <!-- inicia contenido temático servicio -->
+                    <h3>Contenido temático</h3>
+                    <hr>
+                    <div *ngIf="contenido_tematico.length >0; else elseContenido">
+                        <div *ngFor="let contenido of this.contenido_tematico; let i = index;">
+                            <div class="form-group row mb-0">
+                                <div class="col-md-3 col-form-label text-left my-auto">
+                                    <button  (click)="mostrarModal(i)"
+                                        class="btn btn-link texto-form texto-card">
+                                        <fa-icon [icon]="circulomas" ></fa-icon>  Agregar nuevo tema</button>
+                                </div>
+                            </div><!-- fin  modal tema-->
+                            <div id="accordion">
+                                <div class="card mx-3 mb-0">
+                                    <div class="card-header border bg-contenido text-left row pb-0 px-0" id="headingOne">
+                                        <h2 class="text-white col-md-9">
+                                          <span  class="contenido-tittle" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                                                 aria-controls="collapseOne">
+                                              <fa-icon  [icon]="flechader"></fa-icon>
+                                          {{'Tema '+(i +1)}}   </span>
+                                        <fa-icon  (click)="editar_contenido_tematico(i)"
+                                            class="btn-contenido-edit btn-link"  [icon]="edit"></fa-icon>
+                                        <fa-icon  (click)="borrar_contenido_tematico(i)"
+                                            class="btn-contenido-delete btn-link" [icon]="delete"></fa-icon>
+                                        </h2>
+                                        <div class="nav-item dropdown col-md-3"  dropdown placement="bottom right">
+<!--                                            <div class="bg-white">-->
+                                                <a class="btn btn-outline-primary btn-enviar2 btn-block bg-white"
+                                                   data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
+                                                   dropdownToggle (click)="false">
+                                                    <fa-icon [icon]="folder"></fa-icon>  Recursos
+                                                    <fa-icon style="margin-left:0.3125rem" [icon]="flechaabajo"></fa-icon>
+                                                </a>
+<!--                                            </div>-->
+                                            <div *ngIf="contenido['archivo_contenido_tematico'].length >0;  else elseArchivos">
+                                                <!--                                            <div>-->
+                                                <div class="dropdown-menu dropdown-menu-right" *dropdownMenu
+                                                     aria-labelledby="simple-dropdown">
+                                                    <div class="dropdown-header text-center">
+                                                        <strong>Recursos adjuntados<fa-icon class="btn-link btn-sm" [icon]="adjunto">
+                                                        </fa-icon>
+                                                        </strong>
+                                                    </div>
+                                                    <!--                                                    <div *ngFor="contenido_tematico.archivo_contenido_tematico;"-->
+                                                    <div *ngFor="let archivo of this.contenido['archivo_contenido_tematico'];"
+                                                         class="dropdown-item text-right">
+<!--                                                        href="http://tudominio.es/descargas-pdf/pdf-descargable.pdf"-->
+                                                        <a
+                                                           href="{{this.ficha_service.get_url_back(archivo['RUTA_ARCHIVO'])}}"
+                                                           target="_blank"> {{ archivo['NOMBRE_ARCHIVO']  | slice:0:25 }} </a>
+                                                        <button (click)="borrar_archivo_tema(archivo['PK_ARCHIVO_CONTENIDO_TEMATICO'],archivo['NOMBRE_ARCHIVO'])"
+                                                            type="button" class="btn btn-link btn-sm">
+                                                            <fa-icon [icon]="cancel"></fa-icon>
+                                                        </button>
+                                                    </div >
+                                                    <div class="dropdown-header text-center">
+                                                        <strong>Agregar nuevo recurso <fa-icon class="btn-link btn-sm" [icon]="subir">
+                                                        </fa-icon>
+                                                        </strong>
+                                                    </div>
+                                                    <input type="file"
+                                                           class="btn-link btn-sm dropdown-item"
+                                                           (change)="agregaArchivo($event, this.contenido['PK_CONTENIDO_TEMATICO'] )"
+                                                           multiple
+                                                           required>
+                                                </div>
+                                            </div>
+                                            <ng-template #elseArchivos>
+                                                <div>
+                                                    <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+                                                        <div class="dropdown-header text-center">
+                                                            <strong>Recursos adjuntados<fa-icon class="btn-link btn-sm" [icon]="adjunto">
+                                                            </fa-icon>
+                                                            </strong>
+                                                        </div>
+                                                        <div class="dropdown-item">
+                                                            sin elementos adjuntos
+                                                        </div>
+                                                        <div class="dropdown-header text-center">
+                                                            <strong>Agregar nuevo recurso <fa-icon class="btn-link btn-sm" [icon]="subir">
+                                                            </fa-icon>
+                                                            </strong>
+                                                        </div>
+                                                        <input type="file"
+                                                               class="btn-link btn-sm dropdown-item"
+                                                               (change)="agregaArchivo($event, this.contenido['PK_CONTENIDO_TEMATICO'] )"
+                                                               multiple
+                                                               required>
+                                                    </div>
+                                                </div>
+                                            </ng-template>
+                                        </div>
+
+                                    <div id="collapseOne" style="width:100%;" class="collapse show p-0" aria-labelledby="headingOne" data-parent="#accordion">
+                                        <div class="card-body p-0">
+                                            <table class="table table-hover mb-0">
+                                                <thead class="bg-secondary">
+                                                <tr class="text-center">
+                                                    <th scope="col">Nombre del tema</th>
+                                                    <th scope="col">Actividad de aprendizaje</th>
+                                                    <th scope="col">Tiempo(Hrs)</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody class="bg-white">
+                                                <tr class="text-justify">
+                                                    <td class="px-5">{{contenido.NOMBRE_TEMA}} </td>
+                                                    <td class="px-5">{{contenido.ACTIVIDAD_APRENDIZAJE}} </td>
+                                                    <td class="text-center" >
+                                                        <fa-icon [icon]="hora"></fa-icon>
+                                                        {{contenido.TIEMPO_TEMA}}
+                                                    </td>
+                                                    <!-- FIN body  -->
+                                                </tr>
+                                                </tbody>
+                                                <!--<ng-template #elseLista>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td colspan="6" class="text-center">
+                                                            No se encontraron registros
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </ng-template>-->
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            <div *ngIf="i == (contenido_tematico.length -1)" class="form-group row mb-0">
+                                <div class="col-md-3 col-form-label text-left my-auto">
+                                    <button  (click)="mostrarModal(i+1)"
+                                             class="btn btn-link texto-form texto-card">
+                                        <fa-icon [icon]="circulomas" ></fa-icon>  Agregar nuevo tema</button>
+                                </div>
+                            </div><!-- fin  nombre tema-->
+                        </div>
+                    </div>
+<!--                    else contenido-->
+                    <ng-template #elseContenido>
+                            <div  class="form-group row mb-0">
+                                <div class="col-md-3 col-form-label text-left my-auto">
+                                    <button  (click)="mostrarModal(0)"
+                                             class="btn btn-link texto-form texto-card">
+                                        <fa-icon [icon]="circulomas" ></fa-icon>  Agregar nuevo tema</button>
+                                </div>
+                            </div><!-- fin  nombre tema-->
+                            <div class="col-md-11 p-2 offset-1 border" >
+                                <div class="alert alert-light text-center texto-card" role="alert">
+                                    No se encontraron registros
+                                </div>
+                            </div>
+                    </ng-template>
+                    <div class="form-group">
+                        <div class="col-md-4 text-center offset-4">
+                            <br><br>
+                            <button   class="btn btn-ghost-danger btn-lg btn-enviar2 texto-form texto-card btn-block"
+                                      (click)="guardar_contenidos_tematicos()" >
+                                <fa-icon [icon]="seccion"></fa-icon>
+                                Guardar esta sección</button>
+                        </div>
+                    </div>
+<!--                    fin else-->
+                </div><!-- termina contenido temático  del servicio -->
+                <div class="tab-pane fade  texto-card" id="v-pills-settings" role="tabpanel"
+                     aria-labelledby="v-pills-settings-tab"  style="-webkit-box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);
+                        -moz-box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);
+                        box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);">
+                    <!-- inicia Elementos didacticos-->
+                    <form [formGroup]="formaElementosDidacticos" ngFormOptions="" autocomplete="off">
+                    <h3 class="text-center">Elementos didácticos</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-11">
+                            <div class="form-group row">
+                                <div class="col-md-4 col-form-label text-right my-auto">
+                                    <label for="elemento_didactico" >Elemento de apoyo:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-group texto-card">
+                                        <input [(ngModel)]="this.elemento_apoyo"
+                                               [ngModelOptions]="{standalone: true}"
+                                               type="text"
+                                               class="form-control texto-card" id="elemento_didactico" name="elemento_didactico"
+                                               placeholder="Escribe el nombre del elemento didactico" required>
+                                    </div>
+                                    <small id="help-didactico" class="form-text font-italic text-danger text-muted">Ejemplo: Computadora, Software, proyector, entre otros.</small>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="input-group texto-card">
+                                        <button (click)="add_elemento_didactico()"
+                                                class="btn btn-primary  texto-form texto-card">
+                                            <fa-icon [icon]="add"></fa-icon>
+                                           </button>
+                                    </div>
+                                </div>
+                            </div>  <!-- fin  elemento didactico -->
+                            <div class="form-group row">
+                                <div *ngIf="elementos_didacticos.length > 0; else elseDidacticoLista"
+                                     class="col-md-11 p-2 offset-1 border" >
+
+                                    <span *ngFor="let elemento of elementos_didacticos; let i =index"
+                                        class="badge badge-pill badge-secondary texto-card mx-1 mt-1">{{elemento.NOMBRE_MATERIAL}}
+                                        <button   (click)="borrar_elemento_didactico(i)"
+                                                  class="btn btn-secondary  texto-form texto-card">
+                                            <fa-icon [icon]="cancel"></fa-icon>
+                                           </button>
+                                    </span>
+                                    <br>
+                                </div>
+                                <ng-template #elseDidacticoLista>
+                                    <div class="col-md-11 p-2 offset-1 border" >
+                                        <div class="alert alert-light text-center texto-card" role="alert">
+                                            No se encontraron registros
+                                        </div>
+                                    </div>
+                                </ng-template>
+
+                            </div><!-- fin boton -->
+                        </div> <!-- lado izq -->
+                    </div> <!-- renglon 1-->
+                    <br>
+                    <div class="form-group">
+                        <div class="col-md-4 text-center offset-4">
+                            <br><br>
+                            <button   class="btn btn-ghost-danger btn-lg btn-enviar2 texto-form texto-card btn-block"
+                                      (click)="guardar_elementos_didacticos()" >
+                                <fa-icon [icon]="seccion"></fa-icon>
+                                Guardar esta sección</button>
+                        </div>
+                    </div>
+                  </form>
+                </div><!-- termina  Elementos didacticos -->
+                <div class="tab-pane fade  texto-card"  style="-webkit-box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);
+                        -moz-box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);
+                        box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);"
+                     id="criterios_panel" role="tabpanel" aria-labelledby="criterios_tab">
+                    <h3 class="text-center"> <fa-icon [icon]="graduacion"></fa-icon> Criterios de evaluación</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group row">
+                                <div class="col-md-3 col-form-label text-right my-auto">
+                                    <label for="criterio" >Criterio de evaluación:</label>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="input-group texto-card">
+                                        <input  [(ngModel)]="this.criterio_apoyo"
+                                               type="text" class="form-control texto-card" id="criterio" name="criterio"
+                                               placeholder="Nombre del criterio de evaluación" required>
+                                    </div>
+                                    <small id="help-criterio" class="form-text font-italic text-danger text-muted">Ejemplo: Participación, Trabajo en equipo, entre otros.</small>
+                                </div>
+                                <div class="col-md-1 col-form-label text-right my-auto">
+                                    <label for="valor" >Valor:</label>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="input-group texto-card">
+                                        <input [(ngModel)]="this.valor_criterio_apoyo"
+                                              type="number" class="form-control texto-card" id="valor" name="valor"
+                                               placeholder="valor %" required><span class="mt-2 ml-1 texto-acompana">%</span>
+                                    </div>
+                                </div>
+                            </div>  <!-- fin  criterio de evaluacion  -->
+                            <div class="form-group row">
+                                <div class="col-md-4 col-form-label text-right my-auto">
+                                    <label for="instrumento" >Instrumento de evaluación:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="input-group texto-card">
+                                        <input  [(ngModel)]="this.instrumentocriterio_apoyo"
+                                               type="text" class="form-control texto-card" id="instrumento" name="instrumento"
+                                               placeholder="Nombre del instrumento de evaluación" required>
+                                    </div>
+                                </div>
+                            </div>  <!-- fin  instrumnto  de evaluacion  -->
+                            <div class="form-group row text-center">
+                                <div class="col-md-12 col-form-label text-center my-auto">
+                                    <button (click)="add_criterio()"
+                                        class="btn btn-primary btn-enviar texto-form texto-card">
+                                       Agregar criterio</button>
+                                </div>
+                            </div>  <!-- fin  boton agrega instrumento  de evaluacion  -->
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <table class="table table-striped table-hover">
+                                        <thead>
+                                        <tr class="text-center">
+                                            <th>No.</th>
+                                            <th>Criterio</th>
+                                            <th>Valor</th>
+                                            <th>Instrumento de evaluación</th>
+                                            <th>cancelar</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody *ngIf="criterios_evaluacion.length > 0; else criterioLista" >
+                                        <tr class="text-center" *ngFor="let criterio of criterios_evaluacion; let i = index;">
+                                            <td>{{i +1 }}</td>
+                                            <td>{{ criterio.NOMBRE_CRITERIO }}</td>
+                                            <td>{{criterio.VALOR_CRITERIO}}%</td>
+                                            <td>{{ criterio.INSTRUMENTO_DE_EVALUACION }}</td>
+                                            <!-- BOTONES DE ACCION  -->
+                                            <td>
+                                                <button (click)="borrar_criterio(i)"
+                                                    class="btn btn-sm btn-light">
+                                                    <fa-icon [icon]="cancel"></fa-icon>
+                                                </button>
+                                            </td>
+                                            <!-- FIN BOTONES DE ACCION  -->
+                                        </tr>
+                                        </tbody>
+                                        <ng-template #criterioLista>
+                                            <tbody>
+                                            <tr>
+                                                <td colspan="5" class="text-center texto-card">
+                                                    No se encontraron registros
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </ng-template>
+
+                                    </table>
+                                </div>
+                            </div><!-- fin tabla -->
+                        </div> <!-- lado izq -->
+                    </div> <!-- renglon 1-->
+                    <br>
+                    <div class="form-group">
+                        <div class="col-md-4 text-center offset-4">
+                            <br><br>
+                            <button   class="btn btn-ghost-danger btn-lg btn-enviar2 texto-form texto-card btn-block"
+                                      (click)="guardar_criterios_evaluacion()" >
+                                <fa-icon [icon]="seccion"></fa-icon>
+                                Guardar esta sección</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade text-center texto-card"  style="-webkit-box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);
+                        -moz-box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);
+                        box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);"
+                     id="competencias_panel" role="tabpanel" aria-labelledby="competencias_tab">
+                    <h3>Competencias a desarrollar</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group row">
+                                <div class="col-md-3 col-form-label text-right my-auto">
+                                    <label for="competencia" >Descripción:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="input-group texto-card">
+                                        <textarea [(ngModel)]="this.competencia_apoyo"
+                                            style="resize: none"  rows="4"
+                                            placeholder="Escribe la descripcion de la competencia"
+                                            class="form-control texto-card"  name="competencia"
+                                            id="competencia"  required></textarea>
+                                    </div>
+                                </div>
+                            </div>  <!-- fin  criterio de evaluacion  -->
+                            <div class="form-group row text-center">
+                                <div class="col-md-12 col-form-label text-center my-auto">
+                                    <button  (click)="add_competencia()"
+                                        class="btn btn-primary btn-enviar texto-form texto-card">
+                                        Agregar competencia</button>
+                                </div>
+                            </div>  <!-- fin  boton agrega instrumento  de evaluacion  -->
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <table class="table table-striped table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th class="text-justify" ><fa-icon [icon]="cup"></fa-icon> Competencias</th>
+                                            <th class="text-center">cancelar</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody *ngIf="competencias.length > 0; else elseCompetencias">
+                                        <tr  *ngFor="let competencia of competencias; let i = index;"
+                                            class="text-justify">
+                                            <td>{{competencia.TEXTO_COMPETENCIA}}</td>
+                                            <!-- BOTONES DE ACCION  -->
+                                            <td class="text-center">
+                                                <button (click)="borrar_competencia(i)"
+                                                    class="btn btn-sm btn-light">
+                                                    <fa-icon [icon]="cancel"></fa-icon>
+                                                </button>
+                                            </td>
+                                            <!-- FIN BOTONES DE ACCION  -->
+                                        </tr>
+                                        </tbody>
+                                        <ng-template #elseCompetencias>
+                                            <tbody>
+                                            <tr>
+                                                <td colspan="2" class="text-center texto-card">
+                                                    No se encontraron registros
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </ng-template>
+                                    </table>
+                                </div>
+                            </div><!-- fin tabla -->
+                        </div> <!-- lado izq -->
+                    </div> <!-- renglon 1-->
+                    <br>
+                    <div class="form-group">
+                        <div class="col-md-4 text-center offset-4">
+                            <br><br>
+                            <button   class="btn btn-ghost-danger btn-lg btn-enviar2 texto-form texto-card btn-block"
+                                      (click)="guardar_competencias()" >
+                                <fa-icon [icon]="seccion"></fa-icon>
+                                Guardar esta sección</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade text-center texto-card"  style="-webkit-box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);
+                        -moz-box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);
+                        box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);"
+                     id="fuentes_panel" role="tabpanel" aria-labelledby="fuentes_tab">
+                    <h3>Fuentes de información</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group row">
+                                <div class="col-md-3 col-form-label text-right my-auto">
+                                    <label for="fuente_info" >Descripción:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="input-group texto-card">
+                                        <textarea [(ngModel)]="this.fuente_informacion_apoyo"
+                                            style="resize: none"  rows="4"
+                                            placeholder="Escribe una fuente de Información"
+                                            class="form-control texto-card"  name="fuente_info"
+                                            id="fuente_info"  required></textarea>
+                                    </div>
+                                </div>
+                            </div>  <!-- fin  criterio de evaluacion  -->
+                            <div class="form-group row text-center">
+                                <div class="col-md-12 col-form-label text-center my-auto">
+                                    <button   (click)="add_fuente_informacion()"
+                                        class="btn btn-primary btn-enviar texto-form texto-card">
+                                        Agregar fuente de información</button>
+                                </div>
+                            </div>  <!-- fin  boton agrega fuente-->
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <table class="table table-striped table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th class="text-justify" ><fa-icon [icon]="link"></fa-icon> Fuentes de información</th>
+                                            <th class="text-center">cancelar</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody *ngIf="this.fuentes_informacion.length >0; else elseFuentes">
+                                        <tr *ngFor="let fuente of fuentes_informacion; let i = index"
+                                            class="text-justify">
+                                            <td>{{fuente.TEXTO_FUENTE}}</td>
+                                            <!-- BOTONES DE ACCION  -->
+                                            <td class="text-center">
+                                                <button (click)="borrar_fuente_informacion(i)"
+                                                    class="btn btn-sm btn-light">
+                                                    <fa-icon [icon]="cancel"></fa-icon>
+                                                </button>
+                                            </td>
+                                            <!-- FIN BOTONES DE ACCION  -->
+                                        </tr>
+
+                                        </tbody>
+                                        <ng-template #elseFuentes>
+                                            <tbody>
+                                            <tr>
+                                                <td colspan="2" class="text-center">
+                                                    No se encontraron registros
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </ng-template>
+                                    </table>
+                                </div>
+                            </div><!-- fin tabla -->
+                        </div> <!-- lado izq -->
+                    </div> <!-- renglon 1-->
+                    <br>
+                    <div class="form-group">
+                        <div class="col-md-4 text-center offset-4">
+                            <br><br>
+                            <button   class="btn btn-ghost-danger btn-lg btn-enviar2 texto-form texto-card btn-block"
+                                      (click)="guardar_fuentes_informacion()" >
+                                <fa-icon [icon]="seccion"></fa-icon>
+                                Guardar esta sección</button>
+                        </div>
+                    </div>
+                </div>
+<!--                fin seccion-->
+                <div class="tab-pane fade text-center texto-card"  style="-webkit-box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);
+                        -moz-box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);
+                        box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);"
+                     id="comentarios_panel" role="tabpanel" aria-labelledby="comentarios_tab">
+                    <h3>Comentarios</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group row">
+                                <div class="col-md-3 col-form-label text-right my-auto">
+                                    <label for="comentario" >Comentario:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="input-group texto-card">
+                                        <textarea [(ngModel)]="this.comentario"
+                                                  style="resize: none"  rows="3"
+                                                  placeholder="Escribe la descripcion de la competencia"
+                                                  class="form-control texto-card"  name="comentario"
+                                                  id="comentario"  required></textarea>
+                                    </div>
+                                </div>
+                            </div>  <!-- fin  criterio de evaluacion  -->
+                            <div class="form-group row text-center">
+                                <div class="col-md-12 col-form-label text-center my-auto">
+                                    <button  (click)="add_comentario()"
+                                             class="btn btn-primary btn-enviar texto-form texto-card">
+                                        Agregar comentario</button>
+                                </div>
+                            </div>  <!-- fin  boton agrega instrumento  de evaluacion  -->
+                            <div class="row" *ngFor="let comentario of comentarios; let i =index">
+                                <div class="card col-8 offset-2 mb-1" style="width: 18rem;">
+                                    <div class="card-body px-0">
+                                            <h6 class="card-subtitle mb-2"
+                                            [ngClass]="{'text-right texto-nombre-user': this.pk_participante_sistema == comentario['participante']['PK_PARTICIPANTE_CADO'],
+                                            'text-left color-plata': this.pk_participante_sistema != comentario['participante']['PK_PARTICIPANTE_CADO']}">
+                                              <!--  [ngClass]="{'text-right':
+                                            this.pk_participante_sistema ==comentario['participante']['PK_PARTICIPANTE_CADO'],
+                                                'text-text-left':
+                                                this.pk_participante_sistema != comentario['participante']['PK_PARTICIPANTE_CADO'],
+                                                }">-->
+                                            {{comentario['participante']['usuario']['NOMBRE']}}
+                                            {{comentario['participante']['usuario']['PRIMER_APELLIDO']}}
+                                            {{comentario['participante']['usuario']['SEGUNDO_APELLIDO']}}</h6>
+                                        <p class="card-text text-justify">{{comentario['TEXTO_COMENTARIO']}}
+                                        <span class="color-plata text-right float-right">
+                                            <br>
+                                            {{comentario['FECHA_REGISTRO'] | date:'dd/MM/yyyy - HH:mm  ' }}
+                                        </span>
+                                        </p>
+
+                                        <!--                                                <a href="#" class="card-link">Card link</a>-->
+                                        <!--                                                <a href="#" class="card-link">Another link</a>-->
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div> <!-- lado izq -->
+                    </div> <!-- renglon 1-->
+                    <br>
+                    <!--<div class="form-group">
+                        <div class="col-md-4 text-center offset-4">
+                            <br><br>
+                            <button   class="btn btn-ghost-danger btn-lg btn-enviar2 texto-form texto-card btn-block"
+                                      (click)="guardar_competencias()" >
+                                <fa-icon [icon]="seccion"></fa-icon>
+                                Guardar esta sección</button>
+                        </div>
+                    </div>-->
+                </div>
+<!--                otra seccion-->
+            </div>
+        </div>
+
+    </div>  <!-- fin row -->
+<!--</div> &lt;!&ndash; fin container &ndash;&gt;-->
+<!-- INICIO VENTANA MODAL DE CARGA -->
+<div bsModal #loaderModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-hidden="false"
+     [config]="{backdrop: 'static',keyboard: false}" [style.display]="this.display">
+    <!--[config]="{backdrop: 'static',keyboard: false}">-->
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content"
+             style="background-color: rgba(51, 51, 51, 0.8); background-clip: padding-box; border: 1px solid rgba(0, 0, 0, 0);">
+            <app-loader></app-loader>
+        </div>
+    </div>
+</div>
+<!-- FIN VENTANA MODAL DE CARGA -->
+
+
+<!-- Inicio ventana modal para add de periodos -->
+<div bsModal #capturaTema="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="col-8 mx-auto modal-dialog-centered " role="document">
+        <div class="modal-content border-1 bg-light pb-3">
+            <div class="modal-header ">
+                <h4 class="modal-title text-center mx-auto ">Agregar nuevo tema</h4>
+                <button type="button" class="close ml-0" (click)="capturaTema.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- fin header -->
+            <!-- cuerpo de captura del un periodo -->
+            <div class="modal-body">
+                <!-- nombre -->
+                <div class="form-group row">
+                    <div class="col-md-2 col-form-label text-right my-auto">
+                        <label for="nombre_tema" >Nombre del tema:</label>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="input-group texto-card">
+                            <input [(ngModel)]="this.contenido_modal.nombre_tema"
+                                type="text"
+                                   class="form-control texto-card" id="nombre_tema" name="nombre_tema"
+                                   placeholder="Escriba el nombre del tema" required>
+                        </div>
+                    </div>
+                </div><!-- fin  nombre tema-->
+                <div class="form-group row">
+                    <div class="col-md-3 col-form-label text-right my-auto">
+                        <label for="actividad" >Actividad de aprendizaje:</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="input-group texto-card">
+                            <input [(ngModel)]="this.contenido_modal.actividad_aprendizaje"
+                                   type="text" class="form-control texto-card" id="actividad" name="actividad"
+                                   placeholder="Escriba la actividad de aprendizaje del tema" required>
+                        </div>
+                    </div>
+                </div><!-- fin  actividad-->
+                <div class="form-group row">
+                    <div class="col-md-3 col-form-label text-right my-auto">
+                        <label for="tiempo_actividad" >Tiempo programado<span class="texto-acompana">(hrs)</span>:</label>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="input-group texto-card">
+                            <input [(ngModel)]="this.contenido_modal.tiempo_horas"
+                                type="number" class="form-control texto-card" id="tiempo_actividad" name="tiempo_actividad"
+                                   placeholder="Tiempo" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-form-label text-center my-auto">
+                        <button (click)="add_contenido_tematico()"
+                            class="btn btn-outline-primary btn-enviar texto-form texto-card">
+                            Guardar tema</button>
+                        <button   (click)="capturaTema.hide()"
+                                  class="btn btn-danger btn-enviar texto-form texto-card">
+                            Cancelar</button>
+                    </div>
+                </div> <!-- fin  tiempo y botones-->
+
+            </div>
+            <!-- fin body  -->
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<!--  Fin ventana modal PARA add -->
+<!-- Inicio ventana modal para editar de periodos -->
+<div bsModal #modificaTema="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="col-8 mx-auto modal-dialog-centered " role="document">
+        <div class="modal-content border-1 bg-light pb-3">
+            <div class="modal-header ">
+                <h4 class="modal-title text-center mx-auto ">Modificar tema</h4>
+                <button type="button" class="close ml-0" (click)="modificaTema.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- fin header -->
+            <!-- cuerpo de captura del un periodo -->
+            <div class="modal-body">
+                <!-- nombre -->
+                <div class="form-group row">
+                    <div class="col-md-2 col-form-label text-right my-auto">
+                        <label for="nombre_tema2" >Nombre del tema:</label>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="input-group texto-card">
+                            <input [(ngModel)]="this.contenido_modal.nombre_tema"
+                                   type="text"
+                                   class="form-control texto-card" id="nombre_tema2" name="nombre_tema"
+                                   placeholder="Escriba el nombre del tema" required>
+                        </div>
+                    </div>
+                </div><!-- fin  nombre tema-->
+                <div class="form-group row">
+                    <div class="col-md-3 col-form-label text-right my-auto">
+                        <label for="actividad2" >Actividad de aprendizaje:</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="input-group texto-card">
+                            <input [(ngModel)]="this.contenido_modal.actividad_aprendizaje"
+                                   type="text" class="form-control texto-card" id="actividad2" name="actividad"
+                                   placeholder="Escriba la actividad de aprendizaje del tema" required>
+                        </div>
+                    </div>
+                </div><!-- fin  actividad-->
+                <div class="form-group row">
+                    <div class="col-md-3 col-form-label text-right my-auto">
+                        <label for="tiempo_actividad2" >Tiempo programado<span class="texto-acompana">(hrs)</span>:</label>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="input-group texto-card">
+                            <input [(ngModel)]="this.contenido_modal.tiempo_horas"
+                                   type="number" class="form-control texto-card" id="tiempo_actividad2" name="tiempo_actividad"
+                                   placeholder="Tiempo" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-form-label text-center my-auto">
+                        <button (click)="update_edit_contenido_tematico()"
+                                class="btn btn-outline-warning btn-enviar texto-form texto-card">
+                            Modificar tema</button>
+                        <button   (click)="modificaTema.hide()"
+                                  class="btn btn-danger btn-enviar texto-form texto-card">
+                            Cancelar</button>
+                    </div>
+                </div> <!-- fin  tiempo y botones-->
+
+            </div>
+            <!-- fin body  -->
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<!--  Fin ventana modal PARA EDITAR -->
+
+<!--<pre>{{this.curso | json }}</pre>-->
+
+
+<pre>{{this.contenido_modal | json }}</pre>
+<pre>{{this.contenido_tematico | json }}</pre>
+<pre>{{this.ficha | json }}</pre>
+<!--<pre>{{this.validado | json }}</pre>-->

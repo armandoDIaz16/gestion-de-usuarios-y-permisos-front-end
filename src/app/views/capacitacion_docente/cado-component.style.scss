@@ -1,0 +1,260 @@
+/*************************generales *************************/
+*{
+}
+.texto-card{
+    font-size: 1rem;
+}
+.texto-form{
+    font-weight: bold;
+}
+.hr-vertical{
+
+    border:         none;
+    border-left:    1px solid hsla(200, 10%, 50%,100);
+    height:         85%;
+    width:          1px;
+}
+.btn-success:hover{
+    background-color: rgb(0, 88, 107);
+}
+button:disabled {
+    cursor: not-allowed;
+    pointer-events: all !important;
+}
+.color-plata{
+    color:#a1a4a7;
+}
+/*************************fin generales*************************/
+
+/************************CURRICULUM************************/
+
+.btn.btn-menu-cv{
+    border-width: 0;
+}
+.btn.btn-menu-cv.active {
+    border-style: solid;
+    border-width: 0px 0px 4px 0px; /* 25px top, 10px right, 4px bottom and 35px left */
+    border-color:  rgb(21, 85, 145);
+    box-shadow:  0 0 0 rgba(21, 111, 176, 0.98);
+}
+.btn-menu-cv:focus{
+    border-style: solid;
+    border-width: 0px 0px 4px 0px; /* 25px top, 10px right, 4px bottom and 35px left */
+    border-color:  rgb(21, 85, 145);
+    box-shadow:  0 0 0 rgba(21, 111, 176, 0.98);
+    //background-color: rgb(21, 85, 145);
+    //box-shadow:  0 0 0 0.2rem rgba(21, 111, 176, 0.98);
+    //color: #fffdfe;
+}
+.texto-menu-cv{
+    font-size:  0.9375rem;
+    //color:#a1a4a7;
+}
+.size-img-cv
+{
+    width: 8.6875rem;
+    height: 8.125rem;
+}
+.texto-foto:hover{
+    color: rgb(29,125,217);
+}
+#biografia.ng-valid:not(form){
+    border-left: none !important;
+}
+#biografia.ng-invalid:not(form){
+    border-left: none !important;
+}
+.color-blanco{
+    color: #fffdfe;
+}
+
+.color-azul{
+    background-color:  rgb(21, 85, 145);
+}
+ .line-azul{
+     border-style: solid;
+     border-width: 0px 0px 10px 0px; /* 25px top, 10px right, 4px bottom and 35px left */
+     border-color:  rgb(21, 85, 145);
+     box-shadow:  0 0 0 rgba(21, 111, 176, 0.98);
+ }
+.texto_lg_cv{
+    font-size:  1rem;
+}
+
+/******************************FIN CV*************************/
+/******************************INICIA VISTA CUROS CONVOCATORIA*************************/
+.nombre_curso {
+    color: #ffe599;
+    font-weight: bold;
+    //color: #073763;
+    //color: rgb(29,125,217);
+    //color:  #52143e;
+ }
+.color_header{
+    background-color: #073763;
+    //background-color:  #52143e;
+}
+.color_icon{
+    color: #085394;
+    //background-color:  #52143e;
+}
+.color_blanco{
+    color:#ffffff;
+    //color: #073763;
+}
+.bg-contenido-conv{
+    background-color: #eeeeee;
+    color: #085394;
+}
+.contenido-tittle-conv{
+    color: #085394;
+}
+.contenido-tittle-conv:hover{
+    color:  #073763;
+}
+.contenido-tittle-conv:active{
+    color: rgb(29,125,217);
+}
+/******************************TERMINA VISTA CUROS CONVOCATORIA*************************/
+.texto-nombre-user{
+color: rgb(29,125,217);
+}
+
+
+.color-plata:hover{
+    color: #7a7d80;
+}
+.hr-margin {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+.texto-instructor{
+    font-size: 0.875rem;
+}
+.size-img{
+    width: 15.6875rem;
+    height: 8.125rem;
+}
+.border-card{
+    border-radius: 0;
+}
+a.btn.bg-white:hover{
+    background-color: rgb(32,168,216) !important;
+}
+
+.texto_label_cord{
+    font-size:  1.125rem;
+}
+.texto_lg_cord{
+     font-size:  1.25rem;
+ }
+
+.texto_ficha_cord{
+     font-size:  1.5625rem;
+}
+a:hover {
+    text-decoration: none;
+}
+.btn-link:hover{
+    text-decoration: none;
+}
+
+
+.contenido-tittle{
+    color: rgb(255, 253, 254);
+}
+.contenido-tittle:hover{
+    color: #222222;
+}
+.contenido-tittle:active{
+    color: #545454;
+}
+.btn-contenido-edit{
+    color: rgb(255, 253, 254);
+}
+.btn-contenido-edit:hover{
+    color: #ffec00;
+}
+.btn-contenido-edit:active{
+    color: #dcaa1a;
+}
+.btn-contenido-delete{
+    color: rgb(255, 253, 254);
+}
+.btn-contenido-delete:hover{
+    color: rgb(255, 77, 87);
+}
+.btn-contenido-delete:active{
+    color: #b6000b;
+}
+
+.bg-contenido{
+    background-color: rgb(21, 111, 176);
+    color: #fffdfe;
+}
+
+.texto-acompana{
+    font-size:1.125rem;
+    font-weight: bold;
+
+}
+
+.btn-success{
+    background-color:rgb(0,119,145) ;
+    //border-radius: 0;
+}
+
+.btn-menu{
+     border-radius: 0;
+    box-shadow:  0 0 0 rgba(21, 111, 176, 0.98);
+}
+
+.btn-enviar{
+    //border-radius: 0;
+}
+.btn-enviar2{
+    border-radius: 0;
+}
+
+.btn.active{
+    //background-color: rgb(21, 85, 145);
+    //box-shadow:  0 0 0 0.2rem rgba(21, 111, 176, 0.98);
+    //color: #fffdfe;
+    border-style: solid;
+    border-width: 0px 0px 0px 6px; /* 25px top, 10px right, 4px bottom and 35px left */
+    border-color:  rgb(21, 85, 145);
+    box-shadow:  0 0 0 rgba(21, 111, 176, 0.98);
+}
+.btn.btn-menu{
+    border-width: 0;
+}
+.btn.btn-menu.active {
+    border-style: solid;
+    border-width: 0px 0px 0px 6px; /* 25px top, 10px right, 4px bottom and 35px left */
+    border-color:  rgb(21, 85, 145);
+    box-shadow:  0 0 0 rgba(21, 111, 176, 0.98);
+}
+.btn-menu:focus{
+    border-style: solid;
+    border-width: 0px 0px 0px 6px; /* 25px top, 10px right, 4px bottom and 35px left */
+    border-color:  rgb(21, 85, 145);
+    box-shadow:  0 0 0 rgba(21, 111, 176, 0.98);
+    //background-color: rgb(21, 85, 145);
+    //box-shadow:  0 0 0 0.2rem rgba(21, 111, 176, 0.98);
+    //color: #fffdfe;
+}
+
+
+.text-success{
+    color:rgb(0,119,145) ;
+
+}
+p-accordionTab{
+    font-size: 20px;
+
+
+}
+.ui-accordion-header{
+font-size: 30px;
+}
+

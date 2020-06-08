@@ -1,0 +1,898 @@
+<h2 class="text-left"> Ficha Técnica </h2>
+
+
+<!--<div class="container mt-5">-->
+<div class="row">
+    <div class="col-2 mt-5">
+        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <!--                <div class="row">-->
+            <a class="btn btn-menu  texto-card active" id="v-pills-home-tab" data-toggle="pill"
+               href="#v-pills-home" role="tab"aria-controls="v-pills-home"
+               aria-selected="true">Descripción del Servicio</a>
+            <!--                </div>-->
+            <!--                <div class="row">-->
+            <a class="btn btn-menu  texto-card mt-3" id="v-pills-profile-tab" data-toggle="pill"
+               href="#v-pills-profile" role="tab" aria-controls="v-pills-profile"
+               aria-selected="false">Información del Servicio</a>
+            <!--                </div>-->
+            <!--                <div class="row">-->
+            <a class="btn btn-menu  texto-card mt-3" id="v-pills-messages-tab" data-toggle="pill"
+               href="#v-pills-messages" role="tab" aria-controls="v-pills-messages"
+               aria-selected="false">Contenido Temático</a>
+            <!--                </div>-->
+            <!--                <div class="row">-->
+            <a class="btn btn-menu  texto-card mt-3" id="v-pills-settings-tab" data-toggle="pill"
+               href="#v-pills-settings" role="tab" aria-controls="v-pills-settings"
+               aria-selected="false">Elementos Didácticos</a>
+            <!--                </div>-->
+            <!--                <div class="row">-->
+            <a class="btn btn-menu  texto-card mt-3" id="criterios_tab" data-toggle="pill"
+               href="#criterios_panel" role="tab" aria-controls="criterios_panel"
+               aria-selected="false">Criterios de Evaluación</a>
+            <!--                </div>-->
+            <!--                <div class="row">-->
+            <a class="btn btn-menu  texto-card mt-3" id="competencias_tab" data-toggle="pill"
+               href="#competencias_panel" role="tab" aria-controls="competencias_panel"
+               aria-selected="false">Competencias</a>
+            <!--                </div>-->
+            <!--                <div class="row">-->
+            <a class="btn btn-menu  texto-card mt-3" id="fuentes_tab" data-toggle="pill"
+               href="#fuentes_panel" role="tab" aria-controls="fuentes_panel"
+               aria-selected="false">Fuentes de información</a>
+            <!--                </div>-->
+            <!--                <div class="row">-->
+            <a class="btn btn-menu  texto-card mt-3" id="comentarios_tab" data-toggle="pill"
+               href="#comentarios_panel" role="tab" aria-controls="fuentes_panel"
+               aria-selected="false">Comentarios</a>
+            <!--                </div>-->
+            <br>
+            <div class="row mb-5 mt-5">
+                <div class="col-md-12 text-center">
+
+
+                    <button #btnregistro  class="btn btn-ghost-danger btn-enviar2 texto-form texto-card btn-block"
+                           (click)="descargar_ficha_pdf()" >
+                        DESCARGAR FICHA
+                        <fa-icon [icon]="pdf"></fa-icon>
+                    </button>
+                    <button #btnregistro  class="btn btn-ghost-success btn-enviar2 texto-form texto-card  btn-block"
+                            (click)="autorizar_ficha()" >
+                        <fa-icon [icon]="aceptar"></fa-icon>
+                        AUTORIZAR</button>
+                    <button #btnregistro  class="btn btn-ghost-secondary btn-enviar2 texto-form texto-card  btn-block"
+                            (click)="rechazar_ficha()" >
+                        <fa-icon [icon]="bad"></fa-icon>
+                        RECHAZAR</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div  class="col-10 mt-3 mb-5">
+        <div class="tab-content" id="v-pills-tabContent">
+            <div class="tab-pane fade show active text-center"
+                 style="-webkit-box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);
+                        -moz-box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);
+                        box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);"
+                 id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                <!-- inicia contenido de descripcion del servicio -->
+                <h3>Descripción del servicio</h3>
+                <hr>
+                <div class="form-group col-sm-12 texto-card">
+                    <div class="form-group">
+                        <div class="text-left my-auto">
+                            <label class="texto-form texto_label_cord" for="nombrecurso" >Nombre del Servicio:</label>
+                        </div>
+                        <div class="text-left my-auto">
+                            <p class="texto_ficha_cord"
+                            id="nombrecurso" >{{this.curso.nombre_curso}}</p>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <div class="text-left my-auto">
+                            <label class="texto-form texto_label_cord" for="nombrecurso" >
+                                Instructor(es):</label>
+                        </div>
+                        <div class="text-left my-auto">
+                            <p class="texto_lg_cord text-justify" style="text-transform: capitalize"
+                               id="nombre_instrcutor" >
+                                    <span *ngFor="let instructor of this.curso.instructores; let i = index;">
+                                        {{instructor['NOMBRE']  | lowercase }}
+                                        {{ instructor['PRIMER_APELLIDO']  | lowercase }}
+                                        {{instructor['SEGUNDO_APELLIDO']  | lowercase }}<span *ngIf="this.curso.instructores.length >1 && i+1 < this.curso.instructores.length">,</span>
+                                        <!--                                        <span *ngIf="this.curso.instructores.length >1">,</span>-->
+                                    </span>
+                            </p>
+                        </div>
+                    </div>
+                    <!--                                fin nombre del curso-->
+                    <div class="form-group">
+                        <div class="text-left my-auto">
+                            <label  class="texto-form texto_label_cord" for="introduccion" >
+                                Introducción:</label>
+                        </div>
+                        <div *ngIf="!(this.ficha.introduccion == ''); else elseIntro;"
+                            class="text-left my-auto">
+                            <p class="texto_lg_cord text-justify"
+                                   id="introduccion" >{{this.ficha.introduccion}}</p>
+                        </div>
+                        <ng-template #elseIntro>
+                            <div class="text-left my-auto text-secondary">
+                                <p class="text-justify texto_lg_cord">
+                                    No se ha registrado la Introducción
+                                </p>
+                            </div>
+                        </ng-template>
+
+
+                    </div>
+                    <!--                                fin introduccion del curso-->
+                    <div class="form-group">
+                        <div class="text-left my-auto">
+                            <label  class="texto-form texto_label_cord" for="justificacion" >
+                                Justificación:</label>
+                        </div>
+                        <div *ngIf="!(this.ficha.justificacion == ''); else elseJus; "
+                            class="text-left my-auto">
+                            <p class="texto_lg_cord text-justify"
+                               id="justificacion" >{{this.ficha.justificacion}}</p>
+                        </div>
+                        <ng-template #elseJus>
+                            <div class="text-left my-auto text-secondary">
+                                <p class="text-justify texto_lg_cord">
+                                    No se ha registrado la Justificación
+                                </p>
+                            </div>
+                        </ng-template>
+                    </div>
+                    <!--                                fin justificacion del curso-->
+                    <div class="form-group">
+                        <div class="text-left my-auto">
+                            <label  class="texto-form texto_label_cord" for="objetivo_general" >
+                                Objetivo general:</label>
+                        </div>
+                        <div *ngIf="!(this.ficha.objetivo_general == ''); else elseObj; "
+                            class="text-left my-auto">
+                            <p class="texto_lg_cord text-justify"
+                               id="objetivo_general" >{{this.ficha.objetivo_general}}</p>
+                        </div>
+                        <ng-template #elseObj>
+                            <div class="text-left my-auto text-secondary">
+                                <p class="text-justify texto_lg_cord">
+                                    No se ha registrado el Objetivo general
+                                </p>
+                            </div>
+                        </ng-template>
+                    </div>
+                    <!--                                fin justificacion del curso-->
+                </div>
+
+
+            </div> <!-- termina contenido de descripcion del servicio -->
+            <div class="tab-pane fade text-center texto-card" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab"
+                 style="-webkit-box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);
+-moz-box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);
+box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);">
+                <!-- inicia contenido de Información del servicio -->
+                <h3> <fa-icon [icon]="info"></fa-icon> Información del servicio</h3>
+                <hr>
+                <div class="row">
+                    <div class="card col-md-11 ml-5">
+                        <!--                fin card header-->
+                        <div class="card-body pb-0">
+                            <div class="row">
+                                <div class="form-group col-sm-12 text-center mb-0">
+                                    <div class="form-group row">
+                                        <div class="text-left">
+                                            <label  class="texto-form texto_label_cord mb-2" for="tipos" >
+                                                Tipo de Servicio: &nbsp;</label>
+                                        </div>
+                                        <div *ngIf="!(this.texto_tipo_servicio == ''); else elseTipo"
+                                             class="text-left my-auto">
+                                            <p class="texto_lg_cord text-justify"
+                                               id="tipos" >
+                                                {{this.texto_tipo_servicio}}
+                                            </p>
+                                        </div>
+                                        <ng-template #elseTipo>
+                                            <div class="text-left my-auto text-secondary">
+                                                <p class="text-justify texto_lg_cord">
+                                                    No se ha registrado el tipo de servicio
+                                                </p>
+                                            </div>
+                                        </ng-template>
+                                    </div>
+                                    <!--                                tipo ser del curso-->
+                                </div>
+                                <!--       termina el row-->
+                            </div>
+                            <!--                    </form>-->
+                            <!--                    fin form-->
+                        </div>
+                        <!--                fin card body-->
+                    </div>
+                    <!--            termina la tarjeta entera-->
+                </div>
+                <div class="row">
+                    <div class="card col-md-11 ml-5">
+                        <!--                fin card header-->
+                        <div class="card-body pb-0">
+                            <div class="row">
+                                <div class="form-group col-sm-12 text-center mb-0">
+                                    <div class="form-group row">
+                                        <div class="text-left">
+                                            <label  class="texto-form texto_label_cord mb-2" for="Instituto" >
+                                                Instituto, Centro o Unidad: &nbsp;</label>
+                                        </div>
+                                            <div *ngIf="!(this.texto_instucion =='') ; else elseIn; "
+                                                 class="text-left my-auto">
+                                                <p class="texto_lg_cord text-justify"
+                                                   id="Instituto" >{{this.texto_instucion}}</p>
+                                            </div>
+                                            <ng-template #elseIn>
+                                                <div class="text-left my-auto text-secondary">
+                                                    <p class="text-justify texto_lg_cord">
+                                                        No se ha registrado Instituto, Centro o Unidad
+                                                    </p>
+                                                </div>
+                                            </ng-template>
+                                    </div>
+                                    <!--                                fin justificacion del curso-->
+                                    <div class="form-group row">
+                                        <div class="text-left">
+                                            <label  class="texto-form texto_label_cord mb-2" for="campus" >
+                                                Campus: &nbsp;</label>
+                                        </div>
+                                            <div *ngIf="!(this.texto_campus == '') else elseCampus;"
+                                                 class="text-left my-auto">
+                                                <p class="texto_lg_cord text-justify"
+                                                   id="campus" >{{this.texto_campus}}</p>
+                                            </div>
+                                            <ng-template #elseCampus>
+                                                <div class="text-left my-auto text-secondary">
+                                                    <p class="text-justify texto_lg_cord">
+                                                        Recargue la página para visualizar el campus
+                                                    </p>
+                                                </div>
+                                            </ng-template>
+                                    </div>
+                                    <!--                                fin justificacion del curso-->
+                                    <div class="form-group row">
+                                        <div class="text-left">
+                                            <label  class="texto-form texto_label_cord mb-2" for="edificio" >
+                                                Edificio: &nbsp;</label>
+                                        </div>
+                                            <div
+                                                 class="text-left my-auto">
+                                                <p class="texto_lg_cord text-justify"
+                                                   id="edificio" >
+                                                    {{this.texto_edificio}}
+                                                    </p>
+                                            </div>
+                                    </div>
+                                    <!--                                fin edificio del curso-->
+                                    <div class="form-group row">
+                                        <div class="text-left">
+                                            <label  class="texto-form texto_label_cord mb-2" for="lugar" >
+                                                Espacio: &nbsp;</label>
+                                        </div>
+                                            <div
+                                                 class="text-left my-auto">
+                                                <p class="texto_lg_cord text-justify"
+                                                   id="lugar" >
+                                                    {{ this.curso.espacio}}
+                                                    </p>
+                                            </div>
+                                    </div>
+                                    <!--                                fin lugar  del curso-->
+                                </div>
+                                <!--       termina el row-->
+                            </div>
+                            <!--                    </form>-->
+                            <!--                    fin form-->
+                        </div>
+                        <!--                fin card body-->
+                    </div>
+                    <!--            termina la tarjeta entera-->
+                </div>
+                <div class="row">
+                    <div class="card col-md-11 ml-5">
+                        <!--                fin card header-->
+                        <div class="card-body pb-0">
+                            <div class="row">
+                                <div class="form-group col-sm-12 text-center mb-0">
+                                    <div class="form-group row">
+                                        <div class="text-left">
+                                            <label  class="texto-form texto_label_cord mb-2" for="periodo" >
+                                                Periodo: &nbsp;</label>
+                                        </div>
+                                        <span *ngFor="let periodo of this.periodosArray;">
+                                            <div *ngIf="periodo['PK_PERIODO_CADO'] == this.curso.pk_periodo; "
+                                                 class="text-left my-auto">
+                                                <p class="texto_lg_cord text-justify"
+                                                   id="periodo" >
+                                                    {{periodo['NOMBRE_PERIODO']}}
+                                                    {{periodo['FECHA_INICIO'] | date:'MMMM'| uppercase }}
+                                                    {{periodo['FECHA_INICIO'] | date:'yyyy' }} -
+                                                    {{periodo['FECHA_FIN'] | date:'MMMM' | uppercase }}
+                                                    {{periodo['FECHA_FIN'] | date:'yyyy' }}
+                                                </p>
+                                            </div>
+                                        </span>
+                                    </div>
+                                    <!--                                fin justificacion del curso-->
+                                    <div class="form-group row">
+                                        <div class="text-left">
+                                            <label  class="texto-form texto_label_cord mb-2" for="campus" >
+                                                Área académica: &nbsp;</label>
+                                        </div>
+                                            <div
+                                                 class="text-left my-auto">
+                                                <p class="texto_lg_cord text-justify"
+                                                   id="area" >{{this.area_texto }}</p>
+                                            </div>
+                                    </div>
+                                    <!--                                fin justificacion del curso-->
+                                    <div class="form-group row">
+                                        <div class="text-left">
+                                            <label  class="texto-form texto_label_cord mb-2" for="tipo_curso" >
+                                                Tipo: &nbsp;</label>
+                                        </div>
+                                            <div
+                                                 class="text-left my-auto">
+                                                <p class="texto_lg_cord text-justify"
+                                                   id="tipo_curso" >
+                                                    {{this.texto_tipo_curso}}
+                                                    </p>
+                                            </div>
+                                    </div>
+                                    <!--                                fin edificio del curso-->
+                                    <div class="form-group row">
+                                        <div class="text-left">
+                                            <label  class="texto-form texto_label_cord mb-2" for="cupo" >
+                                                Cupo: &nbsp;</label>
+                                        </div>
+                                        <div
+                                            class="text-left my-auto">
+                                            <p class="texto_lg_cord text-justify"
+                                               id="cupo" >
+                                                {{ this.curso.cupo_actual + '/' + this.curso.cupo_maximo }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!--                                fin cupo  del curso-->
+                                    <div class="form-group row">
+                                        <div class="text-left">
+                                            <label  class="texto-form texto_label_cord mb-2" for="estaus" >
+                                                Estado: &nbsp;</label>
+                                        </div>
+                                        <div
+                                            class="text-left my-auto">
+                                            <p class="texto_lg_cord text-justify"
+                                               id="estaus" >
+                                                {{ this.texto_estado_curso }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!--                                fin estado  del curso-->
+                                </div>
+                                <!--       termina el row-->
+                            </div>
+                            <!--                    </form>-->
+                            <!--                    fin form-->
+                        </div>
+                        <!--                fin card body-->
+                    </div>
+                    <!--            termina la tarjeta entera-->
+                </div>
+                <div class="row">
+                    <div class="card col-md-11 ml-5">
+                        <!--                fin card header-->
+                        <div class="card-body pb-0">
+                            <div class="row">
+                                <div class="form-group col-sm-12 text-center mb-0">
+                                    <div class="form-group row">
+                                        <div class="text-left">
+                                            <label  class="texto-form texto_label_cord mb-2" for="fechai" >
+                                                Fecha de Inicio: &nbsp;</label>
+                                        </div>
+                                            <div
+                                                 class="text-left my-auto">
+                                                <p class="texto_lg_cord text-justify"
+                                                   id="fechai" >
+                                                    {{this.curso.fecha_inicio | date :'fullDate' }}
+                                                </p>
+                                            </div>
+
+                                    </div>
+                                    <!--                                fin fecha inicio del curso-->
+                                    <div class="form-group row">
+                                        <div class="text-left">
+                                            <label  class="texto-form texto_label_cord mb-2" for="fechaf" >
+                                                Fecha de Finalización: &nbsp;</label>
+                                        </div>
+                                        <div
+                                            class="text-left my-auto">
+                                            <p class="texto_lg_cord text-justify"
+                                               id="fechaf" >
+                                                {{this.curso.fecha_fin | date :'fullDate' }}
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                    <!--                                fin justificacion del curso-->
+                                    <div class="form-group row">
+                                        <div class="text-left">
+                                            <label  class="texto-form texto_label_cord mb-2" for="horai" >
+                                                Hora de Incio: &nbsp;</label>
+                                        </div>
+                                        <div
+                                            class="text-left my-auto">
+                                            <p class="texto_lg_cord text-justify"
+                                               id="horai" >
+                                                {{this.curso.hora_inicio | date :'hh:mm aa' }}
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                    <!--                                fin justificacion del curso-->
+                                    <div class="form-group row">
+                                        <div class="text-left">
+                                            <label  class="texto-form texto_label_cord mb-2" for="horaf" >
+                                                Hora de Finalización: &nbsp;</label>
+                                        </div>
+                                        <div
+                                            class="text-left my-auto">
+                                            <p class="texto_lg_cord text-justify"
+                                               id="horaf" >
+                                                {{this.curso.hora_fin | date :'hh:mm aaa' }}
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                    <!--                                fin justificacion del curso-->
+                                    <div class="form-group row">
+                                        <div class="text-left">
+                                            <label  class="texto-form texto_label_cord mb-2" for="total" >
+                                                Total de horas: &nbsp;</label>
+                                        </div>
+                                        <div
+                                            class="text-left my-auto">
+                                            <p class="texto_lg_cord text-justify"
+                                               id="total" >
+                                                {{this.curso.total_horas+' hrs'}}
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                    <!--                                fin justificacion del curso-->
+                                </div>
+                                <!--       termina el row-->
+                            </div>
+                            <!--                    </form>-->
+                            <!--                    fin form-->
+                        </div>
+                        <!--                fin card body-->
+                    </div>
+                    <!--            termina la tarjeta entera-->
+                </div>
+                <div class="row">
+                    <div class="card col-md-11 ml-5">
+                        <!--                fin card header-->
+                        <div class="card-body pb-0">
+                            <div class="row">
+                                <div class="form-group col-sm-12 text-center mb-0">
+                                    <div class="form-group row">
+                                        <div class="text-left">
+                                            <label  class="texto-form texto_label_cord mb-2" for="tipos" >
+                                                Imagen del curso: &nbsp;</label>
+                                        </div>
+                                        <div class="col-4 px-0 pb-1 pt-1">
+                                            <img    *ngIf="this.curso.imagen_curso != null; else elseImg"
+                                                    class="card-img-top img-fluid border border-secondary size-img"
+                                                    src="{{this.ficha_service.get_url_back(this.curso.imagen_curso)}}"
+                                            >
+
+                                            <!--                                        <img class="card-img-top img-fluid"  src="assets/img/capacitacion_docente/curso1.png" alt="Card image cap">-->
+                                        </div>
+
+                                        <ng-template #elseImg>
+                                            <div class="text-left my-auto  text-secondary">
+                                                <p class="text-justify texto_lg_cord">
+                                                    No se ha registrado la imagen del cuso
+                                                </p>
+                                            </div>
+                                        </ng-template>
+                                    </div>
+                                    <!--                                tipo ser del curso-->
+                                </div>
+                                <!--       termina el row-->
+                            </div>
+                            <!--                    </form>-->
+                            <!--                    fin form-->
+                        </div>
+                        <!--                fin card body-->
+                    </div>
+                    <!--            termina la tarjeta entera-->
+                </div>
+            </div><!-- termina Información de descripcion del servicio -->
+            <div class="tab-pane fade text-center texto_lg_cord"   style="-webkit-box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);
+                        -moz-box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);
+                        box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);"
+                 id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                <!-- inicia contenido temático servicio -->
+                <h3>Contenido temático</h3>
+                <hr>
+                <br>
+                <div class="form-group row texto_lg_cord">
+                    <div class="col-md-12">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr class="text-center">
+                                <th>No.</th>
+                                <th>Nombre tema</th>
+                                <th>Tiempo programado(Hrs)</th>
+                                <th>Actividad de aprendizaje</th>
+                                <th>Recursos del tema</th>
+                            </tr>
+                            </thead>
+                            <tbody *ngIf="contenido_tematico.length > 0; else elseContenido" >
+                            <tr  *ngFor="let contenido of contenido_tematico; let i = index;">
+                                <td class="text-center">{{'Tema'+(i+1)}}</td>
+                                <td class="text-justify">{{ contenido['NOMBRE_TEMA'] }}</td>
+                                <td class="text-center">{{contenido['TIEMPO_TEMA'] + 'hrs'}}</td>
+                                <td class="text-justify">{{ contenido['ACTIVIDAD_APRENDIZAJE'] }}</td>
+                                <!-- drop down-->
+                                <td class="pl-0">
+                                    <div class="nav-item dropdown"  dropdown placement="bottom right">
+                                        <!--                                            <div class="bg-white">-->
+                                        <a class="btn btn-outline-primary btn-enviar2 btn-block bg-white"
+                                           data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
+                                           dropdownToggle (click)="false">
+                                            <fa-icon [icon]="folder"></fa-icon>  Recursos
+                                            <fa-icon style="margin-left:0.3125rem" [icon]="flechaabajo"></fa-icon>
+                                        </a>
+                                        <!--                                            </div>-->
+                                        <div *ngIf="contenido['archivo_contenido_tematico'].length >0;  else elseArchivos">
+                                            <!--                                            <div>-->
+                                            <div class="dropdown-menu dropdown-menu-right" *dropdownMenu
+                                                 aria-labelledby="simple-dropdown">
+                                                <div class="dropdown-header text-center">
+                                                    <strong>Recursos adjuntados<fa-icon class="btn-link btn-sm" [icon]="adjunto">
+                                                    </fa-icon>
+                                                    </strong>
+                                                </div>
+                                                <!--                                                    <div *ngFor="contenido_tematico.archivo_contenido_tematico;"-->
+                                                <div *ngFor="let archivo of this.contenido['archivo_contenido_tematico'];"
+                                                     class="dropdown-item text-center">
+                                                    <!--                                                        href="http://tudominio.es/descargas-pdf/pdf-descargable.pdf"-->
+                                                    <a
+                                                        href="{{this.ficha_service.get_url_back(archivo['RUTA_ARCHIVO'])}}"
+                                                        target="_blank"> {{ archivo['NOMBRE_ARCHIVO']  | slice:0:25 }} </a>
+                                                </div >
+                                            </div>
+                                        </div>
+                                        <ng-template #elseArchivos>
+                                            <div>
+                                                <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+                                                    <div class="dropdown-header text-center">
+                                                        <strong>Recursos adjuntados<fa-icon class="btn-link btn-sm" [icon]="adjunto">
+                                                        </fa-icon>
+                                                        </strong>
+                                                    </div>
+                                                    <div class="dropdown-item">
+                                                        sin elementos adjuntos
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </div>
+                                </td>
+                                <!-- FIN dropdown-->
+                            </tr>
+                            </tbody>
+                            <ng-template #elseContenido>
+                                <tbody>
+                                <tr>
+                                    <td colspan="5" class="text-center texto_lg_cord">
+                                        No se encontraron registros
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </ng-template>
+
+                        </table>
+                    </div>
+                </div><!-- fin tabla -->
+                <br><br>
+            </div><!-- termina contenido temático  del servicio -->
+            <div class="tab-pane fade  texto-card" id="v-pills-settings" role="tabpanel"
+                 aria-labelledby="v-pills-settings-tab"  style="-webkit-box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);
+                        -moz-box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);
+                        box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);">
+                <!-- inicia Elementos didacticos-->
+                <form [formGroup]="formaElementosDidacticos" ngFormOptions="" autocomplete="off">
+                    <h3 class="text-center">Elementos didácticos</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-10 offset-1">
+                            <br>
+
+                            <div class="form-group row jumbotron border py-4">
+                                <h4 class="col-12 text-left">Elementos de apoyo</h4>
+                                <hr class="col-12 text-dark">
+                                <div *ngIf="elementos_didacticos.length > 0; else elseDidacticoLista">
+
+                                    <p *ngFor="let elemento of elementos_didacticos; let i =index"
+                                          class="texto-card mx-1 mt-1">
+                                             <fa-icon class="text-dark" style="font-size: 10px;" [icon]="opcion"></fa-icon>
+                                               <span class="texto_lg_cord">
+                                                   {{elemento['NOMBRE_MATERIAL']}}
+                                               </span>
+                                    </p>
+                                    <br>
+                                </div>
+                                <ng-template #elseDidacticoLista>
+                                    <div class="col-md-11 p-2 offset-1" >
+                                        <div class="alert alert-secondary text-center texto_lg_cord" role="alert">
+                                            No se encontraron registros
+                                        </div>
+                                    </div>
+                                </ng-template>
+
+                            </div><!-- fin boton -->
+                        </div> <!-- lado izq -->
+                    </div> <!-- renglon 1-->
+                    <br>
+
+                </form>
+            </div><!-- termina  Elementos didacticos -->
+            <div class="tab-pane fade  texto_lg_cord"  style="-webkit-box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);
+                        -moz-box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);
+                        box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);"
+                 id="criterios_panel" role="tabpanel" aria-labelledby="criterios_tab">
+                <h3 class="text-center"> <fa-icon [icon]="graduacion"></fa-icon> Criterios de evaluación</h3>
+                <hr>
+                <div class="row">
+                    <div class="col-11">
+                        <br>
+                        <div class="form-group row">
+                            <div class="col-md-11 offset-1">
+                                <table class="table  table-hover">
+                                    <thead>
+                                    <tr class="text-center">
+                                        <th>No.</th>
+                                        <th>Criterio</th>
+                                        <th>Valor</th>
+                                        <th>Instrumento de evaluación</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody *ngIf="criterios_evaluacion.length > 0; else criterioLista" >
+                                    <tr  *ngFor="let criterio of criterios_evaluacion; let i = index;">
+                                        <td class="text-center">{{i +1 }}</td>
+                                        <td class="text-justify">{{ criterio['NOMBRE_CRITERIO'] }}</td>
+                                        <td class="text-center">{{criterio['VALOR_CRITERIO']}}%</td>
+                                        <td class="text-center">{{ criterio['INSTRUMENTO_DE_EVALUACION'] }}</td>
+                                    </tr>
+                                    </tbody>
+                                    <ng-template #criterioLista>
+                                        <tbody>
+                                        <tr>
+                                            <td colspan="4" class="text-center texto_lg_cord">
+                                                No se encontraron registros
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </ng-template>
+
+                                </table>
+                            </div>
+                        </div><!-- fin tabla -->
+                    </div> <!-- lado izq -->
+                </div> <!-- renglon 1-->
+                <br><br>
+            </div>
+            <div class="tab-pane fade text-center texto_lg_cord"  style="-webkit-box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);
+                        -moz-box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);
+                        box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);"
+                 id="competencias_panel" role="tabpanel" aria-labelledby="competencias_tab">
+                <h3>Competencias a desarrollar</h3>
+                <hr>
+                <br>
+                <div class="row">
+                    <div class="col-11">
+                        <div class="form-group row">
+                            <div class="col-md-11 offset-1">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-justify" > Competencias</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody *ngIf="competencias.length > 0; else elseCompetencias">
+                                    <tr  *ngFor="let competencia of competencias; let i = index;"
+                                         class="text-justify">
+                                        <td class="row">
+                                            <span class="col-1 text-center my-auto px-0"><fa-icon [icon]="cup"></fa-icon>
+                                            </span>
+                                            <span class="col-11 px-0">
+                                            {{competencia['TEXTO_COMPETENCIA']}}
+                                            </span>
+                                        </td>
+
+                                    </tr>
+                                    </tbody>
+                                    <ng-template #elseCompetencias>
+                                        <tbody>
+                                        <tr>
+                                            <td colspan="1" class="text-center texto_lg_cord">
+                                                No se encontraron registros
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </ng-template>
+                                </table>
+                            </div>
+                        </div><!-- fin tabla -->
+                    </div> <!-- lado izq -->
+                </div> <!-- renglon 1-->
+                <br> <br>
+            </div>
+            <div class="tab-pane fade text-center texto_lg_cord"  style="-webkit-box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);
+                        -moz-box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);
+                        box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);"
+                 id="fuentes_panel" role="tabpanel" aria-labelledby="fuentes_tab">
+                <h3>Fuentes de información</h3>
+                <hr>
+                <br>
+                <div class="row">
+                    <div class="col-11">
+                        <div class="form-group row">
+                            <div class="col-md-11 offset-1">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-justify" > Fuentes de información</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody *ngIf="this.fuentes_informacion.length >0; else elseFuentes">
+                                    <tr *ngFor="let fuente of fuentes_informacion; let i = index"
+                                        class="text-justify">
+                                        <td class="row">
+                                            <span class="text-center col-1 my-auto px-0">
+                                                <fa-icon [icon]="link"></fa-icon>
+                                            </span>
+                                            <span class="col-11 px-0">
+                                            {{fuente['TEXTO_FUENTE']}}
+                                            </span>
+                                        </td>
+                                    </tr>
+
+                                    </tbody>
+                                    <ng-template #elseFuentes>
+                                        <tbody>
+                                        <tr>
+                                            <td colspan="1" class="text-center">
+                                                No se encontraron registros
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </ng-template>
+                                </table>
+                            </div>
+                        </div><!-- fin tabla -->
+                    </div> <!-- lado izq -->
+                </div> <!-- renglon 1-->
+                <br>  <br>
+            </div>
+<!--            fin seccion-->
+            <div class="tab-pane fade text-center texto-card"  style="-webkit-box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);
+                        -moz-box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);
+                        box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);"
+                 id="comentarios_panel" role="tabpanel" aria-labelledby="comentarios_tab">
+                <h3>Comentarios</h3>
+                <hr>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group row">
+                            <div class="col-md-3 col-form-label text-right my-auto">
+                                <label for="comentario" >Comentario:</label>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="input-group texto-card">
+                                        <textarea [(ngModel)]="this.comentario"
+                                                  style="resize: none"  rows="3"
+                                                  placeholder="Escribe la descripcion de la competencia"
+                                                  class="form-control texto-card"  name="comentario"
+                                                  id="comentario"  required></textarea>
+                                </div>
+                            </div>
+                        </div>  <!-- fin  criterio de evaluacion  -->
+                        <div class="form-group row text-center">
+                            <div class="col-md-12 col-form-label text-center my-auto">
+                                <button  (click)="add_comentario()"
+                                         class="btn btn-primary btn-enviar texto-form texto-card">
+                                    Agregar comentario</button>
+                            </div>
+                        </div>  <!-- fin  boton agrega instrumento  de evaluacion  -->
+                        <div class="row" *ngFor="let comentario of comentarios; let i =index">
+                            <div class="card col-8 offset-2 mb-1" style="width: 18rem;">
+                                <div class="card-body px-0">
+                                    <h6 class="card-subtitle mb-2  texto-nombre-user"
+                                        [ngClass]="{'text-right': this.pk_participante_sistema == comentario['participante']['PK_PARTICIPANTE_CADO'],
+                                            'text-left color-plata': this.pk_participante_sistema != comentario['participante']['PK_PARTICIPANTE_CADO']}">
+                                        <!--  [ngClass]="{'text-right':
+                                      this.pk_participante_sistema ==comentario['participante']['PK_PARTICIPANTE_CADO'],
+                                          'text-text-left':
+                                          this.pk_participante_sistema != comentario['participante']['PK_PARTICIPANTE_CADO'],
+                                          }">-->
+                                        {{comentario['participante']['usuario']['NOMBRE']}}
+                                        {{comentario['participante']['usuario']['PRIMER_APELLIDO']}}
+                                        {{comentario['participante']['usuario']['SEGUNDO_APELLIDO']}}</h6>
+                                    <p class="card-text text-justify">{{comentario['TEXTO_COMENTARIO']}}
+                                        <span class="color-plata text-right float-right">
+                                            <br>
+                                            {{comentario['FECHA_REGISTRO'] | date:'dd/MM/yyyy - HH:mm  ' }}
+                                        </span>
+                                    </p>
+
+                                    <!--                                                <a href="#" class="card-link">Card link</a>-->
+                                    <!--                                                <a href="#" class="card-link">Another link</a>-->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+
+                            <!--<span *ngFor="let comentario of comentarios; let i =index"
+                                  class="col-md-12 badge badge-pill badge-secondary texto-card mx-1 mt-1">
+                                {{comentario['TEXTO_COMENTARIO']}}
+                                <button   (click)="borrar_elemento_didactico(comentario['PK_COMENTARIO_CADO'])"
+                                          class="btn btn-secondary  texto-form texto-card">
+                                  <fa-icon [icon]="cancel"></fa-icon>
+                                 </button>
+
+                          </span>-->
+                            <br>
+
+                        </div><!-- fin tabla -->
+                    </div> <!-- lado izq -->
+                </div> <!-- renglon 1-->
+                <br>
+                <!--<div class="form-group">
+                    <div class="col-md-4 text-center offset-4">
+                        <br><br>
+                        <button   class="btn btn-ghost-danger btn-lg btn-enviar2 texto-form texto-card btn-block"
+                                  (click)="guardar_competencias()" >
+                            <fa-icon [icon]="seccion"></fa-icon>
+                            Guardar esta sección</button>
+                    </div>
+                </div>-->
+            </div>
+            <!--                otra seccion-->
+        </div>
+
+    </div>
+
+</div>  <!-- fin row -->
+<!--</div> &lt;!&ndash; fin container &ndash;&gt;-->
+<!-- INICIO VENTANA MODAL DE CARGA -->
+<div bsModal #loaderModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-hidden="false"
+     [config]="{backdrop: 'static',keyboard: false}" [style.display]="this.display">
+    <!--[config]="{backdrop: 'static',keyboard: false}">-->
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content"
+             style="background-color: rgba(51, 51, 51, 0.8); background-clip: padding-box; border: 1px solid rgba(0, 0, 0, 0);">
+            <app-loader></app-loader>
+        </div>
+    </div>
+</div>
+<!--<div *ngIf="this.ng_on_init"></div>-->
+<!-- FIN VENTANA MODAL DE CARGA -->
+<!--<pre>{{this.curso | json }}</pre>-->
+<!--<pre>{{this.contenido_modal | json }}</pre>-->
+<!--<pre>{{this.contenido_tematico | json }}</pre>-->
+<!--<pre>{{this.ficha | json }}</pre>-->
+<!--<pre>{{this.validado | json }}</pre>-->

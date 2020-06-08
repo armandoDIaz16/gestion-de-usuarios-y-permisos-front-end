@@ -1,0 +1,598 @@
+<h2 class="text-center ">Convocatoria de cursos  </h2>
+
+
+<div class="container mt-5 px-0" style="margin-bottom: 7.25rem">
+
+    <div  class="row mb-1">
+        <div class="col-12">
+            <div>
+                <div>
+                    <!--                <div class="container container-fluid px-0">-->
+<!--                    <div class="row">-->
+<!--                        <h3 class="text-success font-weight-bold" >Actualización Profesional</h3>-->
+<!--                    </div>-->
+                    <!--                comienzan cards-->
+                    <!--                <div>-->
+                    <div  *ngIf="this.flagConvocatoria == true; else elseCurso"
+                          class="card-group">
+<!--                        <div *ngIf="curso[0].CURSOSAP.length>0; else elseCurso"  class="card-group">-->
+                        <!--                        fin curso-->
+                        <div  *ngFor="let curso of this.lista_periodos_cursos; let i = index;"  class="col-3 my-2">
+<!--                            <div *ngFor="let item of curso[0].CURSOSAP" class="col-3 my-2">-->
+                            <div class="card border-card"
+                            style="-webkit-box-shadow: 0px 8px 6px -4px rgba(186,186,186,1);
+                                -moz-box-shadow: 0px 8px 6px -4px rgba(186,186,186,1);
+                                box-shadow: 0px 8px 6px -4px rgba(186,186,186,1);">
+                                <div class="card-body p-0 texto-card">
+                                    <div class="row px-3">
+                                        <div class="col-12 px-0 pb-1 pt-0">
+                                            <img *ngIf="curso[0]['RUTA_IMAGEN_CURSO'] !=null; else elseImg"
+                                                 class="card-img-top img-fluid size-img"
+                                                 src="{{this.curso_service.get_url_back(curso[0]['RUTA_IMAGEN_CURSO'])}}"
+                                                 alt="Imagen curso">
+                                            <!-- else imagen-->
+                                            <ng-template #elseImg>
+                                                <img class="card-img-top img-fluid size-img"
+                                                     src="assets/img/capacitacion_docente/curso1.png"
+                                                     alt="Imagen curso">
+                                            </ng-template>
+                                        </div>
+                                    </div>
+                                    <!--                                    FIN RENGLON IMG-->
+                                    <!--                                    <div class="row text-left px-2">-->
+                                    <!--                                        <div class="col-12">-->
+                                    <div class="row text-left pl-3">
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div *ngIf="curso[0]['NOMBRE_CURSO'].length>30; else elseNombre"
+                                                     class="col-12">
+                                                    <label *ngIf="curso[0]['NOMBRE_CURSO'].length>55; else elseNombre2"
+                                                           class="font-weight-bold">
+                                                        {{curso[0]['NOMBRE_CURSO'] | slice:0:55 }}
+                                                        ...</label>
+                                                    <ng-template #elseNombre2>
+                                                        <label class="font-weight-bold">
+                                                            {{curso[0]['NOMBRE_CURSO'] }}</label>
+                                                    </ng-template>
+                                                </div>
+                                                <ng-template #elseNombre>
+                                                    <div  class="col-12">
+                                                        <label  class="font-weight-bold">
+                                                            {{curso[0]['NOMBRE_CURSO']}}</label>
+                                                    </div>
+                                                    <div  class="col-12">
+                                                        &nbsp;
+                                                    </div>
+                                                </ng-template>
+                                            </div>
+                                            <!--                                                    fin curso-->
+                                            <div *ngFor="let instructor of curso[0]['INSTRUCTORES']" class="row">
+<!--                                                <div class="col-2 text-right px-1" >-->
+<!--                                                    <label>Por:</label>-->
+<!--                                                </div>-->
+                                                <div class="col-12">
+                                                    <label *ngIf="instructor['NOMBRE_INSTRUCTOR'].length>26; else elseIns;"
+                                                           class="font-weight-bold texto-instructor">
+                                                        <a
+                                                            [routerLink]="['..','de3ec0aa2234aa1e3ee275bbc715c6c9',instructor['PK_PARTICIPANTE_IMPARTE']]"
+                                                        >{{instructor['NOMBRE_INSTRUCTOR'] | slice:0:26  }}...</a></label>
+                                                    <ng-template #elseIns>
+                                                        <label class="font-weight-bold texto-instructor">
+                                                            <a [routerLink]="['..','de3ec0aa2234aa1e3ee275bbc715c6c9',instructor['PK_PARTICIPANTE_IMPARTE']]"
+                                                            >{{instructor['NOMBRE_INSTRUCTOR']  }}</a></label>
+                                                    </ng-template>
+                                                </div>
+                                            </div>
+                                            <!--                                                    fin instructor-->
+                                            <div class="row">
+                                                <!--<div class="col-2 text-right px-1">
+                                                    <label>Área:</label>
+                                                </div>-->
+                                                <div class="col-12">
+                                                    <label class="texto-instructor">{{curso[0]['NOMBRE_AREA']==null
+                                                        ?('Para todas las áreas' | uppercase):(curso[0]['NOMBRE_AREA'] | uppercase) }}</label>
+                                                </div>
+                                            </div>
+                                            <!--                                                    fin area-->
+                                            <div class="row">
+<!--                                                <div class="col-2  text-right px-1">-->
+<!--                                                    <label>-->
+<!--                                                        Fecha:</label>-->
+<!--                                                </div>-->
+                                                <div class="col-12">
+                                                    <label class="">
+                                                        <fa-icon [icon]="fecha"></fa-icon>
+                                                        {{curso[0]['FECHA_INICIO'] | date:'dd/MM/yyyy'}} -
+                                                        {{curso[0]['FECHA_FIN'] | date:'dd/MM/yyyy'}}  </label>
+                                                    <!--    12/12/2019 - 12/01/2020-->
+                                                </div>
+                                            </div>
+                                            <!--                                                    fin fecha -->
+                                            <div class="row">
+<!--                                                <div class="col-2 text-right px-1">-->
+<!--                                                    <label>Hora:</label>-->
+<!--                                                </div>-->
+                                                <div class="col-12">
+                                                    <label class="">
+                                                        <fa-icon [icon]="hora" ></fa-icon>
+                                                        (24 hrs)
+                                                        {{curso[0]['HORA_INICIO'] | date:'HH:mm'}} -
+                                                        {{curso[0]['HORA_FIN'] | date:'HH:mm' }}
+                                                    </label>
+                                                    <!--                                                    9:00 am - 12:00 pm-->
+                                                </div>
+
+                                            </div>
+                                            <!--                                                    fin hora  -->
+                                            <div class="row">
+                                                <div class="col-12 color-plata" [ngSwitch]="curso[0]['TIPO_CURSO']">
+                                                    <!--<option [value]=1>Formación Docente</option>
+                                                    <option [value]=2>Actualización Profesional</option>
+                                                    <option [value]=3>Diplomado</option>-->
+                                                    <label *ngSwitchCase="1" class="" >
+                                                        {{ 'Formación Docente'  | uppercase }}
+                                                    </label>
+                                                    <label *ngSwitchCase="2" class="" >
+                                                        {{'Actualización Profesional' | uppercase }}
+                                                    </label>
+                                                    <label *ngSwitchCase="3" class="" >
+                                                        {{ 'Diplomado'  | uppercase }}
+                                                    </label>
+                                                    <!--                                                    9:00 am - 12:00 pm-->
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                            <div class="col-12">
+                                                <label *ngIf="curso[0]['CUPO_ACTUAL'] < curso[0]['CUPO_MAXIMO']; else elsecupo; " class="font-weight-bold">
+                                                    <fa-icon [icon]="people" ></fa-icon> &nbsp;
+                                                    {{curso[0]['CUPO_ACTUAL']}}/
+                                                    {{curso[0]['CUPO_MAXIMO']  }}
+                                                </label>
+                                                <ng-template #elsecupo>
+                                                    <label  class="font-weight-bold text-danger">
+                                                        <fa-icon [icon]="people" ></fa-icon> &nbsp;
+                                                        {{curso[0]['CUPO_ACTUAL']}}/
+                                                        {{curso[0]['CUPO_MAXIMO']  }}
+                                                    </label>
+                                                </ng-template>
+                                                <!--                                                    9:00 am - 12:00 pm-->
+                                            </div>
+                                            </div>
+                                            <!--                                                    fin tipo  -->
+                                            <!--                                                </div>-->
+                                            <!--                                            </div>-->
+                                        </div>
+                                    </div>
+                                    <!--                                    FIN RENGLON TEXTO-->
+                                    <!--                                    <div class="card-body p-0 texto-card">-->
+                                    <hr  class="hr-margin">
+                                    <!--<div class="row px-3">
+                                        <div class="col-6 px-1">
+                                            <button (click)="modificarCurso(item[0].PK_CAT_CURSO_CADO)"
+                                                    class="btn btn-link   my-1 btn-block"><fa-icon [icon]="edit"></fa-icon>Editar</button>
+                                        </div>
+                                        <div class="col-6 px-1">
+                                            <button (click)="eliminarCurso(item[0].PK_CAT_CURSO_CADO, item[0].ESTADO_CURSO)"
+                                                    class="btn btn-link my-1 btn-block"><fa-icon [icon]="delete"></fa-icon>Eliminar</button>
+                                        </div>
+                                    </div>-->
+                                    <!--                                    fin renglon 1 de botones-->
+                                    <div class="row px-3">
+                                        <div class="col-12">
+                                            <div class="nav-item dropdown" dropdown placement="bottom right">
+                                                <span *ngIf="this.tipo_participante == 4; else elseTipo">
+                                                    <a class="btn btn-link  my-1 btn-block" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
+                                                       dropdownToggle (click)="false">
+                                                        <fa-icon [icon]="info"></fa-icon>  Más información del Curso
+                                                    </a>
+                                                    <!--                                                coordinador es tipo 4-->
+                                                        <!--                                                    menu de opciones para coordinador-->
+                                                    <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+                                                        <a  class="dropdown-item"
+                                                            [routerLink]="['..','69f731dc339202af2c0f90fd1ec6fa43',curso[0] ['PK_CAT_CURSO_CADO']]"> Ver curso</a>
+                                                        <a  class="dropdown-item"
+                                                            [routerLink]="['..','0629dad63eedea217bbbf202c19ed531',curso[0]['PK_CAT_CURSO_CADO']]">Lista de Participantes</a>
+                                                    </div>
+                                                 </span>
+                                                <!--                                                else-->
+                                                <ng-template #elseTipo>
+                                                    <a class="btn btn-link  my-1 btn-block"
+                                                       [routerLink]="['..','69f731dc339202af2c0f90fd1ec6fa43',curso[0]['PK_CAT_CURSO_CADO']]">
+                                                        <fa-icon [icon]="info"></fa-icon>  Más información del Curso
+                                                    </a>
+                                                </ng-template>
+                                                <!--                                                fin else-->
+                                            </div>
+                                            <!--                                            fin menu opcines-->
+                                        </div>
+                                    </div>
+                                    <!--                                    fin renglon 2 de opciones-->
+                                </div>
+                            </div>
+                        </div>
+                        <!--             PRUEBA VERTICAL           fin curso-->
+                        <!--                        fin col 3-->
+                    </div>
+                    <!--                else curso, si no encuentra cursos-->
+                    <ng-template #elseCurso>
+                            <div class="text-center">
+                                <div class="alert alert-light text-center" role="alert">
+                                    <h4>No se encontraron cursos disponibles en este periodo</h4>
+                                </div>
+                            </div>
+                    </ng-template>
+                    <!--                </div>-->
+                    <!--fin actualizacion profesional -->
+                    <!--                </div>-->
+<!--                    <div  class="row">-->
+<!--                        <h3 class="font-weight-bold text-primary">Formación Docente</h3>-->
+<!--                    </div>-->
+
+                    <!--<div *ngIf="curso[0].CURSOSFD.length>0; else elseCurso2" class="card-group">
+                        &lt;!&ndash;                        fin curso&ndash;&gt;
+                        <div *ngFor="let item of curso[0].CURSOSFD" class="col-4 my-2">
+                            <div class="card">
+                                <div class="card-body p-0 texto-card">
+                                    <div class="row px-3">
+                                        <div class="col-12 px-0 pb-1 pt-0">
+                                            <img *ngIf="item[0].RUTA_IMAGEN_CURSO !=null; else elseImg"
+                                                 class="card-img-top img-fluid"
+                                                 src="{{this.curso_service.get_url_back(item[0].RUTA_IMAGEN_CURSO)}}"
+                                                 alt="Imagen curso">
+                                            &lt;!&ndash; else imagen&ndash;&gt;
+                                            <ng-template #elseImg>
+                                                <img class="card-img-top img-fluid"
+                                                     src="assets/img/capacitacion_docente/curso2.png"
+                                                     alt="Imagen curso">
+                                            </ng-template>
+                                        </div>
+                                    </div>
+                                    &lt;!&ndash;                                    FIN RENGLON IMG&ndash;&gt;
+                                    &lt;!&ndash;                                    <div class="row text-left px-2">&ndash;&gt;
+                                    &lt;!&ndash;                                        <div class="col-12">&ndash;&gt;
+                                    <div class="row text-left pl-3">
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div class="col-2 text-right px-1">
+                                                    <label>Curso:</label>
+                                                </div>
+                                                <div class="col-10">
+                                                    <label class="font-weight-bold">{{item[0].NOMBRE_CURSO }}</label>
+                                                </div>
+                                            </div>
+                                            &lt;!&ndash;                                                    fin curso&ndash;&gt;
+                                            <div *ngFor="let instructor of item[0].INSTRUCTORES" class="row">
+                                                <div class="col-2 text-right px-1" >
+                                                    <label>Por:</label>
+                                                </div>
+                                                <div class="col-10">
+
+                                                    <label  class="font-weight-bold"> <a
+                                                        [routerLink]="['..','de3ec0aa2234aa1e3ee275bbc715c6c9',instructor.PK_PARTICIPANTE_IMPARTE]"
+                                                    >{{instructor.NOMBRE_INSTRUCTOR }}</a></label>
+                                                </div>
+                                            </div>
+                                            &lt;!&ndash;                                                    fin instructor&ndash;&gt;
+                                            <div class="row">
+                                                <div class="col-2 text-right px-1">
+                                                    <label>Área:</label>
+                                                </div>
+                                                <div class="col-10">
+                                                    <label class="font-weight-bold">{{item[0].NOMBRE_AREA==null
+                                                        ?('Para todas las áreas' | uppercase):(item[0].NOMBRE_AREA | uppercase) }}</label>
+                                                </div>
+                                            </div>
+                                            &lt;!&ndash;                                                    fin area&ndash;&gt;
+                                            <div class="row">
+                                                <div class="col-2  text-right px-1">
+                                                    <label>
+                                                        Fecha:</label>
+                                                </div>
+                                                <div class="col-10">
+                                                    <label class="font-weight-bold"><fa-icon [icon]="fecha"></fa-icon>
+                                                        {{item[0].FECHA_INICIO | date:'dd/MM/yyyy'}} -
+                                                        {{item[0].FECHA_FIN | date:'dd/MM/yyyy'}}  </label>
+                                                    &lt;!&ndash;    12/12/2019 - 12/01/2020&ndash;&gt;
+                                                </div>
+                                            </div>
+                                            &lt;!&ndash;                                                    fin fecha &ndash;&gt;
+                                            <div class="row">
+                                                <div class="col-2 text-right px-1">
+                                                    <label>Hora:</label>
+                                                </div>
+                                                <div class="col-10">
+                                                    <label class="font-weight-bold">
+                                                        (24 hrs)
+                                                        <fa-icon [icon]="hora" ></fa-icon>
+                                                        {{item[0].HORA_INICIO | date:'HH:mm'}} -
+                                                        {{item[0].HORA_FIN | date:'HH:mm' }}
+                                                    </label>
+                                                    &lt;!&ndash;                                                    9:00 am - 12:00 pm&ndash;&gt;
+                                                </div>
+
+                                            </div>
+                                            &lt;!&ndash;                                                    fin hora  &ndash;&gt;
+                                            &lt;!&ndash;                                                </div>&ndash;&gt;
+                                            &lt;!&ndash;                                            </div>&ndash;&gt;
+                                        </div>
+                                    </div>
+                                    &lt;!&ndash;                                    FIN RENGLON TEXTO&ndash;&gt;
+                                    &lt;!&ndash;                                    <div class="card-body p-0 texto-card">&ndash;&gt;
+                                    <hr>
+                                    <div class="row px-3">
+                                        <div class="col-6 px-1">
+                                            <button (click)="modificarCurso(item[0].PK_CAT_CURSO_CADO)"
+                                                    class="btn btn-link   my-1 btn-block"><fa-icon [icon]="edit"></fa-icon>Editar</button>
+                                        </div>
+                                        <div class="col-6 px-1">
+                                            <button (click)="eliminarCurso(item[0].PK_CAT_CURSO_CADO, item[0].ESTADO_CURSO)"
+                                                    class="btn btn-link my-1 btn-block"><fa-icon [icon]="delete"></fa-icon>Eliminar</button>
+                                        </div>
+                                    </div>
+                                    &lt;!&ndash;                                    fin renglon 1 de botones&ndash;&gt;
+                                    <div class="row px-3">
+                                        <div class="col-12">
+                                            <div class="nav-item dropdown" dropdown placement="bottom right">
+                                                <a class="btn btn-link  my-1 btn-block" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
+                                                   dropdownToggle (click)="false">
+                                                    <fa-icon [icon]="info"></fa-icon>  Más opciones del Curso
+                                                </a>
+                                                &lt;!&ndash;                                                coordinador es tipo 4&ndash;&gt;
+                                                <div *ngIf="this.tipo_participante == 4; else elseTipo">
+                                                    &lt;!&ndash;                                                    menu de opciones para coordinador&ndash;&gt;
+                                                    <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+                                                        <a  class="dropdown-item"
+                                                            [routerLink]="['..','55522b2cdc0af2da326c79a3cbb63f47',item[0].PK_CAT_CURSO_CADO]">Ficha Técnica</a>
+                                                        <a  class="dropdown-item"
+                                                            [routerLink]="['..','0629dad63eedea217bbbf202c19ed531',item[0].PK_CAT_CURSO_CADO]">Lista de Participantes</a>
+                                                        &lt;!&ndash; <a  class="dropdown-item"
+                                                              [routerLink]="['..','7b44125ec5b3b7b61b000cdee93c6796']">Evaluaciones</a>&ndash;&gt;
+                                                        <a  class="dropdown-item"
+                                                            [routerLink]="['..','c3bfaea0f0bb5f3ebdc7a12e50013ca5',item[0].PK_CAT_CURSO_CADO]">Material del Curso</a>
+                                                    </div>
+                                                </div>
+                                                &lt;!&ndash;                                                else&ndash;&gt;
+                                                <ng-template #elseTipo>
+                                                    <div>
+                                                        <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+                                                            &lt;!&ndash; menu de opciones para participante&ndash;&gt;
+                                                            <a  class="dropdown-item"
+                                                                [routerLink]="['..','a8061fb3c2160acc4b456babcf74fe82',item[0].PK_CAT_CURSO_CADO]">Modificar Ficha Técnica</a>
+                                                            <a  class="dropdown-item"
+                                                                [routerLink]="['..','0629dad63eedea217bbbf202c19ed531',item[0].PK_CAT_CURSO_CADO]">Lista de Participantes</a>
+                                                            <a  class="dropdown-item"
+                                                                [routerLink]="['..','c3bfaea0f0bb5f3ebdc7a12e50013ca5',item[0].PK_CAT_CURSO_CADO]">Material del Curso</a>
+                                                        </div>
+                                                    </div>
+                                                </ng-template>
+                                                &lt;!&ndash;                                                fin else&ndash;&gt;
+                                            </div>
+                                            &lt;!&ndash;                                            fin menu opcines&ndash;&gt;
+                                        </div>
+                                    </div>
+                                    &lt;!&ndash;                                    fin renglon 2 de opciones&ndash;&gt;
+                                    &lt;!&ndash;                                        fin renglon botons&ndash;&gt;
+
+                                </div>
+                            </div>
+                        </div>
+
+                        &lt;!&ndash;                        fin col 3&ndash;&gt;
+                    </div>-->
+                    <!--<div *ngIf="curso[0]['CURSOSFD'].length>0; else elseCurso2"  class="card-group">
+                        &lt;!&ndash;                        fin curso&ndash;&gt;
+                        <div *ngFor="let item of curso[0]['CURSOSFD']" class="col-3 my-2">
+                            <div class="card border-card"
+                                 style="-webkit-box-shadow: 0px 8px 6px -4px rgba(186,186,186,1);
+                                -moz-box-shadow: 0px 8px 6px -4px rgba(186,186,186,1);
+                                box-shadow: 0px 8px 6px -4px rgba(186,186,186,1);">
+                                <div class="card-body p-0 texto-card">
+                                    <div class="row px-3">
+                                        <div class="col-12 px-0 pb-1 pt-0">
+                                            <img *ngIf="item[0]['RUTA_IMAGEN_CURSO'] !=null; else elseImg"
+                                                 class="card-img-top img-fluid size-img"
+                                                 src="{{this.curso_service.get_url_back(item[0].RUTA_IMAGEN_CURSO)}}"
+                                                 alt="Imagen curso">
+                                            &lt;!&ndash; else imagen&ndash;&gt;
+                                            <ng-template #elseImg>
+                                                <img class="card-img-top img-fluid size-img"
+                                                     src="assets/img/capacitacion_docente/curso1.png"
+                                                     alt="Imagen curso">
+                                            </ng-template>
+                                        </div>
+                                    </div>
+                                    &lt;!&ndash;                                    FIN RENGLON IMG&ndash;&gt;
+                                    &lt;!&ndash;                                    <div class="row text-left px-2">&ndash;&gt;
+                                    &lt;!&ndash;                                        <div class="col-12">&ndash;&gt;
+                                    <div class="row text-left pl-3">
+                                        <div class="col-12">
+                                            <div class="row">
+                                                &lt;!&ndash;                                                <div class="col-2 text-right px-1">&ndash;&gt;
+                                                &lt;!&ndash;                                                    <label>Curso:</label>&ndash;&gt;
+                                                &lt;!&ndash;                                                </div>&ndash;&gt;
+                                                <div *ngIf="item[0]['NOMBRE_CURSO'].length>30; else elseNombre"
+                                                     class="col-12">
+                                                    <label *ngIf="item[0]['NOMBRE_CURSO'].length>55; else elseNombre2"
+                                                           class="font-weight-bold">
+                                                        {{item[0]['NOMBRE_CURSO'] | slice:0:55 }}
+                                                        ...</label>
+                                                    <ng-template #elseNombre2>
+                                                        <label class="font-weight-bold">
+                                                            {{item[0]['NOMBRE_CURSO'] }}</label>
+                                                    </ng-template>
+                                                </div>
+                                                <ng-template #elseNombre>
+                                                    <div  class="col-12">
+                                                        <label  class="font-weight-bold">
+                                                            {{item[0]['NOMBRE_CURSO']}}</label>
+                                                    </div>
+                                                    <div  class="col-12">
+                                                        &nbsp;
+                                                    </div>
+                                                </ng-template>
+
+                                            </div>
+                                            &lt;!&ndash;                                                    fin curso&ndash;&gt;
+                                            <div *ngFor="let instructor of item[0].INSTRUCTORES" class="row">
+                                                &lt;!&ndash;                                                <div class="col-2 text-right px-1" >&ndash;&gt;
+                                                &lt;!&ndash;                                                    <label>Por:</label>&ndash;&gt;
+                                                &lt;!&ndash;                                                </div>&ndash;&gt;
+                                                <div class="col-12">
+                                                    <label *ngIf="instructor.NOMBRE_INSTRUCTOR.length>26; else elseIns;"
+                                                           class=" font-weight-bold texto-instructor">
+                                                        <a
+                                                            [routerLink]="['..','de3ec0aa2234aa1e3ee275bbc715c6c9',instructor.PK_PARTICIPANTE_IMPARTE]"
+                                                        >{{instructor.NOMBRE_INSTRUCTOR | slice:0:26  }}...</a></label>
+                                                    <ng-template #elseIns>
+                                                        <label class="font-weight-bold texto-instructor">
+                                                            <a [routerLink]="['..','de3ec0aa2234aa1e3ee275bbc715c6c9',instructor.PK_PARTICIPANTE_IMPARTE]"
+                                                            >{{instructor.NOMBRE_INSTRUCTOR  }}</a></label>
+                                                    </ng-template>
+                                                </div>
+                                            </div>
+                                            &lt;!&ndash;                                                    fin instructor&ndash;&gt;
+                                            <div class="row">
+                                                &lt;!&ndash;<div class="col-2 text-right px-1">
+                                                    <label>Área:</label>
+                                                </div>&ndash;&gt;
+                                                <div class="col-12">
+                                                    <label class="texto-instructor">{{item[0].NOMBRE_AREA==null
+                                                        ?('Para todas las áreas' | uppercase):(item[0].NOMBRE_AREA | uppercase) }}</label>
+                                                </div>
+                                            </div>
+                                            &lt;!&ndash;                                                    fin area&ndash;&gt;
+                                            <div class="row">
+                                                &lt;!&ndash;                                                <div class="col-2  text-right px-1">&ndash;&gt;
+                                                &lt;!&ndash;                                                    <label>&ndash;&gt;
+                                                &lt;!&ndash;                                                        Fecha:</label>&ndash;&gt;
+                                                &lt;!&ndash;                                                </div>&ndash;&gt;
+                                                <div class="col-12">
+                                                    <label class=""><fa-icon [icon]="fecha"></fa-icon>
+                                                        {{item[0].FECHA_INICIO | date:'dd/MM/yyyy'}} -
+                                                        {{item[0].FECHA_FIN | date:'dd/MM/yyyy'}}  </label>
+                                                    &lt;!&ndash;    12/12/2019 - 12/01/2020&ndash;&gt;
+                                                </div>
+                                            </div>
+                                            &lt;!&ndash;                                                    fin fecha &ndash;&gt;
+                                            <div class="row">
+                                                &lt;!&ndash;                                                <div class="col-2 text-right px-1">&ndash;&gt;
+                                                &lt;!&ndash;                                                    <label>Hora:</label>&ndash;&gt;
+                                                &lt;!&ndash;                                                </div>&ndash;&gt;
+                                                <div class="col-12">
+                                                    <label class="">
+                                                        (24 hrs)
+                                                        <fa-icon [icon]="hora" ></fa-icon>
+                                                        {{item[0].HORA_INICIO | date:'HH:mm'}} -
+                                                        {{item[0].HORA_FIN | date:'HH:mm' }}
+                                                    </label>
+                                                    &lt;!&ndash;                                                    9:00 am - 12:00 pm&ndash;&gt;
+                                                </div>
+
+                                            </div>
+                                            &lt;!&ndash;                                                    fin hora  &ndash;&gt;
+                                            &lt;!&ndash;                                                </div>&ndash;&gt;
+                                            &lt;!&ndash;                                            </div>&ndash;&gt;
+                                        </div>
+                                    </div>
+                                    &lt;!&ndash;                                    FIN RENGLON TEXTO&ndash;&gt;
+                                    &lt;!&ndash;                                    <div class="card-body p-0 texto-card">&ndash;&gt;
+                                    <hr>
+&lt;!&ndash;                                    <div class="row px-3">&ndash;&gt;
+&lt;!&ndash;                                        <div class="col-6 px-1">&ndash;&gt;
+&lt;!&ndash;                                            <button (click)="modificarCurso(item[0].PK_CAT_CURSO_CADO)"&ndash;&gt;
+&lt;!&ndash;                                                    class="btn btn-link   my-1 btn-block"><fa-icon [icon]="edit"></fa-icon>Editar</button>&ndash;&gt;
+&lt;!&ndash;                                        </div>&ndash;&gt;
+&lt;!&ndash;                                        <div class="col-6 px-1">&ndash;&gt;
+&lt;!&ndash;                                            <button (click)="eliminarCurso(item[0].PK_CAT_CURSO_CADO, item[0].ESTADO_CURSO)"&ndash;&gt;
+&lt;!&ndash;                                                    class="btn btn-link my-1 btn-block"><fa-icon [icon]="delete"></fa-icon>Eliminar</button>&ndash;&gt;
+&lt;!&ndash;                                        </div>&ndash;&gt;
+&lt;!&ndash;                                    </div>&ndash;&gt;
+                                    &lt;!&ndash;                                    fin renglon 1 de botones&ndash;&gt;
+                                    <div class="row px-3">
+                                        <div class="col-12">
+                                            <div class="nav-item dropdown" dropdown placement="bottom right">
+                                                <a class="btn btn-link  my-1 btn-block" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
+                                                   dropdownToggle (click)="false">
+                                                    <fa-icon [icon]="info"></fa-icon>  Más información del Curso
+                                                </a>
+                                                &lt;!&ndash;                                                coordinador es tipo 4&ndash;&gt;
+                                                <div *ngIf="this.tipo_participante == 4; else elseTipo">
+                                                    &lt;!&ndash;                                                    menu de opciones para coordinador&ndash;&gt;
+                                                    <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+                                                        <a  class="dropdown-item"
+                                                            [routerLink]="['..','55522b2cdc0af2da326c79a3cbb63f47',item[0].PK_CAT_CURSO_CADO]">Ficha Técnica</a>
+                                                        <a  class="dropdown-item"
+                                                            [routerLink]="['..','0629dad63eedea217bbbf202c19ed531',item[0].PK_CAT_CURSO_CADO]">Lista de Participantes</a>
+                                                        &lt;!&ndash; <a  class="dropdown-item"
+                                                              [routerLink]="['..','7b44125ec5b3b7b61b000cdee93c6796']">Evaluaciones</a>&ndash;&gt;
+                                                        <a  class="dropdown-item"
+                                                            [routerLink]="['..','c3bfaea0f0bb5f3ebdc7a12e50013ca5',item[0].PK_CAT_CURSO_CADO]">Material del Curso</a>
+                                                    </div>
+                                                </div>
+                                                &lt;!&ndash;                                                else&ndash;&gt;
+                                                <ng-template #elseTipo>
+                                                    <div>
+                                                        <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+                                                            &lt;!&ndash; menu de opciones para participante&ndash;&gt;
+                                                            &lt;!&ndash;                                                            <a  class="dropdown-item"&ndash;&gt;
+                                                            &lt;!&ndash;                                                                [routerLink]="['..','a8061fb3c2160acc4b456babcf74fe82',item[0].PK_CAT_CURSO_CADO]">Modificar Ficha Técnica</a>&ndash;&gt;
+                                                            <a  class="dropdown-item"
+                                                                [routerLink]="['..','a8061fb3c2160acc4b456babcf74fe82',item[0].PK_CAT_CURSO_CADO]">Modificar Ficha Técnica</a>
+                                                            <a  class="dropdown-item"
+                                                                [routerLink]="['..','0629dad63eedea217bbbf202c19ed531',item[0].PK_CAT_CURSO_CADO]">Lista de Participantes</a>
+                                                            <a  class="dropdown-item"
+                                                                [routerLink]="['..','c3bfaea0f0bb5f3ebdc7a12e50013ca5',item[0].PK_CAT_CURSO_CADO]">Material del Curso</a>
+                                                        </div>
+                                                    </div>
+                                                </ng-template>
+                                                &lt;!&ndash;                                                fin else&ndash;&gt;
+                                            </div>
+                                            &lt;!&ndash;                                            fin menu opcines&ndash;&gt;
+                                        </div>
+                                    </div>
+                                    &lt;!&ndash;                                    fin renglon 2 de opciones&ndash;&gt;
+                                </div>
+                            </div>
+                        </div>
+                        &lt;!&ndash;             PRUEBA VERTICAL           fin curso&ndash;&gt;
+                        &lt;!&ndash;                        fin col 3&ndash;&gt;
+                    </div>
+                    <ng-template #elseCurso2>
+                        <div class="card-group">
+                            <div class="text-center">
+                                <div class="alert alert-light text-center" role="alert">
+                                    <h4>No se han Registrado cursos de Formación Docente en este periodo</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>-->
+                    <!--            </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-template #elseCurso2>
+        <div class="card-group">
+            <div class="text-center">
+                <div class="alert alert-light text-center" role="alert">
+                    <h4>No se han Registrado cursos de Formación Docente en este periodo</h4>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</div>
+
+<!-- INICIO VENTANA MODAL DE CARGA -->
+<div bsModal #loaderModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-hidden="false"
+     [config]="{backdrop: 'static',keyboard: false}" [style.display]="this.display">
+    <!--[config]="{backdrop: 'static',keyboard: false}">-->
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content"
+             style="background-color: rgba(51, 51, 51, 0.8); background-clip: padding-box; border: 1px solid rgba(0, 0, 0, 0);">
+            <app-loader></app-loader>
+        </div>
+    </div>
+</div>
+<!-- FIN VENTANA MODAL DE CARGA -->
+
