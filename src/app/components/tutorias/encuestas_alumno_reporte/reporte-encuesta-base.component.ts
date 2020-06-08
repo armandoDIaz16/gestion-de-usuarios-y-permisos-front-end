@@ -1,6 +1,6 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {ReporteEncuestaService} from '../../../services/tutorias/reporte-encuesta.service';
+import {Component, ViewChild} from '@angular/core';
+import {Router} from '@angular/router';
+import {ReporteEncuestaService} from '../../../services/tutorias/encuestas_alumno_reporte/reporte-encuesta.service';
 import {Modulos} from '../../../config/Tutorias';
 import {AreaAcademicaServiceService} from '../../../services/area-academica-service.service';
 import {EncuestasService} from '../../../services/tutorias/encuestas.service';
@@ -53,6 +53,30 @@ export class ReporteEncuestaBaseComponent {
             },
             error => {
                 alert('Ha ocurrido un error');
+            },
+            () => {
+                this.display = 'none';
+            }
+        );*/
+    }
+
+    cambio_carrera() {
+        if (this.reporte_grupo !== '0') {
+            this.get_grupos();
+        }
+    }
+
+    get_grupos() {
+        /*this.display = 'block';
+        this.grupos_service.get_lista_grupos(
+            '?carrera=' + this.reporte_carrera
+        ).subscribe(
+            data => {
+                this.lista_grupos = data.data;
+            },
+            error => {
+                alert('Ha ocurrido un error');
+                this.display = 'none';
             },
             () => {
                 this.display = 'none';

@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {InterfaceEncuestaCompleta} from '../../models/tutorias/EncuestasModel';
-import {ReporteEncuestaService} from '../../services/tutorias/reporte-encuesta.service';
+import {ReporteEncuestaService} from '../../services/tutorias/encuestas_alumno_reporte/reporte-encuesta.service';
 import {Helpers} from './helpers';
 
 @Component({
