@@ -1,3 +1,299 @@
-<p>
-  vista-curso-convocatoria works!
-</p>
+<!--****************************************************-->
+<!-- BLOQUE PRINCIPAL NOMBRE DEL CURSO-->
+<!--header del curso-->
+<!--****************************************************-->
+<div class="color_header px-5 py-2">
+    <h2 class="color_blanco">{{this.texto_tipo_servicio}} |
+        {{this.texto_tipo_curso}}</h2>
+    <hr style="background-color: #ffffff;">
+    <h3 class="nombre_curso mb-3">
+        {{this.curso.nombre_curso}}
+    </h3>
+    <div class=" h4 color_blanco">Impartido por:
+        <span class="font-weight-bold" style="text-transform: capitalize"
+           id="nombre_instrcutor" >
+            <span *ngFor="let instructor of this.curso.instructores; let i = index;">
+                {{instructor['NOMBRE']  | lowercase }}
+                {{ instructor['PRIMER_APELLIDO']  | lowercase }}
+                {{instructor['SEGUNDO_APELLIDO']  | lowercase }}<span *ngIf="this.curso.instructores.length >1 && i+1 < this.curso.instructores.length">,</span>
+                <!--                                        <span *ngIf="this.curso.instructores.length >1">,</span>-->
+            </span>
+        </span>
+<!--        <span class="font-weight-bold"> José Gerardo Carpio Flores</span>-->
+        <span class="font-italic float-right"
+              id="periodo" >
+                {{this.periodo.nombre_periodo}}
+            {{this.periodo.fecha_inicio | date:'MMMM'| uppercase }}
+            {{this.periodo.fecha_inicio | date:'yyyy' }} -
+            {{this.periodo.fecha_fin | date:'MMMM' | uppercase }}
+            {{this.periodo.fecha_fin | date:'yyyy' }}
+            </span>
+     <!--<span *ngFor="let periodo of this.periodosArray;">
+        <span *ngIf="periodo['PK_PERIODO_CADO'] == this.curso.pk_periodo; ">
+             <span class="font-italic float-right"
+               id="periodo" >
+                {{periodo['NOMBRE_PERIODO']}}
+                {{periodo['FECHA_INICIO'] | date:'MMMM'| uppercase }}
+                {{periodo['FECHA_INICIO'] | date:'yyyy' }} -
+                {{periodo['FECHA_FIN'] | date:'MMMM' | uppercase }}
+                {{periodo['FECHA_FIN'] | date:'yyyy' }}
+            </span>
+        </span>
+     </span>-->
+    </div>
+</div>
+<!--****************************************************-->
+<!-- BLOQUE CENTRAL  INFO DEL CURSO Y FICHA TECNICA-->
+<div class="row mt-3">
+    <!--contenido central del curso-->
+    <div class="col-9">
+<!--        seccion objetivo-->
+        <div class="border p-2">
+            <h4 class="font-weight-bold">Objetivo del curso:</h4>
+            <p class="text-justify">
+                {{this.ficha.objetivo_general}}
+            </p>
+        </div>
+        <br>
+<!--        seccion contenido tematico-->
+        <div class="p-2">
+            <h4 class="font-weight-bold">
+                Contenido Temático HRs Actib</h4>
+            <div>
+                <div *ngFor="let contenido of this.ficha.contenido_tematico; let i = index;">
+                   <!-- <div class="form-group row mb-0">
+                        <div class="col-md-3 col-form-label text-left my-auto">
+                            <button  (click)="mostrarModal(i)"
+                                     class="btn btn-link texto-form texto-card">
+                                <fa-icon [icon]="circulomas" ></fa-icon>  Agregar nuevo tema</button>
+                        </div>
+                    </div>&lt;!&ndash; fin  modal tema&ndash;&gt;-->
+                    <div id="accordion">
+                        <div class="card mx-3 mb-0">
+                            <div class="card-header border bg-contenido-conv text-left row pb-0 px-0" id="headingOne">
+                                <h2 class="text-white col-md-9">
+                                          <span  class="contenido-tittle-conv collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false"
+                                                 aria-controls="collapseOne">
+                                              <fa-icon  [icon]="flechader"></fa-icon>
+                                              {{'Tema '+(i +1)}}   </span>
+                                    <!--<fa-icon  (click)="editar_contenido_tematico(i)"
+                                              class="btn-contenido-edit btn-link"  [icon]="edit"></fa-icon>
+                                    <fa-icon  (click)="borrar_contenido_tematico(i)"
+                                              class="btn-contenido-delete btn-link" [icon]="delete"></fa-icon>-->
+                                </h2>
+                                <div class="nav-item dropdown col-md-3"  dropdown placement="bottom right">
+                                    <!--                                            <div class="bg-white">-->
+                                    <a class="btn btn-outline-primary btn-enviar2 btn-block bg-white"
+                                       data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
+                                       dropdownToggle (click)="false">
+                                        <fa-icon [icon]="folder"></fa-icon>  Recursos
+                                        <fa-icon style="margin-left:0.3125rem" [icon]="flechaabajo"></fa-icon>
+                                    </a>
+                                    <!--                                            </div>-->
+                                    <div *ngIf="contenido['archivo_contenido_tematico'].length >0;  else elseArchivos">
+                                        <!--                                            <div>-->
+                                        <div class="dropdown-menu dropdown-menu-right" *dropdownMenu
+                                             aria-labelledby="simple-dropdown">
+                                            <div class="dropdown-header text-center">
+                                                <strong>Recursos adjuntados<fa-icon class="btn-link btn-sm" [icon]="adjunto">
+                                                </fa-icon>
+                                                </strong>
+                                            </div>
+                                            <!--                                                    <div *ngFor="contenido_tematico.archivo_contenido_tematico;"-->
+                                            <div *ngFor="let archivo of this.contenido['archivo_contenido_tematico'];"
+                                                 class="dropdown-item text-right">
+                                                <!--                                                        href="http://tudominio.es/descargas-pdf/pdf-descargable.pdf"-->
+                                                <a
+                                                    href="{{this.ficha_service.get_url_back(archivo['RUTA_ARCHIVO'])}}"
+                                                    target="_blank"> {{ archivo['NOMBRE_ARCHIVO']  | slice:0:25 }} </a>
+                                                <!--<button (click)="borrar_archivo_tema(archivo['PK_ARCHIVO_CONTENIDO_TEMATICO'],archivo['NOMBRE_ARCHIVO'])"
+                                                        type="button" class="btn btn-link btn-sm">
+                                                    <fa-icon [icon]="cancel"></fa-icon>
+                                                </button>-->
+                                            </div >
+                                           <!-- <div class="dropdown-header text-center">
+                                                <strong>Agregar nuevo recurso <fa-icon class="btn-link btn-sm" [icon]="subir">
+                                                </fa-icon>
+                                                </strong>
+                                            </div>
+                                            <input type="file"
+                                                   class="btn-link btn-sm dropdown-item"
+                                                   (change)="agregaArchivo($event, this.contenido['PK_CONTENIDO_TEMATICO'] )"
+                                                   multiple
+                                                   required>-->
+                                        </div>
+                                    </div>
+                                    <ng-template #elseArchivos>
+                                        <div>
+                                            <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+                                                <div class="dropdown-header text-center">
+                                                    <strong>Recursos adjuntados<fa-icon class="btn-link btn-sm" [icon]="adjunto">
+                                                    </fa-icon>
+                                                    </strong>
+                                                </div>
+                                                <div class="dropdown-item">
+                                                    sin elementos adjuntos
+                                                </div>
+                                                <!--<div class="dropdown-header text-center">
+                                                    <strong>Agregar nuevo recurso <fa-icon class="btn-link btn-sm" [icon]="subir">
+                                                    </fa-icon>
+                                                    </strong>
+                                                </div>
+                                                <input type="file"
+                                                       class="btn-link btn-sm dropdown-item"
+                                                       (change)="agregaArchivo($event, this.contenido['PK_CONTENIDO_TEMATICO'] )"
+                                                       multiple
+                                                       required>-->
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </div>
+
+                                <div id="collapseOne" style="width:100%;" class="collapse p-0" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div class="card-body p-0">
+                                        <table class="table table-hover mb-0">
+                                            <thead class="bg-secondary">
+                                            <tr class="text-center">
+                                                <th scope="col">Nombre del tema</th>
+                                                <th scope="col">Actividad de aprendizaje</th>
+                                                <th scope="col">Tiempo(Hrs)</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody class="bg-white">
+                                            <tr class="text-justify">
+                                                <td class="px-5">{{contenido['NOMBRE_TEMA']}} </td>
+                                                <td class="px-5">{{contenido['ACTIVIDAD_APRENDIZAJE']}} </td>
+                                                <td class="text-center" >
+                                                    <fa-icon [icon]="hora"></fa-icon>
+                                                    {{contenido['TIEMPO_TEMA']}}
+                                                </td>
+                                                <!-- FIN body  -->
+                                            </tr>
+                                            </tbody>
+                                            <!--<ng-template #elseLista>
+                                                <tbody>
+                                                <tr>
+                                                    <td colspan="6" class="text-center">
+                                                        No se encontraron registros
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </ng-template>-->
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   <!-- <div *ngIf="i == (contenido_tematico.length -1)" class="form-group row mb-0">
+                        <div class="col-md-3 col-form-label text-left my-auto">
+                            <button  (click)="mostrarModal(i+1)"
+                                     class="btn btn-link texto-form texto-card">
+                                <fa-icon [icon]="circulomas" ></fa-icon>  Agregar nuevo tema</button>
+                        </div>
+                    </div>&lt;!&ndash; fin  nombre tema&ndash;&gt;-->
+                </div>
+            </div>
+        </div>
+        <!--        seccion criterios de evaluacion-->
+        <div class="p-2">
+            <h4 class="font-weight-bold">
+                <span  class="color_icon"><fa-icon [icon]="graduacion"></fa-icon></span>
+                Criterios de evaluación</h4>
+        </div>
+<!--        seccion competencias-->
+        <div class="p-2">
+            <h4 class="font-weight-bold">
+                <span  class="color_icon"><fa-icon [icon]="cup"></fa-icon></span>
+                Competencias a desarrollar</h4>
+        </div>
+<!--        seccion fuentes de informacion-->
+        <div class="p-2">
+            <h4 class="font-weight-bold">
+                <span  class="color_icon"><fa-icon [icon]="link"></fa-icon></span>
+                Fuentes de información</h4>
+        </div>
+    </div>
+    <!--barra derecha de inscripcion al curso-->
+    <div class="col-3">
+        <img *ngIf="this.curso.imagen_curso !=null; else elseImg"
+             class="card-img-top img-fluid"
+             src="{{this.curso_service.get_url_back(this.curso.imagen_curso)}}"
+             alt="Imagen curso">
+        <!-- else imagen-->
+        <ng-template #elseImg>
+            <img class="card-img-top img-fluid"
+                 src="assets/img/capacitacion_docente/curso1.png"
+                 alt="Imagen curso">
+        </ng-template>
+        <div class="h3 text-center mt-3">
+            <span  class="text-warning">
+            <fa-icon [icon]="info"></fa-icon>
+            </span>Acerca de este curso:</div>
+        <div  class="text-left my-auto">
+            <p class="texto_lg_cv font-weight-bold mb-1" >
+                <span  class="color_icon"><fa-icon [icon]="date"></fa-icon></span>
+                Fecha del curso: </p>
+            <p class="texto_lg_cv mb-1" id="fechas">
+                {{this.curso.fecha_inicio | date :'longDate'}} al
+                {{this.curso.fecha_fin | date :'longDate'}}
+                </p>
+        </div>
+        <div  class="text-left my-auto">
+            <p class="texto_lg_cv font-weight-bold mb-1" >
+                <span  class="color_icon"><fa-icon [icon]="hora"></fa-icon></span>
+                Horario del curso:  </p>
+            <p class="texto_lg_cv mb-1" id="horario">
+               {{this.curso.hora_inicio | date :'shortTime'}}
+                a
+                {{this.curso.hora_fin | date :'shortTime'}}
+                <span class=""> (formato 24 hrs)</span></p>
+        </div>
+        <div  class="text-left my-auto">
+            <p class="texto_lg_cv font-weight-bold mb-1" >
+                <span class="color_icon"><fa-icon [icon]="mapa"></fa-icon></span>
+                Lugar: </p>
+            <p class="texto_lg_cv mb-0" id="lugar">
+                {{this.ficha.lugar['NOMBRE']}}
+               </p>
+            <p class="texto_lg_cv mb-1" id="lugar2">
+               Campus {{this.campus.NOMBRE}},
+                Edificio {{this.edificio.NOMBRE}}
+                {{this.edificio.PREFIJO}},
+                {{this.curso.espacio}}
+            </p>
+        </div>
+        <div  class="text-center my-3">
+            <p class="h4 font-weight-bold mb-3" >
+                <span class="color_icon"><fa-icon [icon]="people"></fa-icon></span>
+                Personas inscritas:
+                <span class=""
+                      [ngClass]="{'text-danger': this.curso.cupo_actual == this.curso.cupo_maximo,
+                                'text-primary': this.curso.cupo_actual < this.curso.cupo_maximo}"
+                      id="cupo">
+                    {{this.curso.cupo_actual}}/{{this.curso.cupo_maximo}}</span>
+            </p>
+        </div>
+        <div>
+            <button #btnregistro  class="btn btn-ghost-success btn-enviar2
+             texto-card  font-weight-bold btn-block">
+                <fa-icon [icon]="signin"></fa-icon>
+                INSCRIBIRSE</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- INICIO VENTANA MODAL DE CARGA -->
+<div bsModal #loaderModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-hidden="false"
+     [config]="{backdrop: 'static',keyboard: false}" [style.display]="this.display">
+    <!--[config]="{backdrop: 'static',keyboard: false}">-->
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content"
+             style="background-color: rgba(51, 51, 51, 0.8); background-clip: padding-box; border: 1px solid rgba(0, 0, 0, 0);">
+            <app-loader></app-loader>
+        </div>
+    </div>
+</div>
+<!--<div *ngIf="this.ng_on_init"></div>-->
+<!-- FIN VENTANA MODAL DE CARGA -->

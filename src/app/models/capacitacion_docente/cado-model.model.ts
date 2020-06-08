@@ -5,6 +5,7 @@ export interface Periodo {
     fecha_fin:         string;
 }
 
+// tslint:disable-next-line:class-name
 export interface Contenido_Tematico {
      pk_tema:                  number;
      nombre_tema:              string;
@@ -53,6 +54,7 @@ export interface FichaTecnica {
     competencias: Array<Object>;
     fuentes_informacion: Array<Object>;
     comentarios: Array<Object>;
+    lugar?: object;
 
 }
 
@@ -69,3 +71,23 @@ export interface CV {
     participacion_instructor: Array<Object>;
 }
 
+// tslint:disable-next-line:class-name
+export interface Edificio_Curso {
+    PK_EDIFICIO: number;
+    FK_CAMPUS: number;
+    NOMBRE: string;
+    PREFIJO: string;
+    CAPACIDAD: string;
+}
+export interface Campus {
+    PK_CAMPUS: number;
+    NOMBRE: string;
+    FK_INSTITUCION: number;
+}
+export interface AreaAcademica {
+    PK_AREA_ACADEMICA: number;
+    FK_INSTITUCION: number;
+    NOMBRE: string;
+    ABREVIATURA: string;
+    ESTADO: string;
+}

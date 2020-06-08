@@ -82,7 +82,40 @@ button:disabled {
 }
 
 /******************************FIN CV*************************/
-
+/******************************INICIA VISTA CUROS CONVOCATORIA*************************/
+.nombre_curso {
+    color: #ffe599;
+    font-weight: bold;
+    //color: #073763;
+    //color: rgb(29,125,217);
+    //color:  #52143e;
+ }
+.color_header{
+    background-color: #073763;
+    //background-color:  #52143e;
+}
+.color_icon{
+    color: #085394;
+    //background-color:  #52143e;
+}
+.color_blanco{
+    color:#ffffff;
+    //color: #073763;
+}
+.bg-contenido-conv{
+    background-color: #eeeeee;
+    color: #085394;
+}
+.contenido-tittle-conv{
+    color: #085394;
+}
+.contenido-tittle-conv:hover{
+    color:  #073763;
+}
+.contenido-tittle-conv:active{
+    color: rgb(29,125,217);
+}
+/******************************TERMINA VISTA CUROS CONVOCATORIA*************************/
 .texto-nombre-user{
 color: rgb(29,125,217);
 }
