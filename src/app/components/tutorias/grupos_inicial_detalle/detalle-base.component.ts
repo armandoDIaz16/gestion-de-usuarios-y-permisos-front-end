@@ -51,7 +51,7 @@ export class DetalleBaseComponent {
 
     public perfil_individual(pk_encriptada: string) {
         open(
-            this.detalle_grupo_service.get_url_back('get_pdf_perfil_personal_ingreso?pk_encriptada=' + pk_encriptada),
+            this.detalle_grupo_service.get_url_back('c413a63cce7f8f6a6f7b9179a20bfbe0?pk_encriptada=' + pk_encriptada),
             '_blank',
             ''
         );

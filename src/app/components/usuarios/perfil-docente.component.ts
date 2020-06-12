@@ -15,12 +15,12 @@ export class PerfilDocenteComponent implements OnInit {
     public error = null;
     public data = null;
 
-    public perfil: InterfacePerfil = null;
+    public perfil = null;
     public estados_civiles: InterfaceEstadoCivil[] = [];
     public datos_codigo_postal: InterfaceDatosCodigoPostal = null;
     public areas_academicas: InterfaceAreaAcademica[] = [];
 
-    public pk_usuario = sessionStorage.getItem('IdEncriptada');
+    public pk_usuario = '';
 
     // Datos de formulario
     public form = {
@@ -55,21 +55,20 @@ export class PerfilDocenteComponent implements OnInit {
         private perfil_service: PerfilService,
         private area_academica_service: AreaAcademicaServiceService
     ) {
-        this.perfil = <InterfacePerfil> {};
         this.estados_civiles = [];
         this.areas_academicas = [];
         this.datos_codigo_postal = <InterfaceDatosCodigoPostal>{};
         this.datos_codigo_postal.COLONIAS = [];
         this.display = 'none';
+        this.perfil = [];
     }
 
     async ngOnInit() {
+        this.pk_usuario = sessionStorage.getItem('IdEncriptada');
         this.display = 'block';
 
-        const data_perfil = await this.perfil_service.get_perfil(this.pk_usuario);
-        if (data_perfil) {
-            this.perfil = <InterfacePerfil>data_perfil;
-        }
+        // obtener datos del perfil
+        this.get_perfil();
 
         const data_estados_civiles = await this.perfil_service.get_estados_civiles();
         if (data_estados_civiles) {
@@ -119,8 +118,22 @@ export class PerfilDocenteComponent implements OnInit {
 
         // CARGAR COLONIA
         this.procesa_codigo_postal();
+    }
 
-        this.display = 'none';
+    get_perfil() {
+        this.perfil_service.get_perfil('?pk_encriptada=' + this.pk_usuario).subscribe(
+            (data) => {
+                this.perfil = data.data;
+            },
+            (error) => {
+                alert('Ha ocurrido un error');
+                console.log(error);
+            },
+            () => {
+                console.log('complete perfil');
+                this.display = 'none';
+            }
+        );
     }
 
     handleResponseAreas(data) {

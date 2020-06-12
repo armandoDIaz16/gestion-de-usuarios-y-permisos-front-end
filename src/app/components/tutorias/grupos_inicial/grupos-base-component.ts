@@ -47,7 +47,7 @@ export class GruposBaseComponent {
 
     public perfil_grupal(pk_grupo: number) {
         open(
-            this.grupos_service.get_url_back('get_pdf_perfil_grupal_ingreso?grupo=' + pk_grupo),
+            this.grupos_service.get_url_back('de99193444466a46d939f6e1fe025e10?grupo=' + pk_grupo),
             '_blank',
             ''
         );
