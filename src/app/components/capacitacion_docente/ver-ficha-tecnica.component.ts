@@ -94,14 +94,14 @@ export class VerFichaTecnicaComponent implements OnInit {
         fuentes_informacion: [],
         comentarios: []
     };
-    private contenido_modal: Contenido_Tematico = {
+    public contenido_modal: Contenido_Tematico = {
         pk_tema:  -1,
         nombre_tema: '',
         actividad_aprendizaje: '',
         tiempo_horas:    null,
         indice_array:    -1
     };
-    private curso: Curso = {
+    public curso: Curso = {
         pk_curso : -1,
         nombre_curso:  '',
         tipo_curso: -1,

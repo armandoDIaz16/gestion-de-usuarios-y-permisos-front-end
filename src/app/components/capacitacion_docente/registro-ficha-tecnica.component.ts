@@ -77,7 +77,7 @@ export class RegistroFichaTecnicaComponent implements OnInit {
     public indice_contenido: number;
     // listas
     public lista_docentes: object; // docentes
-    private docentesArray: Array<Object>;
+    public docentesArray: Array<Object>;
     public lista_area_academica: object; // areas
     areasArray: Array<Object>;
     public lista_periodos: object; // periodos
@@ -110,14 +110,14 @@ export class RegistroFichaTecnicaComponent implements OnInit {
     fuentes_informacion: [],
     comentarios: [],
     };
-    private contenido_modal: Contenido_Tematico = {
+    public contenido_modal: Contenido_Tematico = {
     pk_tema:  -1,
     nombre_tema: '',
     actividad_aprendizaje: '',
     tiempo_horas:    null,
     indice_array:    -1
     };
-    private curso: Curso = {
+    public curso: Curso = {
         pk_curso : -1,
         nombre_curso:  '',
         tipo_curso: -1,

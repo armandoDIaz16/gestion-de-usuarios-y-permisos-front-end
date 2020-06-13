@@ -104,7 +104,7 @@ export class VistaCursoConvocatoriaComponent implements OnInit {
         comentarios: [],
         lugar: {}
     };
-    private curso: Curso = {
+    public curso: Curso = {
         pk_curso : -1,
         nombre_curso:  '',
         tipo_curso: -1,
@@ -125,25 +125,25 @@ export class VistaCursoConvocatoriaComponent implements OnInit {
         espacio: '',
         estado_curso: 1
     };
-    private periodo: Periodo = {
+    public periodo: Periodo = {
         pk_periodo_cado: -1,
         nombre_periodo: '',
         fecha_inicio: '',
         fecha_fin: ''
     };
-    private edificio: Edificio_Curso = {
+    public edificio: Edificio_Curso = {
     PK_EDIFICIO: -1,
     FK_CAMPUS:  -1,
     NOMBRE: '',
     PREFIJO: '',
     CAPACIDAD: ''
     };
-    private campus: Campus = {
+    public campus: Campus = {
     PK_CAMPUS: -1,
     NOMBRE: '',
     FK_INSTITUCION: -1
     };
-    private area_academica: AreaAcademica = {
+    public area_academica: AreaAcademica = {
     PK_AREA_ACADEMICA: -1,
     FK_INSTITUCION: -1,
     NOMBRE: '',

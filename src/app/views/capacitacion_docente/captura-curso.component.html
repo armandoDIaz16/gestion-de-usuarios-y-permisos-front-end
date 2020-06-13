@@ -43,7 +43,7 @@
 <!--                                                <div ></div>-->
 <!--                                            fin prueba-->
 
-                                    <p-autoComplete *ngIf="tipo_participante==2; else elsefiltro"
+                                    <p-autoComplete *ngIf="tipo_participante=='2'; else elsefiltro"
                                                      [(ngModel)]="this.curso.instructores"
                                                     [multiple]="true"
                                                     [suggestions]="this.docentesArray"
