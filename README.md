@@ -25,7 +25,7 @@ Se necesitan los siguientes programas antes de hacer la instalación del proyect
 ### Para Instalar Angular
 * Angular 7.0.1 con el siguiente comando  en la terminal:
 ``` bash
-npm install @angular/cli@7.0.1
+npm install -g @angular/cli@7.0.1
 ```
 
 ### Para Clonar el Proyecto
