@@ -66,7 +66,7 @@ export class DetalleBaseComponent {
         this.ver_perfil_personal = Modulos.valida_rol_accion(this.rol, Modulos.VER_PERFIL_PERSONAL);
     }
 
-    protected volver() {
+    public volver() {
         history.back();
     }
 }
