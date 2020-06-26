@@ -151,7 +151,7 @@
 
 
                 </div> <!-- termina contenido de descripcion del servicio -->
-                <div class="tab-pane fade text-center texto-card texto-form" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab"
+                <div class="tab-pane fade text-center texto-card " id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab"
                      style="-webkit-box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);
 -moz-box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);
 box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);">
@@ -160,322 +160,385 @@ box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);">
 <!--                    todo falta acomodar la vista-->
                     <hr>
                     <div class="row">
-                        <div class="col-6">
-                            <div class="form-group row">
-                                <div class="col-md-5 col-form-label text-right my-auto">
-                                    <label for="nombre_instrcutor" >Instructor(a):</label>
-                                </div>
-                                <div class="col-md-7">
-                                    <div  class="input-group">
-                                        <p-autoComplete
-                                                        [(ngModel)]="this.curso.instructores"
-                                                        [multiple]="true"
-                                                        [suggestions]="this.docentesArray"
-                                                        field="NOMBRE"
-                                                        name="instructores"
-                                                        id="nombre_instrcutor"
-                                                        (completeMethod)="filtro_instructor($event)"
-                                                        [inputStyle] = "{'width':'13.125rem'}"
-                                                        required
-                                                        disabled
-                                                        placeholder="Escriba el nombre del instructor">
-                                            <ng-template let-value pTemplate="selectedItem">
-                                            <span style="padding-right: 1.25rem;  font-size:0.875rem">
-                                                {{value.NOMBRE }} {{ value.PRIMER_APELLIDO }} {{value.SEGUNDO_APELLIDO}}</span>
-                                            </ng-template>
-                                            <ng-template let-brand pTemplate="item">
-                                                <div class="">
-                                                    <div style="font-size:0.875rem;">
-                                                        {{brand.NOMBRE }} {{brand.PRIMER_APELLIDO }} {{brand.SEGUNDO_APELLIDO}}
-                                                    </div>
-                                                </div>
-                                            </ng-template>
-                                        </p-autoComplete>
-                                    </div>
-                                </div>
-                            </div><!-- fin instructor -->
-                        </div>  <!-- lado izq-->
-                        <div class="col-6">
-                            <div class="form-group row">
-                                <div class="col-md-5 col-form-label text-right">
-                                    <label for="duracion_horas" >Duración del curso en horas:</label>
-
-                                </div>
-                                <div class="col-md-5 text-left">
-                                    <div class="input-group">
-                                        <input  [(ngModel)]="this.curso.total_horas" disabled
-                                                type="number" class="form-control texto-card" id="duracion_horas" name="duracion_horas"
-                                                placeholder="Duración del curso en horas" required>
-                                    </div>
-
-                                </div>
-                            </div>  <!-- fin cupo maximo -->
-                        </div> <!-- lado der -->
-                     </div> <!-- renglon 1-->
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="form-group row">
-                                <div class="col-md-5 col-form-label text-right my-auto">
-                                    <label for="area_curso" >Área académica:</label>
-                                </div>
-                                <div class="col-md-7">
-                                    <select  [(ngModel)]="this.curso.pk_area_academica" disabled
-                                             class="form-control texto-card" name="area_curso" id="area_curso"  required>
-                                        <option [value]=-1>Selecciona una Área académica</option>
-                                        <option [value]=0>Para todas las Áreas</option>
-                                        <option *ngFor="let area of this.areasArray; let i = index"
-                                                value="{{area.PK_AREA_ACADEMICA}}">
-                                            {{area.NOMBRE}}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div><!-- fin area academica -->
-                        </div>  <!-- lado izq-->
-                        <div class="col-6">
-                            <div class="form-group row">
-                                <div class="col-md-5 col-form-label text-right my-auto">
-                                    <span style="font-size:1rem;"><fa-icon [icon]="date" ></fa-icon>
-                                            </span>
-                                    <label for="fecha_inicio_curso" >Fecha de Inicio:</label>
-                                </div>
-                                <div class="col-md-5 text-right">
-                                    <div class="input-group">
-                                        <input    [(ngModel)]="this.curso.fecha_inicio" disabled
-                                                  type="date" class="form-control texto-card" id="fecha_inicio_curso" name="fecha_inicio_curso"
-                                               required>
-                                    </div>
-                                </div>
-                            </div>  <!-- fin fecha inicio -->
-                        </div> <!-- lado der -->
-                    </div> <!-- renglon 1-->
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="form-group row">
-                                <div class="col-md-5 col-form-label text-right my-auto">
-                                    <label for="periodo_curso" >Periodo:</label>
-                                </div>
-                                <div class="col-md-7">
-                                    <select   [(ngModel)]="this.curso.pk_periodo" disabled
-                                              class="form-control texto-card"
-                                             name="periodo_curso" id="periodo_curso" required>
-                                       <option value="-1">Selecciona un Periodo</option>
-                                        <option *ngFor="let periodo of this.periodosArray; let i = index"
-                                                [value]="periodo.PK_PERIODO_CADO">
-                                            {{periodo.NOMBRE_PERIODO}}
-                                            {{periodo.FECHA_INICIO | date:'MMMM'| uppercase }}
-                                            {{periodo.FECHA_INICIO | date:'yyyy' }} -
-                                            {{periodo.FECHA_FIN | date:'MMMM' | uppercase }}
-                                            {{periodo.FECHA_FIN | date:'yyyy' }}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div><!-- fin periodo -->
-                        </div>  <!-- lado izq-->
-                        <div class="col-6">
-                            <div class="form-group row">
-                                <div class="col-md-5 col-form-label text-right my-auto">
-                                    <span style="font-size:1rem;"><fa-icon [icon]="date" ></fa-icon>
-                                            </span>
-                                    <label for="fecha_fin_curso" >Fecha de Finalización:</label>
-
-                                </div>
-                                <div class="col-md-5 text-right">
-                                    <div class="input-group">
-                                        <input   type="date" class="form-control texto-card" id="fecha_fin_curso" name="fecha_fin_curso"
-                                                 [(ngModel)]="this.curso.fecha_fin" disabled required>
-                                    </div>
-                                </div>
-                            </div>  <!-- fin fecha fin -->
-                        </div> <!-- lado der -->
-                    </div> <!-- renglon 3-->
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="form-group row">
-                                <div class="col-md-5 col-form-label text-right my-auto">
-                                    <span style="font-size:1rem;"><fa-icon [icon]="mapa" ></fa-icon>
-                                            </span>
-                                    <label for="edificio_curso" >Edificio donde se impartirá:</label>
-                                </div>
-                                <div class="col-md-7">
-                                    <div class="input-group texto-card">
-                                        <!--                                        <select [(ngModel)]="this.curso.edificio"  (change)="autocompletaCampus()"-->
-                                        <select [(ngModel)]="this.curso.edificio" disabled
-                                                class="form-control texto-card" name="edificio_curso" id="edificio_curso" required>
-                                            <option  value="-1" selected>Selecciona un edificio</option>
-                                            <option *ngFor="let edificio of this.edificiosArray"
-                                                    [value]="edificio.PK_EDIFICIO">
-                                                {{'Campus '+edificio.FK_CAMPUS+' - Edificio: '+edificio.PREFIJO+'   '+edificio.NOMBRE}}</option>
-
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>  <!-- fin edificio -->
-<!--                            fin pr-->
-                        </div>  <!-- lado izq-->
-                        <div class="col-6">
-                            <div class="form-group row">
-                                <div class="col-md-5 col-form-label text-right my-auto">
-                                    <span style="font-size:1rem;"><fa-icon [icon]="hora" ></fa-icon>
-                                            </span>
-                                    <label for="hora_incio_curso" >Hora de Incio:</label>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="input-group col-md-5 texto-card">
-                                        <p-calendar
-                                                    [(ngModel)]="this.curso.hora_inicio"
-                                                    [timeOnly]="true"   hourFormat="12"
-                                                    id="hora_incio_curso" name="hora_incio_curso"
-                                                    placeholder="Seleccione la hora"
-                                                    required disabled></p-calendar>
-                                    </div>
-                                </div>
-                            </div>  <!-- fin hora inicio -->
-                        </div> <!-- lado der -->
-                    </div> <!-- renglon 4-->
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="form-group row">
-                                <div class="col-md-5 col-form-label text-right my-auto">
-                                        <span style="font-size:1rem;"><fa-icon [icon]="mapa" ></fa-icon>
-                                                </span>
-                                    <label for="lugar_curso" >Espacio:</label>
-                                </div>
-                                <div class="col-md-7">
-                                    <div
-                                        class="input-group texto-card">
-                                        <input [(ngModel)]="this.curso.espacio" disabled
-                                               type="text" class="form-control texto-card" id="lugar_curso" name="lugar_curso"
-                                               placeholder="Lugar del curso" required>
-                                    </div>
-                                </div>
-                            </div>  <!-- fin  espacio -->
-                        </div>
-                        <div class="col-6">
-                            <div class="form-group row">
-                                <div class="col-md-5 col-form-label text-right my-auto">
-                                    <span style="font-size:1rem;"><fa-icon [icon]="hora" ></fa-icon>
-                                            </span>
-                                    <label for="hora_fin_curso" >Hora de Finalización:</label>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="input-group col-md-5 texto-card">
-                                        <p-calendar
-                                            [(ngModel)]="this.curso.hora_fin"
-                                            [timeOnly]="true"   hourFormat="12"
-                                            id="hora_fin_curso" name="hora_fin_curso"
-                                            placeholder="Seleccione la hora"
-                                            required disabled>
-                                        </p-calendar>
-                                    </div>
-                                </div>
-                            </div>  <!-- fin hora fin -->
-                        </div> <!-- lado der -->
-                    </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group row">
-                                    <div class="col-md-6 col-form-label text-right my-auto">
-                                    <span style="font-size:1rem;"><fa-icon [icon]="mapa" ></fa-icon>
-                                            </span>
-                                        <label for="instituto" >Instituto, Centro o Unidad:</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="input-group texto-card">
-                                            <!--                                        <select [(ngModel)]="this.curso.edificio"  (change)="autocompletaCampus()"-->
-                                            <select [(ngModel)]="this.ficha.lugar_institucion"
-                                                    class="form-control texto-card" name="instituto" id="instituto" required>
-                                                <option  value="-1" selected>Selecciona un Instituto</option>
-                                                <option *ngFor="let instituto of this.institutosArray"
-                                                        [value]="instituto.PK_INSTITUCION">
-                                                    {{instituto.NOMBRE}}</option>
-
-                                            </select>
+                        <div class="card col-md-11 ml-5">
+                            <!--                fin card header-->
+                            <div class="card-body pb-0">
+                                <div class="row">
+                                    <div class="form-group col-sm-12 text-center mb-0">
+                                        <div class="form-group row">
+                                            <div class="col-md-3 text-left">
+                                                <label  class="texto-form texto_label_cord mb-2" >
+                                                    Tipo de Servicio: &nbsp;</label>
+                                                <label style="color:#ff0000;" >*</label>
+                                            </div>
+                                            <div class="col-md-9 text-right">
+                                                <select     [(ngModel)]="this.ficha.tipo_servicio"
+                                                            (change)="verificaOtroServicio()"
+                                                            class="form-control texto-card" name="tipo_servicio" id="tipo_servicio" required>
+                                                    <option [value]=-1 >Selecciona un Tipo de Servicio</option>
+                                                    <option [value]=1>Curso</option>
+                                                    <option [value]=2>Curso - taller </option>
+                                                    <option [value]=3>Taller</option>
+                                                    <option [value]=4>Diplomado</option>
+                                                    <option [value]=5>Serie de platicas</option>
+                                                    <option [value]=6>Simposio </option>
+                                                    <option [value]=7>Otro </option>
+                                                </select>
+                                            </div>
+                                            <br>
+                                            <div class="col-md-9 offset-3 text-right mt-2">
+                                                <input #inputOtroTipoCurso type="text" hidden class="form-control texto-card" id="otro_servicio" name="otro_servicio"
+                                                       placeholder="Especifique el otro tipo de servicio" required
+                                                       [(ngModel)]="this.ficha.otro_servicio">
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>  <!-- fin edificio -->
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group row">
-                                    <div class="col-md-5 col-form-label text-right my-auto">
-                                    <span style="font-size:1rem;">
-                                            </span>
-                                        <label for="lugar_curso" >Estado del curso:</label>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <div class="input-group">
-                                            <select  [(ngModel)]="this.curso.estado_curso"
-                                                     class="form-control texto-card"
-                                                     name="estado_curso" id="estado_curso" required disabled>
-                                                <option value="-1" >Estados del curso</option>
-                                                <option *ngFor="let estado of this.cursosArray"
-                                                        [value]="estado['PK_ESTADO_CURSO']">
-                                                    {{estado['NOMBRE_ESTADO']}}
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>  <!-- fin estado -->
-                            </div> <!-- fin izq-->
-                        </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="form-group row">
-                                        <div class="col-md-6 col-form-label text-right my-auto">
-                                            <label for="tipo_servicio" >Tipo de Servicio:</label>
-                                            <label style="color:#ff0000;" >*</label>
-                                        </div>
-                                        <div class="col-md-6 text-right">
-                                            <select     [(ngModel)]="this.ficha.tipo_servicio"
-                                                        (change)="verificaOtroServicio()"
-                                                        class="form-control texto-card" name="tipo_servicio" id="tipo_servicio" required>
-                                                <option [value]=-1 >Selecciona un Tipo de Servicio</option>
-                                                <option [value]=1>Curso</option>
-                                                <option [value]=2>Curso - taller </option>
-                                                <option [value]=3>Taller</option>
-                                                <option [value]=4>Diplomado</option>
-                                                <option [value]=5>Serie de platicas</option>
-                                                <option [value]=6>Simposium </option>
-                                                <option [value]=7>Otro </option>
-                                            </select>
-                                        </div>
+                                        <!--                                tipo ser del curso-->
                                         <br>
-                                        <div class="col-md-6 offset-6">
-                                            <input #inputOtroTipoCurso type="text" hidden class="form-control texto-card" id="otro_servicio" name="otro_servicio"
-                                                   placeholder="Especifique el otro tipo de servicio" required
-                                                   [(ngModel)]="this.ficha.otro_servicio">
-                                        </div>
-                                    </div><!-- fin tipo servicio -->
-                                </div> <!-- fin der-->
-                    </div> <!-- renglon 5-->
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="form-group row">
-                                <div class="col-md-3 col-form-label text-right">
-                                    <label for="img_curso" ><fa-icon [icon]="img" ></fa-icon> Imagen del curso:</label>
-                                    <label style="color:#ff0000;" >*</label>
+                                         <div class="form-group row">
+                                                <div class="text-left my-auto col-md-2">
+                                                    <label class="texto-form texto_label_cord" for="nombrecurso" >
+                                                        Instructor(es):</label>
+                                                </div>
+                                                <div class="text-left my-auto col-md-10">
+                                                    <label class="texto_lg_cord text-left" style="text-transform: capitalize"
+                                                       id="nombre_instrcutor" >
+                                                    <span *ngFor="let instructor of this.curso.instructores; let i = index;">
+                                                        {{instructor['NOMBRE']  | lowercase }}
+                                                        {{ instructor['PRIMER_APELLIDO']  | lowercase }}
+                                                        {{instructor['SEGUNDO_APELLIDO']  | lowercase }}<span *ngIf="this.curso.instructores.length >1 && i+1 < this.curso.instructores.length">,</span>
+                                                        <!--                                        <span *ngIf="this.curso.instructores.length >1">,</span>-->
+                                                    </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        <!--                                fin nombre del curso-->
+                                    </div>
+                                    <!--       termina el row-->
                                 </div>
-                                    <div class="col-md-5  border">
-                                    <div class="input-group">
-                                        <input type="file"
-                                               class="form-control texto-card"
-                                               id="img_curso" name="img_curso"
-                                               (change)="actualizaImagen($event)"
-                                               accept="image/png, image/jpeg"
-                                               required>
-                                    </div>
-                                    <div class="col-11 px-0 pb-1 pt-1">
-                                        <img    *ngIf="this.curso.imagen_curso != null"
-                                                class="card-img-top img-fluid size-img"
-                                                src="{{this.ficha_service.get_url_back(this.curso.imagen_curso)}}"
-                                                 >
-
-                                        <!--                                        <img class="card-img-top img-fluid"  src="assets/img/capacitacion_docente/curso1.png" alt="Card image cap">-->
-                                    </div>
-                                 </div>
-
+                                <!--                    </form>-->
+                                <!--                    fin form-->
                             </div>
+                            <!--                fin card body-->
                         </div>
+                        <!--            termina la tarjeta entera-->
                     </div>
+                    <!--fin seccion-->
+                    <div class="row">
+                        <div class="card col-md-11 ml-5">
+                            <!--                fin card header-->
+                            <div class="card-body pb-0">
+                                <div class="row">
+                                    <div class="form-group col-sm-12 text-center mb-0">
+                                        <div class="form-group row">
+                                            <div class="col-md-5 text-left">
+                                                <label  class="texto-form texto_label_cord mb-2" for="Instituto" >
+                                                    <span style="font-size:1rem;"><fa-icon [icon]="mapa" ></fa-icon></span>
+                                                    Instituto, Centro o Unidad: &nbsp;</label>
+                                                <label style="color:#ff0000;" >*</label>
+                                            </div>
+                                            <div class="col-md-7 text-right">
+                                                <div class="input-group texto-card">
+                                                    <!--                                        <select [(ngModel)]="this.curso.edificio"  (change)="autocompletaCampus()"-->
+                                                    <select [(ngModel)]="this.ficha.lugar_institucion"
+                                                            class="form-control texto-card" name="instituto" id="instituto" required>
+                                                        <option  value="-1" selected>Selecciona un Instituto</option>
+                                                        <option *ngFor="let instituto of this.institutosArray"
+                                                                [value]="instituto['PK_INSTITUCION']">
+                                                            {{instituto['NOMBRE']}}</option>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--                                fin justificacion del curso-->
+                                        <div class="form-group row">
+                                            <div class="text-left col-md-5">
+                                                <label  class="texto-form texto_label_cord mb-2" >
+                                                    <span style="font-size:1rem;"><fa-icon [icon]="mapa" ></fa-icon></span>
+                                                    Edificio donde se impartirá: &nbsp;</label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <div class="input-group texto-card">
+                                                    <!--                                        <select [(ngModel)]="this.curso.edificio"  (change)="autocompletaCampus()"-->
+                                                    <select [(ngModel)]="this.curso.edificio" disabled
+                                                            class="form-control texto-card" name="edificio_curso" id="edificio_curso" required>
+                                                        <option  value="-1" selected>Selecciona un edificio</option>
+                                                        <option *ngFor="let edificio of this.edificiosArray"
+                                                                [value]="edificio['PK_EDIFICIO']">
+                                                            {{'Campus '+edificio['FK_CAMPUS']+' - Edificio: '+edificio['PREFIJO']+'   '+edificio['NOMBRE']}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--                                fin edificio del curso-->
+                                        <div class="form-group row">
+                                            <div class="text-left col-md-2">
+                                                <label  class="texto-form texto_label_cord mb-2">
+                                                    Espacio: &nbsp;</label>
+                                            </div>
+                                            <div class="col-md-10">
+                                                <div
+                                                    class="input-group texto-card">
+                                                    <input [(ngModel)]="this.curso.espacio" disabled
+                                                           type="text" class="form-control texto-card" id="lugar_curso" name="lugar_curso"
+                                                           placeholder="Lugar del curso" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--                                fin lugar  del curso-->
+                                    </div>
+                                    <!--       termina el row-->
+                                </div>
+                                <!--                    </form>-->
+                                <!--                    fin form-->
+                            </div>
+                            <!--                fin card body-->
+                        </div>
+                        <!--            termina la tarjeta entera-->
+                    </div>
+                    <!-- fin seccion-->
+                    <div class="row">
+                        <div class="card col-md-11 ml-5">
+                            <!--                fin card header-->
+                            <div class="card-body pb-0">
+                                <div class="row">
+                                    <div class="form-group col-sm-12 text-center mb-0">
+                                        <div class="form-group row">
+                                            <div class="text-left col-md-2">
+                                                <label  class="texto-form texto_label_cord mb-2">
+                                                    Periodo: &nbsp;</label>
+                                            </div>
+                                            <div class="col-md-10">
+                                                <select   [(ngModel)]="this.curso.pk_periodo" disabled
+                                                          class="form-control texto-card"
+                                                          name="periodo_curso" id="periodo_curso" required>
+                                                    <option value="-1">Selecciona un Periodo</option>
+                                                    <option *ngFor="let periodo of this.periodosArray; let i = index"
+                                                            [value]="periodo['PK_PERIODO_CADO']">
+                                                        {{periodo['NOMBRE_PERIODO']}}
+                                                        {{periodo['FECHA_INICIO'] | date:'MMMM'| uppercase }}
+                                                        {{periodo['FECHA_INICIO'] | date:'yyyy' }} -
+                                                        {{periodo['FECHA_FIN'] | date:'MMMM' | uppercase }}
+                                                        {{periodo['FECHA_FIN'] | date:'yyyy' }}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!--                                fin justificacion del curso-->
+                                        <div class="form-group row">
+                                            <div class="text-left col-md-3">
+                                                <label  class="texto-form texto_label_cord mb-2">
+                                                    Área académica: &nbsp;</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <select  [(ngModel)]="this.curso.pk_area_academica" disabled
+                                                         class="form-control texto-card" name="area_curso" id="area_curso"  required>
+                                                    <option [value]=-1>Selecciona una Área académica</option>
+                                                    <option [value]=0>Para todas las Áreas</option>
+                                                    <option *ngFor="let area of this.areasArray; let i = index"
+                                                            value="{{area['PK_AREA_ACADEMICA']}}">
+                                                        {{area['NOMBRE']}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!--                                fin area del curso-->
+                                        <div class="form-group row">
+                                            <div class="text-left col-md-2">
+                                                <label  class="texto-form texto_label_cord mb-2">
+                                                    Tipo: &nbsp;</label>
+                                            </div>
+
+                                            <div class="col-md-10">
+                                                <div
+                                                    class="input-group texto-card">
+                                                    <input [(ngModel)]="this.texto_tipo_curso" disabled
+                                                           type="text" class="form-control texto-card" id="tipo_curso" name="tipo_curso"
+                                                           placeholder="tipo curso" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--                                fin edificio del curso-->
+                                        <div class="form-group row pl-3">
+                                            <div class="text-left">
+                                                <label  class="texto-form texto_label_cord mb-2" for="cupo" >
+                                                    <span style="font-size:1rem;"><fa-icon [icon]="people" ></fa-icon></span>
+                                                    Cupo: &nbsp;</label>
+                                            </div>
+                                            <div
+                                                class="text-left my-auto">
+                                                <p class="texto_lg_cord text-justify"
+                                                   id="cupo" >
+                                                    {{ this.curso.cupo_actual + '/' + this.curso.cupo_maximo }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--                                fin cupo  del curso-->
+                                        <div class="form-group row">
+                                            <div class="text-left col-md-3">
+                                                <label  class="texto-form texto_label_cord mb-2">
+                                                    Estado del curso: &nbsp;</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <div class="input-group">
+                                                    <select  [(ngModel)]="this.curso.estado_curso"
+                                                             class="form-control texto-card"
+                                                             name="estado_curso" id="estado_curso" required disabled>
+                                                        <option value="-1" >Estados del curso</option>
+                                                        <option *ngFor="let estado of this.cursosArray"
+                                                                [value]="estado['PK_ESTADO_CURSO']">
+                                                            {{estado['NOMBRE_ESTADO']}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--                                fin estado  del curso-->
+                                    </div>
+                                    <!--       termina el row-->
+                                </div>
+                                <!--                    </form>-->
+                                <!--                    fin form-->
+                            </div>
+                            <!--                fin card body-->
+                        </div>
+                        <!--            termina la tarjeta entera-->
+                    </div>
+                    <!-- fin seccion-->
+                    <div class="row">
+                        <div class="card col-md-11 ml-5">
+                            <!--                fin card header-->
+                            <div class="card-body pb-0">
+                                <div class="row">
+                                    <div class="form-group col-sm-12 text-center mb-0">
+                                        <div class="form-group row">
+                                            <div class="text-left">
+                                                <label  class="texto-form texto_label_cord mb-2" for="fechai" >
+                                                    Fecha de Inicio: &nbsp;</label>
+                                            </div>
+                                            <div
+                                                class="text-left my-auto">
+                                                <p class="texto_lg_cord text-justify"
+                                                   id="fechai" >
+                                                    {{this.curso.fecha_inicio | date :'fullDate' }}
+                                                </p>
+                                            </div>
+
+                                        </div>
+                                        <!--                                fin fecha inicio del curso-->
+                                        <div class="form-group row">
+                                            <div class="text-left">
+                                                <label  class="texto-form texto_label_cord mb-2" for="fechaf" >
+                                                    Fecha de Finalización: &nbsp;</label>
+                                            </div>
+                                            <div
+                                                class="text-left my-auto">
+                                                <p class="texto_lg_cord text-justify"
+                                                   id="fechaf" >
+                                                    {{this.curso.fecha_fin | date :'fullDate' }}
+                                                </p>
+                                            </div>
+
+                                        </div>
+                                        <!--                                fin justificacion del curso-->
+                                        <div class="form-group row">
+                                            <div class="text-left">
+                                                <label  class="texto-form texto_label_cord mb-2" for="horai" >
+                                                    Hora de Incio: &nbsp;</label>
+                                            </div>
+                                            <div
+                                                class="text-left my-auto">
+                                                <p class="texto_lg_cord text-justify"
+                                                   id="horai" >
+                                                    {{this.curso.hora_inicio | date :'hh:mm aa' }}
+                                                </p>
+                                            </div>
+
+                                        </div>
+                                        <!--                                fin justificacion del curso-->
+                                        <div class="form-group row">
+                                            <div class="text-left">
+                                                <label  class="texto-form texto_label_cord mb-2" for="horaf" >
+                                                    Hora de Finalización: &nbsp;</label>
+                                            </div>
+                                            <div
+                                                class="text-left my-auto">
+                                                <p class="texto_lg_cord text-justify"
+                                                   id="horaf" >
+                                                    {{this.curso.hora_fin | date :'hh:mm aaa' }}
+                                                </p>
+                                            </div>
+
+                                        </div>
+                                        <!--                                fin justificacion del curso-->
+                                        <div class="form-group row">
+                                            <div class="text-left">
+                                                <label  class="texto-form texto_label_cord mb-2" for="total" >
+                                                    Total de horas: &nbsp;</label>
+                                            </div>
+                                            <div
+                                                class="text-left my-auto">
+                                                <p class="texto_lg_cord text-justify"
+                                                   id="total" >
+                                                    {{this.curso.total_horas+' hrs'}}
+                                                </p>
+                                            </div>
+
+                                        </div>
+                                        <!--                                fin justificacion del curso-->
+                                    </div>
+                                    <!--       termina el row-->
+                                </div>
+                                <!--                    </form>-->
+                                <!--                    fin form-->
+                            </div>
+                            <!--                fin card body-->
+                        </div>
+                        <!--            termina la tarjeta entera-->
+                    </div>
+                    <!-- fin seccion-->
+                    <div class="row">
+                        <div class="card col-md-11 ml-5">
+                            <!--                fin card header-->
+                            <div class="card-body pb-0">
+                                <div class="row">
+                                    <div class="form-group col-sm-12 text-center mb-0">
+                                        <div class="form-group row">
+                                            <div class="text-left col-md-3">
+                                                <label  class="texto-form texto_label_cord mb-2" for="img_curso" >
+                                                    Imagen del curso: &nbsp;</label>
+                                                <label style="color:#ff0000;" >*</label>
+                                            </div>
+                                            <div class="col-md-5  border">
+                                                <div class="input-group">
+                                                    <input type="file"
+                                                           class="form-control texto-card"
+                                                           id="img_curso" name="img_curso"
+                                                           (change)="actualizaImagen($event)"
+                                                           accept="image/png, image/jpeg"
+                                                           required>
+                                                </div>
+                                                <div class="col-11 px-0 pb-1 pt-1">
+                                                    <img *ngIf="this.curso.imagen_curso != null"
+                                                         class="card-img-top img-fluid size-img"
+                                                         src="{{this.ficha_service.get_url_back(this.curso.imagen_curso)}}">
+                                                    <!--                                        <img class="card-img-top img-fluid"  src="assets/img/capacitacion_docente/curso1.png" alt="Card image cap">-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--                                tipo ser del curso-->
+                                    </div>
+                                    <!--       termina el row-->
+                                </div>
+                                <!--                    </form>-->
+                                <!--                    fin form-->
+                            </div>
+                            <!--                fin card body-->
+                        </div>
+                        <!--            termina la tarjeta entera-->
+                    </div>
+                    <!-- fin seccion-->
+
                     <div class="form-group">
                         <div class="col-md-4 text-center offset-4">
                             <br><br>
@@ -526,7 +589,7 @@ box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);">
                                                     <fa-icon style="margin-left:0.3125rem" [icon]="flechaabajo"></fa-icon>
                                                 </a>
 <!--                                            </div>-->
-                                            <div *ngIf="contenido['archivo_contenido_tematico'].length >0;  else elseArchivos">
+                                            <div *ngIf="contenido['archivo_contenido_tematico'] != null ;  else elseArchivos">
                                                 <!--                                            <div>-->
                                                 <div class="dropdown-menu dropdown-menu-right" *dropdownMenu
                                                      aria-labelledby="simple-dropdown">
@@ -538,7 +601,6 @@ box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);">
                                                     <!--                                                    <div *ngFor="contenido_tematico.archivo_contenido_tematico;"-->
                                                     <div *ngFor="let archivo of this.contenido['archivo_contenido_tematico'];"
                                                          class="dropdown-item text-right">
-<!--                                                        href="http://tudominio.es/descargas-pdf/pdf-descargable.pdf"-->
                                                         <a
                                                            href="{{this.ficha_service.get_url_back(archivo['RUTA_ARCHIVO'])}}"
                                                            target="_blank"> {{ archivo['NOMBRE_ARCHIVO']  | slice:0:25 }} </a>
@@ -597,11 +659,11 @@ box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);">
                                                 </thead>
                                                 <tbody class="bg-white">
                                                 <tr class="text-justify">
-                                                    <td class="px-5">{{contenido.NOMBRE_TEMA}} </td>
-                                                    <td class="px-5">{{contenido.ACTIVIDAD_APRENDIZAJE}} </td>
+                                                    <td class="px-5">{{contenido['NOMBRE_TEMA']}} </td>
+                                                    <td class="px-5">{{contenido['ACTIVIDAD_APRENDIZAJE']}} </td>
                                                     <td class="text-center" >
                                                         <fa-icon [icon]="hora"></fa-icon>
-                                                        {{contenido.TIEMPO_TEMA}}
+                                                        {{contenido['TIEMPO_TEMA']}}
                                                     </td>
                                                     <!-- FIN body  -->
                                                 </tr>
@@ -694,7 +756,7 @@ box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);">
                                      class="col-md-11 p-2 offset-1 border" >
 
                                     <span *ngFor="let elemento of elementos_didacticos; let i =index"
-                                        class="badge badge-pill badge-secondary texto-card mx-1 mt-1">{{elemento.NOMBRE_MATERIAL}}
+                                        class="badge badge-pill badge-secondary texto-card mx-1 mt-1">{{elemento['NOMBRE_MATERIAL']}}
                                         <button   (click)="borrar_elemento_didactico(i)"
                                                   class="btn btn-secondary  texto-form texto-card">
                                             <fa-icon [icon]="cancel"></fa-icon>
@@ -790,9 +852,9 @@ box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);">
                                         <tbody *ngIf="criterios_evaluacion.length > 0; else criterioLista" >
                                         <tr class="text-center" *ngFor="let criterio of criterios_evaluacion; let i = index;">
                                             <td>{{i +1 }}</td>
-                                            <td>{{ criterio.NOMBRE_CRITERIO }}</td>
-                                            <td>{{criterio.VALOR_CRITERIO}}%</td>
-                                            <td>{{ criterio.INSTRUMENTO_DE_EVALUACION }}</td>
+                                            <td>{{ criterio['NOMBRE_CRITERIO'] }}</td>
+                                            <td>{{criterio['VALOR_CRITERIO']}}%</td>
+                                            <td>{{ criterio['INSTRUMENTO_DE_EVALUACION'] }}</td>
                                             <!-- BOTONES DE ACCION  -->
                                             <td>
                                                 <button (click)="borrar_criterio(i)"
@@ -870,7 +932,7 @@ box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);">
                                         <tbody *ngIf="competencias.length > 0; else elseCompetencias">
                                         <tr  *ngFor="let competencia of competencias; let i = index;"
                                             class="text-justify">
-                                            <td>{{competencia.TEXTO_COMPETENCIA}}</td>
+                                            <td>{{competencia['TEXTO_COMPETENCIA']}}</td>
                                             <!-- BOTONES DE ACCION  -->
                                             <td class="text-center">
                                                 <button (click)="borrar_competencia(i)"
@@ -947,7 +1009,7 @@ box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);">
                                         <tbody *ngIf="this.fuentes_informacion.length >0; else elseFuentes">
                                         <tr *ngFor="let fuente of fuentes_informacion; let i = index"
                                             class="text-justify">
-                                            <td>{{fuente.TEXTO_FUENTE}}</td>
+                                            <td>{{fuente['TEXTO_FUENTE']}}</td>
                                             <!-- BOTONES DE ACCION  -->
                                             <td class="text-center">
                                                 <button (click)="borrar_fuente_informacion(i)"
@@ -1211,6 +1273,7 @@ box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);">
 
 <!--<pre>{{this.curso | json }}</pre>-->
 
+<!--<pre>{{this.ficha | json }}</pre>&ndash;&gt;-->
 
 <!--<pre>{{this.contenido_modal | json }}</pre>
 <pre>{{this.contenido_tematico | json }}</pre>

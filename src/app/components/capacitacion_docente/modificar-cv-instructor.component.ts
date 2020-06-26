@@ -293,7 +293,7 @@ export class ModificarCvInstructorComponent implements OnInit {
                     });
                     return;
                 }
-                this.loaderModal.show();
+                // this.loaderModal.show();
                 const myReader: FileReader = new FileReader();
                 myReader.onloadend = async (e) => {
                     const body = {
@@ -313,7 +313,7 @@ export class ModificarCvInstructorComponent implements OnInit {
                 };
                 myReader.readAsDataURL(archivo);
 
-                this.loaderModal.hide();
+                // this.loaderModal.hide();
             }
         });
     }

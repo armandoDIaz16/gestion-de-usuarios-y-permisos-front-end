@@ -116,29 +116,29 @@
 
             </div>
             <!-- fin body  -->
+
+            <!-- ******************************************************************************************* -->
+            <!--*******************   FOOTER DEL MODAL  Armando Díaz 12/01/2020           *******************-->
+            <!-- ******************************************************************************************* -->
             <div class="clearfix"></div>
             <div class="modal-footer">
-
-                   <!-- <div class="col-md-6 text-center">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">He verificado la información capturada</label>
-                    </div>-->
-
-
+                <!--Sección de botones del Modal-->
                     <div class="col-md-12 text-center">
-                        <input [(ngModel)]="this.validado"
-                               type="checkbox" class="custom-control-input" id="valida">
-                        <label class="custom-control-label" for="valida">He verificado la información capturada</label><br><br>
+                        <!--** Casilla de verificacion **-->
+                        <input [(ngModel)]="this.validado" type="checkbox" class="custom-control-input" id="valida">
+                        <label class="custom-control-label" for="valida">
+                            He verificado la información capturada</label><br><br>
+                        <!--** Botón de registrar guardar periodo **-->
                         <button class="btn btn-primary" [disabled]="!this.validado" (click)="registra_periodo()">
                             <fa-icon [icon]="save"></fa-icon>
                             Registrar</button>
-<!--                        <pre>{{this.validado}}</pre>-->
+                        <!--** Botón de cancelar operación **-->
                         <button type="button" class="btn btn-danger" (click)="loaderModal.hide()">
                             <fa-icon [icon]="cancel"></fa-icon>
                             Cancelar</button>
                     </div>
-
             </div>
+            <!--******************************* FIN DEL FOOTER DEL MODAL**************************************-->
         </div>
     </div>
 </div>

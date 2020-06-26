@@ -185,63 +185,72 @@ export class PeriodosComponent implements OnInit {
 
   }
 
+ /**
+ * @author : Armando Díaz
+ * @since  : 9/1/2020
+ * @requerimiento : RF-01 Registro de periodos
+ * @version : 2.0.3
+ * @description: Realiza una llamda al backend para registrar un nuevo periodo intersemestral
+ * en la tabla CAT_PERIODO
+ * @value Nombre_periodo
+ * @value Fecha_inicio
+ * @value Fecha_fin
+ */
   registra_periodo() {
-    // console.log(this.periodo.fecha_fin);
-    // console.log(this.fecha_actual_sistema);
+    // Método para Validar los datos del periodo
     if (this.valida_form()) {
+        // Lanzamos ventala de confirmación SweetAlert2
         Swal.fire({
             title: '¿Está seguro que desea registrar el nuevo periodo?',
-            // text: "You won't be able to revert this!",
             icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Continuar'
         }).then((result) => {
+            // Si la confirmación es true continua el proceso
             if (result.value) {
-                // definiendo body
-                let body = {
+                // Definimos el objeto JSON que viajará al WS
+                const body = {
                     nombre_periodo: this.periodo.nombre_periodo,
                     fecha_inicio:   this.periodo.fecha_inicio,
                     fecha_fin:      this.periodo.fecha_fin
-                    // tipo_periodo:   this.periodo.estado_periodo
                 };
-
-                // registrar mediante WS
+                // Llamada asíncrona para registro mediante WS
                 this.periodo_service.registra_periodo(body).subscribe(
-                    data => {  // cuando sale bien todo
+                    // respuesta OK status 200
+                    data => {
                         if (data) {
+                            // limpiamos los valores de la platilla HTML
                             this._init_components();
+                            // ocultamos la ventana de registro de periodos
                             this.loaderModal.hide();
+                            // Lanzamos ventala de proceso exitoso SweetAlert2
                             Swal.fire({
                                 icon: 'success',
                                 title: '¡Se ha registrado el nuevo periodo correctamente!',
                                 showConfirmButton: true,
                                 confirmButtonText: 'OK',
-                                // timer: 2000
                             });
-                            // alert('Se ha registrado el periodo');
                             //  volver a consultar los periodos
                             this.ngOnInit();
                         }
                     },
-                    error => { // cuando ocurre un error
-                        // alert('Ha ocurrido un error');
+                    // respuesta con ERROR status 404, 500, etc.
+                    error => {
+                        // Lanzamos ventala de error SweetAlert2
                         Swal.fire({
                             icon: 'error',
                             title: '¡Lo sentimos ha ocurrido un error, intentalo más tarde!',
                             showConfirmButton: true,
                             confirmButtonText: 'OK',
-                            // timer: 2000
                         });
-                    }
-                );
-
-                // this.ngOnInit();
+                    }// fin función flecha error
+                ); // fin de la llamada asíncrona
             }
         });
-    }
-  }
+    } // fin del if
+  } // fin del metodo registrar periodo()
 
   valida_form() {
     if (this.periodo.nombre_periodo.trim() === '') {

@@ -556,6 +556,16 @@ export class VerFichaTecnicaComponent implements OnInit {
             });
             return false;
         }
+        if(this.curso.estado_curso == 1) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'La ficha técnica aún no ha sido completada por el instructor',
+                showConfirmButton: true,
+                confirmButtonText: 'OK',
+            });
+            return false;
+        }
+
         Swal.fire({
             title: '¿Está seguro que desea autorizar la ficha técnica?',
             // text: "You won't be able to revert this!",
