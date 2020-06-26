@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {GenericServicesService} from '../generic-services.service';
+import {GenericServicesService} from '../../generic-services.service';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {InterfaceAlumno} from '../../models/tutorias/AlumnoModel';
+import {InterfaceAlumno} from '../../../models/tutorias/AlumnoModel';
 
 @Injectable({
     providedIn: 'root'
@@ -13,8 +13,8 @@ export class HorarioAlumnoService extends GenericServicesService {
         super(http);
     }
 
-    get_horario(alumno: any): Observable<InterfaceAlumno> {
-        return this.http.get<InterfaceAlumno>(
+    get_horario(alumno: any): any {
+        return this.http.get<any>(
             GenericServicesService.API_ENDPOINT + 'get_horario_alumno/' + alumno,
             GenericServicesService.HEADERS
         );

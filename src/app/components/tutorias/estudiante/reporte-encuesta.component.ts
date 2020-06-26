@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-reporte-encuesta',
-  templateUrl: '../../../views/tutorias/estudiante/reporte-encuesta.component.html',
-  styleUrls: ['../../../views/tutorias/estudiante/reporte-encuesta.component.scss']
+    selector: 'app-reporte-encuesta',
+    templateUrl: '../../../views/tutorias/estudiante/reporte-encuesta.component.html',
+    styleUrls: ['../../../views/tutorias/estudiante/reporte-encuesta.component.scss']
 })
-export class ReporteEncuestaComponent implements OnInit {
+export class ReporteEncuestaAlumnoComponent implements OnInit {
 
-  constructor() { }
+    constructor() {
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 }

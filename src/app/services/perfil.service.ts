@@ -13,16 +13,11 @@ export class PerfilService extends GenericServicesService {
         super(http);
     }
 
-    async get_perfil(pk_usuario: any) {
-        const body = {
-            'pk_encriptada': pk_usuario
-        };
-
-        return this.http.post(
-            GenericServicesService.API_ENDPOINT + 'perfil',
-            body,
+    get_perfil(query_params?: string): any {
+        return this.http.get<any>(
+            GenericServicesService.API_ENDPOINT + 'perfil' + query_params,
             GenericServicesService.HEADERS
-        ).toPromise();
+        );
     }
 
     public guardar_perfil(body) {

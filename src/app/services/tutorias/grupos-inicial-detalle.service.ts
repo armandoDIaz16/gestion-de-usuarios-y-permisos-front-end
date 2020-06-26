@@ -7,15 +7,15 @@ import {InterfaceGruposTutoria, InterfaceGrupoTutoria} from '../../models/tutori
 @Injectable({
     providedIn: 'root'
 })
-export class DetalleGrupoService extends GenericServicesService {
+export class GruposInicialDetalleService extends GenericServicesService {
 
     constructor(private http: HttpClient) {
         super(http);
     }
 
-    get_detalle_grupo(pk_grupo: number): Observable<InterfaceGruposTutoria> {
-        return this.http.get<InterfaceGruposTutoria>(
-            GenericServicesService.API_ENDPOINT + 'detalle_grupo/' + pk_grupo,
+    get_detalle(query_params?: string): any {
+        return this.http.get<any>(
+            GenericServicesService.API_ENDPOINT + 'detalle_grupo' + query_params,
             GenericServicesService.HEADERS
         );
     }

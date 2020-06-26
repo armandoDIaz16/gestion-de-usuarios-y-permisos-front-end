@@ -1,24 +1,29 @@
 <div class="row">
     <div class="col-md-6 offset-md-3">
         <table class="table table-striped table-bordered">
+            <thead>
+            <tr class="text-center">
+                <th colspan="2">Datos del estudiante</th>
+            </tr>
+            </thead>
             <tbody>
             <tr>
                 <td class="text-right">
                     <b>Nombre</b>
                 </td>
-                <td>{{alumno.NOMBRE}} {{alumno.PRIMER_APELLIDO}} {{alumno.SEGUNDO_APELLIDO}}</td>
+                <td>{{this.alumno.NOMBRE}} {{this.alumno.PRIMER_APELLIDO}} {{this.alumno.SEGUNDO_APELLIDO}}</td>
             </tr>
             <tr>
                 <td class="text-right">
                     <b>Carrera</b>
                 </td>
-                <td>{{alumno.CARRERA}}</td>
+                <td>{{this.alumno.CARRERA}}</td>
             </tr>
             <tr>
                 <td class="text-right">
                     <b>Semestre</b>
                 </td>
-                <td>{{alumno.SEMESTRE}}</td>
+                <td>{{this.alumno.SEMESTRE}}</td>
             </tr>
             </tbody>
         </table>
@@ -38,61 +43,44 @@
             </div>
         </div>
         <br>
-        <table class="table table-striped">
+        <table class="table table-striped table-bordered table-hover">
             <thead>
             <tr class="text-center">
                 <th>Número</th>
                 <th>Nombre</th>
                 <th>Fecha aplicación</th>
                 <th>Fecha respuesta</th>
-                <th>Respuestas</th>
-                <th>Reporte</th>
+                <th>Operaciones</th>
             </tr>
             </thead>
-            <tbody *ngIf="this.hay_encuestas; else elseBlock">
+            <tbody>
             <tr *ngFor="let encuesta of this.lista_encuestas; let i = index" class="text-center">
                 <td>{{i + 1}}</td>
                 <td>{{encuesta.NOMBRE}}</td>
-                <td>{{encuesta.FECHA_APLICACION}}</td>
-                <td>{{encuesta.FECHA_RESPUESTA}}</td>
-                <td *ngIf="encuesta.ESTADO_APLICACION == 2; else elseSinResponder">
-                    <!--
-                    <a [routerLink]="['/tutorias/respuestas-encuesta']"
-                       [queryParams]="{clave_grupo: encuesta.PK_APLICACION_ENCUESTA}"
+                <td>
+                    {{(encuesta.FECHA_APLICACION) ? (encuesta.FECHA_APLICACION | date) : '-' }}
+                </td>
+                <td>
+                    {{(encuesta.FECHA_RESPUESTA) ? (encuesta.FECHA_RESPUESTA | date) : '-' }}
+                </td>
+                <td>
+                    <a *ngIf="encuesta.ESTADO_APLICACION == 2 && this.muestra_respuestas(encuesta.PK_ENCUESTA)"
+                       [routerLink]="['/tutorias/278ceea6e50746dc7430cd184f165a36']"
+                       [queryParams]="{aplicacion: encuesta.PK_APLICACION_ENCUESTA_DETALLE, token: this.rol}"
                        tooltip="Ver respuestas de la encuesta"
-                       class="btn btn-link">
-                        Ver respuestas
+                       class="btn btn-sm btn-success">
+                        <i class="icon-eye"></i>
                     </a>
-                    -->
-                    Respondida
-                </td>
-                <ng-template #elseSinResponder>
-                    <td>
-                        No respondida
-                    </td>
-                </ng-template>
-                <td *ngIf="encuesta.ESTADO_APLICACION == 2; else elseSinResponder">
-                    <a [routerLink]="['/tutorias/reporte-encuesta']"
-                       [queryParams]="{aplicacion: encuesta.PK_APLICACION_ENCUESTA}"
+                    <a *ngIf="encuesta.ESTADO_APLICACION == 2  && this.muestra_reporte(encuesta.PK_ENCUESTA)"
+                       [routerLink]="['/tutorias/483923951a3fb91ea3a6e91789c5d456']"
+                       [queryParams]="{aplicacion: encuesta.PK_APLICACION_ENCUESTA_DETALLE, token: this.rol}"
                        tooltip="Ver reporte de la encuesta"
-                       class="btn btn-link">
-                        Ver reporte
+                       class="btn btn-sm btn-primary">
+                        <i class="icon-pie-chart"></i>
                     </a>
                 </td>
-                <ng-template #elseSinResponder>
-                    <td>
-                        No respondida
-                    </td>
-                </ng-template>
             </tr>
             </tbody>
-            <ng-template #elseBlock>
-                <tbody>
-                <tr class="text-center">
-                    <td colspan="5">No se encontraron encuestas pendientes</td>
-                </tr>
-                </tbody>
-            </ng-template>
         </table>
     </div>
 </div>

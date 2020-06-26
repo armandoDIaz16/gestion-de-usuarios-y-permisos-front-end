@@ -93,7 +93,7 @@ export const routes: Routes = [
         component: DefaultLayoutComponent,
         canActivate: [AfterLoginService],
         data: {
-            title: 'Home'
+            title: 'Inicio'
         }
     },
     {
@@ -158,8 +158,7 @@ export const routes: Routes = [
         data: {
             title: 'Repositorio tesis'
         }
-    },
-
+    }
 ];
 
 @NgModule({

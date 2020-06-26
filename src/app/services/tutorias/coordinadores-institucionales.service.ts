@@ -31,16 +31,16 @@ export class CoordinadoresInstitucionalesService extends GenericServicesService 
 
     guarda_coordinador(body: object) {
         return this.http.post(
-            GenericServicesService.API_ENDPOINT + 'guarda_coordinador',
+            GenericServicesService.API_ENDPOINT + 'guarda_coordinador_institucional',
             body,
             GenericServicesService.HEADERS
         );
     }
 
-    quita_rol_coordinador(pk_area_academica: number) {
+    quita_rol_coordinador(pk_usuario: number) {
         return this.http.post(
-            GenericServicesService.API_ENDPOINT + 'elimina_rol_coordinador',
-            {pk_area_academica: pk_area_academica},
+            GenericServicesService.API_ENDPOINT + 'elimina_rol_coordinador_institucional',
+            {pk_usuario: pk_usuario},
             GenericServicesService.HEADERS
         );
     }

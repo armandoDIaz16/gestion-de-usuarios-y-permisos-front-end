@@ -13,15 +13,15 @@ export class ResponderEncuestaService extends GenericServicesService {
         super(http);
     }
 
-    get_encuesta_completa(pk_aplicacion_encuesta: number): Observable<InterfaceEncuestaCompleta> {
+    get_encuesta_completa(query_params?: string): Observable<InterfaceEncuestaCompleta> {
         return this.http.get<InterfaceEncuestaCompleta>(
-            GenericServicesService.API_ENDPOINT + 'get_encuesta_aplicacion/' + pk_aplicacion_encuesta,
+            GenericServicesService.API_ENDPOINT + 'get_encuesta_aplicacion/' + query_params,
             GenericServicesService.HEADERS
         );
     }
 
     guarda_respuestas_pasatiempos(pk_aplicacion_encuesta: number, pk_encuesta: number, array_respuestas) {
-        var body = {
+        const body = {
             PK_APLICACION: pk_aplicacion_encuesta,
             PK_ENCUESTA: pk_encuesta,
             RESPUESTAS: array_respuestas

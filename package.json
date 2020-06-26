@@ -28,6 +28,7 @@
   "private": true,
   "dependencies": {
     "@amcharts/amcharts4": "^4.6.5",
+    "@angular-devkit/build-angular": "^0.13.0",
     "@angular/animations": "^7.2.14",
     "@angular/cdk": "^7.3.7",
     "@angular/common": "^7.2.14",
@@ -47,6 +48,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.27",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
     "@types/chart.js": "^2.7.52",
+    "acorn": "^6.1.1",
     "ajv": "^6.10.0",
     "angular-bootstrap-md": "^7.5.1",
     "bootstrap": "^4.2.1",
@@ -78,7 +80,6 @@
     "zone.js": "^0.8.28"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.12.4",
     "@angular/cli": "^7.3.9",
     "@angular/compiler-cli": "^7.2.14",
     "@angular/language-service": "^7.2.14",
@@ -93,7 +94,7 @@
     "karma-coverage-istanbul-reporter": "^2.0.4",
     "karma-jasmine": "^2.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.14.1",
     "protractor": "^5.4.2",
     "ts-node": "^7.0.1",
     "tslint": "^5.16.0",

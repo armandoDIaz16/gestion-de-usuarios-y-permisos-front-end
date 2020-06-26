@@ -15,12 +15,12 @@ export class PerfilComponent implements OnInit {
     public error = null;
     public data = null;
 
-    public perfil: InterfacePerfil = null;
+    public perfil = null;
     public estados_civiles: InterfaceEstadoCivil[] = [];
     public datos_codigo_postal: InterfaceDatosCodigoPostal = null;
     public situaciones_residencia: InterfaceSituacionResidencia[] = [];
 
-    public pk_usuario = sessionStorage.getItem('IdEncriptada');
+    public pk_usuario = '';
 
     @ViewChild('loaderModal') loaderModal;
     public display: string;
@@ -53,7 +53,7 @@ export class PerfilComponent implements OnInit {
         private router: Router,
         private perfil_service: PerfilService
     ) {
-        this.perfil = <InterfacePerfil>{};
+        this.perfil = [];
         this.estados_civiles = [];
         this.situaciones_residencia = [];
         this.datos_codigo_postal = <InterfaceDatosCodigoPostal>{};
@@ -62,14 +62,11 @@ export class PerfilComponent implements OnInit {
     }
 
     async ngOnInit() {
+        this.pk_usuario = sessionStorage.getItem('IdEncriptada');
         this.display = 'block';
 
-        const data_perfil = await this.perfil_service.get_perfil(
-            sessionStorage.getItem('IdEncriptada')
-        );
-        if (data_perfil) {
-            this.perfil = <InterfacePerfil>data_perfil;
-        }
+        // obtener datos del perfil
+        this.get_perfil();
 
         const data_estados_civiles = await this.perfil_service.get_estados_civiles();
         if (data_estados_civiles) {
@@ -118,6 +115,22 @@ export class PerfilComponent implements OnInit {
         this.procesa_codigo_postal();
 
         this.display = 'none';
+    }
+
+    get_perfil() {
+        this.perfil_service.get_perfil('?pk_encriptada=' + this.pk_usuario).subscribe(
+            (data) => {
+                this.perfil = data.data;
+            },
+            (error) => {
+                alert('Ha ocurrido un error');
+                console.log(error);
+            },
+            () => {
+                console.log('complete perfil');
+                this.display = 'none';
+            }
+        );
     }
 
     actualiza_foto(evt: any) {

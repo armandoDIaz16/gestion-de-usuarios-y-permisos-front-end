@@ -99,7 +99,10 @@ export class NavbarSistemsComponent implements OnInit {
                     }
                 }
 
+                this.loaderModal.hide();
+
                 sessionStorage['rutas'] = JSON.stringify(rutasRoles);
+                // console.log(nombreSistema);
                 switch (nombreSistema) {
                     case 'Aspirantes':
                         if (this.redirigirAspirante) {
@@ -125,12 +128,16 @@ export class NavbarSistemsComponent implements OnInit {
                         break;
                      case 'Capacitación docente':
                         this.router.navigateByUrl('/capacitacion_docente/787eb37068bf4a5b174c44f75d22cc51');
+                    case 'Referencias':
+                        this.router.navigateByUrl('/referencias');
                         break;
                 }
             });
         /*}*/
+    }
 
-        this.loaderModal.hide();
+    recargar() {
+        location.reload();
     }
 }
 

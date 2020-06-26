@@ -24,9 +24,13 @@
         </li>-->
 
         <li class="nav-item dropdown" dropdown placement="bottom right">
+            <!--a class="nav-link nombreUsuario" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
+               dropdownToggle (click)="false">
+                {{this.nombre_usuario}} ({{this.numero_control}})
+            </a-->
             <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
                 dropdownToggle (click)="false">
-                {{this.nombre_usuario}} ({{this.numero_control}})
+                    {{this.nombre_usuario}} {{this.numero_control}}
                 <img src="assets/img/avatars/user_icon.png" class="img-avatar" alt="admin@bootstrapmaster.com" />
             </a>
             <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
@@ -87,9 +91,6 @@
                 <div *ngIf="mostrarVideo">
                     <p class="h3">Ayuda</p>
                     <br>
-                    <a class="btn btn-warning" (click)="this.recargar();">Cargar menú de sistemas</a>
-                    <br>
-                    <br>
                     <a href="assets/video/guia.mp4" target="_blank">Ver video guía del panel principal del sistema</a>
                 </div>
             </div>
@@ -97,13 +98,13 @@
         </div>
 
     </main>
-    <app-aside [fixed]="true" [display]="false">
+    <app-aside [fixed]="true" [display]="''">
         <app-navbar-sistems></app-navbar-sistems>
     </app-aside>
 </div>
 <app-footer>
     <span>Tecnológico Nacional de México en León</span>
-    <span class="ml-auto">Bienvenido</span>
+    <!--span class="ml-auto">Bienvenido</span-->
 </app-footer>
 
 <!-- INICIO VENTANA MODAL DE CARGA -->

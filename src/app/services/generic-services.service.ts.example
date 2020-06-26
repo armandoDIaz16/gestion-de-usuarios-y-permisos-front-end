@@ -6,17 +6,8 @@ import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 })
 export class GenericServicesService {
 
-    // AMBIENTE DE PRODUCCIÓN
-    // protected static API_ENDPOINT = 'http://tecvirtual.itleon.edu.mx/backend_swiitl/server.php/api/';
-    // protected static ENDPOINT = 'http://tecvirtual.itleon.edu.mx/backend_swiitl/public/';
-
-    // AMBIENTE DE PRUEBAS
-    //protected static API_ENDPOINT = 'http://10.0.31.10/backend_swiitl/server.php/api/';
-    //protected static ENDPOINT = 'http://10.0.31.10/backend_swiitl/server.php/';
-
-    // AMBIENTE LOCAL
-    //protected static API_ENDPOINT = 'http://127.0.0.1:8000/api/';
-    //protected static ENDPOINT = 'http://127.0.0.1:8000/';
+    // protected static API_ENDPOINT = 'http://127.0.0.1:8000/api/';
+    // protected static ENDPOINT = 'http://127.0.0.1:8000/';
 
     protected static HEADERS = {
         headers: new HttpHeaders({
@@ -64,8 +55,8 @@ export class GenericServicesService {
         );
     }
 
-    get_url_back(ruta: string): string {
-        return GenericServicesService.ENDPOINT + ruta;
+    get_url_back(url: string): string {
+        return GenericServicesService.API_ENDPOINT + url;
     }
 
 
@@ -76,7 +67,14 @@ export class GenericServicesService {
         };
         var myReader: FileReader = new FileReader();
         myReader.onloadend = (e) => {
-            this.aspiranteService.addPagos({ "Sistema": this.sistema, "Nombre": archivo.name.split('.').shift(), "Extencion": archivo.name.split('.').pop(), "Archivo": myReader.result }, this.periodo);
+            this.aspiranteService.addPagos(
+            {
+            "Sistema": this.sistema,
+            "Nombre": archivo.name.split('.').shift(),
+            "Extencion": archivo.name.split('.').pop(),
+            "Archivo": myReader.result
+            }, this.periodo
+            );
         }
         myReader.readAsDataURL(archivo);
     } */
