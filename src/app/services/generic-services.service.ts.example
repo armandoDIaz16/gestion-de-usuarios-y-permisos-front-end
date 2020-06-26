@@ -68,6 +68,7 @@ export class GenericServicesService {
         return GenericServicesService.API_ENDPOINT + url;
     }
 
+
     /* Ejemplo_Enviar_Archivo(evt: any) {
         var archivo: File = evt.target.files[0];
         if (!archivo) {

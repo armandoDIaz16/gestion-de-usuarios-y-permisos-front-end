@@ -1,0 +1,340 @@
+<h2 class="text-center"> INSTRUCTOR </h2>
+
+<!--****************************************************-->
+<!-- BLOQUE PRINCIPAL CON FOTO Y NOMBRE INSTRUCTOR-->
+<!--****************************************************-->
+<div class="row mx-4 my-5">
+    <div class="col-2 text-center">
+        <label *ngIf="this.perfil.FOTO_PERFIL ==null ||this.perfil.FOTO_PERFIL.trim() == ''; else elseFoto"  for="img_cv">
+            <img  class="card-img-top img-fluid size-img-cv"
+                  src="assets/img/avatars/user_icon.png">
+        </label>
+        <ng-template #elseFoto>
+            <label>
+                <img  class="card-img-top img-fluid size-img-cv rounded-circle"
+                      src="{{this.perfil_service.get_url_back(this.perfil.FOTO_PERFIL)}}"
+                >
+            </label>
+        </ng-template>
+    </div>
+    <!--****************************************************-->
+    <!--BLOQUE AZUL CON NOMBRE-->
+    <!--****************************************************-->
+    <div class="col-10 color-azul" style="border-radius: 200px 200px 200px 200px;  -moz-border-radius: 200px 200px 200px 200px;
+                                -webkit-border-radius: 200px 200px 200px 200px; border: 7px double #ffffff;">
+        <h2 class="color-blanco text-center my-5">
+            {{this.perfil.NOMBRE }}
+            {{ this.perfil.PRIMER_APELLIDO}}
+            {{ this.perfil.SEGUNDO_APELLIDO}}</h2>
+    </div>
+</div>
+<!--****************************************************-->
+
+<!--****************************************************-->
+<!-- BLOQUE DE TODA LA INFO DEL CV-->
+<!--****************************************************-->
+<hr>
+<div class="row mx-0 mb-5">
+    <div class="text-center col-3">
+        <h4>SOBRE MÍ</h4>
+        <div class="line-azul mb-2"></div>
+        <!--****************************************************-->
+        <!-- ESTA INFO SERA MOSTRADA SOLO SI ES EL COORDINADOR O EL MISMO DUEÑO DEL CV-->
+        <!--****************************************************-->
+        <div  *ngIf="this.mostrar_info;" >
+        <!--CURP-->
+            <div *ngIf="!(this.perfil.CURP == ''); else elseIntro;"
+                 class="text-left my-auto">
+                <p class="texto_lg_cv  mb-1"
+                   id="curp" >
+                    <span class="font-weight-bold">CURP:</span>
+                    {{this.perfil.CURP}}</p>
+            </div>
+            <ng-template #elseIntro>
+                <div class="text-left my-auto color-plata">
+                    <p class="text-justify texto_lg_cv mb-1">
+                        No se ha registrado el CURP
+                    </p>
+                </div>
+            </ng-template>
+            <!--RFC-->
+            <div *ngIf="!(this.cv.rfc == ''); else elseRFC;"
+                 class="text-left my-auto">
+                <p class="texto_lg_cv   mb-1"
+                   id="rfc" >
+                    <span class="font-weight-bold">RFC:</span>
+                    {{this.cv.rfc}}</p>
+            </div>
+            <ng-template #elseRFC>
+                <div class="text-justify my-auto color-plata">
+                    <p class="font-weight-bold texto_lg_cv mb-1">
+                        No se ha registrado el RFC
+                    </p>
+                </div>
+            </ng-template>
+            <!--TELEFONO-->
+            <div *ngIf="!(this.perfil.TELEFONO_MOVIL == null || this.perfil.TELEFONO_MOVIL == ''); else elseTEL;"
+                 class="text-left my-auto">
+                <p class="texto_lg_cv  mb-1"
+                   id="tel" >
+                    <span class="font-weight-bold">
+                        <fa-icon [icon]="tel"></fa-icon>
+                        Teléfono:</span>
+                    {{this.perfil.TELEFONO_MOVIL}}</p>
+            </div>
+            <ng-template #elseTEL>
+                <div class="text-justify my-auto color-plata">
+                    <p class="font-weight-bold texto_lg_cv mb-1">
+                        No se ha registrado el teléfono
+                    </p>
+                </div>
+            </ng-template>
+            <!--mail-->
+            <div *ngIf="!(this.perfil.CORREO_INSTITUCIONAL == null ||  this.perfil.CORREO_INSTITUCIONAL == ''); else elseMAIL;"
+                 class="text-left my-auto">
+                <p class="texto_lg_cv  mb-1" id="email" >
+                    <span class="font-weight-bold">
+                        <fa-icon [icon]="mail"></fa-icon>
+                        Correo:</span>
+                    {{this.perfil.CORREO_INSTITUCIONAL}}</p>
+            </div>
+            <ng-template #elseMAIL>
+                <div class="text-left my-auto color-plata">
+                    <p class="font-weight-bold texto_lg_cv mb-1">
+                        No se ha registrado el correo institucional
+                    </p>
+                </div>
+            </ng-template>
+            <!--fecha nacimiento-->
+            <div *ngIf="!(this.perfil.FECHA_NACIMIENTO == null || this.perfil.FECHA_NACIMIENTO == ''); else elsefecha;"
+                 class="text-left my-auto">
+                <p class="texto_lg_cv  mb-2" id="fecha" >
+                    <span class="font-weight-bold">
+                        Fecha de nacimiento:</span>
+                    {{this.perfil.FECHA_NACIMIENTO | date:'dd/MM/yyyy'}}</p>
+            </div>
+            <ng-template #elsefecha>
+                <div class="text-left my-auto color-plata">
+                    <p class="font-weight-bold texto_lg_cv mb-2">
+                        No se ha registrado la fecha de nacimiento
+                    </p>
+                </div>
+            </ng-template>
+        </div>
+        <!-- FIN DEL IF
+        **************************************************-->
+        <div *ngIf="!(this.cv.biografia == ''); else elsebio"
+             class="text-justify texto_lg_cv">
+            <span class="font-weight-bold">
+                       Biografía:</span>
+            <div  [innerHTML]="this.cv.biografia" id="bio"
+                  class=" mb-1">
+            </div>
+        </div>
+        <ng-template #elsebio>
+            <div class="text-left my-auto color-plata">
+                <p class="font-weight-bold texto_lg_cv mb-2">
+                    No se ha registrado información del instructor
+                </p>
+            </div>
+        </ng-template>
+    </div>
+    <!--****************************************************-->
+    <!-- BLOQUE DE LA DERECHA CON TODAS LAS TABLAS-->
+    <!--****************************************************-->
+    <div class="col-9">
+        <!--*********** FORMACIÓN ACADÉMICA***************** -->
+        <h4>FORMACIÓN ACADÉMICA</h4>
+        <div class="line-azul mb-2"></div>
+            <table class="table table-sm table-hover texto-card">
+                <thead>
+                <tr class="text-center">
+                    <th></th>
+                    <th>Formación</th>
+                    <th>Instituto</th>
+                    <th>Titulación</th>
+                    <th>Cédula profesional</th>
+                </tr>
+                </thead>
+                <tbody *ngIf="formacion_academica_list.length > 0; else formacionLista" >
+                <tr class="text-center"
+                    *ngFor="let formacion of formacion_academica_list; let i = index;">
+                    <td *ngIf="formacion['TIPO_FORMACION'] == 5; else elseTipoFormacion"
+                        class="text-justify">
+                        {{ formacion['OTRO_TIPO'] }}</td>
+                    <ng-template #elseTipoFormacion>
+                        <td class="text-justify">
+                            {{formacion['tipo_formacion']['NOMBRE_TIPO']}}</td>
+                    </ng-template>
+                    <td>{{formacion['NOMBRE_CARRERA']}}</td>
+                    <td>{{formacion['INSTITUCION']}}</td>
+                    <td>{{formacion['FECHA_TITULACION'] | date :'longDate' }}</td>
+                    <td *ngIf=" formacion['CEDULA_PROFESIONAL'] != null && formacion['CEDULA_PROFESIONAL'] > 0; else elseCedula">
+                        {{formacion['CEDULA_PROFESIONAL']}}</td>
+                    <ng-template #elseCedula>
+                        <td></td>
+                    </ng-template>
+                </tr>
+                </tbody>
+                <ng-template #formacionLista>
+                    <tbody>
+                    <tr>
+                        <td colspan="5" class="text-center texto-card">
+                            No se encontraron registros
+                        </td>
+                    </tr>
+                    </tbody>
+                </ng-template>
+            </table>
+
+        <!--*********** EXP. LABORAL***************** -->
+        <h4>EXPERIENCIA LABORAL</h4>
+        <div class="line-azul mb-2"></div>
+            <table class="table table-sm table-hover texto-card">
+                <thead>
+                <tr class="text-center">
+                    <th>Puesto</th>
+                    <th>Empresa</th>
+                    <th>Permanencia</th>
+                    <th>Actividades</th>
+                </tr>
+                </thead>
+                <tbody *ngIf="experiencia_laboral_list.length > 0; else experienciaLista" >
+                <tr class="text-center"
+                    *ngFor="let experiencia of experiencia_laboral_list; let i = index;">
+                    <td class="text-left">
+                        {{ experiencia['NOMBRE_PUESTO'] }} </td>
+                    <td> {{ experiencia['NOMBRE_EMPRESA'] }}</td>
+                    <td>{{ experiencia['FECHA_INICIO_PERMANENCIA']  | date :'MMMM yyyy'}}
+                        a {{ experiencia['FECHA_FIN_PERMANENCIA']   | date :'MMMM yyyy' }}
+                    </td>
+                    <td class="text-justify" >
+                        {{ experiencia['ACTIVIDADES_A_CARGO'] }}</td>
+                </tr>
+                </tbody>
+                <ng-template #experienciaLista>
+                    <tbody>
+                    <tr>
+                        <td colspan="4" class="text-center texto-card">
+                            No se encontraron registros
+                        </td>
+                    </tr>
+                    </tbody>
+                </ng-template>
+            </table>
+        <!--*********** EXP. DOCENTE***************** -->
+        <h4>EXPERIENCIA DOCENTE</h4>
+        <div class="line-azul mb-2"></div>
+            <table class="table table-sm table-hover texto-card">
+                <thead>
+                <tr class="text-center">
+                    <th>Materia</th>
+                    <th>Institución</th>
+                    <th>Periodo</th>
+                </tr>
+                </thead>
+
+                <tbody *ngIf="experiencia_docente_list.length > 0; else expDocenteLista" >
+                <tr class="text-center" *ngFor="let experiencia of experiencia_docente_list; let i = index;">
+                    <td class="text-justify" > {{ experiencia['NOMBRE_MATERIA'] }} </td>
+                    <td *ngIf="experiencia['FK_INSTITUCION'] == 0; else elseInstitucion">
+                        {{ experiencia['NOMBRE_OTRA_INSTITUCION'] }}</td>
+                    <ng-template #elseInstitucion>
+                        <td>{{ experiencia['instituto']['NOMBRE'] }}</td>
+                    </ng-template>
+                    <td>{{ experiencia['FECHA_INICIO_PERIODO']  | date :'MMMM yyyy' }} -
+                        {{  experiencia['FECHA_FIN_PERIODO'] | date :'MMMM yyyy' }} </td>
+
+                </tr>
+                </tbody>
+                <ng-template #expDocenteLista>
+                    <tbody>
+                    <tr>
+                        <td colspan="3" class="text-center texto-card">
+                            No se encontraron registros
+                        </td>
+                    </tr>
+                    </tbody>
+                </ng-template>
+            </table>
+        <!--*********** PROD. ACADEMICOS***************** -->
+        <h4>PRODUCTOS ACADÉMICOS</h4>
+        <div class="line-azul mb-2"></div>
+        <table class="table table-sm table-hover texto-card">
+                <thead>
+                <tr class="text-center">
+                    <th>Actividad o Producto</th>
+                    <th>Descripción</th>
+                    <th>Fecha</th>
+                </tr>
+                </thead>
+                <tbody *ngIf="prductos_academicos_list.length > 0; else productosLista" >
+                <tr class="text-center"
+                    *ngFor="let prducto of prductos_academicos_list; let i = index;">
+                    <td class="" >{{ prducto['NOMBRE_PRODUCTO'] }}</td>
+                    <td class="">{{ prducto['DESCRIPCION'] }}</td>
+                    <td>{{ prducto['FECHA_PRODUCTO'] | date:'MMMM yyyy'}}</td>
+                </tr>
+                </tbody>
+                <ng-template #productosLista>
+                    <tbody>
+                    <tr>
+                        <td colspan="3" class="text-center texto-card">
+                            No se encontraron registros
+                        </td>
+                    </tr>
+                    </tbody>
+                </ng-template>
+            </table>
+        <!--*********** part. instructor***************** -->
+        <h4>PARTICIPACIÓN COMO INSTRUCTOR</h4>
+        <div class="line-azul mb-2"></div>
+        <table class="table table-sm table-hover texto-card">
+                <thead>
+                <tr class="text-center">
+                    <th>Título</th>
+                    <th>Institución o Empresa u Organización</th>
+                    <th>Duración
+                        (Hrs)</th>
+                    <th>Fecha</th>
+                </tr>
+                </thead>
+                <tbody *ngIf="participacion_instructor_list.length > 0; else participacionLista" >
+                <tr class="text-center"
+                    *ngFor="let participacion of participacion_instructor_list; let i = index;">
+                    <td class="text-justify" > {{ participacion['TITULO_CURSO'] }} </td>
+                    <td class=""> {{ participacion['NOMBRE_INSTITUCION'] }} </td>
+                    <td> {{ participacion['HRS_DURACION_CURSO'] }}(Hrs) </td>
+                    <td> {{ participacion['FECHA_IMPARTICION'] | date : 'MMMM yyyy'  }} </td>
+                </tr>
+                </tbody>
+                <ng-template #participacionLista>
+                    <tbody>
+                    <tr>
+                        <td colspan="4" class="text-center texto-card">
+                            No se encontraron registros
+                        </td>
+                    </tr>
+                    </tbody>
+                </ng-template>
+            </table>
+    </div>
+    <!-- FIN DEL BLOQUE DE LA DERECHA CON TODAS LAS TABLAS-->
+    <!--****************************************************-->
+</div>
+<!-- FIN DEL BLOQUE PRINCIPAL CON FOTO Y NOMBRE INSTRUCTOR-->
+<!--****************************************************-->
+
+
+<!-- INICIO VENTANA MODAL DE CARGA -->
+<div bsModal #loaderModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-hidden="false"
+     [config]="{backdrop: 'static',keyboard: false}" [style.display]="this.display">
+    <!--[config]="{backdrop: 'static',keyboard: false}">-->
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content"
+             style="background-color: rgba(51, 51, 51, 0.8); background-clip: padding-box; border: 1px solid rgba(0, 0, 0, 0);">
+            <app-loader></app-loader>
+        </div>
+    </div>
+</div>
+<!-- FIN VENTANA MODAL DE CARGA -->
