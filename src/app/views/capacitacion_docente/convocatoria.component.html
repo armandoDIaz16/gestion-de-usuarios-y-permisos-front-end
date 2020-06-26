@@ -73,12 +73,13 @@
                                                 <div class="col-12">
                                                     <label *ngIf="instructor['NOMBRE_INSTRUCTOR'].length>26; else elseIns;"
                                                            class="font-weight-bold texto-instructor">
-                                                        <a
+                                                        <a data-toggle="tooltip" data-placement="top" title="consultar CV"
                                                             [routerLink]="['..','de3ec0aa2234aa1e3ee275bbc715c6c9',instructor['PK_PARTICIPANTE_IMPARTE']]"
                                                         >{{instructor['NOMBRE_INSTRUCTOR'] | slice:0:26  }}...</a></label>
                                                     <ng-template #elseIns>
                                                         <label class="font-weight-bold texto-instructor">
-                                                            <a [routerLink]="['..','de3ec0aa2234aa1e3ee275bbc715c6c9',instructor['PK_PARTICIPANTE_IMPARTE']]"
+                                                            <a data-toggle="tooltip" data-placement="top" title="consultar CV"
+                                                                [routerLink]="['..','de3ec0aa2234aa1e3ee275bbc715c6c9',instructor['PK_PARTICIPANTE_IMPARTE']]"
                                                             >{{instructor['NOMBRE_INSTRUCTOR']  }}</a></label>
                                                     </ng-template>
                                                 </div>

@@ -33,8 +33,8 @@
 <!--****************************************************-->
 <!-- BLOQUE DE TODA LA INFO DEL CV-->
 <!--****************************************************-->
-<div class="row mx-4 mb-5">
-    <hr>
+<hr>
+<div class="row mx-0 mb-5">
     <div class="text-center col-3">
         <h4>SOBRE MÍ</h4>
         <div class="line-azul mb-2"></div>
@@ -294,15 +294,15 @@
                 <tr class="text-center">
                     <th>Título</th>
                     <th>Institución o Empresa u Organización</th>
-                    <th>Duración(Hrs)</th>
+                    <th>Duración
+                        (Hrs)</th>
                     <th>Fecha</th>
                 </tr>
                 </thead>
                 <tbody *ngIf="participacion_instructor_list.length > 0; else participacionLista" >
-                <tr class="text-center">
                 <tr class="text-center"
                     *ngFor="let participacion of participacion_instructor_list; let i = index;">
-                    <td class="" > {{ participacion['TITULO_CURSO'] }} </td>
+                    <td class="text-justify" > {{ participacion['TITULO_CURSO'] }} </td>
                     <td class=""> {{ participacion['NOMBRE_INSTITUCION'] }} </td>
                     <td> {{ participacion['HRS_DURACION_CURSO'] }}(Hrs) </td>
                     <td> {{ participacion['FECHA_IMPARTICION'] | date : 'MMMM yyyy'  }} </td>

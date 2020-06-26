@@ -43,7 +43,7 @@
 <!--                                                <div ></div>-->
 <!--                                            fin prueba-->
 
-                                    <p-autoComplete *ngIf="tipo_participante==2; else elsefiltro"
+                                    <p-autoComplete *ngIf="tipo_participante=='2'; else elsefiltro"
                                                      [(ngModel)]="this.curso.instructores"
                                                     [multiple]="true"
                                                     [suggestions]="this.docentesArray"
@@ -423,11 +423,11 @@
 <!--    fin fomrulario-->
 </div>
 <!--fin container-->
-<pre>{{this.curso | json }}</pre>
+<!--<pre>{{this.curso | json }}</pre>
 <pre>{{this.instructor | json }}</pre>
 <pre>{{this.idInstructor | json }}</pre>
 <pre>{{this.validado | json }}</pre>
-<pre>{{this.instructores|json}}</pre>
+<pre>{{this.instructores|json}}</pre>-->
 
 <!-- INICIO VENTANA MODAL DE CARGA -->
 <div bsModal #loaderModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-hidden="false"

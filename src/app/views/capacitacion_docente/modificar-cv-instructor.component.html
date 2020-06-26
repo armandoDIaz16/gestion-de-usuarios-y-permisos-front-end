@@ -906,7 +906,7 @@
                             <tr class="text-center"
                                 *ngFor="let participacion of participacion_instructor_list; let i = index;">
                             <td>{{ i + 1 }} </td>
-                            <td class="" > {{ participacion['TITULO_CURSO'] }} </td>
+                            <td class="text-justify" > {{ participacion['TITULO_CURSO'] }} </td>
                             <td class=""> {{ participacion['NOMBRE_INSTITUCION'] }} </td>
                             <td> {{ participacion['HRS_DURACION_CURSO'] }} </td>
                             <td> {{ participacion['FECHA_IMPARTICION'] | date : 'MMMM yyyy'  }} </td>
@@ -967,4 +967,4 @@
 </div>
 <!-- FIN VENTANA MODAL DE CARGA -->
 
-<pre>{{this.cv | json }}</pre>
+<!--<pre>{{this.cv | json }}</pre>-->

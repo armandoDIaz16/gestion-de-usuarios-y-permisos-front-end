@@ -2,7 +2,30 @@
 import {Component, Renderer2, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 // icons
-import {faCalendarAlt, faClock, faEdit, faHdd, faPaperclip, faFileUpload, faInfoCircle, faMapMarkerAlt, faPlus, faTimes, faTrashAlt, faPaperPlane, faTrophy, faGraduationCap, faImage, faLink,  faPlusCircle, faFolderOpen, faChevronRight, faChevronDown, faBookmark } from '@fortawesome/free-solid-svg-icons';
+import {
+    faCalendarAlt,
+    faClock,
+    faEdit,
+    faHdd,
+    faPaperclip,
+    faFileUpload,
+    faInfoCircle,
+    faMapMarkerAlt,
+    faPlus,
+    faTimes,
+    faTrashAlt,
+    faPaperPlane,
+    faTrophy,
+    faGraduationCap,
+    faImage,
+    faLink,
+    faPlusCircle,
+    faFolderOpen,
+    faChevronRight,
+    faChevronDown,
+    faBookmark,
+    faUsers
+} from '@fortawesome/free-solid-svg-icons';
 // modelos
 import {Contenido_Tematico, Curso, FichaTecnica} from '../../models/capacitacion_docente/cado-model.model';
 // alerts
@@ -53,6 +76,7 @@ export class RegistroFichaTecnicaComponent implements OnInit {
     img = faImage;
     link = faLink;
     folder = faFolderOpen;
+    people = faUsers;
     flechader = faChevronRight;
     flechaabajo = faChevronDown;
 
@@ -75,9 +99,10 @@ export class RegistroFichaTecnicaComponent implements OnInit {
     public actividad_aprendizaje_apoyo = '';
     public tiempo_programado_apoyo: number;
     public indice_contenido: number;
+    public texto_tipo_curso: string;
     // listas
     public lista_docentes: object; // docentes
-    private docentesArray: Array<Object>;
+    public docentesArray: Array<Object>;
     public lista_area_academica: object; // areas
     areasArray: Array<Object>;
     public lista_periodos: object; // periodos
@@ -110,14 +135,14 @@ export class RegistroFichaTecnicaComponent implements OnInit {
     fuentes_informacion: [],
     comentarios: [],
     };
-    private contenido_modal: Contenido_Tematico = {
+    public contenido_modal: Contenido_Tematico = {
     pk_tema:  -1,
     nombre_tema: '',
     actividad_aprendizaje: '',
     tiempo_horas:    null,
     indice_array:    -1
     };
-    private curso: Curso = {
+    public curso: Curso = {
         pk_curso : -1,
         nombre_curso:  '',
         tipo_curso: -1,
@@ -138,6 +163,21 @@ export class RegistroFichaTecnicaComponent implements OnInit {
         espacio: '',
         estado_curso: 1
     };
+
+    public tipoCursoArray = [
+        {
+            'PK_TIPO': 1,
+            'NOMBRE': 'Formación Docente'
+        },
+        {
+            'PK_TIPO': 2,
+            'NOMBRE': 'Actualización Profesional'
+        },
+        {
+            'PK_TIPO': 3,
+            'NOMBRE': 'Diplomado'
+        },
+    ];
 
   constructor( private ficha_service: FichaTecnicaCadoService,
                 private periodo_service: PeriodosCadoService,
@@ -457,11 +497,24 @@ export class RegistroFichaTecnicaComponent implements OnInit {
           });
             return false;
       }
+      if (this.curso.estado_curso == 2 ) { // 2 es estatus de autorizado
+            Swal.fire({
+                icon: 'warning',
+                title: '¡La ficha técnica ya fue autorizada no es posible hacerle más modificaciones!',
+                showConfirmButton: true,
+                confirmButtonText: 'OK',
+                // timer: 2000
+            });
+            return false;
+      }
       return true;
     }
 
 // seccion  de metodosinformacion_servicio
     guardar_informacion_servicio() {
+        if ( !this.valida_curso_autorizado()) {
+            return false;
+        }
       const resultado_validacion = this.fichaFunction.validar_seccion_informacion_servicio(this.ficha, this.curso);
       if (resultado_validacion === true) {
           // codigo para registrar la info
@@ -532,6 +585,9 @@ export class RegistroFichaTecnicaComponent implements OnInit {
       }
     }
     actualizaImagen(evt: any) {
+        if ( !this.valida_curso_autorizado()) {
+            return false;
+        }
         Swal.fire({
             title: '¿Está seguro que desea modificar la imagen del curso?',
             icon: 'question',
@@ -552,7 +608,7 @@ export class RegistroFichaTecnicaComponent implements OnInit {
                     return;
                 }
                 // console.log(archivo);
-                this.loaderModal.show();
+                // this.loaderModal.show();
                 // datos
                 const myReader: FileReader = new FileReader();
                 // preparamos el periodo para que aparezca algo asi AGO2019-ENE2020
@@ -583,7 +639,7 @@ export class RegistroFichaTecnicaComponent implements OnInit {
                     );
                 };
                 myReader.readAsDataURL(archivo);
-                this.loaderModal.hide();
+                // this.loaderModal.hide();
             }
         });
     }
@@ -617,6 +673,9 @@ export class RegistroFichaTecnicaComponent implements OnInit {
 
 // seccion de metodos elementos_didacticos
     guardar_elementos_didacticos() {
+      if ( !this.valida_curso_autorizado()) {
+          return false;
+      }
       // console.log('guardar guardar_elementos_didacticos');
       //   console.log(this.elementos_didacticos);
         const resultado_validacion = this.fichaFunction.validar_seccion_elementos_didacticos(this.elementos_didacticos);
@@ -705,6 +764,9 @@ export class RegistroFichaTecnicaComponent implements OnInit {
 
     // seccion de metodos criterios de evaluacion
     guardar_criterios_evaluacion() {
+        if ( !this.valida_curso_autorizado()) {
+            return false;
+        }
         // console.log('guardar guardar_elementos_didacticos');
         //   console.log(this.elementos_didacticos);
         const resultado_validacion = this.fichaFunction.validar_seccion_criterios_evaluacion(this.criterios_evaluacion);
@@ -807,6 +869,9 @@ export class RegistroFichaTecnicaComponent implements OnInit {
 
     // seccion de metodos competencia
     guardar_competencias() {
+        if ( !this.valida_curso_autorizado()) {
+            return false;
+        }
         const resultado_validacion = this.fichaFunction.validar_seccion_competencias(this.competencias);
         if (resultado_validacion === true) {
             // codigo para registrar la info
@@ -893,6 +958,9 @@ export class RegistroFichaTecnicaComponent implements OnInit {
 
     // seccion de metodos fuente de informacion
     guardar_fuentes_informacion() {
+        if ( !this.valida_curso_autorizado()) {
+            return false;
+        }
         const resultado_validacion = this.fichaFunction.validar_seccion_fuentes_informacion(this.fuentes_informacion);
         if (resultado_validacion === true) {
             // codigo para registrar la info
@@ -979,6 +1047,9 @@ export class RegistroFichaTecnicaComponent implements OnInit {
 
     // seccion de metodos contenido tematico
     guardar_contenidos_tematicos() {
+        if ( !this.valida_curso_autorizado()) {
+            return false;
+        }
         const resultado_validacion = this.fichaFunction.validar_seccion_contenidos_tematicos(this.contenido_tematico);
         if (resultado_validacion === true) {
             // codigo para registrar la info
@@ -994,6 +1065,7 @@ export class RegistroFichaTecnicaComponent implements OnInit {
             this.ficha_service.guardar_contenidos_tematicos(body).subscribe(
                 data => {  //  200 ok
                     // console.log(data);
+                    // todo refrescar los temas pa poder añadir un adjunto como en el metodo de eliminar archivo
                     for ( const i in data) {
                         if (data[i]['estado'] === 'error') {
                             error = true;
@@ -1126,6 +1198,9 @@ export class RegistroFichaTecnicaComponent implements OnInit {
         };
     }
     agregaArchivo(evt: any, pk_tema: number) {
+        if ( !this.valida_curso_autorizado()) {
+            return false;
+        }
       if (pk_tema <= 0 ) {
           Swal.fire({
               icon: 'info',
@@ -1155,8 +1230,21 @@ export class RegistroFichaTecnicaComponent implements OnInit {
                     return;
                 }
                 console.log(evt.target.files);
+                for (const archivo of evt.target.files) {
+                    if (archivo.name.length > 20) {
+                            Swal.fire({
+                                icon: 'warning',
+                                title: '¡El nombre del recurso didáctico  es demasiado largo ' +
+                                    ' seleccione porfavor un nombre más corto!',
+                                showConfirmButton: true,
+                                confirmButtonText: 'OK',
+                            });
+                            return;
+                    }
+                }
                 // console.log(archivo);
-                this.loaderModal.show();
+                // this.loaderModal.show();
+
                 for (const file of evt.target.files) {
                     console.log(file);
                     // datos
@@ -1205,43 +1293,14 @@ export class RegistroFichaTecnicaComponent implements OnInit {
                     };
                     myReader.readAsDataURL(file);
                 }
-
-                //
-                // // datos
-                // const myReader: FileReader = new FileReader();
-                // // preparamos el periodo para que aparezca algo asi AGO2019-ENE2020
-                // const periodo = this.preparaTextoPeriodo();
-                // myReader.onloadend = async (e) => {
-                //     const body  = {
-                //         // 'PK_ENCRIPTADA':  sessionStorage.getItem('IdEncriptada'),
-                //         'PK_CURSO' : this.curso.pk_curso,
-                //         'PERIODO' : periodo,
-                //         'NOMBRE_ARCHIVO': archivo.name,
-                //         'EXTENSION':      archivo.name.split('.').pop(),
-                //         'CONTENIDO':      myReader.result
-                //     };
-                //     this.ficha_service.registra_foto_curso(body).subscribe(
-                //         data => {
-                //             // console.log(data);
-                //             // return;
-                //             this.curso.imagen_curso = data + '';
-                //         },
-                //         error => {
-                //             Swal.fire({
-                //                 icon: 'error',
-                //                 title: 'No se pudo actualizar la foto del curso, intente, más tarde!',
-                //                 showConfirmButton: true,
-                //                 confirmButtonText: 'OK',
-                //             });
-                //         }
-                //     );
-                // };
-                // myReader.readAsDataURL(archivo);
-                this.loaderModal.hide();
+                // this.loaderModal.hide();
             }
         });
     }
     borrar_archivo_tema(pk_archivo: number, nombre_archivo: string) {
+        if ( !this.valida_curso_autorizado()) {
+            return false;
+        }
         Swal.fire({
             title: '¿Estás seguro de eliminar ' + nombre_archivo.substr(0, 25 ) + ' ?',
             icon: 'question',
@@ -1553,6 +1612,7 @@ export class RegistroFichaTecnicaComponent implements OnInit {
             return false;
         }
         // validamos que haya capturado su CV
+        //  todo validamos el cv de todos los instructores
         this.ficha_service.busca_participante_por_pk(this.pk_participante_sistema).subscribe(
             data => {
                 console.log(data['cv']);
@@ -1643,7 +1703,7 @@ export class RegistroFichaTecnicaComponent implements OnInit {
                 nombre_curso:  curso['NOMBRE_CURSO'],
                 tipo_curso: curso['TIPO_CURSO'],
                 cupo_maximo: curso['CUPO_MAXIMO'],
-                cupo_actual: -1,
+                cupo_actual: curso['CUPO_ACTUAL'],
                 total_horas: curso['TOTAL_HORAS'],
                 pk_periodo: curso['FK_PERIODO_CADO'],
                 pk_area_academica: curso['FK_AREA_ACADEMICA'] == null ? 0 : curso['FK_AREA_ACADEMICA'] ,
@@ -1690,9 +1750,29 @@ export class RegistroFichaTecnicaComponent implements OnInit {
                     this.verificaOtroServicio();
                 }
             }// fin else
+        this.prepara_texto_ficha_coordinador();
     }
 
-
+    prepara_texto_ficha_coordinador() {
+        // carga texto tipo curso
+        for ( const i in this.tipoCursoArray) {
+            if (this.tipoCursoArray[i]['PK_TIPO'] == this.curso.tipo_curso)
+                this.texto_tipo_curso = this.tipoCursoArray[i].NOMBRE;
+        }
+    }
+    valida_curso_autorizado() {
+        if (this.curso.estado_curso == 2 || this.curso.estado_curso == 4  ) { // 2 es estatus de autorizado y  4 es evaluadi
+            Swal.fire({
+                icon: 'warning',
+                title: '¡La ficha técnica ya fue autorizada no es posible hacerle más modificaciones!',
+                showConfirmButton: true,
+                confirmButtonText: 'OK',
+                // timer: 2000
+            });
+            return false;
+        }
+        return true;
+    }
     // TODO VALIDAR LONGITUDES DE LOS CAMPOS DE BD CON LO CAPTURADO
 
 }

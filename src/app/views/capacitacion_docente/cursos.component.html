@@ -1,7 +1,7 @@
 <h2 class="text-center"> Cursos </h2>
 
 <div class="container mt-5 px-0" style="margin-bottom: 7.25rem">
-    <div class="row">
+    <div *ngIf="this.tipo_participante == '4';" class="row">
         <div class="col-4 mb-3">
            <!-- <button type="submit" class="btn btn-primary px-4">
                 Guardar respuestas
@@ -113,12 +113,13 @@
                                                 <div class="col-12">
                                                     <label *ngIf="instructor['NOMBRE_INSTRUCTOR'].length>26; else elseIns;"
                                                            class="font-weight-bold texto-instructor">
-                                                        <a
+                                                        <a data-toggle="tooltip" data-placement="top" title="consultar CV"
                                                             [routerLink]="['..','de3ec0aa2234aa1e3ee275bbc715c6c9',instructor['PK_PARTICIPANTE_IMPARTE']]"
                                                         >{{instructor['NOMBRE_INSTRUCTOR'] | slice:0:26  }}...</a></label>
                                                     <ng-template #elseIns>
                                                         <label class="font-weight-bold texto-instructor">
-                                                            <a [routerLink]="['..','de3ec0aa2234aa1e3ee275bbc715c6c9',instructor['PK_PARTICIPANTE_IMPARTE']]"
+                                                            <a  data-toggle="tooltip" data-placement="top" title="consultar CV"
+                                                              [routerLink]="['..','de3ec0aa2234aa1e3ee275bbc715c6c9',instructor['PK_PARTICIPANTE_IMPARTE']]"
                                                             >{{instructor['NOMBRE_INSTRUCTOR']  }}</a></label>
                                                     </ng-template>
                                                 </div>
@@ -201,7 +202,8 @@
                                     <!--                                    FIN RENGLON TEXTO-->
                                     <!--                                    <div class="card-body p-0 texto-card">-->
                                     <hr  class="hr-margin">
-                                    <div class="row px-3">
+                                    <div *ngIf="this.tipo_participante == 4;" class="row px-3">
+<!--                                        todo definir si el docente podra dar de alta cursos, modificarlos y eliminarlos-->
                                         <div class="col-6 px-1">
                                             <button (click)="modificarCurso(item[0]['PK_CAT_CURSO_CADO'])"
                                                     class="btn btn-link   my-1 btn-block"><fa-icon [icon]="edit"></fa-icon>Editar</button>

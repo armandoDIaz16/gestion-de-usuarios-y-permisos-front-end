@@ -94,14 +94,14 @@ export class VerFichaTecnicaComponent implements OnInit {
         fuentes_informacion: [],
         comentarios: []
     };
-    private contenido_modal: Contenido_Tematico = {
+    public contenido_modal: Contenido_Tematico = {
         pk_tema:  -1,
         nombre_tema: '',
         actividad_aprendizaje: '',
         tiempo_horas:    null,
         indice_array:    -1
     };
-    private curso: Curso = {
+    public curso: Curso = {
         pk_curso : -1,
         nombre_curso:  '',
         tipo_curso: -1,
@@ -556,6 +556,16 @@ export class VerFichaTecnicaComponent implements OnInit {
             });
             return false;
         }
+        if(this.curso.estado_curso == 1) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'La ficha técnica aún no ha sido completada por el instructor',
+                showConfirmButton: true,
+                confirmButtonText: 'OK',
+            });
+            return false;
+        }
+
         Swal.fire({
             title: '¿Está seguro que desea autorizar la ficha técnica?',
             // text: "You won't be able to revert this!",

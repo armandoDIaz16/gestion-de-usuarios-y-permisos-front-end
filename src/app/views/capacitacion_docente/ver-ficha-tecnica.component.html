@@ -540,9 +540,9 @@ box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);">
                             </thead>
                             <tbody *ngIf="contenido_tematico.length > 0; else elseContenido" >
                             <tr  *ngFor="let contenido of contenido_tematico; let i = index;">
-                                <td class="text-center">{{'Tema'+(i+1)}}</td>
+                                <td class="text-center">{{'Tema '+(i+1)}}</td>
                                 <td class="text-justify">{{ contenido['NOMBRE_TEMA'] }}</td>
-                                <td class="text-center">{{contenido['TIEMPO_TEMA'] + 'hrs'}}</td>
+                                <td class="text-center">{{contenido['TIEMPO_TEMA'] + ' hrs'}}</td>
                                 <td class="text-justify">{{ contenido['ACTIVIDAD_APRENDIZAJE'] }}</td>
                                 <!-- drop down-->
                                 <td class="pl-0">
@@ -570,7 +570,7 @@ box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);">
                                                     <!--                                                        href="http://tudominio.es/descargas-pdf/pdf-descargable.pdf"-->
                                                     <a
                                                         href="{{this.ficha_service.get_url_back(archivo['RUTA_ARCHIVO'])}}"
-                                                        target="_blank"> {{ archivo['NOMBRE_ARCHIVO']  | slice:0:25 }} </a>
+                                                        target="_blank"> {{ archivo['NOMBRE_ARCHIVO']  | lowercase | slice:0:20 }} </a>
                                                 </div >
                                             </div>
                                         </div>

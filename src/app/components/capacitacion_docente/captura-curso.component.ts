@@ -50,7 +50,7 @@ export class CapturaCursoComponent implements OnInit {
     participante: string;
     tipo_participante: string;
 
-    curso: Curso = {
+   public curso: Curso = {
         pk_curso : -1,
         nombre_curso:  '',
         tipo_curso: -1,
