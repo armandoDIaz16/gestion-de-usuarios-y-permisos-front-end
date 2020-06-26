@@ -13,8 +13,11 @@
                 <div class="col-md-4">
                     <div class="form-group text-center">
                         <div class="img">
-                            <img *ngIf="this.perfil.FOTO_PERFIL == null" src="assets/img/avatars/default.svg" alt="" class="img img-thumbnail">
-                            <img *ngIf="this.perfil.FOTO_PERFIL != null" src="{{this.perfil_service.get_url_back(this.perfil.FOTO_PERFIL)}}" alt="" class="img img-thumbnail">
+                            <img *ngIf="this.perfil.FOTO_PERFIL == null" src="assets/img/avatars/default.svg" alt=""
+                                 class="img img-thumbnail">
+                            <img *ngIf="this.perfil.FOTO_PERFIL != null"
+                                 src="{{this.perfil_service.get_url_back_resource(this.perfil.FOTO_PERFIL)}}"
+                                 alt="" class="img img-thumbnail">
                         </div>
                         <br>
                         <label class="btn btn-primary" style="cursor:pointer;">Cambiar foto de perfil
@@ -113,14 +116,16 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="CORREO1">Correo personal principal</label>
-                        <input type="mail" class="form-control" id="CORREO1" name="CORREO1" [(ngModel)]="this.form.CORREO1"
+                        <input type="mail" class="form-control" id="CORREO1" name="CORREO1"
+                               [(ngModel)]="this.form.CORREO1"
                                value="{{this.perfil.CORREO1}}">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="CORREO2">Correo personal optativo</label>
-                        <input type="mail" class="form-control" id="CORREO2" name="CORREO2" [(ngModel)]="this.form.CORREO2"
+                        <input type="mail" class="form-control" id="CORREO2" name="CORREO2"
+                               [(ngModel)]="this.form.CORREO2"
                                value="{{this.perfil.CORREO2}}">
                     </div>
                 </div>

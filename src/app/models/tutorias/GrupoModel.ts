@@ -9,16 +9,19 @@ export interface InterfaceGruposTutoria {
 }
 
 export interface InterfaceGrupoTutoria {
-    PK_GRUPO_TUTORIA:      number;
-    FK_USUARIO:            number;
-    CLAVE:                 string;
-    AULA:                  string;
-    HORARIO:               InterfaceDiaHorario[];
-    CANTIDAD_ALUMNOS:      string;
+    PK_GRUPO_TUTORIA?:      number;
+    FK_USUARIO?:            number;
+    CLAVE?:                 string;
+    TUTOR?:                string;
+    AULA?:                  string;
+    HORARIO?:               InterfaceDiaHorario[];
+    CANTIDAD_ALUMNOS?:      string;
     ENCUESTAS_ACTIVAS?:     number;
     ENCUESTAS_CONTESTADAS?: number;
-    EVALUACION_GRUPO:      number;
+    EVALUACION_GRUPO?:      number;
     LISTA_ALUMNOS?:        InterfaceGrupoTutoriaDetalle[];
+    PK_CARRERA?:           number;
+    CARRERA?:              string;
 }
 
 export interface InterfaceDiaHorario {

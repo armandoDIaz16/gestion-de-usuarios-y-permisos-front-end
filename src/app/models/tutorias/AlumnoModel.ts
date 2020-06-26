@@ -50,3 +50,20 @@ export interface InterfaceDiaHorario {
     JUEVES:     string;
     VIERNES:    string;
 }
+
+export interface InterfaceAlumnoTutoria {
+    PK_GRUPO_TUTORIA_DETALLE: number;
+    PK_USUARIO: string;
+    PK_ENCRIPTADA?: string;
+    NOMBRE: string;
+    PRIMER_APELLIDO?: string;
+    SEGUNDO_APELLIDO?: string;
+    CURP: string;
+    NUMERO_CONTROL?: string;
+    SEMESTRE?: number;
+    FOTO_PERFIL?: string;
+    // DATOS DE CARRERA
+    PK_CARRERA?: number;
+    CARRERA?: string;
+    TUTOR?: string;
+}

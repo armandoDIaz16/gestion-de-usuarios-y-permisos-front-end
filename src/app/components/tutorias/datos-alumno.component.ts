@@ -3,39 +3,66 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {InterfacePerfil} from '../../models/usuarios/PerfilModel';
 import {PerfilService} from '../../services/perfil.service';
+import {Modulos} from '../../config/Tutorias';
 
 @Component({
     selector: 'app-datos-alumno',
-    templateUrl: '../../views/tutorias/datos-alumno.component.html',
-    styleUrls: ['../../views/tutorias/datos-alumno.component.scss']
+    templateUrl: '../../views/tutorias/datos_alumno/datos-alumno.html',
+    styleUrls: ['../../views/tutorias/datos_alumno/datos-alumno.scss']
 })
 export class DatosAlumnoComponent implements OnInit {
-
+    /* Configuracion */
+    public rol = '';
+    public display = 'block';
     public error = null;
-    public perfil: InterfacePerfil = null;
 
-    // modal
-    @ViewChild('loaderModal') loaderModal;
-    public display: string;
+    /* Permisos */
+    public ver_datos_personales_alumno = false;
+
+    /* Ventanas modales */
+
+    /* Datos propios */
+    public perfil = null;
+    public pk_alumno = '';
 
     constructor(private perfil_service: PerfilService,
                 private route: ActivatedRoute,
-                private http: HttpClient,
                 private router: Router,
-    ) {
-        this.perfil = <InterfacePerfil>{};
-        this.display = 'none';
+    ) { }
+
+    ngOnInit() {
+        this._init();
+        this.valida_permisos();
+        this.get_perfil();
     }
 
-    async ngOnInit() {
+    get_perfil() {
         this.display = 'block';
+        this.perfil_service.get_perfil('?pk_encriptada=' + this.pk_alumno).subscribe(
+            data => {
+                this.perfil = data.data;
+            },
+            error => {
+                alert('Ha ocurrido un error');
+            },
+            () => {
+                this.display = 'none';
+            }
+        );
+    }
 
-        const data_perfil = await this.perfil_service.get_perfil(this.route.snapshot.queryParamMap.get('alumno'));
-        if (data_perfil) {
-            this.perfil = <InterfacePerfil>data_perfil;
+    _init() {
+        this.rol = 'ADM_TUT';
+        this.perfil = [];
+        if (this.route.snapshot.queryParamMap.get('alumno')) {
+            this.pk_alumno = this.route.snapshot.queryParamMap.get('alumno');
+        } else {
+            this.router.navigateByUrl('/home');
         }
+    }
 
-        this.display = 'none';
+    valida_permisos() {
+        this.ver_datos_personales_alumno = Modulos.valida_rol_accion(this.rol, Modulos.VER_DATOS_PERSONALES_ALUMNO);
     }
 
     volver() {

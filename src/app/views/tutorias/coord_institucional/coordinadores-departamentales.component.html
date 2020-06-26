@@ -12,14 +12,14 @@
         <br>
 
         <!-- Inicio de tabla de coordiandores -->
-        <table class="table table-striped">
+        <table class="table table-striped table-bordered table-hover">
             <thead>
             <tr class="text-center">
-                <th>Número de SIIA</th>
-                <th>Nombre completo</th>
+                <th>No. SIIA</th>
+                <th>Nombre</th>
                 <th>CURP</th>
                 <th>Correo</th>
-                <th>Teléfono fijo y celular</th>
+                <th>Teléfono</th>
                 <th>Área que coordina</th>
                 <th>Contacto de emergencia</th>
                 <th>Opciones</th>
@@ -61,7 +61,7 @@
                     {{coordinador.TELEFONO_CONTACTO}}
                 </td>
                 <td>
-                    <button class="btn btn-link" tooltip="Ver grupos de tutoria de inicio">
+                    <!--<button class="btn btn-link" tooltip="Ver grupos de tutoria de inicio">
                         Tutoría de inicio
                     </button>
                     <br>
@@ -72,10 +72,10 @@
                     <button class="btn btn-link" tooltip="Ver grupos de tutoría de término">
                         Tutoría de término
                     </button>
-                    <br><br>
+                    <br><br>-->
                     <button class="btn btn-sm btn-danger" tooltip="Eliminar el rol de coordinador departamental"
                             (click)="eliminar_coordinador(coordinador.PK_AREA_ACADEMICA)">
-                        Quitar rol
+                        <i class="fa fa-trash"></i>
                     </button>
                 </td>
             </tr>

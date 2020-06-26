@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {InterfacecCarreraGruposTutoria} from '../../../models/tutorias/GrupoModel';
-import {GruposCoordDepService} from '../../../services/tutorias/coord_departamental/grupos-coord-dep.service';
-import {GruposAdminService} from '../../../services/tutorias/coord_institucional/grupos-admin.service';
+import {GruposInicialService} from '../../../services/tutorias/grupos-inicial.service';
 
 @Component({
     selector: 'app-grupos-inicial-admin',
@@ -14,12 +13,12 @@ export class GruposInicialAdminComponent implements OnInit {
     public lista_grupos: InterfacecCarreraGruposTutoria;
     public display = 'block';
 
-    constructor(private grupos_service: GruposAdminService) {
+    constructor(private grupos_service: GruposInicialService) {
         this.lista_grupos = <InterfacecCarreraGruposTutoria>{};
     }
 
     ngOnInit() {
-        this.grupos_service.get_grupos_actuales().subscribe(
+        this.grupos_service.get_grupos_actuales('Algo').subscribe(
             data => this.grupos_actuales_ok(data),
             error => this.grupos_actuales_error(error)
         );

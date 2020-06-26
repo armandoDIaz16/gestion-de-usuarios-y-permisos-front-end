@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {GenericServicesService} from '../generic-services.service';
 import {InterfaceEncuestaAdmin, InterfaceEncuestaPendiente, InterfaceTipoAplicacion} from '../../models/tutorias/EncuestasModel';
-import {InterfaceCarrera} from '../../models/tutorias/CarreraModel';
+import {InterfaceCarrera} from '../../models/general/CarreraModel';
 
 @Injectable({
     providedIn: 'root'
@@ -41,9 +41,16 @@ export class EncuestasService extends GenericServicesService {
             GenericServicesService.HEADERS);
     }
 
-    get_encuestas(id_usuario: any): Observable<InterfaceEncuestaPendiente[]> {
-        return this.http.get<InterfaceEncuestaPendiente[]>(
+    get_encuestas(id_usuario: any): any {
+        return this.http.get<any>(
             GenericServicesService.API_ENDPOINT + 'cuestionarios_usuario/' + id_usuario,
+            GenericServicesService.HEADERS
+        );
+    }
+
+    get_periodos_encuestas(id_usuario: any): any {
+        return this.http.get<any>(
+            GenericServicesService.API_ENDPOINT + 'cuestionarios_usuario_periodos/' + id_usuario,
             GenericServicesService.HEADERS
         );
     }
@@ -58,6 +65,13 @@ export class EncuestasService extends GenericServicesService {
         return this.http.post(
             GenericServicesService.API_ENDPOINT + 'valida_numero_control',
             {NUMERO_CONTROL: numero_control},
+            GenericServicesService.HEADERS
+        );
+    }
+
+    get_lista_encuestas(query_params?: string): any {
+        return this.http.get<any>(
+            GenericServicesService.API_ENDPOINT + 'encuestas' + query_params,
             GenericServicesService.HEADERS
         );
     }
