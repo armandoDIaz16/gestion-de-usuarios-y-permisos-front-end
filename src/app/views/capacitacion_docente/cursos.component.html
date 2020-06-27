@@ -19,16 +19,24 @@
 <!--            2 of 3 (wider)-->
 <!--        </div>-->
         <div class="col-4 offset-4">
-            <div class="input-group mb-3 input-group-lg">
+           <!-- <div class="input-group mb-3 input-group-lg">
                 <div class="input-group-prepend">
                     <span class="input-group-text" for="buscar_curso"><fa-icon [icon]="search" ></fa-icon></span>
                 </div>
                 <input type="search" class="form-control" placeholder="Buscar un curso" id="buscar_curso">
-            </div>
+            </div>-->
 <!--           <span><fa-icon [icon]="search" ></fa-icon></span>-->
 <!--            <input class="form-control  input-group-lg  d-inline" type="search" placeholder="Buscar un curso" aria-label="Search">-->
         </div>
     </div>
+    <div  *ngIf="this.flagCurso == false;">
+            <div class="text-center">
+                <div class="alert alert-light text-center" role="alert">
+                    <h4>No se encontraron cursos asignados</h4>
+                </div>
+            </div>
+    </div>
+
     <div *ngFor="let curso of this.lista_periodos_cursos; let i = index;" class="row mb-1">
         <div class="col-12">
             <div  class="text-center color-plata mb-2">
@@ -268,7 +276,7 @@
                     <div class="card-group">
                             <div class="text-center">
                                 <div class="alert alert-light text-center" role="alert">
-                                    <h4>No se han Registrado cursos en este periodo</h4>
+                                    <h4>No se han registrado cursos en este periodo</h4>
                                 </div>
                             </div>
                     </div>

@@ -37,6 +37,9 @@ export class CursosComponent implements OnInit {
     participante: string;
     tipo_participante: string;
     pk_usuario_en_sistema: string;
+    // bandera de cursos
+    public flagCurso: boolean;
+
     index = 3;
     // llenado automatico periodos
     public lista_periodos_cursos: object; // periodos cursos
@@ -47,6 +50,7 @@ export class CursosComponent implements OnInit {
   constructor(private curso_service: CursoCadoService,
               private router: Router) {
       this.carga_usuario_session();
+      this.flagCurso = false;
   }
 
   ngOnInit() {
@@ -134,6 +138,10 @@ export class CursosComponent implements OnInit {
                 data => {
                     this.lista_periodos_cursos = data;
                     console.log(this.lista_periodos_cursos);
+                    if (!(Object.keys(this.lista_periodos_cursos).length === 0))
+                        this.flagCurso = true;
+
+                    console.log('flag' + this.flagCurso);
                     this.display = 'none';
                 },
                 error => {
@@ -155,6 +163,10 @@ export class CursosComponent implements OnInit {
                 data => {
                     this.lista_periodos_cursos = data;
                     console.log(this.lista_periodos_cursos);
+                    if (!(Object.keys(this.lista_periodos_cursos).length === 0))
+                        this.flagCurso = true;
+
+                    console.log('flag' + this.flagCurso);
                     this.display = 'none';
                 },
                 error => {
