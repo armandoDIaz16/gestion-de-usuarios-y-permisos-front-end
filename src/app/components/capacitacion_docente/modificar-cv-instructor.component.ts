@@ -772,7 +772,9 @@ export class ModificarCvInstructorComponent implements OnInit {
     async valida_completa_perfil() {
         // validamos que haya capturado su CV
         this.display = 'block';
-        const data_perfil = await this.perfil_service.get_perfil(this.usuario_en_sistema);
+        let data_perfil = await this.perfil_service.get_perfil_CV(this.usuario_en_sistema);
+        data_perfil = data_perfil['data'];
+        console.log(data_perfil);
         if (data_perfil) {
             this.perfil = <InterfacePerfil>data_perfil;
             if (!this.cv_service_function.valida_datos_perfil(this.perfil)) {

@@ -60,7 +60,7 @@
                                         <div class="col-12 px-0 pb-1 pt-0">
                                             <img *ngIf="item[0]['RUTA_IMAGEN_CURSO'] !=null; else elseImg"
                                                  class="card-img-top img-fluid size-img"
-                                                 src="{{this.curso_service.get_url_back(item[0]['RUTA_IMAGEN_CURSO'])}}"
+                                                 src="{{this.curso_service.get_url_back_resource(item[0]['RUTA_IMAGEN_CURSO'])}}"
                                                  alt="Imagen curso">
                                             <!-- else imagen-->
                                             <ng-template #elseImg>
