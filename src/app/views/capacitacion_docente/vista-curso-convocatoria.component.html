@@ -104,7 +104,7 @@
                                                  class="dropdown-item text-right">
                                                 <!--                                                        href="http://tudominio.es/descargas-pdf/pdf-descargable.pdf"-->
                                                 <a
-                                                    href="{{this.ficha_service.get_url_back(archivo['RUTA_ARCHIVO'])}}"
+                                                    href="{{this.ficha_service.get_url_back_resource(archivo['RUTA_ARCHIVO'])}}"
                                                     target="_blank"> {{ archivo['NOMBRE_ARCHIVO']  | slice:0:25 }} </a>
                                                 <!--<button (click)="borrar_archivo_tema(archivo['PK_ARCHIVO_CONTENIDO_TEMATICO'],archivo['NOMBRE_ARCHIVO'])"
                                                         type="button" class="btn btn-link btn-sm">
@@ -218,7 +218,7 @@
     <div class="col-3">
         <img *ngIf="this.curso.imagen_curso !=null; else elseImg"
              class="card-img-top img-fluid"
-             src="{{this.curso_service.get_url_back(this.curso.imagen_curso)}}"
+             src="{{this.curso_service.get_url_back_resource(this.curso.imagen_curso)}}"
              alt="Imagen curso">
         <!-- else imagen-->
         <ng-template #elseImg>

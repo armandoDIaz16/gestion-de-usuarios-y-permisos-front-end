@@ -20,6 +20,18 @@ export class PerfilService extends GenericServicesService {
         );
     }
 
+    async get_perfil_CV(pk_usuario: any) {
+        const body = {
+            'pk_encriptada': pk_usuario
+        };
+
+        return this.http.post(
+            GenericServicesService.API_ENDPOINT + 'get_perfil_CV',
+            body,
+            GenericServicesService.HEADERS
+        ).toPromise();
+    }
+
     public guardar_perfil(body) {
         return this.http.post(
             GenericServicesService.API_ENDPOINT + 'actualiza_perfil',

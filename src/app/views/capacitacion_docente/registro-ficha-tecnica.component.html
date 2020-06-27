@@ -521,7 +521,7 @@ box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);">
                                                 <div class="col-11 px-0 pb-1 pt-1">
                                                     <img *ngIf="this.curso.imagen_curso != null"
                                                          class="card-img-top img-fluid size-img"
-                                                         src="{{this.ficha_service.get_url_back(this.curso.imagen_curso)}}">
+                                                         src="{{this.ficha_service.get_url_back_resource(this.curso.imagen_curso)}}">
                                                     <!--                                        <img class="card-img-top img-fluid"  src="assets/img/capacitacion_docente/curso1.png" alt="Card image cap">-->
                                                 </div>
                                             </div>
@@ -602,7 +602,7 @@ box-shadow: 2px -3px 10px 2px rgba(186,186,186,1);">
                                                     <div *ngFor="let archivo of this.contenido['archivo_contenido_tematico'];"
                                                          class="dropdown-item text-right">
                                                         <a
-                                                           href="{{this.ficha_service.get_url_back(archivo['RUTA_ARCHIVO'])}}"
+                                                           href="{{this.ficha_service.get_url_back_resource(archivo['RUTA_ARCHIVO'])}}"
                                                            target="_blank"> {{ archivo['NOMBRE_ARCHIVO']  | slice:0:25 }} </a>
                                                         <button (click)="borrar_archivo_tema(archivo['PK_ARCHIVO_CONTENIDO_TEMATICO'],archivo['NOMBRE_ARCHIVO'])"
                                                             type="button" class="btn btn-link btn-sm">

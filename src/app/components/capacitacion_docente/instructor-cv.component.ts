@@ -115,7 +115,9 @@ export class InstructorCvComponent implements OnInit {
                 // ASIGNA EL PK DEL PARTICIPANTE EN SISTEMA AL DEL PARAMETRO
                 this.pk_participante_parametro = this.pk_participante_sistema;
                 try {
-                    const data_perfil = await this.perfil_service.get_perfil(this.usuario_en_sistema);
+                    // const data_perfil = await this.perfil_service.get_perfil(this.usuario_en_sistema);
+                    let data_perfil = await this.perfil_service.get_perfil_CV(this.usuario_en_sistema);
+                    data_perfil = data_perfil['data'];
                     if (data_perfil) {
                         this.perfil = <InterfacePerfil>data_perfil;
                     }
@@ -151,7 +153,8 @@ export class InstructorCvComponent implements OnInit {
                     const data_cv = await this.cv_service.busca_participante_cv(param['pk_participante']);
                     console.log(data_cv);
 
-                    const data_perfil = await this.perfil_service.get_perfil(data_cv['FK_USUARIO']);
+                    let data_perfil = await this.perfil_service.get_perfil_CV(data_cv['FK_USUARIO']);
+                    data_perfil = data_perfil['data'];
                     if (data_perfil) {
                         this.perfil = <InterfacePerfil>data_perfil;
                     }
