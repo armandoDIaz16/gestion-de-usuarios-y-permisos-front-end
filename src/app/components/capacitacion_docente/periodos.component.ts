@@ -44,10 +44,14 @@ export class PeriodosComponent implements OnInit {
   public validado = false;
   public fecha_actual_sistema = new Date();
   public lista_periodos: object;
+    // bandera de periodos
+    public flagPeriodo: boolean;
+
   public lista_periodos_con_cursos: Array<Object>;
 
   constructor(private periodo_service: PeriodosCadoService) {
     // this._init_components();
+      this.flagPeriodo = false;
    }
 
   ngOnInit() {
@@ -64,6 +68,10 @@ export class PeriodosComponent implements OnInit {
           const fecha = new Date(this.lista_periodos[i].FECHA_FIN);
           this.lista_periodos[i].FECHA_FIN = fecha;
         }
+          if (!(Object.keys(this.lista_periodos).length === 0))
+              this.flagPeriodo = true;
+
+          console.log('flag' + this.flagPeriodo);
           this.display = 'none';
       },
       error => {

@@ -22,33 +22,33 @@
                 </tr>
             </thead>
                     <!--todo revisar si funciona con >0-->
-            <tbody *ngIf="this.lista_periodos != null; else elseLista">
+            <tbody *ngIf="this.flagPeriodo == true; else elseLista">
                 <!-- <pre>
                     {{this.lista_periodos|json}}
 
                 </pre> -->
                 <tr *ngFor="let periodo of this.lista_periodos; let i = index" class="text-center">
                     <td>{{i + 1}}</td>
-                    <td>{{periodo.NOMBRE_PERIODO}}<br>
-                    {{periodo.FECHA_INICIO | date:'MMMM'| uppercase }}
-                    {{periodo.FECHA_INICIO | date:'yyyy' }} -
-                    {{periodo.FECHA_FIN | date:'MMMM' | uppercase }}
-                    {{periodo.FECHA_FIN | date:'yyyy' }}
+                    <td>{{periodo['NOMBRE_PERIODO']}}<br>
+                    {{periodo['FECHA_INICIO'] | date:'MMMM'| uppercase }}
+                    {{periodo['FECHA_INICIO'] | date:'yyyy' }} -
+                    {{periodo['FECHA_FIN'] | date:'MMMM' | uppercase }}
+                    {{periodo['FECHA_FIN'] | date:'yyyy' }}
                     </td>
-                    <td>{{periodo.FECHA_INICIO | date:'dd/MM/yyyy' }}</td>
-                    <td>{{periodo.FECHA_FIN | date:'dd/MM/yyyy' }}</td>
-                    <td *ngIf="periodo.FECHA_FIN  > this.fecha_actual_sistema; else elseestado" class="text-primary text-uppercase ">En curso
+                    <td>{{periodo['FECHA_INICIO'] | date:'dd/MM/yyyy' }}</td>
+                    <td>{{periodo['FECHA_FIN'] | date:'dd/MM/yyyy' }}</td>
+                    <td *ngIf="periodo['FECHA_FIN']  > this.fecha_actual_sistema; else elseestado" class="text-primary text-uppercase ">En curso
                     </td>
                     <ng-template #elseestado>
                         <td class="text-danger text-uppercase">terminado</td>
                     </ng-template>
                     <!-- BOTONES DE ACCION  -->
                     <td>
-                        <button class="btn btn-sm btn-warning" (click)="editar_periodo(periodo.PK_PERIODO_CADO)">
+                        <button class="btn btn-sm btn-warning" (click)="editar_periodo(periodo['PK_PERIODO_CADO'])">
                             <fa-icon [icon]="edit"></fa-icon>
                   Editar
                 </button>
-                        <button   class="btn btn-sm btn-danger" (click)="eliminar_periodo(periodo.PK_PERIODO_CADO)">
+                        <button   class="btn btn-sm btn-danger" (click)="eliminar_periodo(periodo['PK_PERIODO_CADO'])">
                             <fa-icon [icon]="delete"></fa-icon>
                             Eliminar
                   </button>
@@ -60,7 +60,7 @@
                 <tbody>
                     <tr>
                         <td colspan="6" class="text-center">
-                            No se encontraron registros
+                            No se encontraron periodos registrados
                         </td>
                     </tr>
                 </tbody>
